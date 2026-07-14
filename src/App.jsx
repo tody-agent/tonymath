@@ -1998,4 +1998,30 @@ function OnboardingStepContent(props) {
   );
 }
 
+function CoachSidebar({ progress, plan, openLesson }) {
+  const mascot = progress?.profile?.mascot || 'owl'
+  const mascotEmoji = mascot === 'robot' ? '🤖' : mascot === 'turtle' ? '🐢' : '🦉'
+  const mascotName = mascot === 'robot' ? 'Rô Bốt' : mascot === 'turtle' ? 'Rùa Con' : 'Cú Ú'
+
+  // Get primary recommendation
+  const primary = plan?.primary
+
+  return (
+    <div className="coach-card" style={{ marginTop: '40px' }}>
+      <div className="coach">{mascotEmoji}</div>
+      <b>{mascotName} khuyên:</b>
+      <span>
+        {primary ? (
+          <>
+            Hãy học tiếp bài: <a href="#" onClick={(e) => { e.preventDefault(); openLesson(primary.index); }} style={{ color: '#6d59e8', fontWeight: 'bold', textDecoration: 'underline' }}>{primary.lesson.shortTitle}</a>
+          </>
+        ) : (
+          "Mỗi lần giải thích được “tại sao”, bộ não của con mạnh hơn."
+        )}
+      </span>
+    </div>
+  )
+}
+
 export default App
+
