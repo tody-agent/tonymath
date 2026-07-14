@@ -3,7 +3,7 @@
   "github": {
     "account": "tody-agent",
     "repo": "hoc-toan-vui",
-    "remoteUrl": "git@github.com:tody-agent/hoc-toan-vui.git",
+    "remoteUrl": "https://github.com/tody-agent/hoc-toan-vui.git",
     "user": {
       "name": "tody-agent",
       "email": "tracuuphat@gmail.com"
