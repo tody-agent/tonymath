@@ -57,7 +57,23 @@ function App() {
   useEffect(() => {
     const today = new Date().toISOString().slice(0, 10)
     if (progress.lastStudyDate !== today) {
-      setProgress((old) => ({ ...old, lastStudyDate: today }))
+      setProgress((old) => {
+        let newStreak = old.streak
+        if (old.lastStudyDate) {
+          const lastDate = new Date(old.lastStudyDate)
+          const currentDate = new Date(today)
+          const diffTime = Math.abs(currentDate - lastDate)
+          const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24))
+          if (diffDays === 1) {
+            newStreak = old.streak + 1
+          } else if (diffDays > 1) {
+            newStreak = 1
+          }
+        } else {
+          newStreak = 1
+        }
+        return { ...old, lastStudyDate: today, streak: newStreak }
+      })
     }
   }, [progress.lastStudyDate])
 
@@ -153,6 +169,21 @@ function App() {
     [progress.completed]
   )
 
+  const isStepAnswered = () => {
+    if (step === 0) return true
+    if (step === 1) return selected !== null
+    if (step === 2) {
+      return factAnswers.length === lesson.facts.length &&
+             factAnswers.every((x) => x === 'known' || x === 'unknown')
+    }
+    if (step === 3) return selected !== null
+    if (step === 4) return selected !== null && secondSelected !== null
+    if (step === 5) return numberAnswer.trim() !== ''
+    if (step === 6) return selected !== null
+    if (step === 7) return selected !== null
+    return false
+  }
+
   return (
     <div className="app-shell">
       <header className="topbar">
@@ -164,7 +195,7 @@ function App() {
           <div className="level-card"><span>⭐</span><div><b>Cấp độ {level}</b><div className="mini-progress"><i style={{ width: `${levelProgress}%` }} /></div></div></div>
           <div className="stat"><span>🔥</span><b>{progress.streak}</b><small>ngày</small></div>
           <div className="stat"><span>🪙</span><b>{progress.xp}</b><small>điểm</small></div>
-          <button className="avatar-button" onClick={() => setMenuOpen((open) => !open)}>👦</button>
+          <button className="avatar-button" onClick={() => setMenuOpen((open) => !open)} aria-label="Menu cá nhân">👦</button>
         </div>
         {menuOpen && (
           <div className="profile-menu">
@@ -220,6 +251,7 @@ function App() {
             nextStep={nextStep}
             speakStory={speakStory}
             onBack={() => setView('home')}
+            isAnswered={isStepAnswered()}
           />
         )}
         {view === 'complete' && (
@@ -291,11 +323,11 @@ function Home({ lessons, progress, openLesson, isUnlocked, completedCount, earne
 }
 
 function LessonView(props) {
-  const { lesson, step, feedback, hintOpen, setHintOpen, hearts, validateStep, nextStep, speakStory, onBack } = props
+  const { lesson, step, feedback, hintOpen, setHintOpen, hearts, validateStep, nextStep, speakStory, onBack, isAnswered } = props
   return (
     <div className="lesson-page">
       <div className="lesson-toolbar">
-        <button className="icon-button" onClick={onBack}>←</button>
+        <button className="icon-button" onClick={onBack} aria-label="Quay lại danh sách bài học">←</button>
         <div className="lesson-progress"><span style={{ width: `${((step + 1) / 8) * 100}%` }} /></div>
         <button className="hint-button" onClick={() => setHintOpen((open) => !open)}>💡 Gợi ý</button>
         <div className="hearts">❤️ {hearts}</div>
@@ -332,7 +364,7 @@ function LessonView(props) {
           <div className="lesson-actions">
             <button className="secondary-button" onClick={onBack}>Quay lại</button>
             {!feedback?.correct ? (
-              <button className="primary-button" onClick={validateStep}>Kiểm tra</button>
+              <button className="primary-button" onClick={validateStep} disabled={!isAnswered}>Kiểm tra</button>
             ) : (
               <button className="primary-button" onClick={nextStep}>{step === 7 ? 'Hoàn thành' : 'Tiếp theo'} →</button>
             )}
