@@ -454,11 +454,11 @@ function App() {
     document.body.removeChild(link);
   }
 
-  const isOnboarding = view === 'onboarding'
+  const isSessionActive = view === 'onboarding' || view === 'lesson'
 
   return (
-    <div className={`app-shell ${isOnboarding ? 'onboarding-shell' : ''}`}>
-      {!isOnboarding && (
+    <div className={`app-shell ${isSessionActive ? 'onboarding-shell' : ''}`}>
+      {!isSessionActive && (
         <header className="topbar">
           <button className="brand" onClick={() => setView('home')} aria-label="Về trang chủ">
             <span className="brand-mascot">🦉</span>
@@ -468,19 +468,10 @@ function App() {
             <div className="level-card"><span>⭐</span><div><b>Cấp độ {level}</b><div className="mini-progress"><i style={{ width: `${levelProgress}%` }} /></div></div></div>
             <div className="stat"><span>🔥</span><b>{progress.streak}</b><small>ngày</small></div>
             <div className="stat"><span>🪙</span><b>{progress.xp}</b><small>điểm</small></div>
-            <button onClick={() => setIsDevMode(prev => !prev)} className="dev-toggle-direct" style={{
-              background: isDevMode ? '#e2ffd9' : '#eef2ff',
-              color: isDevMode ? '#1e750e' : '#4338ca',
-              padding: '8px 12px',
-              borderRadius: '12px',
-              fontWeight: 'bold',
-              fontSize: '13px',
-              border: '1px solid ' + (isDevMode ? '#bbf7ad' : '#c7d2fe'),
-              height: '42px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '4px'
-            }}>
+            <button 
+              onClick={() => { playSfx('click', audioSettings.muted); setIsDevMode(prev => !prev); }} 
+              className={`dev-toggle-direct ${isDevMode ? 'dev-active' : ''}`}
+            >
               {isDevMode ? '🔒 Khóa bài' : '🔓 Mở khóa tất cả'}
             </button>
             <div className="audio-settings-wrapper">
@@ -603,7 +594,7 @@ function App() {
         </header>
       )}
 
-      {!isOnboarding && (
+      {!isSessionActive && (
         <aside className="sidebar">
           <nav>
             <NavButton icon="🏠" label="Trang chủ" active={view === 'home'} onClick={() => setView('home')} />
@@ -619,7 +610,7 @@ function App() {
         </aside>
       )}
 
-      <main className={isOnboarding ? "main-content full-width" : "main-content"}>
+      <main className={isSessionActive ? "main-content full-width" : "main-content"}>
         {view === 'onboarding' && (
           <OnboardingView progress={progress} setProgress={setProgress} setView={setView} />
         )}
@@ -669,7 +660,7 @@ function App() {
         {view === 'progress' && <ProgressView lessons={lessons} progress={progress} />}
       </main>
 
-      {!isOnboarding && (
+      {!isSessionActive && (
         <nav className="mobile-nav">
           <NavButton icon="🏠" label="Trang chủ" active={view === 'home'} onClick={() => setView('home')} />
           <NavButton icon="📚" label="Bài học" active={view === 'lesson'} onClick={() => setView('home')} />
@@ -678,7 +669,7 @@ function App() {
         </nav>
       )}
 
-      {!isOnboarding && showInstallPrompt && (
+      {!isSessionActive && showInstallPrompt && (
         <div className="pwa-install-drawer">
           <div className="pwa-install-text">
             <span>📲</span>
@@ -800,12 +791,15 @@ function Home({ lessons, progress, openLesson, isUnlocked, completedCount, earne
 
 function LessonView(props) {
   const { lesson, step, feedback, hintOpen, setHintOpen, hearts, validateStep, nextStep, speakStory, onBack, isAnswered } = props
+  const hasFeedback = Boolean(feedback);
+  const isCorrect = feedback?.correct;
+
   return (
     <div className="lesson-page">
       <div className="lesson-toolbar">
-        <button className="icon-button" onClick={() => { playClick(); onBack(); }} aria-label="Quay lại danh sách bài học">←</button>
+        <button className="close-button" onClick={() => { playClick(); onBack(); }} aria-label="Quay lại danh sách bài học">✕</button>
         <div className="lesson-progress"><span style={{ width: `${((step + 1) / 8) * 100}%` }} /></div>
-        <button className="hint-button" onClick={() => { playClick(); setHintOpen((open) => !open); }}>💡 Gợi ý</button>
+        <button className={`hint-button ${hintOpen ? 'active' : ''}`} onClick={() => { playClick(); setHintOpen((open) => !open); }}>💡</button>
         <div className="hearts">❤️ {hearts}</div>
       </div>
 
@@ -819,53 +813,69 @@ function LessonView(props) {
         </ol>
 
         <section className="exercise-card">
-          <div className="story-box">
-            <button className="sound-button" onClick={speakStory} aria-label="Đọc đề bài">🔊</button>
-            <p>{lesson.story}</p>
-            <span className="story-emoji">{lesson.icon}</span>
-          </div>
-
-          {hintOpen && (
-            <div className="hint-panel">
-              <span>💡</span>
-              <p>{lesson.hints[step]}</p>
-              <button 
-                className="speech-mini-btn" 
-                onClick={() => speakManual(lesson.hints[step])}
-                aria-label="Đọc gợi ý"
-              >
-                🔊
-              </button>
+          <div className="story-box-wrapper">
+            <div className="story-box">
+              <button className="sound-button" onClick={speakStory} aria-label="Đọc đề bài">🔊</button>
+              <p>{lesson.story}</p>
+              <span className="story-emoji">{lesson.icon}</span>
             </div>
-          )}
+
+            {hintOpen && (
+              <div className="hint-panel">
+                <span>💡</span>
+                <p>{lesson.hints[step]}</p>
+                <button 
+                  className="speech-mini-btn" 
+                  onClick={() => speakManual(lesson.hints[step])}
+                  aria-label="Đọc gợi ý"
+                >
+                  🔊
+                </button>
+              </div>
+            )}
+          </div>
 
           <div className="question-area">
             <StepContent {...props} />
           </div>
+        </section>
+      </div>
 
-          {feedback && (
-            <div className={feedback.correct ? 'feedback correct' : 'feedback wrong'}>
-              <span>{feedback.correct ? '🎉' : '🌱'}</span>
-              <p><b>{feedback.correct ? 'Chính xác!' : 'Thử lại nhé!'}</b>{feedback.message}</p>
+      <div className={`lesson-footer ${hasFeedback ? (isCorrect ? 'footer-correct' : 'footer-wrong') : ''}`}>
+        <div className="footer-content">
+          {hasFeedback ? (
+            <div className="feedback-banner">
+              <span className="feedback-icon">{isCorrect ? '🎉' : '🌱'}</span>
+              <div className="feedback-text">
+                <b>{isCorrect ? 'Chính xác!' : 'Thử lại nhé!'}</b>
+                <p>{feedback.message}</p>
+              </div>
               <button 
-                className="speech-mini-btn" 
-                onClick={() => speakManual(feedback.correct ? `Chính xác! ${feedback.message}` : `Thử lại nhé! ${feedback.message}`)}
+                className="speech-mini-btn feedback-speech" 
+                onClick={() => speakManual(isCorrect ? `Chính xác! ${feedback.message}` : `Thử lại nhé! ${feedback.message}`)}
                 aria-label="Đọc phản hồi"
               >
                 🔊
               </button>
             </div>
+          ) : (
+            <div className="footer-tip">
+            </div>
           )}
 
-          <div className="lesson-actions">
-            <button className="secondary-button" onClick={() => { playClick(); onBack(); }}>Quay lại</button>
-            {!feedback?.correct ? (
-              <button className="primary-button" onClick={validateStep} disabled={!isAnswered}>Kiểm tra</button>
+          <div className="footer-actions">
+            {!hasFeedback ? (
+              <>
+                <button className="secondary-button footer-back" onClick={() => { playClick(); onBack(); }}>Quay lại</button>
+                <button className="primary-button footer-submit" onClick={validateStep} disabled={!isAnswered}>Kiểm tra</button>
+              </>
             ) : (
-              <button className="primary-button" onClick={nextStep}>{step === 7 ? 'Hoàn thành' : 'Tiếp theo'} →</button>
+              <button className="primary-button footer-next" onClick={nextStep} autoFocus>
+                {step === 7 ? 'Hoàn thành' : 'Tiếp theo'} →
+              </button>
             )}
           </div>
-        </section>
+        </div>
       </div>
     </div>
   )
@@ -1353,24 +1363,29 @@ function OnboardingLesson(props) {
     }
   }
 
+  const hasFeedback = Boolean(feedback);
+  const isCorrect = feedback?.correct;
+
+  const isAnswered = useMemo(() => {
+    if (step === 0) return true;
+    if (step === 1) return selected !== null;
+    if (step === 2) return factAnswers.length === 3 && !factAnswers.includes(undefined);
+    if (step === 3) return selected !== null;
+    if (step === 4) return selected !== null && secondSelected !== null;
+    if (step === 5) return numberAnswer.trim() !== '';
+    if (step === 6) return selected !== null;
+    if (step === 7) return selected !== null;
+    return false;
+  }, [step, selected, secondSelected, factAnswers, numberAnswer]);
+
   return (
     <div className="lesson-page" style={{ paddingBottom: '32px' }}>
       <div className="lesson-toolbar">
-        <div className="brand" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '24px' }}>{buddyEmoji}</span>
-          <b style={{ color: '#4f46e5' }}>Huấn luyện cùng {buddyName}</b>
-        </div>
+        <button className="close-button" onClick={() => { playClick(); onSkip(); }} aria-label="Bỏ qua hướng dẫn">✕</button>
         <div className="lesson-progress">
           <span style={{ width: `${((step + 1) / 8) * 100}%` }} />
         </div>
-        <button 
-          onClick={onSkip} 
-          className="hint-button"
-          style={{ marginRight: '8px', background: '#f1f5f9', color: '#475569' }}
-        >
-          ⏭️ Bỏ qua
-        </button>
-        <div className="hearts">❤️ Không giới hạn</div>
+        <div className="hearts">❤️ ∞</div>
       </div>
 
       <div className="buddy-panel">
@@ -1411,38 +1426,43 @@ function OnboardingLesson(props) {
               feedback={feedback}
             />
           </div>
+        </section>
+      </div>
 
-          {feedback && (
-            <div className={feedback.correct ? 'feedback correct' : 'feedback wrong'}>
-              <span>{feedback.correct ? '🎉' : '🌱'}</span>
-              <p><b>{feedback.correct ? 'Chính xác!' : 'Thử lại nhé!'}</b>{feedback.message}</p>
+      <div className={`lesson-footer ${hasFeedback ? (isCorrect ? 'footer-correct' : 'footer-wrong') : ''}`}>
+        <div className="footer-content">
+          {hasFeedback ? (
+            <div className="feedback-banner">
+              <span className="feedback-icon">{isCorrect ? '🎉' : '🌱'}</span>
+              <div className="feedback-text">
+                <b>{isCorrect ? 'Chính xác!' : 'Thử lại nhé!'}</b>
+                <p>{feedback.message}</p>
+              </div>
+            </div>
+          ) : (
+            <div className="footer-tip">
             </div>
           )}
 
-          <div className="lesson-actions" style={{ justifyContent: 'flex-end' }}>
-            {!feedback?.correct ? (
-              <button 
-                className="primary-button" 
-                onClick={validateTutorialStep}
-                disabled={
-                  (step === 1 && selected === null) ||
-                  (step === 2 && (factAnswers.length < 3 || factAnswers.includes(undefined))) ||
-                  (step === 3 && selected === null) ||
-                  (step === 4 && (selected === null || secondSelected === null)) ||
-                  (step === 5 && numberAnswer.trim() === '') ||
-                  (step === 6 && selected === null) ||
-                  (step === 7 && selected === null)
-                }
-              >
-                Kiểm tra
-              </button>
+          <div className="footer-actions">
+            {!hasFeedback ? (
+              <>
+                <button className="secondary-button footer-back" onClick={() => { playClick(); onSkip(); }}>Bỏ qua</button>
+                <button 
+                  className="primary-button footer-submit" 
+                  onClick={validateTutorialStep}
+                  disabled={!isAnswered}
+                >
+                  Kiểm tra
+                </button>
+              </>
             ) : (
-              <button className="primary-button" onClick={nextTutorialStep}>
+              <button className="primary-button footer-next" onClick={nextTutorialStep} autoFocus>
                 {step === 7 ? 'Hoàn thành' : 'Tiếp theo'} →
               </button>
             )}
           </div>
-        </section>
+        </div>
       </div>
     </div>
   );
