@@ -1,36 +1,51 @@
 import { useEffect, useMemo, useState } from 'react'
 import lessons from './lessons.json'
-import { isUnlocked as checkIsUnlocked, resolveSpeechRate, generateIcsContent } from './utils.js'
+import {
+  isUnlocked as checkIsUnlocked,
+  resolveSpeechRate,
+  generateIcsContent,
+  getLearningPlan,
+  getWelcomeBackNudge,
+  getCompletionPraise,
+  getEncourageLine,
+  applyLessonResult,
+  applyStepMistake,
+  getLessonBadge,
+  getPathIndex
+} from './utils.js'
 import { playSfx, speakText, cancelSpeech } from './audio.js'
 import './App.css'
 
 const STEP_LABELS = [
-  ['📖', 'Hiểu tình huống'],
-  ['💬', 'Kể lại bằng lời'],
-  ['🧩', 'Tách dữ kiện'],
+  ['👀', 'Nhìn hình'],
+  ['💬', 'Kể lại'],
+  ['🧩', 'Đã biết / cần tìm'],
   ['🗺️', 'Chọn mô hình'],
-  ['➕', 'Chọn phép tính'],
-  ['✏️', 'Tính toán'],
-  ['🗣️', 'Viết câu trả lời'],
+  ['➕', 'Phép tính & vì sao'],
+  ['✏️', 'Tự tính'],
+  ['🗣️', 'Câu trả lời'],
   ['🛡️', 'Kiểm tra']
 ]
 
 const LESSON_0 = {
   id: "lesson-0",
-  story: "Mẹ có 3 quả táo đỏ. Mẹ mua thêm 2 quả táo xanh. Hỏi mẹ có tất cả bao nhiêu quả táo?",
+  story: "Mẹ có 3 quả táo đỏ mọng. Mẹ mua thêm 2 quả táo xanh giòn. Giờ mẹ có tất cả bao nhiêu quả táo?",
   unit: "quả táo",
   icon: "🍎",
   color: "pink",
   shortTitle: "Bài học đầu tiên",
   skill: "Cộng thêm",
   visual: {
+    type: "add",
     before: 3,
     change: 2,
     emoji: "🍎",
-    changeLabel: "được mua thêm"
+    beforeLabel: "Mẹ đang có",
+    changeLabel: "Mua thêm",
+    resultLabel: "Tất cả?"
   },
   retellOptions: [
-    "Mẹ có 3 quả táo đỏ, mua thêm 2 quả táo xanh và cần tìm tổng số táo.",
+    "Mẹ có 3 quả, mua thêm 2 quả, cần tìm tổng số táo.",
     "Mẹ có 3 quả táo rồi ăn mất 2 quả.",
     "Mẹ chia 3 quả táo cho 2 người."
   ],
@@ -46,8 +61,8 @@ const LESSON_0 = {
     "unknown"
   ],
   models: [
-    "Sơ đồ tổng - phần",
-    "Trục số",
+    "Ghép hai phần thành tổng",
+    "Trục số lùi",
     "Nhóm bằng nhau"
   ],
   correctModel: 0,
@@ -58,7 +73,7 @@ const LESSON_0 = {
   ],
   correctOperation: 0,
   reasons: [
-    "Vì gộp táo đỏ và táo xanh lại nên tổng tăng lên.",
+    "Vì gộp táo đỏ và táo xanh lại — số táo tăng lên, dùng phép cộng.",
     "Vì bớt đi số táo.",
     "Vì chia đều số táo."
   ],
@@ -70,29 +85,32 @@ const LESSON_0 = {
     "Mẹ có 6 quả táo."
   ],
   correctAnswerSentence: 0,
-  checkQuestion: "Tổng số táo (5 quả) lớn hơn số táo đỏ ban đầu (3 quả) có đúng không?",
+  checkQuestion: "Kết quả 5 lớn hơn 3 — có hợp lý không?",
   checkOptions: [
-    "Đúng, tổng phải lớn hơn các phần gộp lại.",
-    "Sai, tổng phải nhỏ hơn."
+    "Có, vì mẹ mua thêm nên phải nhiều hơn.",
+    "Không, tổng phải nhỏ hơn."
   ],
   correctCheck: 0,
   hints: [
-    "Nhìn hình: có 3 táo đỏ và 2 táo xanh.",
-    "Chọn câu tóm tắt đầy đủ cả táo đỏ, táo xanh và câu hỏi.",
+    "Nhìn hình: số táo đang tăng hay giảm?",
+    "Kể 3 ý: ban đầu – mua thêm – cần tìm.",
     "Bấm 'Đã biết' cho các số đã cho, và 'Cần tìm' cho câu hỏi.",
-    "Chọn mô hình gộp hai phần thành một tổng lớn.",
-    "Gộp lại thì chọn phép cộng 3 + 2.",
-    "Tính nhẩm xem 3 cộng 2 bằng bao nhiêu.",
-    "Chọn câu trả lời có số 5 và đơn vị là quả táo.",
-    "Kiểm tra lại xem tổng số táo có lớn hơn từng phần không."
+    "Chọn hình ghép hai phần thành một tổng.",
+    "Mẹo nhớ: “Thêm vào = cộng = to hơn”.",
+    "Đếm: 3 rồi thêm 2 nữa → 5.",
+    "Chọn câu có số 5 và đơn vị quả táo.",
+    "Kiểm tra: được thêm thì đáp án phải lớn hơn 3."
   ]
 }
 
 const DEFAULT_PROGRESS = {
   completed: {},
+  attempts: {},
+  weakSkills: {},
   xp: 0,
   streak: 1,
   lastStudyDate: null,
+  lastActiveDate: null,
   currentLesson: 0,
   onboarded: false,
   profile: {
@@ -100,7 +118,9 @@ const DEFAULT_PROGRESS = {
     mascot: 'owl'
   },
   reminderTime: '19:00',
-  notificationsEnabled: false
+  notificationsEnabled: false,
+  welcomeNudgeDismissedOn: null,
+  stepFailsSession: {}
 }
 
 const DEFAULT_AUDIO_SETTINGS = {
@@ -112,9 +132,18 @@ const DEFAULT_AUDIO_SETTINGS = {
 function loadProgress() {
   try {
     const saved = localStorage.getItem('hoc-toan-vui-progress-v1')
-    return saved ? { ...DEFAULT_PROGRESS, ...JSON.parse(saved) } : DEFAULT_PROGRESS
+    if (!saved) return { ...DEFAULT_PROGRESS }
+    const parsed = JSON.parse(saved)
+    return {
+      ...DEFAULT_PROGRESS,
+      ...parsed,
+      profile: { ...DEFAULT_PROGRESS.profile, ...(parsed.profile || {}) },
+      completed: parsed.completed || {},
+      attempts: parsed.attempts || {},
+      weakSkills: parsed.weakSkills || {}
+    }
   } catch {
-    return DEFAULT_PROGRESS
+    return { ...DEFAULT_PROGRESS }
   }
 }
 
@@ -157,15 +186,62 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [isDevMode, setIsDevMode] = useState(false)
   const [showIosInstructions, setShowIosInstructions] = useState(false)
+  const [stepFailsSession, setStepFailsSession] = useState({})
+  const [showWelcomeNudge, setShowWelcomeNudge] = useState(false)
+  const [prevXpLevel, setPrevXpLevel] = useState(() => Math.floor((progress.xp || 0) / 100) + 1)
 
   const lesson = lessons[lessonIndex]
-  const completedCount = Object.keys(progress.completed).length
+  const completedCount = Object.keys(progress.completed || {}).length
   const level = Math.floor(progress.xp / 100) + 1
   const levelProgress = progress.xp % 100
+  const learningPlan = useMemo(() => getLearningPlan(lessons, progress), [progress])
+  const pathIndex = learningPlan.pathIndex
+
+  // Reset feedback when user changes their answer (so they can try again and submit new answer)
+  useEffect(() => {
+    if (feedback && !feedback.correct) {
+      setFeedback(null)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selected, secondSelected, factAnswers, numberAnswer])
 
   useEffect(() => {
     localStorage.setItem('hoc-toan-vui-progress-v1', JSON.stringify(progress))
   }, [progress])
+
+  // Touch lastActiveDate once per day (cache “nhớ” người dùng)
+  useEffect(() => {
+    const today = new Date().toISOString().slice(0, 10)
+    if (progress.lastActiveDate !== today) {
+      setProgress((old) => ({ ...old, lastActiveDate: today }))
+    }
+  }, [progress.lastActiveDate])
+
+  // Welcome-back nudge (không chặn UI — có thể đóng)
+  useEffect(() => {
+    if (!progress.onboarded || view !== 'home') return
+    const today = new Date().toISOString().slice(0, 10)
+    if (progress.welcomeNudgeDismissedOn === today) return
+    const nudge = getWelcomeBackNudge(progress, today)
+    if (nudge.gap === null || nudge.gap >= 0) {
+      setShowWelcomeNudge(true)
+      if (nudge.gap >= 2 || nudge.streak >= 3) {
+        playSfx(nudge.gap >= 2 ? 'welcome' : 'streak', audioSettings.muted)
+      }
+    }
+    // only on first home after load / return
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [view, progress.onboarded])
+
+  // Level-up celebration
+  useEffect(() => {
+    if (level > prevXpLevel) {
+      playSfx('levelup', audioSettings.muted)
+      setPrevXpLevel(level)
+    } else if (level < prevXpLevel) {
+      setPrevXpLevel(level)
+    }
+  }, [level, prevXpLevel, audioSettings.muted])
 
   useEffect(() => {
     const handleBeforeInstall = (e) => {
@@ -273,7 +349,8 @@ function App() {
   }, [feedback, view, audioSettings.autoRead, audioSettings.muted, audioSettings.speed])
 
 
-  const isUnlocked = (index) => checkIsUnlocked(index, progress.completed, lessons, isDevMode)
+  // Free browse: mọi bài đều mở; isDevMode giữ cho tương thích UI cũ
+  const isUnlocked = (index) => isDevMode || checkIsUnlocked(index, progress.completed, lessons, isDevMode)
 
   function resetStepState(nextStep = step) {
     setSelected(null)
@@ -286,12 +363,18 @@ function App() {
   }
 
   function openLesson(index) {
-    if (!isUnlocked(index)) return
+    if (index < 0 || index >= lessons.length) return
     playClick()
+    playSfx('sparkle', audioSettings.muted)
     setLessonIndex(index)
-    setProgress((old) => ({ ...old, currentLesson: index }))
+    setProgress((old) => ({
+      ...old,
+      currentLesson: index,
+      lastActiveDate: new Date().toISOString().slice(0, 10)
+    }))
     setMistakes(0)
     setHearts(3)
+    setStepFailsSession({})
     resetStepState(0)
     setView('lesson')
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -300,32 +383,38 @@ function App() {
   function markAttempt(isCorrect, message) {
     if (feedback?.correct) return
     if (isCorrect) {
-      playSfx('correct', audioSettings.muted)
+      const praiseSfx = step === 7 ? 'praise' : 'correct'
+      playSfx(praiseSfx, audioSettings.muted)
       setFeedback({ correct: true, message })
       setProgress((old) => ({ ...old, xp: old.xp + 10 }))
     } else {
-      playSfx('wrong', audioSettings.muted)
-      setFeedback({ correct: false, message })
+      playSfx(hearts <= 1 ? 'wrong' : 'soft_wrong', audioSettings.muted)
+      const encourage = getEncourageLine(Date.now() + step)
+      setFeedback({ correct: false, message: `${message} ${encourage}` })
       setMistakes((value) => value + 1)
       setHearts((value) => Math.max(0, value - 1))
+      setStepFailsSession((old) => ({ ...old, [step]: (old[step] || 0) + 1 }))
+      setProgress((old) =>
+        applyStepMistake(old, { lessonId: lesson.id, skill: lesson.skill, step })
+      )
     }
   }
 
   function validateStep() {
-    if (step === 0) return markAttempt(true, 'Con đã hiểu bối cảnh. Bây giờ hãy kể lại câu chuyện nhé!')
-    if (step === 1) return markAttempt(selected === lesson.correctRetell, selected === lesson.correctRetell ? 'Con đã kể đúng ba ý quan trọng!' : 'Hãy xem lại điều xảy ra với số lượng.')
+    if (step === 0) return markAttempt(true, 'Con đã “nhìn thấy” câu chuyện. Giờ kể lại nhé!')
+    if (step === 1) return markAttempt(selected === lesson.correctRetell, selected === lesson.correctRetell ? 'Kể đúng ba ý quan trọng rồi!' : 'Xem lại: ban đầu – thay đổi – cần tìm.')
     if (step === 2) {
       const correct = factAnswers.length === lesson.factRoles.length && factAnswers.every((role, index) => role === lesson.factRoles[index])
-      return markAttempt(correct, correct ? 'Con đã phân biệt đúng điều đã biết và điều cần tìm!' : 'Có hai dữ kiện đã biết và một điều cần tìm.')
+      return markAttempt(correct, correct ? 'Phân loại thông tin chuẩn luôn!' : 'Thường có hai điều đã biết và một điều cần tìm.')
     }
-    if (step === 3) return markAttempt(selected === lesson.correctModel, selected === lesson.correctModel ? 'Mô hình này thể hiện đúng mối quan hệ trong đề.' : 'Mô hình cần giống với cách các số liên hệ với nhau.')
+    if (step === 3) return markAttempt(selected === lesson.correctModel, selected === lesson.correctModel ? 'Hình này khớp câu chuyện!' : 'Chọn hình kể đúng chuyện đang xảy ra.')
     if (step === 4) {
       const correct = selected === lesson.correctOperation && secondSelected === lesson.correctReason
-      return markAttempt(correct, correct ? 'Đúng cả phép tính và lý do. Đây mới là hiểu bản chất!' : 'Hãy kiểm tra lại cả phép tính lẫn lý do.')
+      return markAttempt(correct, correct ? 'Đúng phép tính và biết vì sao — tuyệt!' : 'Kiểm tra lại cả phép tính lẫn lý do.')
     }
-    if (step === 5) return markAttempt(Number(numberAnswer) === lesson.answer, Number(numberAnswer) === lesson.answer ? 'Tính chính xác rồi!' : 'Cách làm đúng, hãy kiểm tra lại phép tính.')
-    if (step === 6) return markAttempt(selected === lesson.correctAnswerSentence, selected === lesson.correctAnswerSentence ? 'Câu trả lời đủ số, đơn vị và đúng ý câu hỏi.' : 'Câu trả lời phải đúng chủ thể và đúng đơn vị.')
-    if (step === 7) return markAttempt(selected === lesson.correctCheck, selected === lesson.correctCheck ? 'Con đã biết tự kiểm tra đáp án!' : 'Hãy dùng câu chuyện hoặc phép tính ngược để kiểm tra.')
+    if (step === 5) return markAttempt(Number(numberAnswer) === lesson.answer, Number(numberAnswer) === lesson.answer ? 'Tính chính xác rồi!' : 'Cách làm đúng hướng — kiểm tra lại phép tính.')
+    if (step === 6) return markAttempt(selected === lesson.correctAnswerSentence, selected === lesson.correctAnswerSentence ? 'Câu trả lời đủ số và đơn vị!' : 'Nhớ đúng chủ thể và đơn vị nhé.')
+    if (step === 7) return markAttempt(selected === lesson.correctCheck, selected === lesson.correctCheck ? 'Biết tự kiểm tra — siêu đẳng!' : 'Thử phép ngược hoặc xem lại câu chuyện.')
   }
 
   function nextStep() {
@@ -336,16 +425,33 @@ function App() {
       return
     }
     const stars = mistakes === 0 ? 3 : mistakes <= 2 ? 2 : 1
-    setProgress((old) => ({
-      ...old,
-      xp: old.xp + stars * 10,
-      completed: {
-        ...old.completed,
-        [lesson.id]: { stars, mistakes, completedAt: new Date().toISOString() }
-      }
-    }))
-    playSfx('complete', audioSettings.muted)
+    const praise = getCompletionPraise({
+      name: progress.profile?.name,
+      stars,
+      mistakes,
+      skill: lesson.skill,
+      shortTitle: lesson.shortTitle
+    })
+    setProgress((old) =>
+      applyLessonResult(old, {
+        lessonId: lesson.id,
+        skill: lesson.skill,
+        stars,
+        mistakes,
+        stepFails: stepFailsSession
+      })
+    )
+    playSfx(praise.sfx || 'complete', audioSettings.muted)
+    if (!audioSettings.muted && audioSettings.autoRead) {
+      speakText(`${praise.headline}. ${praise.lines[0]}`, resolveSpeechRate(audioSettings.speed))
+    }
     setView('complete')
+  }
+
+  function dismissWelcomeNudge() {
+    const today = new Date().toISOString().slice(0, 10)
+    setShowWelcomeNudge(false)
+    setProgress((old) => ({ ...old, welcomeNudgeDismissedOn: today }))
   }
 
   function speakStory() {
@@ -602,11 +708,7 @@ function App() {
             <NavButton icon="🏆" label="Thành tích" active={view === 'achievements'} onClick={() => setView('achievements')} />
             <NavButton icon="📈" label="Tiến độ" active={view === 'progress'} onClick={() => setView('progress')} />
           </nav>
-          <div className="coach-card">
-            <div className="coach">🙋‍♂️</div>
-            <b>Cố lên!</b>
-            <span>Mỗi lần giải thích được “tại sao”, bộ não của con mạnh hơn.</span>
-          </div>
+          <CoachSidebar progress={progress} plan={learningPlan} openLesson={openLesson} />
         </aside>
       )}
 
@@ -622,6 +724,11 @@ function App() {
             isUnlocked={isUnlocked}
             completedCount={completedCount}
             earnedStars={earnedStars}
+            plan={learningPlan}
+            pathIndex={pathIndex}
+            showWelcomeNudge={showWelcomeNudge}
+            onDismissNudge={dismissWelcomeNudge}
+            audioMuted={audioSettings.muted}
           />
         )}
         {view === 'lesson' && (
@@ -637,6 +744,7 @@ function App() {
             numberAnswer={numberAnswer}
             setNumberAnswer={setNumberAnswer}
             feedback={feedback}
+            setFeedback={setFeedback}
             hintOpen={hintOpen}
             setHintOpen={setHintOpen}
             hearts={hearts}
@@ -651,13 +759,15 @@ function App() {
           <CompleteView
             lesson={lesson}
             mistakes={mistakes}
+            progress={progress}
+            plan={learningPlan}
             onHome={() => setView('home')}
-            onNext={() => openLesson(Math.min(lessonIndex + 1, lessons.length - 1))}
-            hasNext={lessonIndex < lessons.length - 1}
+            onOpenLesson={openLesson}
+            lessonIndex={lessonIndex}
           />
         )}
         {view === 'achievements' && <Achievements progress={progress} earnedStars={earnedStars} />}
-        {view === 'progress' && <ProgressView lessons={lessons} progress={progress} />}
+        {view === 'progress' && <ProgressView lessons={lessons} progress={progress} plan={learningPlan} openLesson={openLesson} />}
       </main>
 
       {!isSessionActive && (
@@ -790,7 +900,7 @@ function Home({ lessons, progress, openLesson, isUnlocked, completedCount, earne
 }
 
 function LessonView(props) {
-  const { lesson, step, feedback, hintOpen, setHintOpen, hearts, validateStep, nextStep, speakStory, onBack, isAnswered } = props
+  const { lesson, step, feedback, setFeedback, hintOpen, setHintOpen, hearts, validateStep, nextStep, speakStory, onBack, isAnswered } = props
   const hasFeedback = Boolean(feedback);
   const isCorrect = feedback?.correct;
 
@@ -869,9 +979,13 @@ function LessonView(props) {
                 <button className="secondary-button footer-back" onClick={() => { playClick(); onBack(); }}>Quay lại</button>
                 <button className="primary-button footer-submit" onClick={validateStep} disabled={!isAnswered}>Kiểm tra</button>
               </>
-            ) : (
+            ) : isCorrect ? (
               <button className="primary-button footer-next" onClick={nextStep} autoFocus>
                 {step === 7 ? 'Hoàn thành' : 'Tiếp theo'} →
+              </button>
+            ) : (
+              <button className="primary-button footer-next" onClick={() => { playClick(); setFeedback(null); }} autoFocus>
+                Thử lại
               </button>
             )}
           </div>
@@ -893,25 +1007,192 @@ function StepContent({ lesson, step, selected, setSelected, secondSelected, setS
   return <OptionQuestion title={lesson.checkQuestion} options={lesson.checkOptions} selected={selected} setSelected={setSelected} frozen={frozen} />
 }
 
+function EmojiRow({ emoji, count, max = 12, crossed = false }) {
+  const n = Math.min(Math.max(0, Number(count) || 0), max)
+  if (n === 0) {
+    return <div className="emoji-row emoji-row-empty"><span className="count-badge">{count}</span></div>
+  }
+  return (
+    <div className={`emoji-row ${crossed ? 'emoji-crossed' : ''}`}>
+      {Array.from({ length: n }, (_, i) => (
+        <span key={i} className={crossed ? 'emoji-item crossed' : 'emoji-item'}>{emoji}</span>
+      ))}
+      {count > max && <span className="count-more">+{count - max}</span>}
+    </div>
+  )
+}
+
+function GroupsVisual({ groups, perGroup, emoji }) {
+  const g = Math.min(Math.max(1, Number(groups) || 1), 6)
+  const p = Math.min(Math.max(1, Number(perGroup) || 1), 8)
+  return (
+    <div className="groups-visual">
+      {Array.from({ length: g }, (_, gi) => (
+        <div key={gi} className="mini-group">
+          <div className="emoji-row tight">
+            {Array.from({ length: p }, (_, pi) => <span key={pi}>{emoji}</span>)}
+          </div>
+          <small>×{perGroup}</small>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function UnderstandStep({ lesson }) {
-  const visualCount = Math.min(lesson.visual.before, 12)
-  const changeCount = Math.min(lesson.visual.change, 8)
+  const v = lesson.visual || {}
+  const type = v.type || 'add'
+  const emoji = v.emoji || lesson.icon || '⭐'
+  const beforeLabel = v.beforeLabel || 'Ban đầu'
+  const changeLabel = v.changeLabel || 'Thay đổi'
+  const resultLabel = v.resultLabel || 'Cần tìm?'
+
+  const thinkByType = {
+    add: 'Số lượng đang tăng — hai phần sẽ gộp thành một tổng.',
+    remove: 'Có thứ bị lấy đi — số còn lại sẽ nhỏ hơn ban đầu.',
+    join: 'Hai phần cùng loại đứng cạnh nhau — gộp lại thành tổng.',
+    parts: 'Biết cả hộp và một phần — phần kia đang “ẩn”.',
+    compare: 'Hai số đặt cạnh nhau — tìm khoảng cách (hơn / kém).',
+    groups: 'Các nhóm giống hệt nhau — nghĩ đến phép nhân.',
+    divide: 'Một tổng được chia đều — mỗi phần bằng nhau.',
+    reverse: 'Biết kết thúc, tìm lúc mở đầu — đi ngược phép tính.',
+    scale: '“Gấp mấy lần” ≠ “thêm mấy” — lặp lại cả đoạn nhiều lần.',
+    mixed: 'Có hơn một hành động — làm lần lượt từng bước.',
+    timeline: 'Thời gian chạy trên trục — nhảy tới mốc tròn cho dễ.',
+    measure: 'Đổi về cùng đơn vị trước, rồi mới cộng hoặc trừ.'
+  }
+
+  let body
+  if (type === 'groups' || type === 'scale') {
+    body = (
+      <div className="visual-story visual-groups-layout">
+        <div className="visual-group">
+          <b>{beforeLabel}</b>
+          <GroupsVisual groups={v.before} perGroup={Math.min(v.change, 8)} emoji={emoji} />
+          <small>{v.before} nhóm</small>
+        </div>
+        <div className="story-arrow">→</div>
+        <div className="visual-group accent">
+          <b>{changeLabel}</b>
+          <div className="big-number-hint">× {v.change}</div>
+          <small>mỗi nhóm {v.change}</small>
+        </div>
+        <div className="story-arrow">→</div>
+        <div className="unknown-box" title={resultLabel}>
+          <span>?</span>
+          <small>{resultLabel}</small>
+        </div>
+      </div>
+    )
+  } else if (type === 'compare') {
+    body = (
+      <div className="visual-story visual-compare-layout">
+        <div className="visual-group">
+          <b>{beforeLabel}</b>
+          <EmojiRow emoji={emoji} count={v.before} max={12} />
+          <small>{v.before}</small>
+          <div className="compare-bar" style={{ width: `${Math.min(100, (v.before / Math.max(v.before, v.change, 1)) * 100)}%` }} />
+        </div>
+        <div className="story-arrow">vs</div>
+        <div className="visual-group accent">
+          <b>{changeLabel}</b>
+          <EmojiRow emoji={emoji} count={v.change} max={12} />
+          <small>{v.change}</small>
+          <div className="compare-bar short" style={{ width: `${Math.min(100, (v.change / Math.max(v.before, v.change, 1)) * 100)}%` }} />
+        </div>
+        <div className="story-arrow">→</div>
+        <div className="unknown-box" title={resultLabel}>
+          <span>?</span>
+          <small>{resultLabel}</small>
+        </div>
+      </div>
+    )
+  } else if (type === 'remove') {
+    body = (
+      <div className="visual-story">
+        <div className="visual-group">
+          <b>{beforeLabel}</b>
+          <EmojiRow emoji={emoji} count={v.before} max={12} />
+          <small>{v.before}</small>
+        </div>
+        <div className="story-arrow">−</div>
+        <div className="visual-group accent">
+          <b>{changeLabel}</b>
+          <EmojiRow emoji={emoji} count={v.change} max={8} crossed />
+          <small>{v.change}</small>
+        </div>
+        <div className="story-arrow">→</div>
+        <div className="unknown-box" title={resultLabel}>
+          <span>?</span>
+          <small>{resultLabel}</small>
+        </div>
+      </div>
+    )
+  } else if (type === 'divide') {
+    body = (
+      <div className="visual-story">
+        <div className="visual-group">
+          <b>{beforeLabel}</b>
+          <EmojiRow emoji={emoji} count={v.before} max={12} />
+          <small>{v.before}</small>
+        </div>
+        <div className="story-arrow">÷</div>
+        <div className="visual-group accent">
+          <b>{changeLabel}</b>
+          <div className="big-number-hint">{v.change}</div>
+          <small>phần / nhóm</small>
+        </div>
+        <div className="story-arrow">→</div>
+        <div className="unknown-box" title={resultLabel}>
+          <span>?</span>
+          <small>{resultLabel}</small>
+        </div>
+      </div>
+    )
+  } else {
+    // add | join | parts | reverse | mixed | timeline | measure | default
+    const midSymbol = type === 'join' || type === 'add' || type === 'parts' ? '+' : '→'
+    body = (
+      <div className="visual-story">
+        <div className="visual-group">
+          <b>{beforeLabel}</b>
+          <EmojiRow emoji={emoji} count={v.before} max={12} />
+          <small>{v.before}{type === 'measure' || type === 'timeline' ? '' : ''}</small>
+        </div>
+        <div className="story-arrow">{midSymbol}</div>
+        <div className="visual-group accent">
+          <b>{changeLabel}</b>
+          <EmojiRow emoji={v.emoji2 || emoji} count={v.change} max={8} />
+          <small>{v.change}{v.extra != null ? ` · thêm ${v.extra}` : ''}</small>
+        </div>
+        <div className="story-arrow">→</div>
+        <div className="unknown-box" title={resultLabel}>
+          <span>?</span>
+          <small>{resultLabel}</small>
+        </div>
+      </div>
+    )
+  }
+
+  if (v.distractor) {
+    body = (
+      <>
+        {body}
+        <div className="distractor-chip">🪄 Thông tin thừa: {v.distractor}</div>
+      </>
+    )
+  }
+
   return (
     <div>
-      <SectionHeading 
-        num="1" 
-        title="Nhìn câu chuyện bằng hình" 
-        desc="Số lượng đang thay đổi hay đang được so sánh?" 
-        textToSpeak="Bước 1: Nhìn câu chuyện bằng hình. Số lượng đang thay đổi hay đang được so sánh?" 
+      <SectionHeading
+        num="1"
+        title="Nhìn câu chuyện bằng hình"
+        desc="Chưa cần tính — hãy “nhìn thấy” chuyện gì đang xảy ra."
+        textToSpeak="Bước 1: Nhìn câu chuyện bằng hình. Chưa cần tính — hãy nhìn thấy chuyện gì đang xảy ra."
       />
-      <div className="visual-story">
-        <div className="visual-group"><b>Ban đầu / phần thứ nhất</b><div className="emoji-row">{Array.from({ length: visualCount }, (_, i) => <span key={i}>{lesson.visual.emoji}</span>)}</div><small>{lesson.visual.before} {lesson.unit}</small></div>
-        <div className="story-arrow">→</div>
-        <div className="visual-group accent"><b>{lesson.visual.changeLabel}</b><div className="emoji-row">{Array.from({ length: changeCount }, (_, i) => <span key={i}>{lesson.visual.emoji}</span>)}</div><small>{lesson.visual.change}</small></div>
-        <div className="story-arrow">→</div>
-        <div className="unknown-box">?</div>
-      </div>
-      <div className="think-prompt">🧠 Chưa cần tính. Hãy quan sát xem các số đang liên hệ với nhau như thế nào.</div>
+      {body}
+      <div className="think-prompt">🧠 {thinkByType[type] || 'Quan sát các số đang liên hệ với nhau như thế nào.'}</div>
     </div>
   )
 }
@@ -961,8 +1242,8 @@ function FactsStep({ lesson, answers, setAnswers, frozen }) {
       <SectionHeading 
         num="3" 
         title="Đã biết hay cần tìm?" 
-        desc="Phân loại từng mẩu thông tin." 
-        textToSpeak="Bước 3: Đã biết hay cần tìm? Phân loại từng mẩu thông tin." 
+        desc="Thông tin nào đề đã cho? Thông tin nào đang hỏi?" 
+        textToSpeak="Bước 3: Đã biết hay cần tìm? Thông tin nào đề đã cho? Thông tin nào đang hỏi?" 
       />
       <div className="facts-grid">
         {lesson.facts.map((fact, index) => (
@@ -988,29 +1269,44 @@ function FactsStep({ lesson, answers, setAnswers, frozen }) {
   )
 }
 
+function modelIconFor(label, index) {
+  const t = (label || '').toLowerCase()
+  if (t.includes('trục') || t.includes('thời gian')) return '📏'
+  if (t.includes('so sánh') || t.includes('thanh') || t.includes('chênh')) return '⚖️'
+  if (t.includes('nhóm') || t.includes('bằng nhau') || t.includes('mảng') || t.includes('hàng')) return '▦'
+  if (t.includes('chia') || t.includes('phần bằng')) return '➗'
+  if (t.includes('bớt') || t.includes('trừ') || t.includes('còn')) return '➖'
+  if (t.includes('gộp') || t.includes('tổng') || t.includes('ghép') || t.includes('cộng') || t.includes('nối')) return '➕'
+  if (t.includes('ngược')) return '🔄'
+  if (t.includes('đồng hồ')) return '⏰'
+  if (t.includes('bảng')) return '📋'
+  if (t.includes('cạnh') || t.includes('chu vi') || t.includes('hình')) return '⬜'
+  const fallback = ['🗺️', '🧩', '📐', '📊']
+  return fallback[index % fallback.length]
+}
+
 function ModelStep({ lesson, selected, setSelected, frozen }) {
-  const icons = ['▰▰', '● ● ●', '↗', '▦']
   return (
     <div>
-      <SectionHeading 
-        num="4" 
-        title="Chọn mô hình phù hợp" 
-        desc="Mô hình nào diễn tả đúng mối quan hệ trong đề?" 
-        textToSpeak="Bước 4: Chọn mô hình phù hợp. Mô hình nào diễn tả đúng mối quan hệ trong đề?" 
+      <SectionHeading
+        num="4"
+        title="Chọn mô hình phù hợp"
+        desc="Hình nào “kể lại” đúng câu chuyện trong đề?"
+        textToSpeak="Bước 4: Chọn mô hình phù hợp. Hình nào kể lại đúng câu chuyện trong đề?"
       />
       <div className="model-grid">
         {lesson.models.map((model, index) => (
           <div key={model} className="model-wrapper">
-            <button 
-              disabled={frozen} 
-              className={selected === index ? 'model-card selected' : 'model-card'} 
+            <button
+              disabled={frozen}
+              className={selected === index ? 'model-card selected' : 'model-card'}
               onClick={() => { playClick(); setSelected(index); }}
             >
-              <span>{icons[index]}</span>
+              <span className="model-emoji">{modelIconFor(model, index)}</span>
               <b>{model}</b>
             </button>
-            <button 
-              className="speech-mini-btn model-speech" 
+            <button
+              className="speech-mini-btn model-speech"
               onClick={() => speakManual(model)}
               aria-label="Đọc mô hình"
             >
@@ -1029,10 +1325,10 @@ function OperationStep({ lesson, selected, setSelected, secondSelected, setSecon
       <SectionHeading 
         num="5" 
         title="Chọn phép tính và giải thích" 
-        desc="Đúng phép tính chưa đủ — con cần biết tại sao." 
-        textToSpeak="Bước 5: Chọn phép tính và giải thích. Đúng phép tính chưa đủ — con cần biết tại sao." 
+        desc="Đúng phép tính chưa đủ — hãy nói được vì sao." 
+        textToSpeak="Bước 5: Chọn phép tính và giải thích. Đúng phép tính chưa đủ — hãy nói được vì sao." 
       />
-      <h3 className="mini-title">Phép tính nào phù hợp?</h3>
+      <h3 className="mini-title">Phép tính nào khớp câu chuyện?</h3>
       <div className="operation-grid">
         {lesson.operations.map((operation, index) => (
           <button 
@@ -1082,7 +1378,7 @@ function CalculationStep({ lesson, value, setValue, frozen }) {
         textToSpeak="Bước 6: Tự tính toán. Điền kết quả vào ô trống." 
       />
       <div className="calculation-box"><span>{expression}</span><b>=</b><input disabled={frozen} inputMode="numeric" pattern="[0-9]*" value={value} onChange={(event) => setValue(event.target.value.replace(/\D/g, ''))} autoFocus /><small>{lesson.unit}</small></div>
-      <div className="scratch-row"><span>🧮</span><p>Con có thể tính nhẩm, tách số tròn chục hoặc dùng phép tính ngược.</p></div>
+      <div className="scratch-row"><span>🧮</span><p>Mẹo: tách số tròn chục, cộng/trừ nhẩm, hoặc làm ngược để kiểm tra.</p></div>
     </div>
   )
 }
@@ -1135,6 +1431,14 @@ function OnboardingView({ setProgress, setView }) {
   const [tutorialNumberAnswer, setTutorialNumberAnswer] = useState('');
   const [tutorialFeedback, setTutorialFeedback] = useState(null);
   const [tutorialHintOpen, setTutorialHintOpen] = useState(false);
+
+  // Reset tutorial feedback when user changes their answer (so they can try again and submit new answer)
+  useEffect(() => {
+    if (tutorialFeedback && !tutorialFeedback.correct) {
+      setTutorialFeedback(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tutorialSelected, tutorialSecondSelected, tutorialFactAnswers, tutorialNumberAnswer]);
 
   const mascots = [
     { id: 'owl', emoji: '🦉', label: 'Cú Ú', desc: 'Thích hỏi "Tại sao?"' },
@@ -1287,14 +1591,14 @@ function OnboardingLesson(props) {
   const buddyName = mascot === 'robot' ? 'Rô Bốt' : mascot === 'turtle' ? 'Rùa Con' : 'Cú Ú';
   
   const buddyMessages = useMemo(() => [
-    `Chào bé ${name}! Ta là ${buddyName} đây. Hãy xem bức tranh mô tả: ban đầu có 3 quả táo đỏ, rồi thêm 2 quả táo xanh. Bấm "Kiểm tra" nào!`,
-    `Tuyệt vời! Bây giờ, hãy tóm tắt câu chuyện. Hãy chọn câu A (đầy đủ cả táo đỏ, táo xanh và câu hỏi) nhé con!`,
-    `Bước 3: Tách dữ kiện. Số táo mẹ có và mua thêm là "Đã biết", còn câu hỏi là "Cần tìm". Hãy chọn đúng nha!`,
-    `Để giải toán lời văn, sơ đồ là người bạn tốt nhất! Hãy chọn Sơ đồ tổng - phần (ô đầu tiên) để gộp hai loại táo nhé.`,
-    `Chọn phép tính phù hợp nào. Muốn biết tất cả táo, ta gộp lại bằng phép tính 3 + 2. Chọn phép tính này và lý do tại sao nhé!`,
-    `Tự tính toán: 3 + 2 bằng mấy con nhỉ? Hãy gõ kết quả vào ô trống nha!`,
-    `Viết câu trả lời đầy đủ: hãy chọn câu A có chứa cả kết quả 5 quả táo và câu chữ đầy đủ nhất nhé!`,
-    `Bước cuối: Kiểm tra lại. Kết quả 5 quả táo có lớn hơn số táo ban đầu không? Có hợp lý không con? Chọn Đúng nào!`
+    `Chào bé ${name}! Ta là ${buddyName} đây. Nhìn hình nhé: mẹ có 3 quả táo, mua thêm 2 quả. Chưa cần tính — chỉ quan sát! Rồi bấm "Kiểm tra".`,
+    `Hay lắm! Giờ kể lại câu chuyện: chọn câu có đủ “có 3 quả, mua thêm 2, cần tìm tổng” nhé!`,
+    `Bước này như thám tử: số táo mẹ có và mua thêm là "Đã biết"; câu hỏi là "Cần tìm". Chọn đúng nha!`,
+    `Chọn hình ghép hai phần thành một tổng (ô đầu tiên) — như gộp táo đỏ và táo xanh lại!`,
+    `Muốn biết tất cả táo thì gộp lại: chọn 3 + 2 và lý do “vì gộp… tăng lên” nhé!`,
+    `Tự tính: 3 cộng 2 bằng mấy? Gõ số vào ô trống nào!`,
+    `Chọn câu trả lời đầy đủ: có số 5 và đơn vị quả táo.`,
+    `Bước cuối — kiểm tra: 5 có lớn hơn 3 không? Hợp lý vì mẹ mua thêm. Chọn câu đúng nhé!`
   ], [name, buddyName]);
 
   useEffect(() => {
@@ -1322,7 +1626,7 @@ function OnboardingLesson(props) {
       msg = correct ? "Tuyệt vời! Con đã biết cách phân loại thông tin." : "Hãy bấm 'Đã biết' cho dữ kiện số, và 'Cần tìm' cho câu hỏi.";
     } else if (step === 3) {
       correct = selected === 0;
-      msg = correct ? "Đúng thế! Sơ đồ tổng phần biểu thị sự gộp lại." : "Hãy chọn mô hình đầu tiên.";
+      msg = correct ? "Đúng thế! Ghép hai phần thành tổng — như gộp hai đống táo." : "Hãy chọn mô hình đầu tiên: ghép hai phần thành tổng.";
     } else if (step === 4) {
       correct = selected === 0 && secondSelected === 0;
       msg = correct ? "Rất giỏi! Con vừa biết chọn phép tính vừa hiểu rõ lý do!" : "Hãy chọn phép tính 3+2 và lý do đầu tiên.";
@@ -1456,9 +1760,13 @@ function OnboardingLesson(props) {
                   Kiểm tra
                 </button>
               </>
-            ) : (
+            ) : isCorrect ? (
               <button className="primary-button footer-next" onClick={nextTutorialStep} autoFocus>
                 {step === 7 ? 'Hoàn thành' : 'Tiếp theo'} →
+              </button>
+            ) : (
+              <button className="primary-button footer-next" onClick={() => { playClick(); setFeedback(null); }} autoFocus>
+                Thử lại
               </button>
             )}
           </div>

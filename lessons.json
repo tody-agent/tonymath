@@ -1,21 +1,24 @@
 [
   {
     "id": "lesson-1",
-    "title": "Câu chuyện đang xảy ra gì?",
-    "shortTitle": "Hiểu tình huống",
+    "title": "Lan được thêm dâu!",
+    "shortTitle": "Được thêm vào",
     "icon": "🍓",
     "color": "green",
     "skill": "Thêm vào",
-    "story": "Lan có 12 quả dâu. Mẹ cho Lan thêm 5 quả. Lan có tất cả bao nhiêu quả dâu?",
+    "story": "Lan hái được 12 quả dâu đỏ mọng. Mẹ mỉm cười đưa thêm 5 quả nữa. Giờ Lan ôm trong tay tất cả bao nhiêu quả dâu?",
     "visual": {
+      "type": "add",
       "before": 12,
       "change": 5,
       "emoji": "🍓",
-      "changeLabel": "được cho thêm"
+      "beforeLabel": "Lan đang có",
+      "changeLabel": "Mẹ cho thêm",
+      "resultLabel": "Tất cả?"
     },
     "retellOptions": [
-      "Lan có 12 quả, được thêm 5 quả và cần tìm số quả sau cùng.",
-      "Lan có 12 quả rồi cho mẹ 5 quả.",
+      "Lan có 12 quả, được thêm 5 quả, cần tìm số quả sau cùng.",
+      "Lan có 12 quả rồi đưa bớt 5 quả cho mẹ.",
       "Lan chia 12 quả dâu cho 5 bạn."
     ],
     "correctRetell": 0,
@@ -30,10 +33,10 @@
       "unknown"
     ],
     "models": [
-      "Sơ đồ tổng – phần",
-      "Trục số",
-      "Nhóm bằng nhau",
-      "Bảng"
+      "Ghép hai phần thành tổng",
+      "Đếm lùi trên trục số",
+      "Chia thành nhóm bằng nhau",
+      "Bảng nhân"
     ],
     "correctModel": 0,
     "operations": [
@@ -44,9 +47,9 @@
     ],
     "correctOperation": 0,
     "reasons": [
-      "Vì số lượng được thêm vào nên tổng tăng lên.",
-      "Vì cần tìm phần chênh lệch.",
-      "Vì có các nhóm bằng nhau."
+      "Vì được cho thêm nên số dâu tăng lên — gộp lại bằng phép cộng.",
+      "Vì cần tìm phần chênh lệch giữa hai số.",
+      "Vì có các nhóm dâu bằng nhau."
     ],
     "correctReason": 0,
     "answer": 17,
@@ -57,41 +60,44 @@
       "Mỗi bạn được 17 quả dâu."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Kết quả 17 lớn hơn 12 có hợp lý không?",
+    "checkQuestion": "Kết quả 17 lớn hơn 12 — có hợp lý không?",
     "checkOptions": [
-      "Có, vì Lan được cho thêm.",
+      "Có, vì Lan được cho thêm nên phải nhiều hơn.",
       "Không, kết quả phải nhỏ hơn 12."
     ],
     "correctCheck": 0,
     "hints": [
-      "Hãy tìm xem số lượng đang tăng hay giảm.",
-      "Kể lại theo ba ý: ban đầu – thay đổi – cần tìm.",
-      "Hai số 12 và 5 đều là dữ kiện đã biết.",
-      "Hãy chọn mô hình thể hiện hai phần được gộp lại.",
-      "Được cho thêm nghĩa là số lượng tăng.",
-      "Bắt đầu từ 12 và đếm thêm 5.",
-      "Đừng quên viết cả số và đơn vị.",
-      "Khi được thêm, đáp án phải lớn hơn số ban đầu."
+      "Nhìn mũi tên: số dâu đang tăng hay giảm?",
+      "Kể 3 ý: ban đầu – thay đổi – cần tìm.",
+      "Hai số 12 và 5 là thứ đã biết; dấu hỏi là thứ chưa biết.",
+      "Chọn hình ghép hai đống dâu thành một đống.",
+      "Mẹo nhớ: “Thêm vào = cộng lại = to hơn”.",
+      "Bắt đầu từ 12, đếm thêm 5: 13, 14, 15, 16, 17.",
+      "Viết cả số và đơn vị: 17 quả dâu.",
+      "Kiểm tra: được thêm thì đáp án phải lớn hơn 12."
     ]
   },
   {
     "id": "lesson-2",
-    "title": "Đâu là điều đã biết, đâu là điều cần tìm?",
-    "shortTitle": "Tách dữ kiện",
-    "icon": "🔎",
+    "title": "Sách thư viện đi đâu mất?",
+    "shortTitle": "Tìm phần còn lại",
+    "icon": "📘",
     "color": "blue",
     "skill": "Tìm phần còn lại",
-    "story": "Thư viện có 35 quyển truyện. Các bạn đã mượn 8 quyển. Thư viện còn lại bao nhiêu quyển truyện?",
+    "story": "Kệ thư viện có 35 quyển truyện. Các bạn mượn mang về 8 quyển. Trên kệ còn lại bao nhiêu quyển?",
     "visual": {
+      "type": "remove",
       "before": 35,
       "change": 8,
       "emoji": "📘",
-      "changeLabel": "đã được mượn"
+      "beforeLabel": "Trên kệ",
+      "changeLabel": "Bạn mượn đi",
+      "resultLabel": "Còn lại?"
     },
     "retellOptions": [
-      "Có 35 quyển, 8 quyển được mượn và cần tìm số còn lại.",
+      "Có 35 quyển, mượn đi 8 quyển, cần tìm số còn trên kệ.",
       "Có 35 bạn chia đều 8 quyển truyện.",
-      "Thư viện nhận thêm 8 quyển truyện."
+      "Thư viện nhận thêm 8 quyển truyện mới."
     ],
     "correctRetell": 0,
     "facts": [
@@ -105,8 +111,8 @@
       "unknown"
     ],
     "models": [
-      "Sơ đồ tổng – phần",
-      "Nhóm bằng nhau",
+      "Tổng bớt đi một phần",
+      "Chia thành nhóm bằng nhau",
       "Bảng nhân",
       "Biểu đồ cột"
     ],
@@ -119,8 +125,8 @@
     ],
     "correctOperation": 1,
     "reasons": [
-      "Vì một phần đã bị lấy khỏi tổng ban đầu.",
-      "Vì cần gộp hai phần lại.",
+      "Vì sách bị mượn đi — một phần rời khỏi tổng, nên dùng phép trừ.",
+      "Vì cần gộp sách cũ và sách mới.",
       "Vì cần chia đều thành 8 nhóm."
     ],
     "correctReason": 0,
@@ -132,39 +138,42 @@
       "Mỗi bạn được 27 quyển truyện."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Kết quả 27 nhỏ hơn 35 có hợp lý không?",
+    "checkQuestion": "Kết quả 27 nhỏ hơn 35 — có hợp lý không?",
     "checkOptions": [
-      "Có, vì một số quyển đã được mượn.",
+      "Có, vì một số sách đã rời khỏi kệ.",
       "Không, số còn lại phải lớn hơn 35."
     ],
     "correctCheck": 0,
     "hints": [
-      "Từ “còn lại” cho biết một phần đã rời khỏi tổng.",
-      "Chú ý điều xảy ra sau khi có 35 quyển.",
-      "Câu hỏi là dữ kiện chưa biết.",
-      "Mô hình cần cho thấy tổng và một phần bị lấy đi.",
-      "Số lượng giảm thì dùng phép trừ.",
-      "Lấy 8 ra khỏi 35.",
-      "Câu trả lời cần đúng đơn vị quyển truyện.",
-      "Sau khi cho mượn, số còn lại phải ít hơn ban đầu."
+      "Từ khóa “còn lại” = có thứ đã biến mất khỏi tổng.",
+      "Kể lại: ban đầu – mượn đi – hỏi còn bao nhiêu.",
+      "Câu hỏi là điều chưa biết; 35 và 8 đã biết.",
+      "Chọn hình một đống lớn, bớt đi một phần.",
+      "Mẹo nhớ: “Còn lại = trừ đi = nhỏ hơn”.",
+      "Lấy 35, bớt 8. Hoặc 35 − 5 = 30, rồi − 3 = 27.",
+      "Đơn vị là “quyển truyện”, không phải “bạn”.",
+      "Kiểm tra: sau khi mượn, số còn phải ít hơn 35."
     ]
   },
   {
     "id": "lesson-3",
-    "title": "Gộp các phần thành một tổng",
-    "shortTitle": "Tổng và các phần",
-    "icon": "🧺",
+    "title": "Hai giỏ táo hội ngộ",
+    "shortTitle": "Gộp hai phần",
+    "icon": "🍎",
     "color": "purple",
     "skill": "Gộp hai phần",
-    "story": "Giỏ đỏ có 14 quả táo. Giỏ xanh có 9 quả táo. Cả hai giỏ có bao nhiêu quả táo?",
+    "story": "Giỏ đỏ đựng 14 quả táo giòn. Giỏ xanh đựng 9 quả táo. Nếu đổ cả hai giỏ vào một thúng lớn, có tất cả bao nhiêu quả?",
     "visual": {
+      "type": "join",
       "before": 14,
       "change": 9,
       "emoji": "🍎",
-      "changeLabel": "ở giỏ thứ hai"
+      "beforeLabel": "Giỏ đỏ",
+      "changeLabel": "Giỏ xanh",
+      "resultLabel": "Cả hai?"
     },
     "retellOptions": [
-      "Có hai phần là 14 và 9, cần gộp để tìm tổng.",
+      "Có hai phần 14 và 9 cùng loại, cần gộp để tìm tổng.",
       "Có 14 quả rồi ăn mất 9 quả.",
       "Có 14 giỏ, mỗi giỏ 9 quả."
     ],
@@ -180,8 +189,8 @@
       "unknown"
     ],
     "models": [
-      "Sơ đồ tổng – phần",
-      "Sơ đồ chia đều",
+      "Hai phần ghép thành tổng",
+      "Chia đều thành nhóm",
       "Đồng hồ",
       "Bảng hàng – cột"
     ],
@@ -194,7 +203,7 @@
     ],
     "correctOperation": 0,
     "reasons": [
-      "Vì hai phần cùng loại được gộp thành một tổng.",
+      "Vì hai phần cùng loại được gộp thành một tổng — dùng phép cộng.",
       "Vì một phần bị lấy đi.",
       "Vì có 14 nhóm bằng nhau."
     ],
@@ -209,43 +218,47 @@
     "correctAnswerSentence": 0,
     "checkQuestion": "Tổng 23 có lớn hơn từng phần 14 và 9 không?",
     "checkOptions": [
-      "Có, một tổng dương lớn hơn từng phần.",
+      "Có, tổng luôn lớn hơn mỗi phần (khi các phần > 0).",
       "Không, tổng phải nhỏ hơn 9."
     ],
     "correctCheck": 0,
     "hints": [
-      "Không có vật nào bị lấy đi; hai giỏ vẫn còn nguyên.",
-      "Hãy nói rõ có hai giỏ và cần biết tổng.",
-      "Cả hai số đều có cùng đơn vị quả táo.",
-      "Chọn sơ đồ có hai phần tạo nên một tổng.",
-      "Gộp hai phần cùng loại dùng phép cộng.",
-      "Có thể cộng 14 + 6 rồi cộng thêm 3.",
-      "Dùng từ “cả hai giỏ”.",
-      "Tổng phải lớn hơn mỗi phần."
+      "Không ai lấy táo đi — chỉ gộp hai giỏ lại.",
+      "Kể: giỏ đỏ + giỏ xanh → hỏi tổng.",
+      "Cả 14 và 9 đều đã biết; tổng là dấu hỏi.",
+      "Chọn hình hai phần nhỏ tạo nên một phần to.",
+      "Mẹo nhớ: “Cả hai / tất cả = cộng”.",
+      "14 + 6 = 20, rồi + 3 = 23 (tách 9 = 6 + 3).",
+      "Câu trả lời nói “cả hai giỏ”, không nói “mỗi giỏ”.",
+      "Kiểm tra: tổng phải lớn hơn 14 và lớn hơn 9."
     ]
   },
   {
     "id": "lesson-4",
-    "title": "Tách một phần khỏi tổng",
+    "title": "Hộp bánh hai vị bí ẩn",
     "shortTitle": "Tìm một phần",
     "icon": "🧁",
     "color": "orange",
     "skill": "Tổng trừ một phần",
-    "story": "Một hộp có 40 chiếc bánh gồm bánh vani và bánh sô-cô-la. Có 25 bánh vani. Hỏi có bao nhiêu bánh sô-cô-la?",
+    "story": "Hộp bánh có 40 chiếc gồm vani và sô-cô-la. Đếm thấy 25 chiếc vani. Vậy còn bao nhiêu chiếc sô-cô-la đang “ẩn” trong hộp?",
     "visual": {
+      "type": "parts",
       "before": 40,
       "change": 25,
       "emoji": "🧁",
-      "changeLabel": "là bánh vani"
+      "emoji2": "🍫",
+      "beforeLabel": "Cả hộp",
+      "changeLabel": "Bánh vani",
+      "resultLabel": "Sô-cô-la?"
     },
     "retellOptions": [
-      "Biết tổng là 40 và một phần là 25, cần tìm phần còn lại.",
+      "Biết tổng 40 và phần vani 25, cần tìm phần sô-cô-la.",
       "Có 40 hộp, mỗi hộp 25 chiếc bánh.",
       "Có 25 chiếc bánh rồi được thêm 40 chiếc."
     ],
     "correctRetell": 0,
     "facts": [
-      "Tổng cộng 40 chiếc bánh",
+      "Tổng có 40 chiếc bánh",
       "Có 25 bánh vani",
       "Cần tìm bánh sô-cô-la"
     ],
@@ -255,7 +268,7 @@
       "unknown"
     ],
     "models": [
-      "Sơ đồ tổng – phần",
+      "Một tổng chia hai phần",
       "Trục số tăng",
       "Nhóm bằng nhau",
       "Biểu đồ thời gian"
@@ -269,7 +282,7 @@
     ],
     "correctOperation": 1,
     "reasons": [
-      "Vì biết tổng và một phần nên lấy tổng trừ phần đã biết.",
+      "Vì biết tổng và một phần — lấy tổng trừ phần đã biết để ra phần kia.",
       "Vì cần tìm tổng của hai loại bánh.",
       "Vì mỗi nhóm có 25 chiếc."
     ],
@@ -282,47 +295,50 @@
       "Mỗi hộp có 15 chiếc bánh."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "25 bánh vani cộng 15 bánh sô-cô-la có bằng tổng 40 không?",
+    "checkQuestion": "25 vani + 15 sô-cô-la có bằng 40 không?",
     "checkOptions": [
       "Có, 25 + 15 = 40.",
       "Không, vì 15 lớn hơn 40."
     ],
     "correctCheck": 0,
     "hints": [
-      "Hai loại bánh tạo thành tổng 40.",
-      "Biết toàn bộ và một loại, cần tìm loại kia.",
-      "“Bánh sô-cô-la” là điều chưa biết.",
-      "Chọn mô hình một thanh tổng được chia làm hai phần.",
-      "Tổng trừ phần đã biết sẽ ra phần chưa biết.",
-      "Tách 25 khỏi 40.",
+      "Hai loại bánh ghép lại thành 40 — như hai mảnh ghép puzzle.",
+      "Biết cả hộp và một loại → tìm loại còn lại.",
+      "“Sô-cô-la” là điều chưa biết.",
+      "Chọn hình một thanh tổng được tách làm hai phần.",
+      "Mẹo nhớ: “Biết tổng + một phần → trừ ra phần kia”.",
+      "40 − 25: 40 − 20 = 20, rồi − 5 = 15.",
       "Ghi rõ loại bánh trong câu trả lời.",
-      "Dùng phép cộng ngược để kiểm tra."
+      "Kiểm tra ngược: phần này + phần kia = tổng."
     ]
   },
   {
     "id": "lesson-5",
-    "title": "So sánh hơn và kém",
+    "title": "Ai nhiều sách hơn?",
     "shortTitle": "Tìm chênh lệch",
     "icon": "⚖️",
     "color": "pink",
     "skill": "So sánh",
-    "story": "An có 18 quyển truyện. Bình có 12 quyển truyện. An nhiều hơn Bình bao nhiêu quyển?",
+    "story": "An sưu tầm được 18 quyển truyện. Bạn Bình có 12 quyển. An nhiều hơn Bình bao nhiêu quyển?",
     "visual": {
+      "type": "compare",
       "before": 18,
       "change": 12,
       "emoji": "📗",
-      "changeLabel": "so với Bình"
+      "beforeLabel": "Sách của An",
+      "changeLabel": "Sách của Bình",
+      "resultLabel": "Chênh lệch?"
     },
     "retellOptions": [
-      "So sánh 18 và 12 để tìm phần chênh lệch.",
-      "Gộp sách của An và Bình để tìm tổng.",
+      "So sánh 18 với 12 để tìm An hơn Bình bao nhiêu.",
+      "Gộp sách An và Bình để tìm tổng.",
       "Chia 18 quyển cho 12 bạn."
     ],
     "correctRetell": 0,
     "facts": [
       "An có 18 quyển",
       "Bình có 12 quyển",
-      "Cần tìm chênh lệch"
+      "Cần tìm An hơn Bình bao nhiêu"
     ],
     "factRoles": [
       "known",
@@ -330,7 +346,7 @@
       "unknown"
     ],
     "models": [
-      "Hai đoạn thẳng so sánh",
+      "Hai thanh so sánh cạnh nhau",
       "Nhóm bằng nhau",
       "Đồng hồ",
       "Bảng nhân"
@@ -344,8 +360,8 @@
     ],
     "correctOperation": 1,
     "reasons": [
-      "Vì cần tìm khoảng cách giữa hai số lượng.",
-      "Vì cần tìm tổng số truyện.",
+      "Vì “nhiều hơn bao nhiêu” là khoảng cách giữa hai số — dùng phép trừ.",
+      "Vì cần tìm tổng số truyện của hai bạn.",
       "Vì có 18 nhóm giống nhau."
     ],
     "correctReason": 0,
@@ -353,43 +369,46 @@
     "unit": "quyển truyện",
     "answerOptions": [
       "An nhiều hơn Bình 6 quyển truyện.",
-      "An và Bình có 30 quyển truyện.",
+      "An và Bình có tất cả 30 quyển truyện.",
       "Bình nhiều hơn An 6 quyển truyện."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Nếu Bình có 12 và thêm phần chênh lệch 6 thì có bằng 18 không?",
+    "checkQuestion": "Nếu Bình có 12 rồi thêm 6, có bằng An (18) không?",
     "checkOptions": [
       "Có, 12 + 6 = 18.",
       "Không, 12 + 6 = 20."
     ],
     "correctCheck": 0,
     "hints": [
-      "Câu hỏi không hỏi tổng sách của hai bạn.",
-      "Từ quan trọng là “bao nhiêu quyển”.",
-      "Điều chưa biết là khoảng cách giữa hai số.",
-      "Đặt hai đoạn thẳng bắt đầu cùng một điểm.",
-      "Số lớn trừ số nhỏ cho ra chênh lệch.",
-      "18 - 10 = 8, rồi trừ tiếp 2.",
-      "Nêu rõ ai nhiều hơn ai.",
-      "Lấy số nhỏ cộng chênh lệch để kiểm tra."
+      "Câu hỏi không hỏi “tổng hai bạn”, mà hỏi “hơn bao nhiêu”.",
+      "Hình dung hai đống sách đặt cạnh nhau — đếm phần nhô ra.",
+      "Điều chưa biết là khoảng cách giữa 18 và 12.",
+      "Chọn mô hình hai thanh so sánh.",
+      "Mẹo nhớ: “Hơn / kém bao nhiêu = trừ số lớn − số nhỏ”.",
+      "18 − 12: 18 − 10 = 8, rồi − 2 = 6.",
+      "Câu trả lời phải nói đúng ai nhiều hơn ai.",
+      "Kiểm tra: số nhỏ + chênh lệch = số lớn."
     ]
   },
   {
     "id": "lesson-6",
-    "title": "Các nhóm bằng nhau",
-    "shortTitle": "Hiểu phép nhân",
-    "icon": "🟣",
+    "title": "Bốn hộp bút giống hệt nhau",
+    "shortTitle": "Nhóm bằng nhau",
+    "icon": "✏️",
     "color": "violet",
     "skill": "Nhân",
-    "story": "Có 4 hộp bút. Mỗi hộp có 6 chiếc bút. Có tất cả bao nhiêu chiếc bút?",
+    "story": "Trên bàn có 4 hộp bút y hệt nhau. Mỗi hộp chứa 6 chiếc bút màu. Hỏi tất cả có bao nhiêu chiếc bút?",
     "visual": {
+      "type": "groups",
       "before": 4,
       "change": 6,
       "emoji": "✏️",
-      "changeLabel": "chiếc trong mỗi hộp"
+      "beforeLabel": "4 hộp",
+      "changeLabel": "Mỗi hộp 6 bút",
+      "resultLabel": "Tổng?"
     },
     "retellOptions": [
-      "Có 4 nhóm bằng nhau, mỗi nhóm 6 chiếc, cần tìm tổng.",
+      "Có 4 nhóm bằng nhau, mỗi nhóm 6 chiếc — cần tìm tổng.",
       "Có 4 chiếc bút chia cho 6 hộp.",
       "Có 4 chiếc rồi được thêm 6 chiếc một lần."
     ],
@@ -419,8 +438,8 @@
     ],
     "correctOperation": 2,
     "reasons": [
-      "Vì có nhiều nhóm bằng nhau và biết số phần trong mỗi nhóm.",
-      "Vì chỉ gộp hai phần 4 và 6.",
+      "Vì có nhiều nhóm giống hệt nhau — nhân số nhóm với số phần mỗi nhóm.",
+      "Vì chỉ gộp hai số 4 và 6 một lần.",
       "Vì cần tìm số phần trong mỗi nhóm."
     ],
     "correctReason": 0,
@@ -434,45 +453,48 @@
     "correctAnswerSentence": 0,
     "checkQuestion": "6 + 6 + 6 + 6 có bằng 24 không?",
     "checkOptions": [
-      "Có, phép nhân là cộng các nhóm bằng nhau.",
+      "Có — nhân chính là cộng các nhóm bằng nhau.",
       "Không, tổng bằng 10."
     ],
     "correctCheck": 0,
     "hints": [
-      "Từ “mỗi hộp” cho biết các nhóm bằng nhau.",
-      "Hãy nói số hộp và số bút trong mỗi hộp.",
-      "4 là số nhóm; 6 là số phần mỗi nhóm.",
-      "Chọn hình có 4 nhóm giống nhau.",
-      "Số nhóm × số phần mỗi nhóm.",
-      "Có thể cộng 6 bốn lần.",
-      "Câu trả lời hỏi tổng số bút.",
-      "Dùng phép cộng lặp lại để kiểm tra."
+      "Từ “mỗi hộp” = các nhóm giống nhau, không phải thêm một lần.",
+      "Kể: 4 hộp × 6 bút/hộp.",
+      "4 = số nhóm; 6 = số phần mỗi nhóm.",
+      "Chọn hình 4 cụm chấm giống hệt.",
+      "Mẹo nhớ: “Mỗi… × số nhóm = nhân”.",
+      "Cộng lặp: 6+6=12, 12+6=18, 18+6=24.",
+      "Câu trả lời là tổng bút, không phải bút mỗi hộp.",
+      "Kiểm tra bằng cộng lặp 4 lần số 6."
     ]
   },
   {
     "id": "lesson-7",
-    "title": "Chia đều hay xếp thành nhóm?",
-    "shortTitle": "Hiểu phép chia",
+    "title": "Chia pizza công bằng",
+    "shortTitle": "Chia đều",
     "icon": "🍕",
     "color": "yellow",
     "skill": "Chia đều",
-    "story": "Có 24 miếng pizza chia đều cho 6 bạn. Mỗi bạn được bao nhiêu miếng?",
+    "story": "Có 24 miếng pizza nóng hổi chia đều cho 6 bạn trong lớp. Mỗi bạn được bao nhiêu miếng để không ai tủi?",
     "visual": {
+      "type": "divide",
       "before": 24,
       "change": 6,
       "emoji": "🍕",
-      "changeLabel": "bạn cùng chia"
+      "beforeLabel": "Tổng 24 miếng",
+      "changeLabel": "Chia cho 6 bạn",
+      "resultLabel": "Mỗi bạn?"
     },
     "retellOptions": [
-      "Chia tổng 24 thành 6 phần bằng nhau và tìm mỗi phần.",
-      "Có 24 nhóm, mỗi nhóm 6 miếng.",
-      "Gộp 24 miếng với 6 miếng nữa."
+      "24 miếng chia đều cho 6 bạn — tìm số mỗi bạn nhận.",
+      "Có 24 bạn, mỗi bạn ăn 6 miếng.",
+      "Có 24 miếng rồi mua thêm 6 miếng."
     ],
     "correctRetell": 0,
     "facts": [
-      "Có tổng 24 miếng",
+      "Có 24 miếng pizza",
       "Chia đều cho 6 bạn",
-      "Cần tìm phần mỗi bạn"
+      "Cần tìm số miếng mỗi bạn"
     ],
     "factRoles": [
       "known",
@@ -480,10 +502,10 @@
       "unknown"
     ],
     "models": [
-      "6 nhóm nhận đều",
-      "Sơ đồ so sánh",
+      "Chia tổng thành 6 phần bằng nhau",
+      "Hai thanh so sánh",
       "Trục số tăng",
-      "Bảng thời gian"
+      "Bảng cộng"
     ],
     "correctModel": 0,
     "operations": [
@@ -494,60 +516,63 @@
     ],
     "correctOperation": 3,
     "reasons": [
-      "Vì biết tổng và số nhóm, cần tìm số phần trong mỗi nhóm.",
-      "Vì cần tìm tổng của 24 và 6.",
-      "Vì có 24 nhóm bằng nhau."
+      "Vì chia đều một tổng thành các phần bằng nhau — dùng phép chia.",
+      "Vì cần gộp 24 và 6.",
+      "Vì có 24 nhóm, mỗi nhóm 6."
     ],
     "correctReason": 0,
     "answer": 4,
     "unit": "miếng pizza",
     "answerOptions": [
       "Mỗi bạn được 4 miếng pizza.",
-      "Có 4 bạn cùng ăn pizza.",
-      "Mỗi bạn được 30 miếng pizza."
+      "Có tất cả 4 miếng pizza.",
+      "Mỗi bạn được 18 miếng pizza."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "6 bạn, mỗi bạn 4 miếng, có tạo thành 24 miếng không?",
+    "checkQuestion": "6 bạn × 4 miếng có bằng 24 không?",
     "checkOptions": [
       "Có, 6 × 4 = 24.",
       "Không, 6 × 4 = 10."
     ],
     "correctCheck": 0,
     "hints": [
-      "“Chia đều” nghĩa là mỗi bạn nhận bằng nhau.",
-      "Biết tổng và số người nhận.",
-      "Điều chưa biết là mỗi bạn nhận bao nhiêu.",
-      "Chọn hình có 6 nhóm giống nhau.",
-      "Tổng ÷ số nhóm = số phần mỗi nhóm.",
-      "Tìm số nào nhân 6 bằng 24.",
-      "Câu hỏi bắt đầu bằng “Mỗi bạn”.",
-      "Dùng phép nhân để kiểm tra phép chia."
+      "“Chia đều” = mỗi người nhận bằng nhau.",
+      "Kể: tổng miếng – số bạn – hỏi mỗi bạn bao nhiêu.",
+      "24 và 6 đã biết; mỗi bạn là dấu hỏi.",
+      "Chọn hình một đống được tách thành 6 phần bằng nhau.",
+      "Mẹo nhớ: “Chia đều = chia ÷ = mỗi phần bằng nhau”.",
+      "Nghĩ: 6 × ? = 24. Hoặc 24 ÷ 6.",
+      "Câu trả lời nói “mỗi bạn”, không nói “tất cả”.",
+      "Kiểm tra ngược bằng phép nhân."
     ]
   },
   {
     "id": "lesson-8",
-    "title": "Chọn mô hình phù hợp",
-    "shortTitle": "Mô hình hóa",
-    "icon": "🗺️",
+    "title": "Xe buýt chạy trên trục số",
+    "shortTitle": "Trục số",
+    "icon": "🚌",
     "color": "teal",
     "skill": "Trục số",
-    "story": "Xe buýt đang ở điểm số 16 rồi đi thêm 7 km. Xe buýt ở vị trí bao nhiêu ki-lô-mét?",
+    "story": "Xe buýt đang dừng ở mốc 16 km. Tài xế lái thêm 7 km nữa. Xe đang ở mốc ki-lô-mét nào?",
     "visual": {
+      "type": "add",
       "before": 16,
       "change": 7,
       "emoji": "🚌",
-      "changeLabel": "km đi thêm"
+      "beforeLabel": "Đang ở mốc",
+      "changeLabel": "Đi thêm",
+      "resultLabel": "Mốc mới?"
     },
     "retellOptions": [
-      "Bắt đầu ở 16 rồi tiến thêm 7 trên trục số.",
-      "Chia 16 km cho 7 xe buýt.",
-      "So sánh hai đoạn đường 16 và 7."
+      "Xe ở mốc 16, đi thêm 7 km, cần tìm mốc mới.",
+      "Xe đi lùi 7 km từ mốc 16.",
+      "Có 16 xe, mỗi xe đi 7 km."
     ],
     "correctRetell": 0,
     "facts": [
-      "Bắt đầu ở km 16",
+      "Xe đang ở mốc 16",
       "Đi thêm 7 km",
-      "Cần tìm vị trí mới"
+      "Cần tìm mốc mới"
     ],
     "factRoles": [
       "known",
@@ -555,10 +580,10 @@
       "unknown"
     ],
     "models": [
-      "Trục số tiến về bên phải",
-      "Nhóm bằng nhau",
-      "Biểu đồ tròn",
-      "Đồng hồ"
+      "Trục số tiến về phía trước",
+      "Chia đều thành nhóm",
+      "Hai thanh so sánh",
+      "Bảng nhân"
     ],
     "correctModel": 0,
     "operations": [
@@ -569,54 +594,58 @@
     ],
     "correctOperation": 0,
     "reasons": [
-      "Vì vị trí tăng thêm 7 đơn vị trên cùng một trục.",
-      "Vì cần tìm chênh lệch giữa hai xe.",
-      "Vì có 16 nhóm bằng nhau."
+      "Vì xe đi thêm về phía trước trên trục số — cộng số km.",
+      "Vì xe quay đầu đi lùi.",
+      "Vì cần chia quãng đường thành 7 phần."
     ],
     "correctReason": 0,
     "answer": 23,
     "unit": "km",
     "answerOptions": [
-      "Xe buýt đang ở vị trí km 23.",
-      "Xe buýt còn 9 km.",
-      "Có 23 xe buýt."
+      "Xe buýt ở mốc 23 km.",
+      "Xe buýt ở mốc 9 km.",
+      "Xe buýt đi được 7 km mỗi giờ."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Đi thêm từ km 16 thì vị trí mới có lớn hơn 16 không?",
+    "checkQuestion": "16 + 7 có bằng 23 không?",
     "checkOptions": [
-      "Có, vì xe tiến về phía trước.",
-      "Không, vị trí mới phải nhỏ hơn 16."
+      "Có, 16 + 7 = 23.",
+      "Không, 16 + 7 = 22."
     ],
     "correctCheck": 0,
     "hints": [
-      "Hãy tưởng tượng các mốc đường nằm trên một đường thẳng.",
-      "Xe bắt đầu ở 16, không phải từ 0.",
-      "“Vị trí mới” là điều cần tìm.",
-      "Trục số phù hợp với chuyển động tiến hoặc lùi.",
-      "Đi thêm làm số km tăng.",
-      "Tách 7 thành 4 và 3: 16 + 4 + 3.",
-      "Đây là vị trí km, không phải quãng đường tổng quát.",
-      "Vị trí mới phải ở bên phải 16 trên trục số."
+      "Trục số: đi thêm = nhảy sang phải (số lớn hơn).",
+      "Kể: mốc cũ – quãng thêm – mốc mới.",
+      "16 và 7 đã biết.",
+      "Chọn mô hình trục số tiến tới.",
+      "Mẹo nhớ: “Tiến / đi thêm trên trục = cộng”.",
+      "16 + 4 = 20, rồi + 3 = 23.",
+      "Đơn vị là km (mốc trên đường).",
+      "Kiểm tra: mốc mới phải lớn hơn 16."
     ]
   },
   {
     "id": "lesson-9",
-    "title": "Bài toán hai bước",
-    "shortTitle": "Lập kế hoạch giải",
-    "icon": "🪜",
+    "title": "Cửa hàng bút: bán hết bao nhiêu?",
+    "shortTitle": "Hai bước",
+    "icon": "🖊️",
     "color": "indigo",
     "skill": "Nhân rồi trừ",
-    "story": "Cửa hàng có 5 hộp bút, mỗi hộp 8 chiếc. Cửa hàng đã bán 13 chiếc. Còn lại bao nhiêu chiếc bút?",
+    "story": "Cửa hàng có 5 hộp bút, mỗi hộp 8 chiếc. Buổi sáng bán mất 13 chiếc. Còn lại bao nhiêu chiếc bút?",
     "visual": {
+      "type": "mixed",
       "before": 5,
       "change": 8,
       "emoji": "🖊️",
-      "changeLabel": "chiếc trong mỗi hộp"
+      "beforeLabel": "5 hộp × 8",
+      "changeLabel": "Bán mất 13",
+      "resultLabel": "Còn lại?",
+      "extra": 13
     },
     "retellOptions": [
-      "Tìm tổng số bút trong 5 hộp, rồi trừ số đã bán.",
-      "Cộng 5, 8 và 13 trong một bước.",
-      "Chia 13 chiếc cho 5 hộp."
+      "Trước tìm tổng bút trong 5 hộp, rồi bớt 13 chiếc đã bán.",
+      "Mỗi hộp bị bán 13 chiếc.",
+      "Chia 5 hộp cho 8 bạn rồi trừ 13."
     ],
     "correctRetell": 0,
     "facts": [
@@ -630,74 +659,77 @@
       "unknown"
     ],
     "models": [
-      "Nhóm bằng nhau rồi tách bớt",
-      "Chỉ một trục số",
-      "Đồng hồ",
-      "Biểu đồ tròn"
+      "Nhân tìm tổng rồi trừ phần bán",
+      "Chỉ một phép trừ",
+      "Chỉ một phép cộng",
+      "Đồng hồ"
     ],
     "correctModel": 0,
     "operations": [
       "5 × 8 - 13",
-      "5 + 8 + 13",
-      "13 ÷ 5",
-      "5 × (8 - 13)"
+      "5 + 8 - 13",
+      "5 × 8 + 13",
+      "(5 + 8) × 13"
     ],
     "correctOperation": 0,
     "reasons": [
-      "Vì phải tìm tổng ban đầu trước, sau đó lấy đi số đã bán.",
-      "Vì tất cả các số trong đề đều phải cộng.",
-      "Vì 13 là số nhóm."
+      "Vì phải biết tổng bút trước (nhân), rồi mới bớt phần đã bán (trừ).",
+      "Vì mỗi hộp có 8 − 13 chiếc.",
+      "Vì cần chia tổng thành 13 nhóm."
     ],
     "correctReason": 0,
     "answer": 27,
     "unit": "chiếc bút",
     "answerOptions": [
-      "Cửa hàng còn lại 27 chiếc bút.",
-      "Cửa hàng còn 40 chiếc bút.",
-      "Mỗi hộp còn 27 chiếc bút."
+      "Còn lại 27 chiếc bút.",
+      "Còn lại 40 chiếc bút.",
+      "Còn lại 13 chiếc bút."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Tổng ban đầu 40, bán 13 và còn 27 có đúng không?",
+    "checkQuestion": "5 × 8 = 40, rồi 40 − 13 = 27 — đúng chưa?",
     "checkOptions": [
-      "Đúng, vì 27 + 13 = 40.",
-      "Sai, vì 27 lớn hơn 40."
+      "Đúng, hai bước rõ ràng.",
+      "Sai, phải cộng 13."
     ],
     "correctCheck": 0,
     "hints": [
-      "Đề có hai sự việc: tạo tổng và bán bớt.",
-      "Câu hỏi trung gian: 5 hộp có tất cả bao nhiêu bút?",
-      "13 là số đã bán, không phải số trong mỗi hộp.",
-      "Mô hình cần thể hiện nhóm bằng nhau và phần bị lấy đi.",
-      "Bước 1 nhân; bước 2 trừ.",
-      "5 × 8 = 40, sau đó tính 40 - 13.",
-      "Câu trả lời hỏi số còn lại của cửa hàng.",
-      "Lấy số còn lại cộng số đã bán để về tổng ban đầu."
+      "Có 2 việc: đếm hết bút trong hộp, rồi trừ bút đã bán.",
+      "Kể theo thứ tự: hộp → tổng → bán → còn.",
+      "Đã biết: số hộp, bút/hộp, số bán. Chưa biết: còn lại.",
+      "Chọn mô hình “nhân rồi trừ”.",
+      "Mẹo nhớ: “Nhiều nhóm giống nhau trước → nhân trước”.",
+      "5 × 8 = 40; 40 − 13 = 27.",
+      "Câu trả lời là số còn lại sau khi bán.",
+      "Kiểm tra: còn + đã bán = tổng ban đầu (27 + 13 = 40)."
     ]
   },
   {
     "id": "lesson-10",
-    "title": "Kiểm tra đáp án",
+    "title": "Minh tính nhầm rồi!",
     "shortTitle": "Tự kiểm tra",
     "icon": "✅",
-    "color": "emerald",
+    "color": "green",
     "skill": "Ước lượng và phép ngược",
-    "story": "Một xe chở 48 thùng nước, đã giao 19 thùng. Bạn Minh tính còn 67 thùng. Minh tính đúng hay sai? Số đúng là bao nhiêu?",
+    "story": "Xe chở 48 thùng nước, đã giao 19 thùng. Bạn Minh nói còn 67 thùng. Minh đúng hay sai? Số đúng là bao nhiêu?",
     "visual": {
+      "type": "remove",
       "before": 48,
       "change": 19,
       "emoji": "📦",
-      "changeLabel": "thùng đã giao"
+      "beforeLabel": "Trên xe",
+      "changeLabel": "Đã giao",
+      "resultLabel": "Còn?"
     },
     "retellOptions": [
-      "Số lượng bị giảm nên 67 là vô lý; cần lấy 48 trừ 19.",
-      "Số lượng tăng nên cộng 48 và 19.",
-      "Chia 48 thùng thành 19 nhóm."
+      "Có 48 thùng, giao 19, cần tìm còn lại — và kiểm tra con số 67 của Minh.",
+      "Xe nhận thêm 19 thùng thành 67.",
+      "Chia 48 thùng cho 19 cửa hàng."
     ],
     "correctRetell": 0,
     "facts": [
-      "Ban đầu 48 thùng",
+      "Xe có 48 thùng",
       "Đã giao 19 thùng",
-      "Cần kiểm tra và tìm số còn"
+      "Cần tìm số còn (và xem 67 có đúng không)"
     ],
     "factRoles": [
       "known",
@@ -705,10 +737,10 @@
       "unknown"
     ],
     "models": [
-      "Tổng – phần và ước lượng",
+      "Tổng bớt phần đã giao",
       "Nhóm bằng nhau",
       "Đồng hồ",
-      "Hình vuông"
+      "Bảng nhân"
     ],
     "correctModel": 0,
     "operations": [
@@ -719,60 +751,63 @@
     ],
     "correctOperation": 1,
     "reasons": [
-      "Vì đã giao đi nên số còn lại phải nhỏ hơn 48.",
-      "Vì từ “đã giao” luôn có nghĩa là cộng.",
-      "Vì cần tìm số nhóm."
+      "Vì giao hàng làm số thùng trên xe giảm — trừ, không cộng.",
+      "Vì Minh cộng 48 + 19 nên ra 67 (sai hướng).",
+      "Vì cần chia thùng thành 19 nhóm."
     ],
     "correctReason": 0,
     "answer": 29,
     "unit": "thùng nước",
     "answerOptions": [
-      "Minh tính sai; xe còn 29 thùng nước.",
-      "Minh tính đúng; xe còn 67 thùng.",
-      "Xe còn 19 thùng nước."
+      "Minh sai. Còn lại 29 thùng nước.",
+      "Minh đúng. Còn 67 thùng nước.",
+      "Còn lại 19 thùng nước."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Có thể kiểm tra 29 bằng phép tính ngược nào?",
+    "checkQuestion": "Ước lượng: 48 − 20 ≈ 28, gần 29 hơn hay gần 67 hơn?",
     "checkOptions": [
-      "29 + 19 = 48.",
-      "29 - 19 = 48."
+      "Gần 29 hơn — 67 quá to.",
+      "Gần 67 hơn."
     ],
     "correctCheck": 0,
     "hints": [
-      "Sau khi giao hàng, số thùng không thể tăng.",
-      "Hãy kể lại mà chưa cần tính.",
-      "67 là câu trả lời của Minh, không phải dữ kiện đúng.",
-      "Dùng sơ đồ tổng 48 gồm phần đã giao và phần còn.",
-      "Lấy tổng ban đầu trừ phần đã giao.",
-      "48 - 20 = 28, rồi cộng lại 1.",
-      "Cần nói rõ Minh đúng hay sai.",
-      "Phép cộng là phép ngược của phép trừ."
+      "Giao hàng = bớt đi, không phải thêm vào.",
+      "Minh ra 67 — lớn hơn cả số ban đầu 48! Đáng ngờ.",
+      "Đã biết 48 và 19; cần tìm còn lại.",
+      "Chọn mô hình bớt một phần khỏi tổng.",
+      "Mẹo nhớ: “Đáp án kỳ lạ → dừng lại ước lượng”.",
+      "48 − 19: 48 − 20 = 28, rồi + 1 = 29.",
+      "Câu trả lời vừa nói Minh sai, vừa nêu số đúng.",
+      "Kiểm tra: còn + đã giao = ban đầu (29 + 19 = 48)."
     ]
   },
   {
     "id": "lesson-11",
-    "title": "Đi ngược để tìm số ban đầu",
+    "title": "Đi ngược tìm bóng bay",
     "shortTitle": "Tìm số ban đầu",
     "icon": "🎈",
     "color": "pink",
     "skill": "Phép tính ngược",
-    "story": "Sau khi được tặng thêm 9 quả bóng, Nam có 27 quả bóng. Lúc đầu Nam có bao nhiêu quả bóng?",
+    "story": "Sau khi được tặng thêm 9 quả bóng bay, Nam đếm được 27 quả. Lúc đầu, trước khi được tặng, Nam có bao nhiêu quả?",
     "visual": {
+      "type": "reverse",
       "before": 27,
       "change": 9,
       "emoji": "🎈",
-      "changeLabel": "phần được thêm"
+      "beforeLabel": "Sau khi được tặng",
+      "changeLabel": "Phần được thêm",
+      "resultLabel": "Lúc đầu?"
     },
     "retellOptions": [
-      "Nam có 27 quả sau khi được thêm 9 quả; cần tìm số lúc đầu.",
+      "Biết số sau cùng 27 sau khi thêm 9 — đi ngược để tìm số lúc đầu.",
       "Nam có 27 quả rồi được thêm 9 quả nữa.",
-      "Nam chia 27 quả bóng cho 9 bạn."
+      "Nam chia 27 quả cho 9 bạn."
     ],
     "correctRetell": 0,
     "facts": [
-      "Sau khi được tặng, Nam có 27 quả",
-      "Nam được tặng thêm 9 quả",
-      "Cần tìm số bóng lúc đầu"
+      "Sau cùng Nam có 27 quả",
+      "Được tặng thêm 9 quả",
+      "Cần tìm số lúc đầu"
     ],
     "factRoles": [
       "known",
@@ -780,10 +815,10 @@
       "unknown"
     ],
     "models": [
-      "Sơ đồ tổng – phần",
+      "Đi ngược: bớt phần đã thêm",
       "Nhóm bằng nhau",
-      "Bảng hàng – cột",
-      "Biểu đồ tranh"
+      "Hai thanh so sánh",
+      "Bảng nhân"
     ],
     "correctModel": 0,
     "operations": [
@@ -794,59 +829,62 @@
     ],
     "correctOperation": 1,
     "reasons": [
-      "Vì 27 là số sau khi đã thêm 9, nên lấy tổng trừ phần thêm.",
-      "Vì cần gộp hai số lượng.",
-      "Vì có 9 nhóm bằng nhau."
+      "Vì đã thêm 9 để ra 27 — muốn về lúc đầu thì trừ 9 (phép ngược).",
+      "Vì số lúc đầu lớn hơn số sau cùng.",
+      "Vì cần chia 27 thành 9 nhóm."
     ],
     "correctReason": 0,
     "answer": 18,
     "unit": "quả bóng",
     "answerOptions": [
       "Lúc đầu Nam có 18 quả bóng.",
-      "Nam được tặng 18 quả bóng.",
-      "Nam có tất cả 36 quả bóng."
+      "Lúc đầu Nam có 36 quả bóng.",
+      "Lúc đầu Nam có 9 quả bóng."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Có thể kiểm tra 18 bằng cách nào?",
+    "checkQuestion": "18 + 9 có bằng 27 không?",
     "checkOptions": [
-      "Lấy 18 + 9 = 27.",
-      "Lấy 18 - 9 = 9."
+      "Có — phép ngược khớp câu chuyện.",
+      "Không."
     ],
     "correctCheck": 0,
     "hints": [
-      "27 là số sau cùng, không phải số lúc đầu.",
-      "Kể lại theo thứ tự: lúc đầu chưa biết – thêm 9 – thành 27.",
-      "Số lúc đầu là điều cần tìm.",
-      "Hãy xem 27 gồm số lúc đầu và phần thêm 9.",
-      "Muốn tìm một phần khi biết tổng, dùng phép trừ.",
-      "Tách 9 khỏi 27.",
-      "Câu trả lời phải nói rõ “lúc đầu”.",
-      "Cộng đáp án với 9 để xem có được 27 không."
+      "Câu chuyện đang “quay phim ngược”: biết kết thúc, tìm lúc mở đầu.",
+      "Được thêm → muốn về lúc đầu thì bớt phần đã thêm.",
+      "27 và 9 đã biết; lúc đầu là dấu hỏi.",
+      "Chọn mô hình đi ngược.",
+      "Mẹo nhớ: “Thêm ↔ trừ; nhân ↔ chia là bạn đôi”.",
+      "27 − 9 = 18.",
+      "Câu trả lời nói “lúc đầu”.",
+      "Kiểm tra xuôi: lúc đầu + phần thêm = sau cùng."
     ]
   },
   {
     "id": "lesson-12",
-    "title": "Tìm số lượng đã thay đổi",
+    "title": "Cá bơi sang bể khác",
     "shortTitle": "Đã bớt bao nhiêu?",
     "icon": "🐟",
-    "color": "teal",
+    "color": "blue",
     "skill": "Tìm lượng giảm",
-    "story": "Bể có 45 con cá. Sau khi chuyển một số con sang bể khác, bể còn 29 con. Đã chuyển đi bao nhiêu con cá?",
+    "story": "Bể cá có 45 con. Sau khi chuyển một số con sang bể khác, bể còn 29 con. Hỏi đã chuyển đi bao nhiêu con cá?",
     "visual": {
+      "type": "remove",
       "before": 45,
       "change": 29,
       "emoji": "🐟",
-      "changeLabel": "số còn lại"
+      "beforeLabel": "Lúc đầu",
+      "changeLabel": "Còn lại",
+      "resultLabel": "Đã chuyển?"
     },
     "retellOptions": [
-      "Ban đầu có 45 con, sau đó còn 29 con; cần tìm số đã chuyển đi.",
-      "Có 45 con rồi thêm 29 con.",
-      "Có 45 bể, mỗi bể 29 con."
+      "Biết lúc đầu 45 và còn 29 — tìm phần đã chuyển đi.",
+      "Bể có 45 con rồi thêm 29 con.",
+      "Chia 45 con cá cho 29 bể."
     ],
     "correctRetell": 0,
     "facts": [
-      "Ban đầu có 45 con cá",
-      "Sau đó còn 29 con cá",
+      "Lúc đầu có 45 con",
+      "Còn lại 29 con",
       "Cần tìm số đã chuyển đi"
     ],
     "factRoles": [
@@ -855,10 +893,10 @@
       "unknown"
     ],
     "models": [
-      "Sơ đồ tổng – phần",
-      "Sơ đồ chia đều",
-      "Bảng nhân",
-      "Đồng hồ"
+      "Tổng trừ phần còn = phần đã đi",
+      "Nhóm bằng nhau",
+      "Đồng hồ",
+      "Bảng nhân"
     ],
     "correctModel": 0,
     "operations": [
@@ -869,60 +907,63 @@
     ],
     "correctOperation": 1,
     "reasons": [
-      "Vì số đã chuyển đi là phần chênh lệch giữa ban đầu và còn lại.",
-      "Vì cần tìm tổng hai bể.",
-      "Vì cần chia cá thành các nhóm."
+      "Vì phần đã chuyển = lúc đầu − còn lại.",
+      "Vì cá tăng thêm trong bể.",
+      "Vì cần chia cá thành 29 nhóm."
     ],
     "correctReason": 0,
     "answer": 16,
     "unit": "con cá",
     "answerOptions": [
       "Đã chuyển đi 16 con cá.",
-      "Bể còn 16 con cá.",
-      "Có tất cả 74 con cá."
+      "Đã chuyển đi 74 con cá.",
+      "Còn lại 16 con cá."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Kết quả 16 có hợp lý không?",
+    "checkQuestion": "29 + 16 có bằng 45 không?",
     "checkOptions": [
-      "Có, vì 29 + 16 = 45.",
-      "Không, vì số chuyển đi phải lớn hơn 45."
+      "Có, 29 + 16 = 45.",
+      "Không."
     ],
     "correctCheck": 0,
     "hints": [
-      "Số lượng giảm từ 45 xuống 29.",
-      "Cần tìm phần đã rời khỏi bể.",
-      "45 và 29 đều đã biết.",
-      "Mô hình cần có tổng 45 và hai phần: còn lại, chuyển đi.",
-      "Tìm chênh lệch bằng phép trừ.",
-      "Có thể tính 45 - 30 rồi cộng lại 1.",
-      "Dùng cụm từ “đã chuyển đi”.",
-      "Lấy số còn lại cộng số chuyển đi để kiểm tra."
+      "Hình dung: bể đầy → bơi đi một nhóm → còn lại.",
+      "Biết hai đầu (trước & sau), tìm phần “biến mất”.",
+      "45 và 29 đã biết.",
+      "Chọn mô hình tổng − còn = đã đi.",
+      "Mẹo nhớ: “Đã bớt bao nhiêu = trước − sau”.",
+      "45 − 29: 45 − 30 = 15, rồi + 1 = 16.",
+      "Câu trả lời là số đã chuyển, không phải số còn.",
+      "Kiểm tra: còn + đã chuyển = lúc đầu."
     ]
   },
   {
     "id": "lesson-13",
-    "title": "Tìm số lớn hơn",
-    "shortTitle": "Nhiều hơn một lượng",
+    "title": "Lớp 3B quyên góp nhiều hơn",
+    "shortTitle": "Tìm số lớn hơn",
     "icon": "📚",
-    "color": "indigo",
+    "color": "orange",
     "skill": "So sánh tìm số lớn",
-    "story": "Lớp 3A quyên góp 26 quyển sách. Lớp 3B quyên góp nhiều hơn lớp 3A 8 quyển. Lớp 3B quyên góp bao nhiêu quyển sách?",
+    "story": "Lớp 3A quyên góp được 26 quyển sách. Lớp 3B quyên góp nhiều hơn lớp 3A đúng 8 quyển. Lớp 3B quyên góp bao nhiêu quyển?",
     "visual": {
+      "type": "compare",
       "before": 26,
       "change": 8,
       "emoji": "📚",
-      "changeLabel": "nhiều hơn"
+      "beforeLabel": "Lớp 3A",
+      "changeLabel": "3B hơn thêm",
+      "resultLabel": "Lớp 3B?"
     },
     "retellOptions": [
-      "Biết lớp 3A có 26 quyển, lớp 3B nhiều hơn 8 quyển; cần tìm số của lớp 3B.",
-      "Hai lớp có tất cả 26 quyển và 8 quyển.",
-      "Lớp 3B ít hơn lớp 3A 8 quyển."
+      "Biết 3A có 26 và 3B hơn 8 — tìm số của 3B.",
+      "Hai lớp gộp lại được 26 quyển.",
+      "Lớp 3B ít hơn 3A 8 quyển."
     ],
     "correctRetell": 0,
     "facts": [
       "Lớp 3A có 26 quyển",
       "Lớp 3B nhiều hơn 8 quyển",
-      "Cần tìm số sách lớp 3B"
+      "Cần tìm số của lớp 3B"
     ],
     "factRoles": [
       "known",
@@ -930,10 +971,10 @@
       "unknown"
     ],
     "models": [
-      "Sơ đồ so sánh",
-      "Sơ đồ chia đều",
-      "Đồng hồ",
-      "Bảng hàng – cột"
+      "Thanh nhỏ cộng phần hơn",
+      "Chia đều",
+      "Trục số lùi",
+      "Đồng hồ"
     ],
     "correctModel": 0,
     "operations": [
@@ -944,53 +985,56 @@
     ],
     "correctOperation": 0,
     "reasons": [
-      "Vì số của lớp 3B bằng số lớp 3A cộng phần nhiều hơn.",
-      "Vì cần tìm phần chênh lệch.",
-      "Vì có 8 nhóm sách bằng nhau."
+      "Vì “nhiều hơn 8” nghĩa là lấy số nhỏ cộng thêm 8 để ra số lớn.",
+      "Vì 3B ít hơn 3A.",
+      "Vì cần chia 26 thành 8 phần."
     ],
     "correctReason": 0,
     "answer": 34,
     "unit": "quyển sách",
     "answerOptions": [
       "Lớp 3B quyên góp 34 quyển sách.",
-      "Hai lớp chênh nhau 34 quyển.",
-      "Lớp 3A quyên góp 34 quyển."
+      "Lớp 3B quyên góp 18 quyển sách.",
+      "Hai lớp có tất cả 8 quyển sách."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Số sách lớp 3B phải như thế nào so với 26?",
+    "checkQuestion": "34 − 26 có bằng 8 không?",
     "checkOptions": [
-      "Lớn hơn 26 đúng 8 quyển.",
-      "Nhỏ hơn 26 đúng 8 quyển."
+      "Có — chênh lệch đúng 8.",
+      "Không."
     ],
     "correctCheck": 0,
     "hints": [
-      "Đề hỏi số của bên nhiều hơn.",
-      "Lớp 3B gồm 26 quyển và thêm phần hơn 8 quyển.",
-      "Điều chưa biết là số sách lớp 3B.",
-      "Hai đoạn thẳng bắt đầu cùng điểm, đoạn lớp 3B dài hơn.",
-      "Tìm số lớn khi biết số nhỏ và phần hơn thì cộng.",
-      "26 + 4 = 30, rồi cộng thêm 4.",
-      "Nêu đúng chủ thể là lớp 3B.",
-      "Lấy 34 - 26 để kiểm tra phần hơn."
+      "“Nhiều hơn 8” ≠ “gấp 8 lần”.",
+      "3B = 3A + phần hơn.",
+      "26 và 8 đã biết.",
+      "Chọn mô hình thanh nhỏ cộng thêm đoạn hơn.",
+      "Mẹo nhớ: “Số lớn = số nhỏ + phần hơn”.",
+      "26 + 8 = 34.",
+      "Câu trả lời nêu rõ lớp 3B.",
+      "Kiểm tra: số lớn − số nhỏ = phần hơn."
     ]
   },
   {
     "id": "lesson-14",
-    "title": "Tìm số nhỏ hơn",
-    "shortTitle": "Ít hơn một lượng",
+    "title": "Vườn cam nhỏ hơn",
+    "shortTitle": "Tìm số nhỏ hơn",
     "icon": "🌳",
-    "color": "emerald",
+    "color": "green",
     "skill": "So sánh tìm số nhỏ",
     "story": "Vườn lớn có 41 cây cam. Vườn nhỏ có ít hơn vườn lớn 13 cây. Vườn nhỏ có bao nhiêu cây cam?",
     "visual": {
+      "type": "compare",
       "before": 41,
       "change": 13,
       "emoji": "🌳",
-      "changeLabel": "ít hơn"
+      "beforeLabel": "Vườn lớn",
+      "changeLabel": "Ít hơn 13",
+      "resultLabel": "Vườn nhỏ?"
     },
     "retellOptions": [
-      "Biết vườn lớn có 41 cây, vườn nhỏ ít hơn 13 cây; cần tìm số cây vườn nhỏ.",
-      "Hai vườn có tất cả 41 cây và 13 cây.",
+      "Biết vườn lớn 41 và vườn nhỏ ít hơn 13 — tìm số vườn nhỏ.",
+      "Hai vườn gộp lại 41 cây.",
       "Vườn nhỏ nhiều hơn vườn lớn 13 cây."
     ],
     "correctRetell": 0,
@@ -1005,9 +1049,9 @@
       "unknown"
     ],
     "models": [
-      "Sơ đồ so sánh",
+      "Thanh lớn bớt phần kém",
       "Nhóm bằng nhau",
-      "Trục thời gian",
+      "Đồng hồ",
       "Bảng nhân"
     ],
     "correctModel": 0,
@@ -1019,59 +1063,62 @@
     ],
     "correctOperation": 1,
     "reasons": [
-      "Vì số vườn nhỏ bằng số vườn lớn bớt phần chênh lệch.",
-      "Vì cần gộp cây của hai vườn.",
-      "Vì có 13 nhóm cây bằng nhau."
+      "Vì “ít hơn 13” nghĩa là lấy số lớn trừ 13 để ra số nhỏ.",
+      "Vì vườn nhỏ nhiều hơn vườn lớn.",
+      "Vì cần nhân 41 với 13."
     ],
     "correctReason": 0,
     "answer": 28,
     "unit": "cây cam",
     "answerOptions": [
       "Vườn nhỏ có 28 cây cam.",
-      "Vườn lớn có 28 cây cam.",
-      "Hai vườn chênh nhau 28 cây."
+      "Vườn nhỏ có 54 cây cam.",
+      "Hai vườn có 13 cây cam."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Đáp án 28 có đúng là ít hơn 41 đúng 13 cây không?",
+    "checkQuestion": "41 − 28 có bằng 13 không?",
     "checkOptions": [
-      "Có, vì 41 - 28 = 13.",
-      "Không, vì 28 lớn hơn 41."
+      "Có — chênh lệch đúng 13.",
+      "Không."
     ],
     "correctCheck": 0,
     "hints": [
-      "Đề hỏi số của bên ít hơn.",
-      "Bắt đầu từ 41 rồi bớt phần chênh 13.",
-      "Số cây vườn nhỏ là điều cần tìm.",
-      "Đoạn của vườn nhỏ ngắn hơn đoạn của vườn lớn.",
-      "Tìm số nhỏ khi biết số lớn và phần kém thì trừ.",
-      "41 - 10 = 31, rồi trừ tiếp 3.",
-      "Câu trả lời phải nói về vườn nhỏ.",
-      "Lấy 28 + 13 để kiểm tra có bằng 41 không."
+      "“Ít hơn” = nhỏ hơn = trừ đi.",
+      "Vườn nhỏ = vườn lớn − 13.",
+      "41 và 13 đã biết.",
+      "Chọn mô hình thanh lớn bớt một đoạn.",
+      "Mẹo nhớ: “Số nhỏ = số lớn − phần kém”.",
+      "41 − 13: 41 − 10 = 31, rồi − 3 = 28.",
+      "Câu trả lời nêu “vườn nhỏ”.",
+      "Kiểm tra: số nhỏ + phần kém = số lớn."
     ]
   },
   {
     "id": "lesson-15",
-    "title": "Nhiều hơn hay gấp nhiều lần?",
+    "title": "Gấp mấy lần, không phải thêm!",
     "shortTitle": "Gấp nhiều lần",
     "icon": "🚲",
-    "color": "orange",
+    "color": "violet",
     "skill": "Phân biệt cộng và nhân",
-    "story": "Mai đi xe đạp được 7 km. Bố đi được quãng đường gấp 4 lần Mai. Bố đi được bao nhiêu ki-lô-mét?",
+    "story": "Mai đạp xe được 7 km. Bố đạp được quãng đường gấp 4 lần Mai. Bố đi được bao nhiêu ki-lô-mét?",
     "visual": {
+      "type": "scale",
       "before": 7,
       "change": 4,
       "emoji": "🚲",
-      "changeLabel": "gấp 4 lần"
+      "beforeLabel": "Mai: 7 km",
+      "changeLabel": "Gấp 4 lần",
+      "resultLabel": "Bố?"
     },
     "retellOptions": [
-      "Mai đi 7 km, bố đi bằng 4 nhóm 7 km; cần tìm quãng đường của bố.",
+      "Mai đi 7 km; bố gấp 4 lần — nhân 7 × 4.",
       "Bố đi nhiều hơn Mai đúng 4 km.",
-      "Mai và bố đi tất cả 7 km."
+      "Mai và bố đi tổng cộng 4 km."
     ],
     "correctRetell": 0,
     "facts": [
       "Mai đi 7 km",
-      "Bố đi gấp 4 lần Mai",
+      "Bố gấp 4 lần Mai",
       "Cần tìm quãng đường của bố"
     ],
     "factRoles": [
@@ -1080,10 +1127,10 @@
       "unknown"
     ],
     "models": [
-      "Các đoạn bằng nhau",
-      "Sơ đồ tổng – phần",
-      "Đồng hồ",
-      "Biểu đồ cột"
+      "4 đoạn bằng đoạn của Mai",
+      "Hai thanh hơn kém 4",
+      "Trục số lùi",
+      "Đồng hồ"
     ],
     "correctModel": 0,
     "operations": [
@@ -1094,9 +1141,9 @@
     ],
     "correctOperation": 2,
     "reasons": [
-      "Vì quãng đường của bố gồm 4 lần quãng đường 7 km.",
-      "Vì bố chỉ đi thêm 4 km.",
-      "Vì cần chia 7 km thành 4 phần."
+      "Vì “gấp 4 lần” là lấy 7 lặp lại 4 lần — phép nhân, không phải cộng 4.",
+      "Vì bố chỉ hơn Mai 4 km.",
+      "Vì cần chia 7 cho 4."
     ],
     "correctReason": 0,
     "answer": 28,
@@ -1104,49 +1151,52 @@
     "answerOptions": [
       "Bố đi được 28 km.",
       "Bố đi được 11 km.",
-      "Mai đi được 28 km."
+      "Bố đi được 3 km."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Vì sao không dùng 7 + 4?",
+    "checkQuestion": "7 + 7 + 7 + 7 có bằng 28 không?",
     "checkOptions": [
-      "Vì “gấp 4 lần” là có 4 nhóm 7, không phải thêm 4.",
-      "Vì phép cộng luôn cho kết quả quá lớn."
+      "Có — gấp 4 lần = cộng 7 bốn lần.",
+      "Không, phải là 7 + 4 = 11."
     ],
     "correctCheck": 0,
     "hints": [
-      "Chú ý cụm từ “gấp 4 lần”.",
-      "Hãy tưởng tượng 4 đoạn, mỗi đoạn dài 7 km.",
-      "Số lần và quãng đường một lần đều đã biết.",
-      "Chọn mô hình có nhiều đoạn bằng nhau.",
-      "Các nhóm bằng nhau được gộp bằng phép nhân.",
-      "7 + 7 + 7 + 7 bằng bao nhiêu?",
-      "Đáp án nói về quãng đường của bố.",
-      "Lấy 28 ÷ 4 để xem có trở lại 7 không."
+      "Cạm bẫy: “gấp 4 lần” ≠ “thêm 4”.",
+      "Hình dung 4 đoạn đường giống hệt đoạn của Mai.",
+      "7 và 4 đã biết.",
+      "Chọn mô hình 4 đoạn bằng nhau.",
+      "Mẹo nhớ: “Gấp N lần = × N; hơn N = + N”.",
+      "7 × 4 = 28.",
+      "Câu trả lời là quãng đường của bố.",
+      "Kiểm tra bằng cộng lặp 7 bốn lần."
     ]
   },
   {
     "id": "lesson-16",
-    "title": "Nhìn hàng và cột để nhân",
+    "title": "Ghế hội trường: hàng × cột",
     "shortTitle": "Hàng và cột",
     "icon": "🪑",
-    "color": "violet",
+    "color": "teal",
     "skill": "Mảng hình chữ nhật",
-    "story": "Hội trường xếp 6 hàng ghế. Mỗi hàng có 7 ghế. Hội trường có tất cả bao nhiêu ghế?",
+    "story": "Hội trường xếp ghế thành 6 hàng ngay ngắn. Mỗi hàng có 7 ghế. Hội trường có tất cả bao nhiêu ghế?",
     "visual": {
+      "type": "groups",
       "before": 6,
       "change": 7,
       "emoji": "🪑",
-      "changeLabel": "ghế mỗi hàng"
+      "beforeLabel": "6 hàng",
+      "changeLabel": "Mỗi hàng 7 ghế",
+      "resultLabel": "Tổng ghế?"
     },
     "retellOptions": [
-      "Có 6 hàng bằng nhau, mỗi hàng 7 ghế; cần tìm tổng số ghế.",
-      "Có 6 ghế rồi thêm 7 ghế.",
-      "Có 7 ghế chia đều vào 6 hàng."
+      "6 hàng, mỗi hàng 7 ghế — nhân hàng với cột.",
+      "Có 6 ghế chia thành 7 hàng.",
+      "Có 6 ghế rồi thêm 7 ghế."
     ],
     "correctRetell": 0,
     "facts": [
       "Có 6 hàng ghế",
-      "Mỗi hàng có 7 ghế",
+      "Mỗi hàng 7 ghế",
       "Cần tìm tổng số ghế"
     ],
     "factRoles": [
@@ -1155,9 +1205,9 @@
       "unknown"
     ],
     "models": [
-      "Mảng hàng – cột",
-      "Sơ đồ chênh lệch",
-      "Trục số lùi",
+      "Mảng 6 hàng × 7 cột",
+      "Hai thanh so sánh",
+      "Trục số",
       "Đồng hồ"
     ],
     "correctModel": 0,
@@ -1165,64 +1215,67 @@
       "6 + 7",
       "6 - 7",
       "6 × 7",
-      "7 ÷ 6"
+      "6 ÷ 7"
     ],
     "correctOperation": 2,
     "reasons": [
-      "Vì có 6 nhóm bằng nhau, mỗi nhóm 7 ghế.",
-      "Vì cần tìm chênh lệch giữa hàng và ghế.",
-      "Vì cần chia 7 ghế thành 6 nhóm."
+      "Vì ghế xếp thành mảng hàng–cột: số hàng × số ghế mỗi hàng.",
+      "Vì chỉ cộng 6 với 7 một lần.",
+      "Vì cần chia ghế thành 7 phần."
     ],
     "correctReason": 0,
     "answer": 42,
     "unit": "ghế",
     "answerOptions": [
       "Hội trường có 42 ghế.",
-      "Mỗi hàng có 42 ghế.",
-      "Hội trường có 13 ghế."
+      "Hội trường có 13 ghế.",
+      "Mỗi hàng có 42 ghế."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Có thể đổi thành 7 × 6 không?",
+    "checkQuestion": "6 × 7 = 42 — có đúng không?",
     "checkOptions": [
-      "Có, đổi thứ tự hai thừa số vẫn được 42.",
-      "Không, 7 × 6 luôn khác 6 × 7."
+      "Đúng.",
+      "Sai, 6 × 7 = 13."
     ],
     "correctCheck": 0,
     "hints": [
-      "Các hàng có số ghế bằng nhau.",
-      "Kể rõ số hàng và số ghế trong mỗi hàng.",
-      "Tổng số ghế là điều cần tìm.",
-      "Mảng hàng – cột giúp nhìn thấy các nhóm bằng nhau.",
-      "Số hàng nhân số ghế mỗi hàng.",
-      "6 × 7 có thể nhớ từ bảng nhân 6 hoặc 7.",
-      "Đơn vị cần viết là ghế.",
-      "Có thể kiểm tra bằng 42 ÷ 6 = 7."
+      "Nhìn hội trường như lưới: hàng ngang, cột dọc.",
+      "6 hàng × 7 ghế/hàng.",
+      "Cả hai số đã biết.",
+      "Chọn mô hình mảng hàng–cột.",
+      "Mẹo nhớ: “Hàng × mỗi hàng = diện tích lưới ghế”.",
+      "6 × 7: 6 × 5 = 30, 6 × 2 = 12, 30 + 12 = 42.",
+      "Câu trả lời là tổng ghế cả hội trường.",
+      "Kiểm tra: 7 + 7 + 7 + 7 + 7 + 7 = 42."
     ]
   },
   {
     "id": "lesson-17",
-    "title": "Tính tiền nhiều món giống nhau",
-    "shortTitle": "Giá và số lượng",
+    "title": "Mua vở: giá × số lượng",
+    "shortTitle": "Tính tiền",
     "icon": "📓",
-    "color": "yellow",
+    "color": "indigo",
     "skill": "Nhân với tiền",
     "story": "Một quyển vở giá 9 nghìn đồng. Minh mua 5 quyển giống nhau. Minh phải trả bao nhiêu nghìn đồng?",
     "visual": {
+      "type": "groups",
       "before": 5,
       "change": 9,
       "emoji": "📓",
-      "changeLabel": "nghìn đồng mỗi quyển"
+      "beforeLabel": "5 quyển",
+      "changeLabel": "Mỗi quyển 9 nghìn",
+      "resultLabel": "Tổng tiền?"
     },
     "retellOptions": [
-      "Có 5 quyển, mỗi quyển giá 9 nghìn; cần tìm tổng tiền.",
-      "Có 9 quyển chia đều cho 5 bạn.",
-      "Minh có 9 nghìn rồi được thêm 5 nghìn."
+      "5 quyển, mỗi quyển 9 nghìn — nhân để ra tổng tiền.",
+      "Minh có 9 nghìn mua 5 quyển.",
+      "Mỗi quyển giá 5 nghìn, mua 9 quyển."
     ],
     "correctRetell": 0,
     "facts": [
-      "Mua 5 quyển vở",
-      "Mỗi quyển giá 9 nghìn đồng",
-      "Cần tìm tổng số tiền"
+      "Mỗi quyển 9 nghìn đồng",
+      "Mua 5 quyển",
+      "Cần tìm tổng tiền"
     ],
     "factRoles": [
       "known",
@@ -1230,10 +1283,10 @@
       "unknown"
     ],
     "models": [
-      "Các nhóm giá bằng nhau",
-      "Sơ đồ chênh lệch",
+      "5 nhóm tiền bằng nhau",
+      "Hai thanh so sánh",
       "Trục thời gian",
-      "Biểu đồ nhiệt độ"
+      "Đồng hồ"
     ],
     "correctModel": 0,
     "operations": [
@@ -1244,59 +1297,62 @@
     ],
     "correctOperation": 2,
     "reasons": [
-      "Vì có 5 món giống nhau và mỗi món cùng giá 9 nghìn.",
-      "Vì cần tìm tiền thừa.",
-      "Vì cần chia 9 nghìn cho 5 quyển."
+      "Vì nhiều món giống giá — nhân đơn giá với số lượng.",
+      "Vì cần cộng 9 với 5 một lần.",
+      "Vì cần chia tiền thành 5 phần."
     ],
     "correctReason": 0,
     "answer": 45,
     "unit": "nghìn đồng",
     "answerOptions": [
       "Minh phải trả 45 nghìn đồng.",
-      "Mỗi quyển giá 45 nghìn đồng.",
-      "Minh được thối lại 45 nghìn đồng."
+      "Minh phải trả 14 nghìn đồng.",
+      "Mỗi quyển giá 45 nghìn đồng."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "45 nghìn có hợp lý với 5 quyển, mỗi quyển 9 nghìn không?",
+    "checkQuestion": "5 × 9 = 45 — đúng chưa?",
     "checkOptions": [
-      "Có, vì 45 ÷ 5 = 9.",
-      "Không, tổng tiền phải nhỏ hơn giá một quyển."
+      "Đúng.",
+      "Sai."
     ],
     "correctCheck": 0,
     "hints": [
-      "Mỗi quyển có cùng một giá.",
-      "Có 5 nhóm, mỗi nhóm 9 nghìn đồng.",
-      "Tổng tiền là điều chưa biết.",
-      "Chọn mô hình các nhóm bằng nhau.",
-      "Số món nhân giá một món.",
-      "9 × 5 là một nửa của 9 × 10.",
-      "Đơn vị là nghìn đồng, không chỉ là đồng.",
-      "Chia tổng tiền cho 5 để kiểm tra giá mỗi quyển."
+      "Cùng một giá lặp lại nhiều lần → nhân.",
+      "Đơn giá × số lượng = tổng tiền.",
+      "9 và 5 đã biết.",
+      "Chọn mô hình nhóm tiền bằng nhau.",
+      "Mẹo nhớ: “Giá × số món = tiền phải trả”.",
+      "9 × 5 = 45 (hoặc 10 × 5 − 5 = 45).",
+      "Đơn vị là “nghìn đồng”.",
+      "Kiểm tra: 9+9+9+9+9 = 45."
     ]
   },
   {
     "id": "lesson-18",
-    "title": "Xếp thành từng nhóm",
+    "title": "Xếp chai vào thùng",
     "shortTitle": "Có bao nhiêu nhóm?",
-    "icon": "📦",
-    "color": "blue",
+    "icon": "🧃",
+    "color": "orange",
     "skill": "Phép chia theo nhóm",
-    "story": "Có 32 chai nước, xếp mỗi thùng 4 chai. Cần bao nhiêu thùng để xếp hết số chai?",
+    "story": "Có 32 chai nước cam. Mỗi thùng xếp được 4 chai. Cần bao nhiêu thùng để xếp hết số chai?",
     "visual": {
+      "type": "divide",
       "before": 32,
       "change": 4,
       "emoji": "🧃",
-      "changeLabel": "chai mỗi thùng"
+      "beforeLabel": "32 chai",
+      "changeLabel": "Mỗi thùng 4 chai",
+      "resultLabel": "Mấy thùng?"
     },
     "retellOptions": [
-      "Có tổng 32 chai, mỗi nhóm 4 chai; cần tìm số nhóm.",
+      "32 chai, mỗi thùng 4 chai — tìm số thùng (số nhóm).",
       "Có 32 thùng, mỗi thùng 4 chai.",
-      "Có 4 chai chia đều cho 32 thùng."
+      "Có 4 chai chia cho 32 thùng."
     ],
     "correctRetell": 0,
     "facts": [
-      "Có 32 chai nước",
-      "Mỗi thùng xếp 4 chai",
+      "Có 32 chai",
+      "Mỗi thùng 4 chai",
       "Cần tìm số thùng"
     ],
     "factRoles": [
@@ -1305,10 +1361,10 @@
       "unknown"
     ],
     "models": [
-      "Chia thành nhóm 4",
-      "Sơ đồ so sánh",
-      "Trục thời gian",
-      "Bảng cộng"
+      "Chia tổng thành nhóm cỡ 4",
+      "Hai thanh so sánh",
+      "Trục số tăng",
+      "Đồng hồ"
     ],
     "correctModel": 0,
     "operations": [
@@ -1319,60 +1375,63 @@
     ],
     "correctOperation": 3,
     "reasons": [
-      "Vì biết tổng và biết mỗi nhóm có 4 chai, cần tìm số nhóm.",
-      "Vì cần tìm tổng số chai trong 4 thùng.",
-      "Vì một số chai bị lấy đi."
+      "Vì tìm số nhóm khi biết tổng và cỡ mỗi nhóm — phép chia.",
+      "Vì cần cộng 32 với 4.",
+      "Vì mỗi thùng có 32 chai."
     ],
     "correctReason": 0,
     "answer": 8,
     "unit": "thùng",
     "answerOptions": [
       "Cần 8 thùng.",
-      "Mỗi thùng có 8 chai.",
-      "Có tất cả 36 thùng."
+      "Cần 28 thùng.",
+      "Cần 4 thùng."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Bài này khác chia đều cho 4 thùng ở điểm nào?",
+    "checkQuestion": "8 thùng × 4 chai có bằng 32 không?",
     "checkOptions": [
-      "Ở đây biết 4 chai mỗi thùng và cần tìm số thùng.",
-      "Hai bài hoàn toàn giống câu hỏi."
+      "Có, 8 × 4 = 32.",
+      "Không."
     ],
     "correctCheck": 0,
     "hints": [
-      "Câu hỏi hỏi có bao nhiêu thùng, tức là bao nhiêu nhóm.",
-      "Mỗi nhóm phải có đúng 4 chai.",
-      "Tổng 32 và kích thước nhóm 4 đã biết.",
-      "Hãy gom các chai thành từng nhóm 4.",
-      "Tổng chia số phần mỗi nhóm sẽ ra số nhóm.",
-      "Đếm xem có bao nhiêu số 4 trong 32.",
-      "Đơn vị đáp án là thùng.",
-      "Lấy 8 × 4 để kiểm tra có đủ 32 chai không."
+      "Đây là chia kiểu “có bao nhiêu nhóm?”, không phải “mỗi nhóm bao nhiêu?” — nhưng cùng phép ÷.",
+      "Xếp từng thùng 4 chai đến hết 32.",
+      "32 và 4 đã biết.",
+      "Chọn mô hình chia thành nhóm cỡ 4.",
+      "Mẹo nhớ: “Tổng ÷ cỡ nhóm = số nhóm”.",
+      "32 ÷ 4 = 8.",
+      "Đơn vị là “thùng”.",
+      "Kiểm tra ngược: số thùng × 4 = 32."
     ]
   },
   {
     "id": "lesson-19",
-    "title": "Chia có dư trong thực tế",
-    "shortTitle": "Cần đủ chỗ",
+    "title": "Không bỏ bạn nào ở lại!",
+    "shortTitle": "Chia có dư",
     "icon": "🚌",
-    "color": "orange",
+    "color": "yellow",
     "skill": "Làm tròn theo ngữ cảnh",
-    "story": "Có 26 học sinh đi tham quan. Mỗi xe nhỏ chở tối đa 4 học sinh. Cần ít nhất bao nhiêu xe để chở hết các bạn?",
+    "story": "Có 26 học sinh đi tham quan. Mỗi xe nhỏ chỉ chở tối đa 4 bạn. Cần ít nhất bao nhiêu xe để không ai bị bỏ lại?",
     "visual": {
+      "type": "divide",
       "before": 26,
       "change": 4,
       "emoji": "👧",
-      "changeLabel": "học sinh mỗi xe"
+      "beforeLabel": "26 bạn",
+      "changeLabel": "Mỗi xe tối đa 4",
+      "resultLabel": "Ít nhất mấy xe?"
     },
     "retellOptions": [
-      "Có 26 học sinh, mỗi xe chở nhiều nhất 4 bạn; cần tìm số xe đủ chỗ.",
-      "Có 26 xe, mỗi xe chở 4 học sinh.",
-      "Có 26 học sinh và thêm 4 học sinh."
+      "26 bạn, mỗi xe 4 chỗ — chia có dư thì phải thêm 1 xe cho đủ chỗ.",
+      "Cần 26 xe, mỗi xe 4 bạn.",
+      "Bỏ qua 2 bạn còn dư."
     ],
     "correctRetell": 0,
     "facts": [
       "Có 26 học sinh",
       "Mỗi xe chở tối đa 4 bạn",
-      "Cần tìm số xe ít nhất"
+      "Cần tìm số xe tối thiểu"
     ],
     "factRoles": [
       "known",
@@ -1380,21 +1439,21 @@
       "unknown"
     ],
     "models": [
-      "Chia thành nhóm tối đa 4",
+      "Chia nhóm tối đa 4, dư thì thêm xe",
       "Sơ đồ chênh lệch",
       "Đồng hồ",
       "Bảng cộng"
     ],
     "correctModel": 0,
     "operations": [
-      "26 + 4",
-      "26 - 4",
+      "26 ÷ 4 rồi thêm 1 xe",
+      "26 ÷ 4 bỏ dư",
       "26 × 4",
-      "26 ÷ 4 rồi thêm 1 xe"
+      "26 - 4"
     ],
-    "correctOperation": 3,
+    "correctOperation": 0,
     "reasons": [
-      "Vì 6 xe chỉ chở 24 bạn, còn 2 bạn cần thêm một xe nữa.",
+      "Vì 6 xe chỉ chở 24 bạn, còn 2 bạn vẫn cần thêm một xe nữa.",
       "Vì số dư có thể bỏ qua.",
       "Vì cần nhân số học sinh với số chỗ."
     ],
@@ -1403,51 +1462,55 @@
     "unit": "xe",
     "answerOptions": [
       "Cần ít nhất 7 xe.",
-      "Chỉ cần 6 xe và để 2 bạn ở lại.",
-      "Cần 30 xe."
+      "Cần 6 xe (bỏ 2 bạn).",
+      "Cần 26 xe."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Vì sao 6 xe chưa đủ?",
+    "checkQuestion": "6 × 4 = 24 < 26, còn 7 × 4 = 28 ≥ 26 — chọn mấy xe?",
     "checkOptions": [
-      "Vì 6 × 4 = 24, còn 2 học sinh chưa có chỗ.",
-      "Vì 6 × 4 lớn hơn 26."
+      "Chọn 7 xe để đủ chỗ.",
+      "Chọn 6 xe."
     ],
     "correctCheck": 0,
     "hints": [
-      "Tất cả học sinh đều phải có chỗ.",
-      "Hãy xem 26 chia thành các nhóm 4 được bao nhiêu nhóm đầy.",
-      "Số xe là điều cần tìm.",
-      "Dùng các nhóm có nhiều nhất 4 bạn.",
-      "26 ÷ 4 được 6 dư 2; số dư vẫn cần một xe.",
-      "6 xe chở được bao nhiêu bạn?",
-      "Câu trả lời cần có từ “ít nhất”.",
-      "Kiểm tra 7 xe có 28 chỗ, đủ cho 26 bạn."
+      "Thực tế: không được bỏ bạn nào — dư cũng cần thêm xe.",
+      "26 ÷ 4 = 6 dư 2 → còn 2 bạn chưa có chỗ.",
+      "26 và 4 đã biết.",
+      "Chọn mô hình chia nhóm, xử lý phần dư.",
+      "Mẹo nhớ: “Chia chỗ ngồi: có dư → làm tròn LÊN”.",
+      "6 xe = 24 chỗ; cần +1 xe cho 2 bạn dư → 7.",
+      "Đơn vị là “xe”.",
+      "Kiểm tra: số xe × 4 ≥ 26, và (số xe − 1) × 4 < 26."
     ]
   },
   {
     "id": "lesson-20",
-    "title": "Nhân rồi cộng",
-    "shortTitle": "Nhóm và phần rời",
+    "title": "Túi kẹo và kẹo rời",
+    "shortTitle": "Nhân rồi cộng",
     "icon": "🍬",
     "color": "pink",
     "skill": "Bài toán hai bước",
-    "story": "Có 4 túi kẹo, mỗi túi 6 viên, và thêm 5 viên kẹo rời. Có tất cả bao nhiêu viên kẹo?",
+    "story": "Tủ bếp có 4 túi kẹo, mỗi túi 6 viên, và thêm 5 viên kẹo rời trên đĩa. Có tất cả bao nhiêu viên kẹo?",
     "visual": {
-      "before": 24,
-      "change": 5,
+      "type": "mixed",
+      "before": 4,
+      "change": 6,
       "emoji": "🍬",
-      "changeLabel": "kẹo rời thêm"
+      "beforeLabel": "4 túi × 6",
+      "changeLabel": "Thêm 5 viên rời",
+      "resultLabel": "Tất cả?",
+      "extra": 5
     },
     "retellOptions": [
-      "Trước hết tìm kẹo trong 4 túi, rồi cộng thêm 5 viên rời.",
-      "Lấy 4 cộng 6 rồi trừ 5.",
-      "Chia 5 viên vào 4 túi."
+      "Nhân 4 túi × 6 viên, rồi cộng 5 viên rời.",
+      "Mỗi túi có 6 + 5 viên.",
+      "Chia 24 viên thành 5 phần."
     ],
     "correctRetell": 0,
     "facts": [
-      "Có 4 túi, mỗi túi 6 viên",
-      "Có thêm 5 viên rời",
-      "Cần tìm tổng số kẹo"
+      "4 túi, mỗi túi 6 viên",
+      "Thêm 5 viên rời",
+      "Cần tìm tổng viên kẹo"
     ],
     "factRoles": [
       "known",
@@ -1462,14 +1525,14 @@
     ],
     "correctModel": 0,
     "operations": [
-      "4 + 6 + 5",
       "4 × 6 + 5",
-      "4 × (6 + 5)",
-      "24 ÷ 5"
+      "4 + 6 + 5",
+      "4 × 6 - 5",
+      "(4 + 6) × 5"
     ],
-    "correctOperation": 1,
+    "correctOperation": 0,
     "reasons": [
-      "Vì phải tìm tổng trong các túi bằng phép nhân rồi cộng phần rời.",
+      "Vì tìm tổng trong các túi bằng nhân, rồi cộng phần rời.",
       "Vì mỗi túi có cả 6 viên và 5 viên rời.",
       "Vì cần chia 24 viên thành 5 phần."
     ],
@@ -1478,49 +1541,52 @@
     "unit": "viên kẹo",
     "answerOptions": [
       "Có tất cả 29 viên kẹo.",
-      "Mỗi túi có 29 viên kẹo.",
-      "Có 15 viên kẹo."
+      "Có tất cả 24 viên kẹo.",
+      "Có tất cả 15 viên kẹo."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Bước trung gian đúng là gì?",
+    "checkQuestion": "4 × 6 = 24, 24 + 5 = 29 — đúng chưa?",
     "checkOptions": [
-      "4 túi có 4 × 6 = 24 viên.",
-      "4 túi có 4 + 6 = 10 viên."
+      "Đúng.",
+      "Sai."
     ],
     "correctCheck": 0,
     "hints": [
-      "Có hai loại: kẹo trong túi và kẹo rời.",
-      "Hãy kể hai việc phải làm theo đúng thứ tự.",
-      "Thông tin đầu mô tả các nhóm bằng nhau.",
-      "Mô hình cần có 4 nhóm 6 và một phần rời 5.",
-      "Nhân trước để tìm kẹo trong túi, rồi cộng 5.",
-      "4 × 6 = 24; sau đó 24 + 5.",
-      "Dùng từ “có tất cả”.",
-      "29 phải lớn hơn 24 vì còn thêm 5 viên."
+      "Có hai “loại”: kẹo trong túi (nhóm đều) và kẹo rời.",
+      "Làm túi trước, rời sau.",
+      "4, 6, 5 đều đã biết.",
+      "Chọn mô hình nhóm đều + phần thêm.",
+      "Mẹo nhớ: “Nhóm giống nhau trước → nhân; phần lẻ sau → cộng/trừ”.",
+      "4 × 6 = 24; 24 + 5 = 29.",
+      "Câu trả lời là tổng tất cả viên kẹo.",
+      "Kiểm tra: 6+6+6+6+5 = 29."
     ]
   },
   {
     "id": "lesson-21",
-    "title": "Cộng rồi chia đều",
-    "shortTitle": "Gộp rồi chia",
+    "title": "Cam hai giỏ vào bốn túi",
+    "shortTitle": "Cộng rồi chia",
     "icon": "🍊",
-    "color": "teal",
+    "color": "orange",
     "skill": "Hai bước cộng–chia",
-    "story": "Giỏ thứ nhất có 18 quả cam, giỏ thứ hai có 14 quả. Chia đều tất cả số cam vào 4 túi. Mỗi túi có bao nhiêu quả?",
+    "story": "Giỏ thứ nhất có 18 quả cam, giỏ thứ hai có 14 quả. Cô giáo gộp lại rồi chia đều vào 4 túi. Mỗi túi có bao nhiêu quả?",
     "visual": {
+      "type": "mixed",
       "before": 18,
       "change": 14,
       "emoji": "🍊",
-      "changeLabel": "ở giỏ thứ hai"
+      "beforeLabel": "Hai giỏ 18 + 14",
+      "changeLabel": "Chia đều 4 túi",
+      "resultLabel": "Mỗi túi?"
     },
     "retellOptions": [
-      "Gộp cam của hai giỏ rồi chia đều tổng đó vào 4 túi.",
-      "Lấy 18 chia 4 rồi bỏ qua giỏ thứ hai.",
-      "Nhân 18 với 14 rồi chia 4."
+      "Cộng hai giỏ ra tổng, rồi chia đều tổng đó cho 4 túi.",
+      "Chỉ chia giỏ thứ hai cho 4.",
+      "Tìm hiệu hai giỏ rồi chia 4."
     ],
     "correctRetell": 0,
     "facts": [
-      "Hai giỏ có 18 và 14 quả",
+      "Giỏ 1: 18 quả, giỏ 2: 14 quả",
       "Chia đều vào 4 túi",
       "Cần tìm số cam mỗi túi"
     ],
@@ -1537,12 +1603,12 @@
     ],
     "correctModel": 0,
     "operations": [
-      "18 + 14 ÷ 4",
       "(18 + 14) ÷ 4",
-      "18 × 14 ÷ 4",
-      "18 - 14 + 4"
+      "18 + 14 - 4",
+      "18 ÷ 4 + 14",
+      "(18 - 14) × 4"
     ],
-    "correctOperation": 1,
+    "correctOperation": 0,
     "reasons": [
       "Vì phải biết tổng số cam trước, rồi mới chia đều tổng đó.",
       "Vì chỉ cần chia số cam giỏ thứ hai.",
@@ -1550,54 +1616,57 @@
     ],
     "correctReason": 0,
     "answer": 8,
-    "unit": "quả mỗi túi",
+    "unit": "quả cam",
     "answerOptions": [
       "Mỗi túi có 8 quả cam.",
-      "Có tất cả 8 quả cam.",
-      "Cần 8 chiếc giỏ."
+      "Mỗi túi có 32 quả cam.",
+      "Mỗi túi có 4 quả cam."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Dấu ngoặc trong (18 + 14) ÷ 4 nhắc điều gì?",
+    "checkQuestion": "18 + 14 = 32, 32 ÷ 4 = 8 — đúng chưa?",
     "checkOptions": [
-      "Phải cộng hai giỏ trước rồi mới chia.",
-      "Phải chia 14 trước rồi mới cộng 18."
+      "Đúng.",
+      "Sai."
     ],
     "correctCheck": 0,
     "hints": [
       "Tất cả cam của cả hai giỏ đều được chia.",
-      "Việc thứ nhất là tìm tổng số cam.",
-      "Điều cần tìm là số cam trong mỗi túi.",
-      "Mô hình gồm một tổng được tách thành 4 phần bằng nhau.",
-      "Cộng trong ngoặc trước, rồi chia 4.",
-      "18 + 14 = 32; 32 ÷ 4 bằng bao nhiêu?",
-      "Câu trả lời cần có cụm “mỗi túi”.",
-      "Lấy 8 × 4 để kiểm tra tổng 32."
+      "Bước 1: gộp. Bước 2: chia đều.",
+      "18, 14, 4 đã biết.",
+      "Chọn mô hình gộp rồi chia.",
+      "Mẹo nhớ: “Gộp trước — chia sau khi chia đều cả đống”.",
+      "18 + 14 = 32; 32 ÷ 4 = 8.",
+      "Câu trả lời nói “mỗi túi”.",
+      "Kiểm tra: 4 túi × 8 = 32 = tổng cam."
     ]
   },
   {
     "id": "lesson-22",
-    "title": "Bớt đi rồi chia thành nhóm",
+    "title": "Bánh bán bớt rồi xếp khay",
     "shortTitle": "Trừ rồi chia",
-    "icon": "🧁",
-    "color": "purple",
+    "icon": "🍪",
+    "color": "emerald",
     "skill": "Hai bước trừ–chia",
-    "story": "Có 50 chiếc bánh. Cửa hàng bán 14 chiếc, số còn lại xếp đều vào 6 khay. Mỗi khay có bao nhiêu chiếc bánh?",
+    "story": "Tiệm có 50 chiếc bánh. Bán mất 14 chiếc, số còn lại xếp đều vào 6 khay. Mỗi khay có bao nhiêu chiếc?",
     "visual": {
+      "type": "mixed",
       "before": 50,
       "change": 14,
-      "emoji": "🧁",
-      "changeLabel": "đã bán"
+      "emoji": "🍪",
+      "beforeLabel": "50 bánh, bán 14",
+      "changeLabel": "Xếp đều 6 khay",
+      "resultLabel": "Mỗi khay?"
     },
     "retellOptions": [
-      "Tìm số bánh còn lại sau khi bán, rồi chia đều vào 6 khay.",
-      "Chia 50 cho 6 rồi mới bán 14 chiếc.",
-      "Nhân 14 với 6 để tìm số còn lại."
+      "Trừ bánh đã bán, rồi chia số còn lại cho 6 khay.",
+      "Chia cả 50 chiếc trước khi bán.",
+      "Số bánh tăng sau khi bán."
     ],
     "correctRetell": 0,
     "facts": [
-      "Ban đầu có 50 chiếc bánh",
-      "Đã bán 14 chiếc và chia phần còn lại vào 6 khay",
-      "Cần tìm số bánh mỗi khay"
+      "Có 50 chiếc bánh",
+      "Bán 14 chiếc",
+      "Còn lại chia đều 6 khay — tìm mỗi khay"
     ],
     "factRoles": [
       "known",
@@ -1612,12 +1681,12 @@
     ],
     "correctModel": 0,
     "operations": [
-      "50 - 14 ÷ 6",
       "(50 - 14) ÷ 6",
       "50 ÷ 6 - 14",
-      "50 + 14 ÷ 6"
+      "50 - 14 × 6",
+      "(50 + 14) ÷ 6"
     ],
-    "correctOperation": 1,
+    "correctOperation": 0,
     "reasons": [
       "Vì chỉ số bánh còn lại mới được chia đều vào các khay.",
       "Vì phải chia cả 50 chiếc trước khi bán.",
@@ -1625,53 +1694,56 @@
     ],
     "correctReason": 0,
     "answer": 6,
-    "unit": "chiếc mỗi khay",
+    "unit": "chiếc bánh",
     "answerOptions": [
       "Mỗi khay có 6 chiếc bánh.",
-      "Còn lại 6 chiếc bánh tất cả.",
-      "Cần 6 chiếc khay."
+      "Mỗi khay có 36 chiếc bánh.",
+      "Mỗi khay có 8 chiếc bánh."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Số bánh được đem chia là bao nhiêu?",
+    "checkQuestion": "50 − 14 = 36, 36 ÷ 6 = 6 — đúng chưa?",
     "checkOptions": [
-      "36 chiếc, vì 50 - 14 = 36.",
-      "64 chiếc, vì 50 + 14 = 64."
+      "Đúng.",
+      "Sai."
     ],
     "correctCheck": 0,
     "hints": [
-      "Bánh đã bán không còn để xếp khay.",
-      "Việc thứ nhất là tìm số bánh còn lại.",
-      "Điều cần tìm là số bánh trong mỗi khay.",
-      "Mô hình cần bớt 14 khỏi 50 rồi chia phần còn lại.",
-      "Thực hiện phép trừ trong ngoặc trước.",
-      "50 - 14 = 36; 36 ÷ 6 bằng bao nhiêu?",
-      "Câu trả lời cần có “mỗi khay”.",
-      "Lấy 6 × 6 + 14 để kiểm tra có bằng 50 không."
+      "Bánh đã bán không còn để xếp khay!",
+      "Bước 1: bớt. Bước 2: chia đều phần còn.",
+      "50, 14, 6 đã biết.",
+      "Chọn mô hình bớt rồi chia.",
+      "Mẹo nhớ: “Bớt phần không dùng → chia phần còn lại”.",
+      "50 − 14 = 36; 36 ÷ 6 = 6.",
+      "Câu trả lời là số mỗi khay.",
+      "Kiểm tra: 6 khay × 6 = 36; 36 + 14 = 50."
     ]
   },
   {
     "id": "lesson-23",
-    "title": "Tính khoảng thời gian",
-    "shortTitle": "Thời gian trôi qua",
+    "title": "Đồng hồ: học bao lâu?",
+    "shortTitle": "Giờ và phút",
     "icon": "⏰",
-    "color": "indigo",
-    "skill": "Giờ và phút",
+    "color": "blue",
+    "skill": "Tính khoảng thời gian",
     "story": "Buổi học bắt đầu lúc 8 giờ 20 phút và kết thúc lúc 9 giờ 05 phút. Buổi học kéo dài bao nhiêu phút?",
     "visual": {
+      "type": "timeline",
       "before": 40,
       "change": 5,
-      "emoji": "⏱️",
-      "changeLabel": "phút sau 9 giờ"
+      "emoji": "⏰",
+      "beforeLabel": "8:20 → 9:00",
+      "changeLabel": "9:00 → 9:05",
+      "resultLabel": "Tổng phút?"
     },
     "retellOptions": [
-      "Từ 8:20 đến 9:00 là 40 phút, rồi thêm 5 phút.",
-      "Lấy 9 giờ 05 cộng 8 giờ 20.",
-      "Buổi học kéo dài 8 giờ 20 phút."
+      "Từ 8:20 đến 9:05 — tách thành đến 9:00 rồi cộng 5 phút.",
+      "Chỉ lấy 20 trừ 5.",
+      "Một giờ bằng 100 phút."
     ],
     "correctRetell": 0,
     "facts": [
-      "Bắt đầu lúc 8 giờ 20",
-      "Kết thúc lúc 9 giờ 05",
+      "Bắt đầu 8 giờ 20",
+      "Kết thúc 9 giờ 05",
       "Cần tìm số phút kéo dài"
     ],
     "factRoles": [
@@ -1688,13 +1760,13 @@
     "correctModel": 0,
     "operations": [
       "40 + 5",
-      "40 - 5",
+      "20 - 5",
       "20 + 5",
-      "60 + 5"
+      "60 - 5"
     ],
     "correctOperation": 0,
     "reasons": [
-      "Vì tách khoảng thời gian thành 40 phút đến 9 giờ và 5 phút tiếp theo.",
+      "Vì từ 8:20 đến 9:00 là 40 phút, rồi thêm 5 phút đến 9:05.",
       "Vì chỉ cần lấy hai số phút 20 và 5.",
       "Vì một giờ luôn bằng 100 phút."
     ],
@@ -1703,51 +1775,54 @@
     "unit": "phút",
     "answerOptions": [
       "Buổi học kéo dài 45 phút.",
-      "Buổi học kéo dài 85 phút.",
-      "Buổi học kết thúc lúc 45 phút."
+      "Buổi học kéo dài 15 phút.",
+      "Buổi học kéo dài 85 phút."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "45 phút có ngắn hơn 1 giờ không?",
+    "checkQuestion": "8:20 cộng 45 phút có ra 9:05 không?",
     "checkOptions": [
-      "Có, vì 45 nhỏ hơn 60 phút.",
-      "Không, vì 45 lớn hơn 1."
+      "Có.",
+      "Không."
     ],
     "correctCheck": 0,
     "hints": [
-      "Hãy đi từ giờ bắt đầu đến mốc 9 giờ trước.",
-      "Tách khoảng thời gian tại mốc giờ tròn.",
-      "Hai thời điểm đã biết, thời lượng là điều cần tìm.",
-      "Trục thời gian giúp nhìn các chặng liên tiếp.",
-      "Từ 8:20 đến 9:00 là 40 phút, rồi cộng 5 phút.",
-      "40 + 5 bằng bao nhiêu?",
-      "Đơn vị của thời lượng là phút.",
-      "Buổi học chưa đủ một giờ nên đáp án phải dưới 60."
+      "Đừng trừ 9 − 8 rồi xong — phải tính theo phút!",
+      "Chia đoạn: nhảy tới 9:00 trước, rồi tới 9:05.",
+      "Hai mốc giờ đã biết.",
+      "Chọn trục thời gian.",
+      "Mẹo nhớ: “1 giờ = 60 phút; nhảy mốc giờ tròn cho dễ”.",
+      "8:20 → 9:00 = 40 phút; 9:00 → 9:05 = 5; 40 + 5 = 45.",
+      "Đơn vị là phút.",
+      "Kiểm tra: 8:20 + 45 phút = 9:05."
     ]
   },
   {
     "id": "lesson-24",
-    "title": "Tính tiền thừa",
-    "shortTitle": "Mua và trả lại",
-    "icon": "💵",
-    "color": "emerald",
-    "skill": "Tiền Việt Nam",
-    "story": "Hà có 50 nghìn đồng và mua một hộp màu giá 32 nghìn đồng. Hà còn lại bao nhiêu nghìn đồng?",
+    "title": "Hà mua hộp màu",
+    "shortTitle": "Tiền thừa",
+    "icon": "🎨",
+    "color": "purple",
+    "skill": "Tính tiền thừa",
+    "story": "Hà cầm 50 nghìn đồng vào tiệm. Em mua một hộp màu giá 32 nghìn đồng. Hà còn lại bao nhiêu nghìn đồng?",
     "visual": {
+      "type": "remove",
       "before": 50,
       "change": 32,
       "emoji": "💵",
-      "changeLabel": "đã trả"
+      "beforeLabel": "Hà có",
+      "changeLabel": "Trả tiền màu",
+      "resultLabel": "Còn lại?"
     },
     "retellOptions": [
-      "Hà có 50 nghìn, dùng 32 nghìn để mua hàng; cần tìm tiền còn lại.",
-      "Hà được cho thêm 32 nghìn.",
-      "Hà mua 50 hộp màu, mỗi hộp 32 nghìn."
+      "Có 50 nghìn, trả 32 nghìn — tìm tiền còn lại.",
+      "Hà được thêm 32 nghìn.",
+      "Chia 50 nghìn thành 32 phần."
     ],
     "correctRetell": 0,
     "facts": [
       "Hà có 50 nghìn đồng",
-      "Hộp màu giá 32 nghìn đồng",
-      "Cần tìm số tiền còn lại"
+      "Hộp màu 32 nghìn đồng",
+      "Cần tìm tiền còn lại"
     ],
     "factRoles": [
       "known",
@@ -1755,7 +1830,7 @@
       "unknown"
     ],
     "models": [
-      "Tổng tiền trừ số đã trả",
+      "Tiền có trừ tiền đã trả",
       "Nhóm bằng nhau",
       "Trục thời gian",
       "Mảng hàng – cột"
@@ -1769,7 +1844,7 @@
     ],
     "correctOperation": 1,
     "reasons": [
-      "Vì tiền mua hàng được lấy khỏi số tiền Hà có.",
+      "Vì tiền mua hàng được lấy khỏi số tiền Hà có — phép trừ.",
       "Vì cần tìm tổng giá và số tiền có.",
       "Vì cần chia tiền thành 32 phần."
     ],
@@ -1778,49 +1853,52 @@
     "unit": "nghìn đồng",
     "answerOptions": [
       "Hà còn lại 18 nghìn đồng.",
-      "Hộp màu giá 18 nghìn đồng.",
-      "Hà có tất cả 82 nghìn đồng."
+      "Hà còn lại 82 nghìn đồng.",
+      "Hà còn lại 32 nghìn đồng."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Tiền còn lại cộng giá món hàng phải bằng bao nhiêu?",
+    "checkQuestion": "32 + 18 có bằng 50 không?",
     "checkOptions": [
-      "50 nghìn đồng.",
-      "32 nghìn đồng."
+      "Có.",
+      "Không."
     ],
     "correctCheck": 0,
     "hints": [
-      "Sau khi mua hàng, số tiền giảm đi.",
-      "Cần tìm phần tiền chưa dùng.",
-      "50 và 32 đều là số tiền đã biết.",
-      "Mô hình tổng – phần cho thấy tiền có gồm tiền đã trả và còn lại.",
-      "Lấy số tiền có trừ giá món hàng.",
-      "50 - 30 = 20, rồi trừ thêm 2.",
-      "Đừng quên đơn vị nghìn đồng.",
-      "18 + 32 phải bằng 50."
+      "Sau khi mua, tiền trong ví giảm.",
+      "Tiền có − tiền trả = tiền thừa.",
+      "50 và 32 đã biết.",
+      "Chọn mô hình tổng tiền trừ số đã trả.",
+      "Mẹo nhớ: “Còn lại / thối lại = trừ”.",
+      "50 − 32: 50 − 30 = 20, rồi − 2 = 18.",
+      "Đơn vị: nghìn đồng.",
+      "Kiểm tra: đã trả + còn = lúc đầu."
     ]
   },
   {
     "id": "lesson-25",
-    "title": "Đổi về cùng đơn vị trước khi tính",
-    "shortTitle": "Mét và xăng-ti-mét",
+    "title": "Nối dây: đổi ra cùng đơn vị",
+    "shortTitle": "Đổi đơn vị dài",
     "icon": "📏",
-    "color": "yellow",
+    "color": "teal",
     "skill": "Đổi đơn vị độ dài",
-    "story": "Một sợi dây dài 3 m 25 cm. Nối thêm một đoạn dài 75 cm. Sợi dây mới dài bao nhiêu xăng-ti-mét?",
+    "story": "Một sợi dây dài 3 m 25 cm. Mẹ nối thêm một đoạn 75 cm. Sợi dây mới dài bao nhiêu xăng-ti-mét?",
     "visual": {
+      "type": "measure",
       "before": 325,
       "change": 75,
-      "emoji": "🧵",
-      "changeLabel": "cm nối thêm"
+      "emoji": "📏",
+      "beforeLabel": "3 m 25 cm = 325 cm",
+      "changeLabel": "Nối thêm 75 cm",
+      "resultLabel": "Tổng cm?"
     },
     "retellOptions": [
-      "Đổi 3 m 25 cm thành 325 cm rồi cộng thêm 75 cm.",
-      "Cộng 3 với 25 rồi trừ 75.",
-      "Chia 75 cm thành 3 phần."
+      "Đổi 3 m 25 cm ra cm, rồi cộng 75 cm.",
+      "Cộng 3 với 75 rồi gắn chữ cm.",
+      "3 m bằng 3 cm."
     ],
     "correctRetell": 0,
     "facts": [
-      "Dây ban đầu dài 3 m 25 cm",
+      "Dây dài 3 m 25 cm",
       "Nối thêm 75 cm",
       "Cần tìm độ dài mới theo cm"
     ],
@@ -1830,7 +1908,7 @@
       "unknown"
     ],
     "models": [
-      "Đoạn thẳng nối tiếp",
+      "Đoạn thẳng nối tiếp (cùng đơn vị)",
       "Nhóm bằng nhau",
       "Biểu đồ cột",
       "Đồng hồ"
@@ -1838,9 +1916,9 @@
     "correctModel": 0,
     "operations": [
       "325 + 75",
+      "3 + 75",
       "325 - 75",
-      "3 + 25 + 75",
-      "325 ÷ 75"
+      "3 × 75"
     ],
     "correctOperation": 0,
     "reasons": [
@@ -1853,51 +1931,54 @@
     "unit": "cm",
     "answerOptions": [
       "Sợi dây mới dài 400 cm.",
-      "Sợi dây mới dài 100 cm.",
-      "Sợi dây mới dài 400 m."
+      "Sợi dây mới dài 78 cm.",
+      "Sợi dây mới dài 325 cm."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "400 cm bằng bao nhiêu mét?",
+    "checkQuestion": "3 m 25 cm = 325 cm, 325 + 75 = 400 — đúng chưa?",
     "checkOptions": [
-      "4 m.",
-      "40 m."
+      "Đúng.",
+      "Sai, 1 m = 10 cm."
     ],
     "correctCheck": 0,
     "hints": [
-      "Không thể cộng trực tiếp mét với xăng-ti-mét nếu chưa đổi.",
-      "1 m bằng 100 cm.",
-      "Kết quả được hỏi bằng cm.",
-      "Hai đoạn dây được nối tiếp nhau.",
-      "3 m 25 cm bằng 325 cm, rồi dùng phép cộng.",
-      "325 + 75 vừa tròn bao nhiêu trăm?",
-      "Câu trả lời dùng đơn vị cm.",
-      "Chia 400 cho 100 để đổi lại mét."
+      "Không cộng mét với cm khi chưa đổi!",
+      "Mẹo vàng: 1 m = 100 cm.",
+      "3 m 25 cm = 300 + 25 = 325 cm.",
+      "Chọn mô hình đoạn nối tiếp cùng đơn vị.",
+      "Mẹo nhớ: “Cùng đơn vị mới cộng/trừ được”.",
+      "325 + 75 = 400.",
+      "Đề hỏi theo cm.",
+      "Kiểm tra: 400 cm = 4 m — hợp lý với dây khoảng 3 m + thêm."
     ]
   },
   {
     "id": "lesson-26",
-    "title": "Ki-lô-gam và gam",
+    "title": "Túi gạo: kg và gam",
     "shortTitle": "Đổi khối lượng",
     "icon": "⚖️",
-    "color": "blue",
-    "skill": "Đổi đơn vị khối lượng",
-    "story": "Một túi gạo nặng 2 kg. Mẹ dùng 650 g để nấu ăn. Túi gạo còn lại bao nhiêu gam?",
+    "color": "emerald",
+    "skill": "Ki-lô-gam và gam",
+    "story": "Túi gạo nặng 2 kg. Mẹ lấy 650 g để nấu cơm. Túi gạo còn lại bao nhiêu gam?",
     "visual": {
+      "type": "measure",
       "before": 2000,
       "change": 650,
-      "emoji": "🌾",
-      "changeLabel": "gam đã dùng"
+      "emoji": "🍚",
+      "beforeLabel": "2 kg = 2000 g",
+      "changeLabel": "Dùng 650 g",
+      "resultLabel": "Còn lại?"
     },
     "retellOptions": [
-      "Đổi 2 kg thành 2000 g rồi trừ 650 g đã dùng.",
-      "Lấy 2 trừ 650.",
-      "Cộng 2 kg với 650 g."
+      "Đổi 2 kg ra gam, rồi trừ 650 g đã dùng.",
+      "2 kg bằng 200 g.",
+      "Số gạo tăng sau khi nấu."
     ],
     "correctRetell": 0,
     "facts": [
-      "Túi gạo nặng 2 kg",
-      "Đã dùng 650 g",
-      "Cần tìm số gam còn lại"
+      "Túi gạo 2 kg",
+      "Mẹ dùng 650 g",
+      "Cần tìm phần còn theo gam"
     ],
     "factRoles": [
       "known",
@@ -1912,12 +1993,12 @@
     ],
     "correctModel": 0,
     "operations": [
-      "2000 + 650",
       "2000 - 650",
       "2 - 650",
-      "2000 ÷ 650"
+      "2000 + 650",
+      "2 × 650"
     ],
-    "correctOperation": 1,
+    "correctOperation": 0,
     "reasons": [
       "Vì phải đổi 2 kg về gam rồi bớt phần đã dùng.",
       "Vì 2 kg bằng 200 g.",
@@ -1925,53 +2006,56 @@
     ],
     "correctReason": 0,
     "answer": 1350,
-    "unit": "g",
+    "unit": "gam",
     "answerOptions": [
-      "Túi gạo còn lại 1350 g.",
-      "Túi gạo còn lại 1350 kg.",
-      "Mẹ đã dùng 1350 g."
+      "Còn lại 1350 gam.",
+      "Còn lại 135 gam.",
+      "Còn lại 650 gam."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "1350 g cộng 650 g có trở lại 2 kg không?",
+    "checkQuestion": "2000 − 650 = 1350 — đúng chưa?",
     "checkOptions": [
-      "Có, tổng là 2000 g tức 2 kg.",
-      "Không, tổng là 200 g."
+      "Đúng.",
+      "Sai, 1 kg = 100 g."
     ],
     "correctCheck": 0,
     "hints": [
-      "Đề hỏi kết quả theo gam.",
-      "1 kg bằng 1000 g.",
-      "Khối lượng còn lại là điều cần tìm.",
-      "Mô hình gồm tổng ban đầu và phần đã dùng.",
-      "Đổi 2 kg thành 2000 g rồi trừ.",
-      "2000 - 600 = 1400, rồi trừ thêm 50.",
-      "Đơn vị cuối cùng là g.",
-      "Cộng phần còn lại với phần đã dùng để kiểm tra."
+      "Đề hỏi theo gam — hãy đổi kg → g trước.",
+      "Mẹo vàng: 1 kg = 1000 g → 2 kg = 2000 g.",
+      "2000 và 650 (sau khi đổi) dùng để trừ.",
+      "Chọn mô hình tổng trừ phần đã dùng.",
+      "Mẹo nhớ: “Đổi đơn vị trước — tính sau”.",
+      "2000 − 650 = 1350.",
+      "Đơn vị: gam.",
+      "Kiểm tra: đã dùng + còn = lúc đầu (650 + 1350 = 2000)."
     ]
   },
   {
     "id": "lesson-27",
-    "title": "Chu vi hình vuông",
-    "shortTitle": "Bốn cạnh bằng nhau",
-    "icon": "🟩",
-    "color": "emerald",
+    "title": "Chạy một vòng sân vuông",
+    "shortTitle": "Chu vi hình vuông",
+    "icon": "🟦",
+    "color": "green",
     "skill": "Chu vi hình vuông",
-    "story": "Một sân chơi hình vuông có cạnh dài 9 m. Chu vi sân chơi là bao nhiêu mét?",
+    "story": "Sân chơi hình vuông có mỗi cạnh dài 9 m. Nếu chạy một vòng sát mép sân, em chạy bao nhiêu mét?",
     "visual": {
+      "type": "groups",
       "before": 4,
       "change": 9,
-      "emoji": "📐",
-      "changeLabel": "mỗi cạnh dài"
+      "emoji": "🟦",
+      "beforeLabel": "4 cạnh bằng nhau",
+      "changeLabel": "Mỗi cạnh 9 m",
+      "resultLabel": "Chu vi?"
     },
     "retellOptions": [
-      "Hình vuông có 4 cạnh bằng nhau, mỗi cạnh dài 9 m; cần tìm tổng độ dài bốn cạnh.",
-      "Chỉ cần lấy 9 cộng 4.",
-      "Cần tìm diện tích bằng 9 × 9."
+      "Hình vuông 4 cạnh bằng 9 m — chu vi = 4 × 9.",
+      "Chu vi là 9 × 9 (diện tích).",
+      "Chia cạnh thành 4 phần."
     ],
     "correctRetell": 0,
     "facts": [
-      "Hình vuông có 4 cạnh bằng nhau",
-      "Mỗi cạnh dài 9 m",
+      "Hình vuông cạnh 9 m",
+      "Có 4 cạnh bằng nhau",
       "Cần tìm chu vi"
     ],
     "factRoles": [
@@ -1987,14 +2071,14 @@
     ],
     "correctModel": 0,
     "operations": [
-      "9 + 4",
       "9 × 4",
+      "9 + 4",
       "9 × 9",
       "9 ÷ 4"
     ],
-    "correctOperation": 1,
+    "correctOperation": 0,
     "reasons": [
-      "Vì chu vi là tổng độ dài 4 cạnh bằng nhau.",
+      "Vì chu vi là tổng độ dài 4 cạnh bằng nhau — nhân 9 × 4.",
       "Vì diện tích bằng cạnh nhân cạnh.",
       "Vì cần chia cạnh thành 4 phần."
     ],
@@ -2004,50 +2088,53 @@
     "answerOptions": [
       "Chu vi sân chơi là 36 m.",
       "Diện tích sân chơi là 36 m.",
-      "Mỗi cạnh dài 36 m."
+      "Chu vi sân chơi là 13 m."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Phép cộng lặp nào tương đương 9 × 4?",
+    "checkQuestion": "9 + 9 + 9 + 9 có bằng 36 không?",
     "checkOptions": [
-      "9 + 9 + 9 + 9.",
-      "9 + 4."
+      "Có.",
+      "Không."
     ],
     "correctCheck": 0,
     "hints": [
-      "Chu vi là độ dài đường bao quanh hình.",
-      "Hình vuông có 4 cạnh bằng nhau.",
-      "Độ dài một cạnh đã biết, chu vi chưa biết.",
-      "Hãy hình dung đi quanh cả bốn cạnh.",
-      "Lấy độ dài cạnh nhân 4.",
-      "9 × 4 bằng 9 + 9 + 9 + 9.",
-      "Chu vi dùng đơn vị độ dài m.",
-      "Chia 36 cho 4 để kiểm tra cạnh dài 9 m."
+      "Chu vi = đường bao quanh (chạy một vòng).",
+      "Hình vuông: 4 cạnh bằng nhau.",
+      "Cạnh 9 m đã biết.",
+      "Chọn mô hình bốn cạnh bằng nhau.",
+      "Mẹo nhớ: “Chu vi vuông = cạnh × 4; Diện tích = cạnh × cạnh”.",
+      "9 × 4 = 36.",
+      "Đơn vị mét (độ dài đường bao).",
+      "Kiểm tra bằng cộng 9 bốn lần."
     ]
   },
   {
     "id": "lesson-28",
-    "title": "Chu vi hình chữ nhật",
-    "shortTitle": "Dài và rộng",
-    "icon": "▭",
-    "color": "violet",
+    "title": "Đi vòng mảnh vườn chữ nhật",
+    "shortTitle": "Chu vi HCN",
+    "icon": "🟩",
+    "color": "green",
     "skill": "Chu vi hình chữ nhật",
-    "story": "Một mảnh vườn hình chữ nhật dài 12 m, rộng 7 m. Chu vi mảnh vườn là bao nhiêu mét?",
+    "story": "Mảnh vườn hình chữ nhật dài 12 m, rộng 7 m. Hàng rào bao quanh vườn dài bao nhiêu mét?",
     "visual": {
+      "type": "measure",
       "before": 12,
       "change": 7,
-      "emoji": "🌿",
-      "changeLabel": "chiều rộng"
+      "emoji": "🟩",
+      "beforeLabel": "Dài 12 m",
+      "changeLabel": "Rộng 7 m",
+      "resultLabel": "Chu vi?"
     },
     "retellOptions": [
-      "Cộng chiều dài với chiều rộng rồi nhân 2 vì mỗi loại cạnh có hai cạnh.",
-      "Lấy 12 nhân 7 để tìm chu vi.",
-      "Chỉ cộng 12 với 7 một lần."
+      "Hai cạnh dài 12 và hai cạnh rộng 7 — chu vi = (12 + 7) × 2.",
+      "Chu vi chính là diện tích 12 × 7.",
+      "Chỉ cần 12 − 7."
     ],
     "correctRetell": 0,
     "facts": [
       "Chiều dài 12 m",
       "Chiều rộng 7 m",
-      "Cần tìm chu vi"
+      "Cần tìm chu vi hàng rào"
     ],
     "factRoles": [
       "known",
@@ -2062,14 +2149,14 @@
     ],
     "correctModel": 0,
     "operations": [
-      "12 + 7",
-      "12 × 7",
       "(12 + 7) × 2",
-      "12 - 7"
+      "12 × 7",
+      "12 - 7",
+      "12 + 7"
     ],
-    "correctOperation": 2,
+    "correctOperation": 0,
     "reasons": [
-      "Vì hình chữ nhật có hai cạnh dài và hai cạnh rộng.",
+      "Vì hình chữ nhật có hai cạnh dài và hai cạnh rộng: (dài + rộng) × 2.",
       "Vì chu vi chính là diện tích.",
       "Vì chỉ cần tìm chênh lệch dài và rộng."
     ],
@@ -2079,50 +2166,53 @@
     "answerOptions": [
       "Chu vi mảnh vườn là 38 m.",
       "Diện tích mảnh vườn là 38 m.",
-      "Chiều dài mảnh vườn là 38 m."
+      "Chu vi mảnh vườn là 19 m."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Một vòng quanh vườn gồm những cạnh nào?",
+    "checkQuestion": "12 + 7 + 12 + 7 có bằng 38 không?",
     "checkOptions": [
-      "12 + 7 + 12 + 7.",
-      "12 + 7 một lần."
+      "Có.",
+      "Không."
     ],
     "correctCheck": 0,
     "hints": [
-      "Đừng nhầm chu vi với diện tích.",
-      "Có hai cạnh dài và hai cạnh rộng.",
-      "Dài, rộng đã biết; đường bao quanh cần tìm.",
-      "Mô hình cần thể hiện hai cặp cạnh bằng nhau.",
-      "Cộng dài và rộng rồi nhân 2.",
-      "12 + 7 = 19; 19 × 2 bằng bao nhiêu?",
-      "Chu vi dùng đơn vị m, không phải m².",
-      "Cộng riêng 12 + 7 + 12 + 7 để kiểm tra."
+      "Đừng nhầm chu vi (đường bao) với diện tích (mặt phủ)!",
+      "Đi một vòng: dài + rộng + dài + rộng.",
+      "12 và 7 đã biết.",
+      "Chọn mô hình hai cặp cạnh.",
+      "Mẹo nhớ: “Chu vi HCN = (dài + rộng) × 2”.",
+      "12 + 7 = 19; 19 × 2 = 38.",
+      "Đơn vị mét.",
+      "Kiểm tra: cộng đủ 4 cạnh."
     ]
   },
   {
     "id": "lesson-29",
-    "title": "Diện tích là số ô phủ kín",
-    "shortTitle": "Diện tích hình chữ nhật",
-    "icon": "🧩",
-    "color": "purple",
+    "title": "Phủ kín tấm bìa bằng ô vuông",
+    "shortTitle": "Diện tích",
+    "icon": "▦",
+    "color": "indigo",
     "skill": "Diện tích",
-    "story": "Một tấm bìa hình chữ nhật dài 8 cm và rộng 6 cm. Diện tích tấm bìa là bao nhiêu xăng-ti-mét vuông?",
+    "story": "Tấm bìa hình chữ nhật dài 8 cm, rộng 6 cm. Nếu phủ kín bằng ô vuông 1 cm cạnh, cần bao nhiêu ô? (Đó chính là diện tích!)",
     "visual": {
-      "before": 8,
-      "change": 6,
-      "emoji": "◻️",
-      "changeLabel": "số hàng ô vuông"
+      "type": "groups",
+      "before": 6,
+      "change": 8,
+      "emoji": "🟧",
+      "beforeLabel": "6 hàng ô",
+      "changeLabel": "Mỗi hàng 8 ô",
+      "resultLabel": "Diện tích?"
     },
     "retellOptions": [
-      "Tấm bìa có thể phủ bằng 6 hàng, mỗi hàng 8 ô vuông đơn vị.",
-      "Cộng 8 và 6 rồi nhân 2 để tìm diện tích.",
-      "Lấy 8 trừ 6 để tìm số ô."
+      "Diện tích = số ô trong 6 hàng, mỗi hàng 8 ô → 6 × 8.",
+      "Diện tích là chu vi đường bao quanh.",
+      "Chỉ cần 8 − 6."
     ],
     "correctRetell": 0,
     "facts": [
-      "Chiều dài 8 cm",
-      "Chiều rộng 6 cm",
-      "Cần tìm diện tích"
+      "Dài 8 cm",
+      "Rộng 6 cm",
+      "Cần tìm diện tích (số ô cm²)"
     ],
     "factRoles": [
       "known",
@@ -2137,14 +2227,14 @@
     ],
     "correctModel": 0,
     "operations": [
-      "(8 + 6) × 2",
       "8 × 6",
       "8 + 6",
+      "(8 + 6) × 2",
       "8 - 6"
     ],
-    "correctOperation": 1,
+    "correctOperation": 0,
     "reasons": [
-      "Vì diện tích là số ô vuông trong 6 hàng, mỗi hàng 8 ô.",
+      "Vì diện tích là số ô vuông phủ kín: hàng × cột.",
       "Vì cần tính độ dài đường bao quanh.",
       "Vì cần tìm chênh lệch hai cạnh."
     ],
@@ -2153,51 +2243,54 @@
     "unit": "cm²",
     "answerOptions": [
       "Diện tích tấm bìa là 48 cm².",
-      "Chu vi tấm bìa là 48 cm².",
-      "Diện tích tấm bìa là 14 cm."
+      "Chu vi tấm bìa là 48 cm.",
+      "Diện tích tấm bìa là 28 cm²."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Vì sao đơn vị là cm²?",
+    "checkQuestion": "6 hàng × 8 ô = 48 ô — đúng chưa?",
     "checkOptions": [
-      "Vì đang đếm các ô vuông cạnh 1 cm.",
-      "Vì mọi phép nhân đều dùng cm²."
+      "Đúng.",
+      "Sai."
     ],
     "correctCheck": 0,
     "hints": [
-      "Diện tích đo phần mặt phẳng được phủ kín.",
-      "Hãy tưởng tượng các ô vuông 1 cm × 1 cm.",
-      "Hai kích thước đã biết, số ô vuông cần tìm.",
-      "Mảng hàng – cột phù hợp với diện tích.",
-      "Chiều dài nhân chiều rộng.",
-      "8 × 6 thuộc bảng nhân nào con nhớ?",
-      "Diện tích phải dùng đơn vị vuông cm².",
-      "48 ÷ 6 = 8 giúp kiểm tra số ô mỗi hàng."
+      "Diện tích = mặt được phủ kín, không phải đường viền.",
+      "Hình dung lưới ô vuông li ti trên bìa.",
+      "8 và 6 đã biết.",
+      "Chọn mô hình mảng hàng–cột.",
+      "Mẹo nhớ: “Diện tích HCN = dài × rộng (ô vuông)”.",
+      "8 × 6 = 48.",
+      "Đơn vị cm² (xăng-ti-mét vuông).",
+      "Kiểm tra: khác với chu vi (8+6)×2 = 28."
     ]
   },
   {
     "id": "lesson-30",
-    "title": "Tìm một phần của một số",
-    "shortTitle": "Một phần tư",
-    "icon": "🍕",
-    "color": "orange",
+    "title": "Một phần tư đĩa trái cây",
+    "shortTitle": "Phân số",
+    "icon": "🍇",
+    "color": "purple",
     "skill": "Phân số của một tập hợp",
-    "story": "Có 28 miếng trái cây. Một phần tư số miếng được dùng để trang trí bánh. Có bao nhiêu miếng được dùng?",
+    "story": "Đĩa có 28 miếng trái cây. Cô lấy một phần tư số miếng để trang trí bánh. Cô lấy bao nhiêu miếng?",
     "visual": {
+      "type": "divide",
       "before": 28,
       "change": 4,
-      "emoji": "🍓",
-      "changeLabel": "phần bằng nhau"
+      "emoji": "🍇",
+      "beforeLabel": "28 miếng",
+      "changeLabel": "Chia 4 phần bằng nhau",
+      "resultLabel": "1 phần?"
     },
     "retellOptions": [
-      "Chia 28 miếng thành 4 phần bằng nhau và lấy 1 phần.",
-      "Nhân 28 với 4 vì có bốn phần.",
-      "Lấy 28 trừ 4 để tìm một phần tư."
+      "Một phần tư = chia 28 thành 4 phần bằng nhau, lấy 1 phần.",
+      "Một phần tư nghĩa là gấp 4 lần.",
+      "Lấy 28 cộng thêm 4."
     ],
     "correctRetell": 0,
     "facts": [
-      "Có tất cả 28 miếng",
-      "Cần lấy một phần tư",
-      "Cần tìm số miếng trong 1 phần"
+      "Có 28 miếng",
+      "Lấy một phần tư",
+      "Cần tìm số miếng được lấy"
     ],
     "factRoles": [
       "known",
@@ -2212,67 +2305,71 @@
     ],
     "correctModel": 0,
     "operations": [
-      "28 + 4",
-      "28 - 4",
+      "28 ÷ 4",
       "28 × 4",
-      "28 ÷ 4"
+      "28 + 4",
+      "28 - 4"
     ],
-    "correctOperation": 3,
+    "correctOperation": 0,
     "reasons": [
-      "Vì một phần tư là một trong 4 phần bằng nhau của tổng.",
+      "Vì một phần tư là một trong 4 phần bằng nhau của tổng — chia 28 cho 4.",
       "Vì cần lấy tổng thêm 4.",
       "Vì một phần tư nghĩa là gấp 4 lần."
     ],
     "correctReason": 0,
     "answer": 7,
-    "unit": "miếng",
+    "unit": "miếng trái cây",
     "answerOptions": [
-      "Có 7 miếng được dùng.",
-      "Có 24 miếng được dùng.",
-      "Có 112 miếng được dùng."
+      "Cô lấy 7 miếng trái cây.",
+      "Cô lấy 112 miếng trái cây.",
+      "Cô lấy 24 miếng trái cây."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Bốn phần, mỗi phần 7 miếng, có tạo lại tổng 28 không?",
+    "checkQuestion": "7 × 4 có bằng 28 không?",
     "checkOptions": [
-      "Có, vì 7 × 4 = 28.",
-      "Không, vì 7 + 4 = 11."
+      "Có — 4 phần bằng nhau ghép lại đủ 28.",
+      "Không."
     ],
     "correctCheck": 0,
     "hints": [
-      "Một phần tư nghĩa là chia thành 4 phần bằng nhau.",
-      "Đề chỉ lấy một trong bốn phần.",
-      "Tổng 28 và số phần 4 đã biết.",
-      "Mô hình cần có 4 phần bằng nhau.",
-      "Muốn tìm một phần, lấy tổng chia số phần.",
-      "28 chia 4 bằng bao nhiêu?",
-      "Đơn vị là miếng.",
-      "Nhân đáp án với 4 để kiểm tra tổng."
+      "Một phần tư = chia 4 phần bằng nhau, lấy 1.",
+      "Hình dung cắt đĩa thành 4 phần giống hệt.",
+      "28 đã biết; mẫu số 4 đã biết.",
+      "Chọn mô hình chia 4 phần bằng nhau.",
+      "Mẹo nhớ: “1/4 của N = N ÷ 4”.",
+      "28 ÷ 4 = 7.",
+      "Câu trả lời là số miếng cô lấy.",
+      "Kiểm tra: 4 phần × 7 = 28."
     ]
   },
   {
     "id": "lesson-31",
-    "title": "Không phải dữ kiện nào cũng cần dùng",
-    "shortTitle": "Dữ kiện thừa",
-    "icon": "🕵️",
-    "color": "yellow",
+    "title": "Màu hộp… có cần không?",
+    "shortTitle": "Bỏ dữ kiện thừa",
+    "icon": "🪄",
+    "color": "pink",
     "skill": "Chọn thông tin cần thiết",
-    "story": "Hộp có 24 bút đỏ và 17 bút xanh. Chiếc hộp màu vàng. Hỏi trong hộp có tất cả bao nhiêu chiếc bút?",
+    "story": "Hộp có 24 bút đỏ và 17 bút xanh. Chiếc hộp sơn màu vàng rất đẹp. Hỏi trong hộp có tất cả bao nhiêu chiếc bút?",
     "visual": {
+      "type": "join",
       "before": 24,
       "change": 17,
-      "emoji": "🖍️",
-      "changeLabel": "bút xanh"
+      "emoji": "✏️",
+      "beforeLabel": "Bút đỏ",
+      "changeLabel": "Bút xanh",
+      "resultLabel": "Tổng bút?",
+      "distractor": "Hộp màu vàng — không dùng!"
     },
     "retellOptions": [
-      "Gộp 24 bút đỏ và 17 bút xanh; màu của hộp không ảnh hưởng đến số bút.",
-      "Cần dùng cả màu vàng để tính.",
-      "Lấy 24 trừ 17 vì hộp màu vàng."
+      "Chỉ cộng số bút đỏ và xanh; màu hộp không liên quan.",
+      "Màu vàng bảo phải dùng phép cộng đặc biệt.",
+      "Tìm hiệu giữa bút đỏ và xanh."
     ],
     "correctRetell": 0,
     "facts": [
-      "Có 24 bút đỏ",
-      "Có 17 bút xanh",
-      "Cần tìm tổng số bút"
+      "24 bút đỏ",
+      "17 bút xanh",
+      "Cần tổng số bút (màu hộp là thừa)"
     ],
     "factRoles": [
       "known",
@@ -2303,51 +2400,55 @@
     "unit": "chiếc bút",
     "answerOptions": [
       "Trong hộp có tất cả 41 chiếc bút.",
-      "Chiếc hộp có 41 màu vàng.",
-      "Trong hộp còn 7 chiếc bút."
+      "Trong hộp có 7 chiếc bút.",
+      "Trong hộp có 24 chiếc bút vàng."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Thông tin “chiếc hộp màu vàng” có cần để tính không?",
+    "checkQuestion": "Màu vàng của hộp có làm thay đổi số bút không?",
     "checkOptions": [
-      "Không, vì nó không cho biết số lượng bút.",
-      "Có, mọi câu trong đề đều phải đổi thành phép tính."
+      "Không — chỉ cần 24 + 17.",
+      "Có — phải nhân với màu."
     ],
     "correctCheck": 0,
     "hints": [
-      "Hãy tìm những thông tin có liên quan trực tiếp đến câu hỏi.",
-      "Câu hỏi chỉ hỏi số chiếc bút.",
-      "Màu của hộp không phải dữ kiện số lượng.",
-      "Hai loại bút là hai phần của một tổng.",
-      "Gộp số bút đỏ và bút xanh bằng phép cộng.",
-      "24 + 10 = 34, rồi cộng thêm 7.",
-      "Câu trả lời nói về tổng số bút.",
-      "Tổng 41 phải lớn hơn cả 24 và 17."
+      "Thám tử toán: gạch bỏ thông tin không giúp trả lời câu hỏi!",
+      "Câu hỏi hỏi số bút, không hỏi màu hộp.",
+      "Dùng 24 và 17; bỏ “màu vàng”.",
+      "Chọn mô hình hai phần tạo tổng.",
+      "Mẹo nhớ: “Hỏi gì → lấy đúng thứ đó; thừa thì gạch”.",
+      "24 + 17 = 41.",
+      "Câu trả lời là tổng bút.",
+      "Kiểm tra: có dùng nhầm màu hộp không? Không."
     ]
   },
   {
     "id": "lesson-32",
-    "title": "Thử thách tổng hợp",
-    "shortTitle": "Tự lập kế hoạch giải",
-    "icon": "🏆",
-    "color": "indigo",
+    "title": "Tiệm bánh buổi sáng bận rộn",
+    "shortTitle": "Thử thách tổng hợp",
+    "icon": "🧁",
+    "color": "orange",
     "skill": "Nhân rồi trừ",
-    "story": "Tiệm bánh làm 6 khay bánh, mỗi khay 8 chiếc. Buổi sáng bán 15 chiếc. Tiệm còn lại bao nhiêu chiếc bánh?",
+    "story": "Tiệm bánh làm 6 khay, mỗi khay 8 chiếc bánh thơm phức. Buổi sáng bán 15 chiếc. Tiệm còn lại bao nhiêu chiếc bánh?",
     "visual": {
-      "before": 48,
-      "change": 15,
-      "emoji": "🥐",
-      "changeLabel": "đã bán"
+      "type": "mixed",
+      "before": 6,
+      "change": 8,
+      "emoji": "🧁",
+      "beforeLabel": "6 khay × 8",
+      "changeLabel": "Bán 15 chiếc",
+      "resultLabel": "Còn lại?",
+      "extra": 15
     },
     "retellOptions": [
-      "Tìm tổng số bánh trong 6 khay rồi trừ 15 chiếc đã bán.",
-      "Lấy 6 cộng 8 rồi cộng 15.",
-      "Chia 15 chiếc bánh vào 6 khay."
+      "Nhân tìm tổng bánh làm ra, rồi trừ 15 chiếc đã bán.",
+      "Mỗi khay bị bán 15 chiếc.",
+      "Chia tổng bánh thành 15 nhóm."
     ],
     "correctRetell": 0,
     "facts": [
-      "Có 6 khay, mỗi khay 8 chiếc",
-      "Đã bán 15 chiếc",
-      "Cần tìm số bánh còn lại"
+      "6 khay, mỗi khay 8 chiếc",
+      "Bán 15 chiếc",
+      "Cần tìm số còn lại"
     ],
     "factRoles": [
       "known",
@@ -2362,12 +2463,12 @@
     ],
     "correctModel": 0,
     "operations": [
-      "6 + 8 - 15",
       "6 × 8 - 15",
-      "6 × (8 - 15)",
-      "48 ÷ 15"
+      "6 + 8 - 15",
+      "6 × 8 + 15",
+      "(6 - 8) × 15"
     ],
-    "correctOperation": 1,
+    "correctOperation": 0,
     "reasons": [
       "Vì phải dùng phép nhân tìm tổng ban đầu rồi phép trừ tìm phần còn lại.",
       "Vì mỗi khay bị bán 15 chiếc.",
@@ -2378,25 +2479,25 @@
     "unit": "chiếc bánh",
     "answerOptions": [
       "Tiệm còn lại 33 chiếc bánh.",
-      "Mỗi khay còn 33 chiếc bánh.",
-      "Tiệm đã làm 29 chiếc bánh."
+      "Tiệm còn lại 48 chiếc bánh.",
+      "Tiệm còn lại 15 chiếc bánh."
     ],
     "correctAnswerSentence": 0,
-    "checkQuestion": "Sơ đồ tính đúng theo thứ tự là gì?",
+    "checkQuestion": "6 × 8 = 48, 48 − 15 = 33 — đúng chưa?",
     "checkOptions": [
-      "6 × 8 = 48, rồi 48 - 15 = 33.",
-      "8 - 15 trước, rồi nhân 6."
+      "Đúng — con đã giải bài hai bước!",
+      "Sai."
     ],
     "correctCheck": 0,
     "hints": [
       "Đề có hai hành động: làm bánh theo khay và bán bớt.",
-      "Hãy nói rõ bước nào xảy ra trước.",
-      "Tổng ban đầu chưa được ghi trực tiếp nhưng có thể tính được.",
-      "Mô hình cần có 6 nhóm 8 rồi bớt 15.",
-      "Nhân trước, trừ sau.",
-      "6 × 8 = 48; 48 - 15 bằng bao nhiêu?",
-      "Câu trả lời phải nói số bánh còn lại của tiệm.",
-      "Lấy 33 + 15 = 48 rồi chia 48 ÷ 6 = 8 để kiểm tra cả hai bước."
+      "Tổng trước → bớt sau.",
+      "6, 8, 15 đã biết.",
+      "Chọn mô hình nhóm bằng nhau rồi bớt.",
+      "Mẹo nhớ: “Làm ra (×) rồi bán đi (−)”.",
+      "6 × 8 = 48; 48 − 15 = 33.",
+      "Câu trả lời là số còn lại trong tiệm.",
+      "Kiểm tra: còn + đã bán = tổng làm ra (33 + 15 = 48)."
     ]
   }
 ]

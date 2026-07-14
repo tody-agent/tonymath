@@ -32,3 +32,13 @@ Tiến độ được lưu tại localStorage với key `hoc-toan-vui-progress-v
 - Bài 11–18: phép tính ngược, tìm số lớn/nhỏ, gấp nhiều lần, giá tiền và hai ý nghĩa của phép chia.
 - Bài 19–26: chia có dư theo thực tế, bài toán hai bước, thời gian, tiền và đổi đơn vị.
 - Bài 27–32: chu vi, diện tích, phân số, dữ kiện thừa và thử thách tổng hợp.
+
+### Nguyên tắc viết bài (dành cho trẻ)
+
+Mỗi bài được viết theo hướng **dễ hình dung – dễ nhớ**:
+
+1. **Câu chuyện cụ thể** — có nhân vật, đồ vật, cảm xúc; tránh ngôn ngữ giáo khoa khô.
+2. **Tiêu đề gợi tò mò** — trẻ muốn mở bài vì “có chuyện xảy ra”.
+3. **Hình theo loại bài** (`visual.type`: add, remove, compare, groups, divide, …).
+4. **Mẹo nhớ trong gợi ý** — ví dụ *“Thêm vào = cộng = to hơn”*, *“Gấp N lần = × N”*.
+5. **Lý do bằng lời trẻ** — giải thích “vì sao” gắn với câu chuyện, không chỉ thuật ngữ.
