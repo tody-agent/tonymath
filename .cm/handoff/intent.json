@@ -1,0 +1,7 @@
+{
+  "schema": "intent@1",
+  "initiative": "hoan-thien-bai-hoc",
+  "goal": "Verify and complete the 32 math lessons in the application by introducing a Developer/Debug unlock mode in the profile menu.",
+  "recommended_option": "Option A (Confirm 32 lessons and add developer mode)",
+  "openspec_path": "openspec/changes/hoan-thien-bai-hoc/proposal.md"
+}

@@ -1,0 +1,18 @@
+{
+  "project": "hoc-toan-vui",
+  "github": {
+    "account": "tody-agent",
+    "repo": "hoc-toan-vui",
+    "remoteUrl": "git@github.com:tody-agent/hoc-toan-vui.git",
+    "user": {
+      "name": "tody-agent",
+      "email": "tracuuphat@gmail.com"
+    }
+  },
+  "cloudflare": {
+    "account": "TodyAI",
+    "accountId": "5a183e617c2e686d9b59b6b75b398b58",
+    "projectName": "hoc-toan-vui",
+    "productionBranch": "main"
+  }
+}

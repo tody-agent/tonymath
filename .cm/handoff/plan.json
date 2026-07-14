@@ -1,0 +1,15 @@
+{
+  "schema": "plan@1",
+  "goal": "Bổ sung chức năng âm thanh phản hồi (Sound Effects) dùng Web Audio API và phát âm Text-to-Speech (TTS) dùng giọng nói trình duyệt với bảng điều khiển cài đặt lưu trong localStorage.",
+  "decisions": [
+    "Sử dụng Web Audio API tự tổng hợp âm thanh (click, correct, wrong, complete) để không cần tải file MP3 bên ngoài.",
+    "Bổ sung thanh điều khiển cài đặt âm thanh ở Header cho phép tùy chỉnh: Tự động đọc (Auto-Read), Tốc độ đọc (Rate) và Tắt âm (Mute).",
+    "Tự động đọc hướng dẫn và đề bài khi chuyển bước, đọc feedback đúng/sai khi kiểm tra, và thêm loa phát âm thủ công cho từng phần văn bản."
+  ],
+  "first_tasks": [
+    "Tạo file src/audio.js chứa bộ tổng hợp SFX và điều khiển SpeechSynthesis (TTS) khắc phục lỗi Chrome tự dừng.",
+    "Thêm state audioSettings và lưu trữ localStorage trong App.jsx cùng giao diện điều khiển ở Header.",
+    "Tích hợp Sound Effects (SFX) vào các thao tác click chuột, kiểm tra đáp án đúng/sai và hoàn thành bài học."
+  ],
+  "openspec_path": "openspec/changes/math-audio-enhancement/"
+}

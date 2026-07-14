@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import lessons from './lessons.json'
+import { isUnlocked as checkIsUnlocked, resolveSpeechRate } from './utils.js'
+import { playSfx, speakText, cancelSpeech } from './audio.js'
 import './App.css'
 
 const STEP_LABELS = [
@@ -21,6 +23,12 @@ const DEFAULT_PROGRESS = {
   currentLesson: 0
 }
 
+const DEFAULT_AUDIO_SETTINGS = {
+  autoRead: true,
+  speed: 'normal',
+  muted: false
+}
+
 function loadProgress() {
   try {
     const saved = localStorage.getItem('hoc-toan-vui-progress-v1')
@@ -30,11 +38,32 @@ function loadProgress() {
   }
 }
 
+function loadAudioSettings() {
+  try {
+    const saved = localStorage.getItem('hoc-toan-vui-audio-settings-v1')
+    return saved ? { ...DEFAULT_AUDIO_SETTINGS, ...JSON.parse(saved) } : DEFAULT_AUDIO_SETTINGS
+  } catch {
+    return DEFAULT_AUDIO_SETTINGS
+  }
+}
+
+let isMutedGlobal = loadAudioSettings().muted;
+function playClick() {
+  playSfx('click', isMutedGlobal);
+}
+
+let globalRate = resolveSpeechRate(loadAudioSettings().speed);
+function speakManual(text) {
+  speakText(text, globalRate);
+}
+
 function App() {
   const [view, setView] = useState('home')
   const [progress, setProgress] = useState(loadProgress)
   const [lessonIndex, setLessonIndex] = useState(progress.currentLesson || 0)
   const [step, setStep] = useState(0)
+  const [audioSettings, setAudioSettings] = useState(loadAudioSettings)
+  const [audioPanelOpen, setAudioPanelOpen] = useState(false)
   const [selected, setSelected] = useState(null)
   const [secondSelected, setSecondSelected] = useState(null)
   const [factAnswers, setFactAnswers] = useState([])
@@ -44,6 +73,7 @@ function App() {
   const [mistakes, setMistakes] = useState(0)
   const [hearts, setHearts] = useState(3)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [isDevMode, setIsDevMode] = useState(false)
 
   const lesson = lessons[lessonIndex]
   const completedCount = Object.keys(progress.completed).length
@@ -53,6 +83,13 @@ function App() {
   useEffect(() => {
     localStorage.setItem('hoc-toan-vui-progress-v1', JSON.stringify(progress))
   }, [progress])
+
+  useEffect(() => {
+    localStorage.setItem('hoc-toan-vui-audio-settings-v1', JSON.stringify(audioSettings))
+    isMutedGlobal = audioSettings.muted
+    globalRate = resolveSpeechRate(audioSettings.speed)
+  }, [audioSettings])
+
 
   useEffect(() => {
     const today = new Date().toISOString().slice(0, 10)
@@ -77,7 +114,61 @@ function App() {
     }
   }, [progress.lastStudyDate])
 
-  const isUnlocked = (index) => index === 0 || Boolean(progress.completed[lessons[index - 1].id])
+  useEffect(() => {
+    if (view !== 'lesson' || audioSettings.muted || !audioSettings.autoRead) return
+
+    const rate = resolveSpeechRate(audioSettings.speed)
+    let text = ""
+
+    switch (step) {
+      case 0:
+        text = `Bước 1: Nhìn câu chuyện bằng hình. Đề bài: ${lesson.story}`
+        break
+      case 1:
+        text = `Bước 2: Kể lại bằng lời. Câu chuyện này có thể kể lại thế nào? Hãy chọn câu con cho là đúng nhất.`
+        break
+      case 2:
+        text = `Bước 3: Tách dữ kiện. Đã biết hay cần tìm? Phân loại từng mẩu thông tin bên dưới.`
+        break
+      case 3:
+        text = `Bước 4: Chọn mô hình phù hợp. Mô hình nào diễn tả đúng mối quan hệ trong đề?`
+        break
+      case 4:
+        text = `Bước 5: Chọn phép tính và giải thích. Phép tính nào phù hợp và tại sao?`
+        break
+      case 5:
+        text = `Bước 6: Tự tính toán. Điền kết quả vào ô trống.`
+        break
+      case 6:
+        text = `Bước 7: Viết câu trả lời. Chọn câu trả lời đầy đủ nhất.`
+        break
+      case 7:
+        text = `Bước 8: Kiểm tra. ${lesson.checkQuestion}`
+        break
+      default:
+        break
+    }
+
+    if (text) {
+      const timer = setTimeout(() => {
+        speakText(text, rate)
+      }, 500)
+      return () => {
+        clearTimeout(timer)
+        cancelSpeech()
+      }
+    }
+  }, [view, lessonIndex, step, audioSettings.autoRead, audioSettings.muted, audioSettings.speed, lesson])
+
+  useEffect(() => {
+    if (view !== 'lesson' || !feedback || audioSettings.muted || !audioSettings.autoRead) return
+    const rate = resolveSpeechRate(audioSettings.speed)
+    const text = feedback.correct ? `Chính xác! ${feedback.message}` : `Thử lại nhé! ${feedback.message}`
+    speakText(text, rate)
+  }, [feedback, view, audioSettings.autoRead, audioSettings.muted, audioSettings.speed])
+
+
+  const isUnlocked = (index) => checkIsUnlocked(index, progress.completed, lessons, isDevMode)
 
   function resetStepState(nextStep = step) {
     setSelected(null)
@@ -91,6 +182,7 @@ function App() {
 
   function openLesson(index) {
     if (!isUnlocked(index)) return
+    playClick()
     setLessonIndex(index)
     setProgress((old) => ({ ...old, currentLesson: index }))
     setMistakes(0)
@@ -103,9 +195,11 @@ function App() {
   function markAttempt(isCorrect, message) {
     if (feedback?.correct) return
     if (isCorrect) {
+      playSfx('correct', audioSettings.muted)
       setFeedback({ correct: true, message })
       setProgress((old) => ({ ...old, xp: old.xp + 10 }))
     } else {
+      playSfx('wrong', audioSettings.muted)
       setFeedback({ correct: false, message })
       setMistakes((value) => value + 1)
       setHearts((value) => Math.max(0, value - 1))
@@ -132,6 +226,7 @@ function App() {
   function nextStep() {
     if (!feedback?.correct) return
     if (step < 7) {
+      playClick()
       resetStepState(step + 1)
       return
     }
@@ -144,16 +239,13 @@ function App() {
         [lesson.id]: { stars, mistakes, completedAt: new Date().toISOString() }
       }
     }))
+    playSfx('complete', audioSettings.muted)
     setView('complete')
   }
 
   function speakStory() {
-    if (!('speechSynthesis' in window)) return
-    window.speechSynthesis.cancel()
-    const utterance = new SpeechSynthesisUtterance(lesson.story)
-    utterance.lang = 'vi-VN'
-    utterance.rate = 0.9
-    window.speechSynthesis.speak(utterance)
+    const rate = resolveSpeechRate(audioSettings.speed);
+    speakText(lesson.story, rate);
   }
 
   function resetAllProgress() {
@@ -195,12 +287,95 @@ function App() {
           <div className="level-card"><span>⭐</span><div><b>Cấp độ {level}</b><div className="mini-progress"><i style={{ width: `${levelProgress}%` }} /></div></div></div>
           <div className="stat"><span>🔥</span><b>{progress.streak}</b><small>ngày</small></div>
           <div className="stat"><span>🪙</span><b>{progress.xp}</b><small>điểm</small></div>
-          <button className="avatar-button" onClick={() => setMenuOpen((open) => !open)} aria-label="Menu cá nhân">👦</button>
+          <button onClick={() => setIsDevMode(prev => !prev)} className="dev-toggle-direct" style={{
+            background: isDevMode ? '#e2ffd9' : '#eef2ff',
+            color: isDevMode ? '#1e750e' : '#4338ca',
+            padding: '8px 12px',
+            borderRadius: '12px',
+            fontWeight: 'bold',
+            fontSize: '13px',
+            border: '1px solid ' + (isDevMode ? '#bbf7ad' : '#c7d2fe'),
+            height: '42px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px'
+          }}>
+            {isDevMode ? '🔒 Khóa bài' : '🔓 Mở khóa tất cả'}
+          </button>
+          <div className="audio-settings-wrapper">
+            <button className="audio-settings-toggle" onClick={() => { setAudioPanelOpen(prev => !prev); setMenuOpen(false); }} aria-label="Cài đặt âm thanh">
+              {audioSettings.muted ? '🔇' : '🔊'}
+            </button>
+            {audioPanelOpen && (
+              <div className="audio-settings-panel">
+                <b>Cài đặt âm thanh</b>
+                <label className="settings-row">
+                  <span>Tự động đọc bài:</span>
+                  <input
+                    type="checkbox"
+                    checked={audioSettings.autoRead}
+                    onChange={(e) => {
+                      playSfx('click', audioSettings.muted);
+                      setAudioSettings(prev => ({ ...prev, autoRead: e.target.checked }));
+                    }}
+                  />
+                </label>
+                <div className="settings-row speed-control">
+                  <span>Tốc độ đọc:</span>
+                  <div className="speed-buttons">
+                    <button
+                      className={audioSettings.speed === 'slow' ? 'active' : ''}
+                      onClick={() => {
+                        playSfx('click', audioSettings.muted);
+                        setAudioSettings(prev => ({ ...prev, speed: 'slow' }));
+                      }}
+                    >
+                      Chậm
+                    </button>
+                    <button
+                      className={audioSettings.speed === 'normal' ? 'active' : ''}
+                      onClick={() => {
+                        playSfx('click', audioSettings.muted);
+                        setAudioSettings(prev => ({ ...prev, speed: 'normal' }));
+                      }}
+                    >
+                      Vừa
+                    </button>
+                    <button
+                      className={audioSettings.speed === 'fast' ? 'active' : ''}
+                      onClick={() => {
+                        playSfx('click', audioSettings.muted);
+                        setAudioSettings(prev => ({ ...prev, speed: 'fast' }));
+                      }}
+                    >
+                      Nhanh
+                    </button>
+                  </div>
+                </div>
+                <button
+                  className="mute-btn"
+                  onClick={() => {
+                    const nextMuted = !audioSettings.muted;
+                    setAudioSettings(prev => ({ ...prev, muted: nextMuted }));
+                    if (!nextMuted) {
+                      setTimeout(() => playSfx('click', false), 50);
+                    }
+                  }}
+                >
+                  {audioSettings.muted ? '🔊 Bật âm thanh' : '🔇 Tắt toàn bộ âm'}
+                </button>
+              </div>
+            )}
+          </div>
+          <button className="avatar-button" onClick={() => { setMenuOpen((open) => !open); setAudioPanelOpen(false); }} aria-label="Menu cá nhân">👦</button>
         </div>
         {menuOpen && (
           <div className="profile-menu">
             <b>Bạn nhỏ chăm học</b>
             <span>{earnedStars} sao đã kiếm được</span>
+            <button onClick={() => { setIsDevMode(prev => !prev); setMenuOpen(false); }} className="dev-toggle">
+              {isDevMode ? '🔒 Khóa chế độ Dev' : '🔓 Mở khóa tất cả'}
+            </button>
             <button onClick={resetAllProgress}>Xóa tiến độ</button>
           </div>
         )}
@@ -277,8 +452,40 @@ function App() {
   )
 }
 
+function SectionHeading({ num, title, desc, textToSpeak }) {
+  return (
+    <div className="section-heading">
+      <span>{num}</span>
+      <div>
+        <h2>{title}</h2>
+        <p>{desc}</p>
+      </div>
+      {textToSpeak && (
+        <button 
+          className="speech-mini-btn heading-speech" 
+          onClick={() => speakManual(textToSpeak)}
+          aria-label="Đọc hướng dẫn"
+        >
+          🔊
+        </button>
+      )}
+    </div>
+  )
+}
+
 function NavButton({ icon, label, active, onClick }) {
-  return <button className={active ? 'nav-button active' : 'nav-button'} onClick={onClick}><span>{icon}</span><b>{label}</b></button>
+  return (
+    <button 
+      className={active ? 'nav-button active' : 'nav-button'} 
+      onClick={(e) => {
+        playClick();
+        onClick(e);
+      }}
+    >
+      <span>{icon}</span>
+      <b>{label}</b>
+    </button>
+  )
 }
 
 function Home({ lessons, progress, openLesson, isUnlocked, completedCount, earnedStars }) {
@@ -327,9 +534,9 @@ function LessonView(props) {
   return (
     <div className="lesson-page">
       <div className="lesson-toolbar">
-        <button className="icon-button" onClick={onBack} aria-label="Quay lại danh sách bài học">←</button>
+        <button className="icon-button" onClick={() => { playClick(); onBack(); }} aria-label="Quay lại danh sách bài học">←</button>
         <div className="lesson-progress"><span style={{ width: `${((step + 1) / 8) * 100}%` }} /></div>
-        <button className="hint-button" onClick={() => setHintOpen((open) => !open)}>💡 Gợi ý</button>
+        <button className="hint-button" onClick={() => { playClick(); setHintOpen((open) => !open); }}>💡 Gợi ý</button>
         <div className="hearts">❤️ {hearts}</div>
       </div>
 
@@ -349,7 +556,19 @@ function LessonView(props) {
             <span className="story-emoji">{lesson.icon}</span>
           </div>
 
-          {hintOpen && <div className="hint-panel"><span>💡</span><p>{lesson.hints[step]}</p></div>}
+          {hintOpen && (
+            <div className="hint-panel">
+              <span>💡</span>
+              <p>{lesson.hints[step]}</p>
+              <button 
+                className="speech-mini-btn" 
+                onClick={() => speakManual(lesson.hints[step])}
+                aria-label="Đọc gợi ý"
+              >
+                🔊
+              </button>
+            </div>
+          )}
 
           <div className="question-area">
             <StepContent {...props} />
@@ -357,12 +576,20 @@ function LessonView(props) {
 
           {feedback && (
             <div className={feedback.correct ? 'feedback correct' : 'feedback wrong'}>
-              <span>{feedback.correct ? '🎉' : '🌱'}</span><p><b>{feedback.correct ? 'Chính xác!' : 'Thử lại nhé!'}</b>{feedback.message}</p>
+              <span>{feedback.correct ? '🎉' : '🌱'}</span>
+              <p><b>{feedback.correct ? 'Chính xác!' : 'Thử lại nhé!'}</b>{feedback.message}</p>
+              <button 
+                className="speech-mini-btn" 
+                onClick={() => speakManual(feedback.correct ? `Chính xác! ${feedback.message}` : `Thử lại nhé! ${feedback.message}`)}
+                aria-label="Đọc phản hồi"
+              >
+                🔊
+              </button>
             </div>
           )}
 
           <div className="lesson-actions">
-            <button className="secondary-button" onClick={onBack}>Quay lại</button>
+            <button className="secondary-button" onClick={() => { playClick(); onBack(); }}>Quay lại</button>
             {!feedback?.correct ? (
               <button className="primary-button" onClick={validateStep} disabled={!isAnswered}>Kiểm tra</button>
             ) : (
@@ -392,7 +619,12 @@ function UnderstandStep({ lesson }) {
   const changeCount = Math.min(lesson.visual.change, 8)
   return (
     <div>
-      <div className="section-heading"><span>1</span><div><h2>Nhìn câu chuyện bằng hình</h2><p>Số lượng đang thay đổi hay đang được so sánh?</p></div></div>
+      <SectionHeading 
+        num="1" 
+        title="Nhìn câu chuyện bằng hình" 
+        desc="Số lượng đang thay đổi hay đang được so sánh?" 
+        textToSpeak="Bước 1: Nhìn câu chuyện bằng hình. Số lượng đang thay đổi hay đang được so sánh?" 
+      />
       <div className="visual-story">
         <div className="visual-group"><b>Ban đầu / phần thứ nhất</b><div className="emoji-row">{Array.from({ length: visualCount }, (_, i) => <span key={i}>{lesson.visual.emoji}</span>)}</div><small>{lesson.visual.before} {lesson.unit}</small></div>
         <div className="story-arrow">→</div>
@@ -408,9 +640,32 @@ function UnderstandStep({ lesson }) {
 function OptionQuestion({ title, options, selected, setSelected, frozen }) {
   return (
     <div>
-      <div className="section-heading"><span>?</span><div><h2>{title}</h2><p>Chạm vào câu con cho là đúng nhất.</p></div></div>
+      <SectionHeading 
+        num="?" 
+        title={title} 
+        desc="Chạm vào câu con cho là đúng nhất." 
+        textToSpeak={`${title}. Chạm vào câu con cho là đúng nhất.`} 
+      />
       <div className="option-list">
-        {options.map((option, index) => <button key={option} disabled={frozen} className={selected === index ? 'option selected' : 'option'} onClick={() => setSelected(index)}><span>{String.fromCharCode(65 + index)}</span><p>{option}</p></button>)}
+        {options.map((option, index) => (
+          <div key={option} className="option-row">
+            <button 
+              disabled={frozen} 
+              className={selected === index ? 'option selected' : 'option'} 
+              onClick={() => { playClick(); setSelected(index); }}
+            >
+              <span>{String.fromCharCode(65 + index)}</span>
+              <p>{option}</p>
+            </button>
+            <button 
+              className="speech-option-btn" 
+              onClick={() => speakManual(option)}
+              aria-label="Đọc lựa chọn"
+            >
+              🔊
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -424,12 +679,29 @@ function FactsStep({ lesson, answers, setAnswers, frozen }) {
   }
   return (
     <div>
-      <div className="section-heading"><span>3</span><div><h2>Đã biết hay cần tìm?</h2><p>Phân loại từng mẩu thông tin.</p></div></div>
+      <SectionHeading 
+        num="3" 
+        title="Đã biết hay cần tìm?" 
+        desc="Phân loại từng mẩu thông tin." 
+        textToSpeak="Bước 3: Đã biết hay cần tìm? Phân loại từng mẩu thông tin." 
+      />
       <div className="facts-grid">
         {lesson.facts.map((fact, index) => (
           <div className="fact-card" key={fact}>
-            <p>{fact}</p>
-            <div><button disabled={frozen} className={answers[index] === 'known' ? 'selected' : ''} onClick={() => setRole(index, 'known')}>✓ Đã biết</button><button disabled={frozen} className={answers[index] === 'unknown' ? 'selected' : ''} onClick={() => setRole(index, 'unknown')}>? Cần tìm</button></div>
+            <div className="fact-header">
+              <p>{fact}</p>
+              <button 
+                className="speech-mini-btn" 
+                onClick={() => speakManual(fact)}
+                aria-label="Đọc dữ kiện"
+              >
+                🔊
+              </button>
+            </div>
+            <div>
+              <button disabled={frozen} className={answers[index] === 'known' ? 'selected' : ''} onClick={() => { playClick(); setRole(index, 'known'); }}>✓ Đã biết</button>
+              <button disabled={frozen} className={answers[index] === 'unknown' ? 'selected' : ''} onClick={() => { playClick(); setRole(index, 'unknown'); }}>? Cần tìm</button>
+            </div>
           </div>
         ))}
       </div>
@@ -441,9 +713,32 @@ function ModelStep({ lesson, selected, setSelected, frozen }) {
   const icons = ['▰▰', '● ● ●', '↗', '▦']
   return (
     <div>
-      <div className="section-heading"><span>4</span><div><h2>Chọn mô hình phù hợp</h2><p>Mô hình nào diễn tả đúng mối quan hệ trong đề?</p></div></div>
+      <SectionHeading 
+        num="4" 
+        title="Chọn mô hình phù hợp" 
+        desc="Mô hình nào diễn tả đúng mối quan hệ trong đề?" 
+        textToSpeak="Bước 4: Chọn mô hình phù hợp. Mô hình nào diễn tả đúng mối quan hệ trong đề?" 
+      />
       <div className="model-grid">
-        {lesson.models.map((model, index) => <button disabled={frozen} key={model} className={selected === index ? 'model-card selected' : 'model-card'} onClick={() => setSelected(index)}><span>{icons[index]}</span><b>{model}</b></button>)}
+        {lesson.models.map((model, index) => (
+          <div key={model} className="model-wrapper">
+            <button 
+              disabled={frozen} 
+              className={selected === index ? 'model-card selected' : 'model-card'} 
+              onClick={() => { playClick(); setSelected(index); }}
+            >
+              <span>{icons[index]}</span>
+              <b>{model}</b>
+            </button>
+            <button 
+              className="speech-mini-btn model-speech" 
+              onClick={() => speakManual(model)}
+              aria-label="Đọc mô hình"
+            >
+              🔊
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -452,11 +747,47 @@ function ModelStep({ lesson, selected, setSelected, frozen }) {
 function OperationStep({ lesson, selected, setSelected, secondSelected, setSecondSelected, frozen }) {
   return (
     <div>
-      <div className="section-heading"><span>5</span><div><h2>Chọn phép tính và giải thích</h2><p>Đúng phép tính chưa đủ — con cần biết tại sao.</p></div></div>
+      <SectionHeading 
+        num="5" 
+        title="Chọn phép tính và giải thích" 
+        desc="Đúng phép tính chưa đủ — con cần biết tại sao." 
+        textToSpeak="Bước 5: Chọn phép tính và giải thích. Đúng phép tính chưa đủ — con cần biết tại sao." 
+      />
       <h3 className="mini-title">Phép tính nào phù hợp?</h3>
-      <div className="operation-grid">{lesson.operations.map((operation, index) => <button disabled={frozen} key={operation} className={selected === index ? 'selected' : ''} onClick={() => setSelected(index)}>{operation}</button>)}</div>
+      <div className="operation-grid">
+        {lesson.operations.map((operation, index) => (
+          <button 
+            disabled={frozen} 
+            key={operation} 
+            className={selected === index ? 'selected' : ''} 
+            onClick={() => { playClick(); setSelected(index); }}
+          >
+            {operation}
+          </button>
+        ))}
+      </div>
       <h3 className="mini-title">Tại sao?</h3>
-      <div className="reason-list">{lesson.reasons.map((reason, index) => <button disabled={frozen} key={reason} className={secondSelected === index ? 'selected' : ''} onClick={() => setSecondSelected(index)}><span>{index + 1}</span>{reason}</button>)}</div>
+      <div className="reason-list">
+        {lesson.reasons.map((reason, index) => (
+          <div key={reason} className="reason-row">
+            <button 
+              disabled={frozen} 
+              className={secondSelected === index ? 'selected' : ''} 
+              onClick={() => { playClick(); setSecondSelected(index); }}
+            >
+              <span>{index + 1}</span>
+              {reason}
+            </button>
+            <button 
+              className="speech-mini-btn" 
+              onClick={() => speakManual(reason)}
+              aria-label="Đọc giải thích"
+            >
+              🔊
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
@@ -465,7 +796,12 @@ function CalculationStep({ lesson, value, setValue, frozen }) {
   const expression = lesson.operations[lesson.correctOperation]
   return (
     <div>
-      <div className="section-heading"><span>6</span><div><h2>Tự tính toán</h2><p>Điền kết quả vào ô trống.</p></div></div>
+      <SectionHeading 
+        num="6" 
+        title="Tự tính toán" 
+        desc="Điền kết quả vào ô trống." 
+        textToSpeak="Bước 6: Tự tính toán. Điền kết quả vào ô trống." 
+      />
       <div className="calculation-box"><span>{expression}</span><b>=</b><input disabled={frozen} inputMode="numeric" pattern="[0-9]*" value={value} onChange={(event) => setValue(event.target.value.replace(/\D/g, ''))} autoFocus /><small>{lesson.unit}</small></div>
       <div className="scratch-row"><span>🧮</span><p>Con có thể tính nhẩm, tách số tròn chục hoặc dùng phép tính ngược.</p></div>
     </div>
@@ -481,7 +817,10 @@ function CompleteView({ lesson, mistakes, onHome, onNext, hasNext }) {
       <p>Con không chỉ tìm ra đáp án, mà còn biết giải thích cách suy nghĩ.</p>
       <div className="big-stars">{[0, 1, 2].map((i) => <span key={i} className={i < stars ? 'earned' : ''}>⭐</span>)}</div>
       <div className="result-card"><div><span>🧠</span><b>+{80 + stars * 10}</b><small>điểm tư duy</small></div><div><span>🌱</span><b>{mistakes}</b><small>lần tự sửa</small></div><div><span>{lesson.icon}</span><b>{lesson.skill}</b><small>kỹ năng mới</small></div></div>
-      <div className="complete-actions"><button className="secondary-button" onClick={onHome}>Về hành trình</button>{hasNext && <button className="primary-button" onClick={onNext}>Bài tiếp theo →</button>}</div>
+      <div className="complete-actions">
+        <button className="secondary-button" onClick={() => { playClick(); onHome(); }}>Về hành trình</button>
+        {hasNext && <button className="primary-button" onClick={() => { playClick(); onNext(); }}>Bài tiếp theo →</button>}
+      </div>
     </section>
   )
 }
