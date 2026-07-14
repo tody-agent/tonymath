@@ -1,15 +1,15 @@
 {
   "schema": "plan@1",
-  "goal": "Bổ sung chức năng âm thanh phản hồi (Sound Effects) dùng Web Audio API và phát âm Text-to-Speech (TTS) dùng giọng nói trình duyệt với bảng điều khiển cài đặt lưu trong localStorage.",
+  "goal": "Bổ sung Onboarding Flow gamified (chào mừng, chọn cố vấn Mascot, học Bài 0 hướng dẫn 8 bước trực quan) và PWA Reminders (Service Worker chạy offline, cài đặt nhắc nhở, tải file lịch biểu .ics).",
   "decisions": [
-    "Sử dụng Web Audio API tự tổng hợp âm thanh (click, correct, wrong, complete) để không cần tải file MP3 bên ngoài.",
-    "Bổ sung thanh điều khiển cài đặt âm thanh ở Header cho phép tùy chỉnh: Tự động đọc (Auto-Read), Tốc độ đọc (Rate) và Tắt âm (Mute).",
-    "Tự động đọc hướng dẫn và đề bài khi chuyển bước, đọc feedback đúng/sai khi kiểm tra, và thêm loa phát âm thủ công cho từng phần văn bản."
+    "Tạo OnboardingView và OnboardingLesson riêng biệt để không ảnh hưởng cấu trúc bài học thực tế, giữ mã nguồn LessonView sạch sẽ.",
+    "Sử dụng Service Worker tự viết (sw.js) để tối giản hóa phụ thuộc, hỗ trợ caching offline hiệu quả.",
+    "Cung cấp chức năng nhắc nhở thông báo PWA và nút tải file lịch biểu .ics để đảm bảo chuông báo thức hoạt động 100% trên mọi thiết bị kể cả iOS Safari."
   ],
   "first_tasks": [
-    "Tạo file src/audio.js chứa bộ tổng hợp SFX và điều khiển SpeechSynthesis (TTS) khắc phục lỗi Chrome tự dừng.",
-    "Thêm state audioSettings và lưu trữ localStorage trong App.jsx cùng giao diện điều khiển ở Header.",
-    "Tích hợp Sound Effects (SFX) vào các thao tác click chuột, kiểm tra đáp án đúng/sai và hoàn thành bài học."
+    "Cấu hình file manifest.json, sw.js và đăng ký Service Worker trong main.jsx.",
+    "Bổ sung giao diện OnboardingView đón bé, cho chọn Mascot (Cú Ú, Rô Bốt, Rùa Con).",
+    "Tích hợp Bài học số 0 trực quan có highlight chỉ dẫn cách thực hành 8 bước giải toán."
   ],
-  "openspec_path": "openspec/changes/math-audio-enhancement/"
+  "openspec_path": "openspec/changes/onboarding-reminders-pwa/"
 }

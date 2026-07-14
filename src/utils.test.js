@@ -1,4 +1,4 @@
-import { isUnlocked, resolveSpeechRate } from './utils.js';
+import { isUnlocked, resolveSpeechRate, generateIcsContent } from './utils.js';
 import assert from 'assert';
 
 const mockLessons = [
@@ -84,5 +84,21 @@ try {
   process.exit(1);
 }
 
+console.log('Running tests for generateIcsContent...');
+
+// Test 9: generateIcsContent should produce valid daily ICS event
+try {
+  const result = generateIcsContent('19:30', 1783987200000); // fixed timestamp
+  assert.ok(result.includes('BEGIN:VCALENDAR'));
+  assert.ok(result.includes('DTSTART;TZID=Asia/Ho_Chi_Minh'));
+  assert.ok(result.includes('193000'));
+  assert.ok(result.includes('FREQ=DAILY'));
+  console.log('✅ Test 9 Passed: generateIcsContent generates valid daily alarm ICS content');
+} catch (e) {
+  console.error('❌ Test 9 Failed:', e.message);
+  process.exit(1);
+}
+
 console.log('🎉 All tests passed successfully!');
+
 

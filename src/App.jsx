@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import lessons from './lessons.json'
-import { isUnlocked as checkIsUnlocked, resolveSpeechRate } from './utils.js'
+import { isUnlocked as checkIsUnlocked, resolveSpeechRate, generateIcsContent } from './utils.js'
 import { playSfx, speakText, cancelSpeech } from './audio.js'
 import './App.css'
 
@@ -15,12 +15,92 @@ const STEP_LABELS = [
   ['🛡️', 'Kiểm tra']
 ]
 
+const LESSON_0 = {
+  id: "lesson-0",
+  story: "Mẹ có 3 quả táo đỏ. Mẹ mua thêm 2 quả táo xanh. Hỏi mẹ có tất cả bao nhiêu quả táo?",
+  unit: "quả táo",
+  icon: "🍎",
+  color: "pink",
+  shortTitle: "Bài học đầu tiên",
+  skill: "Cộng thêm",
+  visual: {
+    before: 3,
+    change: 2,
+    emoji: "🍎",
+    changeLabel: "được mua thêm"
+  },
+  retellOptions: [
+    "Mẹ có 3 quả táo đỏ, mua thêm 2 quả táo xanh và cần tìm tổng số táo.",
+    "Mẹ có 3 quả táo rồi ăn mất 2 quả.",
+    "Mẹ chia 3 quả táo cho 2 người."
+  ],
+  correctRetell: 0,
+  facts: [
+    "Mẹ có 3 quả táo đỏ",
+    "Mẹ mua thêm 2 quả táo xanh",
+    "Cần tìm tổng số táo"
+  ],
+  factRoles: [
+    "known",
+    "known",
+    "unknown"
+  ],
+  models: [
+    "Sơ đồ tổng - phần",
+    "Trục số",
+    "Nhóm bằng nhau"
+  ],
+  correctModel: 0,
+  operations: [
+    "3 + 2",
+    "3 - 2",
+    "3 × 2"
+  ],
+  correctOperation: 0,
+  reasons: [
+    "Vì gộp táo đỏ và táo xanh lại nên tổng tăng lên.",
+    "Vì bớt đi số táo.",
+    "Vì chia đều số táo."
+  ],
+  correctReason: 0,
+  answer: 5,
+  answerOptions: [
+    "Mẹ có tất cả 5 quả táo.",
+    "Mẹ còn lại 1 quả táo.",
+    "Mẹ có 6 quả táo."
+  ],
+  correctAnswerSentence: 0,
+  checkQuestion: "Tổng số táo (5 quả) lớn hơn số táo đỏ ban đầu (3 quả) có đúng không?",
+  checkOptions: [
+    "Đúng, tổng phải lớn hơn các phần gộp lại.",
+    "Sai, tổng phải nhỏ hơn."
+  ],
+  correctCheck: 0,
+  hints: [
+    "Nhìn hình: có 3 táo đỏ và 2 táo xanh.",
+    "Chọn câu tóm tắt đầy đủ cả táo đỏ, táo xanh và câu hỏi.",
+    "Bấm 'Đã biết' cho các số đã cho, và 'Cần tìm' cho câu hỏi.",
+    "Chọn mô hình gộp hai phần thành một tổng lớn.",
+    "Gộp lại thì chọn phép cộng 3 + 2.",
+    "Tính nhẩm xem 3 cộng 2 bằng bao nhiêu.",
+    "Chọn câu trả lời có số 5 và đơn vị là quả táo.",
+    "Kiểm tra lại xem tổng số táo có lớn hơn từng phần không."
+  ]
+}
+
 const DEFAULT_PROGRESS = {
   completed: {},
   xp: 0,
   streak: 1,
   lastStudyDate: null,
-  currentLesson: 0
+  currentLesson: 0,
+  onboarded: false,
+  profile: {
+    name: '',
+    mascot: 'owl'
+  },
+  reminderTime: '19:00',
+  notificationsEnabled: false
 }
 
 const DEFAULT_AUDIO_SETTINGS = {
@@ -58,8 +138,10 @@ function speakManual(text) {
 }
 
 function App() {
-  const [view, setView] = useState('home')
   const [progress, setProgress] = useState(loadProgress)
+  const [view, setView] = useState(progress.onboarded ? 'home' : 'onboarding')
+  const [deferredPrompt, setDeferredPrompt] = useState(null)
+  const [showInstallPrompt, setShowInstallPrompt] = useState(false)
   const [lessonIndex, setLessonIndex] = useState(progress.currentLesson || 0)
   const [step, setStep] = useState(0)
   const [audioSettings, setAudioSettings] = useState(loadAudioSettings)
@@ -74,6 +156,7 @@ function App() {
   const [hearts, setHearts] = useState(3)
   const [menuOpen, setMenuOpen] = useState(false)
   const [isDevMode, setIsDevMode] = useState(false)
+  const [showIosInstructions, setShowIosInstructions] = useState(false)
 
   const lesson = lessons[lessonIndex]
   const completedCount = Object.keys(progress.completed).length
@@ -83,6 +166,28 @@ function App() {
   useEffect(() => {
     localStorage.setItem('hoc-toan-vui-progress-v1', JSON.stringify(progress))
   }, [progress])
+
+  useEffect(() => {
+    const handleBeforeInstall = (e) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShowInstallPrompt(true);
+    };
+    window.addEventListener('beforeinstallprompt', handleBeforeInstall);
+
+    const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+    const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isIos && !isStandalone) {
+      const dismissed = localStorage.getItem('hoc-toan-vui-ios-install-dismissed');
+      if (dismissed !== 'true') {
+        setShowInstallPrompt(true);
+      }
+    }
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
+    };
+  }, [])
 
   useEffect(() => {
     localStorage.setItem('hoc-toan-vui-audio-settings-v1', JSON.stringify(audioSettings))
@@ -252,7 +357,7 @@ function App() {
     if (!window.confirm('Xóa toàn bộ điểm và tiến độ học trên thiết bị này?')) return
     setProgress(DEFAULT_PROGRESS)
     setLessonIndex(0)
-    setView('home')
+    setView('onboarding')
     setMenuOpen(false)
   }
 
@@ -276,126 +381,248 @@ function App() {
     return false
   }
 
+  function handleInstallClick() {
+    playClick();
+    const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isIos) {
+      setShowIosInstructions(true);
+    } else if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        }
+        setDeferredPrompt(null);
+        setShowInstallPrompt(false);
+      });
+    } else {
+      alert("Để cài đặt, vui lòng sử dụng Safari/Chrome và chọn 'Thêm vào màn hình chính' từ menu trình duyệt.");
+    }
+  }
+
+  function dismissInstallPrompt() {
+    playClick();
+    setShowInstallPrompt(false);
+    const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isIos) {
+      localStorage.setItem('hoc-toan-vui-ios-install-dismissed', 'true');
+    }
+  }
+
+  function toggleNotifications(enabled) {
+    playClick();
+    if (enabled) {
+      if (!('Notification' in window)) {
+        alert("Trình duyệt này không hỗ trợ thông báo.");
+        return;
+      }
+      Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          setProgress(old => ({ ...old, notificationsEnabled: true }));
+          if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+            navigator.serviceWorker.controller.postMessage({
+              type: 'TRIGGER_NOTIFICATION',
+              title: 'Học Toán Vui 🚀',
+              body: 'Thông báo nhắc nhở hàng ngày đã được bật!'
+            });
+          }
+        } else {
+          alert("Bạn đã chặn thông báo. Vui lòng cho phép thông báo trong cài đặt trình duyệt để nhận nhắc nhở.");
+        }
+      });
+    } else {
+      setProgress(old => ({ ...old, notificationsEnabled: false }));
+    }
+  }
+
+  function changeReminderTime(time) {
+    playClick();
+    setProgress(old => ({ ...old, reminderTime: time }));
+  }
+
+  function downloadIcsReminder() {
+    playClick();
+    const timeStr = progress.reminderTime || '19:00';
+    const icsContent = generateIcsContent(timeStr);
+    
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'nhac_nho_hoc_toan.ics';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  const isOnboarding = view === 'onboarding'
+
   return (
-    <div className="app-shell">
-      <header className="topbar">
-        <button className="brand" onClick={() => setView('home')} aria-label="Về trang chủ">
-          <span className="brand-mascot">🦉</span>
-          <span><strong>Học Toán</strong><small>Học cách học</small></span>
-        </button>
-        <div className="top-stats">
-          <div className="level-card"><span>⭐</span><div><b>Cấp độ {level}</b><div className="mini-progress"><i style={{ width: `${levelProgress}%` }} /></div></div></div>
-          <div className="stat"><span>🔥</span><b>{progress.streak}</b><small>ngày</small></div>
-          <div className="stat"><span>🪙</span><b>{progress.xp}</b><small>điểm</small></div>
-          <button onClick={() => setIsDevMode(prev => !prev)} className="dev-toggle-direct" style={{
-            background: isDevMode ? '#e2ffd9' : '#eef2ff',
-            color: isDevMode ? '#1e750e' : '#4338ca',
-            padding: '8px 12px',
-            borderRadius: '12px',
-            fontWeight: 'bold',
-            fontSize: '13px',
-            border: '1px solid ' + (isDevMode ? '#bbf7ad' : '#c7d2fe'),
-            height: '42px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '4px'
-          }}>
-            {isDevMode ? '🔒 Khóa bài' : '🔓 Mở khóa tất cả'}
+    <div className={`app-shell ${isOnboarding ? 'onboarding-shell' : ''}`}>
+      {!isOnboarding && (
+        <header className="topbar">
+          <button className="brand" onClick={() => setView('home')} aria-label="Về trang chủ">
+            <span className="brand-mascot">🦉</span>
+            <span><strong>Học Toán</strong><small>Học cách học</small></span>
           </button>
-          <div className="audio-settings-wrapper">
-            <button className="audio-settings-toggle" onClick={() => { setAudioPanelOpen(prev => !prev); setMenuOpen(false); }} aria-label="Cài đặt âm thanh">
-              {audioSettings.muted ? '🔇' : '🔊'}
+          <div className="top-stats">
+            <div className="level-card"><span>⭐</span><div><b>Cấp độ {level}</b><div className="mini-progress"><i style={{ width: `${levelProgress}%` }} /></div></div></div>
+            <div className="stat"><span>🔥</span><b>{progress.streak}</b><small>ngày</small></div>
+            <div className="stat"><span>🪙</span><b>{progress.xp}</b><small>điểm</small></div>
+            <button onClick={() => setIsDevMode(prev => !prev)} className="dev-toggle-direct" style={{
+              background: isDevMode ? '#e2ffd9' : '#eef2ff',
+              color: isDevMode ? '#1e750e' : '#4338ca',
+              padding: '8px 12px',
+              borderRadius: '12px',
+              fontWeight: 'bold',
+              fontSize: '13px',
+              border: '1px solid ' + (isDevMode ? '#bbf7ad' : '#c7d2fe'),
+              height: '42px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px'
+            }}>
+              {isDevMode ? '🔒 Khóa bài' : '🔓 Mở khóa tất cả'}
             </button>
-            {audioPanelOpen && (
-              <div className="audio-settings-panel">
-                <b>Cài đặt âm thanh</b>
-                <label className="settings-row">
-                  <span>Tự động đọc bài:</span>
+            <div className="audio-settings-wrapper">
+              <button className="audio-settings-toggle" onClick={() => { setAudioPanelOpen(prev => !prev); setMenuOpen(false); }} aria-label="Cài đặt âm thanh">
+                {audioSettings.muted ? '🔇' : '🔊'}
+              </button>
+              {audioPanelOpen && (
+                <div className="audio-settings-panel">
+                  <b>Cài đặt âm thanh</b>
+                  <label className="settings-row">
+                    <span>Tự động đọc bài:</span>
+                    <input
+                      type="checkbox"
+                      checked={audioSettings.autoRead}
+                      onChange={(e) => {
+                        playSfx('click', audioSettings.muted);
+                        setAudioSettings(prev => ({ ...prev, autoRead: e.target.checked }));
+                      }}
+                    />
+                  </label>
+                  <div className="settings-row speed-control">
+                    <span>Tốc độ đọc:</span>
+                    <div className="speed-buttons">
+                      <button
+                        className={audioSettings.speed === 'slow' ? 'active' : ''}
+                        onClick={() => {
+                          playSfx('click', audioSettings.muted);
+                          setAudioSettings(prev => ({ ...prev, speed: 'slow' }));
+                        }}
+                      >
+                        Chậm
+                      </button>
+                      <button
+                        className={audioSettings.speed === 'normal' ? 'active' : ''}
+                        onClick={() => {
+                          playSfx('click', audioSettings.muted);
+                          setAudioSettings(prev => ({ ...prev, speed: 'normal' }));
+                        }}
+                      >
+                        Vừa
+                      </button>
+                      <button
+                        className={audioSettings.speed === 'fast' ? 'active' : ''}
+                        onClick={() => {
+                          playSfx('click', audioSettings.muted);
+                          setAudioSettings(prev => ({ ...prev, speed: 'fast' }));
+                        }}
+                      >
+                        Nhanh
+                      </button>
+                    </div>
+                  </div>
+                  <button
+                    className="mute-btn"
+                    onClick={() => {
+                      const nextMuted = !audioSettings.muted;
+                      setAudioSettings(prev => ({ ...prev, muted: nextMuted }));
+                      if (!nextMuted) {
+                        setTimeout(() => playSfx('click', false), 50);
+                      }
+                    }}
+                  >
+                    {audioSettings.muted ? '🔊 Bật âm thanh' : '🔇 Tắt toàn bộ âm'}
+                  </button>
+                </div>
+              )}
+            </div>
+            <button className="avatar-button" onClick={() => { setMenuOpen((open) => !open); setAudioPanelOpen(false); }} aria-label="Menu cá nhân">👦</button>
+          </div>
+          {menuOpen && (
+            <div className="profile-menu" style={{ width: '280px', maxHeight: '85vh', overflowY: 'auto' }}>
+              <b>{progress.profile?.name ? `Bé ${progress.profile.name}` : 'Bạn nhỏ chăm học'}</b>
+              <span style={{ fontSize: '13px', display: 'flex', alignItems: 'center', gap: '4px', margin: '4px 0 12px 0' }}>
+                <span>{progress.profile?.mascot === 'robot' ? '🤖' : progress.profile?.mascot === 'turtle' ? '🐢' : '🦉'}</span>
+                Cố vấn: {progress.profile?.mascot === 'robot' ? 'Rô Bốt' : progress.profile?.mascot === 'turtle' ? 'Rùa Con' : 'Cú Ú'}
+              </span>
+              <div style={{ borderTop: '1px solid #eef2ff', padding: '12px 0' }}>
+                <span style={{ fontWeight: 'bold', fontSize: '13px', display: 'block', marginBottom: '8px' }}>⏰ Nhắc nhở tự động</span>
+                <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '13px', marginBottom: '8px' }}>
+                  <span>Chuông báo học:</span>
                   <input
                     type="checkbox"
-                    checked={audioSettings.autoRead}
-                    onChange={(e) => {
-                      playSfx('click', audioSettings.muted);
-                      setAudioSettings(prev => ({ ...prev, autoRead: e.target.checked }));
-                    }}
+                    checked={progress.notificationsEnabled}
+                    onChange={(e) => toggleNotifications(e.target.checked)}
                   />
                 </label>
-                <div className="settings-row speed-control">
-                  <span>Tốc độ đọc:</span>
-                  <div className="speed-buttons">
-                    <button
-                      className={audioSettings.speed === 'slow' ? 'active' : ''}
-                      onClick={() => {
-                        playSfx('click', audioSettings.muted);
-                        setAudioSettings(prev => ({ ...prev, speed: 'slow' }));
-                      }}
+                {progress.notificationsEnabled && (
+                  <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '13px', marginBottom: '8px' }}>
+                    <span>Chọn giờ báo:</span>
+                    <select
+                      value={progress.reminderTime || '19:00'}
+                      onChange={(e) => changeReminderTime(e.target.value)}
+                      style={{ padding: '2px 6px', borderRadius: '6px', fontSize: '12px' }}
                     >
-                      Chậm
-                    </button>
-                    <button
-                      className={audioSettings.speed === 'normal' ? 'active' : ''}
-                      onClick={() => {
-                        playSfx('click', audioSettings.muted);
-                        setAudioSettings(prev => ({ ...prev, speed: 'normal' }));
-                      }}
-                    >
-                      Vừa
-                    </button>
-                    <button
-                      className={audioSettings.speed === 'fast' ? 'active' : ''}
-                      onClick={() => {
-                        playSfx('click', audioSettings.muted);
-                        setAudioSettings(prev => ({ ...prev, speed: 'fast' }));
-                      }}
-                    >
-                      Nhanh
-                    </button>
-                  </div>
-                </div>
-                <button
-                  className="mute-btn"
-                  onClick={() => {
-                    const nextMuted = !audioSettings.muted;
-                    setAudioSettings(prev => ({ ...prev, muted: nextMuted }));
-                    if (!nextMuted) {
-                      setTimeout(() => playSfx('click', false), 50);
-                    }
-                  }}
+                      <option value="08:00">08:00 Sáng</option>
+                      <option value="09:00">09:00 Sáng</option>
+                      <option value="17:00">17:00 Chiều</option>
+                      <option value="19:00">19:00 Tối</option>
+                      <option value="20:00">20:00 Tối</option>
+                      <option value="21:00">21:00 Tối</option>
+                    </select>
+                  </label>
+                )}
+                <button 
+                  onClick={downloadIcsReminder}
+                  className="calendar-btn-link"
+                  style={{ width: '100%', padding: '8px', fontSize: '12px', marginTop: '6px', cursor: 'pointer' }}
                 >
-                  {audioSettings.muted ? '🔊 Bật âm thanh' : '🔇 Tắt toàn bộ âm'}
+                  ⏰ Đặt lịch chuông điện thoại
                 </button>
               </div>
-            )}
+              <div style={{ borderTop: '1px solid #eef2ff', padding: '12px 0 0 0', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <button onClick={() => { setIsDevMode(prev => !prev); setMenuOpen(false); }} className="dev-toggle" style={{ margin: 0 }}>
+                  {isDevMode ? '🔒 Khóa chế độ Dev' : '🔓 Mở khóa tất cả'}
+                </button>
+                <button onClick={resetAllProgress} style={{ margin: 0, background: '#fff5f5', color: '#e53e3e', border: '1px solid #fed7d7' }}>Xóa tiến độ</button>
+              </div>
+            </div>
+          )}
+        </header>
+      )}
+
+      {!isOnboarding && (
+        <aside className="sidebar">
+          <nav>
+            <NavButton icon="🏠" label="Trang chủ" active={view === 'home'} onClick={() => setView('home')} />
+            <NavButton icon="📚" label="Bài học" active={view === 'lesson'} onClick={() => setView('home')} />
+            <NavButton icon="🏆" label="Thành tích" active={view === 'achievements'} onClick={() => setView('achievements')} />
+            <NavButton icon="📈" label="Tiến độ" active={view === 'progress'} onClick={() => setView('progress')} />
+          </nav>
+          <div className="coach-card">
+            <div className="coach">🙋‍♂️</div>
+            <b>Cố lên!</b>
+            <span>Mỗi lần giải thích được “tại sao”, bộ não của con mạnh hơn.</span>
           </div>
-          <button className="avatar-button" onClick={() => { setMenuOpen((open) => !open); setAudioPanelOpen(false); }} aria-label="Menu cá nhân">👦</button>
-        </div>
-        {menuOpen && (
-          <div className="profile-menu">
-            <b>Bạn nhỏ chăm học</b>
-            <span>{earnedStars} sao đã kiếm được</span>
-            <button onClick={() => { setIsDevMode(prev => !prev); setMenuOpen(false); }} className="dev-toggle">
-              {isDevMode ? '🔒 Khóa chế độ Dev' : '🔓 Mở khóa tất cả'}
-            </button>
-            <button onClick={resetAllProgress}>Xóa tiến độ</button>
-          </div>
+        </aside>
+      )}
+
+      <main className={isOnboarding ? "main-content full-width" : "main-content"}>
+        {view === 'onboarding' && (
+          <OnboardingView progress={progress} setProgress={setProgress} setView={setView} />
         )}
-      </header>
-
-      <aside className="sidebar">
-        <nav>
-          <NavButton icon="🏠" label="Trang chủ" active={view === 'home'} onClick={() => setView('home')} />
-          <NavButton icon="📚" label="Bài học" active={view === 'lesson'} onClick={() => setView('home')} />
-          <NavButton icon="🏆" label="Thành tích" active={view === 'achievements'} onClick={() => setView('achievements')} />
-          <NavButton icon="📈" label="Tiến độ" active={view === 'progress'} onClick={() => setView('progress')} />
-        </nav>
-        <div className="coach-card">
-          <div className="coach">🙋‍♂️</div>
-          <b>Cố lên!</b>
-          <span>Mỗi lần giải thích được “tại sao”, bộ não của con mạnh hơn.</span>
-        </div>
-      </aside>
-
-      <main className="main-content">
         {view === 'home' && (
           <Home
             lessons={lessons}
@@ -442,12 +669,54 @@ function App() {
         {view === 'progress' && <ProgressView lessons={lessons} progress={progress} />}
       </main>
 
-      <nav className="mobile-nav">
-        <NavButton icon="🏠" label="Trang chủ" active={view === 'home'} onClick={() => setView('home')} />
-        <NavButton icon="📚" label="Bài học" active={view === 'lesson'} onClick={() => setView('home')} />
-        <NavButton icon="🏆" label="Thành tích" active={view === 'achievements'} onClick={() => setView('achievements')} />
-        <NavButton icon="📈" label="Tiến độ" active={view === 'progress'} onClick={() => setView('progress')} />
-      </nav>
+      {!isOnboarding && (
+        <nav className="mobile-nav">
+          <NavButton icon="🏠" label="Trang chủ" active={view === 'home'} onClick={() => setView('home')} />
+          <NavButton icon="📚" label="Bài học" active={view === 'lesson'} onClick={() => setView('home')} />
+          <NavButton icon="🏆" label="Thành tích" active={view === 'achievements'} onClick={() => setView('achievements')} />
+          <NavButton icon="📈" label="Tiến độ" active={view === 'progress'} onClick={() => setView('progress')} />
+        </nav>
+      )}
+
+      {!isOnboarding && showInstallPrompt && (
+        <div className="pwa-install-drawer">
+          <div className="pwa-install-text">
+            <span>📲</span>
+            <div>
+              <b>Cài đặt ứng dụng Học Toán</b>
+              <p>Học mượt mà, không quảng cáo và không cần mạng internet!</p>
+            </div>
+          </div>
+          <div className="pwa-install-actions">
+            <button className="install-confirm" onClick={handleInstallClick}>Cài đặt</button>
+            <button className="install-dismiss" onClick={dismissInstallPrompt}>Đóng</button>
+          </div>
+        </div>
+      )}
+
+      {showIosInstructions && (
+        <div className="ios-instructions-modal" onClick={() => setShowIosInstructions(false)}>
+          <div className="ios-instructions-panel" onClick={e => e.stopPropagation()}>
+            <h3>Cài đặt Học Toán Vui trên iPhone/iPad</h3>
+            <p>Safari trên iOS không hỗ trợ cài đặt tự động. Bạn hãy thêm vào Màn hình chính theo cách sau:</p>
+            <div className="ios-steps">
+              <div className="ios-step-row">
+                <span>1</span>
+                <p>Chạm vào nút <b>Chia sẻ</b> (biểu tượng hộp có mũi tên lên ở dưới Safari).</p>
+              </div>
+              <div className="ios-step-row">
+                <span>2</span>
+                <p>Cuộn xuống dưới rồi chọn <b>Thêm vào màn hình chính</b> (Add to Home Screen).</p>
+              </div>
+              <div className="ios-step-row">
+                <span>3</span>
+                <p>Đặt tên ứng dụng và bấm <b>Thêm</b> (Add) ở góc trên cùng bên phải.</p>
+              </div>
+            </div>
+            <button onClick={() => setShowIosInstructions(false)}>Con đã hiểu</button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -843,6 +1112,528 @@ function ProgressView({ lessons, progress }) {
   return (
     <section className="simple-page"><div className="page-title"><span>📈</span><div><h1>Tiến độ học</h1><p>Mỗi kỹ năng được ghi nhận riêng để biết con đang mạnh ở đâu.</p></div></div><div className="progress-list">{lessons.map((lesson, index) => { const item = progress.completed[lesson.id]; return <div key={lesson.id} className="progress-row"><span>{lesson.icon}</span><div><b>{index + 1}. {lesson.shortTitle}</b><small>{lesson.skill}</small></div><div className="row-stars">{item ? '⭐'.repeat(item.stars) : isNaN(index) ? '' : 'Chưa học'}</div></div> })}</div></section>
   )
+}
+
+function OnboardingView({ setProgress, setView }) {
+  const [stage, setStage] = useState('welcome'); // 'welcome' | 'tutorial' | 'congrats'
+  const [name, setName] = useState('');
+  const [mascot, setMascot] = useState('owl'); // 'owl' | 'robot' | 'turtle'
+  const [tutorialStep, setTutorialStep] = useState(0);
+  const [tutorialSelected, setTutorialSelected] = useState(null);
+  const [tutorialSecondSelected, setTutorialSecondSelected] = useState(null);
+  const [tutorialFactAnswers, setTutorialFactAnswers] = useState([]);
+  const [tutorialNumberAnswer, setTutorialNumberAnswer] = useState('');
+  const [tutorialFeedback, setTutorialFeedback] = useState(null);
+  const [tutorialHintOpen, setTutorialHintOpen] = useState(false);
+
+  const mascots = [
+    { id: 'owl', emoji: '🦉', label: 'Cú Ú', desc: 'Thích hỏi "Tại sao?"' },
+    { id: 'robot', emoji: '🤖', label: 'Rô Bốt', desc: 'Vẽ sơ đồ siêu chuẩn' },
+    { id: 'turtle', emoji: '🐢', label: 'Rùa Con', desc: 'Cẩn thận, bền bỉ' }
+  ];
+
+  function handleStart() {
+    if (!name.trim()) return;
+    playClick();
+    setStage('tutorial');
+  }
+
+  function handleCongrats() {
+    playClick();
+    setProgress(old => ({
+      ...old,
+      onboarded: true,
+      xp: old.xp + 100,
+      profile: {
+        name: name.trim(),
+        mascot: mascot
+      }
+    }));
+    setView('home');
+  }
+
+  if (stage === 'welcome') {
+    return (
+      <div className="onboarding-screen">
+        <div className="onboarding-card">
+          <span style={{ fontSize: '48px' }}>🦉✨</span>
+          <h1>Chào mừng con đến với Học Toán!</h1>
+          <p>Học đọc hiểu và giải toán lời văn từng bước một cách thông minh.</p>
+          
+          <div className="onboarding-input-group">
+            <label htmlFor="child-name">Nhập tên của con:</label>
+            <input
+              id="child-name"
+              type="text"
+              placeholder="Ví dụ: Minh An, Bảo Vy..."
+              value={name}
+              onChange={e => setName(e.target.value)}
+              maxLength={20}
+            />
+          </div>
+          
+          <div className="mascot-selection-title">Chọn người bạn đồng hành:</div>
+          <div className="mascot-select-grid">
+            {mascots.map(m => (
+              <button
+                key={m.id}
+                className={`mascot-select-card ${mascot === m.id ? 'selected' : ''}`}
+                onClick={() => { playClick(); setMascot(m.id); }}
+              >
+                <span className="emoji">{m.emoji}</span>
+                <b>{m.label}</b>
+                <small>{m.desc}</small>
+              </button>
+            ))}
+          </div>
+          
+          <button
+            className="onboarding-btn"
+            disabled={!name.trim()}
+            onClick={handleStart}
+          >
+            Bắt đầu bài học đầu tiên! 🚀
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (stage === 'congrats') {
+    const buddy = mascot === 'robot' ? '🤖 Rô Bốt' : mascot === 'turtle' ? '🐢 Rùa Con' : '🦉 Cú Ú';
+    return (
+      <div className="onboarding-screen">
+        <div className="onboarding-card" style={{ maxWidth: '500px' }}>
+          <div className="congrats-badge">🎖️</div>
+          <h1>Bé {name} thật xuất sắc!</h1>
+          <p>Con đã hoàn thành buổi huấn luyện cách học toán tư duy của <b>{buddy}</b>.</p>
+          
+          <div className="congrats-card">
+            <span>🧠</span>
+            <b>Nhận ngay +100 điểm tư duy!</b>
+          </div>
+          
+          <button className="onboarding-btn" onClick={handleCongrats}>
+            Khám phá Hành trình Học Toán 🚀
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <OnboardingLesson
+      name={name}
+      mascot={mascot}
+      step={tutorialStep}
+      setStep={setTutorialStep}
+      selected={tutorialSelected}
+      setSelected={setTutorialSelected}
+      secondSelected={tutorialSecondSelected}
+      setSecondSelected={setTutorialSecondSelected}
+      factAnswers={tutorialFactAnswers}
+      setFactAnswers={setTutorialFactAnswers}
+      numberAnswer={tutorialNumberAnswer}
+      setNumberAnswer={setTutorialNumberAnswer}
+      feedback={tutorialFeedback}
+      setFeedback={setTutorialFeedback}
+      hintOpen={tutorialHintOpen}
+      setHintOpen={setTutorialHintOpen}
+      onComplete={() => setStage('congrats')}
+    />
+  );
+}
+
+function OnboardingLesson(props) {
+  const {
+    name, mascot, step, setStep, selected, setSelected, secondSelected, setSecondSelected,
+    factAnswers, setFactAnswers, numberAnswer, setNumberAnswer, feedback, setFeedback,
+    onComplete
+  } = props;
+
+  const buddyEmoji = mascot === 'robot' ? '🤖' : mascot === 'turtle' ? '🐢' : '🦉';
+  const buddyName = mascot === 'robot' ? 'Rô Bốt' : mascot === 'turtle' ? 'Rùa Con' : 'Cú Ú';
+  
+  const buddyMessages = useMemo(() => [
+    `Chào bé ${name}! Ta là ${buddyName} đây. Hãy xem bức tranh mô tả: ban đầu có 3 quả táo đỏ, rồi thêm 2 quả táo xanh. Bấm "Kiểm tra" nào!`,
+    `Tuyệt vời! Bây giờ, hãy tóm tắt câu chuyện. Hãy chọn câu A (đầy đủ cả táo đỏ, táo xanh và câu hỏi) nhé con!`,
+    `Bước 3: Tách dữ kiện. Số táo mẹ có và mua thêm là "Đã biết", còn câu hỏi là "Cần tìm". Hãy chọn đúng nha!`,
+    `Để giải toán lời văn, sơ đồ là người bạn tốt nhất! Hãy chọn Sơ đồ tổng - phần (ô đầu tiên) để gộp hai loại táo nhé.`,
+    `Chọn phép tính phù hợp nào. Muốn biết tất cả táo, ta gộp lại bằng phép tính 3 + 2. Chọn phép tính này và lý do tại sao nhé!`,
+    `Tự tính toán: 3 + 2 bằng mấy con nhỉ? Hãy gõ kết quả vào ô trống nha!`,
+    `Viết câu trả lời đầy đủ: hãy chọn câu A có chứa cả kết quả 5 quả táo và câu chữ đầy đủ nhất nhé!`,
+    `Bước cuối: Kiểm tra lại. Kết quả 5 quả táo có lớn hơn số táo ban đầu không? Có hợp lý không con? Chọn Đúng nào!`
+  ], [name, buddyName]);
+
+  useEffect(() => {
+    speakText(buddyMessages[step], resolveSpeechRate('normal'));
+  }, [step, buddyMessages]);
+
+  function validateTutorialStep() {
+    if (feedback?.correct) return;
+    
+    let correct = false;
+    let msg = "";
+
+    if (step === 0) {
+      correct = true;
+      msg = "Chính xác! Con đã hiểu bối cảnh câu chuyện.";
+    } else if (step === 1) {
+      correct = selected === 0;
+      msg = correct ? "Đúng rồi! Kể lại bằng lời giúp bộ não hiểu đề tốt hơn." : "Hãy chạm vào câu A nhé!";
+    } else if (step === 2) {
+      correct = factAnswers[0] === 'known' && factAnswers[1] === 'known' && factAnswers[2] === 'unknown';
+      msg = correct ? "Tuyệt vời! Con đã biết cách phân loại thông tin." : "Hãy bấm 'Đã biết' cho dữ kiện số, và 'Cần tìm' cho câu hỏi.";
+    } else if (step === 3) {
+      correct = selected === 0;
+      msg = correct ? "Đúng thế! Sơ đồ tổng phần biểu thị sự gộp lại." : "Hãy chọn mô hình đầu tiên.";
+    } else if (step === 4) {
+      correct = selected === 0 && secondSelected === 0;
+      msg = correct ? "Rất giỏi! Con vừa biết chọn phép tính vừa hiểu rõ lý do!" : "Hãy chọn phép tính 3+2 và lý do đầu tiên.";
+    } else if (step === 5) {
+      correct = Number(numberAnswer) === 5;
+      msg = correct ? "Chính xác! 3 + 2 = 5." : "Hãy gõ số 5 nhé!";
+    } else if (step === 6) {
+      correct = selected === 0;
+      msg = correct ? "Đúng rồi! Trả lời đầy đủ câu chữ giúp người khác dễ hiểu." : "Hãy chọn câu A.";
+    } else if (step === 7) {
+      correct = selected === 0;
+      msg = correct ? "Xuất sắc! Tự kiểm tra lại giúp con không bao giờ sợ làm sai." : "Hãy chọn Đúng nhé.";
+    }
+
+    if (correct) {
+      playSfx('correct', false);
+      setFeedback({ correct: true, message: msg });
+    } else {
+      playSfx('wrong', false);
+      setFeedback({ correct: false, message: msg });
+    }
+  }
+
+  function nextTutorialStep() {
+    if (!feedback?.correct) return;
+    setFeedback(null);
+    setSelected(null);
+    setSecondSelected(null);
+    setFactAnswers([]);
+    setNumberAnswer('');
+    
+    if (step < 7) {
+      playClick();
+      setStep(step + 1);
+    } else {
+      playSfx('complete', false);
+      onComplete();
+    }
+  }
+
+  return (
+    <div className="lesson-page" style={{ paddingBottom: '32px' }}>
+      <div className="lesson-toolbar">
+        <div className="brand" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{ fontSize: '24px' }}>{buddyEmoji}</span>
+          <b style={{ color: '#4f46e5' }}>Huấn luyện cùng {buddyName}</b>
+        </div>
+        <div className="lesson-progress">
+          <span style={{ width: `${((step + 1) / 8) * 100}%` }} />
+        </div>
+        <div className="hearts">❤️ Không giới hạn</div>
+      </div>
+
+      <div className="buddy-panel">
+        <div className="buddy-avatar">{buddyEmoji}</div>
+        <div className="buddy-chat">
+          <b>{buddyName} khuyên:</b>
+          <p>{buddyMessages[step]}</p>
+        </div>
+      </div>
+
+      <div className="lesson-layout">
+        <ol className="steps-list">
+          {STEP_LABELS.map(([icon, label], index) => (
+            <li key={label} className={index === step ? 'active' : index < step ? 'done' : ''}>
+              <span>{index < step ? '✓' : index + 1}</span><i>{icon}</i><b>{label}</b>
+            </li>
+          ))}
+        </ol>
+
+        <section className="exercise-card">
+          <div className="story-box">
+            <p>{LESSON_0.story}</p>
+            <span className="story-emoji">{LESSON_0.icon}</span>
+          </div>
+
+          <div className="question-area">
+            <OnboardingStepContent
+              step={step}
+              selected={selected}
+              setSelected={setSelected}
+              secondSelected={secondSelected}
+              setSecondSelected={setSecondSelected}
+              factAnswers={factAnswers}
+              setFactAnswers={setFactAnswers}
+              numberAnswer={numberAnswer}
+              setNumberAnswer={setNumberAnswer}
+              feedback={feedback}
+            />
+          </div>
+
+          {feedback && (
+            <div className={feedback.correct ? 'feedback correct' : 'feedback wrong'}>
+              <span>{feedback.correct ? '🎉' : '🌱'}</span>
+              <p><b>{feedback.correct ? 'Chính xác!' : 'Thử lại nhé!'}</b>{feedback.message}</p>
+            </div>
+          )}
+
+          <div className="lesson-actions" style={{ justifyContent: 'flex-end' }}>
+            {!feedback?.correct ? (
+              <button 
+                className="primary-button" 
+                onClick={validateTutorialStep}
+                disabled={
+                  (step === 1 && selected === null) ||
+                  (step === 2 && (factAnswers.length < 3 || factAnswers.includes(undefined))) ||
+                  (step === 3 && selected === null) ||
+                  (step === 4 && (selected === null || secondSelected === null)) ||
+                  (step === 5 && numberAnswer.trim() === '') ||
+                  (step === 6 && selected === null) ||
+                  (step === 7 && selected === null)
+                }
+              >
+                Kiểm tra
+              </button>
+            ) : (
+              <button className="primary-button" onClick={nextTutorialStep}>
+                {step === 7 ? 'Hoàn thành' : 'Tiếp theo'} →
+              </button>
+            )}
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}
+
+function OnboardingStepContent(props) {
+  const { step, selected, setSelected, secondSelected, setSecondSelected, factAnswers, setFactAnswers, numberAnswer, setNumberAnswer, feedback } = props;
+  const frozen = Boolean(feedback?.correct);
+
+  if (step === 0) {
+    return (
+      <div>
+        <SectionHeading 
+          num="1" 
+          title="Nhìn câu chuyện bằng hình" 
+          desc="Hãy xem sự thay đổi số lượng táo." 
+        />
+        <div className="visual-story">
+          <div className="visual-group">
+            <b>Ban đầu</b>
+            <div className="emoji-row">🍎🍎🍎</div>
+            <small>3 quả táo đỏ</small>
+          </div>
+          <div className="story-arrow">→</div>
+          <div className="visual-group accent">
+            <b>Mua thêm</b>
+            <div className="emoji-row">🍏🍏</div>
+            <small>2 quả táo xanh</small>
+          </div>
+          <div className="story-arrow">→</div>
+          <div className="unknown-box">?</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (step === 1) {
+    const options = LESSON_0.retellOptions;
+    return (
+      <div>
+        <SectionHeading num="?" title="Kể lại bằng lời" desc="Chạm vào câu tóm tắt đúng." />
+        <div className="option-list">
+          {options.map((option, index) => (
+            <button
+              key={option}
+              disabled={frozen}
+              className={`option ${selected === index ? 'selected' : ''} ${index === 0 ? 'guide-highlight' : 'guide-disabled'}`}
+              onClick={() => { playClick(); setSelected(index); }}
+              style={{ width: '100%', display: 'flex', textAlign: 'left', marginBottom: '8px', padding: '12px' }}
+            >
+              <span>{String.fromCharCode(65 + index)}</span>
+              <p>{option}</p>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (step === 2) {
+    const setRole = (idx, role) => {
+      const next = [...factAnswers];
+      next[idx] = role;
+      setFactAnswers(next);
+    };
+    return (
+      <div>
+        <SectionHeading num="3" title="Đã biết hay cần tìm?" desc="Phân loại dữ kiện của bài." />
+        <div className="facts-grid">
+          {LESSON_0.facts.map((fact, index) => {
+            const correctRole = index < 2 ? 'known' : 'unknown';
+            return (
+              <div className="fact-card" key={fact} style={{ border: '1px solid #e2e8f0', padding: '12px', borderRadius: '12px', marginBottom: '8px' }}>
+                <p style={{ fontWeight: 'bold', marginBottom: '8px' }}>{fact}</p>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <button 
+                    disabled={frozen} 
+                    className={`secondary-button ${factAnswers[index] === 'known' ? 'selected' : ''} ${correctRole === 'known' ? 'guide-highlight' : 'guide-disabled'}`} 
+                    onClick={() => { playClick(); setRole(index, 'known'); }}
+                    style={{ flex: 1, padding: '8px' }}
+                  >
+                    ✓ Đã biết
+                  </button>
+                  <button 
+                    disabled={frozen} 
+                    className={`secondary-button ${factAnswers[index] === 'unknown' ? 'selected' : ''} ${correctRole === 'unknown' ? 'guide-highlight' : 'guide-disabled'}`} 
+                    onClick={() => { playClick(); setRole(index, 'unknown'); }}
+                    style={{ flex: 1, padding: '8px' }}
+                  >
+                    ? Cần tìm
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  if (step === 3) {
+    return (
+      <div>
+        <SectionHeading num="4" title="Chọn mô hình phù hợp" desc="Chọn mô hình diễn tả đúng mối quan hệ." />
+        <div className="model-grid">
+          {LESSON_0.models.map((model, index) => (
+            <button 
+              key={model}
+              disabled={frozen} 
+              className={`model-card ${selected === index ? 'selected' : ''} ${index === 0 ? 'guide-highlight' : 'guide-disabled'}`} 
+              onClick={() => { playClick(); setSelected(index); }}
+              style={{ width: '100%', marginBottom: '8px', padding: '12px' }}
+            >
+              <span>{index === 0 ? '▰▰' : '● ●'}</span>
+              <b>{model}</b>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (step === 4) {
+    return (
+      <div>
+        <SectionHeading num="5" title="Chọn phép tính và lý do" desc="Giải thích bản chất phép tính." />
+        <h3 className="mini-title">Phép tính nào phù hợp?</h3>
+        <div className="operation-grid" style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
+          {LESSON_0.operations.map((op, index) => (
+            <button 
+              disabled={frozen} 
+              key={op} 
+              className={`secondary-button ${selected === index ? 'selected' : ''} ${index === 0 ? 'guide-highlight' : 'guide-disabled'}`} 
+              onClick={() => { playClick(); setSelected(index); }}
+              style={{ flex: 1, padding: '12px', fontSize: '18px', fontWeight: 'bold' }}
+            >
+              {op}
+            </button>
+          ))}
+        </div>
+        <h3 className="mini-title">Tại sao?</h3>
+        <div className="reason-list">
+          {LESSON_0.reasons.map((r, index) => (
+            <button 
+              disabled={frozen} 
+              key={r} 
+              className={`option ${secondSelected === index ? 'selected' : ''} ${index === 0 ? 'guide-highlight' : 'guide-disabled'}`} 
+              onClick={() => { playClick(); setSecondSelected(index); }}
+              style={{ width: '100%', textAlign: 'left', marginBottom: '8px', padding: '12px' }}
+            >
+              <span>{index + 1}</span>
+              <p>{r}</p>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (step === 5) {
+    return (
+      <div>
+        <SectionHeading num="6" title="Tự tính toán" desc="Điền kết quả vào ô trống." />
+        <div className="calculation-box">
+          <span>3 + 2</span>
+          <b>=</b>
+          <input 
+            disabled={frozen} 
+            inputMode="numeric" 
+            pattern="[0-9]*" 
+            value={numberAnswer} 
+            onChange={(e) => setNumberAnswer(e.target.value.replace(/\D/g, ''))} 
+            autoFocus 
+            className="guide-highlight"
+            style={{ width: '80px', textAlign: 'center', fontSize: '24px', padding: '8px' }}
+          />
+          <small>quả táo</small>
+        </div>
+      </div>
+    );
+  }
+
+  if (step === 6) {
+    const options = LESSON_0.answerOptions;
+    return (
+      <div>
+        <SectionHeading num="?" title="Viết câu trả lời đầy đủ" desc="Chạm vào câu trả lời đúng nhất." />
+        <div className="option-list">
+          {options.map((option, index) => (
+            <button
+              key={option}
+              disabled={frozen}
+              className={`option ${selected === index ? 'selected' : ''} ${index === 0 ? 'guide-highlight' : 'guide-disabled'}`}
+              onClick={() => { playClick(); setSelected(index); }}
+              style={{ width: '100%', display: 'flex', textAlign: 'left', marginBottom: '8px', padding: '12px' }}
+            >
+              <span>{String.fromCharCode(65 + index)}</span>
+              <p>{option}</p>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  const checkOpts = LESSON_0.checkOptions;
+  return (
+    <div>
+      <SectionHeading num="8" title="Kiểm tra lại" desc={LESSON_0.checkQuestion} />
+      <div className="option-list">
+        {checkOpts.map((option, index) => (
+          <button
+            key={option}
+            disabled={frozen}
+            className={`option ${selected === index ? 'selected' : ''} ${index === 0 ? 'guide-highlight' : 'guide-disabled'}`}
+            onClick={() => { playClick(); setSelected(index); }}
+            style={{ width: '100%', display: 'flex', textAlign: 'left', marginBottom: '8px', padding: '12px' }}
+          >
+            <span>{String.fromCharCode(65 + index)}</span>
+            <p>{option}</p>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default App
