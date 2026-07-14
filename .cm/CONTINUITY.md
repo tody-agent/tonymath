@@ -35,3 +35,11 @@ Completed
 - **What Failed**: Phần chữ trong hộp truyện (`story-box`) của Bài học số 0 bị co bóp thành một cột dọc do thiếu nút loa phát âm, trong khi CSS Grid của hộp truyện đang chia theo tỷ lệ 3 phần: `46px 1fr 64px`.
 - **How to Prevent**: Luôn giữ cấu trúc số lượng thẻ con tương thích khi sử dụng CSS Grid chia theo cột cố định, hoặc định nghĩa lại Grid Template tùy chỉnh khi ẩn/hiện thẻ con.
 - **Scope**: file:src/App.jsx
+
+- **What Failed**: Bố cục của phần câu hỏi `.question-area` đè lấn lên hộp truyện `.story-box` trên mobile do sử dụng `justify-content: center` trong một flex container bị giới hạn chiều cao (flex-shrink và min-height: 0).
+- **How to Prevent**: Tránh sử dụng `justify-content: center` khi chiều cao của viewport trên thiết bị di động có thể bé hơn kích thước của các phần tử con bên trong. Hãy ưu tiên sử dụng `justify-content: flex-start` trên mobile để nội dung xếp lớp từ trên xuống và cuộn tự nhiên.
+- **Scope**: file:src/App.css
+
+- **What Failed**: Các nút loa phát âm nhỏ `.speech-mini-btn` bên trong thẻ `.fact-card` bị biến dạng thành hình chữ nhật bo góc thay vì hình tròn do selector `.fact-card button` viết quá chung chung làm ảnh hưởng đến các nút con sâu bên trong.
+- **How to Prevent**: Hạn chế sử dụng các selector quá rộng như `.parent button`. Thay vào đó, hãy sử dụng các selector trực tiếp như `.parent > button` hoặc chỉ định cụ thể class name cho các nút chức năng để tránh ảnh hưởng đến các thành phần dùng chung khác.
+- **Scope**: file:src/App.css

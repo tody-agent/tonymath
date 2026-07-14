@@ -120,6 +120,9 @@ export function playSfx(type, muted = false) {
 
 let keepAliveTimer = null;
 
+/**
+ * Stops the keep-alive loop.
+ */
 function stopKeepAlive() {
   if (keepAliveTimer) {
     clearInterval(keepAliveTimer);
@@ -127,6 +130,9 @@ function stopKeepAlive() {
   }
 }
 
+/**
+ * Keeps SpeechSynthesis alive on Chrome by triggering brief pause/resume every 10s.
+ */
 function startKeepAlive() {
   stopKeepAlive();
   const synth = window.speechSynthesis;
@@ -138,6 +144,9 @@ function startKeepAlive() {
   }, 10000);
 }
 
+/**
+ * Cancels any ongoing text-to-speech rendering immediately.
+ */
 export function cancelSpeech() {
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
@@ -146,7 +155,13 @@ export function cancelSpeech() {
 }
 
 /**
- * Speaks Vietnamese text via SpeechSynthesis.
+ * Speaks the given text using browser SpeechSynthesis API.
+ * Handles language matching, voice caching, keep-alive, and overlaps.
+ * 
+ * @param {string} text - Vietnamese content to be spoken
+ * @param {number} rate - Speed rate (0.1 to 10)
+ * @param {function} onStart - Callback when speech starts
+ * @param {function} onEnd - Callback when speech ends or fails
  */
 export function speakText(text, rate = 0.95, onStart = null, onEnd = null) {
   if (!('speechSynthesis' in window)) {

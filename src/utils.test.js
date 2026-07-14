@@ -18,10 +18,10 @@ try {
   process.exit(1);
 }
 
-// Test 2: Lesson 2 (index 1) should be locked if Lesson 1 is not completed
+// Test 2: Lesson 2 (index 1) should be unlocked even if Lesson 1 is not completed (Free browse policy)
 try {
-  assert.strictEqual(isUnlocked(1, {}, mockLessons, false), false);
-  console.log('✅ Test 2 Passed: Lesson 2 is locked when Lesson 1 is incomplete');
+  assert.strictEqual(isUnlocked(1, {}, mockLessons, false), true);
+  console.log('✅ Test 2 Passed: Lesson 2 is unlocked when Lesson 1 is incomplete (Free browse)');
 } catch (e) {
   console.error('❌ Test 2 Failed:', e.message);
   process.exit(1);

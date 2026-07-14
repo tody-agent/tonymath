@@ -9,9 +9,7 @@ import {
   getCompletionPraise,
   getEncourageLine,
   applyLessonResult,
-  applyStepMistake,
-  getLessonBadge,
-  getPathIndex
+  applyStepMistake
 } from './utils.js'
 import { playSfx, speakText, cancelSpeech } from './audio.js'
 import './App.css'
@@ -132,18 +130,32 @@ const DEFAULT_AUDIO_SETTINGS = {
 function loadProgress() {
   try {
     const saved = localStorage.getItem('hoc-toan-vui-progress-v1')
-    if (!saved) return { ...DEFAULT_PROGRESS }
+    const cachedName = localStorage.getItem('hoc-toan-vui-student-name') || ''
+    if (!saved) {
+      return {
+        ...DEFAULT_PROGRESS,
+        profile: { ...DEFAULT_PROGRESS.profile, name: cachedName }
+      }
+    }
     const parsed = JSON.parse(saved)
     return {
       ...DEFAULT_PROGRESS,
       ...parsed,
-      profile: { ...DEFAULT_PROGRESS.profile, ...(parsed.profile || {}) },
+      profile: {
+        ...DEFAULT_PROGRESS.profile,
+        ...(parsed.profile || {}),
+        name: parsed.profile?.name || cachedName
+      },
       completed: parsed.completed || {},
       attempts: parsed.attempts || {},
       weakSkills: parsed.weakSkills || {}
     }
   } catch {
-    return { ...DEFAULT_PROGRESS }
+    const cachedName = localStorage.getItem('hoc-toan-vui-student-name') || ''
+    return {
+      ...DEFAULT_PROGRESS,
+      profile: { ...DEFAULT_PROGRESS.profile, name: cachedName }
+    }
   }
 }
 
@@ -185,6 +197,8 @@ function App() {
   const [hearts, setHearts] = useState(3)
   const [menuOpen, setMenuOpen] = useState(false)
   const [isDevMode, setIsDevMode] = useState(false)
+  const [isEditingName, setIsEditingName] = useState(false)
+  const [tempName, setTempName] = useState('')
   const [showIosInstructions, setShowIosInstructions] = useState(false)
   const [stepFailsSession, setStepFailsSession] = useState({})
   const [showWelcomeNudge, setShowWelcomeNudge] = useState(false)
@@ -378,6 +392,21 @@ function App() {
     resetStepState(0)
     setView('lesson')
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  function saveProfileName() {
+    const trimmed = tempName.trim();
+    setProgress(old => ({
+      ...old,
+      profile: {
+        ...old.profile,
+        name: trimmed
+      }
+    }));
+    if (trimmed) {
+      localStorage.setItem('hoc-toan-vui-student-name', trimmed);
+    }
+    setIsEditingName(false);
   }
 
   function markAttempt(isCorrect, message) {
@@ -649,7 +678,78 @@ function App() {
           </div>
           {menuOpen && (
             <div className="profile-menu" style={{ width: '280px', maxHeight: '85vh', overflowY: 'auto' }}>
-              <b>{progress.profile?.name ? `Bé ${progress.profile.name}` : 'Bạn nhỏ chăm học'}</b>
+              {isEditingName ? (
+                <div style={{ display: 'flex', gap: '6px', alignItems: 'center', marginBottom: '8px' }}>
+                  <input
+                    type="text"
+                    value={tempName}
+                    onChange={(e) => setTempName(e.target.value)}
+                    style={{
+                      flex: 1,
+                      padding: '4px 8px',
+                      borderRadius: '8px',
+                      border: '1px solid #ccc',
+                      fontSize: '13px',
+                      outline: 'none'
+                    }}
+                    maxLength={20}
+                    autoFocus
+                  />
+                  <button
+                    onClick={saveProfileName}
+                    style={{
+                      padding: '4px 8px',
+                      borderRadius: '8px',
+                      background: '#39bf64',
+                      color: '#fff',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      fontWeight: 'bold'
+                    }}
+                  >
+                    Lưu
+                  </button>
+                  <button
+                    onClick={() => setIsEditingName(false)}
+                    style={{
+                      padding: '4px 8px',
+                      borderRadius: '8px',
+                      background: '#e0e0e0',
+                      color: '#333',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontSize: '12px'
+                    }}
+                  >
+                    Hủy
+                  </button>
+                </div>
+              ) : (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', marginBottom: '4px' }}>
+                  <b>{progress.profile?.name ? `Bé ${progress.profile.name}` : 'Bạn nhỏ chăm học'}</b>
+                  <button
+                    onClick={() => {
+                      setTempName(progress.profile?.name || '');
+                      setIsEditingName(true);
+                    }}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: '#4f46e5',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      padding: '2px 6px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '2px'
+                    }}
+                    aria-label="Sửa tên học sinh"
+                  >
+                    ✏️ Sửa
+                  </button>
+                </div>
+              )}
               <span style={{ fontSize: '13px', display: 'flex', alignItems: 'center', gap: '4px', margin: '4px 0 12px 0' }}>
                 <span>{progress.profile?.mascot === 'robot' ? '🤖' : progress.profile?.mascot === 'turtle' ? '🐢' : '🦉'}</span>
                 Cố vấn: {progress.profile?.mascot === 'robot' ? 'Rô Bốt' : progress.profile?.mascot === 'turtle' ? 'Rùa Con' : 'Cú Ú'}
@@ -767,7 +867,7 @@ function App() {
           />
         )}
         {view === 'achievements' && <Achievements progress={progress} earnedStars={earnedStars} />}
-        {view === 'progress' && <ProgressView lessons={lessons} progress={progress} plan={learningPlan} openLesson={openLesson} />}
+        {view === 'progress' && <ProgressView lessons={lessons} progress={progress} />}
       </main>
 
       {!isSessionActive && (
@@ -1420,9 +1520,40 @@ function ProgressView({ lessons, progress }) {
   )
 }
 
+function CoachSidebar({ progress, plan, openLesson }) {
+  const mascot = progress?.profile?.mascot || 'owl';
+  const mascotEmoji = mascot === 'robot' ? '🤖' : mascot === 'turtle' ? '🐢' : '🦉';
+  const mascotName = mascot === 'robot' ? 'Rô Bốt' : mascot === 'turtle' ? 'Rùa Con' : 'Cú Ú';
+  
+  const primary = plan?.primary;
+
+  return (
+    <div className="coach-card" style={{ marginTop: '40px' }}>
+      <div className="coach">{mascotEmoji}</div>
+      <b>{mascotName} khuyên:</b>
+      <div>
+        {primary ? (
+          <>
+            <span>{primary.blurb}</span>
+            <button 
+              className="primary-button" 
+              style={{ marginTop: '10px', width: '100%', padding: '8px', fontSize: '13px', cursor: 'pointer' }}
+              onClick={() => openLesson(primary.index)}
+            >
+              {primary.kind === 'review' ? 'Ôn bài ngay' : 'Học ngay'}
+            </button>
+          </>
+        ) : (
+          <span>Mỗi lần giải thích được “tại sao”, bộ não của con mạnh hơn.</span>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function OnboardingView({ setProgress, setView }) {
   const [stage, setStage] = useState('welcome'); // 'welcome' | 'tutorial' | 'congrats'
-  const [name, setName] = useState('');
+  const [name, setName] = useState(() => localStorage.getItem('hoc-toan-vui-student-name') || '');
   const [mascot, setMascot] = useState('owl'); // 'owl' | 'robot' | 'turtle'
   const [tutorialStep, setTutorialStep] = useState(0);
   const [tutorialSelected, setTutorialSelected] = useState(null);
@@ -1454,28 +1585,34 @@ function OnboardingView({ setProgress, setView }) {
 
   function handleCongrats() {
     playClick();
+    const finalName = name.trim();
     setProgress(old => ({
       ...old,
       onboarded: true,
       xp: old.xp + 100,
       profile: {
-        name: name.trim(),
+        name: finalName,
         mascot: mascot
       }
     }));
+    if (finalName) {
+      localStorage.setItem('hoc-toan-vui-student-name', finalName);
+    }
     setView('home');
   }
 
   function handleSkip() {
     playClick();
+    const finalName = name.trim() || 'Bạn nhỏ';
     setProgress(old => ({
       ...old,
       onboarded: true,
       profile: {
-        name: name.trim() || 'Bạn nhỏ',
+        name: finalName,
         mascot: mascot
       }
     }));
+    localStorage.setItem('hoc-toan-vui-student-name', finalName);
     setView('home');
   }
 
@@ -1494,7 +1631,11 @@ function OnboardingView({ setProgress, setView }) {
               type="text"
               placeholder="Ví dụ: Minh An, Bảo Vy..."
               value={name}
-              onChange={e => setName(e.target.value)}
+              onChange={e => {
+                const val = e.target.value;
+                setName(val);
+                localStorage.setItem('hoc-toan-vui-student-name', val);
+              }}
               maxLength={20}
             />
           </div>
@@ -1996,31 +2137,6 @@ function OnboardingStepContent(props) {
       </div>
     </div>
   );
-}
-
-function CoachSidebar({ progress, plan, openLesson }) {
-  const mascot = progress?.profile?.mascot || 'owl'
-  const mascotEmoji = mascot === 'robot' ? '🤖' : mascot === 'turtle' ? '🐢' : '🦉'
-  const mascotName = mascot === 'robot' ? 'Rô Bốt' : mascot === 'turtle' ? 'Rùa Con' : 'Cú Ú'
-
-  // Get primary recommendation
-  const primary = plan?.primary
-
-  return (
-    <div className="coach-card" style={{ marginTop: '40px' }}>
-      <div className="coach">{mascotEmoji}</div>
-      <b>{mascotName} khuyên:</b>
-      <span>
-        {primary ? (
-          <>
-            Hãy học tiếp bài: <a href="#" onClick={(e) => { e.preventDefault(); openLesson(primary.index); }} style={{ color: '#6d59e8', fontWeight: 'bold', textDecoration: 'underline' }}>{primary.lesson.shortTitle}</a>
-          </>
-        ) : (
-          "Mỗi lần giải thích được “tại sao”, bộ não của con mạnh hơn."
-        )}
-      </span>
-    </div>
-  )
 }
 
 export default App

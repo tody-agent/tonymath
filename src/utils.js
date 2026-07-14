@@ -241,7 +241,7 @@ export function getLearningPlan(lessons, progress) {
   if (weakSkills[0] && secondary.length < 2) {
     const skill = weakSkills[0].skill;
     const candidate = lessons.find(
-      (l, i) =>
+      (l) =>
         l.skill === skill &&
         (!primary || l.id !== primary.lesson.id) &&
         !secondary.some((s) => s.lesson.id === l.id)

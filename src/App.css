@@ -133,8 +133,8 @@ button:disabled { cursor: not-allowed; }
 .fact-card { border:1px solid var(--line);border-radius:16px;padding:16px;background:#fafbfe; }
 .fact-card p { min-height:52px;margin:0 0 12px;font-weight:800; }
 .fact-card > div { display:grid;gap:7px; }
-.fact-card button { padding:9px;border-radius:10px;background:#fff;border:1px solid #dbe1eb;font-weight:800; }
-.fact-card button.selected { background:#e9f8ef;border-color:#4bc47b;color:#22864b; }
+.fact-card > div > button { padding:9px;border-radius:10px;background:#fff;border:1px solid #dbe1eb;font-weight:800; }
+.fact-card > div > button.selected { background:#e9f8ee;border-color:#4bc47b;color:#22864b; }
 .model-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:12px; }
 .model-card { min-height:145px;border:2px solid var(--line);border-radius:16px;background:#fff;padding:15px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px; }
 .model-card > span { font-size:30px;letter-spacing:4px;color:#56708e; }
@@ -188,7 +188,7 @@ button:disabled { cursor: not-allowed; }
   .journey-hero { min-height:145px;padding:22px; }.treasure > span { font-size:58px; }.journey-hero p { font-size:14px; }
   .lesson-grid { grid-template-columns:repeat(2,1fr);gap:11px; }.lesson-card { min-height:192px;padding:16px 8px 12px; }.lesson-icon { font-size:45px; }.lesson-card strong { font-size:14px; }
   .lesson-layout { grid-template-columns:1fr; }.steps-list { display:flex;overflow-x:auto;gap:5px;position:static;padding:6px;scrollbar-width:none; }.steps-list li { min-width:44px;min-height:42px;padding:4px;grid-template-columns:1fr;justify-items:center; }.steps-list li i,.steps-list li b { display:none; }.steps-list li > span { width:30px;height:30px; }
-  .exercise-card { min-height:0;padding:12px; }.story-box { grid-template-columns:40px 1fr;padding:12px; }.story-box p { font-size:16px; }.story-emoji { display:none; }.question-area { padding:20px 3px; }
+  .exercise-card { min-height:0;padding:12px; }.story-box { grid-template-columns:40px 1fr;padding:12px; }.story-box p { font-size:16px; }.story-emoji { display:none; }.question-area { padding:20px 3px; justify-content: flex-start; flex: none; min-height: auto; }
   .visual-story { grid-template-columns:1fr 22px 1fr 22px 64px; padding:11px; gap:4px; }
   .visual-group { min-height:120px;padding:8px; }
   .emoji-row { font-size:17px; }
@@ -1042,7 +1042,7 @@ button:disabled { cursor: not-allowed; }
 .fact-card > div {
   gap: 6px;
 }
-.fact-card button {
+.fact-card > div > button {
   padding: 8px;
   font-size: 13px;
   border-radius: 8px;
