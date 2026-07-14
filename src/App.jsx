@@ -1152,6 +1152,19 @@ function OnboardingView({ setProgress, setView }) {
     setView('home');
   }
 
+  function handleSkip() {
+    playClick();
+    setProgress(old => ({
+      ...old,
+      onboarded: true,
+      profile: {
+        name: name.trim() || 'Bạn nhỏ',
+        mascot: mascot
+      }
+    }));
+    setView('home');
+  }
+
   if (stage === 'welcome') {
     return (
       <div className="onboarding-screen">
@@ -1193,6 +1206,14 @@ function OnboardingView({ setProgress, setView }) {
             onClick={handleStart}
           >
             Bắt đầu bài học đầu tiên! 🚀
+          </button>
+
+          <button
+            className="secondary-button"
+            onClick={handleSkip}
+            style={{ width: '100%', marginTop: '12px', padding: '14px', borderRadius: '16px', fontWeight: 'bold' }}
+          >
+            Bỏ qua hướng dẫn (Vào danh sách bài)
           </button>
         </div>
       </div>
@@ -1240,6 +1261,7 @@ function OnboardingView({ setProgress, setView }) {
       hintOpen={tutorialHintOpen}
       setHintOpen={setTutorialHintOpen}
       onComplete={() => setStage('congrats')}
+      onSkip={handleSkip}
     />
   );
 }
@@ -1248,7 +1270,7 @@ function OnboardingLesson(props) {
   const {
     name, mascot, step, setStep, selected, setSelected, secondSelected, setSecondSelected,
     factAnswers, setFactAnswers, numberAnswer, setNumberAnswer, feedback, setFeedback,
-    onComplete
+    onComplete, onSkip
   } = props;
 
   const buddyEmoji = mascot === 'robot' ? '🤖' : mascot === 'turtle' ? '🐢' : '🦉';
@@ -1268,6 +1290,10 @@ function OnboardingLesson(props) {
   useEffect(() => {
     speakText(buddyMessages[step], resolveSpeechRate('normal'));
   }, [step, buddyMessages]);
+
+  function speakOnboardingStory() {
+    speakText(LESSON_0.story, resolveSpeechRate('normal'));
+  }
 
   function validateTutorialStep() {
     if (feedback?.correct) return;
@@ -1337,6 +1363,13 @@ function OnboardingLesson(props) {
         <div className="lesson-progress">
           <span style={{ width: `${((step + 1) / 8) * 100}%` }} />
         </div>
+        <button 
+          onClick={onSkip} 
+          className="hint-button"
+          style={{ marginRight: '8px', background: '#f1f5f9', color: '#475569' }}
+        >
+          ⏭️ Bỏ qua
+        </button>
         <div className="hearts">❤️ Không giới hạn</div>
       </div>
 
@@ -1359,6 +1392,7 @@ function OnboardingLesson(props) {
 
         <section className="exercise-card">
           <div className="story-box">
+            <button className="sound-button" onClick={speakOnboardingStory} aria-label="Đọc đề bài">🔊</button>
             <p>{LESSON_0.story}</p>
             <span className="story-emoji">{LESSON_0.icon}</span>
           </div>
