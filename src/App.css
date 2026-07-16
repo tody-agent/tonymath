@@ -188,11 +188,11 @@ button:disabled { cursor: not-allowed; }
   .journey-hero { min-height:145px;padding:22px; }.treasure > span { font-size:58px; }.journey-hero p { font-size:14px; }
   .lesson-grid { grid-template-columns:repeat(2,1fr);gap:11px; }.lesson-card { min-height:192px;padding:16px 8px 12px; }.lesson-icon { font-size:45px; }.lesson-card strong { font-size:14px; }
   .lesson-layout { grid-template-columns:1fr; }.steps-list { display:flex;overflow-x:auto;gap:5px;position:static;padding:6px;scrollbar-width:none; }.steps-list li { min-width:44px;min-height:42px;padding:4px;grid-template-columns:1fr;justify-items:center; }.steps-list li i,.steps-list li b { display:none; }.steps-list li > span { width:30px;height:30px; }
-  .exercise-card { min-height:0;padding:12px; }.story-box { grid-template-columns:40px 1fr;padding:12px; }.story-box p { font-size:16px; }.story-emoji { display:none; }.question-area { padding:20px 3px; justify-content: flex-start; flex: none; min-height: auto; }
+  .exercise-card { flex:1; min-height:0; height:auto; padding:12px; }.story-box { grid-template-columns:40px 1fr;padding:12px; }.story-box p { font-size:16px; }.story-emoji { display:none; }.question-area { padding:20px 3px; justify-content: flex-start; flex: none; min-height: auto; }
   .visual-story { grid-template-columns:1fr 22px 1fr 22px 64px; padding:11px; gap:4px; }
-  .visual-group { min-height:120px;padding:8px; }
+  .visual-group { min-height:100px;padding:8px; }
   .emoji-row { font-size:17px; }
-  .unknown-box { min-height:120px; font-size:28px; }
+  .unknown-box { min-height:100px; font-size:28px; }
   .unknown-box small { font-size:10px; }
   .distractor-chip { font-size:12px; padding:6px 10px; }
   .facts-grid { grid-template-columns:1fr; }.fact-card p { min-height:0; }.model-grid { grid-template-columns:repeat(2,1fr); }.operation-grid { grid-template-columns:repeat(2,1fr); }.calculation-box { flex-wrap:wrap;padding:24px 10px; }.calculation-box > span,.calculation-box > b { font-size:25px; }.calculation-box input { width:90px;height:65px;font-size:29px; }.calculation-box small { width:100%;text-align:center;align-self:auto;margin:0; }
@@ -889,7 +889,7 @@ button:disabled { cursor: not-allowed; }
   display: grid;
   grid-template-columns: 240px 1fr;
   gap: 20px;
-  padding: 20px 24px 140px 24px; /* Leave space for bottom footer */
+  padding: 20px 24px; /* Removed 140px bottom padding */
   box-sizing: border-box;
   overflow: hidden; /* Prevent parent scrolling */
   min-height: 0; /* Critical for inner scroll in grid */
@@ -898,8 +898,12 @@ button:disabled { cursor: not-allowed; }
 /* On mobile, hide step list completely and change columns */
 @media (max-width: 880px) {
   .lesson-layout {
+    display: flex;
+    flex-direction: column;
     grid-template-columns: 1fr;
-    padding: 12px 16px 140px 16px;
+    padding: 12px 16px;
+    gap: 12px;
+    min-height: 0;
   }
   .steps-list {
     display: none !important;
@@ -1114,10 +1118,7 @@ button:disabled { cursor: not-allowed; }
 
 /* DUOLINGO STICKY FOOTER */
 .lesson-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   background: #fff;
   border-top: 2px solid var(--line);
   padding: 16px 24px;
@@ -1125,6 +1126,7 @@ button:disabled { cursor: not-allowed; }
   z-index: 100;
   transition: all 0.2s ease;
   min-height: 90px;
+  flex-shrink: 0;
 }
 
 .footer-content {
