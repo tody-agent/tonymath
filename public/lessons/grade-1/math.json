@@ -1,0 +1,1390 @@
+[
+  {
+    "id": "lesson-1",
+    "title": "Bé Lan đếm táo đỏ",
+    "shortTitle": "Đếm táo đỏ",
+    "icon": "🍎",
+    "color": "red",
+    "skill": "Cộng trong phạm vi 10",
+    "story": "Lan có 3 quả táo đỏ. Mẹ cho Lan thêm 2 quả táo nữa. Hỏi Lan có tất cả bao nhiêu quả táo?",
+    "visual": {
+      "type": "icons",
+      "values": [3, 2],
+      "labels": ["Táo của Lan", "Mẹ cho thêm"],
+      "icons": ["🍎", "🍎"]
+    },
+    "retellOptions": [
+      "Có 3 quả táo, được mẹ cho thêm 2 quả, hỏi có tất cả bao nhiêu quả.",
+      "Có 3 quả táo, cho bạn đi 2 quả, hỏi còn lại bao nhiêu quả.",
+      "Tìm số quả táo mẹ có lúc đầu."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Lan có 3 quả táo",
+      "Mẹ cho thêm 2 quả táo",
+      "Tìm tất cả số táo Lan có"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình bớt (Cho đi)",
+      "Mô hình so sánh hơn kém",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "3 + 2",
+      "3 - 2",
+      "3 × 2",
+      "3 ÷ 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Khi mẹ cho thêm táo, ta dùng phép cộng để gộp số táo lại.",
+      "Vì ta muốn bớt số táo đi.",
+      "Vì ta muốn nhân đôi số táo lên."
+    ],
+    "correctReason": 0,
+    "answer": 5,
+    "unit": "quả táo",
+    "answerOptions": [
+      "Lan có tất cả 5 quả táo.",
+      "Lan còn lại 1 quả táo.",
+      "Lan có tất cả 6 quả táo."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số táo lúc sau là 5 quả, lớn hơn số táo ban đầu (3 quả), điều này có hợp lý không?",
+    "checkOptions": [
+      "Có, được thêm táo thì số táo phải nhiều hơn lúc đầu.",
+      "Không, được thêm táo thì số táo phải ít đi."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đọc kỹ xem Lan có mấy quả táo (3 quả).",
+      "Bước 2: Xem mẹ cho thêm mấy quả (2 quả).",
+      "Bước 3: Muốn tìm tất cả, ta làm phép tính cộng gộp lại.",
+      "Bước 4: Thực hiện phép tính: 3 cộng 2 bằng 5.",
+      "Bước 5: Chọn câu trả lời chứa kết quả 5 quả táo."
+    ]
+  },
+  {
+    "id": "lesson-2",
+    "title": "Đàn vịt của bà",
+    "shortTitle": "Vịt dưới ao",
+    "icon": "🦆",
+    "color": "orange",
+    "skill": "Cộng trong phạm vi 10",
+    "story": "Dưới ao đang có 4 con vịt đang bơi. Sau đó có thêm 3 con vịt nữa nhảy xuống ao bơi cùng. Hỏi dưới ao có tất cả bao nhiêu con vịt?",
+    "visual": {
+      "type": "icons",
+      "values": [4, 3],
+      "labels": ["Vịt bơi trước", "Vịt xuống thêm"],
+      "icons": ["🦆", "🦆"]
+    },
+    "retellOptions": [
+      "Ao có 4 con vịt, thêm 3 con vịt nữa nhảy xuống, hỏi có tất cả bao nhiêu con.",
+      "Ao có 4 con vịt, có 3 con bay đi mất, hỏi còn lại bao nhiêu con.",
+      "Tìm số vịt của cả xóm."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Đang có 4 con vịt bơi",
+      "Thêm 3 con vịt nhảy xuống",
+      "Tìm tổng số vịt dưới ao"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình bớt (Cho đi)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "4 + 3",
+      "4 - 3",
+      "4 × 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì có thêm vịt nhảy xuống ao, ta cộng thêm vào số vịt cũ.",
+      "Vì có vịt đi lên bờ.",
+      "Vì ta muốn giảm số vịt đi."
+    ],
+    "correctReason": 0,
+    "answer": 7,
+    "unit": "con vịt",
+    "answerOptions": [
+      "Dưới ao có tất cả 7 con vịt.",
+      "Dưới ao còn lại 1 con vịt.",
+      "Dưới ao có tất cả 12 con vịt."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Dưới ao có tất cả 7 con vịt, nhiều hơn số vịt ban đầu (4 con) đúng hay sai?",
+    "checkOptions": [
+      "Đúng, thêm vịt vào ao thì số vịt phải tăng lên.",
+      "Sai, thêm vịt thì số vịt phải giảm đi."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số vịt đang bơi dưới ao lúc đầu (4 con).",
+      "Bước 2: Tìm số vịt mới xuống thêm (3 con).",
+      "Bước 3: Cộng hai số vịt này lại với nhau.",
+      "Bước 4: Tính 4 + 3 = 7 con vịt.",
+      "Bước 5: Chọn đáp án 7 con vịt."
+    ]
+  },
+  {
+    "id": "lesson-3",
+    "title": "Bút chì màu của Nam",
+    "shortTitle": "Đếm bút màu",
+    "icon": "✏️",
+    "color": "blue",
+    "skill": "Cộng trong phạm vi 10",
+    "story": "Nam có 5 bút màu xanh. Bố mua tặng Nam thêm 4 bút màu đỏ nữa. Hỏi Nam có tất cả bao nhiêu cái bút màu?",
+    "visual": {
+      "type": "icons",
+      "values": [5, 4],
+      "labels": ["Bút màu xanh", "Bút màu đỏ"],
+      "icons": ["✏️", "✏️"]
+    },
+    "retellOptions": [
+      "Có 5 bút xanh, thêm 4 bút đỏ, hỏi có tất cả bao nhiêu cái bút màu.",
+      "Có 5 bút màu, cho bạn mất 4 bút, hỏi còn lại bao nhiêu bút.",
+      "Tìm số bút Nam đã dùng hết."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Nam có 5 bút màu xanh",
+      "Bố tặng thêm 4 bút màu đỏ",
+      "Tìm tổng số bút màu Nam có"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "5 + 4",
+      "5 - 4",
+      "5 × 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Để tìm tổng số bút màu, ta cộng số bút màu xanh và số bút màu đỏ lại.",
+      "Vì bố làm hỏng bút màu của Nam.",
+      "Vì Nam làm mất bút."
+    ],
+    "correctReason": 0,
+    "answer": 9,
+    "unit": "cái bút màu",
+    "answerOptions": [
+      "Nam có tất cả 9 cái bút màu.",
+      "Nam có tất cả 1 cái bút màu.",
+      "Nam có tất cả 8 cái bút màu."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tổng số bút màu là 9, lớn hơn số bút màu xanh lúc đầu là 5 đúng hay sai?",
+    "checkOptions": [
+      "Đúng, số bút màu tăng lên là hợp lý.",
+      "Sai, số bút màu phải giữ nguyên."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định số bút màu xanh của Nam (5 cái).",
+      "Bước 2: Xác định số bút màu đỏ được tặng thêm (4 cái).",
+      "Bước 3: Làm phép tính cộng: 5 + 4 = 9.",
+      "Bước 4: Chọn câu trả lời 9 cái bút màu."
+    ]
+  },
+  {
+    "id": "lesson-4",
+    "title": "Những bông hoa hồng",
+    "shortTitle": "Đếm bông hoa",
+    "icon": "🌹",
+    "color": "pink",
+    "skill": "Cộng trong phạm vi 10",
+    "story": "Trong vườn có 6 bông hoa hồng đỏ. Hôm sau có thêm 2 bông hoa hồng đỏ nữa nở rộ. Hỏi trong vườn có tất cả bao nhiêu bông hoa hồng đỏ?",
+    "visual": {
+      "type": "icons",
+      "values": [6, 2],
+      "labels": ["Hoa đã nở", "Hoa nở thêm"],
+      "icons": ["🌹", "🌹"]
+    },
+    "retellOptions": [
+      "Vườn có 6 bông hoa hồng, thêm 2 bông hoa nở nữa, hỏi có tất cả bao nhiêu bông.",
+      "Vườn có 6 bông hoa hồng, hái đi 2 bông, hỏi còn lại bao nhiêu bông.",
+      "Tìm số hoa cúc nở ngoài vườn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Có sẵn 6 bông hoa hồng",
+      "Nở thêm 2 bông hoa hồng",
+      "Tìm tất cả số hoa hồng đỏ"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "6 + 2",
+      "6 - 2",
+      "6 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Ta cộng số hoa nở thêm vào số hoa đã có sẵn để tính tổng số hoa nở.",
+      "Ta trừ đi vì hoa bị héo.",
+      "Ta chia đi vì có người hái hoa."
+    ],
+    "correctReason": 0,
+    "answer": 8,
+    "unit": "bông hoa",
+    "answerOptions": [
+      "Trong vườn có tất cả 8 bông hoa hồng đỏ.",
+      "Trong vườn còn lại 4 bông hoa hồng đỏ.",
+      "Trong vườn có tất cả 10 bông hoa hồng đỏ."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số hoa hồng đỏ nở ra có tăng thêm từ 6 lên 8 không?",
+    "checkOptions": [
+      "Có, 8 lớn hơn 6.",
+      "Không, 8 nhỏ hơn 6."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xem vườn đã có mấy bông hoa hồng nở (6 bông).",
+      "Bước 2: Xem có thêm mấy bông nở (2 bông).",
+      "Bước 3: Thực hiện phép cộng: 6 + 2.",
+      "Bước 4: Tính ra kết quả bằng 8 bông.",
+      "Bước 5: Chọn đáp án đúng."
+    ]
+  },
+  {
+    "id": "lesson-5",
+    "title": "Bánh quy của bé Bo",
+    "shortTitle": "Ăn bánh quy",
+    "icon": "🍪",
+    "color": "brown",
+    "skill": "Trừ trong phạm vi 10",
+    "story": "Bé Bo có 6 cái bánh quy. Bé Bo đã ăn mất 2 cái bánh. Hỏi bé Bo còn lại bao nhiêu cái bánh quy?",
+    "visual": {
+      "type": "icons",
+      "values": [6, 2],
+      "labels": ["Số bánh lúc đầu", "Số bánh đã ăn"],
+      "icons": ["🍪", "❌"]
+    },
+    "retellOptions": [
+      "Bo có 6 cái bánh, ăn mất 2 cái, hỏi còn lại bao nhiêu cái bánh.",
+      "Bo có 6 cái bánh, mẹ cho thêm 2 cái, hỏi có tất cả bao nhiêu cái.",
+      "Tìm số bánh quy chị của Bo có."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bo có 6 cái bánh quy",
+      "Bo đã ăn mất 2 cái bánh",
+      "Tìm số bánh quy còn lại"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "6 - 2",
+      "6 + 2",
+      "6 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì bánh đã bị ăn mất đi, ta dùng phép tính trừ để tìm số bánh còn lại.",
+      "Vì được tặng thêm bánh quy.",
+      "Vì bánh quy tự nhân đôi."
+    ],
+    "correctReason": 0,
+    "answer": 4,
+    "unit": "cái bánh quy",
+    "answerOptions": [
+      "Bé Bo còn lại 4 cái bánh quy.",
+      "Bé Bo còn lại 8 cái bánh quy.",
+      "Bé Bo còn lại 3 cái bánh quy."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số bánh còn lại là 4 cái, nhỏ hơn số bánh ban đầu (6 cái) đúng hay sai?",
+    "checkOptions": [
+      "Đúng, ăn đi thì số bánh phải ít đi.",
+      "Sai, ăn đi thì bánh phải nhiều lên."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số bánh Bo có ban đầu (6 cái).",
+      "Bước 2: Tìm số bánh đã bị ăn mất (2 cái).",
+      "Bước 3: Vì ăn đi tức là bớt đi, nên ta dùng phép tính trừ.",
+      "Bước 4: Tính 6 trừ 2 bằng 4.",
+      "Bước 5: Chọn đáp án 4 cái bánh."
+    ]
+  },
+  {
+    "id": "lesson-6",
+    "title": "Bóng bay của bé Vy",
+    "shortTitle": "Bóng bay bay mất",
+    "icon": "🎈",
+    "color": "purple",
+    "skill": "Trừ trong phạm vi 10",
+    "story": "Vy cầm 8 quả bóng bay. Vy vô tình làm tuột tay bay mất 3 quả bóng bay. Hỏi Vy còn lại bao nhiêu quả bóng bay?",
+    "visual": {
+      "type": "icons",
+      "values": [8, 3],
+      "labels": ["Số bóng ban đầu", "Bóng bay mất"],
+      "icons": ["🎈", "❌"]
+    },
+    "retellOptions": [
+      "Có 8 quả bóng, bay mất 3 quả, hỏi còn lại bao nhiêu quả bóng.",
+      "Có 8 quả bóng, mua thêm 3 quả, hỏi có tất cả bao nhiêu quả.",
+      "Tìm số bóng bay của các bạn khác."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Vy cầm 8 quả bóng bay",
+      "Bay mất 3 quả bóng",
+      "Tìm số bóng còn lại của Vy"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "8 - 3",
+      "8 + 3",
+      "8 ÷ 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Bóng bị bay mất đi nên ta trừ số bóng bay mất khỏi số bóng ban đầu.",
+      "Vì Vy nhặt được thêm bóng bay.",
+      "Vì số bóng không thay đổi."
+    ],
+    "correctReason": 0,
+    "answer": 5,
+    "unit": "quả bóng bay",
+    "answerOptions": [
+      "Vy còn lại 5 quả bóng bay.",
+      "Vy còn lại 11 quả bóng bay.",
+      "Vy còn lại 4 quả bóng bay."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số bóng còn lại là 5, có nhỏ hơn số bóng ban đầu là 8 không?",
+    "checkOptions": [
+      "Có, 5 nhỏ hơn 8.",
+      "Không, 5 lớn hơn 8."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Vy bắt đầu với 8 quả bóng.",
+      "Bước 2: Số bóng bị bay mất đi là 3 quả.",
+      "Bước 3: Lấy 8 trừ 3.",
+      "Bước 4: Kết quả là 5 quả bóng bay.",
+      "Bước 5: Chọn đáp án chứa số 5."
+    ]
+  },
+  {
+    "id": "lesson-7",
+    "title": "Những chú chim sẻ",
+    "shortTitle": "Chim bay đi",
+    "icon": "🐦",
+    "color": "green",
+    "skill": "Trừ trong phạm vi 10",
+    "story": "Trên cành cây có 7 con chim sẻ đang hót. Có 4 con chim sẻ cất cánh bay đi chỗ khác. Hỏi trên cành cây còn lại bao nhiêu con chim sẻ?",
+    "visual": {
+      "type": "icons",
+      "values": [7, 4],
+      "labels": ["Số chim lúc đầu", "Chim bay đi"],
+      "icons": ["🐦", "❌"]
+    },
+    "retellOptions": [
+      "Cành cây có 7 con chim, bay mất 4 con, hỏi còn lại bao nhiêu con.",
+      "Cành cây có 7 con chim, thêm 4 con bay đến, hỏi có tất cả bao nhiêu con.",
+      "Tìm số lá trên cành cây."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Cành cây có 7 con chim sẻ",
+      "4 con chim sẻ bay đi",
+      "Tìm số chim sẻ còn lại trên cành"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "7 - 4",
+      "7 + 4",
+      "7 × 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì có chim bay đi, số chim trên cành giảm xuống nên ta làm phép tính trừ.",
+      "Vì có chim bay đến thêm.",
+      "Vì chim đẻ thêm trứng."
+    ],
+    "correctReason": 0,
+    "answer": 3,
+    "unit": "con chim sẻ",
+    "answerOptions": [
+      "Trên cành cây còn lại 3 con chim sẻ.",
+      "Trên cành cây còn lại 11 con chim sẻ.",
+      "Trên cành cây còn lại 4 con chim sẻ."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "3 con chim còn lại so với 7 con lúc đầu có ít hơn không?",
+    "checkOptions": [
+      "Có, 3 ít hơn 7.",
+      "Không, 3 nhiều hơn 7."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số chim lúc đầu là 7.",
+      "Bước 2: Tìm số chim bay đi mất là 4.",
+      "Bước 3: Lấy 7 trừ 4.",
+      "Bước 4: Tính toán: 7 - 4 = 3.",
+      "Bước 5: Chọn câu trả lời là 3 con chim sẻ."
+    ]
+  },
+  {
+    "id": "lesson-8",
+    "title": "Hộp kẹo dâu",
+    "shortTitle": "Ăn kẹo dâu",
+    "icon": "🍬",
+    "color": "pink",
+    "skill": "Trừ trong phạm vi 10",
+    "story": "Hộp kẹo có 9 viên kẹo dâu. Minh đã lấy ra ăn mất 5 viên kẹo. Hỏi trong hộp còn lại bao nhiêu viên kẹo dâu?",
+    "visual": {
+      "type": "icons",
+      "values": [9, 5],
+      "labels": ["Kẹo lúc đầu", "Kẹo đã ăn"],
+      "icons": ["🍬", "❌"]
+    },
+    "retellOptions": [
+      "Hộp có 9 viên kẹo, ăn mất 5 viên, hỏi còn lại bao nhiêu viên kẹo.",
+      "Hộp có 9 viên kẹo, được tặng thêm 5 viên, hỏi có bao nhiêu viên kẹo.",
+      "Tìm số kẹo sô-cô-la trong hộp."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Hộp có 9 viên kẹo dâu",
+      "Ăn mất 5 viên kẹo dâu",
+      "Tìm số kẹo dâu còn lại"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "9 - 5",
+      "9 + 5",
+      "9 ÷ 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Ăn kẹo làm giảm số kẹo trong hộp nên ta lấy tổng số kẹo lúc đầu trừ đi số kẹo đã ăn.",
+      "Vì kẹo được thêm vào hộp.",
+      "Vì ta muốn nhân số kẹo lên."
+    ],
+    "correctReason": 0,
+    "answer": 4,
+    "unit": "viên kẹo dâu",
+    "answerOptions": [
+      "Trong hộp còn lại 4 viên kẹo dâu.",
+      "Trong hộp còn lại 14 viên kẹo dâu.",
+      "Trong hộp còn lại 5 viên kẹo dâu."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số kẹo còn lại là 4 viên, có hợp lý khi ban đầu có 9 viên và ăn đi 5 viên không?",
+    "checkOptions": [
+      "Có, 4 ít hơn 9 và tổng của 4 với 5 bằng 9.",
+      "Không, ăn kẹo phải làm số kẹo tăng lên."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số kẹo ban đầu trong hộp (9 viên).",
+      "Bước 2: Tìm số kẹo Minh đã ăn (5 viên).",
+      "Bước 3: Thực hiện phép tính trừ: 9 - 5.",
+      "Bước 4: Tính 9 trừ 5 bằng 4 viên kẹo.",
+      "Bước 5: Chọn câu trả lời 4 viên kẹo dâu."
+    ]
+  },
+  {
+    "id": "lesson-9",
+    "title": "Bé câu cá cùng ba",
+    "shortTitle": "Câu cá",
+    "icon": "🐟",
+    "color": "blue",
+    "skill": "Cộng trong phạm vi 20",
+    "story": "Khi đi câu, bé câu được 8 con cá nhỏ, ba câu được 7 con cá lớn. Hỏi cả hai ba con câu được tất cả bao nhiêu con cá?",
+    "visual": {
+      "type": "icons",
+      "values": [8, 7],
+      "labels": ["Cá của bé", "Cá của ba"],
+      "icons": ["🐟", "🐟"]
+    },
+    "retellOptions": [
+      "Bé câu 8 con, ba câu 7 con, hỏi cả hai người câu được tất cả bao nhiêu con.",
+      "Bé câu 8 con, thả đi mất 7 con, hỏi còn lại bao nhiêu con.",
+      "Tìm số cá mẹ câu được ở nhà."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bé câu được 8 con cá",
+      "Ba câu được 7 con cá",
+      "Tìm tổng số cá hai ba con câu được"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "8 + 7",
+      "8 - 7",
+      "8 × 7"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Muốn tìm tổng số cá của cả hai ba con, ta cộng số cá của bé và của ba lại.",
+      "Vì cá bị chết đi nên trừ.",
+      "Vì ta muốn tìm sự chênh lệch."
+    ],
+    "correctReason": 0,
+    "answer": 15,
+    "unit": "con cá",
+    "answerOptions": [
+      "Cả hai ba con câu được tất cả 15 con cá.",
+      "Cả hai ba con câu được tất cả 1 con cá.",
+      "Cả hai ba con câu được tất cả 16 con cá."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tổng số cá là 15 con, lớn hơn số cá riêng lẻ của mỗi người đúng hay sai?",
+    "checkOptions": [
+      "Đúng, gộp lại phải nhiều hơn.",
+      "Sai, gộp lại phải ít đi."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định số cá bé câu được là 8.",
+      "Bước 2: Xác định số cá ba câu được là 7.",
+      "Bước 3: Dùng phép cộng để gộp lại: 8 + 7.",
+      "Bước 4: Tính nhẩm 8 cộng 7 bằng 15.",
+      "Bước 5: Chọn đáp án 15 con cá."
+    ]
+  },
+  {
+    "id": "lesson-10",
+    "title": "Những quả trứng gà",
+    "shortTitle": "Trứng gà trong ổ",
+    "icon": "🥚",
+    "color": "yellow",
+    "skill": "Cộng trong phạm vi 20",
+    "story": "Trong ổ gà có sẵn 9 quả trứng. Sáng hôm sau, cô gà mái đẻ thêm 6 quả trứng nữa. Hỏi trong ổ gà lúc này có tất cả bao nhiêu quả trứng?",
+    "visual": {
+      "type": "icons",
+      "values": [9, 6],
+      "labels": ["Trứng có sẵn", "Trứng đẻ thêm"],
+      "icons": ["🥚", "🥚"]
+    },
+    "retellOptions": [
+      "Có 9 quả trứng, đẻ thêm 6 quả, hỏi trong ổ gà có tất cả bao nhiêu quả.",
+      "Có 9 quả trứng, vỡ mất 6 quả, hỏi còn lại bao nhiêu quả.",
+      "Tìm số con gà mái trong chuồng."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Ổ có sẵn 9 quả trứng",
+      "Gà mái đẻ thêm 6 quả trứng",
+      "Tìm tất cả số trứng trong ổ"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "9 + 6",
+      "9 - 6",
+      "9 × 6"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Để tìm tổng số trứng gà, ta lấy số trứng đã có cộng thêm số trứng đẻ thêm.",
+      "Vì trứng gà bị vỡ mất.",
+      "Vì người ta lấy bớt trứng đi."
+    ],
+    "correctReason": 0,
+    "answer": 15,
+    "unit": "quả trứng",
+    "answerOptions": [
+      "Trong ổ gà có tất cả 15 quả trứng.",
+      "Trong ổ gà có tất cả 3 quả trứng.",
+      "Trong ổ gà có tất cả 14 quả trứng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số trứng tăng từ 9 lên 15 quả có hợp lý không?",
+    "checkOptions": [
+      "Có, đẻ thêm trứng thì tổng số trứng phải nhiều hơn.",
+      "Không, tổng số trứng phải ít hơn 9."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số trứng ban đầu trong ổ (9 quả).",
+      "Bước 2: Tìm số trứng đẻ thêm (6 quả).",
+      "Bước 3: Thực hiện phép cộng: 9 + 6.",
+      "Bước 4: Nhẩm tính: 9 + 6 = 15 quả.",
+      "Bước 5: Chọn đáp án 15 quả trứng."
+    ]
+  },
+  {
+    "id": "lesson-11",
+    "title": "Hộp sáp màu của bé Hoa",
+    "shortTitle": "Bút sáp màu",
+    "icon": "🖍️",
+    "color": "orange",
+    "skill": "Cộng trong phạm vi 20",
+    "story": "Hoa có 7 cây bút sáp màu. Anh trai tặng thêm cho Hoa 8 cây bút sáp màu nữa. Hỏi Hoa có tất cả bao nhiêu cây bút sáp màu?",
+    "visual": {
+      "type": "icons",
+      "values": [7, 8],
+      "labels": ["Bút sáp của Hoa", "Anh trai tặng"],
+      "icons": ["🖍️", "🖍️"]
+    },
+    "retellOptions": [
+      "Hoa có 7 bút sáp, được tặng thêm 8 bút sáp, hỏi có tất cả bao nhiêu cái.",
+      "Hoa có 7 bút sáp, làm mất 8 cái bút sáp.",
+      "Tìm số bút sáp màu của anh trai."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Hoa có 7 cây bút sáp màu",
+      "Anh trai tặng thêm 8 cây",
+      "Tìm tổng số bút sáp màu Hoa có"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "7 + 8",
+      "7 - 8",
+      "7 × 8"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Ta cộng số bút sáp màu được tặng vào số bút sáp màu ban đầu của Hoa.",
+      "Vì số bút sáp màu bị hỏng.",
+      "Vì Hoa cho bạn bút sáp màu."
+    ],
+    "correctReason": 0,
+    "answer": 15,
+    "unit": "cây bút sáp màu",
+    "answerOptions": [
+      "Hoa có tất cả 15 cây bút sáp màu.",
+      "Hoa có tất cả 1 cây bút sáp màu.",
+      "Hoa có tất cả 14 cây bút sáp màu."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số bút sáp của Hoa tăng lên thành 15 đúng hay sai?",
+    "checkOptions": [
+      "Đúng, vì Hoa nhận thêm bút sáp từ anh trai.",
+      "Sai, vì Hoa tặng đi chứ không nhận thêm."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Lấy số bút Hoa có lúc đầu là 7 cái.",
+      "Bước 2: Lấy số bút được anh tặng thêm là 8 cái.",
+      "Bước 3: Thực hiện phép tính cộng: 7 + 8.",
+      "Bước 4: Tính toán: 7 + 8 = 15 cái.",
+      "Bước 5: Chọn đáp án đúng."
+    ]
+  },
+  {
+    "id": "lesson-12",
+    "title": "Những bông hoa hướng dương",
+    "shortTitle": "Bông hoa hướng dương",
+    "icon": "🌻",
+    "color": "green",
+    "skill": "Cộng trong phạm vi 20",
+    "story": "Chị Mai cắm 9 bông hoa hướng dương vào lọ hoa màu xanh và cắm tiếp 9 bông nữa vào lọ hoa màu vàng. Hỏi chị Mai đã cắm tất cả bao nhiêu bông hoa hướng dương?",
+    "visual": {
+      "type": "icons",
+      "values": [9, 9],
+      "labels": ["Lọ màu xanh", "Lọ màu vàng"],
+      "icons": ["🌻", "🌻"]
+    },
+    "retellOptions": [
+      "Cắm 9 bông lọ xanh và 9 bông lọ vàng, hỏi cắm tất cả bao nhiêu bông hoa.",
+      "Cắm 9 bông lọ xanh, héo mất 9 bông lọ vàng, hỏi còn bao nhiêu bông.",
+      "Tìm số lọ hoa chị Mai có."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Cắm 9 bông ở lọ xanh",
+      "Cắm 9 bông ở lọ vàng",
+      "Tìm tổng số hoa hướng dương cắm được"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "9 + 9",
+      "9 - 9",
+      "9 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Chúng ta cộng số hoa ở cả hai lọ lại để tìm tổng số hoa hướng dương.",
+      "Vì hai lọ hoa giống nhau nên ta trừ.",
+      "Vì lọ hoa màu vàng bị vỡ."
+    ],
+    "correctReason": 0,
+    "answer": 18,
+    "unit": "bông hoa hướng dương",
+    "answerOptions": [
+      "Chị Mai đã cắm tất cả 18 bông hoa hướng dương.",
+      "Chị Mai đã cắm tất cả 0 bông hoa hướng dương.",
+      "Chị Mai đã cắm tất cả 17 bông hoa hướng dương."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số hoa cắm được là 18, có bằng hai lần của 9 bông hoa không?",
+    "checkOptions": [
+      "Có, 9 cộng 9 bằng 18.",
+      "Không, 9 cộng 9 bằng 9."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đọc xem lọ xanh có mấy bông hoa (9 bông).",
+      "Bước 2: Đọc xem lọ vàng có mấy bông hoa (9 bông).",
+      "Bước 3: Làm phép cộng gộp: 9 + 9.",
+      "Bước 4: Tính toán: 9 cộng 9 bằng 18 bông.",
+      "Bước 5: Chọn đáp án 18 bông hoa."
+    ]
+  },
+  {
+    "id": "lesson-13",
+    "title": "Hộp bánh donut của bé Bông",
+    "shortTitle": "Bánh donut ngọt",
+    "icon": "🍩",
+    "color": "pink",
+    "skill": "Trừ trong phạm vi 20",
+    "story": "Mẹ mua cho bé Bông một hộp có 12 cái bánh donut. Bông đã ăn hết 4 cái bánh. Hỏi trong hộp còn lại bao nhiêu cái bánh donut?",
+    "visual": {
+      "type": "icons",
+      "values": [12, 4],
+      "labels": ["Số bánh lúc đầu", "Số bánh đã ăn"],
+      "icons": ["🍩", "❌"]
+    },
+    "retellOptions": [
+      "Có 12 cái bánh donut, ăn hết 4 cái, hỏi còn lại bao nhiêu cái bánh.",
+      "Có 12 cái bánh donut, mẹ mua thêm 4 cái, hỏi có tất cả bao nhiêu cái.",
+      "Tìm số bánh donut chị của Bông thích ăn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Hộp bánh có 12 cái donut",
+      "Bông đã ăn hết 4 cái donut",
+      "Tìm số bánh donut còn lại"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "12 - 4",
+      "12 + 4",
+      "12 × 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì bánh donut đã bị ăn mất, ta trừ số bánh đã ăn khỏi tổng số bánh lúc đầu.",
+      "Vì được mẹ mua tặng thêm bánh donut.",
+      "Vì số bánh donut tăng gấp đôi."
+    ],
+    "correctReason": 0,
+    "answer": 8,
+    "unit": "cái bánh donut",
+    "answerOptions": [
+      "Trong hộp còn lại 8 cái bánh donut.",
+      "Trong hộp còn lại 16 cái bánh donut.",
+      "Trong hộp còn lại 6 cái bánh donut."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số bánh donut còn lại là 8 cái, nhỏ hơn 12 cái ban đầu có hợp lý không?",
+    "checkOptions": [
+      "Có, ăn bớt đi thì số bánh còn lại phải ít đi.",
+      "Không, ăn bớt đi thì bánh trong hộp phải nhiều hơn."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số bánh donut ban đầu (12 cái).",
+      "Bước 2: Tìm số bánh donut Bông đã ăn (4 cái).",
+      "Bước 3: Lấy 12 trừ đi 4 để tìm số bánh còn lại.",
+      "Bước 4: Tính nhẩm: 12 - 4 = 8 cái bánh.",
+      "Bước 5: Chọn đáp án 8 cái bánh donut."
+    ]
+  },
+  {
+    "id": "lesson-14",
+    "title": "Đàn bóng bay đầy màu sắc",
+    "shortTitle": "Vy thả bóng bay",
+    "icon": "🎈",
+    "color": "purple",
+    "skill": "Trừ trong phạm vi 20",
+    "story": "Vy có 15 quả bóng bay. Vy tặng cho em của mình 5 quả bóng bay. Hỏi Vy còn lại bao nhiêu quả bóng bay?",
+    "visual": {
+      "type": "icons",
+      "values": [15, 5],
+      "labels": ["Số bóng lúc đầu", "Tặng cho em"],
+      "icons": ["🎈", "❌"]
+    },
+    "retellOptions": [
+      "Có 15 quả bóng bay, tặng cho em 5 quả, hỏi còn lại bao nhiêu quả.",
+      "Có 15 quả bóng bay, mua thêm 5 quả, hỏi có tất cả bao nhiêu quả.",
+      "Tìm số bóng bay em của Vy có trước đó."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Vy có 15 quả bóng bay",
+      "Vy tặng cho em 5 quả bóng",
+      "Tìm số bóng bay Vy còn lại"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "15 - 5",
+      "15 + 5",
+      "15 ÷ 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tặng bóng bay cho em làm giảm số bóng Vy đang có nên ta dùng phép trừ.",
+      "Vì Vy nhận thêm bóng từ em.",
+      "Vì số bóng của Vy không đổi."
+    ],
+    "correctReason": 0,
+    "answer": 10,
+    "unit": "quả bóng bay",
+    "answerOptions": [
+      "Vy còn lại 10 quả bóng bay.",
+      "Vy còn lại 20 quả bóng bay.",
+      "Vy còn lại 9 quả bóng bay."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số bóng còn lại là 10 quả, so với 15 quả lúc đầu thì thế nào?",
+    "checkOptions": [
+      "Ít hơn lúc đầu, vì đã cho em bớt rồi.",
+      "Nhiều hơn lúc đầu, vì đã nhận thêm."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số bóng ban đầu Vy có là 15 quả.",
+      "Bước 2: Tìm số bóng Vy mang tặng là 5 quả.",
+      "Bước 3: Lấy 15 trừ đi 5.",
+      "Bước 4: Tính toán: 15 - 5 = 10 quả.",
+      "Bước 5: Chọn đáp án 10 quả bóng bay."
+    ]
+  },
+  {
+    "id": "lesson-15",
+    "title": "Những quả trứng gà nhà Lan",
+    "shortTitle": "Nhặt trứng gà",
+    "icon": "🥚",
+    "color": "yellow",
+    "skill": "Trừ trong phạm vi 20",
+    "story": "Lan nhặt được 14 quả trứng gà. Mẹ đã dùng mất 6 quả trứng để làm bánh. Hỏi Lan còn lại bao nhiêu quả trứng gà?",
+    "visual": {
+      "type": "icons",
+      "values": [14, 6],
+      "labels": ["Số trứng nhặt được", "Trứng làm bánh"],
+      "icons": ["🥚", "❌"]
+    },
+    "retellOptions": [
+      "Nhặt được 14 quả trứng, dùng làm bánh hết 6 quả, hỏi còn lại bao nhiêu quả.",
+      "Nhặt được 14 quả trứng, gà mái đẻ thêm 6 quả, hỏi có tất cả bao nhiêu quả.",
+      "Tìm số trứng gà nhà bạn bên cạnh."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Lan nhặt được 14 quả trứng",
+      "Mẹ dùng làm bánh hết 6 quả",
+      "Tìm số trứng gà còn lại"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "14 - 6",
+      "14 + 6",
+      "14 × 6"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì trứng gà đã bị dùng mất đi, ta lấy tổng số trứng ban đầu trừ đi số trứng đã dùng.",
+      "Vì ta có thêm trứng gà nở ra.",
+      "Vì số trứng tăng lên gấp đôi."
+    ],
+    "correctReason": 0,
+    "answer": 8,
+    "unit": "quả trứng gà",
+    "answerOptions": [
+      "Lan còn lại 8 quả trứng gà.",
+      "Lan còn lại 20 quả trứng gà.",
+      "Lan còn lại 7 quả trứng gà."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số trứng còn lại là 8 quả, có lớn hơn số trứng ban đầu (14 quả) không?",
+    "checkOptions": [
+      "Không, 8 nhỏ hơn 14.",
+      "Có, 8 lớn hơn 14."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định số trứng Lan nhặt được là 14 quả.",
+      "Bước 2: Xác định số trứng mẹ đã dùng là 6 quả.",
+      "Bước 3: Làm phép tính trừ: 14 - 6.",
+      "Bước 4: Tính 14 trừ 6 bằng 8 quả trứng.",
+      "Bước 5: Chọn đáp án chứa số 8."
+    ]
+  },
+  {
+    "id": "lesson-16",
+    "title": "Quyển truyện tranh của bé Vy",
+    "shortTitle": "Đọc truyện tranh",
+    "icon": "📖",
+    "color": "blue",
+    "skill": "Trừ trong phạm vi 20",
+    "story": "Quyển truyện tranh của Vy dài 18 trang. Vy đã đọc được 9 trang. Hỏi Vy còn bao nhiêu trang truyện nữa chưa đọc?",
+    "visual": {
+      "type": "icons",
+      "values": [18, 9],
+      "labels": ["Tổng số trang", "Trang đã đọc"],
+      "icons": ["📖", "❌"]
+    },
+    "retellOptions": [
+      "Truyện dài 18 trang, đã đọc 9 trang, hỏi còn bao nhiêu trang chưa đọc.",
+      "Truyện dài 18 trang, viết thêm 9 trang nữa, hỏi truyện dài bao nhiêu trang.",
+      "Tìm số truyện tranh Vy đã mua tuần qua."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Quyển truyện dài 18 trang",
+      "Vy đã đọc được 9 trang",
+      "Tìm số trang chưa đọc"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "18 - 9",
+      "18 + 9",
+      "18 ÷ 9"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Để tìm số trang chưa đọc, ta lấy tổng số trang trừ đi số trang Vy đã đọc.",
+      "Vì Vy viết thêm sách.",
+      "Vì số trang tăng gấp đôi."
+    ],
+    "correctReason": 0,
+    "answer": 9,
+    "unit": "trang truyện",
+    "answerOptions": [
+      "Vy còn 9 trang truyện nữa chưa đọc.",
+      "Vy còn 27 trang truyện nữa chưa đọc.",
+      "Vy còn 8 trang truyện nữa chưa đọc."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số trang chưa đọc là 9 trang, cộng với 9 trang đã đọc có bằng 18 trang không?",
+    "checkOptions": [
+      "Có, 9 cộng 9 đúng bằng 18.",
+      "Không, 9 cộng 9 bằng 20."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm tổng số trang truyện là 18 trang.",
+      "Bước 2: Tìm số trang Vy đã đọc xong là 9 trang.",
+      "Bước 3: Lấy 18 trừ đi 9.",
+      "Bước 4: Tính toán: 18 - 9 = 9.",
+      "Bước 5: Chọn đáp án 9 trang chưa đọc."
+    ]
+  },
+  {
+    "id": "lesson-17",
+    "title": "Đồ chơi Lego của bé Bo",
+    "shortTitle": "Lego của Bo và Nam",
+    "icon": "🧩",
+    "color": "orange",
+    "skill": "So sánh hơn kém",
+    "story": "Bé Bo lắp được 10 mô hình Lego. Nam lắp được ít hơn Bo 3 mô hình Lego. Hỏi Nam lắp được bao nhiêu mô hình Lego?",
+    "visual": {
+      "type": "compare",
+      "big": 10,
+      "small": 7,
+      "diff": 3,
+      "labels": ["Bo", "Nam"]
+    },
+    "retellOptions": [
+      "Bo lắp được 10 mô hình, Nam lắp được ít hơn Bo 3 mô hình, hỏi Nam lắp được bao nhiêu mô hình.",
+      "Bo lắp được 10 mô hình, Nam lắp nhiều hơn Bo 3 mô hình, hỏi Nam lắp được bao nhiêu mô hình.",
+      "Tìm tổng số mô hình cả hai bạn lắp được."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bo lắp được 10 mô hình Lego",
+      "Nam lắp ít hơn Bo 3 mô hình",
+      "Tìm số mô hình Lego của Nam"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình so sánh hơn kém",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "10 - 3",
+      "10 + 3",
+      "10 × 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì Nam lắp được ít mô hình hơn Bo, ta thực hiện phép tính trừ.",
+      "Vì Nam lắp được nhiều mô hình hơn Bo.",
+      "Vì số mô hình hai bạn bằng nhau."
+    ],
+    "correctReason": 0,
+    "answer": 7,
+    "unit": "mô hình Lego",
+    "answerOptions": [
+      "Nam lắp được 7 mô hình Lego.",
+      "Nam lắp được 13 mô hình Lego.",
+      "Nam lắp được 6 mô hình Lego."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số mô hình Lego Nam lắp được là 7, có nhỏ hơn số mô hình của Bo (10) không?",
+    "checkOptions": [
+      "Có, 7 nhỏ hơn 10.",
+      "Không, 7 lớn hơn 10."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số mô hình Lego của Bo (10 mô hình).",
+      "Bước 2: Nam lắp ít hơn Bo 3 mô hình.",
+      "Bước 3: Thực hiện phép tính trừ: 10 - 3.",
+      "Bước 4: Tính toán: 10 - 3 = 7.",
+      "Bước 5: Chọn đáp án đúng 7 mô hình."
+    ]
+  },
+  {
+    "id": "lesson-18",
+    "title": "Bút chì màu của Vy và An",
+    "shortTitle": "So sánh bút chì",
+    "icon": "✏️",
+    "color": "green",
+    "skill": "So sánh hơn kém",
+    "story": "Vy có 9 bút chì màu. An có nhiều hơn Vy 3 cái bút chì màu. Hỏi An có bao nhiêu cái bút chì màu?",
+    "visual": {
+      "type": "compare",
+      "big": 12,
+      "small": 9,
+      "diff": 3,
+      "labels": ["An", "Vy"]
+    },
+    "retellOptions": [
+      "Vy có 9 bút, An có nhiều hơn Vy 3 cái, hỏi An có bao nhiêu cái.",
+      "Vy có 9 bút, An có ít hơn Vy 3 cái, hỏi An có bao nhiêu cái.",
+      "Tìm số bút chì của cả lớp."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Vy có 9 bút chì màu",
+      "An có nhiều hơn Vy 3 cái bút",
+      "Tìm số bút chì màu của An"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình so sánh hơn kém",
+      "Mô hình bớt (Cho đi)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "9 + 3",
+      "9 - 3",
+      "9 × 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì An có nhiều bút hơn Vy, ta cộng thêm phần chênh lệch vào số bút của Vy.",
+      "Vì An có ít bút hơn Vy.",
+      "Vì số bút của hai bạn bằng nhau."
+    ],
+    "correctReason": 0,
+    "answer": 12,
+    "unit": "cái bút chì màu",
+    "answerOptions": [
+      "An có 12 cái bút chì màu.",
+      "An có 6 cái bút chì màu.",
+      "An có 11 cái bút chì màu."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số bút của An là 12, lớn hơn số bút của Vy là 9 đúng hay sai?",
+    "checkOptions": [
+      "Đúng, vì An có nhiều hơn.",
+      "Sai, vì An có ít hơn."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số bút của Vy (9 cái).",
+      "Bước 2: Tìm phần An nhiều hơn Vy (3 cái).",
+      "Bước 3: Làm phép tính cộng: 9 + 3.",
+      "Bước 4: Tính 9 cộng 3 bằng 12 cái bút.",
+      "Bước 5: Chọn đáp án 12 cái bút chì màu."
+    ]
+  },
+  {
+    "id": "lesson-19",
+    "title": "Bữa tiệc sinh nhật",
+    "shortTitle": "Sinh nhật bé Bo",
+    "icon": "🎂",
+    "color": "pink",
+    "skill": "Tổng hợp",
+    "story": "Trong bữa tiệc sinh nhật của Bo, có 8 bạn nam và 6 bạn nữ tham gia. Hỏi có tất cả bao nhiêu bạn nhỏ tham gia bữa tiệc sinh nhật?",
+    "visual": {
+      "type": "icons",
+      "values": [8, 6],
+      "labels": ["Bạn nam", "Bạn nữ"],
+      "icons": ["👦", "👧"]
+    },
+    "retellOptions": [
+      "Có 8 bạn nam và 6 bạn nữ, hỏi có tất cả bao nhiêu bạn nhỏ.",
+      "Có 8 bạn nam, có 6 bạn ra về trước, hỏi còn lại bao nhiêu bạn.",
+      "Tìm số quà sinh nhật bé Bo được tặng."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Có 8 bạn nam tham gia",
+      "Có 6 bạn nữ tham gia",
+      "Tìm tổng số bạn nhỏ tham gia tiệc"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "8 + 6",
+      "8 - 6",
+      "8 × 6"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Để tìm tất cả số bạn nhỏ, ta lấy số bạn nam cộng với số bạn nữ.",
+      "Vì các bạn nam và nữ ghét nhau.",
+      "Vì ta muốn tìm hiệu số bạn."
+    ],
+    "correctReason": 0,
+    "answer": 14,
+    "unit": "bạn nhỏ",
+    "answerOptions": [
+      "Có tất cả 14 bạn nhỏ tham gia bữa tiệc sinh nhật.",
+      "Có tất cả 2 bạn nhỏ tham gia bữa tiệc sinh nhật.",
+      "Có tất cả 15 bạn nhỏ tham gia bữa tiệc sinh nhật."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số bạn nhỏ tham gia tiệc là 14, có lớn hơn số bạn nam là 8 không?",
+    "checkOptions": [
+      "Có, 14 lớn hơn 8.",
+      "Không, 14 nhỏ hơn 8."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định số bạn nam dự tiệc (8 bạn).",
+      "Bước 2: Xác định số bạn nữ dự tiệc (6 bạn).",
+      "Bước 3: Thực hiện phép cộng gộp: 8 + 6.",
+      "Bước 4: Tính toán: 8 + 6 = 14.",
+      "Bước 5: Chọn câu trả lời chứa số 14."
+    ]
+  },
+  {
+    "id": "lesson-20",
+    "title": "Bóng bay trong công viên",
+    "shortTitle": "Đếm bóng bay",
+    "icon": "🎈",
+    "color": "blue",
+    "skill": "Tổng hợp",
+    "story": "Chú hề có 16 quả bóng bay. Chú đã tặng cho các em thiếu nhi 6 quả bóng bay. Hỏi chú hề còn lại bao nhiêu quả bóng bay?",
+    "visual": {
+      "type": "icons",
+      "values": [16, 6],
+      "labels": ["Bóng chú hề có", "Bóng đã tặng"],
+      "icons": ["🎈", "❌"]
+    },
+    "retellOptions": [
+      "Chú hề có 16 quả bóng, tặng đi 6 quả, hỏi còn lại bao nhiêu quả bóng.",
+      "Chú hề có 16 quả bóng, mua thêm 6 quả, hỏi có tất cả bao nhiêu quả.",
+      "Tìm số trẻ em có mặt trong công viên."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Chú hề có 16 quả bóng bay",
+      "Chú hề tặng đi 6 quả bóng",
+      "Tìm số bóng bay còn lại"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "16 - 6",
+      "16 + 6",
+      "16 ÷ 6"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì chú hề đã tặng bóng đi, số bóng giảm nên ta lấy số bóng ban đầu trừ số bóng đã tặng.",
+      "Vì chú hề nhặt thêm được bóng bay.",
+      "Vì số bóng không thay đổi."
+    ],
+    "correctReason": 0,
+    "answer": 10,
+    "unit": "quả bóng bay",
+    "answerOptions": [
+      "Chú hề còn lại 10 quả bóng bay.",
+      "Chú hề còn lại 22 quả bóng bay.",
+      "Chú hề còn lại 9 quả bóng bay."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số bóng còn lại là 10 quả, so với 16 quả ban đầu có hợp lý không?",
+    "checkOptions": [
+      "Có, 10 nhỏ hơn 16.",
+      "Không, tặng đi thì số bóng phải nhiều lên."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số bóng chú hề có ban đầu (16 quả).",
+      "Bước 2: Tìm số bóng chú hề đã tặng đi (6 quả).",
+      "Bước 3: Vì tặng đi tức là bớt đi, ta làm phép trừ: 16 - 6.",
+      "Bước 4: Tính toán: 16 trừ 6 bằng 10.",
+      "Bước 5: Chọn đáp án 10 quả bóng bay."
+    ]
+  }
+]

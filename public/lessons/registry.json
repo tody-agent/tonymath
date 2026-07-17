@@ -1,6 +1,42 @@
 {
   "grades": [
     {
+      "id": "grade-1",
+      "title": "Lớp 1",
+      "subjects": [
+        {
+          "id": "math",
+          "title": "Toán học",
+          "icon": "📐",
+          "comingSoon": true
+        }
+      ]
+    },
+    {
+      "id": "grade-2",
+      "title": "Lớp 2",
+      "subjects": [
+        {
+          "id": "math",
+          "title": "Toán học",
+          "icon": "🧮",
+          "comingSoon": true
+        }
+      ]
+    },
+    {
+      "id": "grade-3",
+      "title": "Lớp 3",
+      "subjects": [
+        {
+          "id": "math",
+          "title": "Toán học",
+          "icon": "📐",
+          "comingSoon": true
+        }
+      ]
+    },
+    {
       "id": "grade-4",
       "title": "Lớp 4",
       "subjects": [
@@ -25,21 +61,16 @@
       ]
     },
     {
-      "id": "grade-3",
-      "title": "Lớp 3",
+      "id": "grade-5",
+      "title": "Lớp 5",
       "subjects": [
         {
           "id": "math",
           "title": "Toán học",
-          "icon": "🧮",
+          "icon": "📐",
           "comingSoon": true
         }
       ]
-    },
-    {
-      "id": "grade-5",
-      "title": "Lớp 5",
-      "comingSoon": true
     }
   ]
 }

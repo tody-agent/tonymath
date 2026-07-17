@@ -1,0 +1,2061 @@
+[
+  {
+    "id": "lesson-1",
+    "title": "Mua sách giáo khoa",
+    "shortTitle": "Mua sách mới",
+    "icon": "📚",
+    "color": "blue",
+    "skill": "Cộng có nhớ (phạm vi 100)",
+    "story": "Để chuẩn bị cho năm học mới, An mua một quyển sách Toán hết 28 nghìn đồng và một quyển sách Tiếng Việt hết 25 nghìn đồng. Hỏi An mua cả hai quyển sách hết bao nhiêu nghìn đồng?",
+    "visual": {
+      "type": "bar",
+      "values": [28, 25],
+      "labels": ["Sách Toán", "Sách Tiếng Việt"]
+    },
+    "retellOptions": [
+      "Sách Toán giá 28 nghìn, sách Tiếng Việt giá 25 nghìn, hỏi mua cả hai hết bao nhiêu.",
+      "Mua hai quyển hết 28 nghìn, trả lại 25 nghìn, hỏi giá mỗi quyển.",
+      "Sách Toán nhiều hơn sách Tiếng Việt bao nhiêu tiền."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Quyển sách Toán giá 28 nghìn đồng",
+      "Quyển sách Tiếng Việt giá 25 nghìn đồng",
+      "Tìm tổng số tiền mua hai quyển sách"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh hơn kém",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "28 + 25",
+      "28 - 25",
+      "28 × 25"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Để tìm tổng số tiền mua hai quyển sách, ta thực hiện phép cộng số tiền của từng quyển.",
+      "Vì ta muốn biết giá tiền chênh lệch.",
+      "Vì mua sách được giảm giá."
+    ],
+    "correctReason": 0,
+    "answer": 53,
+    "unit": "nghìn đồng",
+    "answerOptions": [
+      "An mua hết tất cả 53 nghìn đồng.",
+      "An mua hết tất cả 3 nghìn đồng.",
+      "An mua hết tất cả 52 nghìn đồng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Kết quả 53 nghìn đồng có lớn hơn giá tiền của mỗi quyển sách không?",
+    "checkOptions": [
+      "Có, 53 lớn hơn cả 28 và 25.",
+      "Không, mua cả hai quyển phải rẻ hơn một quyển."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm giá tiền sách Toán (28 nghìn đồng).",
+      "Bước 2: Tìm giá tiền sách Tiếng Việt (25 nghìn đồng).",
+      "Bước 3: Thực hiện phép tính cộng: 28 + 25.",
+      "Bước 4: Tính 28 cộng 25 bằng 53.",
+      "Bước 5: Chọn đáp án đúng 53 nghìn đồng."
+    ]
+  },
+  {
+    "id": "lesson-2",
+    "title": "Trang trại gà nhà bác Ba",
+    "shortTitle": "Trứng gà trong ổ",
+    "icon": "🐔",
+    "color": "yellow",
+    "skill": "Cộng có nhớ (phạm vi 100)",
+    "story": "Sáng nay trang trại thu hoạch được 35 quả trứng gà. Chiều nay thu hoạch được thêm 27 quả nữa. Hỏi cả ngày trang trại thu hoạch được bao nhiêu quả trứng gà?",
+    "visual": {
+      "type": "bar",
+      "values": [35, 27],
+      "labels": ["Buổi sáng", "Buổi chiều"]
+    },
+    "retellOptions": [
+      "Sáng thu 35 quả, chiều thu thêm 27 quả, hỏi cả ngày thu bao nhiêu quả.",
+      "Sáng thu 35 quả, bán đi 27 quả, hỏi còn lại bao nhiêu quả.",
+      "So sánh số trứng buổi sáng và buổi chiều."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Buổi sáng thu 35 quả trứng",
+      "Buổi chiều thu thêm 27 quả",
+      "Tìm tổng số trứng thu hoạch cả ngày"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "35 + 27",
+      "35 - 27",
+      "35 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Ta cộng số trứng buổi sáng với số trứng buổi chiều để tìm số trứng thu hoạch cả ngày.",
+      "Vì trứng gà bị vỡ một số quả.",
+      "Vì số trứng thu hoạch buổi chiều ít hơn."
+    ],
+    "correctReason": 0,
+    "answer": 62,
+    "unit": "quả trứng gà",
+    "answerOptions": [
+      "Cả ngày trang trại thu hoạch được 62 quả trứng gà.",
+      "Cả ngày trang trại thu hoạch được 8 quả trứng gà.",
+      "Cả ngày trang trại thu hoạch được 60 quả trứng gà."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số trứng cả ngày thu được là 62 quả, có đúng là lớn hơn số trứng buổi sáng (35 quả) không?",
+    "checkOptions": [
+      "Đúng, vì cộng thêm số trứng buổi chiều vào.",
+      "Sai, cả ngày phải thu được ít trứng hơn."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số trứng buổi sáng (35 quả).",
+      "Bước 2: Tìm số trứng buổi chiều (27 quả).",
+      "Bước 3: Thực hiện phép cộng: 35 + 27.",
+      "Bước 4: Nhẩm tính: 35 + 27 = 62 quả.",
+      "Bước 5: Chọn đáp án 62 quả trứng."
+    ]
+  },
+  {
+    "id": "lesson-3",
+    "title": "Cửa hàng bán sữa",
+    "shortTitle": "Thùng sữa đậu nành",
+    "icon": "🥛",
+    "color": "green",
+    "skill": "Cộng có nhớ (phạm vi 100)",
+    "story": "Một cửa hàng buổi sáng bán được 46 hộp sữa đậu nành. Buổi chiều bán được 38 hộp nữa. Hỏi cả ngày cửa hàng bán được bao nhiêu hộp sữa đậu nành?",
+    "visual": {
+      "type": "bar",
+      "values": [46, 38],
+      "labels": ["Sáng bán", "Chiều bán"]
+    },
+    "retellOptions": [
+      "Sáng bán 46 hộp, chiều bán thêm 38 hộp, hỏi cả ngày bán được bao nhiêu.",
+      "Sáng bán 46 hộp, trả lại 38 hộp, hỏi còn lại bao nhiêu.",
+      "So sánh số sữa bán buổi sáng và buổi chiều."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Buổi sáng bán được 46 hộp sữa",
+      "Buổi chiều bán được 38 hộp sữa",
+      "Tìm tổng số sữa bán cả ngày"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "46 + 38",
+      "46 - 38",
+      "46 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Ta cộng số sữa bán được buổi sáng và buổi chiều lại với nhau.",
+      "Vì có khách hàng trả lại sữa nên trừ bớt.",
+      "Vì số lượng sữa bán giảm đi."
+    ],
+    "correctReason": 0,
+    "answer": 84,
+    "unit": "hộp sữa",
+    "answerOptions": [
+      "Cả ngày cửa hàng bán được 84 hộp sữa đậu nành.",
+      "Cả ngày cửa hàng bán được 8 hộp sữa đậu nành.",
+      "Cả ngày cửa hàng bán được 82 hộp sữa đậu nành."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tổng số sữa bán được là 84 hộp, lớn hơn số sữa bán buổi sáng (46 hộp) đúng hay sai?",
+    "checkOptions": [
+      "Đúng, bán thêm thì tổng số sữa bán được phải nhiều hơn.",
+      "Sai, bán thêm thì tổng số sữa bán được phải ít đi."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Số sữa bán buổi sáng là 46 hộp.",
+      "Bước 2: Số sữa bán buổi chiều là 38 hộp.",
+      "Bước 3: Cộng hai số sữa lại: 46 + 38.",
+      "Bước 4: Tính 46 + 38 = 84 hộp.",
+      "Bước 5: Chọn đáp án đúng."
+    ]
+  },
+  {
+    "id": "lesson-4",
+    "title": "Bé gấp hạc giấy",
+    "shortTitle": "Hạc giấy sắc màu",
+    "icon": "🕊️",
+    "color": "pink",
+    "skill": "Cộng có nhớ (phạm vi 100)",
+    "story": "Vy gấp được 27 con hạc giấy màu vàng. Hà gấp được 29 con hạc giấy màu xanh. Hỏi cả hai bạn gấp được tất cả bao nhiêu con hạc giấy?",
+    "visual": {
+      "type": "bar",
+      "values": [27, 29],
+      "labels": ["Vy gấp", "Hà gấp"]
+    },
+    "retellOptions": [
+      "Vy gấp 27 con, Hà gấp 29 con, hỏi cả hai bạn gấp bao nhiêu con.",
+      "Vy gấp 27 con, cho Hà 29 con, hỏi Vy còn lại bao nhiêu con.",
+      "Tìm số hạc giấy Vy gấp nhiều hơn Hà."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Vy gấp được 27 con hạc giấy",
+      "Hà gấp được 29 con hạc giấy",
+      "Tìm tổng số hạc giấy cả hai bạn gấp"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "27 + 29",
+      "29 - 27",
+      "27 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Ta cộng số hạc của Vy và số hạc của Hà lại để tìm tổng số hạc giấy.",
+      "Vì Hà gấp ít hạc giấy hơn Vy.",
+      "Vì ta muốn tính hiệu số hạc giấy."
+    ],
+    "correctReason": 0,
+    "answer": 56,
+    "unit": "con hạc giấy",
+    "answerOptions": [
+      "Cả hai bạn gấp được tất cả 56 con hạc giấy.",
+      "Cả hai bạn gấp được tất cả 2 con hạc giấy.",
+      "Cả hai bạn gấp được tất cả 54 con hạc giấy."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số 56 có lớn hơn số hạc giấy Vy gấp (27 con) không?",
+    "checkOptions": [
+      "Có, 56 lớn hơn 27.",
+      "Không, 56 nhỏ hơn 27."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số hạc giấy Vy gấp (27 con).",
+      "Bước 2: Tìm số hạc giấy Hà gấp (29 con).",
+      "Bước 3: Thực hiện phép tính cộng: 27 + 29.",
+      "Bước 4: Tính toán: 27 + 29 = 56.",
+      "Bước 5: Chọn đáp án 56 con hạc."
+    ]
+  },
+  {
+    "id": "lesson-5",
+    "title": "Vườn đào của ông",
+    "shortTitle": "Cây đào ra hoa",
+    "icon": "🌸",
+    "color": "pink",
+    "skill": "Trừ có nhớ (phạm vi 100)",
+    "story": "Vườn của ông có 52 cây đào. Ông đã bán đi 25 cây để chưng Tết. Hỏi vườn của ông còn lại bao nhiêu cây đào?",
+    "visual": {
+      "type": "bar",
+      "values": [52, 25],
+      "labels": ["Số cây ban đầu", "Số cây đã bán"]
+    },
+    "retellOptions": [
+      "Có 52 cây, bán đi 25 cây, hỏi còn lại bao nhiêu cây đào.",
+      "Có 52 cây, trồng thêm 25 cây, hỏi có tất cả bao nhiêu cây.",
+      "Tìm số cây đào ông trồng đợt mới."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Vườn có 52 cây đào",
+      "Ông bán đi 25 cây đào",
+      "Tìm số cây đào còn lại"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "52 - 25",
+      "52 + 25",
+      "52 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Bán bớt cây đi nên ta trừ số cây đã bán khỏi tổng số cây ban đầu.",
+      "Vì ông trồng thêm cây mới.",
+      "Vì số cây tăng gấp đôi."
+    ],
+    "correctReason": 0,
+    "answer": 27,
+    "unit": "cây đào",
+    "answerOptions": [
+      "Vườn của ông còn lại 27 cây đào.",
+      "Vườn của ông còn lại 77 cây đào.",
+      "Vườn của ông còn lại 25 cây đào."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số cây còn lại là 27 cây, có ít hơn số cây ban đầu (52 cây) không?",
+    "checkOptions": [
+      "Có, 27 cây ít hơn 52 cây.",
+      "Không, bán đi cây thì cây phải nhiều lên."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định tổng số cây đào ban đầu (52 cây).",
+      "Bước 2: Xác định số cây ông đã bán (25 cây).",
+      "Bước 3: Làm phép tính trừ: 52 - 25.",
+      "Bước 4: Thực hiện phép tính: 52 trừ 25 bằng 27.",
+      "Bước 5: Chọn đáp án 27 cây đào."
+    ]
+  },
+  {
+    "id": "lesson-6",
+    "title": "Chuyến xe buýt chở khách",
+    "shortTitle": "Khách trên xe buýt",
+    "icon": "🚌",
+    "color": "blue",
+    "skill": "Trừ có nhớ (phạm vi 100)",
+    "story": "Một chuyến xe buýt đang chở 42 hành khách. Đến trạm dừng tiếp theo, có 18 hành khách xuống xe. Hỏi trên xe buýt còn lại bao nhiêu hành khách?",
+    "visual": {
+      "type": "bar",
+      "values": [42, 18],
+      "labels": ["Số khách ban đầu", "Khách xuống xe"]
+    },
+    "retellOptions": [
+      "Xe chở 42 người, xuống xe 18 người, hỏi còn lại bao nhiêu người.",
+      "Xe chở 42 người, lên xe thêm 18 người, hỏi có tất cả bao nhiêu người.",
+      "Tìm số người lái xe buýt."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Xe buýt chở 42 hành khách",
+      "18 hành khách xuống xe",
+      "Tìm số hành khách còn lại trên xe"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "42 - 18",
+      "42 + 18",
+      "42 ÷ 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Khách xuống xe làm giảm số khách trên xe nên ta thực hiện phép tính trừ.",
+      "Vì có hành khách lên xe thêm.",
+      "Vì số khách không đổi."
+    ],
+    "correctReason": 0,
+    "answer": 24,
+    "unit": "hành khách",
+    "answerOptions": [
+      "Trên xe buýt còn lại 24 hành khách.",
+      "Trên xe buýt còn lại 60 hành khách.",
+      "Trên xe buýt còn lại 30 hành khách."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số khách còn lại là 24 người, có nhỏ hơn số khách lúc đầu là 42 người không?",
+    "checkOptions": [
+      "Có, 24 người ít hơn 42 người.",
+      "Không, xuống xe thì số người phải tăng lên."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số khách ban đầu là 42.",
+      "Bước 2: Tìm số khách xuống xe là 18.",
+      "Bước 3: Lấy 42 trừ 18.",
+      "Bước 4: Thực hiện phép tính: 42 - 18 = 24.",
+      "Bước 5: Chọn câu trả lời 24 hành khách."
+    ]
+  },
+  {
+    "id": "lesson-7",
+    "title": "Nhà sách Fahasa",
+    "shortTitle": "Số vở bán được",
+    "icon": "📒",
+    "color": "green",
+    "skill": "Trừ có nhớ (phạm vi 100)",
+    "story": "Nhà sách Fahasa có 81 quyển vở kẻ ngang. Nhân viên đã bán đi 36 quyển vở. Hỏi nhà sách còn lại bao nhiêu quyển vở kẻ ngang?",
+    "visual": {
+      "type": "bar",
+      "values": [81, 36],
+      "labels": ["Số vở lúc đầu", "Số vở đã bán"]
+    },
+    "retellOptions": [
+      "Có 81 quyển vở, bán đi 36 quyển, hỏi còn lại bao nhiêu quyển vở.",
+      "Có 81 quyển vở, nhập thêm 36 quyển, hỏi có tất cả bao nhiêu.",
+      "Tìm số sách giáo khoa còn lại."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Nhà sách có 81 quyển vở",
+      "Bán đi 36 quyển vở",
+      "Tìm số quyển vở còn lại"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "81 - 36",
+      "81 + 36",
+      "81 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Bán đi vở làm giảm số lượng vở của nhà sách, ta thực hiện phép tính trừ.",
+      "Vì nhà sách nhập thêm vở.",
+      "Vì số vở tăng lên gấp đôi."
+    ],
+    "correctReason": 0,
+    "answer": 45,
+    "unit": "quyển vở kẻ ngang",
+    "answerOptions": [
+      "Nhà sách còn lại 45 quyển vở kẻ ngang.",
+      "Nhà sách còn lại 117 quyển vở kẻ ngang.",
+      "Nhà sách còn lại 46 quyển vở kẻ ngang."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số vở còn lại là 45 quyển, nhỏ hơn số vở ban đầu (81 quyển) đúng hay sai?",
+    "checkOptions": [
+      "Đúng, bán bớt thì số lượng còn lại phải ít đi.",
+      "Sai, bán bớt thì số lượng phải tăng lên."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số vở lúc đầu là 81.",
+      "Bước 2: Tìm số vở đã bán là 36.",
+      "Bước 3: Thực hiện phép trừ: 81 - 36.",
+      "Bước 4: Tính toán: 81 trừ 36 bằng 45.",
+      "Bước 5: Chọn đáp án 45 quyển vở."
+    ]
+  },
+  {
+    "id": "lesson-8",
+    "title": "Bể cá cảnh nhà bé Vy",
+    "shortTitle": "Thả cá cảnh",
+    "icon": "🐠",
+    "color": "orange",
+    "skill": "Trừ có nhớ (phạm vi 100)",
+    "story": "Bể cá cảnh có 63 con cá vàng nhỏ. Vy đã vớt bớt 27 con cá đem tặng cho các bạn học cùng lớp. Hỏi bể cá còn lại bao nhiêu con cá vàng nhỏ?",
+    "visual": {
+      "type": "bar",
+      "values": [63, 27],
+      "labels": ["Cá lúc đầu", "Cá đã tặng"]
+    },
+    "retellOptions": [
+      "Bể có 63 con cá, vớt tặng bạn 27 con, hỏi còn lại bao nhiêu con cá.",
+      "Bể có 63 con cá, thả thêm 27 con, hỏi có tất cả bao nhiêu con.",
+      "Tìm số cá bảy màu nhà bạn của Vy."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bể cá có 63 con cá vàng",
+      "Vớt tặng bạn 27 con cá",
+      "Tìm số cá vàng còn lại trong bể"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "63 - 27",
+      "63 + 27",
+      "63 ÷ 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vớt cá ra làm giảm số cá trong bể nên ta trừ số cá đã vớt đi khỏi tổng số cá ban đầu.",
+      "Vì thả thêm cá mới vào bể.",
+      "Vì số cá nhân đôi lên."
+    ],
+    "correctReason": 0,
+    "answer": 36,
+    "unit": "con cá vàng nhỏ",
+    "answerOptions": [
+      "Bể cá còn lại 36 con cá vàng nhỏ.",
+      "Bể cá còn lại 90 con cá vàng nhỏ.",
+      "Bể cá còn lại 35 con cá vàng nhỏ."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số cá còn lại là 36 con, có ít hơn số cá ban đầu (63 con) không?",
+    "checkOptions": [
+      "Có, 36 nhỏ hơn 63.",
+      "Không, 36 lớn hơn 63."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số cá vàng lúc đầu (63 con).",
+      "Bước 2: Tìm số cá vớt đi tặng bạn (27 con).",
+      "Bước 3: Thực hiện phép tính trừ: 63 - 27.",
+      "Bước 4: Tính toán: 63 trừ 27 bằng 36.",
+      "Bước 5: Chọn đáp án đúng."
+    ]
+  },
+  {
+    "id": "lesson-9",
+    "title": "Bánh ngọt cho các tổ học tập",
+    "shortTitle": "Mua bánh ngọt",
+    "icon": "🧁",
+    "color": "pink",
+    "skill": "Nhân cơ bản (bảng cửu chương)",
+    "story": "Mỗi đĩa bánh có 5 cái bánh ngọt. Mẹ bày hết tất cả 6 đĩa bánh như thế trên bàn tiệc. Hỏi có tất cả bao nhiêu cái bánh ngọt?",
+    "visual": {
+      "type": "icons",
+      "values": [5, 5, 5, 5, 5, 5],
+      "labels": ["Đĩa 1", "Đĩa 2", "Đĩa 3", "Đĩa 4", "Đĩa 5", "Đĩa 6"],
+      "icons": ["🧁", "🧁", "🧁", "🧁", "🧁", "🧁"]
+    },
+    "retellOptions": [
+      "Mỗi đĩa có 5 cái bánh, có 6 đĩa bánh, hỏi có tất cả bao nhiêu cái bánh ngọt.",
+      "Có 5 cái bánh ngọt và 6 cái bánh mặn, hỏi có tất cả bao nhiêu cái.",
+      "Tìm số đĩa trống trên bàn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mỗi đĩa có 5 cái bánh ngọt",
+      "Bày tất cả 6 đĩa bánh",
+      "Tìm tổng số bánh ngọt trên bàn"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "5 × 6",
+      "5 + 6",
+      "6 - 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì số bánh lặp lại 5 cái trên mỗi đĩa, ta lấy 5 nhân với số đĩa là 6.",
+      "Vì ta chỉ cộng thêm 6 cái bánh.",
+      "Vì số đĩa ít hơn số bánh."
+    ],
+    "correctReason": 0,
+    "answer": 30,
+    "unit": "cái bánh ngọt",
+    "answerOptions": [
+      "Có tất cả 30 cái bánh ngọt.",
+      "Có tất cả 11 cái bánh ngọt.",
+      "Có tất cả 25 cái bánh ngọt."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số bánh gộp lại là 30, lớn hơn số bánh trên một đĩa đơn lẻ (5 cái) đúng hay sai?",
+    "checkOptions": [
+      "Đúng, gộp 6 đĩa thì số bánh phải gấp nhiều lần lên.",
+      "Sai, gộp 6 đĩa thì số bánh phải ít đi."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định số bánh trên mỗi đĩa là 5 cái.",
+      "Bước 2: Xác định số đĩa bày bánh là 6 đĩa.",
+      "Bước 3: Dùng phép nhân để tính tổng: 5 nhân 6.",
+      "Bước 4: Nhẩm bảng cửu chương 5 nhân 6 bằng 30.",
+      "Bước 5: Chọn đáp án 30 cái bánh ngọt."
+    ]
+  },
+  {
+    "id": "lesson-10",
+    "title": "Hộp bút sáp màu tặng bạn",
+    "shortTitle": "Hộp sáp màu",
+    "icon": "🖍️",
+    "color": "orange",
+    "skill": "Nhân cơ bản (bảng cửu chương)",
+    "story": "Mỗi hộp màu có chứa 8 cây bút sáp màu. An mua 4 hộp màu giống như thế để tặng các bạn. Hỏi An đã mua tất cả bao nhiêu cây bút sáp màu?",
+    "visual": {
+      "type": "icons",
+      "values": [8, 8, 8, 8],
+      "labels": ["Hộp 1", "Hộp 2", "Hộp 3", "Hộp 4"],
+      "icons": ["🖍️", "🖍️", "🖍️", "🖍️"]
+    },
+    "retellOptions": [
+      "Mỗi hộp có 8 cây sáp màu, mua 4 hộp, hỏi mua tất cả bao nhiêu cây.",
+      "Có 8 cây sáp màu đỏ và 4 cây sáp màu xanh, hỏi có tất cả bao nhiêu cây.",
+      "Tìm số bút sáp màu An đã cho đi."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mỗi hộp có 8 cây sáp màu",
+      "An mua 4 hộp sáp màu",
+      "Tìm tổng số cây sáp màu An mua"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "8 × 4",
+      "8 + 4",
+      "8 - 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì số lượng 8 cây sáp màu được lặp lại 4 lần nên ta thực hiện phép tính nhân.",
+      "Vì mua thêm 4 cây sáp màu mới.",
+      "Vì số sáp màu bị giảm đi."
+    ],
+    "correctReason": 0,
+    "answer": 32,
+    "unit": "cây bút sáp màu",
+    "answerOptions": [
+      "An đã mua tất cả 32 cây bút sáp màu.",
+      "An đã mua tất cả 12 cây bút sáp màu.",
+      "An đã mua tất cả 28 cây bút sáp màu."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "32 cây bút sáp màu có bằng tổng của 8 + 8 + 8 + 8 không?",
+    "checkOptions": [
+      "Có, 8 nhân 4 đúng bằng 32.",
+      "Không, 8 nhân 4 bằng 12."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Số sáp màu mỗi hộp là 8 cây.",
+      "Bước 2: Số hộp màu là 4 hộp.",
+      "Bước 3: Thực hiện phép nhân: 8 × 4.",
+      "Bước 4: Tra bảng nhân 8: 8 nhân 4 bằng 32 cây.",
+      "Bước 5: Chọn đáp án đúng."
+    ]
+  },
+  {
+    "id": "lesson-11",
+    "title": "Mỗi ngày đọc sách",
+    "shortTitle": "Vy đọc sách",
+    "icon": "📚",
+    "color": "blue",
+    "skill": "Nhân cơ bản (bảng cửu chương)",
+    "story": "Để rèn luyện tư duy, mỗi ngày Vy đọc 7 trang truyện tranh. Hỏi sau 5 ngày Vy đã đọc được tất cả bao nhiêu trang truyện tranh?",
+    "visual": {
+      "type": "bar",
+      "values": [7, 7, 7, 7, 7],
+      "labels": ["Ngày 1", "Ngày 2", "Ngày 3", "Ngày 4", "Ngày 5"]
+    },
+    "retellOptions": [
+      "Mỗi ngày đọc 7 trang, đọc trong 5 ngày, hỏi đọc tất cả bao nhiêu trang.",
+      "Tổng số trang sách Vy cần đọc là 7 trang, đã đọc 5 trang, hỏi còn lại bao nhiêu.",
+      "So sánh số trang Vy đọc giữa các ngày."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mỗi ngày Vy đọc 7 trang sách",
+      "Vy đọc sách liên tục trong 5 ngày",
+      "Tìm tổng số trang sách Vy đọc được"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "7 × 5",
+      "7 + 5",
+      "7 - 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Ta nhân số trang đọc mỗi ngày với số ngày Vy đọc sách để tìm tổng số trang.",
+      "Vì Vy đọc thêm 5 trang mới.",
+      "Vì Vy nghỉ học không đọc sách."
+    ],
+    "correctReason": 0,
+    "answer": 35,
+    "unit": "trang truyện tranh",
+    "answerOptions": [
+      "Vy đã đọc được tất cả 35 trang truyện tranh.",
+      "Vy đã đọc được tất cả 12 trang truyện tranh.",
+      "Vy đã đọc được tất cả 30 trang truyện tranh."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số 35 trang có lớn hơn số trang đọc của một ngày không?",
+    "checkOptions": [
+      "Có, 35 lớn hơn 7.",
+      "Không, 35 nhỏ hơn 7."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Vy đọc 7 trang mỗi ngày.",
+      "Bước 2: Số ngày Vy đọc sách là 5 ngày.",
+      "Bước 3: Làm phép nhân: 7 × 5.",
+      "Bước 4: Tính toán: 7 × 5 = 35 trang.",
+      "Bước 5: Chọn đáp án đúng."
+    ]
+  },
+  {
+    "id": "lesson-12",
+    "title": "Chai nước ngọt cho bữa tiệc",
+    "shortTitle": "Nước ngọt trong thùng",
+    "icon": "🥤",
+    "color": "pink",
+    "skill": "Nhân cơ bản (bảng cửu chương)",
+    "story": "Mỗi lốc nước ngọt có chứa 6 chai nước ngọt. Bác Ba mua 3 lốc nước ngọt giống như thế cho gia đình. Hỏi bác Ba đã mua tất cả bao nhiêu chai nước ngọt?",
+    "visual": {
+      "type": "icons",
+      "values": [6, 6, 6],
+      "labels": ["Lốc 1", "Lốc 2", "Lốc 3"],
+      "icons": ["🥤", "🥤", "🥤"]
+    },
+    "retellOptions": [
+      "Mỗi lốc có 6 chai, mua 3 lốc, hỏi mua tất cả bao nhiêu chai.",
+      "Có 6 chai nước ngọt đỏ và 3 chai màu vàng, hỏi có tất cả bao nhiêu.",
+      "Tìm số lốc nước ngọt còn lại trong kho."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mỗi lốc có 6 chai nước ngọt",
+      "Bác Ba mua 3 lốc nước ngọt",
+      "Tìm tổng số chai nước ngọt mua được"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "6 × 3",
+      "6 + 3",
+      "6 - 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì số chai nước ngọt trong một lốc được lặp lại 3 lần, ta thực hiện phép tính nhân.",
+      "Vì được tặng thêm 3 chai nước ngọt.",
+      "Vì số chai nước ngọt bị hỏng."
+    ],
+    "correctReason": 0,
+    "answer": 18,
+    "unit": "chai nước ngọt",
+    "answerOptions": [
+      "Bác Ba đã mua tất cả 18 chai nước ngọt.",
+      "Bác Ba đã mua tất cả 9 chai nước ngọt.",
+      "Bác Ba đã mua tất cả 16 chai nước ngọt."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số nước ngọt mua được là 18 chai có bằng tổng của 6 + 6 + 6 không?",
+    "checkOptions": [
+      "Có, 6 nhân 3 đúng bằng 18.",
+      "Không, 6 nhân 3 bằng 9."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Số chai nước ngọt mỗi lốc là 6 chai.",
+      "Bước 2: Bác mua 3 lốc nước ngọt.",
+      "Bước 3: Lấy 6 nhân với 3.",
+      "Bước 4: Bảng nhân 6: 6 × 3 = 18 chai.",
+      "Bước 5: Chọn đáp án 18 chai nước ngọt."
+    ]
+  },
+  {
+    "id": "lesson-13",
+    "title": "Chia kẹo cho các bạn nhỏ",
+    "shortTitle": "Chia kẹo dâu",
+    "icon": "🍬",
+    "color": "pink",
+    "skill": "Chia đều",
+    "story": "Cô giáo có 20 viên kẹo dâu ngọt. Cô muốn chia đều số kẹo này cho 4 bạn nhỏ có thành tích xuất sắc. Hỏi mỗi bạn nhận được bao nhiêu viên kẹo?",
+    "visual": {
+      "type": "bar",
+      "values": [5, 5, 5, 5],
+      "labels": ["Bạn A", "Bạn B", "Bạn C", "Bạn D"]
+    },
+    "retellOptions": [
+      "Có 20 viên kẹo, chia đều cho 4 bạn, hỏi mỗi bạn có bao nhiêu viên.",
+      "Có 20 viên kẹo, cho đi 4 viên, hỏi còn lại bao nhiêu viên kẹo.",
+      "Tìm số kẹo cô giáo giữ lại cho mình."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Có tất cả 20 viên kẹo dâu",
+      "Chia đều kẹo cho 4 bạn nhỏ",
+      "Tìm số kẹo mỗi bạn nhận được"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "20 ÷ 4",
+      "20 - 4",
+      "20 × 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Muốn chia đều kẹo cho các bạn, ta dùng phép chia tổng số kẹo cho số bạn.",
+      "Vì kẹo bị rơi mất.",
+      "Vì kẹo được thêm vào."
+    ],
+    "correctReason": 0,
+    "answer": 5,
+    "unit": "viên kẹo",
+    "answerOptions": [
+      "Mỗi bạn nhận được 5 viên kẹo.",
+      "Mỗi bạn nhận được 16 viên kẹo.",
+      "Mỗi bạn nhận được 4 viên kẹo."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số kẹo mỗi bạn nhận là 5 viên, gộp lại cho 4 bạn có đúng bằng 20 viên kẹo ban đầu không?",
+    "checkOptions": [
+      "Đúng, 5 nhân với 4 đúng bằng 20.",
+      "Sai, 5 nhân với 4 bằng 16."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định tổng số kẹo ban đầu (20 viên).",
+      "Bước 2: Xác định số bạn nhận kẹo (4 bạn).",
+      "Bước 3: Thực hiện phép tính chia: 20 ÷ 4.",
+      "Bước 4: Tính toán: 20 chia 4 bằng 5 viên.",
+      "Bước 5: Chọn đáp án 5 viên kẹo."
+    ]
+  },
+  {
+    "id": "lesson-14",
+    "title": "Xếp ghế trong phòng họp",
+    "shortTitle": "Xếp ghế ngồi",
+    "icon": "🪑",
+    "color": "brown",
+    "skill": "Chia đều",
+    "story": "Các bạn học sinh xếp 24 cái ghế gỗ vào 3 hàng đều nhau trong lớp học. Hỏi mỗi hàng có bao nhiêu cái ghế gỗ?",
+    "visual": {
+      "type": "bar",
+      "values": [8, 8, 8],
+      "labels": ["Hàng 1", "Hàng 2", "Hàng 3"]
+    },
+    "retellOptions": [
+      "Xếp 24 cái ghế vào 3 hàng đều nhau, hỏi mỗi hàng có bao nhiêu cái ghế.",
+      "Xếp 24 cái ghế gỗ, cất đi 3 cái ghế hỏng, hỏi còn bao nhiêu cái.",
+      "Tìm số hàng ghế bị thừa ra."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Có tổng cộng 24 cái ghế gỗ",
+      "Xếp ghế đều vào 3 hàng dọc",
+      "Tìm số ghế xếp trên mỗi hàng"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "24 ÷ 3",
+      "24 - 3",
+      "24 × 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Chia đều tổng số ghế cho số hàng để tìm số ghế trên mỗi hàng.",
+      "Vì ta cất ghế thừa đi.",
+      "Vì số lượng ghế tăng lên."
+    ],
+    "correctReason": 0,
+    "answer": 8,
+    "unit": "cái ghế gỗ",
+    "answerOptions": [
+      "Mỗi hàng có 8 cái ghế gỗ.",
+      "Mỗi hàng có 21 cái ghế gỗ.",
+      "Mỗi hàng có 7 cái ghế gỗ."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số ghế mỗi hàng là 8 cái, nhân với 3 hàng có ra đúng 24 cái ban đầu không?",
+    "checkOptions": [
+      "Có, 8 nhân 3 bằng 24.",
+      "Không, 8 nhân 3 bằng 20."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm tổng số ghế gỗ là 24 cái.",
+      "Bước 2: Tìm số hàng xếp ghế là 3 hàng.",
+      "Bước 3: Lấy 24 chia cho 3.",
+      "Bước 4: Nhẩm bảng chia 3: 24 ÷ 3 = 8.",
+      "Bước 5: Chọn đáp án 8 cái ghế gỗ."
+    ]
+  },
+  {
+    "id": "lesson-15",
+    "title": "Bó hoa hồng tặng mẹ",
+    "shortTitle": "Chia hoa hồng",
+    "icon": "🌹",
+    "color": "red",
+    "skill": "Chia đều",
+    "story": "Vy cắm đều 18 bông hoa hồng vào 2 bình hoa thủy tinh trên bàn học. Hỏi mỗi bình hoa có bao nhiêu bông hoa hồng?",
+    "visual": {
+      "type": "bar",
+      "values": [9, 9],
+      "labels": ["Bình 1", "Bình 2"]
+    },
+    "retellOptions": [
+      "Cắm đều 18 bông hoa vào 2 bình, hỏi mỗi bình có bao nhiêu bông.",
+      "Có 18 bông hoa hồng, bán đi 2 bông, hỏi còn lại bao nhiêu.",
+      "Tìm số bình hoa bị vỡ trong lúc cắm."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Có tất cả 18 bông hoa hồng",
+      "Cắm đều hoa vào 2 bình thủy tinh",
+      "Tìm số hoa hồng cắm trong mỗi bình"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình bớt (Cho đi)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "18 ÷ 2",
+      "18 - 2",
+      "18 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Ta chia đều tổng số hoa hồng cho 2 bình hoa để tính số hoa ở mỗi bình.",
+      "Vì hoa bị héo mất bớt đi.",
+      "Vì số lượng hoa tăng thêm."
+    ],
+    "correctReason": 0,
+    "answer": 9,
+    "unit": "bông hoa hồng",
+    "answerOptions": [
+      "Mỗi bình hoa có 9 bông hoa hồng.",
+      "Mỗi bình hoa có 16 bông hoa hồng.",
+      "Mỗi bình hoa có 8 bông hoa hồng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Mỗi bình có 9 bông hoa, nhân với 2 bình có ra đúng 18 bông ban đầu không?",
+    "checkOptions": [
+      "Có, 9 nhân 2 bằng 18.",
+      "Không, 9 nhân 2 bằng 16."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số hoa hồng lúc đầu là 18 bông.",
+      "Bước 2: Tìm số bình hoa là 2 bình.",
+      "Bước 3: Làm phép chia: 18 ÷ 2.",
+      "Bước 4: Kết quả là 9 bông hoa ở mỗi bình.",
+      "Bước 5: Chọn đáp án đúng."
+    ]
+  },
+  {
+    "id": "lesson-16",
+    "title": "Thu hoạch quả dưa hấu",
+    "shortTitle": "Xếp dưa hấu",
+    "icon": "🍉",
+    "color": "green",
+    "skill": "Chia đều",
+    "story": "Bác Ba xếp đều 28 quả dưa hấu vào 4 cái giỏ tre để mang ra chợ bán. Hỏi mỗi giỏ tre chứa bao nhiêu quả dưa hấu?",
+    "visual": {
+      "type": "bar",
+      "values": [7, 7, 7, 7],
+      "labels": ["Giỏ 1", "Giỏ 2", "Giỏ 3", "Giỏ 4"]
+    },
+    "retellOptions": [
+      "Xếp đều 28 quả dưa vào 4 giỏ tre, hỏi mỗi giỏ có bao nhiêu quả.",
+      "Có 28 quả dưa hấu, bán đi 4 quả dưa hấu hỏng.",
+      "Tìm số giỏ dưa hấu bác Ba còn thừa."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Có tất cả 28 quả dưa hấu",
+      "Xếp đều dưa vào 4 giỏ tre",
+      "Tìm số dưa hấu chứa ở mỗi giỏ"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "28 ÷ 4",
+      "28 - 4",
+      "28 × 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Ta thực hiện phép chia đều tổng số dưa hấu cho số giỏ tre.",
+      "Vì dưa hấu bị thối bớt đi.",
+      "Vì số lượng dưa hấu được tăng thêm."
+    ],
+    "correctReason": 0,
+    "answer": 7,
+    "unit": "quả dưa hấu",
+    "answerOptions": [
+      "Mỗi giỏ tre chứa 7 quả dưa hấu.",
+      "Mỗi giỏ tre chứa 24 quả dưa hấu.",
+      "Mỗi giỏ tre chứa 6 quả dưa hấu."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số quả dưa mỗi giỏ là 7 quả, nhân với 4 giỏ có bằng 28 không?",
+    "checkOptions": [
+      "Có, 7 nhân 4 bằng 28.",
+      "Không, 7 nhân 4 bằng 24."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số dưa hấu là 28 quả.",
+      "Bước 2: Tìm số giỏ tre xếp dưa là 4 giỏ.",
+      "Bước 3: Thực hiện phép tính chia: 28 ÷ 4.",
+      "Bước 4: Tính 28 chia 4 bằng 7 quả.",
+      "Bước 5: Chọn đáp án đúng."
+    ]
+  },
+  {
+    "id": "lesson-17",
+    "title": "Bóng bay của Bo và Hà",
+    "shortTitle": "So sánh bóng bay",
+    "icon": "🎈",
+    "color": "purple",
+    "skill": "Nhiều hơn / ít hơn một số đơn vị",
+    "story": "Bo có 15 quả bóng bay. Hà có nhiều hơn Bo 6 quả bóng bay. Hỏi Hà có bao nhiêu quả bóng bay?",
+    "visual": {
+      "type": "compare",
+      "big": 21,
+      "small": 15,
+      "diff": 6,
+      "labels": ["Hà", "Bo"]
+    },
+    "retellOptions": [
+      "Bo có 15 quả bóng, Hà nhiều hơn Bo 6 quả, hỏi Hà có bao nhiêu quả.",
+      "Bo có 15 quả bóng, Hà ít hơn Bo 6 quả, hỏi Hà có bao nhiêu quả.",
+      "Tìm số bóng bay của cả hai bạn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bo có 15 quả bóng bay",
+      "Hà có nhiều hơn Bo 6 quả",
+      "Tìm số bóng bay Hà có"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình so sánh hơn kém",
+      "Mô hình bớt (Cho đi)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "15 + 6",
+      "15 - 6",
+      "15 × 6"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì Hà có nhiều hơn Bo, ta lấy số bóng của Bo cộng phần nhiều hơn để tìm số bóng của Hà.",
+      "Vì Hà có ít bóng hơn Bo.",
+      "Vì số bóng của hai bạn bằng nhau."
+    ],
+    "correctReason": 0,
+    "answer": 21,
+    "unit": "quả bóng bay",
+    "answerOptions": [
+      "Hà có 21 quả bóng bay.",
+      "Hà có 9 quả bóng bay.",
+      "Hà có 20 quả bóng bay."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số bóng của Hà là 21 quả, có lớn hơn số bóng của Bo (15 quả) không?",
+    "checkOptions": [
+      "Có, 21 lớn hơn 15.",
+      "Không, 21 nhỏ hơn 15."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số bóng của Bo (15 quả).",
+      "Bước 2: Xem Hà nhiều hơn Bo bao nhiêu quả (6 quả).",
+      "Bước 3: Làm phép cộng: 15 + 6.",
+      "Bước 4: Tính toán: 15 cộng 6 bằng 21 quả.",
+      "Bước 5: Chọn đáp án 21 quả bóng."
+    ]
+  },
+  {
+    "id": "lesson-18",
+    "title": "Bút chì màu của Nam và Hoa",
+    "shortTitle": "Bút chì của Nam",
+    "icon": "✏️",
+    "color": "green",
+    "skill": "Nhiều hơn / ít hơn một số đơn vị",
+    "story": "Hoa có 18 cái bút chì màu. Nam có ít hơn Hoa 5 cái bút chì màu. Hỏi Nam có bao nhiêu cái bút chì màu?",
+    "visual": {
+      "type": "compare",
+      "big": 18,
+      "small": 13,
+      "diff": 5,
+      "labels": ["Hoa", "Nam"]
+    },
+    "retellOptions": [
+      "Hoa có 18 bút, Nam ít hơn Hoa 5 cái, hỏi Nam có bao nhiêu cái bút chì màu.",
+      "Hoa có 18 bút, Nam nhiều hơn Hoa 5 cái, hỏi Nam có bao nhiêu cái.",
+      "Tìm tổng số bút chì màu hai bạn có."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Hoa có 18 cái bút chì màu",
+      "Nam có ít hơn Hoa 5 cái bút",
+      "Tìm số bút chì màu Nam có"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình so sánh hơn kém",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "18 - 5",
+      "18 + 5",
+      "18 × 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì Nam có ít bút màu hơn Hoa, ta lấy số bút của Hoa trừ bớt phần ít hơn.",
+      "Vì Nam có nhiều bút màu hơn Hoa.",
+      "Vì số bút của Nam và Hoa bằng nhau."
+    ],
+    "correctReason": 0,
+    "answer": 13,
+    "unit": "cái bút chì màu",
+    "answerOptions": [
+      "Nam có 13 cái bút chì màu.",
+      "Nam có 23 cái bút chì màu.",
+      "Nam có 12 cái bút chì màu."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số bút chì Nam có là 13 cái, có ít hơn số bút của Hoa (18 cái) đúng hay sai?",
+    "checkOptions": [
+      "Đúng, vì Nam có ít hơn.",
+      "Sai, vì Nam phải có nhiều hơn."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Số bút màu của Hoa là 18 cái.",
+      "Bước 2: Nam có ít hơn Hoa là 5 cái.",
+      "Bước 3: Thực hiện phép tính trừ: 18 - 5.",
+      "Bước 4: Tính 18 trừ 5 bằng 13 cái bút.",
+      "Bước 5: Chọn đáp án đúng."
+    ]
+  },
+  {
+    "id": "lesson-19",
+    "title": "Những con hạc giấy Vy gấp",
+    "shortTitle": "Hạc giấy so sánh",
+    "icon": "🕊️",
+    "color": "pink",
+    "skill": "Nhiều hơn / ít hơn một số đơn vị",
+    "story": "Vy gấp được 24 con hạc giấy màu hồng. Vy gấp được nhiều hơn An 6 con hạc giấy. Hỏi An gấp được bao nhiêu con hạc giấy?",
+    "visual": {
+      "type": "compare",
+      "big": 24,
+      "small": 18,
+      "diff": 6,
+      "labels": ["Vy", "An"]
+    },
+    "retellOptions": [
+      "Vy gấp 24 con, nhiều hơn An 6 con, hỏi An gấp được bao nhiêu con.",
+      "Vy gấp 24 con, ít hơn An 6 con, hỏi An gấp được bao nhiêu con.",
+      "Tìm tổng số hạc giấy cả hai bạn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Vy gấp được 24 con hạc giấy",
+      "Vy gấp nhiều hơn An 6 con hạc",
+      "Tìm số hạc giấy An gấp được"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình so sánh hơn kém",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "24 - 6",
+      "24 + 6",
+      "24 × 6"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì Vy gấp nhiều hơn An, nghĩa là An gấp được ít hơn Vy. Ta lấy số hạc của Vy trừ đi 6.",
+      "Vì An gấp được nhiều hạc giấy hơn Vy.",
+      "Vì Vy và An gấp bằng nhau."
+    ],
+    "correctReason": 0,
+    "answer": 18,
+    "unit": "con hạc giấy",
+    "answerOptions": [
+      "An gấp được 18 con hạc giấy.",
+      "An gấp được 30 con hạc giấy.",
+      "An gấp được 17 con hạc giấy."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số hạc của An gấp là 18 con, có nhỏ hơn số hạc Vy gấp (24 con) không?",
+    "checkOptions": [
+      "Có, 18 nhỏ hơn 24.",
+      "Không, An phải gấp nhiều hơn 24."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số hạc giấy Vy gấp được (24 con).",
+      "Bước 2: Vy gấp nhiều hơn An 6 con, tức An gấp ít hơn Vy 6 con.",
+      "Bước 3: Làm phép tính trừ: 24 - 6.",
+      "Bước 4: Tính 24 trừ 6 bằng 18 con.",
+      "Bước 5: Chọn đáp án 18 con hạc."
+    ]
+  },
+  {
+    "id": "lesson-20",
+    "title": "Bóng rổ của trường học",
+    "shortTitle": "Đếm bóng rổ",
+    "icon": "🏀",
+    "color": "orange",
+    "skill": "Nhiều hơn / ít hơn một số đơn vị",
+    "story": "Phòng thể chất có 32 quả bóng rổ. Số bóng rổ ít hơn số bóng bóng đá là 8 quả. Hỏi phòng thể chất có bao nhiêu quả bóng đá?",
+    "visual": {
+      "type": "compare",
+      "big": 40,
+      "small": 32,
+      "diff": 8,
+      "labels": ["Bóng đá", "Bóng rổ"]
+    },
+    "retellOptions": [
+      "Bóng rổ có 32 quả, ít hơn bóng đá 8 quả, hỏi có bao nhiêu quả bóng đá.",
+      "Bóng rổ có 32 quả, nhiều hơn bóng đá 8 quả, hỏi có bao nhiêu quả bóng đá.",
+      "Tìm tổng số bóng trong phòng thể chất."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Phòng có 32 quả bóng rổ",
+      "Bóng rổ ít hơn bóng đá 8 quả",
+      "Tìm số quả bóng đá trong phòng"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình so sánh hơn kém",
+      "Mô hình bớt (Cho đi)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "32 + 8",
+      "32 - 8",
+      "32 × 8"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Bóng rổ ít hơn bóng đá nghĩa là bóng đá nhiều hơn bóng rổ. Ta cộng thêm 8 vào số bóng rổ.",
+      "Vì số bóng đá ít hơn số bóng rổ.",
+      "Vì số bóng đá bằng số bóng rổ."
+    ],
+    "correctReason": 0,
+    "answer": 40,
+    "unit": "quả bóng đá",
+    "answerOptions": [
+      "Phòng thể chất có 40 quả bóng đá.",
+      "Phòng thể chất có 24 quả bóng đá.",
+      "Phòng thể chất có 38 quả bóng đá."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số bóng đá là 40 quả, nhiều hơn số bóng rổ (32 quả) đúng hay sai?",
+    "checkOptions": [
+      "Đúng, vì bóng rổ ít hơn bóng đá.",
+      "Sai, bóng đá phải ít hơn bóng rổ."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số bóng rổ là 32 quả.",
+      "Bước 2: Bóng rổ ít hơn bóng đá 8 quả, nghĩa là bóng đá nhiều hơn bóng rổ 8 quả.",
+      "Bước 3: Thực hiện phép cộng: 32 + 8.",
+      "Bước 4: Tính toán: 32 + 8 = 40.",
+      "Bước 5: Chọn đáp án 40 quả bóng đá."
+    ]
+  },
+  {
+    "id": "lesson-21",
+    "title": "Cây thước kẻ kẻ thẳng",
+    "shortTitle": "Đo thước kẻ",
+    "icon": "📐",
+    "color": "green",
+    "skill": "Đo lường (cm, kg, lít)",
+    "story": "Băng giấy màu xanh dài 25 cm. Băng giấy màu đỏ dài hơn băng giấy xanh 15 cm. Hỏi băng giấy màu đỏ dài bao nhiêu xăng-ti-mét?",
+    "visual": {
+      "type": "compare",
+      "big": 40,
+      "small": 25,
+      "diff": 15,
+      "labels": ["Băng giấy đỏ", "Băng giấy xanh"]
+    },
+    "retellOptions": [
+      "Băng xanh dài 25 cm, băng đỏ dài hơn băng xanh 15 cm, hỏi băng đỏ dài bao nhiêu.",
+      "Băng xanh dài 25 cm, băng đỏ ngắn hơn băng xanh 15 cm, hỏi băng đỏ dài bao nhiêu.",
+      "Tìm tổng độ dài hai băng giấy."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Băng giấy xanh dài 25 cm",
+      "Băng giấy đỏ dài hơn băng xanh 15 cm",
+      "Tìm chiều dài băng giấy đỏ"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình so sánh hơn kém",
+      "Mô hình bớt (Cho đi)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "25 + 15",
+      "25 - 15",
+      "25 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Để tìm chiều dài băng đỏ, ta lấy chiều dài băng xanh cộng thêm phần dài hơn.",
+      "Vì băng đỏ ngắn hơn băng xanh.",
+      "Vì ta muốn giảm chiều dài đi."
+    ],
+    "correctReason": 0,
+    "answer": 40,
+    "unit": "cm",
+    "answerOptions": [
+      "Băng giấy màu đỏ dài 40 cm.",
+      "Băng giấy màu đỏ dài 10 cm.",
+      "Băng giấy màu đỏ dài 35 cm."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Chiều dài băng đỏ là 40 cm, có dài hơn băng xanh (25 cm) đúng hay sai?",
+    "checkOptions": [
+      "Đúng, vì băng đỏ dài hơn.",
+      "Sai, vì băng đỏ phải ngắn hơn."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm chiều dài băng xanh (25 cm).",
+      "Bước 2: Tìm phần băng đỏ dài hơn (15 cm).",
+      "Bước 3: Thực hiện phép cộng: 25 + 15.",
+      "Bước 4: Tính 25 cộng 15 bằng 40.",
+      "Bước 5: Chọn đáp án 40 cm."
+    ]
+  },
+  {
+    "id": "lesson-22",
+    "title": "Bao thóc nhà bác Ba",
+    "shortTitle": "Đo bao thóc",
+    "icon": "🌾",
+    "color": "yellow",
+    "skill": "Đo lường (cm, kg, lít)",
+    "story": "Bao gạo thứ nhất nặng 45 kg. Bao gạo thứ hai nhẹ hơn bao thứ nhất 18 kg. Hỏi bao gạo thứ hai nặng bao nhiêu ki-lô-gam?",
+    "visual": {
+      "type": "compare",
+      "big": 45,
+      "small": 27,
+      "diff": 18,
+      "labels": ["Bao thứ nhất", "Bao thứ hai"]
+    },
+    "retellOptions": [
+      "Bao một nặng 45 kg, bao hai nhẹ hơn bao một 18 kg, hỏi bao hai nặng bao nhiêu.",
+      "Bao một nặng 45 kg, bao hai nặng hơn bao một 18 kg, hỏi bao hai nặng bao nhiêu.",
+      "Tìm tổng cân nặng của hai bao gạo."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bao gạo thứ nhất nặng 45 kg",
+      "Bao gạo thứ hai nhẹ hơn 18 kg",
+      "Tìm cân nặng bao gạo thứ hai"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình so sánh hơn kém",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "45 - 18",
+      "45 + 18",
+      "45 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì bao thứ hai nhẹ hơn, ta lấy cân nặng bao thứ nhất trừ đi phần nhẹ hơn.",
+      "Vì bao thứ hai nặng hơn bao thứ nhất.",
+      "Vì ta muốn gộp cân nặng hai bao."
+    ],
+    "correctReason": 0,
+    "answer": 27,
+    "unit": "kg",
+    "answerOptions": [
+      "Bao gạo thứ hai nặng 27 kg.",
+      "Bao gạo thứ hai nặng 63 kg.",
+      "Bao gạo thứ hai nặng 25 kg."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Bao gạo thứ hai nặng 27 kg, có nhẹ hơn bao thứ nhất (45 kg) không?",
+    "checkOptions": [
+      "Có, 27 nhỏ hơn 45.",
+      "Không, 27 lớn hơn 45."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm cân nặng bao thứ nhất (45 kg).",
+      "Bước 2: Cân nặng bao thứ hai nhẹ hơn bao thứ nhất 18 kg.",
+      "Bước 3: Làm phép tính trừ: 45 - 18.",
+      "Bước 4: Tính toán: 45 trừ 18 bằng 27 kg.",
+      "Bước 5: Chọn đáp án 27 kg."
+    ]
+  },
+  {
+    "id": "lesson-23",
+    "title": "Thùng nước đậu nành",
+    "shortTitle": "Lít sữa đậu nành",
+    "icon": "🥛",
+    "color": "green",
+    "skill": "Đo lường (cm, kg, lít)",
+    "story": "Bác Ba có một can nước đựng được 32 lít sữa. Bác đã rót bớt 15 lít sữa bán cho hàng xóm. Hỏi trong can còn lại bao nhiêu lít sữa?",
+    "visual": {
+      "type": "bar",
+      "values": [32, 15],
+      "labels": ["Số sữa ban đầu", "Số sữa đã rót"]
+    },
+    "retellOptions": [
+      "Can có 32 lít, rót bớt 15 lít, hỏi còn lại bao nhiêu lít.",
+      "Can có 32 lít, mua thêm 15 lít, hỏi có tất cả bao nhiêu lít.",
+      "Tìm số lít sữa bác Ba đem vứt đi."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Can đựng được 32 lít sữa",
+      "Đã rót bán đi 15 lít sữa",
+      "Tìm số lít sữa còn lại trong can"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "32 - 15",
+      "32 + 15",
+      "32 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Rót sữa đi làm giảm lượng sữa trong can nên ta thực hiện phép tính trừ.",
+      "Vì bác Ba đổ thêm sữa vào can.",
+      "Vì số lượng sữa tăng lên gấp đôi."
+    ],
+    "correctReason": 0,
+    "answer": 17,
+    "unit": "lít sữa",
+    "answerOptions": [
+      "Trong can còn lại 17 lít sữa.",
+      "Trong can còn lại 47 lít sữa.",
+      "Trong can còn lại 15 lít sữa."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số sữa còn lại là 17 lít, có nhỏ hơn số sữa ban đầu (32 lít) không?",
+    "checkOptions": [
+      "Có, 17 nhỏ hơn 32.",
+      "Không, 17 lớn hơn 32."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số sữa lúc đầu là 32 lít.",
+      "Bước 2: Tìm số sữa đã bán đi là 15 lít.",
+      "Bước 3: Lấy 32 trừ đi 15.",
+      "Bước 4: Tính toán: 32 - 15 = 17.",
+      "Bước 5: Chọn đáp án 17 lít."
+    ]
+  },
+  {
+    "id": "lesson-24",
+    "title": "Chai nước cam ép",
+    "shortTitle": "Lít nước cam",
+    "icon": "🍊",
+    "color": "orange",
+    "skill": "Đo lường (cm, kg, lít)",
+    "story": "Gia đình Vy buổi sáng uống hết 3 lít nước cam, buổi chiều uống thêm 2 lít nước cam nữa. Hỏi cả ngày gia đình Vy uống hết bao nhiêu lít nước cam?",
+    "visual": {
+      "type": "bar",
+      "values": [3, 2],
+      "labels": ["Buổi sáng", "Buổi chiều"]
+    },
+    "retellOptions": [
+      "Sáng uống 3 lít, chiều uống 2 lít, hỏi cả ngày uống bao nhiêu lít nước cam.",
+      "Sáng uống 3 lít, đổ đi 2 lít, hỏi còn lại bao nhiêu lít.",
+      "Tìm số lít nước cam Vy còn thừa trong tủ lạnh."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Buổi sáng uống 3 lít nước cam",
+      "Buổi chiều uống thêm 2 lít nước",
+      "Tìm số lít nước cam uống cả ngày"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "3 + 2",
+      "3 - 2",
+      "3 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Ta cộng lượng nước cam uống buổi sáng và buổi chiều để tìm số lượng cả ngày.",
+      "Vì Vy làm đổ nước cam.",
+      "Vì số lượng nước cam giảm đi."
+    ],
+    "correctReason": 0,
+    "answer": 5,
+    "unit": "lít nước cam",
+    "answerOptions": [
+      "Cả ngày gia đình Vy uống hết 5 lít nước cam.",
+      "Cả ngày gia đình Vy uống hết 1 lít nước cam.",
+      "Cả ngày gia đình Vy uống hết 6 lít nước cam."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số nước cam uống cả ngày là 5 lít, có đúng là nhiều hơn lượng uống buổi sáng (3 lít) không?",
+    "checkOptions": [
+      "Đúng, uống thêm thì tổng lượng nước cam phải lớn hơn.",
+      "Sai, uống thêm thì tổng lượng nước cam phải nhỏ hơn."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Số nước uống buổi sáng là 3 lít.",
+      "Bước 2: Số nước uống buổi chiều là 2 lít.",
+      "Bước 3: Làm phép tính cộng: 3 + 2.",
+      "Bước 4: Tính 3 + 2 = 5 lít.",
+      "Bước 5: Chọn câu trả lời đúng."
+    ]
+  },
+  {
+    "id": "lesson-25",
+    "title": "Bé giúp mẹ dọn nhà",
+    "shortTitle": "Thời gian dọn nhà",
+    "icon": "🧹",
+    "color": "blue",
+    "skill": "Thời gian (giờ, phút)",
+    "story": "Bé An bắt đầu giúp mẹ quét nhà từ lúc 8 giờ sáng và dọn dẹp xong lúc 8 giờ 30 phút sáng. Hỏi An đã quét nhà trong thời gian bao nhiêu phút?",
+    "visual": {
+      "type": "bar",
+      "values": [30],
+      "labels": ["Số phút dọn dẹp"]
+    },
+    "retellOptions": [
+      "Bắt đầu lúc 8 giờ, kết thúc lúc 8 giờ 30 phút, hỏi quét nhà trong bao nhiêu phút.",
+      "Dọn nhà mất 8 giờ và nghỉ 30 phút, hỏi có tất cả bao nhiêu phút.",
+      "Tìm số giờ An được chơi trò chơi điện tử."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bắt đầu dọn lúc 8 giờ",
+      "Dọn xong lúc 8 giờ 30 phút",
+      "Tìm số phút An đã dọn dẹp"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "30 - 0",
+      "30 + 8",
+      "30 × 8"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Số phút trôi qua từ 8 giờ 00 phút đến 8 giờ 30 phút là chênh lệch số phút, lấy 30 trừ 0.",
+      "Vì ta muốn gộp số giờ và số phút lại.",
+      "Vì An dọn dẹp rất nhanh."
+    ],
+    "correctReason": 0,
+    "answer": 30,
+    "unit": "phút",
+    "answerOptions": [
+      "An đã quét nhà trong thời gian 30 phút.",
+      "An đã quét nhà trong thời gian 38 phút.",
+      "An đã quét nhà trong thời gian 20 phút."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Thời gian quét nhà là 30 phút, có bằng nửa giờ đồng hồ không?",
+    "checkOptions": [
+      "Có, 30 phút bằng đúng một nửa của 60 phút (1 giờ).",
+      "Không, 30 phút bằng một ngày."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm thời điểm xuất phát của An (8 giờ 00 phút).",
+      "Bước 2: Tìm thời điểm hoàn thành (8 giờ 30 phút).",
+      "Bước 3: Lấy số phút lúc sau (30) trừ đi số phút lúc đầu (0).",
+      "Bước 4: Tính 30 - 0 = 30 phút.",
+      "Bước 5: Chọn đáp án 30 phút."
+    ]
+  },
+  {
+    "id": "lesson-26",
+    "title": "Học bài buổi tối cùng ba",
+    "shortTitle": "Thời gian học bài",
+    "icon": "⏰",
+    "color": "purple",
+    "skill": "Thời gian (giờ, phút)",
+    "story": "Vy bắt đầu làm bài tập lúc 7 giờ tối và kết thúc lúc 8 giờ tối. Hỏi Vy đã học bài trong thời gian bao nhiêu tiếng?",
+    "visual": {
+      "type": "bar",
+      "values": [8, 7],
+      "labels": ["Giờ kết thúc", "Giờ bắt đầu"]
+    },
+    "retellOptions": [
+      "Bắt đầu lúc 7 giờ tối, kết thúc lúc 8 giờ tối, hỏi học bài trong bao nhiêu tiếng.",
+      "Học trong 7 giờ, chơi 8 giờ, hỏi có tất cả bao nhiêu giờ.",
+      "Tìm số bài tập Vy đã hoàn thành."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Vy làm bài tập lúc 7 giờ tối",
+      "Vy kết thúc làm bài lúc 8 giờ",
+      "Tìm số giờ Vy đã học bài"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình so sánh hơn kém",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "8 - 7",
+      "8 + 7",
+      "8 × 7"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Lấy giờ kết thúc làm bài tập trừ đi giờ bắt đầu để tìm số giờ học bài.",
+      "Vì gộp giờ học và giờ đi ngủ lại.",
+      "Vì số giờ tăng lên."
+    ],
+    "correctReason": 0,
+    "answer": 1,
+    "unit": "tiếng",
+    "answerOptions": [
+      "Vy đã học bài trong thời gian 1 tiếng.",
+      "Vy đã học bài trong thời gian 15 tiếng.",
+      "Vy đã học bài trong thời gian 2 tiếng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Vy học trong 1 tiếng có hợp lý cho việc tự ôn tập mỗi tối không?",
+    "checkOptions": [
+      "Có, 1 tiếng học bài là rất chăm chỉ và vừa sức.",
+      "Không, học sinh lớp 2 phải học 15 tiếng liên tục."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm thời gian bắt đầu học (7 giờ tối).",
+      "Bước 2: Tìm thời gian kết thúc học (8 giờ tối).",
+      "Bước 3: Thực hiện phép tính: 8 - 7.",
+      "Bước 4: Kết quả bằng 1 tiếng.",
+      "Bước 5: Chọn câu trả lời đúng."
+    ]
+  },
+  {
+    "id": "lesson-27",
+    "title": "Bé đi ngủ đúng giờ",
+    "shortTitle": "Thời gian đi ngủ",
+    "icon": "🛌",
+    "color": "blue",
+    "skill": "Thời gian (giờ, phút)",
+    "story": "Để chuẩn bị cho ngày học hôm sau, bé Vy đi ngủ từ lúc 9 giờ tối và thức dậy lúc 6 giờ sáng hôm sau. Hỏi Vy đã ngủ được bao nhiêu tiếng?",
+    "visual": {
+      "type": "bar",
+      "values": [3, 6],
+      "labels": ["Từ 9 giờ tối đến 12 giờ đêm", "Từ 12 giờ đêm đến 6 giờ sáng"]
+    },
+    "retellOptions": [
+      "Vy đi ngủ lúc 9 giờ tối, dậy lúc 6 giờ sáng, hỏi Vy ngủ bao nhiêu tiếng.",
+      "Vy đi ngủ lúc 9 giờ tối, chơi game đến 6 giờ sáng, hỏi chơi bao nhiêu tiếng.",
+      "So sánh số giờ thức và số giờ ngủ của Vy."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Vy ngủ lúc 9 giờ tối (tức 21 giờ)",
+      "Vy thức dậy lúc 6 giờ sáng",
+      "Tìm tổng số giờ Vy đã ngủ"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình bớt (Cho đi)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "3 + 6",
+      "12 - 9",
+      "9 - 6"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Số giờ ngủ gồm 3 tiếng trước nửa đêm (từ 9 giờ tối đến 12 giờ đêm) và 6 tiếng sau nửa đêm (đến 6 giờ sáng), cộng lại.",
+      "Vì số giờ ngủ bị trừ đi.",
+      "Vì Vy ngủ quá ít."
+    ],
+    "correctReason": 0,
+    "answer": 9,
+    "unit": "tiếng",
+    "answerOptions": [
+      "Vy đã ngủ được tất cả 9 tiếng.",
+      "Vy đã ngủ được tất cả 3 tiếng.",
+      "Vy đã ngủ được tất cả 8 tiếng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số giờ ngủ của Vy là 9 tiếng, có bảo đảm sức khỏe cho bé lớp 2 không?",
+    "checkOptions": [
+      "Có, trẻ em tiểu học cần ngủ từ 9 đến 11 tiếng mỗi đêm.",
+      "Không, trẻ em chỉ cần ngủ 3 tiếng mỗi ngày."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tính số giờ từ 9 giờ tối đến 12 giờ đêm (12 - 9 = 3 tiếng).",
+      "Bước 2: Tính số giờ từ 12 giờ đêm đến 6 giờ sáng (6 tiếng).",
+      "Bước 3: Cộng hai khoảng thời gian này lại: 3 + 6.",
+      "Bước 4: Kết quả là 9 tiếng ngủ ngon.",
+      "Bước 5: Chọn đáp án đúng."
+    ]
+  },
+  {
+    "id": "lesson-28",
+    "title": "Chuyến xe đi dã ngoại",
+    "shortTitle": "Thời gian đi xe",
+    "icon": "🚌",
+    "color": "orange",
+    "skill": "Thời gian (giờ, phút)",
+    "story": "Chuyến xe khởi hành từ trường học lúc 7 giờ sáng và đến vườn bách thú lúc 9 giờ sáng. Hỏi chuyến xe đã chạy trong bao nhiêu tiếng?",
+    "visual": {
+      "type": "bar",
+      "values": [9, 7],
+      "labels": ["Giờ đến nơi", "Giờ khởi hành"]
+    },
+    "retellOptions": [
+      "Khởi hành lúc 7 giờ, đến nơi lúc 9 giờ, hỏi xe chạy bao nhiêu tiếng.",
+      "Xe chạy 7 tiếng, nghỉ 9 tiếng, hỏi có tất cả bao nhiêu tiếng.",
+      "Tìm số km từ trường đến vườn thú."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Xe khởi hành lúc 7 giờ sáng",
+      "Xe đến nơi lúc 9 giờ sáng",
+      "Tìm thời gian xe chạy trên đường"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình so sánh hơn kém",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "9 - 7",
+      "9 + 7",
+      "9 × 7"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Lấy giờ đến nơi trừ đi giờ xuất phát để tìm thời gian xe di chuyển.",
+      "Vì muốn tìm tổng số giờ của cả ngày.",
+      "Vì tốc độ xe tăng gấp đôi."
+    ],
+    "correctReason": 0,
+    "answer": 2,
+    "unit": "tiếng",
+    "answerOptions": [
+      "Chuyến xe đã chạy trong thời gian 2 tiếng.",
+      "Chuyến xe đã chạy trong thời gian 16 tiếng.",
+      "Chuyến xe đã chạy trong thời gian 1 tiếng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Thời gian chạy xe là 2 tiếng, so với cả ngày 24 tiếng có hợp lý không?",
+    "checkOptions": [
+      "Có, 2 tiếng đi xe dã ngoại là khoảng cách vừa phải.",
+      "Không, xe phải chạy 16 tiếng mới đến."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đọc giờ xuất phát (7 giờ sáng).",
+      "Bước 2: Đọc giờ đến nơi (9 giờ sáng).",
+      "Bước 3: Làm phép tính trừ: 9 - 7.",
+      "Bước 4: Tính toán: 9 trừ 7 bằng 2.",
+      "Bước 5: Chọn đáp án 2 tiếng."
+    ]
+  },
+  {
+    "id": "lesson-29",
+    "title": "Bữa tiệc sinh nhật bé Vy",
+    "shortTitle": "Số nến cắm",
+    "icon": "🎂",
+    "color": "pink",
+    "skill": "Tổng hợp",
+    "story": "Để chuẩn bị tiệc sinh nhật Vy tròn 8 tuổi, mẹ cắm 8 cây nến lên chiếc bánh kem lớn và xếp 15 cây nến xung quanh phòng khách. Hỏi mẹ đã dùng tất cả bao nhiêu cây nến?",
+    "visual": {
+      "type": "bar",
+      "values": [8, 15],
+      "labels": ["Nến trên bánh", "Nến trong phòng"]
+    },
+    "retellOptions": [
+      "Cắm 8 nến trên bánh và 15 nến trong phòng, hỏi tất cả bao nhiêu cây nến.",
+      "Có 8 nến trên bánh, đốt hỏng mất 15 cây nến, hỏi còn bao nhiêu cây.",
+      "Tìm số tuổi của Vy."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Cắm 8 cây nến trên bánh kem",
+      "Xếp 15 cây nến trong phòng",
+      "Tìm tổng số nến mẹ đã dùng"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "8 + 15",
+      "15 - 8",
+      "8 × 15"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Cộng số nến trên chiếc bánh kem và số nến xung quanh phòng khách lại để tính tổng số nến.",
+      "Vì số nến bị tắt đi.",
+      "Vì ta muốn tìm chênh lệch."
+    ],
+    "correctReason": 0,
+    "answer": 23,
+    "unit": "cây nến",
+    "answerOptions": [
+      "Mẹ đã dùng tất cả 23 cây nến.",
+      "Mẹ đã dùng tất cả 7 cây nến.",
+      "Mẹ đã dùng tất cả 20 cây nến."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tổng số nến là 23 cây, có nhiều hơn 15 cây nến xếp trong phòng không?",
+    "checkOptions": [
+      "Có, 23 lớn hơn 15.",
+      "Không, 23 nhỏ hơn 15."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số nến trên bánh là 8 cây.",
+      "Bước 2: Tìm số nến trong phòng là 15 cây.",
+      "Bước 3: Thực hiện phép cộng gộp: 8 + 15.",
+      "Bước 4: Tính toán: 8 cộng 15 bằng 23 cây.",
+      "Bước 5: Chọn đáp án đúng."
+    ]
+  },
+  {
+    "id": "lesson-30",
+    "title": "Bầy thỏ con kiếm cà rốt",
+    "shortTitle": "Thỏ ăn cà rốt",
+    "icon": "🐰",
+    "color": "orange",
+    "skill": "Tổng hợp",
+    "story": "Có 18 chú thỏ trắng đang ăn cỏ ngoài đồng. Một lúc sau có 6 chú thỏ chạy đi kiếm cà rốt nơi khác. Hỏi còn lại bao nhiêu chú thỏ trắng đang ăn cỏ?",
+    "visual": {
+      "type": "icons",
+      "values": [18, 6],
+      "labels": ["Thỏ lúc đầu", "Thỏ chạy đi"],
+      "icons": ["🐰", "❌"]
+    },
+    "retellOptions": [
+      "Có 18 chú thỏ, 6 chú chạy đi mất, hỏi còn lại bao nhiêu chú thỏ.",
+      "Có 18 chú thỏ, 6 chú thỏ khác chạy đến thêm, hỏi có tất cả bao nhiêu.",
+      "Tìm số cà rốt các chú thỏ kiếm được."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Có 18 chú thỏ trắng ăn cỏ",
+      "6 chú thỏ chạy đi chỗ khác",
+      "Tìm số thỏ trắng còn lại"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "18 - 6",
+      "18 + 6",
+      "18 ÷ 6"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì thỏ đã chạy đi bớt, ta lấy số thỏ lúc đầu trừ đi số thỏ chạy đi.",
+      "Vì thỏ quay lại thêm.",
+      "Vì số lượng thỏ tăng lên gấp đôi."
+    ],
+    "correctReason": 0,
+    "answer": 12,
+    "unit": "chú thỏ trắng",
+    "answerOptions": [
+      "Còn lại 12 chú thỏ trắng đang ăn cỏ.",
+      "Còn lại 24 chú thỏ trắng đang ăn cỏ.",
+      "Còn lại 10 chú thỏ trắng đang ăn cỏ."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số thỏ còn lại là 12 chú, có nhỏ hơn số thỏ ban đầu (18 chú) không?",
+    "checkOptions": [
+      "Có, 12 nhỏ hơn 18.",
+      "Không, chạy đi thì thỏ phải nhiều lên."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số thỏ ban đầu ngoài đồng (18 chú).",
+      "Bước 2: Tìm số thỏ chạy đi (6 chú).",
+      "Bước 3: Thực hiện phép tính trừ: 18 - 6.",
+      "Bước 4: Tính 18 trừ 6 bằng 12 chú thỏ.",
+      "Bước 5: Chọn đáp án đúng."
+    ]
+  }
+]

@@ -6,8 +6,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
 
-const lessonsFile = path.join(ROOT_DIR, 'public', 'lessons', 'grade-4', 'math.json');
-
 function printHeader(title) {
   console.log('\n==================================================');
   console.log(`🔍 ${title.toUpperCase()}`);
@@ -25,12 +23,14 @@ function evaluateExpr(expr) {
   return Function(`"use strict"; return (${cleaned})`)();
 }
 
-function runAudit() {
-  printHeader('Auditing Lessons Data');
-  
+function auditFile(lessonsFile, gradeId) {
+  console.log(`\n--------------------------------------------------`);
+  console.log(`📂 Auditing: ${lessonsFile} (${gradeId})`);
+  console.log(`--------------------------------------------------`);
+
   if (!fs.existsSync(lessonsFile)) {
     console.error(`❌ Lessons file not found at: ${lessonsFile}`);
-    process.exit(1);
+    return { errors: [{ id: 'global', type: 'file_missing', message: 'File not found' }], warnings: [] };
   }
 
   let lessons;
@@ -38,10 +38,10 @@ function runAudit() {
     lessons = JSON.parse(fs.readFileSync(lessonsFile, 'utf8'));
   } catch (e) {
     console.error(`❌ Failed to parse JSON in ${lessonsFile}: ${e.message}`);
-    process.exit(1);
+    return { errors: [{ id: 'global', type: 'invalid_json', message: e.message }], warnings: [] };
   }
 
-  console.log(`Loaded ${lessons.length} lessons from grade-4/math.json.`);
+  console.log(`Loaded ${lessons.length} lessons from ${gradeId}.`);
 
   let errors = [];
   let warnings = [];
@@ -149,18 +149,69 @@ function runAudit() {
     }
   });
 
-  if (warnings.length > 0) {
-    console.log(`⚠️  Found ${warnings.length} warnings (non-critical):`);
-    warnings.forEach(w => console.warn(`   [WARNING] Lesson ${w.id} (${w.type}): ${w.message}`));
+  return { errors, warnings };
+}
+
+function runAudit() {
+  printHeader('Auditing Lessons Data');
+  
+  // Parse command line arguments
+  // usage: node scripts/audit-lessons.js [--grade grade-1]
+  const args = process.argv.slice(2);
+  let targetedGrade = null;
+  const gradeIdx = args.indexOf('--grade');
+  if (gradeIdx !== -1 && args[gradeIdx + 1]) {
+    targetedGrade = args[gradeIdx + 1];
   }
 
-  if (errors.length > 0) {
-    console.error(`\n❌ Found ${errors.length} validation errors:`);
-    errors.forEach(e => console.error(`   [ERROR] Lesson ${e.id} (${e.type}): ${e.message}`));
+  const registryFile = path.join(ROOT_DIR, 'public', 'lessons', 'registry.json');
+  if (!fs.existsSync(registryFile)) {
+    console.error(`❌ Registry file not found at: ${registryFile}`);
     process.exit(1);
   }
 
-  console.log('\n✅ All lessons successfully passed the integrity and mathematical correctness audit!');
+  const registry = JSON.parse(fs.readFileSync(registryFile, 'utf8'));
+  let gradesToAudit = registry.grades.filter(g => !g.comingSoon);
+
+  if (targetedGrade) {
+    gradesToAudit = gradesToAudit.filter(g => g.id === targetedGrade);
+    if (gradesToAudit.length === 0) {
+      console.error(`❌ Grade "${targetedGrade}" not found in registry (or is marked comingSoon)`);
+      process.exit(1);
+    }
+  }
+
+  let totalErrors = 0;
+  let totalWarnings = 0;
+
+  gradesToAudit.forEach(grade => {
+    grade.subjects.forEach(subject => {
+      if (subject.comingSoon) return;
+      const relativePath = subject.lessonsPath;
+      const absolutePath = path.join(ROOT_DIR, 'public', relativePath);
+      
+      const { errors, warnings } = auditFile(absolutePath, grade.id);
+      
+      if (warnings.length > 0) {
+        console.log(`⚠️  Found ${warnings.length} warnings in ${grade.id}:`);
+        warnings.forEach(w => console.warn(`   [WARNING] Lesson ${w.id} (${w.type}): ${w.message}`));
+        totalWarnings += warnings.length;
+      }
+
+      if (errors.length > 0) {
+        console.error(`❌ Found ${errors.length} validation errors in ${grade.id}:`);
+        errors.forEach(e => console.error(`   [ERROR] Lesson ${e.id} (${e.type}): ${e.message}`));
+        totalErrors += errors.length;
+      }
+    });
+  });
+
+  if (totalErrors > 0) {
+    console.error(`\n❌ Audit failed with ${totalErrors} errors.`);
+    process.exit(1);
+  }
+
+  console.log('\n✅ All checked lessons successfully passed the integrity and mathematical correctness audit!');
   process.exit(0);
 }
 
