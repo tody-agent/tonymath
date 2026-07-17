@@ -1,0 +1,1366 @@
+[
+  {
+    "id": "lesson-51",
+    "title": "Vòng quay chiếc bánh xe đạp",
+    "shortTitle": "Chu vi bánh xe đạp",
+    "icon": "🚲",
+    "color": "blue",
+    "skill": "Chu vi hình tròn",
+    "story": "Bánh xe đạp của Nam có đường kính 50 cm. Hỏi chu vi của bánh xe đạp đó là bao nhiêu xăng-ti-mét? (Lấy π ≈ 3.14)",
+    "visual": {
+      "type": "icons",
+      "icon": "⭕",
+      "total": 1,
+      "highlight": 1
+    },
+    "retellOptions": [
+      "Bánh xe có đường kính 50 cm, hỏi chu vi bánh xe bao nhiêu cm.",
+      "Bánh xe có bán kính 50 cm, hỏi diện tích bánh xe bao nhiêu.",
+      "Tìm số vòng bánh xe lăn được trong 1 phút."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Đường kính bánh xe đạp là 50 cm",
+      "Công thức chu vi: C = d × π",
+      "π ≈ 3.14",
+      "Tìm chu vi bánh xe đạp"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình tính chu vi hình tròn (C = d × π)",
+      "Mô hình tính diện tích hình tròn (S = r × r × π)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "50 × 3.14",
+      "50 × 50 × 3.14",
+      "50 ÷ 3.14"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Chu vi hình tròn bằng đường kính nhân π: C = 50 × 3.14 = 157 cm.",
+      "Vì ta cần tìm diện tích hình tròn.",
+      "Vì ta chia đường kính cho π."
+    ],
+    "correctReason": 0,
+    "answer": 157,
+    "unit": "cm",
+    "answerOptions": [
+      "Chu vi bánh xe đạp là 157 cm.",
+      "Chu vi bánh xe đạp là 7850 cm.",
+      "Chu vi bánh xe đạp là 78.5 cm."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Chu vi 157 cm có lớn hơn đường kính 50 cm khoảng 3 lần không?",
+    "checkOptions": [
+      "Có, vì chu vi luôn gấp khoảng 3.14 lần đường kính.",
+      "Không, chu vi phải nhỏ hơn đường kính."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định đường kính bánh xe đạp: d = 50 cm.",
+      "Bước 2: Nhớ công thức chu vi hình tròn: C = d × π.",
+      "Bước 3: Thay số vào công thức: C = 50 × 3.14.",
+      "Bước 4: Tính 50 × 3 = 150.",
+      "Bước 5: Tính 50 × 0.14 = 7.",
+      "Bước 6: Cộng lại: 150 + 7 = 157 cm.",
+      "Bước 7: Viết đáp án: Chu vi bánh xe đạp là 157 cm.",
+      "Bước 8: Kiểm tra: 157 ÷ 50 ≈ 3.14. Hợp lý!"
+    ]
+  },
+  {
+    "id": "lesson-52",
+    "title": "Chiếc đồng hồ treo tường nhà Lan",
+    "shortTitle": "Chu vi đồng hồ tròn",
+    "icon": "🕐",
+    "color": "purple",
+    "skill": "Chu vi hình tròn",
+    "story": "Mặt đồng hồ treo tường nhà Lan có đường kính 20 cm. Lan muốn dán viền kim tuyến xung quanh mặt đồng hồ. Hỏi Lan cần bao nhiêu xăng-ti-mét viền kim tuyến? (Lấy π ≈ 3.14)",
+    "visual": {
+      "type": "icons",
+      "icon": "🕐",
+      "total": 1,
+      "highlight": 1
+    },
+    "retellOptions": [
+      "Mặt đồng hồ đường kính 20 cm, hỏi cần bao nhiêu cm viền dán xung quanh.",
+      "Mặt đồng hồ bán kính 20 cm, hỏi diện tích mặt đồng hồ.",
+      "Tìm số kim chỉ trên mặt đồng hồ."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Đường kính mặt đồng hồ là 20 cm",
+      "Công thức chu vi: C = d × π",
+      "π ≈ 3.14",
+      "Tìm chiều dài viền kim tuyến cần dán"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình tính chu vi hình tròn (C = d × π)",
+      "Mô hình tính diện tích hình tròn",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "20 × 3.14",
+      "10 × 10 × 3.14",
+      "20 + 3.14"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Viền dán xung quanh chính là chu vi hình tròn: C = d × π = 20 × 3.14 = 62.8 cm.",
+      "Vì ta tính diện tích mặt đồng hồ.",
+      "Vì ta cộng đường kính với π."
+    ],
+    "correctReason": 0,
+    "answer": 62.8,
+    "unit": "cm",
+    "answerOptions": [
+      "Lan cần 62.8 cm viền kim tuyến.",
+      "Lan cần 314 cm viền kim tuyến.",
+      "Lan cần 31.4 cm viền kim tuyến."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Chu vi 62.8 cm có gấp khoảng 3.14 lần đường kính 20 cm không?",
+    "checkOptions": [
+      "Có, 62.8 ÷ 20 = 3.14. Đúng rồi!",
+      "Không, 62.8 quá lớn so với 20 cm."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định đường kính mặt đồng hồ: d = 20 cm.",
+      "Bước 2: Viền dán xung quanh chính là chu vi hình tròn.",
+      "Bước 3: Áp dụng công thức: C = d × π = 20 × 3.14.",
+      "Bước 4: Tính 20 × 3 = 60.",
+      "Bước 5: Tính 20 × 0.14 = 2.8.",
+      "Bước 6: Cộng lại: 60 + 2.8 = 62.8 cm.",
+      "Bước 7: Đáp án: Lan cần 62.8 cm viền kim tuyến."
+    ]
+  },
+  {
+    "id": "lesson-53",
+    "title": "Bể bơi tròn trong công viên",
+    "shortTitle": "Diện tích bể bơi tròn",
+    "icon": "🏊",
+    "color": "blue",
+    "skill": "Diện tích hình tròn",
+    "story": "Bể bơi hình tròn trong công viên Gia Định có bán kính 10 m. Hỏi diện tích mặt nước của bể bơi là bao nhiêu mét vuông? (Lấy π ≈ 3.14)",
+    "visual": {
+      "type": "icons",
+      "icon": "🔵",
+      "total": 1,
+      "highlight": 1
+    },
+    "retellOptions": [
+      "Bể bơi tròn bán kính 10 m, hỏi diện tích mặt nước bao nhiêu mét vuông.",
+      "Bể bơi tròn đường kính 10 m, hỏi chu vi bể bơi.",
+      "Tìm thể tích nước chứa trong bể bơi."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bán kính bể bơi là 10 m",
+      "Công thức diện tích: S = r × r × π",
+      "π ≈ 3.14",
+      "Tìm diện tích mặt nước bể bơi"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình tính diện tích hình tròn (S = r × r × π)",
+      "Mô hình tính chu vi hình tròn (C = d × π)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "10 × 10 × 3.14",
+      "20 × 3.14",
+      "10 × 3.14"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Diện tích hình tròn bằng bán kính nhân bán kính nhân π: S = 10 × 10 × 3.14 = 314 m².",
+      "Vì ta cần tìm chu vi bể bơi.",
+      "Vì chỉ nhân bán kính với π một lần."
+    ],
+    "correctReason": 0,
+    "answer": 314,
+    "unit": "m²",
+    "answerOptions": [
+      "Diện tích mặt nước bể bơi là 314 m².",
+      "Diện tích mặt nước bể bơi là 62.8 m².",
+      "Diện tích mặt nước bể bơi là 31.4 m²."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Diện tích 314 m² có lớn hơn diện tích hình vuông cạnh 10 m (100 m²) không?",
+    "checkOptions": [
+      "Có, hình tròn nội tiếp hình vuông nên diện tích hình tròn lớn hơn 3 lần cạnh bình phương chia 4.",
+      "Không, hình tròn phải nhỏ hơn hình vuông."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định bán kính bể bơi: r = 10 m.",
+      "Bước 2: Nhớ công thức diện tích hình tròn: S = r × r × π.",
+      "Bước 3: Thay số: S = 10 × 10 × 3.14.",
+      "Bước 4: Tính 10 × 10 = 100.",
+      "Bước 5: Tính 100 × 3.14 = 314 m².",
+      "Bước 6: Viết đáp án: Diện tích mặt nước bể bơi là 314 m².",
+      "Bước 7: Kiểm tra: 314 ≈ 3.14 × 100. Hợp lý!"
+    ]
+  },
+  {
+    "id": "lesson-54",
+    "title": "Chiếc pizza khổng lồ nhà Tuấn",
+    "shortTitle": "Diện tích pizza tròn",
+    "icon": "🍕",
+    "color": "orange",
+    "skill": "Diện tích hình tròn",
+    "story": "Mẹ Tuấn đặt một chiếc pizza hình tròn cỡ lớn có đường kính 40 cm. Hỏi diện tích bề mặt chiếc pizza là bao nhiêu xăng-ti-mét vuông? (Lấy π ≈ 3.14)",
+    "visual": {
+      "type": "icons",
+      "icon": "🍕",
+      "total": 1,
+      "highlight": 1
+    },
+    "retellOptions": [
+      "Pizza đường kính 40 cm, hỏi diện tích bề mặt pizza bao nhiêu cm².",
+      "Pizza bán kính 40 cm, hỏi chu vi pizza.",
+      "Tìm số lát pizza cắt được."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Đường kính pizza là 40 cm",
+      "Bán kính pizza: r = 40 ÷ 2 = 20 cm",
+      "Công thức: S = r × r × π, với π ≈ 3.14",
+      "Tìm diện tích bề mặt pizza"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình tính diện tích hình tròn (S = r × r × π)",
+      "Mô hình tính chu vi hình tròn",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "20 × 20 × 3.14",
+      "40 × 3.14",
+      "40 × 40 × 3.14"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Bán kính = đường kính ÷ 2 = 20 cm. Diện tích S = 20 × 20 × 3.14 = 1256 cm².",
+      "Vì ta tính chu vi pizza.",
+      "Vì ta nhầm lấy đường kính thay bán kính."
+    ],
+    "correctReason": 0,
+    "answer": 1256,
+    "unit": "cm²",
+    "answerOptions": [
+      "Diện tích bề mặt pizza là 1256 cm².",
+      "Diện tích bề mặt pizza là 125.6 cm².",
+      "Diện tích bề mặt pizza là 5024 cm²."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Diện tích 1256 cm² có bằng 20 × 20 × 3.14 không?",
+    "checkOptions": [
+      "Có, 400 × 3.14 = 1256. Đúng!",
+      "Không, phải bằng 40 × 40 × 3.14 = 5024."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đường kính pizza là 40 cm.",
+      "Bước 2: Tính bán kính: r = 40 ÷ 2 = 20 cm.",
+      "Bước 3: Áp dụng công thức: S = r × r × π.",
+      "Bước 4: Tính r × r = 20 × 20 = 400.",
+      "Bước 5: Tính 400 × 3 = 1200.",
+      "Bước 6: Tính 400 × 0.14 = 56.",
+      "Bước 7: Cộng lại: 1200 + 56 = 1256 cm².",
+      "Bước 8: Đáp án: Diện tích bề mặt pizza là 1256 cm²."
+    ]
+  },
+  {
+    "id": "lesson-55",
+    "title": "Sợi dây thừng quấn quanh cột cờ",
+    "shortTitle": "Chu vi cột cờ tròn",
+    "icon": "🏳️",
+    "color": "red",
+    "skill": "Chu vi hình tròn",
+    "story": "Cột cờ trường Minh có tiết diện hình tròn với bán kính 5 cm. Minh muốn quấn một vòng dây thừng quanh cột cờ. Hỏi Minh cần đoạn dây thừng dài bao nhiêu xăng-ti-mét cho một vòng? (Lấy π ≈ 3.14)",
+    "visual": {
+      "type": "icons",
+      "icon": "⭕",
+      "total": 1,
+      "highlight": 1
+    },
+    "retellOptions": [
+      "Cột cờ bán kính 5 cm, hỏi cần bao nhiêu cm dây để quấn một vòng.",
+      "Cột cờ đường kính 5 cm, hỏi diện tích tiết diện cột cờ.",
+      "Tìm chiều cao cột cờ."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bán kính tiết diện cột cờ là 5 cm",
+      "Đường kính: d = 5 × 2 = 10 cm",
+      "Công thức chu vi: C = d × π, với π ≈ 3.14",
+      "Tìm chiều dài dây thừng cho một vòng"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình tính chu vi hình tròn (C = d × π)",
+      "Mô hình tính diện tích hình tròn",
+      "Mô hình bớt (Cho đi)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "5 × 2 × 3.14",
+      "5 × 5 × 3.14",
+      "5 × 3.14"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Đường kính = bán kính × 2 = 10 cm. Chu vi C = d × π = 10 × 3.14 = 31.4 cm.",
+      "Vì ta cần tính diện tích tiết diện.",
+      "Vì ta quên nhân bán kính với 2 trước."
+    ],
+    "correctReason": 0,
+    "answer": 31.4,
+    "unit": "cm",
+    "answerOptions": [
+      "Minh cần đoạn dây thừng dài 31.4 cm cho một vòng.",
+      "Minh cần đoạn dây thừng dài 78.5 cm cho một vòng.",
+      "Minh cần đoạn dây thừng dài 15.7 cm cho một vòng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "31.4 cm có gấp khoảng 3.14 lần đường kính 10 cm không?",
+    "checkOptions": [
+      "Có, 31.4 ÷ 10 = 3.14. Hợp lý!",
+      "Không, dây phải ngắn hơn đường kính."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Bán kính cột cờ là 5 cm.",
+      "Bước 2: Tính đường kính: d = 5 × 2 = 10 cm.",
+      "Bước 3: Một vòng quấn quanh cột cờ chính là chu vi hình tròn.",
+      "Bước 4: Áp dụng: C = d × π = 10 × 3.14.",
+      "Bước 5: Tính 10 × 3.14 = 31.4 cm.",
+      "Bước 6: Đáp án: Minh cần 31.4 cm dây thừng.",
+      "Bước 7: Kiểm tra: 31.4 ÷ 10 = 3.14. Đúng!"
+    ]
+  },
+  {
+    "id": "lesson-56",
+    "title": "Bồn hoa tròn giữa sân trường",
+    "shortTitle": "Diện tích bồn hoa tròn",
+    "icon": "🌻",
+    "color": "yellow",
+    "skill": "Diện tích hình tròn",
+    "story": "Bồn hoa hình tròn giữa sân trường Vy có bán kính 5 m. Các bạn muốn trải cỏ nhân tạo phủ kín bồn hoa. Hỏi diện tích cỏ cần trải là bao nhiêu mét vuông? (Lấy π ≈ 3.14)",
+    "visual": {
+      "type": "icons",
+      "icon": "🌿",
+      "total": 1,
+      "highlight": 1
+    },
+    "retellOptions": [
+      "Bồn hoa tròn bán kính 5 m, hỏi diện tích cỏ cần trải bao nhiêu m².",
+      "Bồn hoa tròn đường kính 5 m, hỏi chu vi bồn hoa.",
+      "Tìm chi phí mua cỏ nhân tạo."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bán kính bồn hoa là 5 m",
+      "Công thức: S = r × r × π",
+      "π ≈ 3.14",
+      "Tìm diện tích cỏ cần trải"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình tính diện tích hình tròn (S = r × r × π)",
+      "Mô hình tính chu vi hình tròn",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "5 × 5 × 3.14",
+      "10 × 3.14",
+      "5 + 5 + 3.14"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Diện tích cỏ cần trải bằng diện tích hình tròn: S = 5 × 5 × 3.14 = 78.5 m².",
+      "Vì ta đang tính chu vi bồn hoa.",
+      "Vì ta cộng bán kính với π."
+    ],
+    "correctReason": 0,
+    "answer": 78.5,
+    "unit": "m²",
+    "answerOptions": [
+      "Diện tích cỏ cần trải là 78.5 m².",
+      "Diện tích cỏ cần trải là 31.4 m².",
+      "Diện tích cỏ cần trải là 15.7 m²."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "78.5 m² có bằng 25 × 3.14 không?",
+    "checkOptions": [
+      "Có, 5 × 5 = 25, và 25 × 3.14 = 78.5. Đúng!",
+      "Không, phải bằng 10 × 3.14 = 31.4."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định bán kính bồn hoa: r = 5 m.",
+      "Bước 2: Áp dụng công thức diện tích hình tròn: S = r × r × π.",
+      "Bước 3: Tính r × r = 5 × 5 = 25.",
+      "Bước 4: Tính 25 × 3 = 75.",
+      "Bước 5: Tính 25 × 0.14 = 3.5.",
+      "Bước 6: Cộng lại: 75 + 3.5 = 78.5 m².",
+      "Bước 7: Đáp án: Diện tích cỏ cần trải là 78.5 m²."
+    ]
+  },
+  {
+    "id": "lesson-57",
+    "title": "Chia đất trồng rau sạch",
+    "shortTitle": "Nhân phân số đất",
+    "icon": "🥕",
+    "color": "green",
+    "skill": "Phân số nâng cao",
+    "story": "Mảnh vườn nhà Hương rộng 3/4 héc-ta. Hương dùng 2/3 diện tích mảnh vườn để trồng rau sạch. Hỏi diện tích đất trồng rau sạch là bao nhiêu héc-ta?",
+    "visual": {
+      "type": "bar",
+      "values": [3, 2],
+      "labels": ["Diện tích vườn (phần 4)", "Phần trồng rau (của tổng)"]
+    },
+    "retellOptions": [
+      "Vườn rộng 3/4 ha, dùng 2/3 để trồng rau, hỏi diện tích trồng rau bao nhiêu ha.",
+      "Vườn rộng 3/4 ha, trồng thêm 2/3 ha rau, hỏi tổng diện tích.",
+      "So sánh diện tích trồng rau và diện tích để trống."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mảnh vườn rộng 3/4 héc-ta",
+      "Dùng 2/3 diện tích vườn trồng rau",
+      "Tìm diện tích trồng rau sạch"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều (Lấy một phần của phần)",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "3/4 × 2/3",
+      "3/4 + 2/3",
+      "3/4 - 2/3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm 2/3 của 3/4 héc-ta nghĩa là nhân hai phân số: 3/4 × 2/3 = 6/12 = 1/2 ha.",
+      "Vì ta cộng thêm diện tích mới vào vườn.",
+      "Vì ta bớt đi diện tích đất trống."
+    ],
+    "correctReason": 0,
+    "answer": 0.5,
+    "unit": "héc-ta",
+    "answerOptions": [
+      "Diện tích trồng rau sạch là 1/2 héc-ta (tức 0.5 ha).",
+      "Diện tích trồng rau sạch là 17/12 héc-ta.",
+      "Diện tích trồng rau sạch là 1/12 héc-ta."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "1/2 héc-ta có nhỏ hơn 3/4 héc-ta (diện tích cả vườn) không?",
+    "checkOptions": [
+      "Có, vì trồng rau chỉ dùng một phần vườn thôi.",
+      "Không, phần trồng rau phải lớn hơn cả vườn."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Diện tích vườn là 3/4 héc-ta.",
+      "Bước 2: Phần dùng trồng rau là 2/3 diện tích vườn.",
+      "Bước 3: 'Của' trong toán nghĩa là phép nhân phân số.",
+      "Bước 4: Nhân tử số: 3 × 2 = 6.",
+      "Bước 5: Nhân mẫu số: 4 × 3 = 12.",
+      "Bước 6: Rút gọn: 6/12 = 1/2 héc-ta = 0.5 ha.",
+      "Bước 7: Đáp án: Diện tích trồng rau là 1/2 héc-ta."
+    ]
+  },
+  {
+    "id": "lesson-58",
+    "title": "Chai sữa tươi chia cho lớp",
+    "shortTitle": "Chia phân số sữa",
+    "icon": "🥛",
+    "color": "blue",
+    "skill": "Phân số nâng cao",
+    "story": "Cô giáo có 4/5 lít sữa tươi. Cô chia đều cho 4 bạn nhỏ. Hỏi mỗi bạn được bao nhiêu phần lít sữa tươi?",
+    "visual": {
+      "type": "bar",
+      "values": [4, 4],
+      "labels": ["Lượng sữa (phần 5)", "Số bạn nhỏ"]
+    },
+    "retellOptions": [
+      "Có 4/5 lít sữa chia đều cho 4 bạn, hỏi mỗi bạn được bao nhiêu lít.",
+      "Có 4/5 lít sữa, mua thêm cho 4 bạn, hỏi tổng sữa.",
+      "So sánh lượng sữa của 4 bạn với nhau."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Cô giáo có 4/5 lít sữa tươi",
+      "Chia đều cho 4 bạn nhỏ",
+      "Tìm lượng sữa mỗi bạn nhận được"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "4/5 ÷ 4",
+      "4/5 × 4",
+      "4/5 + 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Chia đều 4/5 lít cho 4 bạn: 4/5 ÷ 4 = 4/5 × 1/4 = 4/20 = 1/5 lít.",
+      "Vì ta nhân lượng sữa với số bạn.",
+      "Vì ta cộng sữa với số bạn."
+    ],
+    "correctReason": 0,
+    "answer": 0.2,
+    "unit": "lít sữa",
+    "answerOptions": [
+      "Mỗi bạn được 1/5 lít sữa tươi (tức 0.2 lít).",
+      "Mỗi bạn được 16/5 lít sữa tươi.",
+      "Mỗi bạn được 4/9 lít sữa tươi."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Nếu gộp lượng sữa của 4 bạn lại: 1/5 × 4 = 4/5 lít, có bằng lượng sữa ban đầu không?",
+    "checkOptions": [
+      "Có, 4 × 1/5 = 4/5. Đúng rồi!",
+      "Không, gộp lại phải nhiều hơn lượng ban đầu."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Lượng sữa ban đầu: 4/5 lít.",
+      "Bước 2: Chia đều cho 4 bạn → phép chia phân số cho số tự nhiên.",
+      "Bước 3: 4/5 ÷ 4 = 4/5 × 1/4.",
+      "Bước 4: Nhân tử số: 4 × 1 = 4.",
+      "Bước 5: Nhân mẫu số: 5 × 4 = 20.",
+      "Bước 6: Kết quả: 4/20 = 1/5 lít = 0.2 lít.",
+      "Bước 7: Đáp án: Mỗi bạn được 1/5 lít sữa."
+    ]
+  },
+  {
+    "id": "lesson-59",
+    "title": "Mua vở mới đầu năm học",
+    "shortTitle": "Số thập phân mua vở",
+    "icon": "📓",
+    "color": "green",
+    "skill": "Số thập phân",
+    "story": "Mỗi cuốn vở giá 8.5 nghìn đồng. Mai mua 6 cuốn vở cho năm học mới. Hỏi Mai phải trả tất cả bao nhiêu nghìn đồng?",
+    "visual": {
+      "type": "icons",
+      "icon": "📓",
+      "total": 6,
+      "highlight": 6
+    },
+    "retellOptions": [
+      "Mỗi cuốn vở 8.5 nghìn, mua 6 cuốn, hỏi trả bao nhiêu nghìn đồng.",
+      "Có 6 cuốn vở, bán mỗi cuốn 8.5 nghìn, hỏi thu được bao nhiêu.",
+      "Tìm số trang trong 6 cuốn vở."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Giá mỗi cuốn vở là 8.5 nghìn đồng",
+      "Mai mua 6 cuốn vở",
+      "Tìm tổng số tiền phải trả"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình gộp nhiều phần bằng nhau (Nhân)",
+      "Mô hình bớt (Cho đi)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "8.5 × 6",
+      "8.5 + 6",
+      "8.5 ÷ 6"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Mua 6 cuốn vở cùng giá, ta nhân giá 1 cuốn với 6: 8.5 × 6 = 51 nghìn đồng.",
+      "Vì ta cộng giá vở với số cuốn.",
+      "Vì ta chia giá vở cho số cuốn."
+    ],
+    "correctReason": 0,
+    "answer": 51,
+    "unit": "nghìn đồng",
+    "answerOptions": [
+      "Mai phải trả tất cả 51 nghìn đồng.",
+      "Mai phải trả tất cả 14.5 nghìn đồng.",
+      "Mai phải trả tất cả 48 nghìn đồng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "51 nghìn đồng có gấp 6 lần giá một cuốn vở (8.5 nghìn) không?",
+    "checkOptions": [
+      "Có, 51 ÷ 6 = 8.5. Đúng rồi!",
+      "Không, 51 quá nhiều so với 6 cuốn vở."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Giá một cuốn vở: 8.5 nghìn đồng.",
+      "Bước 2: Số cuốn vở Mai mua: 6 cuốn.",
+      "Bước 3: Tổng tiền = giá 1 cuốn × số cuốn = 8.5 × 6.",
+      "Bước 4: Tính 8 × 6 = 48.",
+      "Bước 5: Tính 0.5 × 6 = 3.",
+      "Bước 6: Cộng lại: 48 + 3 = 51 nghìn đồng.",
+      "Bước 7: Đáp án: Mai phải trả 51 nghìn đồng."
+    ]
+  },
+  {
+    "id": "lesson-60",
+    "title": "Cửa hàng giảm giá giày thể thao",
+    "shortTitle": "Giảm giá giày phần trăm",
+    "icon": "👟",
+    "color": "orange",
+    "skill": "Tỉ số phần trăm",
+    "story": "Đôi giày thể thao có giá gốc là 400 nghìn đồng. Nhân dịp khai giảng, cửa hàng giảm giá 25%. Hỏi sau khi giảm giá, Phúc phải trả bao nhiêu nghìn đồng để mua đôi giày?",
+    "visual": {
+      "type": "bar",
+      "values": [400, 25],
+      "labels": ["Giá gốc (nghìn đồng)", "Giảm giá (%)"]
+    },
+    "retellOptions": [
+      "Giày giá 400 nghìn, giảm 25%, hỏi số tiền phải trả sau giảm giá.",
+      "Giày giá 400 nghìn, tăng giá 25%, hỏi giá mới.",
+      "Tìm số tiền được giảm giá."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Giá gốc đôi giày: 400 nghìn đồng",
+      "Tỉ lệ giảm giá: 25%",
+      "Cần tính số tiền giảm, rồi tìm giá sau giảm",
+      "Tìm số tiền Phúc phải trả"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "400 - 400 × 25 ÷ 100",
+      "400 + 400 × 25 ÷ 100",
+      "400 × 25"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Số tiền giảm = 400 × 25 ÷ 100 = 100. Giá sau giảm = 400 - 100 = 300 nghìn đồng.",
+      "Vì giày được tăng giá thêm 25%.",
+      "Vì ta nhân giá với tỉ lệ phần trăm."
+    ],
+    "correctReason": 0,
+    "answer": 300,
+    "unit": "nghìn đồng",
+    "answerOptions": [
+      "Phúc phải trả 300 nghìn đồng để mua đôi giày.",
+      "Phúc phải trả 500 nghìn đồng để mua đôi giày.",
+      "Phúc phải trả 100 nghìn đồng để mua đôi giày."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Giá sau giảm 300 nghìn có nhỏ hơn giá gốc 400 nghìn không?",
+    "checkOptions": [
+      "Có, giảm giá thì phải trả ít hơn giá gốc.",
+      "Không, giảm giá thì phải trả nhiều hơn."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Giá gốc đôi giày: 400 nghìn đồng.",
+      "Bước 2: Tỉ lệ giảm giá: 25%.",
+      "Bước 3: Tính số tiền giảm: 400 × 25 ÷ 100.",
+      "Bước 4: 400 × 25 = 10000, rồi 10000 ÷ 100 = 100 nghìn.",
+      "Bước 5: Giá sau giảm: 400 - 100 = 300 nghìn đồng.",
+      "Bước 6: Đáp án: Phúc phải trả 300 nghìn đồng.",
+      "Bước 7: Kiểm tra: 300 = 75% × 400. Hợp lý!"
+    ]
+  },
+  {
+    "id": "lesson-61",
+    "title": "Gửi tiền mừng tuổi vào heo đất",
+    "shortTitle": "Lãi suất tiền mừng",
+    "icon": "🐷",
+    "color": "pink",
+    "skill": "Tỉ số phần trăm",
+    "story": "Dịp Tết, Linh được mừng tuổi 2 triệu đồng. Mẹ giúp Linh gửi tiết kiệm ở ngân hàng với lãi suất 5% một năm. Hỏi sau 1 năm, Linh nhận được bao nhiêu triệu đồng tiền lãi?",
+    "visual": {
+      "type": "bar",
+      "values": [2, 5],
+      "labels": ["Tiền gửi (triệu)", "Lãi suất (%)"]
+    },
+    "retellOptions": [
+      "Gửi 2 triệu lãi suất 5%, hỏi tiền lãi sau 1 năm là bao nhiêu.",
+      "Gửi 2 triệu lãi suất 5%, hỏi tổng tiền gốc và lãi.",
+      "Tìm số tiền mừng tuổi Linh nhận được."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Linh gửi tiết kiệm 2 triệu đồng",
+      "Lãi suất 5% mỗi năm",
+      "Tìm tiền lãi sau 1 năm"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình tính phần trăm",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "2 × 5 ÷ 100",
+      "2 + 5",
+      "2 - 5 ÷ 100"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tiền lãi = tiền gửi × lãi suất ÷ 100 = 2 × 5 ÷ 100 = 0.1 triệu đồng.",
+      "Vì ta cộng tiền gửi với lãi suất.",
+      "Vì ta trừ lãi suất khỏi tiền gửi."
+    ],
+    "correctReason": 0,
+    "answer": 0.1,
+    "unit": "triệu đồng",
+    "answerOptions": [
+      "Sau 1 năm, Linh nhận được 0.1 triệu đồng tiền lãi (tức 100 nghìn đồng).",
+      "Sau 1 năm, Linh nhận được 10 triệu đồng tiền lãi.",
+      "Sau 1 năm, Linh nhận được 1 triệu đồng tiền lãi."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tiền lãi 0.1 triệu (100 nghìn đồng) có bằng 5% của 2 triệu không?",
+    "checkOptions": [
+      "Có, 2 × 0.05 = 0.1 triệu. Đúng!",
+      "Không, 5% của 2 triệu phải là 1 triệu."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Số tiền gửi: 2 triệu đồng.",
+      "Bước 2: Lãi suất: 5% mỗi năm.",
+      "Bước 3: Công thức: Tiền lãi = Tiền gửi × Lãi suất ÷ 100.",
+      "Bước 4: Tính: 2 × 5 = 10.",
+      "Bước 5: Chia: 10 ÷ 100 = 0.1 triệu đồng.",
+      "Bước 6: Đổi ra nghìn đồng: 0.1 triệu = 100 nghìn đồng.",
+      "Bước 7: Đáp án: Linh nhận 0.1 triệu đồng tiền lãi."
+    ]
+  },
+  {
+    "id": "lesson-62",
+    "title": "Thùng đựng đồ chơi hình hộp",
+    "shortTitle": "Thể tích thùng hộp",
+    "icon": "📦",
+    "color": "purple",
+    "skill": "Thể tích hình hộp chữ nhật",
+    "story": "Khoa có một thùng đựng đồ chơi hình hộp chữ nhật có chiều dài 50 cm, chiều rộng 30 cm và chiều cao 40 cm. Hỏi thể tích thùng đồ chơi là bao nhiêu xăng-ti-mét khối?",
+    "visual": {
+      "type": "bar",
+      "values": [50, 30, 40],
+      "labels": ["Chiều dài (cm)", "Chiều rộng (cm)", "Chiều cao (cm)"]
+    },
+    "retellOptions": [
+      "Thùng hộp chữ nhật dài 50 cm, rộng 30 cm, cao 40 cm, hỏi thể tích.",
+      "Thùng hộp dài 50 cm, rộng 30 cm, hỏi diện tích đáy.",
+      "Tìm số đồ chơi chứa được trong thùng."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Chiều dài thùng: 50 cm",
+      "Chiều rộng thùng: 30 cm",
+      "Chiều cao thùng: 40 cm",
+      "Tìm thể tích thùng đồ chơi"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình tính thể tích hình hộp chữ nhật (V = dài × rộng × cao)",
+      "Mô hình tính diện tích hình chữ nhật",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "50 × 30 × 40",
+      "50 + 30 + 40",
+      "50 × 30 + 40"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Thể tích hình hộp chữ nhật = dài × rộng × cao = 50 × 30 × 40 = 60000 cm³.",
+      "Vì ta cộng ba kích thước lại.",
+      "Vì ta tính diện tích đáy rồi cộng chiều cao."
+    ],
+    "correctReason": 0,
+    "answer": 60000,
+    "unit": "cm³",
+    "answerOptions": [
+      "Thể tích thùng đồ chơi là 60000 cm³.",
+      "Thể tích thùng đồ chơi là 120 cm³.",
+      "Thể tích thùng đồ chơi là 1500 cm³."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "60000 cm³ có bằng 60 dm³ (tức 60 lít) không?",
+    "checkOptions": [
+      "Có, 1 dm³ = 1000 cm³, nên 60000 ÷ 1000 = 60 dm³. Đúng!",
+      "Không, 60000 cm³ phải bằng 600 lít."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Chiều dài thùng: 50 cm.",
+      "Bước 2: Chiều rộng thùng: 30 cm.",
+      "Bước 3: Chiều cao thùng: 40 cm.",
+      "Bước 4: Công thức thể tích: V = dài × rộng × cao.",
+      "Bước 5: Tính 50 × 30 = 1500 (diện tích đáy).",
+      "Bước 6: Tính 1500 × 40 = 60000 cm³.",
+      "Bước 7: Đáp án: Thể tích thùng là 60000 cm³.",
+      "Bước 8: Kiểm tra: 60000 cm³ = 60 dm³ = 60 lít. Hợp lý!"
+    ]
+  },
+  {
+    "id": "lesson-63",
+    "title": "Bể nuôi cá cảnh nhà Duy",
+    "shortTitle": "Thể tích bể cá",
+    "icon": "🐠",
+    "color": "blue",
+    "skill": "Thể tích hình hộp chữ nhật",
+    "story": "Bể cá cảnh nhà Duy có dạng hình hộp chữ nhật với chiều dài 80 cm, chiều rộng 40 cm và chiều cao 50 cm. Duy đổ nước vào bể đến 3/4 chiều cao. Hỏi thể tích nước trong bể là bao nhiêu xăng-ti-mét khối?",
+    "visual": {
+      "type": "bar",
+      "values": [80, 40, 50],
+      "labels": ["Dài (cm)", "Rộng (cm)", "Cao (cm)"]
+    },
+    "retellOptions": [
+      "Bể cá dài 80 cm, rộng 40 cm, cao 50 cm, đổ nước 3/4 chiều cao, hỏi thể tích nước.",
+      "Bể cá dài 80 cm, rộng 40 cm, cao 50 cm, hỏi thể tích toàn bể.",
+      "Tìm số lít nước bể cá chứa được khi đầy."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bể cá: dài 80 cm, rộng 40 cm, cao 50 cm",
+      "Nước đổ đến 3/4 chiều cao",
+      "Chiều cao nước: 50 × 3/4 = 37.5 cm",
+      "Tìm thể tích nước trong bể"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình tính thể tích hình hộp chữ nhật (V = dài × rộng × cao nước)",
+      "Mô hình tính diện tích bề mặt",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "80 × 40 × 50 × 3 ÷ 4",
+      "80 × 40 × 50",
+      "80 + 40 + 50"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Chiều cao nước = 50 × 3/4 = 37.5 cm. Thể tích nước = 80 × 40 × 37.5 = 120000 cm³.",
+      "Vì ta tính thể tích toàn bể.",
+      "Vì ta cộng ba kích thước lại."
+    ],
+    "correctReason": 0,
+    "answer": 120000,
+    "unit": "cm³",
+    "answerOptions": [
+      "Thể tích nước trong bể là 120000 cm³.",
+      "Thể tích nước trong bể là 160000 cm³.",
+      "Thể tích nước trong bể là 40000 cm³."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "120000 cm³ có bằng 3/4 thể tích bể (160000 cm³) không?",
+    "checkOptions": [
+      "Có, 160000 × 3 ÷ 4 = 120000. Đúng!",
+      "Không, 3/4 bể phải là 80000 cm³."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Kích thước bể: dài 80, rộng 40, cao 50 cm.",
+      "Bước 2: Nước đổ đến 3/4 chiều cao: 50 × 3 ÷ 4 = 37.5 cm.",
+      "Bước 3: Thể tích nước = dài × rộng × chiều cao nước.",
+      "Bước 4: Tính diện tích đáy: 80 × 40 = 3200 cm².",
+      "Bước 5: Tính thể tích nước: 3200 × 37.5 = 120000 cm³.",
+      "Bước 6: Đổi ra lít: 120000 cm³ = 120 lít.",
+      "Bước 7: Đáp án: Thể tích nước là 120000 cm³."
+    ]
+  },
+  {
+    "id": "lesson-64",
+    "title": "Cuộc đua xe đạp của An",
+    "shortTitle": "Vận tốc xe đạp",
+    "icon": "🏁",
+    "color": "red",
+    "skill": "Vận tốc - Quãng đường - Thời gian",
+    "story": "An đạp xe với vận tốc 12.5 km/h. Hỏi sau 2 giờ, An đi được quãng đường bao nhiêu ki-lô-mét?",
+    "visual": {
+      "type": "bar",
+      "values": [12.5, 2],
+      "labels": ["Vận tốc (km/h)", "Thời gian (giờ)"]
+    },
+    "retellOptions": [
+      "An đi xe đạp 12.5 km/h trong 2 giờ, hỏi quãng đường đi được.",
+      "An đi được 12.5 km trong 2 giờ, hỏi vận tốc.",
+      "Tìm thời gian An đi hết quãng đường 12.5 km."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Vận tốc xe đạp: 12.5 km/h",
+      "Thời gian đạp xe: 2 giờ",
+      "Tìm quãng đường An đi được"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình tính quãng đường (S = v × t)",
+      "Mô hình tính vận tốc (v = S ÷ t)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "12.5 × 2",
+      "12.5 ÷ 2",
+      "12.5 + 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Quãng đường = vận tốc × thời gian = 12.5 × 2 = 25 km.",
+      "Vì ta chia vận tốc cho thời gian.",
+      "Vì ta cộng vận tốc với thời gian."
+    ],
+    "correctReason": 0,
+    "answer": 25,
+    "unit": "km",
+    "answerOptions": [
+      "An đi được quãng đường 25 km.",
+      "An đi được quãng đường 6.25 km.",
+      "An đi được quãng đường 14.5 km."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "25 km chia cho 2 giờ có bằng vận tốc 12.5 km/h không?",
+    "checkOptions": [
+      "Có, 25 ÷ 2 = 12.5. Đúng rồi!",
+      "Không, 25 ÷ 2 không bằng 12.5."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Vận tốc An đạp xe: 12.5 km/h.",
+      "Bước 2: Thời gian đạp xe: 2 giờ.",
+      "Bước 3: Công thức: Quãng đường = Vận tốc × Thời gian.",
+      "Bước 4: Thay số: S = 12.5 × 2.",
+      "Bước 5: Tính: 12 × 2 = 24, rồi 0.5 × 2 = 1.",
+      "Bước 6: Cộng: 24 + 1 = 25 km.",
+      "Bước 7: Đáp án: An đi được 25 km."
+    ]
+  },
+  {
+    "id": "lesson-65",
+    "title": "Chuyến tàu hỏa Bắc Nam",
+    "shortTitle": "Thời gian tàu hỏa",
+    "icon": "🚂",
+    "color": "green",
+    "skill": "Vận tốc - Quãng đường - Thời gian",
+    "story": "Tàu hỏa chạy từ ga Sài Gòn đến ga Nha Trang dài 411 km với vận tốc trung bình 68.5 km/h. Hỏi tàu chạy hết bao nhiêu giờ? (Giả sử tàu chạy liên tục không dừng)",
+    "visual": {
+      "type": "bar",
+      "values": [411, 68.5],
+      "labels": ["Quãng đường (km)", "Vận tốc (km/h)"]
+    },
+    "retellOptions": [
+      "Tàu chạy 411 km, vận tốc 68.5 km/h, hỏi thời gian đi hết.",
+      "Tàu chạy 68.5 km/h trong 411 giờ, hỏi quãng đường.",
+      "Tìm vận tốc trung bình của tàu."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Quãng đường: 411 km",
+      "Vận tốc trung bình: 68.5 km/h",
+      "Tìm thời gian tàu chạy"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình tính thời gian (t = S ÷ v)",
+      "Mô hình tính quãng đường (S = v × t)",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "411 ÷ 68.5",
+      "411 × 68.5",
+      "411 - 68.5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Thời gian = quãng đường ÷ vận tốc = 411 ÷ 68.5 = 6 giờ.",
+      "Vì ta nhân quãng đường với vận tốc.",
+      "Vì ta trừ vận tốc khỏi quãng đường."
+    ],
+    "correctReason": 0,
+    "answer": 6,
+    "unit": "giờ",
+    "answerOptions": [
+      "Tàu hỏa chạy hết 6 giờ.",
+      "Tàu hỏa chạy hết 60 giờ.",
+      "Tàu hỏa chạy hết 342.5 giờ."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Kiểm tra: 68.5 × 6 có bằng 411 km không?",
+    "checkOptions": [
+      "Có, 68.5 × 6 = 411. Đúng!",
+      "Không, 68.5 × 6 bằng 400."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Quãng đường tàu đi: 411 km.",
+      "Bước 2: Vận tốc trung bình: 68.5 km/h.",
+      "Bước 3: Công thức: Thời gian = Quãng đường ÷ Vận tốc.",
+      "Bước 4: Thay số: t = 411 ÷ 68.5.",
+      "Bước 5: Tính: 411 ÷ 68.5 = 6 giờ.",
+      "Bước 6: Kiểm tra: 68.5 × 6 = 411. Hợp lý!",
+      "Bước 7: Đáp án: Tàu chạy hết 6 giờ."
+    ]
+  },
+  {
+    "id": "lesson-66",
+    "title": "Hai ô tô đi ngược chiều",
+    "shortTitle": "Hai xe ngược chiều",
+    "icon": "🚗",
+    "color": "blue",
+    "skill": "Vận tốc - Quãng đường - Thời gian",
+    "story": "Hai ô tô xuất phát cùng lúc từ hai thành phố A và B đi ngược chiều nhau. Ô tô thứ nhất đi với vận tốc 45.5 km/h, ô tô thứ hai đi với vận tốc 54.5 km/h. Sau 2 giờ hai xe gặp nhau. Hỏi quãng đường AB dài bao nhiêu ki-lô-mét?",
+    "visual": {
+      "type": "bar",
+      "values": [45.5, 54.5],
+      "labels": ["Vận tốc xe 1 (km/h)", "Vận tốc xe 2 (km/h)"]
+    },
+    "retellOptions": [
+      "Xe 1 đi 45.5 km/h, xe 2 đi 54.5 km/h, gặp nhau sau 2 giờ, hỏi quãng đường AB.",
+      "Xe 1 đi 45.5 km/h, xe 2 đi 54.5 km/h, hỏi xe nào đi nhanh hơn.",
+      "Tìm thời gian xe 1 đi hết quãng đường AB."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Vận tốc xe 1: 45.5 km/h",
+      "Vận tốc xe 2: 54.5 km/h",
+      "Sau 2 giờ hai xe gặp nhau",
+      "Tìm quãng đường AB"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình gộp quãng đường (Đi ngược chiều)",
+      "Mô hình so sánh vận tốc",
+      "Mô hình bớt (Cho đi)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(45.5 + 54.5) × 2",
+      "54.5 - 45.5",
+      "45.5 × 54.5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Hai xe đi ngược chiều, tổng vận tốc = 45.5 + 54.5 = 100 km/h. Quãng đường AB = 100 × 2 = 200 km.",
+      "Vì ta tìm hiệu vận tốc hai xe.",
+      "Vì ta nhân vận tốc hai xe với nhau."
+    ],
+    "correctReason": 0,
+    "answer": 200,
+    "unit": "km",
+    "answerOptions": [
+      "Quãng đường AB dài 200 km.",
+      "Quãng đường AB dài 9 km.",
+      "Quãng đường AB dài 100 km."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Kiểm tra: xe 1 đi 45.5 × 2 = 91 km, xe 2 đi 54.5 × 2 = 109 km. Tổng 91 + 109 = 200 km đúng không?",
+    "checkOptions": [
+      "Đúng, tổng quãng đường hai xe chính là quãng đường AB.",
+      "Sai, phải lấy 109 - 91 = 18 km."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Vận tốc xe 1: 45.5 km/h; xe 2: 54.5 km/h.",
+      "Bước 2: Hai xe đi ngược chiều, tổng vận tốc = 45.5 + 54.5.",
+      "Bước 3: Tính tổng vận tốc: 45.5 + 54.5 = 100 km/h.",
+      "Bước 4: Sau 2 giờ gặp nhau, quãng đường AB = tổng vận tốc × thời gian.",
+      "Bước 5: Tính: 100 × 2 = 200 km.",
+      "Bước 6: Đáp án: Quãng đường AB dài 200 km.",
+      "Bước 7: Kiểm tra: 91 + 109 = 200. Hợp lý!"
+    ]
+  },
+  {
+    "id": "lesson-67",
+    "title": "Tăng giá trái cây mùa hè",
+    "shortTitle": "Tăng giá phần trăm",
+    "icon": "🍉",
+    "color": "red",
+    "skill": "Tỉ số phần trăm",
+    "story": "Đầu mùa hè, giá một kg xoài cát là 50 nghìn đồng. Do mất mùa, giá xoài tăng thêm 20%. Hỏi giá xoài sau khi tăng là bao nhiêu nghìn đồng một ki-lô-gam?",
+    "visual": {
+      "type": "bar",
+      "values": [50, 20],
+      "labels": ["Giá ban đầu (nghìn/kg)", "Tỉ lệ tăng (%)"]
+    },
+    "retellOptions": [
+      "Xoài giá 50 nghìn/kg, tăng 20%, hỏi giá mới bao nhiêu nghìn/kg.",
+      "Xoài giá 50 nghìn/kg, giảm 20%, hỏi giá mới.",
+      "Tìm số tiền tăng thêm."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Giá xoài ban đầu: 50 nghìn/kg",
+      "Tăng giá 20%",
+      "Tìm giá xoài sau khi tăng"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình bớt (Cho đi)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "50 + 50 × 20 ÷ 100",
+      "50 - 50 × 20 ÷ 100",
+      "50 × 20"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Phần tiền tăng = 50 × 20 ÷ 100 = 10. Giá mới = 50 + 10 = 60 nghìn đồng/kg.",
+      "Vì giá bị giảm đi 20%.",
+      "Vì nhân giá với tỉ lệ trực tiếp."
+    ],
+    "correctReason": 0,
+    "answer": 60,
+    "unit": "nghìn đồng/kg",
+    "answerOptions": [
+      "Giá xoài sau khi tăng là 60 nghìn đồng/kg.",
+      "Giá xoài sau khi tăng là 40 nghìn đồng/kg.",
+      "Giá xoài sau khi tăng là 1000 nghìn đồng/kg."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Giá mới 60 nghìn có lớn hơn giá cũ 50 nghìn không?",
+    "checkOptions": [
+      "Có, tăng giá nên giá mới phải cao hơn giá cũ.",
+      "Không, tăng giá thì giá phải thấp hơn."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Giá xoài ban đầu: 50 nghìn/kg.",
+      "Bước 2: Tỉ lệ tăng: 20%.",
+      "Bước 3: Tính phần tiền tăng: 50 × 20 ÷ 100.",
+      "Bước 4: 50 × 20 = 1000, rồi 1000 ÷ 100 = 10 nghìn.",
+      "Bước 5: Giá mới = giá cũ + phần tăng = 50 + 10.",
+      "Bước 6: Tính: 50 + 10 = 60 nghìn/kg.",
+      "Bước 7: Đáp án: Giá xoài sau khi tăng là 60 nghìn/kg."
+    ]
+  },
+  {
+    "id": "lesson-68",
+    "title": "Hai vòi nước đổ đầy bể",
+    "shortTitle": "Bài toán hai vòi nước",
+    "icon": "🚰",
+    "color": "blue",
+    "skill": "Bài toán công việc chung",
+    "story": "Vòi thứ nhất chảy một mình thì đầy bể sau 6 giờ. Vòi thứ hai chảy một mình thì đầy bể sau 3 giờ. Hỏi nếu mở cả hai vòi cùng lúc thì sau bao lâu bể đầy?",
+    "visual": {
+      "type": "bar",
+      "values": [6, 3],
+      "labels": ["Vòi 1 (giờ đầy bể)", "Vòi 2 (giờ đầy bể)"]
+    },
+    "retellOptions": [
+      "Vòi 1 đầy bể 6 giờ, vòi 2 đầy bể 3 giờ, hỏi cả hai vòi thì bao lâu đầy.",
+      "Vòi 1 chảy 6 giờ, vòi 2 chảy 3 giờ, hỏi tổng lượng nước.",
+      "So sánh tốc độ chảy của hai vòi nước."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Vòi 1 đầy bể trong 6 giờ → mỗi giờ chảy 1/6 bể",
+      "Vòi 2 đầy bể trong 3 giờ → mỗi giờ chảy 1/3 bể",
+      "Cả hai vòi mỗi giờ chảy: 1/6 + 1/3 = 1/2 bể",
+      "Tìm thời gian đầy bể khi mở cả hai vòi"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình công việc chung (cộng năng suất)",
+      "Mô hình gộp thời gian",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "1 ÷ (1/6 + 1/3)",
+      "6 + 3",
+      "6 × 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Mỗi giờ hai vòi chảy: 1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2 bể. Thời gian đầy: 1 ÷ 1/2 = 2 giờ.",
+      "Vì ta cộng thời gian hai vòi.",
+      "Vì ta nhân thời gian hai vòi."
+    ],
+    "correctReason": 0,
+    "answer": 2,
+    "unit": "giờ",
+    "answerOptions": [
+      "Mở cả hai vòi thì bể đầy sau 2 giờ.",
+      "Mở cả hai vòi thì bể đầy sau 9 giờ.",
+      "Mở cả hai vòi thì bể đầy sau 18 giờ."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "2 giờ có ngắn hơn thời gian vòi nhanh nhất (3 giờ) không?",
+    "checkOptions": [
+      "Có, mở cả hai vòi thì phải nhanh hơn mở riêng một vòi.",
+      "Không, hai vòi cùng chảy phải lâu hơn."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Vòi 1 mỗi giờ chảy được 1/6 bể.",
+      "Bước 2: Vòi 2 mỗi giờ chảy được 1/3 bể.",
+      "Bước 3: Quy đồng: 1/3 = 2/6.",
+      "Bước 4: Cả hai vòi mỗi giờ: 1/6 + 2/6 = 3/6 = 1/2 bể.",
+      "Bước 5: Bể đầy khi chảy được 1 bể → thời gian = 1 ÷ 1/2 = 2 giờ.",
+      "Bước 6: Đáp án: Bể đầy sau 2 giờ.",
+      "Bước 7: Kiểm tra: 2 giờ < 3 giờ (vòi nhanh nhất). Hợp lý!"
+    ]
+  },
+  {
+    "id": "lesson-69",
+    "title": "Nhóm bạn sơn hàng rào trường",
+    "shortTitle": "Công việc sơn hàng rào",
+    "icon": "🎨",
+    "color": "yellow",
+    "skill": "Bài toán công việc chung",
+    "story": "Nam sơn một mình thì xong hàng rào trong 10 giờ. Minh sơn một mình thì xong trong 15 giờ. Hỏi nếu hai bạn cùng sơn thì sau bao lâu sơn xong hàng rào?",
+    "visual": {
+      "type": "bar",
+      "values": [10, 15],
+      "labels": ["Nam (giờ)", "Minh (giờ)"]
+    },
+    "retellOptions": [
+      "Nam sơn xong 10 giờ, Minh sơn xong 15 giờ, hỏi cùng sơn bao lâu xong.",
+      "Nam sơn 10 giờ, Minh sơn 15 giờ, hỏi tổng thời gian.",
+      "Tìm bạn nào sơn nhanh hơn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Nam sơn xong trong 10 giờ → mỗi giờ sơn 1/10 hàng rào",
+      "Minh sơn xong trong 15 giờ → mỗi giờ sơn 1/15 hàng rào",
+      "Cả hai mỗi giờ: 1/10 + 1/15 = 1/6 hàng rào",
+      "Tìm thời gian sơn xong khi hai bạn cùng làm"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình công việc chung (cộng năng suất)",
+      "Mô hình so sánh tốc độ",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "1 ÷ (1/10 + 1/15)",
+      "10 + 15",
+      "10 × 15"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Mỗi giờ hai bạn sơn: 1/10 + 1/15 = 3/30 + 2/30 = 5/30 = 1/6. Thời gian: 1 ÷ 1/6 = 6 giờ.",
+      "Vì ta cộng thời gian hai bạn.",
+      "Vì ta nhân thời gian hai bạn."
+    ],
+    "correctReason": 0,
+    "answer": 6,
+    "unit": "giờ",
+    "answerOptions": [
+      "Hai bạn cùng sơn thì xong hàng rào sau 6 giờ.",
+      "Hai bạn cùng sơn thì xong hàng rào sau 25 giờ.",
+      "Hai bạn cùng sơn thì xong hàng rào sau 150 giờ."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "6 giờ có ngắn hơn thời gian người nhanh nhất (10 giờ) không?",
+    "checkOptions": [
+      "Có, hai người cùng làm phải nhanh hơn một người.",
+      "Không, hai người làm phải lâu hơn."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Nam mỗi giờ sơn được 1/10 hàng rào.",
+      "Bước 2: Minh mỗi giờ sơn được 1/15 hàng rào.",
+      "Bước 3: Quy đồng mẫu số: 1/10 = 3/30, 1/15 = 2/30.",
+      "Bước 4: Cộng: 3/30 + 2/30 = 5/30 = 1/6.",
+      "Bước 5: Mỗi giờ cả hai sơn 1/6 hàng rào.",
+      "Bước 6: Thời gian xong = 1 ÷ 1/6 = 6 giờ.",
+      "Bước 7: Đáp án: Hai bạn sơn xong sau 6 giờ.",
+      "Bước 8: Kiểm tra: 6 giờ < 10 giờ. Hợp lý!"
+    ]
+  },
+  {
+    "id": "lesson-70",
+    "title": "Cắt bánh trung thu hình tròn",
+    "shortTitle": "Phân số diện tích bánh",
+    "icon": "🥮",
+    "color": "orange",
+    "skill": "Diện tích hình tròn",
+    "story": "Chiếc bánh trung thu hình tròn có bán kính 10 cm. Vy cắt lấy 1/4 chiếc bánh để ăn. Hỏi diện tích phần bánh Vy lấy là bao nhiêu xăng-ti-mét vuông? (Lấy π ≈ 3.14)",
+    "visual": {
+      "type": "bar",
+      "values": [314, 1],
+      "labels": ["Diện tích cả bánh (cm²)", "Phần Vy lấy (phần 4)"]
+    },
+    "retellOptions": [
+      "Bánh tròn bán kính 10 cm, Vy cắt 1/4 bánh, hỏi diện tích phần Vy lấy.",
+      "Bánh tròn đường kính 10 cm, hỏi chu vi bánh.",
+      "Tìm số phần bánh còn lại."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bán kính bánh: 10 cm",
+      "Diện tích cả bánh: S = 10 × 10 × 3.14 = 314 cm²",
+      "Vy lấy 1/4 chiếc bánh",
+      "Tìm diện tích phần bánh Vy lấy"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều (Lấy một phần)",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình tính chu vi"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "10 × 10 × 3.14 ÷ 4",
+      "10 × 10 × 3.14",
+      "10 × 2 × 3.14 ÷ 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Diện tích cả bánh = 314 cm². Vy lấy 1/4 nên diện tích phần Vy = 314 ÷ 4 = 78.5 cm².",
+      "Vì ta tính diện tích cả chiếc bánh.",
+      "Vì ta tính 1/4 chu vi bánh."
+    ],
+    "correctReason": 0,
+    "answer": 78.5,
+    "unit": "cm²",
+    "answerOptions": [
+      "Diện tích phần bánh Vy lấy là 78.5 cm².",
+      "Diện tích phần bánh Vy lấy là 314 cm².",
+      "Diện tích phần bánh Vy lấy là 15.7 cm²."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "78.5 cm² có đúng bằng 1/4 của 314 cm² không?",
+    "checkOptions": [
+      "Có, 314 ÷ 4 = 78.5. Đúng!",
+      "Không, 1/4 của 314 phải là 100."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Bán kính bánh: r = 10 cm.",
+      "Bước 2: Tính diện tích cả bánh: S = r × r × π = 10 × 10 × 3.14.",
+      "Bước 3: Tính 10 × 10 = 100.",
+      "Bước 4: Tính 100 × 3.14 = 314 cm².",
+      "Bước 5: Vy lấy 1/4 bánh → diện tích phần Vy = 314 ÷ 4.",
+      "Bước 6: Tính 314 ÷ 4 = 78.5 cm².",
+      "Bước 7: Đáp án: Diện tích phần bánh Vy lấy là 78.5 cm²."
+    ]
+  }
+]

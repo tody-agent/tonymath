@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState, useRef } from 'react'
 import {
-  isUnlocked as checkIsUnlocked,
   resolveSpeechRate,
   generateIcsContent,
   getLearningPlan,
@@ -11,11 +10,26 @@ import {
   getActiveProgress,
   getRecentlyStudiedLesson,
   ACHIEVEMENT_DEFINITIONS,
-  getUnlockedAchievementIds
+  getUnlockedAchievementIds,
+  isChallengeModeActive,
+  updateBehavioralMetrics
 } from './utils.js'
 import { playSfx, speakText, cancelSpeech } from './audio.js'
 import { getMascotSpeech, MASCOT_PROFILES, getIndicatorGuide } from './mascotDialogs.js'
 import './App.css'
+
+const STUDY_MODES = {
+  full: { id: 'full', title: 'Từng bước (8 bước)', steps: [0, 1, 2, 3, 4, 5, 6, 7] },
+  express: { id: 'express', title: 'Rút gọn (5 bước)', steps: [0, 3, 4, 5, 6] },
+  pro: { id: 'pro', title: 'Siêu tốc (3 bước)', steps: [4, 5, 6] }
+}
+
+function getActiveSteps(mode, lesson) {
+  const baseSteps = STUDY_MODES[mode]?.steps || STUDY_MODES.full.steps
+  if (!lesson) return baseSteps
+  const shouldSkipStep5 = lesson.skill === 'Suy luận logic' || lesson.answer === 0
+  return baseSteps.filter(s => !(s === 5 && shouldSkipStep5))
+}
 
 const STEP_LABELS = [
   ['👀', 'Nhìn hình'],
@@ -40,6 +54,7 @@ const DEFAULT_PROGRESS = {
   currentLesson: 0,
   onboarded: false,
   challengeMode: false,
+  studyMode: 'full',
   profile: {
     name: '',
     mascot: 'owl'
@@ -158,8 +173,8 @@ function App() {
   const [mistakes, setMistakes] = useState(0)
   const [hearts, setHearts] = useState(3)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [activeGuide, setActiveGuide] = useState(null)
   const [isDevMode, setIsDevMode] = useState(false)
+  const [activeGuide, setActiveGuide] = useState(null)
   const [isEditingName, setIsEditingName] = useState(false)
   const [tempName, setTempName] = useState('')
   const [showIosInstructions, setShowIosInstructions] = useState(false)
@@ -169,6 +184,10 @@ function App() {
   const [newlyUnlockedAchievements, setNewlyUnlockedAchievements] = useState([])
   const isInitialMount = useRef(true)
   const [lessonStartTime, setLessonStartTime] = useState(null)
+  const [stepStartTime, setStepStartTime] = useState(null)
+  const [cooldownActive, setCooldownActive] = useState(false)
+  const [hasUsedShield, setHasUsedShield] = useState(false)
+  const [stepConfettiActive, setStepConfettiActive] = useState(false)
 
   // Dynamic lesson packs states
   const [lessons, setLessons] = useState([])
@@ -255,11 +274,11 @@ function App() {
 
   // Handle game over state when hearts reach 0 in challenge mode
   useEffect(() => {
-    const isChallenge = progress.challengeMode || lesson?.difficulty === 'hard';
+    const isChallenge = isChallengeModeActive(progress, lesson);
     if (isChallenge && hearts === 0 && view === 'lesson' && !isGameOver) {
       setIsGameOver(true);
     }
-  }, [hearts, progress.challengeMode, lesson, view, isGameOver]);
+  }, [hearts, progress, lesson, view, isGameOver]);
 
   // Touch lastActiveDate once per day (cache “nhớ” người dùng)
   useEffect(() => {
@@ -268,6 +287,17 @@ function App() {
       setProgress((old) => ({ ...old, lastActiveDate: today }))
     }
   }, [progress.lastActiveDate])
+
+  // Escape key to close profile bottom sheet
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && menuOpen) {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [menuOpen]);
 
   // Welcome-back nudge (không chặn UI — có thể đóng)
   useEffect(() => {
@@ -383,6 +413,33 @@ function App() {
     }
   }, [progress.lastStudyDate])
 
+  // Proactive hint timer for anxious learners (budding_thinker)
+  useEffect(() => {
+    if (view !== 'lesson' || isGameOver || feedback?.correct) return;
+    const currentArchetype = progress.behavioralProfile?.currentArchetype || 'balanced';
+    if (currentArchetype !== 'budding_thinker') return;
+    if (hintOpen || hintUnlockedForCurrentStep) return;
+
+    const timer = setTimeout(() => {
+      setHintOpen(true);
+      setHintUnlockedForCurrentStep(true);
+      
+      const mascot = progress.profile?.mascot || 'owl';
+      const buddy = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
+      const helpText = `${buddy.name} thấy câu này hơi thử thách một chút. Con hãy xem gợi ý bên dưới nhé!`;
+      
+      if (!audioSettings.muted && audioSettings.autoRead) {
+        speakText(helpText, resolveSpeechRate(audioSettings.speed));
+      }
+      setFeedback(f => f ? f : { correct: false, message: helpText });
+      
+      const elapsed = stepStartTime ? Math.round((Date.now() - stepStartTime) / 1000) : 25;
+      setProgress(old => updateBehavioralMetrics(old, 'hint_opened', { latency: elapsed, step }));
+    }, 25000);
+
+    return () => clearTimeout(timer);
+  }, [step, view, isGameOver, feedback?.correct, progress.behavioralProfile?.currentArchetype, hintOpen, hintUnlockedForCurrentStep, stepStartTime, progress.profile?.mascot, audioSettings]);
+
   useEffect(() => {
     if (view !== 'lesson' || audioSettings.muted || !audioSettings.autoRead) return
 
@@ -464,8 +521,8 @@ function App() {
     speakText(textToSpeak, rate * (profile.rateOffset || 1.0), null, null, profile.pitch || 1.0)
   }
 
-  // Free browse: mọi bài đều mở; isDevMode giữ cho tương thích UI cũ
-  const isUnlocked = (index) => isDevMode || checkIsUnlocked(index, activeProgress.completed, lessons, isDevMode)
+  // Mặc định mở tất cả các bài học
+  const isUnlocked = () => true
 
   function resetStepState(nextStep = step) {
     setSelected(null)
@@ -476,6 +533,8 @@ function App() {
     setHintOpen(false)
     setHintUnlockedForCurrentStep(false)
     setStep(nextStep)
+    setStepStartTime(Date.now())
+    setCooldownActive(false)
   }
 
   function handleRetryLesson() {
@@ -484,7 +543,9 @@ function App() {
     setHearts(3)
     setMistakes(0)
     setStepFailsSession({})
-    resetStepState(0)
+    setHasUsedShield(false)
+    const initialStep = getActiveSteps(progress.studyMode || 'full', lesson)[0]
+    resetStepState(initialStep)
     setIsGameOver(false)
   }
 
@@ -498,10 +559,13 @@ function App() {
       currentLesson: index,
       lastActiveDate: new Date().toISOString().slice(0, 10)
     }))
+    const targetLesson = lessons[index]
+    const initialStep = getActiveSteps(progress.studyMode || 'full', targetLesson)[0]
     setMistakes(0)
     setHearts(3)
     setStepFailsSession({})
-    resetStepState(0)
+    setHasUsedShield(false)
+    resetStepState(initialStep)
     setLessonStartTime(Date.now())
     setView('lesson')
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -665,7 +729,7 @@ function App() {
     setBuddyAttempted(true)
     const isCorrect = userChoice === buddyQuestion.correctAnswer
     const mascot = buddyQuestion.mascot || 'owl'
-    const mascotName = mascot === 'robot' ? 'Rô Bốt' : mascot === 'turtle' ? 'Rùa Con' : 'Cú Ú'
+    const mascotName = MASCOT_PROFILES[mascot]?.name || 'Cú Ú'
     
     if (isCorrect) {
       playSfx('correct', audioSettings.muted)
@@ -701,22 +765,61 @@ function App() {
   function markAttempt(isCorrect, message) {
     if (feedback?.correct) return
     const mascot = progress.profile?.mascot || 'owl'
+    const latency = stepStartTime ? Math.round((Date.now() - stepStartTime) / 1000) : 5
+    const currentArchetype = progress.behavioralProfile?.currentArchetype || 'balanced'
+
     if (isCorrect) {
       const praiseSfx = step === 7 ? 'praise' : 'correct'
       playSfx(praiseSfx, audioSettings.muted)
-      const mascotMsg = getMascotSpeech(mascot, true, message)
+      const mascotMsg = getMascotSpeech(mascot, true, message, currentArchetype)
       setFeedback({ correct: true, message: mascotMsg })
-      setProgress((old) => ({ ...old, xp: old.xp + 10 }))
+      if (currentArchetype === 'active_seeker' && (step === 3 || step === 5)) {
+        setStepConfettiActive(true)
+        setTimeout(() => setStepConfettiActive(false), 3000)
+      }
+      setProgress((old) => {
+        const updatedXp = { ...old, xp: old.xp + 10 };
+        return updateBehavioralMetrics(updatedXp, 'step_attempt', {
+          latency,
+          isCorrect: true,
+          step,
+          hintUsed: hintUnlockedForCurrentStep
+        });
+      })
     } else {
+      if (currentArchetype === 'pioneer') {
+        setCooldownActive(true);
+        setTimeout(() => setCooldownActive(false), 2500);
+      }
+
       playSfx(hearts <= 1 ? 'wrong' : 'soft_wrong', audioSettings.muted)
-      const mascotMsg = getMascotSpeech(mascot, false, message)
-      setFeedback({ correct: false, message: mascotMsg })
-      setMistakes((value) => value + 1)
-      setHearts((value) => Math.max(0, value - 1))
+      const mascotMsg = getMascotSpeech(mascot, false, message, currentArchetype)
+      
+      let nextHearts = hearts;
+      if (hearts <= 1 && currentArchetype === 'budding_thinker' && !hasUsedShield) {
+        setHasUsedShield(true);
+        nextHearts = 1;
+        const buddy = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
+        setFeedback({ 
+          correct: false, 
+          message: `${mascotMsg} (🛡️ ${buddy.name} đã dùng Khiên Bảo Vệ bảo toàn tim cho con!)` 
+        });
+      } else {
+        nextHearts = Math.max(0, hearts - 1);
+        setFeedback({ correct: false, message: mascotMsg })
+      }
+      setHearts(nextHearts)
+
       setStepFailsSession((old) => ({ ...old, [step]: (old[step] || 0) + 1 }))
-      setProgress((old) =>
-        applyStepMistake(old, { lessonId: lesson.id, skill: lesson.skill, step }, currentGrade, currentSubject)
-      )
+      setProgress((old) => {
+        const stepFailedProgress = applyStepMistake(old, { lessonId: lesson.id, skill: lesson.skill, step }, currentGrade, currentSubject);
+        return updateBehavioralMetrics(stepFailedProgress, 'step_attempt', {
+          latency,
+          isCorrect: false,
+          step,
+          hintUsed: hintUnlockedForCurrentStep
+        });
+      })
     }
   }
 
@@ -744,9 +847,11 @@ function App() {
 
   function nextStep() {
     if (!feedback?.correct) return
-    if (step < 7) {
+    const activeSteps = getActiveSteps(progress.studyMode || 'full', lesson)
+    const currentIdx = activeSteps.indexOf(step)
+    if (currentIdx < activeSteps.length - 1) {
       playClick()
-      const nextS = (step === 4 && (lesson.skill === 'Suy luận logic' || lesson.answer === 0)) ? 6 : step + 1;
+      const nextS = activeSteps[currentIdx + 1]
       resetStepState(nextS)
       return
     }
@@ -758,7 +863,7 @@ function App() {
       skill: lesson.skill,
       shortTitle: lesson.shortTitle
     })
-    const isChallenge = progress.challengeMode || lesson?.difficulty === 'hard';
+    const isChallenge = isChallengeModeActive(progress, lesson);
     const duration = lessonStartTime ? Math.round((Date.now() - lessonStartTime) / 1000) : 0;
     setProgress((old) =>
       applyLessonResult(old, {
@@ -893,7 +998,7 @@ function App() {
     return (
       <div className="app-shell loading-shell">
         <div className="loading-card">
-          <span className="loading-mascot">🦉</span>
+          <span className="loading-mascot">{MASCOT_PROFILES[progress.profile?.mascot || 'owl']?.emoji || '🦉'}</span>
           <h2>Đang tải bài học vui...</h2>
           <div className="loading-spinner"></div>
         </div>
@@ -921,19 +1026,13 @@ function App() {
       {!isSessionActive && (
         <header className="topbar">
           <button className="brand" onClick={() => setView('home')} aria-label="Về trang chủ">
-            <span className="brand-mascot">🦉</span>
+            <span className="brand-mascot">{MASCOT_PROFILES[progress.profile?.mascot || 'owl']?.emoji || '🦉'}</span>
             <span><strong>Học Toán</strong><small>Học cách học</small></span>
           </button>
           <div className="top-stats">
             <div className="level-card" onClick={() => handleOpenGuide('level')} title="Bấm để xem giải thích cấp độ"><span>⭐</span><div><b>Cấp độ {level}</b><div className="mini-progress"><i style={{ width: `${levelProgress}%` }} /></div></div></div>
             <div className="stat" onClick={() => handleOpenGuide('streak')} title="Bấm để xem giải thích ngày liên tiếp"><span>🔥</span><b>{progress.streak}</b><small>ngày</small></div>
             <div className="stat" onClick={() => handleOpenGuide('xp')} title="Bấm để xem giải thích điểm vàng"><span>🪙</span><b>{progress.xp}</b><small>điểm</small></div>
-            <button 
-              onClick={() => { playSfx('click', audioSettings.muted); setIsDevMode(prev => !prev); }} 
-              className={`dev-toggle-direct ${isDevMode ? 'dev-active' : ''}`}
-            >
-              {isDevMode ? '🔒 Khóa bài' : '🔓 Mở khóa tất cả'}
-            </button>
             <div className="audio-settings-wrapper">
               <button className="audio-settings-toggle" onClick={() => { setAudioPanelOpen(prev => !prev); setMenuOpen(false); }} aria-label="Cài đặt âm thanh">
                 {audioSettings.muted ? '🔇' : '🔊'}
@@ -1001,229 +1100,279 @@ function App() {
             </div>
             <button className="avatar-button" onClick={() => { setMenuOpen((open) => !open); setAudioPanelOpen(false); }} aria-label="Menu cá nhân">👦</button>
           </div>
-          {menuOpen && (
-            <div className="profile-menu" style={{ width: '280px', maxHeight: '85vh', overflowY: 'auto' }}>
-              {isEditingName ? (
-                <div style={{ display: 'flex', gap: '6px', alignItems: 'center', marginBottom: '8px' }}>
-                  <input
-                    type="text"
-                    value={tempName}
-                    onChange={(e) => setTempName(e.target.value)}
-                    style={{
-                      flex: 1,
-                      padding: '4px 8px',
-                      borderRadius: '8px',
-                      border: '1px solid #ccc',
-                      fontSize: '13px',
-                      outline: 'none'
-                    }}
-                    maxLength={20}
-                    autoFocus
-                  />
-                  <button
-                    onClick={saveProfileName}
-                    style={{
-                      padding: '4px 8px',
-                      borderRadius: '8px',
-                      background: '#39bf64',
-                      color: '#fff',
-                      border: 'none',
-                      cursor: 'pointer',
-                      fontSize: '12px',
-                      fontWeight: 'bold'
-                    }}
-                  >
-                    Lưu
-                  </button>
-                  <button
-                    onClick={() => setIsEditingName(false)}
-                    style={{
-                      padding: '4px 8px',
-                      borderRadius: '8px',
-                      background: '#e0e0e0',
-                      color: '#333',
-                      border: 'none',
-                      cursor: 'pointer',
-                      fontSize: '12px'
-                    }}
-                  >
-                    Hủy
-                  </button>
-                </div>
-              ) : (
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', marginBottom: '4px' }}>
-                  <b>{progress.profile?.name ? `Bé ${progress.profile.name}` : 'Bạn nhỏ chăm học'}</b>
-                  <button
-                    onClick={() => {
-                      setTempName(progress.profile?.name || '');
-                      setIsEditingName(true);
-                    }}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      color: '#4f46e5',
-                      cursor: 'pointer',
-                      fontSize: '12px',
-                      padding: '2px 6px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '2px'
-                    }}
-                    aria-label="Sửa tên học sinh"
-                  >
-                    ✏️ Sửa
-                  </button>
-                </div>
-              )}
-              <div style={{ borderTop: '1px solid #eef2ff', padding: '10px 0', marginTop: '4px' }}>
-                <span style={{ fontWeight: 'bold', fontSize: '13px', display: 'block', marginBottom: '8px' }}>🏫 Chọn Lớp & Môn học</span>
-                
-                {/* Chọn Lớp */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '13px', marginBottom: '8px' }}>
-                  <span>Lớp học:</span>
-                  <select
-                    value={currentGrade}
-                    onChange={(e) => {
-                      const newGrade = e.target.value;
-                      const gradeObj = registry?.grades.find(g => g.id === newGrade);
-                      const defaultSub = gradeObj?.subjects?.find(s => !s.comingSoon)?.id || 'math';
-                      playSfx('click', audioSettings.muted);
-                      setProgress(old => ({ ...old, currentGrade: newGrade, currentSubject: defaultSub }));
-                    }}
-                    style={{ padding: '3px 8px', borderRadius: '6px', fontSize: '12px', background: '#fff', border: '1px solid #d1d5db', cursor: 'pointer', fontWeight: '500' }}
-                  >
-                    {registry?.grades.map(g => (
-                      <option key={g.id} value={g.id} disabled={g.comingSoon}>{g.title} {g.comingSoon ? '(Sắp có)' : ''}</option>
-                    ))}
-                  </select>
-                </div>
 
-                {/* Chọn Môn */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '13px', marginBottom: '10px' }}>
-                  <span>Môn học:</span>
-                  <select
-                    value={currentSubject}
-                    onChange={(e) => {
-                      playSfx('click', audioSettings.muted);
-                      setProgress(old => ({ ...old, currentSubject: e.target.value }));
-                    }}
-                    style={{ padding: '3px 8px', borderRadius: '6px', fontSize: '12px', background: '#fff', border: '1px solid #d1d5db', cursor: 'pointer', fontWeight: '500' }}
-                  >
-                    {registry?.grades.find(g => g.id === currentGrade)?.subjects?.map(s => (
-                      <option key={s.id} value={s.id} disabled={s.comingSoon}>{s.title} {s.comingSoon ? '(Sắp có)' : ''}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div style={{ borderTop: '1px solid #eef2ff', padding: '10px 0', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <span>{progress.profile?.mascot === 'robot' ? '🤖' : progress.profile?.mascot === 'turtle' ? '🐢' : '🦉'}</span>
-                <span>Cố vấn:</span>
-                <select
-                  value={progress.profile?.mascot || 'owl'}
-                  onChange={(e) => {
-                    const newMascot = e.target.value;
-                    setProgress(old => {
-                      const updated = {
-                        ...old,
-                        profile: {
-                          ...old.profile,
-                          mascot: newMascot
-                        }
-                      };
-                      localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
-                      return updated;
-                    });
-                    playSfx('click', audioSettings.muted);
-                  }}
-                  style={{
-                    padding: '2px 6px',
-                    borderRadius: '6px',
-                    border: '1px solid #d1d5db',
-                    background: '#fff',
-                    fontSize: '12px',
-                    cursor: 'pointer',
-                    outline: 'none',
-                    fontWeight: '500',
-                    color: '#374151'
-                  }}
-                  aria-label="Chọn bạn cố vấn học tập"
-                >
-                  <option value="owl">🦉 Cú Ú</option>
-                  <option value="robot">🤖 Rô Bốt</option>
-                  <option value="turtle">🐢 Rùa Con</option>
-                </select>
-              </div>
-              <div style={{ borderTop: '1px solid #eef2ff', padding: '12px 0' }}>
-                <span style={{ fontWeight: 'bold', fontSize: '13px', display: 'block', marginBottom: '8px' }}>⏰ Nhắc nhở tự động</span>
-                <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '13px', marginBottom: '8px' }}>
-                  <span>Chuông báo học:</span>
-                  <input
-                    type="checkbox"
-                    checked={progress.notificationsEnabled}
-                    onChange={(e) => toggleNotifications(e.target.checked)}
-                  />
-                </label>
-                {progress.notificationsEnabled && (
-                  <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '13px', marginBottom: '8px' }}>
-                    <span>Chọn giờ báo:</span>
-                    <select
-                      value={progress.reminderTime || '19:00'}
-                      onChange={(e) => changeReminderTime(e.target.value)}
-                      style={{ padding: '2px 6px', borderRadius: '6px', fontSize: '12px' }}
-                    >
-                      <option value="08:00">08:00 Sáng</option>
-                      <option value="09:00">09:00 Sáng</option>
-                      <option value="17:00">17:00 Chiều</option>
-                      <option value="19:00">19:00 Tối</option>
-                      <option value="20:00">20:00 Tối</option>
-                      <option value="21:00">21:00 Tối</option>
-                    </select>
-                  </label>
-                )}
-                <button 
-                  onClick={downloadIcsReminder}
-                  className="calendar-btn-link"
-                  style={{ width: '100%', padding: '8px', fontSize: '12px', marginTop: '6px', cursor: 'pointer' }}
-                >
-                  ⏰ Đặt lịch chuông điện thoại
-                </button>
-              </div>
-              <div style={{ borderTop: '1px solid #eef2ff', padding: '12px 0' }}>
-                <span style={{ fontWeight: 'bold', fontSize: '13px', display: 'block', marginBottom: '8px' }}>🏆 Chế độ thử thách</span>
-                <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '13px', cursor: 'pointer' }}>
-                  <span>Chế độ Thử thách ⚡:</span>
-                  <input
-                    type="checkbox"
-                    checked={progress.challengeMode || false}
-                    onChange={(e) => {
-                      playSfx('click', audioSettings.muted);
-                      setProgress((old) => ({ ...old, challengeMode: e.target.checked }));
-                    }}
-                  />
-                </label>
-                <span style={{ fontSize: '11px', color: '#64748b', display: 'block', marginTop: '4px', lineHeight: '1.4' }}>
-                  Khi bật: Gợi ý sẽ tốn 1 ❤️ và hết ❤️ sẽ phải làm lại từ đầu. (Luôn bật với bài lớp 4 nâng cao).
-                </span>
-              </div>
-              <div style={{ borderTop: '1px solid #eef2ff', padding: '12px 0 0 0', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <button onClick={() => { setIsDevMode(prev => !prev); setMenuOpen(false); }} className="dev-toggle" style={{ margin: 0 }}>
-                  {isDevMode ? '🔒 Khóa chế độ Dev' : '🔓 Mở khóa tất cả'}
-                </button>
-                <button onClick={resetAllProgress} style={{ margin: 0, background: '#fff5f5', color: '#e53e3e', border: '1px solid #fed7d7' }}>Xóa tiến độ</button>
-              </div>
-            </div>
-          )}
         </header>
       )}
+
+      {!isSessionActive && menuOpen && (
+            <>
+              <div 
+                className="profile-sheet-overlay" 
+                onClick={() => setMenuOpen(false)}
+              />
+              <div className="profile-sheet-panel" onClick={(e) => e.stopPropagation()}>
+                <div className="profile-sheet-drag-handle" />
+                <div className="profile-sheet-header">
+                  <h3>👦 Hồ sơ & Thiết lập</h3>
+                  <button className="profile-sheet-close-btn" onClick={() => setMenuOpen(false)} aria-label="Đóng">✕</button>
+                </div>
+                <div className="profile-sheet-body">
+                  
+                  {/* Hồ sơ học sinh */}
+                  <div className="profile-sheet-card">
+                    {isEditingName ? (
+                      <div className="profile-name-edit-container">
+                        <input
+                          type="text"
+                          className="profile-name-input"
+                          value={tempName}
+                          onChange={(e) => setTempName(e.target.value)}
+                          maxLength={20}
+                          autoFocus
+                        />
+                        <button className="profile-name-save-btn" onClick={saveProfileName}>Lưu</button>
+                        <button className="profile-name-cancel-btn" onClick={() => setIsEditingName(false)}>Hủy</button>
+                      </div>
+                    ) : (
+                      <div className="profile-name-edit-container">
+                        <span className="profile-display-name">
+                          {progress.profile?.name ? `Bé ${progress.profile.name}` : 'Bạn nhỏ chăm học'}
+                        </span>
+                        <button
+                          className="profile-edit-name-btn"
+                          onClick={() => {
+                            setTempName(progress.profile?.name || '');
+                            setIsEditingName(true);
+                          }}
+                          aria-label="Sửa tên học sinh"
+                        >
+                          ✏️ Sửa tên
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Lớp & Môn học */}
+                  <div className="profile-sheet-card">
+                    <h4>🏫 Lớp học của con</h4>
+                    <div className="pills-grid" style={{ marginBottom: '16px' }}>
+                      {registry?.grades.map(g => (
+                        <button
+                          key={g.id}
+                          disabled={g.comingSoon}
+                          className={`pill-button ${currentGrade === g.id ? 'selected' : ''}`}
+                          onClick={() => {
+                            const newGrade = g.id;
+                            const gradeObj = registry?.grades.find(gr => gr.id === newGrade);
+                            const defaultSub = gradeObj?.subjects?.find(s => !s.comingSoon)?.id || 'math';
+                            playSfx('click', audioSettings.muted);
+                            setProgress(old => ({ ...old, currentGrade: newGrade, currentSubject: defaultSub }));
+                          }}
+                        >
+                          {g.title} {g.comingSoon ? '(Sắp có)' : ''}
+                        </button>
+                      ))}
+                    </div>
+
+                    <h4>📖 Môn học đăng ký</h4>
+                    <div className="pills-grid">
+                      {registry?.grades.find(g => g.id === currentGrade)?.subjects?.map(s => (
+                        <button
+                          key={s.id}
+                          disabled={s.comingSoon}
+                          className={`pill-button ${currentSubject === s.id ? 'selected' : ''}`}
+                          onClick={() => {
+                            playSfx('click', audioSettings.muted);
+                            setProgress(old => ({ ...old, currentSubject: s.id }));
+                          }}
+                        >
+                          {s.title} {s.comingSoon ? '(Sắp có)' : ''}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Cố vấn học tập */}
+                  <div className="profile-sheet-card">
+                    <h4>{MASCOT_PROFILES[progress.profile?.mascot || 'owl']?.emoji || '🦉'} Cố vấn học tập</h4>
+                    <div className="mascot-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginTop: '12px' }}>
+                      {Object.keys(MASCOT_PROFILES).map(key => {
+                        const mascotProfile = MASCOT_PROFILES[key];
+                        const isSelected = (progress.profile?.mascot || 'owl') === key;
+                        return (
+                          <div 
+                            key={key}
+                            className={`mascot-select-card ${isSelected ? 'selected' : ''}`}
+                            onClick={() => {
+                              setProgress(old => {
+                                const updated = { ...old, profile: { ...old.profile, mascot: key } };
+                                localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
+                                return updated;
+                              });
+                              playSfx('click', audioSettings.muted);
+                            }}
+                            style={{
+                              padding: '10px 4px',
+                              borderRadius: '12px',
+                              border: isSelected ? '2px solid var(--primary)' : '1px solid #e5e7eb',
+                              background: isSelected ? 'var(--primary-light)' : '#ffffff',
+                              cursor: 'pointer',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              textAlign: 'center',
+                              transition: 'all 0.2s ease'
+                            }}
+                          >
+                            <span className="mascot-emoji" style={{ fontSize: '24px', display: 'block', marginBottom: '2px' }}>{mascotProfile.emoji}</span>
+                            <span className="mascot-label" style={{ fontSize: '11px', fontWeight: 'bold' }}>{mascotProfile.name}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Chế độ học tập */}
+                  <div className="profile-sheet-card">
+                    <h4>🎓 Chế độ học tập</h4>
+                    <div className="pills-grid">
+                      <button
+                        className={`pill-button ${(progress.studyMode || 'full') === 'full' ? 'selected' : ''}`}
+                        onClick={() => {
+                          setProgress(old => {
+                            const updated = { ...old, studyMode: 'full' };
+                            localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
+                            return updated;
+                          });
+                          playSfx('click', audioSettings.muted);
+                        }}
+                      >
+                        Từng bước (8 bước)
+                      </button>
+                      <button
+                        className={`pill-button ${progress.studyMode === 'express' ? 'selected' : ''}`}
+                        onClick={() => {
+                          setProgress(old => {
+                            const updated = { ...old, studyMode: 'express' };
+                            localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
+                            return updated;
+                          });
+                          playSfx('click', audioSettings.muted);
+                        }}
+                      >
+                        Rút gọn (5 bước)
+                      </button>
+                      <button
+                        className={`pill-button ${progress.studyMode === 'pro' ? 'selected' : ''}`}
+                        onClick={() => {
+                          setProgress(old => {
+                            const updated = { ...old, studyMode: 'pro' };
+                            localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
+                            return updated;
+                          });
+                          playSfx('click', audioSettings.muted);
+                        }}
+                      >
+                        Siêu tốc (3 bước)
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Nhắc nhở tự động */}
+                  <div className="profile-sheet-card">
+                    <h4>⏰ Nhắc nhở tự động</h4>
+                    <div className="custom-switch-row" style={{ marginBottom: '12px' }}>
+                      <div className="switch-label-desc">
+                        <span>Chuông báo học hằng ngày</span>
+                        <small>Nhắc bé vào học đúng giờ mỗi ngày</small>
+                      </div>
+                      <label className="custom-switch">
+                        <input
+                          type="checkbox"
+                          checked={progress.notificationsEnabled}
+                          onChange={(e) => toggleNotifications(e.target.checked)}
+                        />
+                        <span className="custom-slider"></span>
+                      </label>
+                    </div>
+
+                    {progress.notificationsEnabled && (
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '13px', marginBottom: '12px', background: '#fff', padding: '10px 14px', borderRadius: '12px', border: '1px solid #f1f5f9' }}>
+                        <span style={{ fontWeight: '600', color: '#475569' }}>Chọn giờ báo chuông:</span>
+                        <select
+                          value={progress.reminderTime || '19:00'}
+                          onChange={(e) => changeReminderTime(e.target.value)}
+                          className="custom-select-styled"
+                        >
+                          <option value="08:00">08:00 Sáng</option>
+                          <option value="09:00">09:00 Sáng</option>
+                          <option value="17:00">17:00 Chiều</option>
+                          <option value="19:00">19:00 Tối</option>
+                          <option value="20:00">20:00 Tối</option>
+                          <option value="21:00">21:00 Tối</option>
+                        </select>
+                      </div>
+                    )}
+                    
+                    <button 
+                      onClick={downloadIcsReminder}
+                      className="calendar-btn-link"
+                      style={{ width: '100%', padding: '10px', fontSize: '13px', marginTop: '6px', cursor: 'pointer', borderRadius: '10px', border: '1.5px dashed #4f46e5', color: '#4f46e5', fontWeight: 'bold', background: 'transparent' }}
+                    >
+                      ⏰ Đặt lịch chuông điện thoại
+                    </button>
+                  </div>
+
+                  {/* Chế độ thử thách */}
+                  <div className="profile-sheet-card">
+                    <h4>🏆 Chế độ thử thách</h4>
+                    <div className="custom-switch-row">
+                      <div className="switch-label-desc">
+                        <span>Chế độ Thử thách ⚡</span>
+                        <small>Gợi ý tốn 1 ❤️. Hết ❤️ phải học lại từ đầu (Bắt buộc với bài nâng cao lớp 4).</small>
+                      </div>
+                      <label className="custom-switch">
+                        <input
+                          type="checkbox"
+                          checked={progress.challengeMode || false}
+                          onChange={(e) => {
+                            playSfx('click', audioSettings.muted);
+                            setProgress((old) => ({ ...old, challengeMode: e.target.checked }));
+                          }}
+                        />
+                        <span className="custom-slider"></span>
+                      </label>
+                    </div>
+                  </div>
+
+                  {/* Khu vực nhà phát triển / Đặt lại */}
+                  <div className="profile-sheet-footer-actions">
+                    <button 
+                      onClick={() => { setIsDevMode(prev => !prev); setMenuOpen(false); }} 
+                      className="btn-styled-dev"
+                    >
+                      {isDevMode ? '🔒 Khóa chế độ Dev' : '🔓 Mở khóa tất cả bài học'}
+                    </button>
+                    <button 
+                      onClick={resetAllProgress} 
+                      className="btn-styled-reset"
+                    >
+                      Xóa toàn bộ tiến độ
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+            </>
+          )}
 
       {!isSessionActive && (
         <aside className="sidebar">
           <nav>
             <NavButton icon="🏠" label="Trang chủ" active={view === 'home'} onClick={() => setView('home')} />
             <NavButton icon="📚" label="Bài học" active={view === 'lessons-menu'} onClick={() => setView('lessons-menu')} />
-            <NavButton icon="🏆" label="Thành tích" active={view === 'achievements'} onClick={() => setView('achievements')} />
-            <NavButton icon="📈" label="Thấu hiểu" active={view === 'progress'} onClick={() => setView('progress')} />
+            <NavButton icon="🏆" label="Thành quả" active={view === 'progress'} onClick={() => setView('progress')} />
           </nav>
           <CoachSidebar progress={progress} plan={learningPlan} openLesson={openLesson} />
         </aside>
@@ -1306,7 +1455,11 @@ function App() {
             validateStep={validateStep}
             nextStep={nextStep}
             speakStory={speakStory}
-            onBack={() => setView('home')}
+            onBack={() => {
+              playClick();
+              setProgress(old => updateBehavioralMetrics(old, 'exit_lesson', { step, mistakes }));
+              setView('home');
+            }}
             isAnswered={isStepAnswered()}
             progress={activeProgress}
             hintUnlockedForCurrentStep={hintUnlockedForCurrentStep}
@@ -1316,6 +1469,8 @@ function App() {
             setHearts={setHearts}
             setMistakes={setMistakes}
             audioSettings={audioSettings}
+            stepConfettiActive={stepConfettiActive}
+            cooldownActive={cooldownActive}
           />
         )}
         {view === 'complete' && (
@@ -1323,22 +1478,21 @@ function App() {
             lesson={lesson}
             mistakes={mistakes}
             progress={activeProgress}
+            setProgress={setProgress}
             plan={learningPlan}
             onHome={() => setView('home')}
             onOpenLesson={openLesson}
             lessonIndex={lessonIndex}
           />
         )}
-        {view === 'achievements' && <Achievements progress={activeProgress} earnedStars={earnedStars} lessons={lessons} />}
-        {view === 'progress' && <InsightsView lessons={lessons} progress={activeProgress} openLesson={openLesson} />}
+        {view === 'progress' && <InsightsView lessons={lessons} progress={activeProgress} openLesson={openLesson} earnedStars={earnedStars} />}
       </main>
 
       {!isSessionActive && (
         <nav className="mobile-nav">
           <NavButton icon="🏠" label="Trang chủ" active={view === 'home'} onClick={() => setView('home')} />
           <NavButton icon="📚" label="Bài học" active={view === 'lessons-menu'} onClick={() => setView('lessons-menu')} />
-          <NavButton icon="🏆" label="Thành tích" active={view === 'achievements'} onClick={() => setView('achievements')} />
-          <NavButton icon="📈" label="Thấu hiểu" active={view === 'progress'} onClick={() => setView('progress')} />
+          <NavButton icon="🏆" label="Thành quả" active={view === 'progress'} onClick={() => setView('progress')} />
         </nav>
       )}
 
@@ -1384,8 +1538,9 @@ function App() {
 
       {activeGuide && (() => {
         const mascot = progress.profile?.mascot || 'owl';
-        const mascotEmoji = mascot === 'robot' ? '🤖' : mascot === 'turtle' ? '🐢' : '🦉';
-        const mascotName = mascot === 'robot' ? 'Rô Bốt' : mascot === 'turtle' ? 'Rùa Con' : 'Cú Ú';
+        const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
+        const mascotEmoji = profile.emoji;
+        const mascotName = profile.name;
         const guideData = getIndicatorGuide(mascot, activeGuide, progress);
         
         return (
@@ -1551,9 +1706,11 @@ function Home({
 }) {
   const plan = getLearningPlan(lessons, progress)
   const mascot = progress?.profile?.mascot || 'owl';
-  const mascotEmoji = mascot === 'robot' ? '🤖' : mascot === 'turtle' ? '🐢' : '🦉';
-  const mascotName = mascot === 'robot' ? 'Rô Bốt' : mascot === 'turtle' ? 'Rùa Con' : 'Cú Ú';
-  const themeClass = mascot === 'robot' ? 'theme-robot' : mascot === 'turtle' ? 'theme-turtle' : 'theme-owl';
+  const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
+  const mascotEmoji = profile.emoji;
+  const mascotName = profile.name;
+  const themeClass = `theme-${mascot}`;
+  const completedCount = Object.keys(progress.completed || {}).length;
 
   let speechBubbleText = '';
   if (plan?.primary) {
@@ -1669,6 +1826,38 @@ function Home({
               </button>
             </div>
           )}
+        </div>
+      </section>
+
+      <section className="grade-progress-section" style={{
+        background: '#ffffff',
+        borderRadius: '24px',
+        padding: '20px 24px',
+        marginBottom: '24px',
+        border: '1px solid #e5e7eb',
+        boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)'
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
+          <h3 style={{ margin: 0, fontSize: '15px', fontWeight: '800', color: '#1e3a8a', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span>🏫</span> Lộ trình: {currentGrade === 'grade-1' ? 'Lớp 1' : currentGrade === 'grade-2' ? 'Lớp 2' : currentGrade === 'grade-3' ? 'Lớp 3' : currentGrade === 'grade-4' ? 'Lớp 4' : 'Lớp 5'}
+          </h3>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#92400e', background: '#fef3c7', padding: '4px 8px', borderRadius: '8px' }}>
+              🎖️ {progress.profile?.academicLevel || 'Thành viên mới'}
+            </span>
+            <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#2563eb', background: '#eff6ff', padding: '4px 8px', borderRadius: '8px' }}>
+              {completedCount}/{lessons.length} bài đã học ({Math.round((completedCount / (lessons.length || 1)) * 100)}%)
+            </span>
+          </div>
+        </div>
+        <div style={{ height: '12px', background: '#f3f4f6', borderRadius: '6px', overflow: 'hidden', position: 'relative' }}>
+          <div style={{
+            height: '100%',
+            background: 'linear-gradient(90deg, #3b82f6 0%, #10b981 100%)',
+            width: `${(completedCount / (lessons.length || 1)) * 100}%`,
+            borderRadius: '6px',
+            transition: 'width 1s ease-out'
+          }}></div>
         </div>
       </section>
 
@@ -1795,14 +1984,43 @@ function LessonsMenu({
   const activeGradeObj = registry?.grades.find(g => g.id === currentGrade)
   const activeSubjectObj = activeGradeObj?.subjects?.find(s => s.id === currentSubject)
 
+  const total = lessons.length;
+  const ch1End = Math.min(30, total);
+  const ch2End = Math.min(60, total);
+  
+  const chapters = [
+    { id: 1, title: 'Chương I: Khởi động & Làm quen', start: 0, end: ch1End, icon: '🌱' },
+    { id: 2, title: 'Chương II: Thực hành & Tăng tốc', start: ch1End, end: ch2End, icon: '🚀' },
+    { id: 3, title: 'Chương III: Chinh phục & Nâng cao', start: ch2End, end: total, icon: '🏆' }
+  ].filter(ch => ch.start < ch.end);
+
+  // Find where the first incomplete lesson is to expand that chapter by default
+  const pathIndex = lessons.findIndex(l => !progress.completed?.[l.id]);
+  const activeChapterId = pathIndex === -1 
+    ? 1 
+    : pathIndex < ch1End 
+      ? 1 
+      : pathIndex < ch2End 
+        ? 2 
+        : 3;
+
+  const [expandedChapters, setExpandedChapters] = useState({
+    1: activeChapterId === 1,
+    2: activeChapterId === 2,
+    3: activeChapterId === 3
+  });
+
+  const toggleChapter = (id) => {
+    setExpandedChapters(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
   return (
     <div className="lessons-menu-page" style={{ padding: '24px', overflowY: 'auto', height: '100dvh', boxSizing: 'border-box', paddingBottom: '120px' }}>
-      {/* 2. Adventure map header & lessons grid */}
       <div className="adventure-map-area">
         <section className="journey-hero">
           <div>
             <h1>Bản đồ phiêu lưu: {activeGradeObj?.title} - {activeSubjectObj?.title} 🚀</h1>
-            <p>Chọn bài học con muốn chinh phục hôm nay nhé!</p>
+            <p>Con đang học rất tốt! Chọn bài học con muốn chinh phục hôm nay nhé.</p>
           </div>
           <div className="treasure">
             <span>🧰</span>
@@ -1810,30 +2028,78 @@ function LessonsMenu({
           </div>
         </section>
 
-        <div className="lesson-grid">
-          {lessons.map((lesson, index) => {
-            const complete = progress.completed[lesson.id]
-            const unlocked = isUnlocked(index)
-            return (
-              <button
-                key={lesson.id}
-                className={`lesson-card ${lesson.color} ${!unlocked ? 'locked' : ''} ${complete ? 'completed' : ''}`}
-                onClick={() => openLesson(index)}
-                disabled={!unlocked}
+        {chapters.map(ch => {
+          const chLessons = lessons.slice(ch.start, ch.end);
+          const chCompleted = chLessons.filter(l => progress.completed[l.id]).length;
+          const isExpanded = expandedChapters[ch.id];
+          
+          return (
+            <div key={ch.id} className="chapter-section" style={{
+              background: '#ffffff',
+              borderRadius: '24px',
+              padding: '20px',
+              marginBottom: '20px',
+              border: '1px solid #e5e7eb',
+              boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)'
+            }}>
+              <div 
+                onClick={() => toggleChapter(ch.id)}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  userSelect: 'none'
+                }}
               >
-                <span className="lesson-number">{index + 1}</span>
-                <span className="lesson-icon">{lesson.icon}</span>
-                <strong>{lesson.shortTitle}</strong>
-                <small>{lesson.skill}</small>
-                <div className="stars" aria-label={`${complete?.stars || 0} sao`}>
-                  {[0, 1, 2].map((star) => <span key={star}>{complete && star < complete.stars ? '⭐' : '☆'}</span>)}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ fontSize: '24px' }}>{ch.icon}</span>
+                  <div>
+                    <h3 style={{ margin: 0, fontSize: '15px', fontWeight: '800', color: '#1e3a8a' }}>
+                      {ch.title}
+                    </h3>
+                    <span style={{ fontSize: '12px', color: '#6b7280', fontWeight: '600' }}>
+                      Đã xong: {chCompleted}/{chLessons.length} bài ({Math.round((chCompleted / (chLessons.length || 1)) * 100)}%)
+                    </span>
+                  </div>
                 </div>
-                {!unlocked && <span className="lock">🔒</span>}
-                {complete && <span className="check">✓</span>}
-              </button>
-            )
-          })}
-        </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ fontSize: '18px', color: '#9ca3af', fontWeight: 'bold' }}>
+                    {isExpanded ? '▲' : '▼'}
+                  </span>
+                </div>
+              </div>
+              
+              {isExpanded && (
+                <div className="lesson-grid" style={{ marginTop: '20px' }}>
+                  {chLessons.map((lesson, idx) => {
+                    const originalIndex = ch.start + idx;
+                    const complete = progress.completed[lesson.id];
+                    const unlocked = isUnlocked(originalIndex);
+                    return (
+                      <button
+                        key={lesson.id}
+                        className={`lesson-card ${lesson.color} ${!unlocked ? 'locked' : ''} ${complete ? 'completed' : ''}`}
+                        onClick={() => openLesson(originalIndex)}
+                        disabled={!unlocked}
+                      >
+                        <span className="lesson-number">{originalIndex + 1}</span>
+                        <span className="lesson-icon">{lesson.icon}</span>
+                        <strong>{lesson.shortTitle}</strong>
+                        <small>{lesson.skill}</small>
+                        <div className="stars" aria-label={`${complete?.stars || 0} sao`}>
+                          {[0, 1, 2].map((star) => <span key={star}>{complete && star < complete.stars ? '⭐' : '☆'}</span>)}
+                        </div>
+                        {!unlocked && <span className="lock">🔒</span>}
+                        {complete && <span className="check">✓</span>}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   )
@@ -1844,12 +2110,17 @@ function LessonView(props) {
     lesson, step, feedback, setFeedback, hintOpen, setHintOpen, hearts, 
     validateStep, nextStep, speakStory, onBack, isAnswered,
     progress, hintUnlockedForCurrentStep, setHintUnlockedForCurrentStep,
-    showHintConfirm, setShowHintConfirm, setHearts, setMistakes, audioSettings
+    showHintConfirm, setShowHintConfirm, setHearts, setMistakes, audioSettings,
+    stepConfettiActive, cooldownActive
   } = props
   const hasFeedback = Boolean(feedback);
   const isCorrect = feedback?.correct;
 
-  const isChallenge = progress.challengeMode || lesson.difficulty === 'hard';
+  const isChallenge = isChallengeModeActive(progress, lesson);
+
+  const activeSteps = getActiveSteps(progress.studyMode || 'full', lesson)
+  const currentStepIdx = activeSteps.indexOf(step)
+  const progressPercent = activeSteps.length > 0 ? ((currentStepIdx + 1) / activeSteps.length) * 100 : 0
 
   function handleConfirmHint() {
     playClick();
@@ -1858,13 +2129,16 @@ function LessonView(props) {
     setMistakes((m) => m + 1);
     setHintUnlockedForCurrentStep(true);
     setHintOpen(true);
+    const elapsed = stepStartTime ? Math.round((Date.now() - stepStartTime) / 1000) : 0;
+    setProgress(old => updateBehavioralMetrics(old, 'hint_opened', { latency: elapsed, step }));
   }
 
   return (
     <div className="lesson-page">
+      {stepConfettiActive && <ConfettiCanvas active={true} />}
       <div className="lesson-toolbar">
         <button className="close-button" onClick={() => { playClick(); onBack(); }} aria-label="Quay lại danh sách bài học">✕</button>
-        <div className="lesson-progress"><span style={{ width: `${((step + 1) / 8) * 100}%` }} /></div>
+        <div className="lesson-progress"><span style={{ width: `${progressPercent}%` }} /></div>
         {isChallenge && <span className="challenge-badge">⚡ Thử thách</span>}
         <button 
           className={`hint-button ${hintOpen ? 'active' : ''}`} 
@@ -1882,7 +2156,14 @@ function LessonView(props) {
                 }
               }
             } else {
-              setHintOpen((open) => !open);
+              setHintOpen((open) => {
+                const nextVal = !open;
+                if (nextVal) {
+                  const elapsed = stepStartTime ? Math.round((Date.now() - stepStartTime) / 1000) : 0;
+                  setProgress(old => updateBehavioralMetrics(old, 'hint_opened', { latency: elapsed, step }));
+                }
+                return nextVal;
+              });
             }
           }}
         >
@@ -1895,11 +2176,16 @@ function LessonView(props) {
 
       <div className="lesson-layout">
         <ol className="steps-list">
-          {STEP_LABELS.map(([icon, label], index) => (
-            <li key={label} className={index === step ? 'active' : index < step ? 'done' : ''}>
-              <span>{index < step ? '✓' : index + 1}</span><i>{icon}</i><b>{label}</b>
-            </li>
-          ))}
+          {activeSteps.map((stepNum, idx) => {
+            const [icon, label] = STEP_LABELS[stepNum];
+            const isActive = step === stepNum;
+            const isDone = activeSteps.indexOf(step) > idx;
+            return (
+              <li key={label} className={isActive ? 'active' : isDone ? 'done' : ''}>
+                <span>{isDone ? '✓' : idx + 1}</span><i>{icon}</i><b>{label}</b>
+              </li>
+            );
+          })}
         </ol>
 
         <section className="exercise-card">
@@ -1937,7 +2223,7 @@ function LessonView(props) {
             <div className="feedback-banner">
               <span className="feedback-icon">{isCorrect ? '🎉' : '🌱'}</span>
               <div className="feedback-text">
-                <b>{progress.profile?.mascot === 'robot' ? '🤖 Rô Bốt:' : progress.profile?.mascot === 'turtle' ? '🐢 Rùa Con:' : '🦉 Cú Ú:'}</b>
+                <b>{`${MASCOT_PROFILES[progress.profile?.mascot || 'owl']?.emoji || '🦉'} ${MASCOT_PROFILES[progress.profile?.mascot || 'owl']?.name || 'Cú Ú'}:`}</b>
                 <p>{feedback.message}</p>
               </div>
               <button 
@@ -1962,11 +2248,11 @@ function LessonView(props) {
             {!hasFeedback ? (
               <>
                 <button className="secondary-button footer-back" onClick={() => { playClick(); onBack(); }}>Quay lại</button>
-                <button className="primary-button footer-submit" onClick={validateStep} disabled={!isAnswered}>Kiểm tra</button>
+                <button className="primary-button footer-submit" onClick={validateStep} disabled={!isAnswered || cooldownActive}>{cooldownActive ? 'Đang tải lại...' : 'Kiểm tra'}</button>
               </>
             ) : isCorrect ? (
               <button className="primary-button footer-next" onClick={nextStep} autoFocus>
-                {step === 7 ? 'Hoàn thành' : 'Tiếp theo'} →
+                {activeSteps.indexOf(step) === activeSteps.length - 1 ? 'Hoàn thành' : 'Tiếp theo'} →
               </button>
             ) : (
               <button className="primary-button footer-next" onClick={() => { playClick(); setFeedback(null); }} autoFocus>
@@ -2016,13 +2302,13 @@ function StepContent({ lesson, step, selected, setSelected, secondSelected, setS
 }
 
 function EmojiRow({ emoji, count, max = 12, crossed = false }) {
-  const n = Math.min(Math.max(0, Number(count) || 0), max)
-  if (n === 0) {
+  const visibleCount = Math.min(Math.max(0, Number(count) || 0), max)
+  if (visibleCount === 0) {
     return <div className="emoji-row emoji-row-empty"><span className="count-badge">{count}</span></div>
   }
   return (
     <div className={`emoji-row ${crossed ? 'emoji-crossed' : ''}`}>
-      {Array.from({ length: n }, (_, i) => (
+      {Array.from({ length: visibleCount }, (_, i) => (
         <span key={i} className={crossed ? 'emoji-item crossed' : 'emoji-item'}>{emoji}</span>
       ))}
       {count > max && <span className="count-more">+{count - max}</span>}
@@ -3688,8 +3974,56 @@ function CalculationStep({ lesson, value, setValue, frozen }) {
     </div>
   )
 }
-function CompleteView({ lesson, mistakes, onHome, onNext, hasNext }) {
+function CompleteView({ lesson, mistakes, progress, setProgress, plan, onHome, onOpenLesson, _lessonIndex }) {
   const stars = mistakes === 0 ? 3 : mistakes <= 2 ? 2 : 1
+
+  const hasNext = plan?.primary && plan.primary.lesson.id !== lesson.id
+  const onNext = () => {
+    if (plan?.primary) {
+      onOpenLesson(plan.primary.index)
+    }
+  }
+
+  const currentMode = progress?.studyMode || 'full';
+  
+  const completedThreeStarCount = useMemo(() => {
+    if (!progress?.completed) return 0;
+    return Object.values(progress.completed).filter(done => (done.stars || done.bestStars) === 3).length;
+  }, [progress]);
+
+  const [nudgeMode, setNudgeMode] = useState(null);
+
+  useEffect(() => {
+    if (mistakes === 0) {
+      if (currentMode === 'full' && completedThreeStarCount >= 3) {
+        setNudgeMode('express');
+      } else if (currentMode === 'express' && completedThreeStarCount >= 6) {
+        setNudgeMode('pro');
+      }
+    }
+  }, [currentMode, completedThreeStarCount, mistakes]);
+
+  function handleAcceptNudge() {
+    if (!nudgeMode) return;
+    playClick();
+    playSfx('sparkle', isMutedGlobal);
+    setProgress(old => {
+      const updated = {
+        ...old,
+        studyMode: nudgeMode
+      };
+      localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
+      return updated;
+    });
+    alert(`Chúc mừng! Con đã chuyển sang Chế độ học ${nudgeMode === 'express' ? 'Rút gọn ⚡' : 'Siêu tốc 🚀'} thành công.`);
+    setNudgeMode(null);
+  }
+
+  function handleDeclineNudge() {
+    playClick();
+    setNudgeMode(null);
+  }
+
   return (
     <section className="complete-screen">
       <div className="celebration">🎊</div>
@@ -3697,6 +4031,35 @@ function CompleteView({ lesson, mistakes, onHome, onNext, hasNext }) {
       <p>Con không chỉ tìm ra đáp án, mà còn biết giải thích cách suy nghĩ.</p>
       <div className="big-stars">{[0, 1, 2].map((i) => <span key={i} className={i < stars ? 'earned' : ''}>⭐</span>)}</div>
       <div className="result-card"><div><span>🧠</span><b>+{80 + stars * 10}</b><small>điểm tư duy</small></div><div><span>🌱</span><b>{mistakes}</b><small>lần tự sửa</small></div><div><span>{lesson.icon}</span><b>{lesson.skill}</b><small>kỹ năng mới</small></div></div>
+
+      {nudgeMode && (() => {
+        const nudgeMascot = progress.profile?.mascot || 'owl';
+        const nudgeProfile = MASCOT_PROFILES[nudgeMascot] || MASCOT_PROFILES.owl;
+        return (
+          <div className="adaptive-nudge-box">
+            <div className="nudge-avatar">
+              {nudgeProfile.emoji}
+            </div>
+            <div className="nudge-content">
+              <h4>
+                {`${nudgeProfile.emoji} ${nudgeProfile.name} ${nudgeProfile.nudgeIntro || 'khuyên con:'}`}
+              </h4>
+              <p>
+                {nudgeMode === 'express' 
+                  ? 'Con giải toán rất nhanh và chính xác! Con có muốn chuyển sang Chế độ học Rút gọn (5 bước) để làm bài nhanh hơn không?' 
+                  : 'Con học toán siêu đỉnh! Con có muốn thử thách bản thân với Chế độ học Siêu tốc (3 bước) để rèn luyện tư duy nhanh hơn không?'}
+              </p>
+              <div className="nudge-actions">
+                <button className="nudge-btn-accept" onClick={handleAcceptNudge}>
+                  {nudgeMode === 'express' ? 'Chuyển sang Rút gọn ⚡' : 'Chuyển sang Siêu tốc 🚀'}
+                </button>
+                <button className="nudge-btn-decline" onClick={handleDeclineNudge}>Giữ nguyên</button>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
       <div className="complete-actions">
         <button className="secondary-button" onClick={() => { playClick(); onHome(); }}>Về hành trình</button>
         {hasNext && <button className="primary-button" onClick={() => { playClick(); onNext(); }}>Bài tiếp theo →</button>}
@@ -3705,91 +4068,219 @@ function CompleteView({ lesson, mistakes, onHome, onNext, hasNext }) {
   )
 }
 
-const ONBOARDING_TEST_QUESTIONS = [
-  {
-    id: 1,
-    story: "Nhà An nuôi 5 chú gà con. Hôm nay mẹ mua thêm 4 chú gà con nữa. Hỏi nhà An có tất cả bao nhiêu chú gà con?",
-    options: ["7 chú gà con", "9 chú gà con", "2 chú gà con"],
-    correctIndex: 1,
-    difficulty: "easy",
-    skill: "Phép cộng cơ bản",
-    emoji: "🐥"
-  },
-  {
-    id: 2,
-    story: "Bạn Nam có 6 viên bi. Số bi của bạn Minh gấp đôi số bi của Nam. Hỏi Minh có bao nhiêu viên bi?",
-    options: ["12 viên bi", "8 viên bi", "3 viên bi"],
-    correctIndex: 0,
-    difficulty: "easy",
-    skill: "Phép nhân / Gấp số lần",
-    emoji: "🔮"
-  },
-  {
-    id: 3,
-    story: "Cô giáo chia đều 24 cái kẹo cho 3 tổ học sinh. Hỏi mỗi tổ nhận được bao nhiêu cái kẹo?",
-    options: ["6 cái kẹo", "8 cái kẹo", "12 cái kẹo"],
-    correctIndex: 1,
-    difficulty: "medium",
-    skill: "Phép chia đều",
-    emoji: "🍬"
-  },
-  {
-    id: 4,
-    story: "Mẹ mua 30 cái khẩu trang. Buổi sáng cả nhà dùng hết 6 cái. Buổi chiều dùng gấp đôi buổi sáng. Hỏi mẹ còn lại bao nhiêu cái khẩu trang?",
-    options: ["18 cái khẩu trang", "12 cái khẩu trang", "24 cái khẩu trang"],
-    correctIndex: 1,
-    difficulty: "hard",
-    skill: "Giải toán 2 bước",
-    emoji: "😷"
-  },
-  {
-    id: 5,
-    story: "Bạn Vy gấp được 18 ngôi sao giấy. Bạn Hà gấp được ít hơn bạn Vy 5 ngôi sao. Hỏi cả hai bạn gấp được bao nhiêu ngôi sao giấy?",
-    options: ["13 ngôi sao giấy", "23 ngôi sao giấy", "31 ngôi sao giấy"],
-    correctIndex: 2,
-    difficulty: "medium",
-    skill: "So sánh ít hơn",
-    emoji: "⭐"
-  },
-  {
-    id: 6,
-    story: "Một chiếc bánh pizza được cắt thành 8 miếng bằng nhau. Bé Na đã ăn 3 miếng. Hỏi trên đĩa còn lại bao nhiêu miếng bánh?",
-    options: ["5 miếng bánh", "3 miếng bánh", "8 miếng bánh"],
-    correctIndex: 0,
-    difficulty: "medium",
-    skill: "Phân số / Trực quan",
-    emoji: "🍕"
-  },
-  {
-    id: 7,
-    story: "Trận bóng đá của lớp 4A bắt đầu lúc 15 giờ và kết thúc lúc 15 giờ 40 phút. Hỏi trận đấu kéo dài bao nhiêu phút?",
-    options: ["30 phút", "40 phút", "50 phút"],
-    correctIndex: 1,
-    difficulty: "medium",
-    skill: "Đo lường thời gian",
-    emoji: "⚽"
-  },
-  {
-    id: 8,
-    story: "Hai anh em gom được 20 vỏ lon để tái chế. Anh gom được nhiều hơn em 4 vỏ lon. Hỏi em gom được bao nhiêu vỏ lon?",
-    options: ["12 vỏ lon", "8 vỏ lon", "16 vỏ lon"],
-    correctIndex: 1,
-    difficulty: "hard",
-    skill: "Tìm hai số (Tổng - Hiệu)",
-    emoji: "🥫"
-  }
-];
+const ONBOARDING_TEST_QUESTIONS_BY_GRADE = {
+  'grade-1': [
+    {
+      id: 1,
+      story: "Vy có 3 quả táo đỏ. Mẹ cho Vy thêm 2 quả táo nữa. Hỏi Vy có tất cả bao nhiêu quả táo?",
+      options: ["4 quả táo", "5 quả táo", "6 quả táo"],
+      correctIndex: 1,
+      difficulty: "easy",
+      skill: "Cộng trong phạm vi 10",
+      emoji: "🍎"
+    },
+    {
+      id: 2,
+      story: "Bé Bo có 7 cái kẹo. Bo ăn mất 3 cái kẹo. Hỏi Bo còn lại bao nhiêu cái kẹo?",
+      options: ["4 cái kẹo", "3 cái kẹo", "5 cái kẹo"],
+      correctIndex: 0,
+      difficulty: "easy",
+      skill: "Trừ trong phạm vi 10",
+      emoji: "🍬"
+    },
+    {
+      id: 3,
+      story: "Trong ổ có 9 quả trứng. Gà mẹ đẻ thêm 5 quả nữa. Hỏi trong ổ có tất cả bao nhiêu quả trứng?",
+      options: ["13 quả trứng", "14 quả trứng", "15 quả trứng"],
+      correctIndex: 1,
+      difficulty: "medium",
+      skill: "Cộng trong phạm vi 20",
+      emoji: "🥚"
+    },
+    {
+      id: 4,
+      story: "Vy có 10 bút chì màu. An có ít hơn Vy 3 cái. Hỏi An có bao nhiêu cái bút chì màu?",
+      options: ["7 cái", "8 cái", "6 cái"],
+      correctIndex: 0,
+      difficulty: "hard",
+      skill: "So sánh hơn kém",
+      emoji: "✏️"
+    }
+  ],
+  'grade-2': [
+    {
+      id: 1,
+      story: "An mua vở hết 28 nghìn đồng, mua bút hết 25 nghìn đồng. Hỏi An mua cả hai hết bao nhiêu nghìn đồng?",
+      options: ["43 nghìn đồng", "53 nghìn đồng", "52 nghìn đồng"],
+      correctIndex: 1,
+      difficulty: "easy",
+      skill: "Cộng có nhớ phạm vi 100",
+      emoji: "📚"
+    },
+    {
+      id: 2,
+      story: "Mỗi đĩa có 5 cái bánh ngọt. Mẹ xếp 4 đĩa bánh như thế. Hỏi có tất cả bao nhiêu cái bánh ngọt?",
+      options: ["20 cái bánh", "15 cái bánh", "25 cái bánh"],
+      correctIndex: 0,
+      difficulty: "medium",
+      skill: "Nhân cơ bản (Bảng 5)",
+      emoji: "🧁"
+    },
+    {
+      id: 3,
+      story: "Cô giáo có 18 viên kẹo dâu. Cô chia đều cho 2 bạn nhỏ. Hỏi mỗi bạn nhận được bao nhiêu viên kẹo?",
+      options: ["8 viên kẹo", "9 viên kẹo", "10 viên kẹo"],
+      correctIndex: 1,
+      difficulty: "medium",
+      skill: "Chia đều cơ bản",
+      emoji: "🍬"
+    },
+    {
+      id: 4,
+      story: "Bao gạo thứ nhất nặng 45 kg. Bao thứ hai nhẹ hơn bao thứ nhất 18 kg. Hỏi bao thứ hai nặng bao nhiêu kg?",
+      options: ["27 kg", "37 kg", "25 kg"],
+      correctIndex: 0,
+      difficulty: "hard",
+      skill: "Trừ có nhớ phạm vi 100",
+      emoji: "🌾"
+    }
+  ],
+  'grade-3': [
+    {
+      id: 1,
+      story: "Một máy làm được 120 cái bánh trong 1 phút. Hỏi trong 3 phút, máy đó làm được bao nhiêu cái bánh?",
+      options: ["360 cái bánh", "240 cái bánh", "123 cái bánh"],
+      correctIndex: 0,
+      difficulty: "easy",
+      skill: "Nhân nhiều chữ số",
+      emoji: "🏭"
+    },
+    {
+      id: 2,
+      story: "Nam lắp ráp được 12 mô hình Lego. Số mô hình của Bo lắp được gấp 3 lần của Nam. Hỏi Bo lắp được bao nhiêu mô hình?",
+      options: ["15 mô hình", "36 mô hình", "24 mô hình"],
+      correctIndex: 1,
+      difficulty: "medium",
+      skill: "Gấp một số lần",
+      emoji: "🧩"
+    },
+    {
+      id: 3,
+      story: "Vy mua 5 hộp bánh ngọt, mỗi hộp có 4 cái bánh. Vy đã ăn hết 3 cái bánh. Hỏi Vy còn lại bao nhiêu cái bánh?",
+      options: ["17 cái bánh", "23 cái bánh", "12 cái bánh"],
+      correctIndex: 0,
+      difficulty: "hard",
+      skill: "Bài toán 2 bước giải",
+      emoji: "🧁"
+    },
+    {
+      id: 4,
+      story: "Một mảnh vườn hình chữ nhật có chiều dài 15 mét và chiều rộng 10 mét. Hỏi chu vi vườn hoa đó là bao nhiêu mét?",
+      options: ["25 mét", "50 mét", "150 mét"],
+      correctIndex: 1,
+      difficulty: "medium",
+      skill: "Chu vi hình chữ nhật",
+      emoji: "📐"
+    }
+  ],
+  'grade-4': [
+    {
+      id: 1,
+      story: "Nhà An nuôi 5 chú gà con. Hôm nay mẹ mua thêm 4 chú gà con nữa. Hỏi nhà An có tất cả bao nhiêu chú gà con?",
+      options: ["7 chú gà con", "9 chú gà con", "2 chú gà con"],
+      correctIndex: 1,
+      difficulty: "easy",
+      skill: "Phép cộng cơ bản",
+      emoji: "🐥"
+    },
+    {
+      id: 2,
+      story: "Cô giáo chia đều 24 cái kẹo cho 3 tổ học sinh. Hỏi mỗi tổ nhận được bao nhiêu cái kẹo?",
+      options: ["6 cái kẹo", "8 cái kẹo", "12 cái kẹo"],
+      correctIndex: 1,
+      difficulty: "medium",
+      skill: "Phép chia đều",
+      emoji: "🍬"
+    },
+    {
+      id: 3,
+      story: "Bạn Vy gấp được 18 ngôi sao giấy. Bạn Hà gấp được ít hơn bạn Vy 5 ngôi sao. Hỏi cả hai bạn gấp được bao nhiêu ngôi sao giấy?",
+      options: ["13 ngôi sao giấy", "23 ngôi sao giấy", "31 ngôi sao giấy"],
+      correctIndex: 2,
+      difficulty: "medium",
+      skill: "So sánh ít hơn",
+      emoji: "⭐"
+    },
+    {
+      id: 4,
+      story: "Hai anh em gom được 20 vỏ lon để tái chế. Anh gom được nhiều hơn em 4 vỏ lon. Hỏi em gom được bao nhiêu vỏ lon?",
+      options: ["12 vỏ lon", "8 vỏ lon", "16 vỏ lon"],
+      correctIndex: 1,
+      difficulty: "hard",
+      skill: "Tìm hai số (Tổng - Hiệu)",
+      emoji: "🥫"
+    }
+  ],
+  'grade-5': [
+    {
+      id: 1,
+      story: "Một bình chứa 5/6 lít nước chanh leo. Vy uống hết 1/3 lít nước. Hỏi trong bình còn lại bao nhiêu phần lít nước?",
+      options: ["1/2 lít", "1/3 lít", "7/6 lít"],
+      correctIndex: 0,
+      difficulty: "easy",
+      skill: "Phép tính phân số",
+      emoji: "🥤"
+    },
+    {
+      id: 2,
+      story: "Một chiếc áo len giá gốc là 200 nghìn đồng. Hôm nay cửa hàng giảm giá 15%. Hỏi chiếc áo len được giảm bao nhiêu nghìn đồng?",
+      options: ["15 nghìn đồng", "30 nghìn đồng", "185 nghìn đồng"],
+      correctIndex: 1,
+      difficulty: "medium",
+      skill: "Tỉ số phần trăm",
+      emoji: "🏷"
+    },
+    {
+      id: 3,
+      story: "Vy tự dọn phòng mất 3 giờ, Hà tự dọn mất 6 giờ. Hỏi nếu cả hai bạn cùng dọn dẹp thì mất bao nhiêu giờ sẽ xong?",
+      options: ["9 giờ", "2 giờ", "4.5 giờ"],
+      correctIndex: 1,
+      difficulty: "hard",
+      skill: "Công việc chung",
+      emoji: "🧹"
+    },
+    {
+      id: 4,
+      story: "Một tàu hỏa chạy quãng đường dài 120 km trong thời gian 2.5 giờ. Hỏi vận tốc trung bình của tàu hỏa đó là bao nhiêu km/h?",
+      options: ["48 km/h", "50 km/h", "300 km/h"],
+      correctIndex: 0,
+      difficulty: "medium",
+      skill: "Chuyển động nâng cao",
+      emoji: "🚂"
+    }
+  ]
+};
 
 function OnboardingView({ setProgress, setView }) {
   const [stage, setStage] = useState('welcome'); // 'welcome' | 'test' | 'assessment'
   const [name, setName] = useState(() => localStorage.getItem('tonymath-student-name') || '');
   const [mascot, setMascot] = useState('owl'); // 'owl' | 'robot' | 'turtle'
+  const [selectedGrade, setSelectedGrade] = useState('grade-4');
   const [score, setScore] = useState(0);
 
-  const mascots = [
-    { id: 'owl', emoji: '🦉', label: 'Cú Ú', desc: 'Thích hỏi "Tại sao?"' },
-    { id: 'robot', emoji: '🤖', label: 'Rô Bốt', desc: 'Vẽ sơ đồ siêu chuẩn' },
-    { id: 'turtle', emoji: '🐢', label: 'Rùa Con', desc: 'Cẩn thận, bền bỉ' }
+  const mascots = Object.keys(MASCOT_PROFILES).map(key => ({
+    id: key,
+    emoji: MASCOT_PROFILES[key].emoji,
+    label: MASCOT_PROFILES[key].name,
+    desc: MASCOT_PROFILES[key].desc
+  }));
+
+  const grades = [
+    { id: 'grade-1', label: 'Lớp 1', emoji: '👶' },
+    { id: 'grade-2', label: 'Lớp 2', emoji: '🎒' },
+    { id: 'grade-3', label: 'Lớp 3', emoji: '✏️' },
+    { id: 'grade-4', label: 'Lớp 4', emoji: '📐' },
+    { id: 'grade-5', label: 'Lớp 5', emoji: '🚀' }
   ];
 
   function handleStartTest() {
@@ -3805,6 +4296,7 @@ function OnboardingView({ setProgress, setView }) {
     setProgress(old => ({
       ...old,
       onboarded: true,
+      currentGrade: selectedGrade,
       profile: {
         name: finalName,
         mascot: mascot,
@@ -3820,24 +4312,42 @@ function OnboardingView({ setProgress, setView }) {
     return (
       <div className="onboarding-screen">
         <div className="onboarding-card">
-          <span style={{ fontSize: '48px' }}>🦉✨</span>
+          <span className="onboarding-header-emoji">🦉✨</span>
           <h1>Chào mừng con đến với TonyMath!</h1>
           <p>Học đọc hiểu và giải toán lời văn từng bước một cách thông minh.</p>
           
           <div className="onboarding-input-group">
-            <label htmlFor="child-name">Nhập tên của con:</label>
-            <input
-              id="child-name"
-              type="text"
-              placeholder="Ví dụ: Minh An, Bảo Vy..."
-              value={name}
-              onChange={e => {
-                const val = e.target.value;
-                setName(val);
-                localStorage.setItem('tonymath-student-name', val);
-              }}
-              maxLength={20}
-            />
+            <label htmlFor="child-name">🕵️‍♂️ Nhập tên của con:</label>
+            <div className="onboarding-input-wrapper">
+              <span className="input-icon">✍️</span>
+              <input
+                id="child-name"
+                type="text"
+                placeholder="Ví dụ: Minh An, Bảo Vy..."
+                value={name}
+                onChange={e => {
+                  const val = e.target.value;
+                  setName(val);
+                  localStorage.setItem('tonymath-student-name', val);
+                }}
+                maxLength={20}
+              />
+            </div>
+          </div>
+          
+          <div className="mascot-selection-title">Chọn lớp học của con:</div>
+          <div className="grade-select-grid">
+            {grades.map(g => (
+              <button
+                key={g.id}
+                type="button"
+                className={`grade-select-btn grade-btn-${g.id} ${selectedGrade === g.id ? 'selected' : ''}`}
+                onClick={() => { playClick(); setSelectedGrade(g.id); }}
+              >
+                <span className="emoji">{g.emoji}</span>
+                <span>{g.label}</span>
+              </button>
+            ))}
           </div>
           
           <div className="mascot-selection-title">Chọn người bạn đồng hành:</div>
@@ -3845,7 +4355,7 @@ function OnboardingView({ setProgress, setView }) {
             {mascots.map(m => (
               <button
                 key={m.id}
-                className={`mascot-select-card ${mascot === m.id ? 'selected' : ''}`}
+                className={`mascot-select-card ${mascot === m.id ? `selected selected-${m.id}` : ''}`}
                 onClick={() => { playClick(); setMascot(m.id); }}
               >
                 <span className="emoji">{m.emoji}</span>
@@ -3864,9 +4374,8 @@ function OnboardingView({ setProgress, setView }) {
           </button>
 
           <button
-            className="secondary-button"
+            className="onboarding-btn-skip"
             onClick={handleSkipTest}
-            style={{ width: '100%', marginTop: '12px', padding: '14px', borderRadius: '16px', fontWeight: 'bold' }}
           >
             Bỏ qua bài test (Vào thẳng bài học)
           </button>
@@ -3880,6 +4389,7 @@ function OnboardingView({ setProgress, setView }) {
       <OnboardingTest
         name={name}
         mascot={mascot}
+        grade={selectedGrade}
         onComplete={(finalScore) => {
           setScore(finalScore);
           setStage('assessment');
@@ -3894,6 +4404,7 @@ function OnboardingView({ setProgress, setView }) {
       <AssessmentReport
         name={name}
         mascot={mascot}
+        grade={selectedGrade}
         score={score}
         setProgress={setProgress}
         setView={setView}
@@ -3904,15 +4415,17 @@ function OnboardingView({ setProgress, setView }) {
   return null;
 }
 
-function OnboardingTest({ name, mascot, onComplete, onSkip }) {
+function OnboardingTest({ name, mascot, grade, onComplete, onSkip }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [feedback, setFeedback] = useState(null);
   const [score, setScore] = useState(0);
 
-  const currentQuestion = ONBOARDING_TEST_QUESTIONS[currentIndex];
-  const mascotEmoji = mascot === 'robot' ? '🤖' : mascot === 'turtle' ? '🐢' : '🦉';
-  const mascotName = mascot === 'robot' ? 'Rô Bốt' : mascot === 'turtle' ? 'Rùa Con' : 'Cú Ú';
+  const questions = ONBOARDING_TEST_QUESTIONS_BY_GRADE[grade] || ONBOARDING_TEST_QUESTIONS_BY_GRADE['grade-4'];
+  const currentQuestion = questions[currentIndex];
+  const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
+  const mascotEmoji = profile.emoji;
+  const mascotName = profile.name;
 
   useEffect(() => {
     cancelSpeech();
@@ -3958,7 +4471,7 @@ function OnboardingTest({ name, mascot, onComplete, onSkip }) {
     const finalScore = score + (selectedOption === currentQuestion.correctIndex ? 1 : 0);
     setSelectedOption(null);
     setFeedback(null);
-    if (currentIndex < ONBOARDING_TEST_QUESTIONS.length - 1) {
+    if (currentIndex < questions.length - 1) {
       playClick();
       setCurrentIndex(prev => prev + 1);
     } else {
@@ -3967,7 +4480,7 @@ function OnboardingTest({ name, mascot, onComplete, onSkip }) {
     }
   }
 
-  const progressPercent = ((currentIndex + 1) / ONBOARDING_TEST_QUESTIONS.length) * 100;
+  const progressPercent = ((currentIndex + 1) / questions.length) * 100;
 
   return (
     <div className="lesson-page onboarding-test-page" style={{ paddingBottom: '32px' }}>
@@ -3977,7 +4490,7 @@ function OnboardingTest({ name, mascot, onComplete, onSkip }) {
           <span style={{ width: `${progressPercent}%` }} />
         </div>
         <div className="test-progress-text" style={{ fontSize: '14px', fontWeight: 'bold', marginRight: '16px' }}>
-          Câu {currentIndex + 1} / 8
+          Câu {currentIndex + 1} / {questions.length}
         </div>
       </div>
 
@@ -4052,7 +4565,7 @@ function OnboardingTest({ name, mascot, onComplete, onSkip }) {
               </>
             ) : (
               <button className="primary-button footer-next" onClick={handleNext} autoFocus>
-                {currentIndex === ONBOARDING_TEST_QUESTIONS.length - 1 ? 'Xem Kết Quả' : 'Tiếp theo'} →
+                {currentIndex === questions.length - 1 ? 'Xem Kết Quả' : 'Tiếp theo'} →
               </button>
             )}
           </div>
@@ -4062,9 +4575,10 @@ function OnboardingTest({ name, mascot, onComplete, onSkip }) {
   );
 }
 
-function AssessmentReport({ name, mascot, score, setProgress, setView }) {
-  const mascotEmoji = mascot === 'robot' ? '🤖' : mascot === 'turtle' ? '🐢' : '🦉';
-  const mascotName = mascot === 'robot' ? 'Rô Bốt' : mascot === 'turtle' ? 'Rùa Con' : 'Cú Ú';
+function AssessmentReport({ name, mascot, grade, score, setProgress, setView }) {
+  const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
+  const mascotEmoji = profile.emoji;
+  const mascotName = profile.name;
 
   let tier = '';
   let desc = '';
@@ -4072,37 +4586,68 @@ function AssessmentReport({ name, mascot, score, setProgress, setView }) {
   let startingLessonTitle = '';
   let skills = [];
 
-  if (score <= 3) {
+  const gradeMapping = {
+    'grade-1': {
+      easy: { id: 'lesson-1', title: 'Bài 1: Bé Lan đếm táo đỏ' },
+      medium: { id: 'lesson-6', title: 'Bài 6: Bóng bay của bé Vy' },
+      hard: { id: 'lesson-17', title: 'Bài 17: Đồ chơi Lego của bé Bo' }
+    },
+    'grade-2': {
+      easy: { id: 'lesson-1', title: 'Bài 1: Mua sách giáo khoa' },
+      medium: { id: 'lesson-11', title: 'Bài 11: Mỗi ngày đọc sách' },
+      hard: { id: 'lesson-21', title: 'Bài 21: Cây thước kẻ kẻ thẳng' }
+    },
+    'grade-3': {
+      easy: { id: 'lesson-1', title: 'Bài 1: Nhà máy sản xuất bánh kẹo' },
+      medium: { id: 'lesson-15', title: 'Bài 15: Hạc giấy trang trí phòng học' },
+      hard: { id: 'lesson-27', title: 'Bài 27: Quãng đường chạy đi học' }
+    },
+    'grade-4': {
+      easy: { id: 'lesson-1', title: 'Bài 1: Cam trung bình cộng' },
+      medium: { id: 'lesson-11', title: 'Bài 11: Mua vở chuẩn bị đi học' },
+      hard: { id: 'lesson-27', title: 'Bài 27: Chu vi khu vườn' }
+    },
+    'grade-5': {
+      easy: { id: 'lesson-1', title: 'Bài 1: Bình nước chanh leo giải khát' },
+      medium: { id: 'lesson-15', title: 'Bài 15: Bể cá cảnh Vy yêu thích' },
+      hard: { id: 'lesson-27', title: 'Bài 27: Bé Vy đạp xe dạo chơi' }
+    }
+  };
+
+  const levelInfo = gradeMapping[grade] || gradeMapping['grade-4'];
+  let currentSelection;
+
+  if (score <= 1) {
     tier = 'Khởi động vững chắc';
-    desc = 'Con làm quen tốt với các phép tính cơ bản. Rùa Con sẽ đồng hành cùng con chinh phục các bài toán đọc hiểu lời văn từ bước cơ bản nhất nhé!';
-    startingLessonId = 'lesson-1';
-    startingLessonTitle = 'Bài 1: Cam trung bình cộng';
+    desc = `Con làm quen tốt với các phép tính cơ bản. ${mascotName} sẽ đồng hành cùng con chinh phục các bài toán đọc hiểu lời văn từ bước cơ bản nhất nhé!`;
+    currentSelection = levelInfo.easy;
     skills = [
       { name: 'Đọc hiểu đề', percent: 65, color: '#3b82f6' },
       { name: 'Phép tính cơ bản', percent: 75, color: '#10b981' },
-      { name: 'Giải toán 2 bước', percent: 40, color: '#f59e0b' }
+      { name: 'Giải toán nâng cao', percent: 40, color: '#f59e0b' }
     ];
-  } else if (score <= 6) {
+  } else if (score <= 3) {
     tier = 'Bứt phá tư duy';
-    desc = 'Con giải rất tốt các bài toán một bước và có phản xạ logic nhạy bén! Cú Ú sẽ cùng con luyện tập giải toán nhiều bước tính lắt léo nhé!';
-    startingLessonId = 'lesson-11';
-    startingLessonTitle = 'Bài 11: Mua vở chuẩn bị đi học';
+    desc = `Con giải rất tốt các bài toán cơ bản và có phản xạ logic nhạy bén! ${mascotName} sẽ cùng con luyện tập giải toán nhiều bước tính phức tạp nhé!`;
+    currentSelection = levelInfo.medium;
     skills = [
       { name: 'Đọc hiểu đề', percent: 85, color: '#3b82f6' },
       { name: 'Phép tính cơ bản', percent: 88, color: '#10b981' },
-      { name: 'Giải toán 2 bước', percent: 65, color: '#f59e0b' }
+      { name: 'Giải toán nâng cao', percent: 65, color: '#f59e0b' }
     ];
   } else {
     tier = 'Thử thách siêu cấp';
-    desc = 'Tư duy toán học của con thật xuất chúng! Hãy sẵn sàng cùng Rô Bốt chinh phục Chế độ Thử thách với các bài hình học và tính toán nâng cao nhé!';
-    startingLessonId = 'lesson-27';
-    startingLessonTitle = 'Bài 27: Chu vi khu vườn';
+    desc = `Tư duy toán học của con thật xuất chúng! Hãy sẵn sàng cùng ${mascotName} chinh phục Chế độ Thử thách với các bài toán và tính toán nâng cao nhé!`;
+    currentSelection = levelInfo.hard;
     skills = [
       { name: 'Đọc hiểu đề', percent: 95, color: '#3b82f6' },
       { name: 'Phép tính cơ bản', percent: 98, color: '#10b981' },
-      { name: 'Giải toán 2 bước', percent: 90, color: '#f59e0b' }
+      { name: 'Giải toán nâng cao', percent: 90, color: '#f59e0b' }
     ];
   }
+
+  startingLessonId = currentSelection.id;
+  startingLessonTitle = currentSelection.title;
 
   useEffect(() => {
     cancelSpeech();
@@ -4115,6 +4660,7 @@ function AssessmentReport({ name, mascot, score, setProgress, setView }) {
     setProgress(old => ({
       ...old,
       onboarded: true,
+      currentGrade: grade,
       xp: old.xp + 100,
       profile: {
         ...old.profile,
@@ -4186,7 +4732,6 @@ function AssessmentReport({ name, mascot, score, setProgress, setView }) {
     </div>
   );
 }
-
 function ArenaView({
   arenaQuestion,
   arenaTime,
@@ -4199,7 +4744,7 @@ function ArenaView({
   onBack,
   mascot
 }) {
-  const mascotEmoji = mascot === 'robot' ? '🤖' : mascot === 'turtle' ? '🐢' : '🦉'
+  const mascotEmoji = MASCOT_PROFILES[mascot]?.emoji || '🦉'
 
   return (
     <div className="arena-page">
@@ -4291,8 +4836,9 @@ function BuddyView({
   onBack,
   mascot
 }) {
-  const mascotEmoji = mascot === 'robot' ? '🤖' : mascot === 'turtle' ? '🐢' : '🦉'
-  const mascotName = mascot === 'robot' ? 'Rô Bốt' : mascot === 'turtle' ? 'Rùa Con' : 'Cú Ú'
+  const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
+  const mascotEmoji = profile.emoji;
+  const mascotName = profile.name;
 
   return (
     <div className="buddy-page">
@@ -4349,111 +4895,11 @@ function BuddyView({
   )
 }
 
-function Achievements({ progress, earnedStars, lessons }) {
+
+
+function InsightsView({ lessons, progress, openLesson, earnedStars }) {
   const [selectedAchievement, setSelectedAchievement] = useState(null)
 
-  const activeMascot = progress.profile?.mascot || 'owl'
-  const mascotEmoji = activeMascot === 'robot' ? '🤖' : activeMascot === 'turtle' ? '🐢' : '🦉'
-  const mascotName = activeMascot === 'robot' ? 'Rô Bốt' : activeMascot === 'turtle' ? 'Rùa Con' : 'Cú Ú'
-
-  // Map each achievement definition to current values
-  const list = ACHIEVEMENT_DEFINITIONS.map(def => {
-    const isUnlocked = progress.unlockedAchievements?.[def.id] || def.checkUnlocked(progress, earnedStars, lessons)
-    const target = typeof def.target === 'function' ? def.target(progress, earnedStars, lessons) : def.target
-    const current = Math.min(target, def.current(progress, earnedStars, lessons))
-    const percent = Math.floor((current / target) * 100)
-
-    return {
-      ...def,
-      target,
-      current,
-      percent,
-      unlocked: !!isUnlocked,
-      unlockedAt: progress.unlockedAchievements?.[def.id] || null
-    }
-  })
-
-  return (
-    <section className="simple-page">
-      <div className="page-title">
-        <span>🏆</span>
-        <div>
-          <h1>Thành tích</h1>
-          <p>Phần thưởng dành cho cách học tốt, không chỉ cho tốc độ.</p>
-        </div>
-      </div>
-
-      <div className="achievement-grid">
-        {list.map(item => (
-          <div
-            key={item.id}
-            className={item.unlocked ? 'achievement unlocked' : 'achievement'}
-            onClick={() => setSelectedAchievement(item)}
-            style={{ cursor: 'pointer' }}
-          >
-            <span className="achievement-icon">{item.icon}</span>
-            <b>{item.title}</b>
-            
-            {item.unlocked ? (
-              <small className="status-text unlocked-status-text">✨ Đã mở khóa</small>
-            ) : (
-              <>
-                <div className="achievement-progress-mini">
-                  <div className="progress-bar-bg">
-                    <div className="progress-bar-fill" style={{ width: `${item.percent}%` }}></div>
-                  </div>
-                  <span className="progress-label">{item.current}/{item.target} ({item.percent}%)</span>
-                </div>
-                <small className="status-text locked-status-text">Tiếp tục để mở</small>
-              </>
-            )}
-          </div>
-        ))}
-      </div>
-
-      {selectedAchievement && (
-        <div className="achievement-modal-overlay" onClick={() => setSelectedAchievement(null)}>
-          <div className="achievement-modal-card" onClick={e => e.stopPropagation()}>
-            <button className="close-btn" onClick={() => setSelectedAchievement(null)}>✕</button>
-            <div className="modal-icon">{selectedAchievement.icon}</div>
-            <h2>{selectedAchievement.title}</h2>
-            <p className="desc">{selectedAchievement.description}</p>
-            
-            <div className="modal-progress">
-              <div className="progress-label-row">
-                <span>Tiến độ:</span>
-                <b>{selectedAchievement.current} / {selectedAchievement.target}</b>
-              </div>
-              <div className="progress-bar-container">
-                <div className="progress-bar-fill" style={{ width: `${selectedAchievement.percent}%` }}></div>
-              </div>
-            </div>
-            
-            {selectedAchievement.unlocked ? (
-              <div className="unlock-status success">
-                ✨ Đã mở khóa vào {selectedAchievement.unlockedAt ? new Date(selectedAchievement.unlockedAt).toLocaleDateString('vi-VN') : 'vừa xong'}!
-              </div>
-            ) : (
-              <div className="unlock-status locked">
-                🔒 Chưa mở khóa (Tiếp tục học để mở)
-              </div>
-            )}
-            
-            <div className="mascot-advice">
-              <span className="mascot-avatar">{mascotEmoji}</span>
-              <div>
-                <b>{mascotName} gợi ý:</b>
-                <p>"{selectedAchievement.advice[activeMascot]}"</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </section>
-  )
-}
-
-function InsightsView({ lessons, progress, openLesson }) {
   // 1. Character & Header indicators
   const level = Math.floor((progress.xp || 0) / 100) + 1;
   const levelProgress = (progress.xp || 0) % 100;
@@ -4461,11 +4907,37 @@ function InsightsView({ lessons, progress, openLesson }) {
   const xp = progress.xp || 0;
   
   const mascot = progress.profile?.mascot || 'owl';
-  const mascotEmoji = mascot === 'robot' ? '🤖' : mascot === 'turtle' ? '🐢' : '🦉';
-  const mascotName = mascot === 'robot' ? 'Rô Bốt' : mascot === 'turtle' ? 'Rùa Con' : 'Cú Ú';
+  const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
+  const mascotEmoji = profile.emoji;
+  const mascotName = profile.name;
   const studentName = progress.profile?.name || 'Bé';
 
-  // 2. RPG attributes calculation
+  // 2. Behavioral Archetype
+  const archetype = progress.behavioralProfile?.currentArchetype || 'balanced';
+  
+  let archetypeTitle = 'Chiến Binh Cân Bằng ⚔️';
+  let archetypeDesc = 'Con có sự cân bằng tuyệt vời giữa tốc độ và độ chính xác khi giải toán!';
+  let archetypeColor = '#10B981'; // green
+
+  if (archetype === 'pioneer') {
+    archetypeTitle = 'Chiến Sĩ Tốc Độ ⚡';
+    archetypeDesc = 'Con giải bài siêu nhanh! Hãy chú ý rà soát kỹ các dữ kiện để tránh lỗi sai cẩu thả nhé!';
+    archetypeColor = '#3B82F6'; // blue
+  } else if (archetype === 'scholar') {
+    archetypeTitle = 'Học Giả Uyên Bác 🧠';
+    archetypeDesc = 'Con lập luận vô cùng chặt chẽ và chính xác. Hãy tự tin tăng tốc độ giải nhanh hơn nữa nhé!';
+    archetypeColor = '#8B5CF6'; // purple
+  } else if (archetype === 'budding_thinker') {
+    archetypeTitle = 'Chiến Sĩ Bền Bỉ 🐢';
+    archetypeDesc = 'Con rất kiên trì và cẩn thận. Đừng ngại thử sức tự trả lời trước khi dùng gợi ý nhé!';
+    archetypeColor = '#F59E0B'; // orange
+  } else if (archetype === 'active_seeker') {
+    archetypeTitle = 'Nhà Khám Phá Nhí 🗺️';
+    archetypeDesc = 'Con rất yêu thích tìm tòi những thử thách mới! Hãy kiên trì hoàn thành bài học đang làm nhé!';
+    archetypeColor = '#EC4899'; // pink
+  }
+
+  // 3. RPG attributes calculation
   const totalLessons = lessons.length || 1;
   const completedLessons = Object.keys(progress.completed || {}).length;
   const logicPower = Math.round((completedLessons / totalLessons) * 100);
@@ -4500,7 +4972,24 @@ function InsightsView({ lessons, progress, openLesson }) {
   // Stamina/Streak Score
   const staminaScore = Math.min(100, streak * 20);
 
-  // 3. Mistake Monster Analysis
+  // 4. Achievements Mapping
+  const achievementsList = ACHIEVEMENT_DEFINITIONS.map(def => {
+    const isUnlocked = progress.unlockedAchievements?.[def.id] || def.checkUnlocked(progress, earnedStars, lessons)
+    const target = typeof def.target === 'function' ? def.target(progress, earnedStars, lessons) : def.target
+    const current = Math.min(target, def.current(progress, earnedStars, lessons))
+    const percent = Math.floor((current / target) * 100)
+
+    return {
+      ...def,
+      target,
+      current,
+      percent,
+      unlocked: !!isUnlocked,
+      unlockedAt: progress.unlockedAchievements?.[def.id] || null
+    }
+  })
+
+  // 5. Mistake Monster Analysis
   const stepFailCounts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0 };
   attemptsList.forEach(att => {
     if (att.stepFails) {
@@ -4571,8 +5060,7 @@ function InsightsView({ lessons, progress, openLesson }) {
     }
   }
 
-  // 4. Skills Quest Map
-  // Group lessons by skill
+  // 6. Skills Quest Map
   const skillGroups = {};
   lessons.forEach((lesson, index) => {
     if (!skillGroups[lesson.skill]) {
@@ -4611,10 +5099,12 @@ function InsightsView({ lessons, progress, openLesson }) {
       completed,
       status
     };
+  }).sort((a, b) => {
+    const statusOrder = { 'Improving': 0, 'Todo': 1, 'Mastered': 2 };
+    return statusOrder[a.status] - statusOrder[b.status];
   });
 
-  // 5. Emergency Quests Board
-  // Quest 1: Recover Tim/Point (Weak skill lesson or lesson with < 3 stars)
+  // 7. Emergency Quests Board
   let recoveryLesson = null;
   for (let i = 0; i < lessons.length; i++) {
     const l = lessons[i];
@@ -4626,7 +5116,6 @@ function InsightsView({ lessons, progress, openLesson }) {
     }
   }
 
-  // Quest 2: Speed challenge
   let speedLesson = null;
   for (let i = 0; i < lessons.length; i++) {
     const l = lessons[i];
@@ -4646,7 +5135,6 @@ function InsightsView({ lessons, progress, openLesson }) {
     }
   }
 
-  // Quest 3: Double XP / Challenge Mode
   let nextLesson = null;
   for (let i = 0; i < lessons.length; i++) {
     const l = lessons[i];
@@ -4659,10 +5147,10 @@ function InsightsView({ lessons, progress, openLesson }) {
   return (
     <section className="insights-page" style={{ padding: '24px', overflowY: 'auto', boxSizing: 'border-box', paddingBottom: '120px' }}>
       <div className="page-title">
-        <span>📈</span>
+        <span>🏆</span>
         <div>
-          <h1>Thấu hiểu</h1>
-          <p>Phân tích chỉ số anh hùng, lỗi sai thường gặp và các bài ôn tập giúp bé thăng hạng.</p>
+          <h1>Thành quả</h1>
+          <p>Phân tích chỉ số anh hùng, huy hiệu đạt được và bài tập rèn luyện giúp bé tiến bộ.</p>
         </div>
       </div>
 
@@ -4679,6 +5167,12 @@ function InsightsView({ lessons, progress, openLesson }) {
             <div className="hero-xp-fill" style={{ width: `${levelProgress}%` }}></div>
             <span className="xp-text">{levelProgress}/100 XP</span>
           </div>
+          <div className="hero-archetype-badge" style={{ backgroundColor: `${archetypeColor}1a`, border: `1px solid ${archetypeColor}`, color: archetypeColor, padding: '6px 12px', borderRadius: '20px', fontSize: '13px', fontWeight: 'bold', display: 'inline-flex', alignItems: 'center', gap: '6px', margin: '8px 0' }}>
+            {archetypeTitle}
+          </div>
+          <p style={{ fontSize: '12px', opacity: 0.8, fontStyle: 'italic', margin: '4px 0 12px 0', lineHeight: '1.4' }}>
+            {archetypeDesc}
+          </p>
           <div className="hero-quick-stats">
             <div className="quick-stat-item">
               <span>🔥</span>
@@ -4740,6 +5234,37 @@ function InsightsView({ lessons, progress, openLesson }) {
               <small>Học liên tục rèn luyện ý chí anh hùng</small>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* 🏆 Achievements grid */}
+      <div className="insights-card achievements-card" style={{ marginTop: '24px' }}>
+        <h3>🏆 Kho báu Thành quả</h3>
+        <div className="achievement-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '16px', marginTop: '16px' }}>
+          {achievementsList.map(item => (
+            <div
+              key={item.id}
+              className={item.unlocked ? 'achievement unlocked' : 'achievement'}
+              onClick={() => setSelectedAchievement(item)}
+              style={{ cursor: 'pointer' }}
+            >
+              <span className="achievement-icon">{item.icon}</span>
+              <b>{item.title}</b>
+              {item.unlocked ? (
+                <small className="status-text unlocked-status-text">✨ Đã mở khóa</small>
+              ) : (
+                <>
+                  <div className="achievement-progress-mini">
+                    <div className="progress-bar-bg">
+                      <div className="progress-bar-fill" style={{ width: `${item.percent}%` }}></div>
+                    </div>
+                    <span className="progress-label">{item.current}/{item.target} ({item.percent}%)</span>
+                  </div>
+                  <small className="status-text locked-status-text">Tiếp tục để mở</small>
+                </>
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -4856,14 +5381,54 @@ function InsightsView({ lessons, progress, openLesson }) {
           ))}
         </div>
       </div>
+
+      {selectedAchievement && (
+        <div className="achievement-modal-overlay" onClick={() => setSelectedAchievement(null)}>
+          <div className="achievement-modal-card" onClick={e => e.stopPropagation()}>
+            <button className="close-btn" onClick={() => setSelectedAchievement(null)}>✕</button>
+            <div className="modal-icon">{selectedAchievement.icon}</div>
+            <h2>{selectedAchievement.title}</h2>
+            <p className="desc">{selectedAchievement.description}</p>
+            
+            <div className="modal-progress">
+              <div className="progress-label-row">
+                <span>Tiến độ:</span>
+                <b>{selectedAchievement.current} / {selectedAchievement.target}</b>
+              </div>
+              <div className="progress-bar-container">
+                <div className="progress-bar-fill" style={{ width: `${selectedAchievement.percent}%` }}></div>
+              </div>
+            </div>
+            
+            {selectedAchievement.unlocked ? (
+              <div className="unlock-status success">
+                ✨ Đã mở khóa vào {selectedAchievement.unlockedAt ? new Date(selectedAchievement.unlockedAt).toLocaleDateString('vi-VN') : 'vừa xong'}!
+              </div>
+            ) : (
+              <div className="unlock-status locked">
+                🔒 Chưa mở khóa (Tiếp tục học để mở)
+              </div>
+            )}
+            
+            <div className="mascot-advice">
+              <span className="mascot-avatar">{mascotEmoji}</span>
+              <div>
+                <b>{mascotName} gợi ý:</b>
+                <p>"{selectedAchievement.advice[mascot] || selectedAchievement.advice.owl}"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
 
 function CoachSidebar({ progress, plan, openLesson }) {
   const mascot = progress?.profile?.mascot || 'owl';
-  const mascotEmoji = mascot === 'robot' ? '🤖' : mascot === 'turtle' ? '🐢' : '🦉';
-  const mascotName = mascot === 'robot' ? 'Rô Bốt' : mascot === 'turtle' ? 'Rùa Con' : 'Cú Ú';
+  const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
+  const mascotEmoji = profile.emoji;
+  const mascotName = profile.name;
   
   const primary = plan?.primary;
 
@@ -4999,8 +5564,9 @@ function AchievementCelebration({ achievements, mascot, onClose }) {
   
   if (!current) return null;
 
-  const mascotEmoji = mascot === 'robot' ? '🤖' : mascot === 'turtle' ? '🐢' : '🦉';
-  const mascotName = mascot === 'robot' ? 'Rô Bốt' : mascot === 'turtle' ? 'Rùa Con' : 'Cú Ú';
+  const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
+  const mascotEmoji = profile.emoji;
+  const mascotName = profile.name;
 
   const handleNext = () => {
     if (currentIndex < achievements.length - 1) {
@@ -5024,9 +5590,7 @@ function AchievementCelebration({ achievements, mascot, onClose }) {
           <span className="mascot-emoji-big">{mascotEmoji}</span>
           <div>
             <b>{mascotName} chúc mừng:</b>
-            <p>"{mascot === 'robot' ? 'Tuyệt vời! Con đã mở khóa mã lệnh thành tích mới. Tiếp tục tối ưu hiệu suất nhé!' : 
-               mascot === 'turtle' ? 'Ôi con giỏi quá! Huy hiệu mới xinh xắn này hoàn toàn xứng đáng với sự kiên trì của con.' : 
-               'Cú Ú tự hào về con lắm! Con đã vượt qua thử thách để nhận phần thưởng cao quý này!'}"</p>
+            <p>"{profile.achievementPraise || 'Chúc mừng con nhé!'}"</p>
           </div>
         </div>
 

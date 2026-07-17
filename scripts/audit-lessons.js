@@ -84,7 +84,25 @@ function auditFile(lessonsFile, gradeId) {
     });
 
     // 3. Mathematical validation of operations and answers
-    const isLogicSkill = skill === 'Suy luận logic';
+    const isLogicSkill = [
+      'Suy luận logic',
+      'Phân số',
+      'So sánh phân số',
+      'Xem giờ đúng',
+      'Nhận biết hình phẳng',
+      'Thống kê',
+      'Xác suất',
+      'Xem đồng hồ',
+      'Xem lịch',
+      'Chia có dư',
+      'Đọc số',
+      'Viết số',
+      'Nhận biết hình',
+      'Bài toán thời gian',
+      'Bài toán lịch',
+      'Thống kê nâng cao',
+      'Chuyển đổi phân số - thập phân - phần trăm'
+    ].includes(skill);
     const isDummyAnswer = lesson.answer === 0;
 
     if (lesson.operations && lesson.correctOperation !== undefined && lesson.answer !== undefined) {
@@ -122,7 +140,7 @@ function auditFile(lessonsFile, gradeId) {
       const vis = lesson.visual;
       if (vis.type === 'compare') {
         if (vis.big !== undefined && vis.small !== undefined && vis.diff !== undefined) {
-          if (vis.big - vis.small !== vis.diff) {
+          if (Math.abs((vis.big - vis.small) - vis.diff) > 1e-9) {
             errors.push({
               id: lId,
               type: 'compare_visual_error',

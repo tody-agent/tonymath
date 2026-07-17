@@ -383,21 +383,6 @@ export function getCompletionPraise({ name, stars, mistakes, skill, shortTitle }
 }
 
 /**
- * Random gentle wrong-answer coach lines.
- */
-const ENCOURAGE_LINES = [
-  'Chưa đúng, nhưng con đang học! Đọc lại gợi ý rồi thử tiếp nhé.',
-  'Gần đúng rồi! Sai một chút không sao — sửa là tiến bộ.',
-  'Bình tĩnh nào. Nhìn lại câu chuyện: số đang tăng hay giảm?',
-  'Cố lên! Mỗi lần thử lại, con hiểu đề rõ hơn.',
-  'Không sao cả — thám tử toán cũng phải thử nhiều lần mới ra manh mối!'
-];
-
-export function getEncourageLine(seed = Date.now()) {
-  return ENCOURAGE_LINES[Math.abs(seed) % ENCOURAGE_LINES.length];
-}
-
-/**
  * Merge lesson completion + attempt stats into progress (immutable).
  */
 export function applyLessonResult(progress, { lessonId, skill, stars, mistakes, duration = 0, stepFails = {}, challengeMode = false }, grade = 'grade-4', subject = 'math') {
@@ -523,21 +508,6 @@ export function getActiveProgress(progress, grade = 'grade-4', subject = 'math')
 }
 
 /**
- * Badge for a lesson card (free browse + soft signals).
- * @returns {'path'|'review'|'done'|'new'|null}
- */
-export function getLessonBadge(index, lesson, progress, pathIndex) {
-  const done = progress?.completed?.[lesson.id];
-  const att = progress?.attempts?.[lesson.id];
-  if (done && needsReview(done)) return 'review';
-  if (att?.needsReview && (!done || needsReview(done))) return 'review';
-  if (done) return 'done';
-  if (index === pathIndex) return 'path';
-  if (att?.playCount > 0 && !done) return 'review';
-  return 'new';
-}
-
-/**
  * Check if the lesson is run under Challenge Mode.
  * Either the global challengeMode setting is on, or the lesson difficulty is 'hard'.
  */
@@ -607,12 +577,12 @@ export const ACHIEVEMENT_DEFINITIONS = [
     id: 'logic_brain',
     icon: '🧠',
     title: 'Bộ não logic',
-    description: 'Đạt tích lũy 300 điểm kinh nghiệm (XP) qua các bài học.',
-    target: 300,
+    description: 'Đạt tích lũy 1000 điểm kinh nghiệm (XP) qua các bài học.',
+    target: 1000,
     current: (progress) => progress.xp || 0,
-    checkUnlocked: (progress) => (progress.xp || 0) >= 300,
+    checkUnlocked: (progress) => (progress.xp || 0) >= 1000,
     advice: {
-      owl: "Cú Ú khuyên: Mỗi bài học hoàn thành xuất sắc sẽ cộng thêm nhiều XP cho con. Hãy đặt mục tiêu 300 XP nhé!",
+      owl: "Cú Ú khuyên: Mỗi bài học hoàn thành xuất sắc sẽ cộng thêm nhiều XP cho con. Hãy đặt mục tiêu 1000 XP nhé!",
       turtle: "Rùa Con khuyên: Tích tiểu thành đại, mỗi ngày một ít XP là não bộ sẽ siêu logic luôn!",
       robot: "Rô Bốt khuyên: Cần tích lũy thêm XP để tăng dung lượng bộ nhớ logic của hệ thống."
     }
@@ -621,13 +591,13 @@ export const ACHIEVEMENT_DEFINITIONS = [
     id: 'star_collector',
     icon: '⭐',
     title: 'Nhà sưu tập sao',
-    description: 'Thu thập tổng cộng 15 ngôi sao từ các bài học.',
-    target: 15,
+    description: 'Thu thập tổng cộng 50 ngôi sao từ các bài học.',
+    target: 50,
     current: (progress, earnedStars) => earnedStars || 0,
-    checkUnlocked: (progress, earnedStars) => (earnedStars || 0) >= 15,
+    checkUnlocked: (progress, earnedStars) => (earnedStars || 0) >= 50,
     advice: {
       owl: "Cú Ú khuyên: Hãy cố gắng đạt 3 sao ở mỗi bài học bằng cách trả lời đúng hết và không phạm lỗi nhé!",
-      turtle: "Rùa Con khuyên: Rùa Con rất thích những ngôi sao lấp lánh này. Con cùng tớ sưu tập đủ 15 ngôi sao nhé!",
+      turtle: "Rùa Con khuyên: Rùa Con rất thích những ngôi sao lấp lánh này. Con cùng tớ sưu tập đủ 50 ngôi sao nhé!",
       robot: "Rô Bốt khuyên: Thu thập các lõi năng lượng sao để nâng cấp hiệu năng của chúng ta."
     }
   },
@@ -646,11 +616,25 @@ export const ACHIEVEMENT_DEFINITIONS = [
     }
   },
   {
+    id: 'halfway_hero',
+    icon: '🎖️',
+    title: 'Kỵ sĩ nửa chặng đường',
+    description: 'Hoàn thành từ 45 bài học trở lên để đạt mốc nửa hành trình.',
+    target: 45,
+    current: (progress) => Object.keys(progress.completed || {}).length,
+    checkUnlocked: (progress) => Object.keys(progress.completed || {}).length >= 45,
+    advice: {
+      owl: "Cú Ú khuyên: Hãy tiếp tục đi thẳng về phía trước! Con đã hoàn thành một nửa chặng đường rồi đó.",
+      turtle: "Rùa Con khuyên: Nửa quãng đường đã qua thật tuyệt vời. Chậm rãi và kiên nh trì cùng tớ nốt nửa kia nhé!",
+      robot: "Rô Bốt khuyên: Đạt 50% tiến trình tổng thể. Mở khóa lõi năng lượng dự phòng."
+    }
+  },
+  {
     id: 'journey_conqueror',
     icon: '🏆',
     title: 'Chinh phục hành trình',
     description: 'Hoàn thành toàn bộ các bài học trong chương trình.',
-    target: (progress, earnedStars, lessons) => lessons?.length || 1,
+    target: (progress, earnedStars, lessons) => lessons?.length || 90,
     current: (progress) => Object.keys(progress.completed || {}).length,
     checkUnlocked: (progress, earnedStars, lessons) => lessons?.length ? Object.keys(progress.completed || {}).length === lessons.length : false,
     advice: {
@@ -722,6 +706,102 @@ export function getUnlockedAchievementIds(progress, earnedStars, lessons) {
   return ACHIEVEMENT_DEFINITIONS
     .filter(achievement => achievement.checkUnlocked(progress, earnedStars, lessons))
     .map(achievement => achievement.id);
+}
+
+export function analyzeBehavioralProfile(progress) {
+  const profile = {
+    totalStepsPlayed: 0,
+    totalMistakes: 0,
+    quickAnswersCount: 0,
+    quickMistakesCount: 0,
+    immediateHintsCount: 0,
+    idleStuckCount: 0,
+    exitMidwayCount: 0,
+    currentArchetype: 'balanced',
+    lastAnalyzedAt: null,
+    ...(progress.behavioralProfile || {})
+  };
+
+  const now = new Date().toISOString();
+  profile.lastAnalyzedAt = now;
+
+  const total = profile.totalStepsPlayed;
+  if (total < 3) {
+    profile.currentArchetype = 'balanced';
+    return profile;
+  }
+
+  // 1. Budding Thinker (Anxious/fear of failure)
+  if (profile.immediateHintsCount >= 2 || (profile.idleStuckCount >= 2 && profile.immediateHintsCount >= 1)) {
+    profile.currentArchetype = 'budding_thinker';
+  }
+  // 2. Pioneer (Impulsive/fast runner)
+  else if (profile.quickMistakesCount >= 2 || (profile.quickAnswersCount >= 4 && profile.totalMistakes >= 3)) {
+    profile.currentArchetype = 'pioneer';
+  }
+  // 3. Active Seeker (Easily distracted / quits midway)
+  else if (profile.exitMidwayCount >= 2) {
+    profile.currentArchetype = 'active_seeker';
+  }
+  // 4. Scholar (Reflective / high accuracy)
+  else if (total >= 8 && profile.quickMistakesCount <= 1 && (profile.totalMistakes / total) <= 0.15) {
+    profile.currentArchetype = 'scholar';
+  } else {
+    profile.currentArchetype = 'balanced';
+  }
+
+  return profile;
+}
+
+export function updateBehavioralMetrics(progress, eventType, detail) {
+  const profile = {
+    totalStepsPlayed: 0,
+    totalMistakes: 0,
+    quickAnswersCount: 0,
+    quickMistakesCount: 0,
+    immediateHintsCount: 0,
+    idleStuckCount: 0,
+    exitMidwayCount: 0,
+    currentArchetype: 'balanced',
+    lastAnalyzedAt: null,
+    ...(progress.behavioralProfile || {})
+  };
+
+  if (eventType === 'step_attempt') {
+    profile.totalStepsPlayed += 1;
+    if (!detail.isCorrect) {
+      profile.totalMistakes += 1;
+    }
+    
+    // Impulsive indicator: answered very quickly (< 8 seconds)
+    if (detail.latency && detail.latency < 8) {
+      profile.quickAnswersCount += 1;
+      if (!detail.isCorrect) {
+        profile.quickMistakesCount += 1;
+      }
+    }
+    
+    // Idle stuck indicator: took very long (> 25 seconds) without hints
+    if (detail.latency && detail.latency > 25 && !detail.hintUsed) {
+      profile.idleStuckCount += 1;
+    }
+  } else if (eventType === 'hint_opened') {
+    // immediate hint indicator: opened hint < 5 seconds into step
+    if (detail.latency && detail.latency < 5) {
+      profile.immediateHintsCount += 1;
+    }
+  } else if (eventType === 'exit_lesson') {
+    // Exited midway if they quit before completing step 7
+    if (detail.step < 7 && detail.mistakes > 0) {
+      profile.exitMidwayCount += 1;
+    }
+  }
+
+  const updatedProfile = analyzeBehavioralProfile({ ...progress, behavioralProfile: profile });
+  return {
+    ...progress,
+    behavioralProfile: updatedProfile
+  };
 }
 
 

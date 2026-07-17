@@ -2573,11 +2573,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Tính số khoảng cách trên đoạn đường bằng cách lấy chiều dài chia cho khoảng cách: 30 ÷ 5 = 6 khoảng.",
-      "Bước 2: Vì trồng cây ở cả hai đầu đường nên công thức là: Số cây = Số khoảng + 1.",
-      "Bước 3: Thực hiện phép tính: 6 + 1 = 7 cây.",
-      "Bước 4: Nhấp vào nút 'Trồng cây 🌳' trên mô hình trực quan để xem vị trí các cây.",
-      "Bước 5: Chọn đáp án cuối cùng là 7 cây."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Một đoạn đường dài 30m, người ta trồng cây dọc một bên, hai đầu đều trồng, cây cách nhau 5m. Hỏi trồng bao nhiêu cây?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Đoạn đường dài 30m\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Cây cách nhau 5m dọc một bên\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm tổng số cây cần trồng\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình trồng cây hai đầu đường (Số cây = Số khoảng + 1)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"30 ÷ 5 + 1\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 30 ÷ 5 + 1 = 7 cây",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Trồng được tất cả 7 cây.\""
     ]
   },
   {
@@ -2648,10 +2651,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Tính số khoảng cách bằng cách lấy chiều dài chia cho cự ly giữa các cột: 100 ÷ 10 = 10 khoảng.",
-      "Bước 2: Vì không đặt cột đèn ở điểm cuối, số cột đèn sẽ đúng bằng số khoảng.",
-      "Bước 3: Thực hiện phép tính: 10 cột đèn.",
-      "Bước 4: Nhấp nút 'Trồng cây 🌳' trên mô hình để quan sát vị trí đặt đèn trên con đường."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Trên đoạn đường dài 100m, cứ 10m đặt một cột đèn, không đặt cột ở điểm cuối. Hỏi có bao nhiêu cột đèn?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Đoạn đường dài 100m\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Khoảng cách giữa hai cột đèn là 10m\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số cột đèn cần lắp\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình trồng cây một đầu (Số cây = Số khoảng)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"100 ÷ 10\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 100 ÷ 10 = 10 cột đèn",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Có tất cả 10 cột đèn.\""
     ]
   },
   {
@@ -2721,10 +2728,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Tính chu vi của ao hình vuông bằng cách lấy cạnh nhân với 4: 15 × 4 = 60m.",
-      "Bước 2: Vì ao hình vuông tạo thành đường khép kín, số cây sẽ đúng bằng số khoảng.",
-      "Bước 3: Lấy chu vi chia cho khoảng cách giữa hai cây: 60 ÷ 3 = 20 cây.",
-      "Bước 4: Nhấp nút 'Trồng cây 🌳' để xem cây được trồng kín xung quanh bờ ao vuông."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Người ta trồng cây quanh một ao hình vuông cạnh 15m, cây cách nhau 3m. Hỏi trồng bao nhiêu cây?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Ao hình vuông cạnh 15m\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Khoảng cách giữa hai cây là 3m\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số cây cần trồng\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình đường khép kín (Số cây = Số khoảng = Chu vi ÷ Khoảng cách)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"15 × 4 ÷ 3\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 15 × 4 ÷ 3 = 20 cây",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Trồng được tất cả 20 cây.\""
     ]
   },
   {
@@ -2795,10 +2806,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Vì trồng cả hai đầu đường, số khoảng cách giữa các cây = Số cây − 1.",
-      "Bước 2: Tính số khoảng cách: 25 − 1 = 24 khoảng.",
-      "Bước 3: Tính chiều dài hàng cây bằng cách lấy số khoảng cách nhân với cự ly: 24 × 4 = 96m.",
-      "Bước 4: Bấm 'Trồng cây 🌳' trên mô hình để đếm số khoảng cách giữa các cây."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Một người trồng 25 cây thành hàng thẳng, hai đầu đều có cây, hai cây liền nhau cách 4m. Hỏi hàng cây dài bao nhiêu mét?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Trồng được tất cả 25 cây thành hàng\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Hai cây cách nhau 4m\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm chiều dài của hàng cây\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình ngược khoảng cách (Số khoảng = Số cây - 1; Chiều dài = Số khoảng × Khoảng cách)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(25 - 1) × 4\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (25 - 1) × 4 = 96 m",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Hàng cây dài 96 mét.\""
     ]
   },
   {
@@ -2879,11 +2894,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Xác định số hạng đầu: 2, số hạng cuối: 20.",
-      "Bước 2: Xác định khoảng cách giữa 2 số liền nhau: 4 - 2 = 2.",
-      "Bước 3: Công thức đếm số hạng: (Số cuối - Số đầu) ÷ Khoảng cách + 1.",
-      "Bước 4: Thực hiện phép tính: (20 - 2) ÷ 2 + 1 = 9 + 1 = 10.",
-      "Bước 5: Bấm nút 'Đếm số hạng 🔢' trên mô hình để trực quan hóa từng bậc thang số."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Dãy số 2, 4, 6, ..., 20 có bao nhiêu số hạng?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Số đầu của dãy là 2\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Số cuối của dãy là 20\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số lượng số hạng trong dãy\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình tính số số hạng = (Số cuối - Số đầu) ÷ Khoảng cách + 1\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(20 - 2) ÷ 2 + 1\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (20 - 2) ÷ 2 + 1 = 10 số hạng",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Dãy số có 10 số hạng.\""
     ]
   },
   {
@@ -2974,11 +2992,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Xác định số đầu là 5, số cuối là 100.",
-      "Bước 2: Tìm khoảng cách giữa hai số kề nhau: 10 - 5 = 5.",
-      "Bước 3: Lấy số cuối trừ số đầu: 100 - 5 = 95.",
-      "Bước 4: Chia cho khoảng cách: 95 ÷ 5 = 19 khoảng cách.",
-      "Bước 5: Số số hạng = số khoảng cách + 1 = 19 + 1 = 20 số hạng."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Dãy số 5, 10, 15, ..., 100 có bao nhiêu số hạng?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Số đầu của dãy là 5\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Số cuối của dãy là 100\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số lượng số hạng trong dãy\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình tính số số hạng = (Số cuối - Số đầu) ÷ Khoảng cách + 1\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(100 - 5) ÷ 5 + 1\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (100 - 5) ÷ 5 + 1 = 20 số hạng",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Dãy số có 20 số hạng.\""
     ]
   },
   {
@@ -3060,11 +3081,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Xác định số lượng số hạng của dãy là 50 số.",
-      "Bước 2: Ghép cặp số đầu và số cuối: 1 + 50 = 51, 2 + 49 = 51...",
-      "Bước 3: Tính số cặp số bằng cách lấy số số hạng chia đôi: 50 ÷ 2 = 25 cặp.",
-      "Bước 4: Bấm nút 'Ghép cặp tính tổng 🤝' trên mô hình để xem các cầu nối liên kết các cặp số bằng nhau.",
-      "Bước 5: Tính tổng bằng cách nhân giá trị một cặp với số cặp: 51 × 25 = 1275."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Tính tổng của dãy số: 1 + 2 + 3 + ... + 50.\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Dãy số tự nhiên từ 1 đến 50\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Khoảng cách là 1 đơn vị\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tính tổng của cả dãy số\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình tính tổng bằng cách ghép cặp (Tổng = (Đầu + Cuối) × Số số hạng ÷ 2)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(1 + 50) × 50 ÷ 2\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (1 + 50) × 50 ÷ 2 = 1275 đơn vị",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Tổng của dãy số là 1275.\""
     ]
   },
   {
@@ -3144,11 +3168,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Tính số số hạng của dãy số lẻ: (99 - 1) ÷ 2 + 1 = 50 số hạng.",
-      "Bước 2: Ghép cặp số đầu và cuối: 1 + 99 = 100, 3 + 97 = 100...",
-      "Bước 3: Tính số cặp bằng cách lấy số số hạng chia đôi: 50 ÷ 2 = 25 cặp.",
-      "Bước 4: Nhân giá trị mỗi cặp với số cặp: 100 × 25 = 2500.",
-      "Bước 5: Hãy bấm nút 'Ghép cặp tính tổng 🤝' trên widget bậc thang số để nhìn cách ghép cặp."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Tính tổng các số lẻ liên tiếp: 1 + 3 + 5 + ... + 99.\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Dãy số lẻ từ 1 đến 99\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Khoảng cách giữa hai số lẻ là 2 đơn vị\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tính tổng toàn bộ các số hạng lẻ này\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình tính tổng bằng cách ghép cặp (Tổng = (Đầu + Cuối) × Số số hạng ÷ 2)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(1 + 99) × ((99 - 1) ÷ 2 + 1) ÷ 2\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (1 + 99) × ((99 - 1) ÷ 2 + 1) ÷ 2 = 2500 đơn vị",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Tổng của dãy số lẻ là 2500.\""
     ]
   },
   {
@@ -3214,11 +3241,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Liệt kê các đoạn thẳng đơn (gồm 1 đoạn nhỏ): AC, CD, DB. Có 3 đoạn.",
-      "Bước 2: Liệt kê các đoạn thẳng ghép đôi (gồm 2 đoạn nhỏ): AD, CB. Có 2 đoạn.",
-      "Bước 3: Liệt kê các đoạn thẳng ghép ba (gồm 3 đoạn nhỏ): AB. Có 1 đoạn.",
-      "Bước 4: Bấm nút 'Hình đơn 🟥' và 'Hình ghép 🟧' trên widget Thám Tử để xem highlight trực quan.",
-      "Bước 5: Cộng tất cả lại: 3 + 2 + 1 = 6 đoạn thẳng."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Trên đoạn thẳng AB có thêm 2 điểm C, D ở giữa (A–C–D–B). Hỏi có bao nhiêu đoạn thẳng?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Đoạn thẳng lớn AB có 2 điểm C, D ở giữa\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Tổng cộng có 4 điểm thẳng hàng\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số đoạn thẳng đếm được\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình đếm hình theo nhóm (Hình đơn → Hình ghép 2 → Hình ghép 3)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"3 + 2 + 1\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 3 + 2 + 1 = 6 đoạn thẳng",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Đếm được tất cả 6 đoạn thẳng.\""
     ]
   },
   {
@@ -3284,10 +3314,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: 5 điểm thẳng hàng chia đoạn thẳng thành 4 phần nhỏ kề nhau.",
-      "Bước 2: Đếm theo kích thước: Đoạn 1 phần có 4, Đoạn 2 phần có 3, Đoạn 3 phần có 2, Đoạn 4 phần có 1.",
-      "Bước 3: Cộng các giá trị lại: 4 + 3 + 2 + 1 = 10 đoạn.",
-      "Bước 4: Sử dụng bộ điều khiển highlight trên widget để kiểm tra trực quan từng đoạn thẳng."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Cho hình vẽ có 5 điểm thẳng hàng. Hỏi đếm được bao nhiêu đoạn thẳng?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Có 5 điểm thẳng hàng\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Tạo ra 4 đoạn thẳng nhỏ kề nhau\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm tổng số đoạn thẳng đếm được\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình đếm hình theo nhóm (Hình đơn → Hình ghép 2 → Hình ghép 3 → Hình ghép 4)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"4 + 3 + 2 + 1\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 4 + 3 + 2 + 1 = 10 đoạn thẳng",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Đếm được tất cả 10 đoạn thẳng.\""
     ]
   },
   {
@@ -3352,11 +3386,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Đếm các hình chữ nhật đơn lẻ (1 mảnh): có 4 hình.",
-      "Bước 2: Đếm các hình chữ nhật ghép từ 2 mảnh (kề nhau theo chiều ngang hoặc dọc): có 4 hình.",
-      "Bước 3: Đếm hình chữ nhật ghép từ cả 4 mảnh: có 1 hình lớn.",
-      "Bước 4: Nhấn nút 'Hình đơn 🟥' và 'Hình ghép 🟧' trên widget Thám Tử để theo dõi hoạt ảnh tô màu từng hình.",
-      "Bước 5: Cộng lại: 4 (đơn) + 4 (ghép 2) + 1 (ghép 4) = 9 hình chữ nhật."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Một hình chữ nhật lớn được chia bởi 1 đường thẳng dọc và 1 đường thẳng ngang. Hỏi có bao nhiêu hình chữ nhật?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Hình chữ nhật được chia làm 4 ô nhỏ (2 hàng, 2 cột)\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Hình chữ nhật được chia làm 4 ô nhỏ (2 hàng, 2 cột)\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm tổng số hình chữ nhật lớn nhỏ xuất hiện trên hình\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình đếm hình theo nhóm (Hình đơn → Hình ghép 2 → Hình ghép 4)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"4 + 4 + 1\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 4 + 4 + 1 = 9 hình chữ nhật",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Đếm được tất cả 9 hình chữ nhật.\""
     ]
   },
   {
@@ -3420,11 +3457,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Đếm các tam giác đơn lẻ (gồm 1 mảnh nhỏ): có 3 hình.",
-      "Bước 2: Đếm các tam giác ghép từ 2 mảnh đơn kề nhau: có 2 hình.",
-      "Bước 3: Đếm tam giác ghép từ cả 3 mảnh đơn: có 1 hình lớn bên ngoài.",
-      "Bước 4: Nhấp chọn các tab mảnh ghép trên mô hình để tô màu kiểm tra trực tiếp.",
-      "Bước 5: Tính tổng số tam giác: 3 + 2 + 1 = 6 hình."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Đếm số hình tam giác trong hình gồm một tam giác lớn được chia bởi 2 đường thẳng kẻ từ đỉnh xuống đáy.\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Một tam giác lớn chia thành 3 phần nhỏ kề nhau\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Một tam giác lớn chia thành 3 phần nhỏ kề nhau\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm tổng số tam giác lớn nhỏ xuất hiện trên hình\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình đếm hình theo nhóm (Mảnh đơn → Mảnh ghép đôi → Mảnh ghép ba)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"3 + 2 + 1\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 3 + 2 + 1 = 6 hình tam giác",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Đếm được tất cả 6 hình tam giác.\""
     ]
   },
   {
@@ -3493,11 +3533,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Đây là bài toán dạng Tổng và Hiệu. Bố là số lớn, con là số bé.",
-      "Bước 2: Hiệu tuổi là 30 tuổi, tổng tuổi là 40 tuổi.",
-      "Bước 3: Công thức tìm số bé: (Tổng − Hiệu) ÷ 2.",
-      "Bước 4: Thực hiện phép tính: (40 − 30) ÷ 2 = 10 ÷ 2 = 5 tuổi.",
-      "Bước 5: Dùng 'Cỗ máy thời gian' để trượt thanh tuổi kiểm tra tỷ số giữa bố và con."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Bố hơn con 30 tuổi. Tổng số tuổi hai bố con là 40. Tính tuổi của con.\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Bố hơn con 30 tuổi (Hiệu số tuổi = 30)\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Tổng số tuổi hai bố con là 40\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm tuổi của con hiện nay\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình Tổng - Hiệu (Số bé/Tuổi con = (Tổng - Hiệu) ÷ 2)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(40 - 30) ÷ 2\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (40 - 30) ÷ 2 = 5 tuổi",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Con hiện nay 5 tuổi.\""
     ]
   },
   {
@@ -3566,9 +3609,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Lấy tuổi của mẹ là 32 tuổi chia cho tuổi của con là 8 tuổi.",
-      "Bước 2: Thực hiện phép tính: 32 ÷ 8 = 4.",
-      "Bước 3: Kết luận tuổi mẹ gấp 4 lần tuổi con."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Năm nay mẹ 32 tuổi, con 8 tuổi. Hỏi tuổi mẹ gấp mấy lần tuổi con?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Năm nay mẹ 32 tuổi\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Năm nay con 8 tuổi\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số lần tuổi mẹ gấp tuổi con\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình so sánh tỉ lệ gấp số lần (Số lần = Số lớn ÷ Số bé)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"32 ÷ 8\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 32 ÷ 8 = 4 lần",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Tuổi mẹ gấp 4 lần tuổi con.\""
     ]
   },
   {
@@ -3637,11 +3685,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Đây là dạng toán Hiệu và Tỉ số. Hiệu tuổi là 5, tỉ số là 1/2.",
-      "Bước 2: Tìm hiệu số phần bằng nhau: 2 − 1 = 1 phần.",
-      "Bước 3: Tuổi của em ứng với 1 phần, nên lấy hiệu chia cho hiệu số phần nhân với số phần của em.",
-      "Bước 4: Thực hiện phép tính: 5 ÷ 1 × 1 = 5 tuổi.",
-      "Bước 5: Kéo slider trên cỗ máy tuổi để quan sát mô hình lego tỉ lệ."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Anh hơn em 5 tuổi. Tuổi em bằng 1/2 tuổi anh. Tính tuổi của em.\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Anh hơn em 5 tuổi (Hiệu tuổi = 5)\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Tuổi em bằng 1/2 tuổi anh (Tỉ số = 1/2)\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tính tuổi của em\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình Hiệu - Tỉ (Giá trị 1 phần = Hiệu ÷ Hiệu số phần)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"5 ÷ (2 - 1) × 1\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 5 ÷ (2 - 1) × 1 = 5 tuổi",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Em hiện nay 5 tuổi.\""
     ]
   },
   {
@@ -3710,11 +3761,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Tính hiệu số tuổi của mẹ và con: 36 − 6 = 30 tuổi. Hiệu tuổi này luôn không đổi.",
-      "Bước 2: Khi tuổi mẹ gấp 3 lần con, hiệu số phần bằng nhau là: 3 − 1 = 2 phần.",
-      "Bước 3: Tính tuổi của con lúc đó: 30 ÷ 2 = 15 tuổi.",
-      "Bước 4: Tính số năm trôi qua bằng cách lấy tuổi con lúc đó trừ tuổi con hiện nay: 15 − 6 = 9 năm.",
-      "Bước 5: Kéo thanh trượt 'Cỗ máy thời gian' trên widget lên mốc +9 để xác nhận trực quan."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Hiện nay mẹ 36 tuổi, con 6 tuổi. Hỏi sau bao nhiêu năm nữa tuổi mẹ gấp 3 lần tuổi con?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Hiện nay mẹ 36 tuổi, con 6 tuổi\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Hiệu số tuổi = 36 - 6 = 30 tuổi (không đổi)\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số năm để tuổi mẹ gấp 3 lần tuổi con\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình Hiệu - Tỉ động (Hiệu số tuổi không thay đổi theo thời gian)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(36 - 6) ÷ (3 - 1) - 6\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (36 - 6) ÷ (3 - 1) - 6 = 9 năm",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Sau 9 năm nữa.\""
     ]
   },
   {
@@ -3782,11 +3836,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Xác định quãng đường S = 60km.",
-      "Bước 2: Xác định thời gian T = 2 giờ.",
-      "Bước 3: Công thức tính vận tốc: V = S ÷ T.",
-      "Bước 4: Thực hiện phép tính: 60 ÷ 2 = 30 km/giờ.",
-      "Bước 5: Nhấp chọn che 'V' trên tam giác để nhìn rõ công thức."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Một ô tô chạy 60km trong 2 giờ. Hỏi mỗi giờ ô tô chạy bao nhiêu km?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Quãng đường ô tô đi được S = 60km\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Thời gian ô tô di chuyển T = 2 giờ\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm vận tốc ô tô V (số km đi được mỗi giờ)\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình tam giác chuyển động S-V-T (Vận tốc = Quãng đường ÷ Thời gian)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"60 ÷ 2\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 60 ÷ 2 = 30 km/giờ",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Mỗi giờ ô tô chạy được 30 km.\""
     ]
   },
   {
@@ -3854,11 +3911,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Xác định vận tốc V = 12km/giờ.",
-      "Bước 2: Xác định thời gian T = 3 giờ.",
-      "Bước 3: Công thức tính quãng đường: S = V × T.",
-      "Bước 4: Thực hiện phép tính nhân: 12 × 3 = 36 km.",
-      "Bước 5: Bấm nút 'Chạy xe 🏁' để xe đạp lăn bánh trên đường và hiển thị đồng hồ đo."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Một người đi xe đạp với vận tốc 12km/giờ. Hỏi trong 3 giờ đi được bao xa?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Vận tốc đi xe đạp V = 12km/giờ\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Thời gian di chuyển T = 3 giờ\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm quãng đường đi được S\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình tam giác chuyển động S-V-T (Quãng đường = Vận tốc × Thời gian)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"12 × 3\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 12 × 3 = 36 km",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Người đó đi được 36 km.\""
     ]
   },
   {
@@ -3926,10 +3986,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Xác định quãng đường S = 90km, vận tốc V = 45km/giờ.",
-      "Bước 2: Sử dụng công thức tính thời gian: T = S ÷ V.",
-      "Bước 3: Thực hiện phép tính chia: 90 ÷ 45 = 2 giờ.",
-      "Bước 4: Bấm chọn biểu tượng 'T' bị che trên tam giác để xác minh công thức."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Một xe máy chạy quãng đường 90km với vận tốc 45km/giờ. Hỏi xe đi hết bao lâu?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Quãng đường xe chạy S = 90km\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Vận tốc xe máy V = 45km/giờ\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm thời gian di chuyển T\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình tam giác chuyển động S-V-T (Thời gian = Quãng đường ÷ Vận tốc)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"90 ÷ 45\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 90 ÷ 45 = 2 giờ",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Xe máy đi hết 2 giờ.\""
     ]
   },
   {
@@ -4001,10 +4065,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Tính thời gian đi xe đạp bằng cách lấy quãng đường xe chia vận tốc xe: 36 ÷ 12 = 3 giờ.",
-      "Bước 2: Tính thời gian đi bộ bằng cách lấy quãng đường đi bộ chia vận tốc đi bộ: 8 ÷ 4 = 2 giờ.",
-      "Bước 3: Cộng hai khoảng thời gian lại: 3 + 2 = 5 giờ.",
-      "Bước 4: Nhấp nút 'Chạy xe 🏁' trên widget để xem cả 2 chặng di chuyển lần lượt."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Một người đi xe đạp 12km/giờ đi được 36km, sau đó đi bộ 4km/giờ thêm 8km. Hỏi tổng thời gian đi là bao nhiêu?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Chặng 1 (xe đạp): đi 36km với vận tốc 12km/giờ\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Chặng 2 (đi bộ): đi 8km với vận tốc 4km/giờ\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm tổng thời gian đi cả hai chặng\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình chặng chuyển động ghép hai bước tính thời gian chặng 1 và chặng 2\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(36 ÷ 12) + (8 ÷ 4)\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (36 ÷ 12) + (8 ÷ 4) = 5 giờ",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Tổng thời gian đi là 5 giờ.\""
     ]
   },
   {
@@ -4082,11 +4150,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Kẻ bảng đối tượng (An, Bình, Cường) và thuộc tính (Đỏ, Xanh, Vàng).",
-      "Bước 2: Dữ kiện 'Bình mặc vàng': Đánh dấu tích (✔) vào ô (Bình, Vàng) và dấu loại trừ (✗) cho các ô còn lại ở hàng Bình và cột Vàng.",
-      "Bước 3: Dữ kiện 'An không mặc đỏ': Đánh dấu (✗) vào ô (An, Đỏ).",
-      "Bước 4: Nhìn cột Vàng và Đỏ đã có dấu, hàng An chỉ còn lại ô Xanh, suy ra An mặc màu xanh.",
-      "Bước 5: Bấm nút 'Gợi ý thám tử 🔍' trên lưới để xem máy tính tự loại trừ giúp con."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"An, Bình, Cường mặc ba màu áo: đỏ, xanh, vàng. Bình mặc vàng, An không mặc đỏ. Hỏi An mặc áo màu gì?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Bình mặc áo màu vàng\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"An không mặc áo màu đỏ\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Hỏi màu áo của An\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Bảng lập luận loại trừ (Logic Grid) đánh dấu X và V\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"Bình mặc vàng -> An không vàng. An không đỏ -> An mặc xanh.\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: Bình mặc vàng -> An không vàng. An không đỏ -> An mặc xanh. = 0 đáp án",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"An mặc áo màu xanh.\""
     ]
   },
   {
@@ -4164,10 +4235,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Từ dữ kiện 'Mai thích thỏ', cột 'Thỏ' và hàng 'Mai' bị khóa. Lan và Đào không thích thỏ.",
-      "Bước 2: Lan không thích mèo, nên Lan không chọn Mèo và không chọn Thỏ. Vậy Lan thích chó.",
-      "Bước 3: Còn lại Đào sẽ thích mèo.",
-      "Bước 4: Chạm trực tiếp các ô trên bảng logic để tự phá án."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Ba bạn Lan, Mai, Đào thích ba con vật: mèo, chó, thỏ. Lan không thích mèo. Mai thích thỏ. Hỏi Lan thích con vật nào?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Mai thích con thỏ\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Lan không thích con mèo\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Hỏi con vật mà Lan thích\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Bảng lập luận loại trừ (Logic Grid) đánh dấu X và V\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"Mai thích thỏ -> Lan không thỏ. Lan không mèo -> Lan thích chó.\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: Mai thích thỏ -> Lan không thỏ. Lan không mèo -> Lan thích chó. = 0 đáp án",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Lan thích con chó.\""
     ]
   },
   {
@@ -4245,10 +4320,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Tìm người giỏi Nhạc: Đề bài nói không phải Mai cũng không phải Lan, vậy Đào là người giỏi Nhạc.",
-      "Bước 2: Tìm người giỏi Toán: Lan không giỏi Toán, Đào giỏi Nhạc rồi, nên Mai phải là người giỏi Toán.",
-      "Bước 3: Còn lại, Lan chắc chắn giỏi Văn.",
-      "Bước 4: Sử dụng bảng lưới phá án để tự điền dấu loại trừ."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Ba bạn Lan, Mai, Đào học ba môn giỏi nhất: Toán, Văn, Nhạc. Lan không giỏi Toán. Người giỏi Nhạc không phải Mai và Lan. Hỏi ai giỏi Văn?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Lan không giỏi môn Toán\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Người giỏi Nhạc không phải là Mai và Lan\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Xác định người giỏi môn Văn\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Bảng lập luận loại trừ (Logic Grid) đánh dấu X và V\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"Nhạc là Đào -> Lan/Mai không Nhạc. Lan không Toán -> Lan giỏi Văn.\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: Nhạc là Đào -> Lan/Mai không Nhạc. Lan không Toán -> Lan giỏi Văn. = 0 đáp án",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Bạn Lan giỏi Văn.\""
     ]
   },
   {
@@ -4332,10 +4411,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Điền dấu tích (✔) cho C ở ô Hạng 4. Loại C khỏi các hạng khác và loại các bạn khác khỏi Hạng 4.",
-      "Bước 2: A không bét, cũng không nhất. Vậy A chỉ có thể ở Hạng 2 hoặc Hạng 3.",
-      "Bước 3: Dữ kiện 'B đứng ngay trên A' (hạng B nhỏ hơn hạng A 1 đơn vị). Nếu A ở Hạng 2 thì B ở Hạng 1. Nhưng B ở Hạng 1 thì A Hạng 2, C Hạng 4, D sẽ ở Hạng 3. Điều này khiến B đứng trên A nhưng không xếp liền kề do D xen kẽ. Thực tế, B xếp ngay trên A thì B và A phải chiếm 2 vị trí liền nhau: chỉ có cặp Hạng 2 và Hạng 3 là trống. Vậy B Hạng 2, A Hạng 3.",
-      "Bước 4: Còn lại Hạng 1 dành cho D."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Bốn bạn A, B, C, D xếp hạng 1–4. A không nhất cũng không bét. B đứng ngay trên A. C đứng cuối. Hỏi ai đứng thứ nhất?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"C đứng thứ tư (hạng bét)\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"A không nhất (hạng 1) và không bét (hạng 4)\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Hỏi ai đạt hạng nhất (hạng 1)\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Bảng lập luận loại trừ (Logic Grid) đánh dấu X và V\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"C hạng 4. A không hạng 1,4 nên A hạng 2 hoặc 3. Vì B ngay trên A nên B hạng 2, A hạng 3. Còn lại D hạng 1.\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: C hạng 4. A không hạng 1,4 nên A hạng 2 hoặc 3. Vì B ngay trên A nên B hạng 2, A hạng 3. Còn lại D hạng 1. = 0 đáp án",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Bạn D xếp hạng nhất.\""
     ]
   },
   {
@@ -4416,10 +4499,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Quan sát biểu đồ cột để đọc số liệu của từng tổ.",
-      "Bước 2: So sánh các số liệu: 20 < 25 < 35 < 40.",
-      "Bước 3: Số lớn nhất là 40, tương ứng với Tổ 4.",
-      "Bước 4: Nhấp vào cột Tổ 4 trên widget để xem hiệu ứng phát sáng và số liệu hiện lên."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Biểu đồ số cây bốn tổ trồng: Tổ 1: 20 cây, Tổ 2: 35 cây, Tổ 3: 25 cây, Tổ 4: 40 cây. Hỏi tổ nào trồng nhiều nhất?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Số cây tổ 1: 20, tổ 2: 35, tổ 3: 25, tổ 4: 40\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Số cây tổ 1: 20, tổ 2: 35, tổ 3: 25, tổ 4: 40\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm tổ trồng được nhiều cây nhất\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình đọc biểu đồ cột so sánh chiều cao cột lớn nhất\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"So sánh: 40 > 35 > 25 > 20 -> Tổ 4 lớn nhất.\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: So sánh: 40 > 35 > 25 > 20 -> Tổ 4 lớn nhất. = 0 đáp án",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Tổ 4 trồng nhiều nhất (40 cây).\""
     ]
   },
   {
@@ -4501,10 +4588,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Thu thập số liệu của bốn tổ: Tổ 1: 20, Tổ 2: 35, Tổ 3: 25, Tổ 4: 40.",
-      "Bước 2: Thực hiện phép tính cộng gộp: 20 + 35 + 25 + 40.",
-      "Bước 3: Nhẩm tính: 20 + 35 = 55; 55 + 25 = 80; 80 + 40 = 120 cây.",
-      "Bước 4: Nhấp chọn các cột để cộng dồn chiều cao của chúng trên màn hình."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Biểu đồ số cây bốn tổ trồng: Tổ 1: 20 cây, Tổ 2: 35 cây, Tổ 3: 25 cây, Tổ 4: 40 cây. Tính tổng số cây bốn tổ trồng được.\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Số cây các tổ lần lượt là 20, 35, 25, 40\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Số cây các tổ lần lượt là 20, 35, 25, 40\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tính tổng số cây cả bốn tổ trồng\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình tính tổng từ biểu đồ cột (Tổng = T1 + T2 + T3 + T4)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"20 + 35 + 25 + 40\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 20 + 35 + 25 + 40 = 120 cây",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Cả bốn tổ trồng được 120 cây.\""
     ]
   },
   {
@@ -4588,10 +4679,14 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Tính tổng số cây trồng được của cả 4 tổ: 20 + 35 + 25 + 40 = 120 cây.",
-      "Bước 2: Đếm số lượng tổ tham gia trồng cây: 4 tổ.",
-      "Bước 3: Lấy tổng số cây chia cho số lượng tổ: 120 ÷ 4 = 30 cây.",
-      "Bước 4: Nhấn nút 'San đều dữ liệu 📊' trên widget để xem hoạt ảnh san bằng các cột về mức 30."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Biểu đồ số cây bốn tổ trồng: Tổ 1: 20 cây, Tổ 2: 35 cây, Tổ 3: 25 cây, Tổ 4: 40 cây. Tính trung bình mỗi tổ trồng bao nhiêu cây?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Tổng số cây bốn tổ trồng được là 120 cây\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Có tất cả 4 tổ trồng cây\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tính số cây trung bình mỗi tổ trồng được\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình trung bình cộng biểu đồ cột (San đều chiều cao các cột)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(20 + 35 + 25 + 40) ÷ 4\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (20 + 35 + 25 + 40) ÷ 4 = 30 cây",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Trung bình mỗi tổ trồng được 30 cây.\""
     ]
   },
   {
@@ -4672,11 +4767,2309 @@
     ],
     "correctCheck": 0,
     "hints": [
-      "Bước 1: Tính số táo sạp B: 6 hình × 5 quả = 30 quả táo.",
-      "Bước 2: Tính số táo sạp C: 3 hình × 5 quả = 15 quả táo.",
-      "Bước 3: Tính số quả táo sạp B nhiều hơn sạp C: 30 − 15 = 15 quả táo.",
-      "Bước 4: Cách khác: Hiệu số biểu tượng là 6 − 3 = 3 hình. Lấy 3 hình × 5 quả = 15 quả táo.",
-      "Bước 5: Nhấp nút 'Quy đổi hình 🍎' trên mô hình để đếm số quả táo thực tế sau quy đổi."
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Biểu đồ tranh: mỗi hình 🍎 = 5 quả táo. Sạp A có 4 hình, sạp B có 6 hình, sạp C có 3 hình. Hỏi sạp B nhiều hơn sạp C bao nhiêu quả táo?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Mỗi biểu tượng quả táo đại diện cho 5 quả táo thực tế\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Sạp B có 6 biểu tượng, Sạp C có 3 biểu tượng\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số quả táo sạp B nhiều hơn sạp C\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình biểu đồ tranh quy đổi giá trị (Giá trị chênh lệch = Hiệu biểu tượng × Giá trị 1 biểu tượng)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(6 - 3) × 5\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (6 - 3) × 5 = 15 quả táo",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Sạp B nhiều hơn sạp C 15 quả táo.\""
+    ]
+  },
+  {
+    "title": "An và Bình chia kẹo",
+    "shortTitle": "Chia kẹo phân số",
+    "icon": "🍬",
+    "color": "pink",
+    "skill": "Tìm phân số của một số",
+    "story": "An có 24 cái kẹo ngọt. An cho Bình ăn 1/3 số kẹo của mình. Hỏi An đã cho Bình bao nhiêu cái kẹo?",
+    "visual": {
+      "type": "bar",
+      "values": [
+        24,
+        8
+      ],
+      "labels": [
+        "Tổng số kẹo",
+        "Số kẹo cho đi"
+      ]
+    },
+    "retellOptions": [
+      "Có 24 cái kẹo, cho đi 1/3 số kẹo, tìm số kẹo đã cho.",
+      "Có 24 cái kẹo, mua thêm 3 cái nữa.",
+      "Tìm số kẹo còn lại sau khi ăn hết."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "An có tất cả 24 cái kẹo",
+      "An cho Bình 1/3 số kẹo đó",
+      "Tìm số kẹo An cho Bình"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình phân số của một số (Lấy tổng nhân với phân số)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "24 ÷ 3",
+      "24 + 3",
+      "24 - 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm 1/3 của 24 bằng cách lấy 24 chia cho 3.",
+      "Vì Bình được tặng thêm 3 cái kẹo.",
+      "Vì số kẹo bị giảm đi 3 cái."
+    ],
+    "correctReason": 0,
+    "answer": 8,
+    "unit": "cái kẹo",
+    "answerOptions": [
+      "An đã cho Bình 8 cái kẹo.",
+      "An đã cho Bình 12 cái kẹo.",
+      "An đã cho Bình 6 cái kẹo."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số 8 cái kẹo có bằng đúng một phần ba của 24 không?",
+    "checkOptions": [
+      "Có, vì 8 nhân 3 bằng 24.",
+      "Không, 8 nhân 3 bằng 16."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-61",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"An có 24 cái kẹo ngọt. An cho Bình ăn 1/3 số kẹo của mình. Hỏi An đã cho Bình bao nhiêu cái kẹo?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"An có tất cả 24 cái kẹo\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"An cho Bình 1/3 số kẹo đó\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số kẹo An cho Bình\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình phân số của một số (Lấy tổng nhân với phân số)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"24 ÷ 3\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 24 ÷ 3 = 8 cái kẹo",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"An đã cho Bình 8 cái kẹo.\""
+    ]
+  },
+  {
+    "title": "Diện tích mảnh đất hình chữ nhật",
+    "shortTitle": "Tính diện tích đất",
+    "icon": "📐",
+    "color": "green",
+    "skill": "Diện tích",
+    "story": "Một hình chữ nhật có chu vi là 30 cm. Chiều dài hơn chiều rộng 3 cm. Tính diện tích của hình chữ nhật đó.",
+    "visual": {
+      "type": "compare",
+      "big": 9,
+      "small": 6,
+      "diff": 3,
+      "bigLabel": "Chiều dài",
+      "smallLabel": "Chiều rộng"
+    },
+    "retellOptions": [
+      "Chu vi 30 cm, dài hơn rộng 3 cm, tìm diện tích.",
+      "Chu vi 30 cm, dài bằng rộng, tìm diện tích.",
+      "Tìm chu vi khi biết diện tích."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Chu vi hình chữ nhật là 30 cm",
+      "Chiều dài hơn chiều rộng 3 cm",
+      "Tìm diện tích hình chữ nhật"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng (Tổng và Hiệu kết hợp diện tích)",
+      "Mô hình gộp",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "((30 ÷ 2 + 3) ÷ 2) × ((30 ÷ 2 - 3) ÷ 2)",
+      "30 × 3",
+      "30 + 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm nửa chu vi (tổng dài và rộng) là 15, sau đó tìm chiều dài là 9, chiều rộng là 6, rồi nhân lại.",
+      "Vì lấy chu vi nhân với hiệu.",
+      "Vì diện tích bằng chu vi cộng hiệu."
+    ],
+    "correctReason": 0,
+    "answer": 54,
+    "unit": "cm²",
+    "answerOptions": [
+      "Diện tích hình chữ nhật đó là 54 cm².",
+      "Diện tích hình chữ nhật đó là 90 cm².",
+      "Diện tích hình chữ nhật đó là 45 cm²."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Nửa chu vi có đúng bằng tổng chiều dài (9) và chiều rộng (6) không?",
+    "checkOptions": [
+      "Có, 9 + 6 = 15 cm.",
+      "Không, 9 + 6 = 18 cm."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-62",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Một hình chữ nhật có chu vi là 30 cm. Chiều dài hơn chiều rộng 3 cm. Tính diện tích của hình chữ nhật đó.\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Chu vi hình chữ nhật là 30 cm\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Chiều dài hơn chiều rộng 3 cm\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm diện tích hình chữ nhật\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Sơ đồ đoạn thẳng (Tổng và Hiệu kết hợp diện tích)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"((30 ÷ 2 + 3) ÷ 2) × ((30 ÷ 2 - 3) ÷ 2)\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: ((30 ÷ 2 + 3) ÷ 2) × ((30 ÷ 2 - 3) ÷ 2) = 54 cm²",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Diện tích hình chữ nhật đó là 54 cm².\""
+    ]
+  },
+  {
+    "title": "Mua bút chì ở nhà sách",
+    "shortTitle": "Rút về đơn vị mua bút",
+    "icon": "✏️",
+    "color": "blue",
+    "skill": "Rút về đơn vị",
+    "story": "Hà mua 4 cái bút chì hết 20 000 đồng. Hỏi nếu Hà mua 7 cái bút chì cùng loại thì hết bao nhiêu tiền?",
+    "visual": {
+      "type": "bar",
+      "values": [
+        20000,
+        35000
+      ],
+      "labels": [
+        "Giá tiền 4 bút",
+        "Giá tiền 7 bút"
+      ]
+    },
+    "retellOptions": [
+      "Mua 4 bút hết 20 000 đồng, tìm giá tiền mua 7 bút.",
+      "Mua 4 bút hết 20 000 đồng, được tặng thêm 7 bút.",
+      "Tìm số bút mua được với 100 000 đồng."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mua 4 bút hết 20 000 đồng",
+      "Hỏi mua 7 cái bút chì",
+      "Tìm số tiền mua 7 bút"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình rút về đơn vị (Tìm giá 1 phần trước)",
+      "Mô hình hai giỏ so sánh",
+      "Sơ đồ đoạn thẳng"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "20000 ÷ 4 × 7",
+      "20000 × 4 ÷ 7",
+      "20000 + 7"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm giá tiền 1 cái bút chì (20000 ÷ 4 = 5000 đồng) rồi nhân với 7.",
+      "Vì ta lấy tổng tiền nhân với số bút.",
+      "Vì số tiền giảm đi khi mua nhiều bút."
+    ],
+    "correctReason": 0,
+    "answer": 35000,
+    "unit": "đồng",
+    "answerOptions": [
+      "Hà mua 7 cái bút chì hết 35 000 đồng.",
+      "Hà mua 7 cái bút chì hết 140 000 đồng.",
+      "Hà mua 7 cái bút chì hết 28 000 đồng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Giá mỗi cái bút chì có phải là 5 000 đồng không?",
+    "checkOptions": [
+      "Đúng, 20000 chia cho 4 bằng 5000.",
+      "Sai, 20000 chia cho 4 bằng 4000."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-63",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Hà mua 4 cái bút chì hết 20 000 đồng. Hỏi nếu Hà mua 7 cái bút chì cùng loại thì hết bao nhiêu tiền?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Mua 4 bút hết 20 000 đồng\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Hỏi mua 7 cái bút chì\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số tiền mua 7 bút\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình rút về đơn vị (Tìm giá 1 phần trước)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"20000 ÷ 4 × 7\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 20000 ÷ 4 × 7 = 35000 đồng",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Hà mua 7 cái bút chì hết 35 000 đồng.\""
+    ]
+  },
+  {
+    "title": "Hai kho chứa thóc nhà bác Ba",
+    "shortTitle": "Kho thóc tổng tỉ",
+    "icon": "🌾",
+    "color": "yellow",
+    "skill": "Tổng và Tỉ số",
+    "story": "Hai kho thóc nhà bác Ba chứa tất cả 120 tấn thóc. Kho thứ nhất chứa thóc gấp 3 lần kho thứ hai. Hỏi kho thứ hai chứa bao nhiêu tấn thóc?",
+    "visual": {
+      "type": "compare",
+      "big": 90,
+      "small": 30,
+      "diff": 60,
+      "bigLabel": "Kho thứ nhất",
+      "smallLabel": "Kho thứ hai"
+    },
+    "retellOptions": [
+      "Tổng hai kho là 120 tấn, kho một gấp 3 lần kho hai, tìm kho hai.",
+      "Tổng hai kho là 120 tấn, kho hai nhiều hơn kho một 3 tấn.",
+      "Tìm số tấn thóc đã bán ở hai kho."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng hai kho có 120 tấn thóc",
+      "Kho thứ nhất gấp 3 lần kho thứ hai",
+      "Tìm số thóc kho thứ hai"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng tỉ số (Tổng - Tỉ)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "120 ÷ (3 + 1)",
+      "120 ÷ 3",
+      "120 - 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm tổng số phần bằng nhau: 3 + 1 = 4 phần. Số thóc kho hai là 1 phần: 120 ÷ 4 = 30.",
+      "Vì chia đều số thóc cho 3 phần.",
+      "Vì kho thứ hai ít hơn kho thứ nhất 3 tấn."
+    ],
+    "correctReason": 0,
+    "answer": 30,
+    "unit": "tấn thóc",
+    "answerOptions": [
+      "Kho thứ hai chứa 30 tấn thóc.",
+      "Kho thứ hai chứa 90 tấn thóc.",
+      "Kho thứ hai chứa 40 tấn thóc."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số thóc kho thứ nhất (90 tấn) có đúng là gấp 3 lần kho thứ hai (30 tấn) không?",
+    "checkOptions": [
+      "Có, 30 nhân 3 bằng 90.",
+      "Không, 30 nhân 3 bằng 60."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-64",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Hai kho thóc nhà bác Ba chứa tất cả 120 tấn thóc. Kho thứ nhất chứa thóc gấp 3 lần kho thứ hai. Hỏi kho thứ hai chứa bao nhiêu tấn thóc?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Tổng hai kho có 120 tấn thóc\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Kho thứ nhất gấp 3 lần kho thứ hai\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số thóc kho thứ hai\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Sơ đồ đoạn thẳng tỉ số (Tổng - Tỉ)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"120 ÷ (3 + 1)\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 120 ÷ (3 + 1) = 30 tấn thóc",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Kho thứ hai chứa 30 tấn thóc.\""
+    ]
+  },
+  {
+    "title": "Tuổi mẹ và tuổi con",
+    "shortTitle": "Tính tuổi hiệu tỉ",
+    "icon": "👩‍👦",
+    "color": "pink",
+    "skill": "Hiệu và Tỉ số",
+    "story": "Mẹ hơn con 25 tuổi. Biết rằng tuổi mẹ gấp 6 lần tuổi con. Hỏi con năm nay bao nhiêu tuổi?",
+    "visual": {
+      "type": "compare",
+      "big": 30,
+      "small": 5,
+      "diff": 25,
+      "bigLabel": "Tuổi mẹ",
+      "smallLabel": "Tuổi con"
+    },
+    "retellOptions": [
+      "Mẹ hơn con 25 tuổi, tuổi mẹ gấp 6 lần tuổi con, tìm tuổi con.",
+      "Mẹ và con có tổng số tuổi là 25 tuổi.",
+      "Tìm số tuổi của bố khi biết tuổi mẹ."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mẹ hơn con 25 tuổi",
+      "Tuổi mẹ gấp 6 lần tuổi con",
+      "Tìm số tuổi của con"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng tỉ số (Hiệu - Tỉ)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "25 ÷ (6 - 1)",
+      "25 ÷ 6",
+      "25 + 6"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm hiệu số phần bằng nhau: 6 - 1 = 5 phần. Giá trị một phần (tuổi con) là: 25 ÷ 5 = 5.",
+      "Vì lấy hiệu chia cho tổng số tuổi.",
+      "Vì tuổi con bằng hiệu cộng thêm tỉ số."
+    ],
+    "correctReason": 0,
+    "answer": 5,
+    "unit": "tuổi",
+    "answerOptions": [
+      "Năm nay con 5 tuổi.",
+      "Năm nay con 6 tuổi.",
+      "Năm nay con 8 tuổi."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Hiệu số tuổi của mẹ (30 tuổi) và con (5 tuổi) có đúng bằng 25 không?",
+    "checkOptions": [
+      "Đúng, 30 trừ 5 bằng 25.",
+      "Sai, 30 trừ 5 bằng 20."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-65",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Mẹ hơn con 25 tuổi. Biết rằng tuổi mẹ gấp 6 lần tuổi con. Hỏi con năm nay bao nhiêu tuổi?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Mẹ hơn con 25 tuổi\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Tuổi mẹ gấp 6 lần tuổi con\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số tuổi của con\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Sơ đồ đoạn thẳng tỉ số (Hiệu - Tỉ)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"25 ÷ (6 - 1)\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 25 ÷ (6 - 1) = 5 tuổi",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Năm nay con 5 tuổi.\""
+    ]
+  },
+  {
+    "title": "Hái quả cam trong vườn",
+    "shortTitle": "Phân số quả cam",
+    "icon": "🍊",
+    "color": "orange",
+    "skill": "Tìm phân số của một số",
+    "story": "Lan hái được 40 quả cam. Lan tặng cho Nam 2/5 số quả cam đó. Hỏi Lan đã tặng bao nhiêu quả cam?",
+    "visual": {
+      "type": "bar",
+      "values": [
+        40,
+        16
+      ],
+      "labels": [
+        "Tổng hái được",
+        "Tặng đi"
+      ]
+    },
+    "retellOptions": [
+      "Có 40 quả cam, cho đi 2/5 số đó, tìm số lượng đã cho.",
+      "Có 40 quả cam, được tặng thêm 2/5 số đó.",
+      "Tìm số còn lại."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Lan hái được 40 quả cam",
+      "Cho đi 2/5 số đó",
+      "Tìm số quả cam cho đi"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình phân số của một số (Lấy tổng nhân với phân số)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "40 × 2 ÷ 5",
+      "40 + 2 - 5",
+      "40 - 2 + 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm 2/5 của 40 bằng cách lấy 40 nhân với 2 rồi chia cho 5.",
+      "Vì ta cộng thêm phân số.",
+      "Vì số lượng bị giảm đi."
+    ],
+    "correctReason": 0,
+    "answer": 16,
+    "unit": "quả cam",
+    "answerOptions": [
+      "Lan đã tặng 16 quả cam.",
+      "Lan đã tặng 20 quả cam.",
+      "Lan đã tặng 12 quả cam."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số 16 có phải là bằng 2/5 của 40 không?",
+    "checkOptions": [
+      "Đúng, vì 40 chia 5 nhân 2 bằng 16.",
+      "Sai, kết quả phải lớn hơn."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-66",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Lan hái được 40 quả cam. Lan tặng cho Nam 2/5 số quả cam đó. Hỏi Lan đã tặng bao nhiêu quả cam?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Lan hái được 40 quả cam\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Cho đi 2/5 số đó\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số quả cam cho đi\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình phân số của một số (Lấy tổng nhân với phân số)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"40 × 2 ÷ 5\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 40 × 2 ÷ 5 = 16 quả cam",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Lan đã tặng 16 quả cam.\""
+    ]
+  },
+  {
+    "title": "Thu gom quả xoài bảo vệ môi trường",
+    "shortTitle": "Thu gom quả xoài tổng hiệu",
+    "icon": "⚖️",
+    "color": "green",
+    "skill": "Tổng và Hiệu",
+    "story": "Vy và Mai thu gom được tổng cộng 64 quả xoài. Vy thu gom được nhiều hơn Mai 12 quả xoài. Hỏi Vy thu gom được bao nhiêu quả xoài?",
+    "visual": {
+      "type": "compare",
+      "big": 38,
+      "small": 26,
+      "diff": 12,
+      "bigLabel": "Vy",
+      "smallLabel": "Mai"
+    },
+    "retellOptions": [
+      "Tổng thu gom là 64 quả xoài, Vy nhiều hơn Mai 12 quả xoài, tìm số của Vy.",
+      "Tìm hiệu khi biết tổng số.",
+      "Tìm số thu gom của Mai khi biết tỉ số."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng số thu gom của hai bạn là 64 quả xoài",
+      "Vy nhiều hơn Mai 12 quả xoài",
+      "Tìm số quả xoài của Vy"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng (Tổng và Hiệu)",
+      "Mô hình chia đều",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(64 + 12) ÷ 2",
+      "(64 - 12) ÷ 2",
+      "64 + 12"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm số lớn bằng cách lấy (Tổng + Hiệu) chia đôi: (64 + 12) ÷ 2 = 38.",
+      "Vì lấy tổng trừ đi hiệu.",
+      "Vì số lượng gấp đôi."
+    ],
+    "correctReason": 0,
+    "answer": 38,
+    "unit": "quả xoài",
+    "answerOptions": [
+      "Vy thu gom được 38 quả xoài.",
+      "Vy thu gom được 26 quả xoài.",
+      "Vy thu gom được 64 quả xoài."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tổng số của hai bạn (38 và 26) có đúng bằng 64 không?",
+    "checkOptions": [
+      "Có, 38 + 26 = 64.",
+      "Không, tổng bằng số khác."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-67",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Vy và Mai thu gom được tổng cộng 64 quả xoài. Vy thu gom được nhiều hơn Mai 12 quả xoài. Hỏi Vy thu gom được bao nhiêu quả xoài?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Tổng số thu gom của hai bạn là 64 quả xoài\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Vy nhiều hơn Mai 12 quả xoài\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số quả xoài của Vy\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Sơ đồ đoạn thẳng (Tổng và Hiệu)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(64 + 12) ÷ 2\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (64 + 12) ÷ 2 = 38 quả xoài",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Vy thu gom được 38 quả xoài.\""
+    ]
+  },
+  {
+    "title": "Tuổi của cha và con",
+    "shortTitle": "Tuổi cha con tổng tỉ",
+    "icon": "🧮",
+    "color": "blue",
+    "skill": "Tổng và Tỉ số",
+    "story": "Tổng số tuổi của bố và Bo là 48 tuổi. Tuổi bố gấp 3 lần tuổi Bo. Hỏi Bo năm nay bao nhiêu tuổi?",
+    "visual": {
+      "type": "compare",
+      "big": 36,
+      "small": 12,
+      "diff": 24,
+      "bigLabel": "Tuổi bố",
+      "smallLabel": "Tuổi Bo"
+    },
+    "retellOptions": [
+      "Tổng số tuổi là 48, bố gấp 3 lần con, tìm tuổi con.",
+      "Bố hơn con 3 tuổi.",
+      "Tìm tuổi bố khi biết hiệu số tuổi."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng số tuổi hai bố con là 48 tuổi",
+      "Tuổi bố gấp 3 lần tuổi Bo",
+      "Tìm số tuổi của Bo"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng tỉ số (Tổng - Tỉ)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "48 ÷ (3 + 1)",
+      "48 ÷ 3",
+      "48 - 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm tổng số phần bằng nhau: 3 + 1 = 4 phần. Số tuổi của con là 1 phần: 48 ÷ 4 = 12.",
+      "Vì chia đều số tuổi cho 3 phần.",
+      "Vì con ít hơn bố 3 tuổi."
+    ],
+    "correctReason": 0,
+    "answer": 12,
+    "unit": "tuổi",
+    "answerOptions": [
+      "Năm nay Bo 12 tuổi.",
+      "Năm nay Bo 14 tuổi.",
+      "Năm nay Bo 36 tuổi."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tuổi bố (36) có đúng là gấp 3 lần tuổi con (12) không?",
+    "checkOptions": [
+      "Có, 12 nhân 3 bằng 36.",
+      "Không, 12 nhân 3 bằng 41."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-68",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Tổng số tuổi của bố và Bo là 48 tuổi. Tuổi bố gấp 3 lần tuổi Bo. Hỏi Bo năm nay bao nhiêu tuổi?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Tổng số tuổi hai bố con là 48 tuổi\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Tuổi bố gấp 3 lần tuổi Bo\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số tuổi của Bo\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Sơ đồ đoạn thẳng tỉ số (Tổng - Tỉ)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"48 ÷ (3 + 1)\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 48 ÷ (3 + 1) = 12 tuổi",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Năm nay Bo 12 tuổi.\""
+    ]
+  },
+  {
+    "title": "Chiều dài hai sợi ruy-băng",
+    "shortTitle": "Sợi dây hiệu tỉ",
+    "icon": "📐",
+    "color": "pink",
+    "skill": "Hiệu và Tỉ số",
+    "story": "Sợi dây màu xanh dài hơn sợi dây màu đỏ 33 cm. Biết rằng sợi dây màu xanh dài gấp 4 lần sợi dây màu đỏ. Hỏi sợi dây màu đỏ dài bao nhiêu xăng-ti-mét?",
+    "visual": {
+      "type": "compare",
+      "big": 44,
+      "small": 11,
+      "diff": 33,
+      "bigLabel": "Sợi xanh",
+      "smallLabel": "Sợi đỏ"
+    },
+    "retellOptions": [
+      "Sợi xanh dài hơn đỏ 33 cm, sợi xanh gấp 4 lần đỏ, tìm sợi đỏ.",
+      "Tổng chiều dài hai sợi dây là 33 cm.",
+      "Tìm chiều dài sợi dây màu xanh."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Sợi dây màu xanh dài hơn sợi đỏ 33 cm",
+      "Sợi xanh dài gấp 4 lần sợi đỏ",
+      "Tìm chiều dài sợi đỏ"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng tỉ số (Hiệu - Tỉ)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "33 ÷ (4 - 1)",
+      "33 ÷ 4",
+      "33 + 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm hiệu số phần bằng nhau: 4 - 1 = 3 phần. Chiều dài sợi đỏ là 1 phần: 33 ÷ 3 = 11.",
+      "Vì lấy hiệu chia cho tỉ số.",
+      "Vì chiều dài sợi đỏ bằng hiệu cộng tỉ số."
+    ],
+    "correctReason": 0,
+    "answer": 11,
+    "unit": "cm",
+    "answerOptions": [
+      "Sợi dây màu đỏ dài 11 cm.",
+      "Sợi dây màu đỏ dài 44 cm.",
+      "Sợi dây màu đỏ dài 16 cm."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Hiệu chiều dài hai sợi dây (44 cm và 11 cm) có đúng bằng 33 cm không?",
+    "checkOptions": [
+      "Đúng, 44 trừ 11 bằng 33.",
+      "Sai, 44 trừ 11 bằng số khác."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-69",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Sợi dây màu xanh dài hơn sợi dây màu đỏ 33 cm. Biết rằng sợi dây màu xanh dài gấp 4 lần sợi dây màu đỏ. Hỏi sợi dây màu đỏ dài bao nhiêu xăng-ti-mét?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Sợi dây màu xanh dài hơn sợi đỏ 33 cm\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Sợi xanh dài gấp 4 lần sợi đỏ\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm chiều dài sợi đỏ\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Sơ đồ đoạn thẳng tỉ số (Hiệu - Tỉ)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"33 ÷ (4 - 1)\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 33 ÷ (4 - 1) = 11 cm",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Sợi dây màu đỏ dài 11 cm.\""
+    ]
+  },
+  {
+    "title": "Giá tiền mua quyển vở",
+    "shortTitle": "Mua quyển vở rút đơn vị",
+    "icon": "📦",
+    "color": "purple",
+    "skill": "Rút về đơn vị",
+    "story": "Mua 5 quyển vở hết 50000 đồng. Hỏi nếu mua 8 quyển vở như thế thì phải trả bao nhiêu tiền?",
+    "visual": {
+      "type": "bar",
+      "values": [
+        50000,
+        80000
+      ],
+      "labels": [
+        "Giá tiền 5 chiếc",
+        "Giá tiền 8 chiếc"
+      ]
+    },
+    "retellOptions": [
+      "Mua 5 chiếc hết 50000 đồng, tìm giá mua 8 chiếc.",
+      "Mua 5 chiếc được tặng 8 chiếc.",
+      "Tìm số lượng chiếc mua được."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mua 5 quyển vở hết 50000 đồng",
+      "Hỏi mua 8 quyển vở",
+      "Tìm số tiền mua 8 quyển vở"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình rút về đơn vị (Tìm giá 1 phần trước)",
+      "Mô hình hai giỏ so sánh",
+      "Sơ đồ đoạn thẳng"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "50000 ÷ 5 × 8",
+      "50000 × 5 ÷ 8",
+      "50000 + 8"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm giá 1 quyển vở (50000 ÷ 5 = 10000 đồng) rồi nhân với 8.",
+      "Vì lấy giá tiền nhân số lượng.",
+      "Vì giá tiền giảm đi."
+    ],
+    "correctReason": 0,
+    "answer": 80000,
+    "unit": "đồng",
+    "answerOptions": [
+      "Mua 8 quyển vở hết 80000 đồng.",
+      "Mua 8 quyển vở hết 90000 đồng.",
+      "Mua 8 quyển vở hết 70000 đồng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Giá 1 quyển vở có phải là 10000 đồng không?",
+    "checkOptions": [
+      "Đúng, vì 50000 chia 5 bằng 10000.",
+      "Sai, chia ra số khác."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-70",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Mua 5 quyển vở hết 50000 đồng. Hỏi nếu mua 8 quyển vở như thế thì phải trả bao nhiêu tiền?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Mua 5 quyển vở hết 50000 đồng\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Hỏi mua 8 quyển vở\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số tiền mua 8 quyển vở\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình rút về đơn vị (Tìm giá 1 phần trước)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"50000 ÷ 5 × 8\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 50000 ÷ 5 × 8 = 80000 đồng",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Mua 8 quyển vở hết 80000 đồng.\""
+    ]
+  },
+  {
+    "title": "Khu vườn hình vuông của bà",
+    "shortTitle": "Vườn hoa diện tích",
+    "icon": "🟩",
+    "color": "green",
+    "skill": "Diện tích",
+    "story": "Một vườn hoa hình vuông có chu vi là 20 m. Tính diện tích của vườn hoa đó.",
+    "visual": {
+      "type": "bar",
+      "values": [
+        20,
+        25
+      ],
+      "labels": [
+        "Chu vi vườn (m)",
+        "Diện tích vườn (m²)"
+      ]
+    },
+    "retellOptions": [
+      "Khu vườn hình vuông có chu vi 20 m, tính diện tích.",
+      "Biết diện tích, tính chu vi vườn.",
+      "So sánh diện tích hai khu vườn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Khu vườn có chu vi 20 m",
+      "Hình vuông có 4 cạnh bằng nhau",
+      "Tìm diện tích vườn"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Diện tích hình vuông (Cạnh nhân cạnh)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(20 ÷ 4) × (20 ÷ 4)",
+      "20 × 4",
+      "20 + 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm cạnh vườn hoa (20 ÷ 4 = 5 m) rồi tính diện tích: 5 × 5 = 25 m².",
+      "Vì diện tích bằng chu vi nhân 4.",
+      "Vì diện tích bằng chu vi cộng 4."
+    ],
+    "correctReason": 0,
+    "answer": 25,
+    "unit": "m²",
+    "answerOptions": [
+      "Diện tích vườn hoa là 25 m².",
+      "Diện tích vườn hoa là 20 m².",
+      "Diện tích vườn hoa là 50 m²."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Cạnh vườn hoa (5 m) nhân với chính nó có đúng bằng 25 không?",
+    "checkOptions": [
+      "Có, 5 nhân 5 bằng 25.",
+      "Không, kết quả bằng số khác."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-71",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Một vườn hoa hình vuông có chu vi là 20 m. Tính diện tích của vườn hoa đó.\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Khu vườn có chu vi 20 m\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Hình vuông có 4 cạnh bằng nhau\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm diện tích vườn\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Diện tích hình vuông (Cạnh nhân cạnh)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(20 ÷ 4) × (20 ÷ 4)\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (20 ÷ 4) × (20 ÷ 4) = 25 m²",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Diện tích vườn hoa là 25 m².\""
+    ]
+  },
+  {
+    "title": "Hái quả cam trong vườn",
+    "shortTitle": "Phân số quả cam",
+    "icon": "🍊",
+    "color": "orange",
+    "skill": "Tìm phân số của một số",
+    "story": "Duy hái được 52 quả cam. Duy tặng cho Hà 2/5 số quả cam đó. Hỏi Duy đã tặng bao nhiêu quả cam?",
+    "visual": {
+      "type": "bar",
+      "values": [
+        52,
+        20.8
+      ],
+      "labels": [
+        "Tổng hái được",
+        "Tặng đi"
+      ]
+    },
+    "retellOptions": [
+      "Có 52 quả cam, cho đi 2/5 số đó, tìm số lượng đã cho.",
+      "Có 52 quả cam, được tặng thêm 2/5 số đó.",
+      "Tìm số còn lại."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Duy hái được 52 quả cam",
+      "Cho đi 2/5 số đó",
+      "Tìm số quả cam cho đi"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình phân số của một số (Lấy tổng nhân với phân số)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "52 × 2 ÷ 5",
+      "52 + 2 - 5",
+      "52 - 2 + 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm 2/5 của 52 bằng cách lấy 52 nhân với 2 rồi chia cho 5.",
+      "Vì ta cộng thêm phân số.",
+      "Vì số lượng bị giảm đi."
+    ],
+    "correctReason": 0,
+    "answer": 20.8,
+    "unit": "quả cam",
+    "answerOptions": [
+      "Duy đã tặng 20.8 quả cam.",
+      "Duy đã tặng 24.8 quả cam.",
+      "Duy đã tặng 16.8 quả cam."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số 20.8 có phải là bằng 2/5 của 52 không?",
+    "checkOptions": [
+      "Đúng, vì 52 chia 5 nhân 2 bằng 20.8.",
+      "Sai, kết quả phải lớn hơn."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-72",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Duy hái được 52 quả cam. Duy tặng cho Hà 2/5 số quả cam đó. Hỏi Duy đã tặng bao nhiêu quả cam?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Duy hái được 52 quả cam\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Cho đi 2/5 số đó\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số quả cam cho đi\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình phân số của một số (Lấy tổng nhân với phân số)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"52 × 2 ÷ 5\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 52 × 2 ÷ 5 = 20.8 quả cam",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Duy đã tặng 20.8 quả cam.\""
+    ]
+  },
+  {
+    "title": "Thu gom quả xoài bảo vệ môi trường",
+    "shortTitle": "Thu gom quả xoài tổng hiệu",
+    "icon": "⚖️",
+    "color": "green",
+    "skill": "Tổng và Hiệu",
+    "story": "Linh và Minh thu gom được tổng cộng 88 quả xoài. Linh thu gom được nhiều hơn Minh 24 quả xoài. Hỏi Linh thu gom được bao nhiêu quả xoài?",
+    "visual": {
+      "type": "compare",
+      "big": 56,
+      "small": 32,
+      "diff": 24,
+      "bigLabel": "Linh",
+      "smallLabel": "Minh"
+    },
+    "retellOptions": [
+      "Tổng thu gom là 88 quả xoài, Linh nhiều hơn Minh 24 quả xoài, tìm số của Linh.",
+      "Tìm hiệu khi biết tổng số.",
+      "Tìm số thu gom của Minh khi biết tỉ số."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng số thu gom của hai bạn là 88 quả xoài",
+      "Linh nhiều hơn Minh 24 quả xoài",
+      "Tìm số quả xoài của Linh"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng (Tổng và Hiệu)",
+      "Mô hình chia đều",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(88 + 24) ÷ 2",
+      "(88 - 24) ÷ 2",
+      "88 + 24"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm số lớn bằng cách lấy (Tổng + Hiệu) chia đôi: (88 + 24) ÷ 2 = 56.",
+      "Vì lấy tổng trừ đi hiệu.",
+      "Vì số lượng gấp đôi."
+    ],
+    "correctReason": 0,
+    "answer": 56,
+    "unit": "quả xoài",
+    "answerOptions": [
+      "Linh thu gom được 56 quả xoài.",
+      "Linh thu gom được 32 quả xoài.",
+      "Linh thu gom được 88 quả xoài."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tổng số của hai bạn (56 và 32) có đúng bằng 88 không?",
+    "checkOptions": [
+      "Có, 56 + 32 = 88.",
+      "Không, tổng bằng số khác."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-73",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Linh và Minh thu gom được tổng cộng 88 quả xoài. Linh thu gom được nhiều hơn Minh 24 quả xoài. Hỏi Linh thu gom được bao nhiêu quả xoài?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Tổng số thu gom của hai bạn là 88 quả xoài\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Linh nhiều hơn Minh 24 quả xoài\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số quả xoài của Linh\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Sơ đồ đoạn thẳng (Tổng và Hiệu)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(88 + 24) ÷ 2\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (88 + 24) ÷ 2 = 56 quả xoài",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Linh thu gom được 56 quả xoài.\""
+    ]
+  },
+  {
+    "title": "Tuổi của cha và con",
+    "shortTitle": "Tuổi cha con tổng tỉ",
+    "icon": "🧮",
+    "color": "blue",
+    "skill": "Tổng và Tỉ số",
+    "story": "Tổng số tuổi của bố và Khoa là 72 tuổi. Tuổi bố gấp 3 lần tuổi Khoa. Hỏi Khoa năm nay bao nhiêu tuổi?",
+    "visual": {
+      "type": "compare",
+      "big": 54,
+      "small": 18,
+      "diff": 36,
+      "bigLabel": "Tuổi bố",
+      "smallLabel": "Tuổi Khoa"
+    },
+    "retellOptions": [
+      "Tổng số tuổi là 72, bố gấp 3 lần con, tìm tuổi con.",
+      "Bố hơn con 3 tuổi.",
+      "Tìm tuổi bố khi biết hiệu số tuổi."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng số tuổi hai bố con là 72 tuổi",
+      "Tuổi bố gấp 3 lần tuổi Khoa",
+      "Tìm số tuổi của Khoa"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng tỉ số (Tổng - Tỉ)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "72 ÷ (3 + 1)",
+      "72 ÷ 3",
+      "72 - 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm tổng số phần bằng nhau: 3 + 1 = 4 phần. Số tuổi của con là 1 phần: 72 ÷ 4 = 18.",
+      "Vì chia đều số tuổi cho 3 phần.",
+      "Vì con ít hơn bố 3 tuổi."
+    ],
+    "correctReason": 0,
+    "answer": 18,
+    "unit": "tuổi",
+    "answerOptions": [
+      "Năm nay Khoa 18 tuổi.",
+      "Năm nay Khoa 20 tuổi.",
+      "Năm nay Khoa 54 tuổi."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tuổi bố (54) có đúng là gấp 3 lần tuổi con (18) không?",
+    "checkOptions": [
+      "Có, 18 nhân 3 bằng 54.",
+      "Không, 18 nhân 3 bằng 59."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-74",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Tổng số tuổi của bố và Khoa là 72 tuổi. Tuổi bố gấp 3 lần tuổi Khoa. Hỏi Khoa năm nay bao nhiêu tuổi?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Tổng số tuổi hai bố con là 72 tuổi\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Tuổi bố gấp 3 lần tuổi Khoa\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số tuổi của Khoa\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Sơ đồ đoạn thẳng tỉ số (Tổng - Tỉ)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"72 ÷ (3 + 1)\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 72 ÷ (3 + 1) = 18 tuổi",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Năm nay Khoa 18 tuổi.\""
+    ]
+  },
+  {
+    "title": "Chiều dài hai sợi ruy-băng",
+    "shortTitle": "Sợi dây hiệu tỉ",
+    "icon": "📐",
+    "color": "pink",
+    "skill": "Hiệu và Tỉ số",
+    "story": "Sợi dây màu xanh dài hơn sợi dây màu đỏ 51 cm. Biết rằng sợi dây màu xanh dài gấp 4 lần sợi dây màu đỏ. Hỏi sợi dây màu đỏ dài bao nhiêu xăng-ti-mét?",
+    "visual": {
+      "type": "compare",
+      "big": 68,
+      "small": 17,
+      "diff": 51,
+      "bigLabel": "Sợi xanh",
+      "smallLabel": "Sợi đỏ"
+    },
+    "retellOptions": [
+      "Sợi xanh dài hơn đỏ 51 cm, sợi xanh gấp 4 lần đỏ, tìm sợi đỏ.",
+      "Tổng chiều dài hai sợi dây là 51 cm.",
+      "Tìm chiều dài sợi dây màu xanh."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Sợi dây màu xanh dài hơn sợi đỏ 51 cm",
+      "Sợi xanh dài gấp 4 lần sợi đỏ",
+      "Tìm chiều dài sợi đỏ"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng tỉ số (Hiệu - Tỉ)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "51 ÷ (4 - 1)",
+      "51 ÷ 4",
+      "51 + 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm hiệu số phần bằng nhau: 4 - 1 = 3 phần. Chiều dài sợi đỏ là 1 phần: 51 ÷ 3 = 17.",
+      "Vì lấy hiệu chia cho tỉ số.",
+      "Vì chiều dài sợi đỏ bằng hiệu cộng tỉ số."
+    ],
+    "correctReason": 0,
+    "answer": 17,
+    "unit": "cm",
+    "answerOptions": [
+      "Sợi dây màu đỏ dài 17 cm.",
+      "Sợi dây màu đỏ dài 68 cm.",
+      "Sợi dây màu đỏ dài 22 cm."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Hiệu chiều dài hai sợi dây (68 cm và 17 cm) có đúng bằng 51 cm không?",
+    "checkOptions": [
+      "Đúng, 68 trừ 17 bằng 51.",
+      "Sai, 68 trừ 17 bằng số khác."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-75",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Sợi dây màu xanh dài hơn sợi dây màu đỏ 51 cm. Biết rằng sợi dây màu xanh dài gấp 4 lần sợi dây màu đỏ. Hỏi sợi dây màu đỏ dài bao nhiêu xăng-ti-mét?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Sợi dây màu xanh dài hơn sợi đỏ 51 cm\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Sợi xanh dài gấp 4 lần sợi đỏ\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm chiều dài sợi đỏ\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Sơ đồ đoạn thẳng tỉ số (Hiệu - Tỉ)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"51 ÷ (4 - 1)\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 51 ÷ (4 - 1) = 17 cm",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Sợi dây màu đỏ dài 17 cm.\""
+    ]
+  },
+  {
+    "title": "Giá tiền mua quyển vở",
+    "shortTitle": "Mua quyển vở rút đơn vị",
+    "icon": "📦",
+    "color": "purple",
+    "skill": "Rút về đơn vị",
+    "story": "Mua 5 quyển vở hết 80000 đồng. Hỏi nếu mua 8 quyển vở như thế thì phải trả bao nhiêu tiền?",
+    "visual": {
+      "type": "bar",
+      "values": [
+        80000,
+        128000
+      ],
+      "labels": [
+        "Giá tiền 5 chiếc",
+        "Giá tiền 8 chiếc"
+      ]
+    },
+    "retellOptions": [
+      "Mua 5 chiếc hết 80000 đồng, tìm giá mua 8 chiếc.",
+      "Mua 5 chiếc được tặng 8 chiếc.",
+      "Tìm số lượng chiếc mua được."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mua 5 quyển vở hết 80000 đồng",
+      "Hỏi mua 8 quyển vở",
+      "Tìm số tiền mua 8 quyển vở"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình rút về đơn vị (Tìm giá 1 phần trước)",
+      "Mô hình hai giỏ so sánh",
+      "Sơ đồ đoạn thẳng"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "80000 ÷ 5 × 8",
+      "80000 × 5 ÷ 8",
+      "80000 + 8"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm giá 1 quyển vở (80000 ÷ 5 = 16000 đồng) rồi nhân với 8.",
+      "Vì lấy giá tiền nhân số lượng.",
+      "Vì giá tiền giảm đi."
+    ],
+    "correctReason": 0,
+    "answer": 128000,
+    "unit": "đồng",
+    "answerOptions": [
+      "Mua 8 quyển vở hết 128000 đồng.",
+      "Mua 8 quyển vở hết 138000 đồng.",
+      "Mua 8 quyển vở hết 118000 đồng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Giá 1 quyển vở có phải là 16000 đồng không?",
+    "checkOptions": [
+      "Đúng, vì 80000 chia 5 bằng 16000.",
+      "Sai, chia ra số khác."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-76",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Mua 5 quyển vở hết 80000 đồng. Hỏi nếu mua 8 quyển vở như thế thì phải trả bao nhiêu tiền?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Mua 5 quyển vở hết 80000 đồng\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Hỏi mua 8 quyển vở\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số tiền mua 8 quyển vở\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình rút về đơn vị (Tìm giá 1 phần trước)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"80000 ÷ 5 × 8\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 80000 ÷ 5 × 8 = 128000 đồng",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Mua 8 quyển vở hết 128000 đồng.\""
+    ]
+  },
+  {
+    "title": "Khu vườn hình vuông của bà",
+    "shortTitle": "Vườn hoa diện tích",
+    "icon": "🟩",
+    "color": "green",
+    "skill": "Diện tích",
+    "story": "Một vườn hoa hình vuông có chu vi là 24 m. Tính diện tích của vườn hoa đó.",
+    "visual": {
+      "type": "bar",
+      "values": [
+        24,
+        36
+      ],
+      "labels": [
+        "Chu vi vườn (m)",
+        "Diện tích vườn (m²)"
+      ]
+    },
+    "retellOptions": [
+      "Khu vườn hình vuông có chu vi 24 m, tính diện tích.",
+      "Biết diện tích, tính chu vi vườn.",
+      "So sánh diện tích hai khu vườn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Khu vườn có chu vi 24 m",
+      "Hình vuông có 4 cạnh bằng nhau",
+      "Tìm diện tích vườn"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Diện tích hình vuông (Cạnh nhân cạnh)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(24 ÷ 4) × (24 ÷ 4)",
+      "24 × 4",
+      "24 + 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm cạnh vườn hoa (24 ÷ 4 = 6 m) rồi tính diện tích: 6 × 6 = 36 m².",
+      "Vì diện tích bằng chu vi nhân 4.",
+      "Vì diện tích bằng chu vi cộng 4."
+    ],
+    "correctReason": 0,
+    "answer": 36,
+    "unit": "m²",
+    "answerOptions": [
+      "Diện tích vườn hoa là 36 m².",
+      "Diện tích vườn hoa là 24 m².",
+      "Diện tích vườn hoa là 72 m²."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Cạnh vườn hoa (6 m) nhân với chính nó có đúng bằng 36 không?",
+    "checkOptions": [
+      "Có, 6 nhân 6 bằng 36.",
+      "Không, kết quả bằng số khác."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-77",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Một vườn hoa hình vuông có chu vi là 24 m. Tính diện tích của vườn hoa đó.\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Khu vườn có chu vi 24 m\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Hình vuông có 4 cạnh bằng nhau\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm diện tích vườn\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Diện tích hình vuông (Cạnh nhân cạnh)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(24 ÷ 4) × (24 ÷ 4)\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (24 ÷ 4) × (24 ÷ 4) = 36 m²",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Diện tích vườn hoa là 36 m².\""
+    ]
+  },
+  {
+    "title": "Hái quả cam trong vườn",
+    "shortTitle": "Phân số quả cam",
+    "icon": "🍊",
+    "color": "orange",
+    "skill": "Tìm phân số của một số",
+    "story": "Lan hái được 64 quả cam. Lan tặng cho Nam 2/5 số quả cam đó. Hỏi Lan đã tặng bao nhiêu quả cam?",
+    "visual": {
+      "type": "bar",
+      "values": [
+        64,
+        25.6
+      ],
+      "labels": [
+        "Tổng hái được",
+        "Tặng đi"
+      ]
+    },
+    "retellOptions": [
+      "Có 64 quả cam, cho đi 2/5 số đó, tìm số lượng đã cho.",
+      "Có 64 quả cam, được tặng thêm 2/5 số đó.",
+      "Tìm số còn lại."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Lan hái được 64 quả cam",
+      "Cho đi 2/5 số đó",
+      "Tìm số quả cam cho đi"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình phân số của một số (Lấy tổng nhân với phân số)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "64 × 2 ÷ 5",
+      "64 + 2 - 5",
+      "64 - 2 + 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm 2/5 của 64 bằng cách lấy 64 nhân với 2 rồi chia cho 5.",
+      "Vì ta cộng thêm phân số.",
+      "Vì số lượng bị giảm đi."
+    ],
+    "correctReason": 0,
+    "answer": 25.6,
+    "unit": "quả cam",
+    "answerOptions": [
+      "Lan đã tặng 25.6 quả cam.",
+      "Lan đã tặng 29.6 quả cam.",
+      "Lan đã tặng 21.6 quả cam."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số 25.6 có phải là bằng 2/5 của 64 không?",
+    "checkOptions": [
+      "Đúng, vì 64 chia 5 nhân 2 bằng 25.6.",
+      "Sai, kết quả phải lớn hơn."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-78",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Lan hái được 64 quả cam. Lan tặng cho Nam 2/5 số quả cam đó. Hỏi Lan đã tặng bao nhiêu quả cam?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Lan hái được 64 quả cam\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Cho đi 2/5 số đó\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số quả cam cho đi\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình phân số của một số (Lấy tổng nhân với phân số)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"64 × 2 ÷ 5\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 64 × 2 ÷ 5 = 25.6 quả cam",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Lan đã tặng 25.6 quả cam.\""
+    ]
+  },
+  {
+    "title": "Thu gom quả xoài bảo vệ môi trường",
+    "shortTitle": "Thu gom quả xoài tổng hiệu",
+    "icon": "⚖️",
+    "color": "green",
+    "skill": "Tổng và Hiệu",
+    "story": "Vy và Mai thu gom được tổng cộng 112 quả xoài. Vy thu gom được nhiều hơn Mai 36 quả xoài. Hỏi Vy thu gom được bao nhiêu quả xoài?",
+    "visual": {
+      "type": "compare",
+      "big": 74,
+      "small": 38,
+      "diff": 36,
+      "bigLabel": "Vy",
+      "smallLabel": "Mai"
+    },
+    "retellOptions": [
+      "Tổng thu gom là 112 quả xoài, Vy nhiều hơn Mai 36 quả xoài, tìm số của Vy.",
+      "Tìm hiệu khi biết tổng số.",
+      "Tìm số thu gom của Mai khi biết tỉ số."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng số thu gom của hai bạn là 112 quả xoài",
+      "Vy nhiều hơn Mai 36 quả xoài",
+      "Tìm số quả xoài của Vy"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng (Tổng và Hiệu)",
+      "Mô hình chia đều",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(112 + 36) ÷ 2",
+      "(112 - 36) ÷ 2",
+      "112 + 36"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm số lớn bằng cách lấy (Tổng + Hiệu) chia đôi: (112 + 36) ÷ 2 = 74.",
+      "Vì lấy tổng trừ đi hiệu.",
+      "Vì số lượng gấp đôi."
+    ],
+    "correctReason": 0,
+    "answer": 74,
+    "unit": "quả xoài",
+    "answerOptions": [
+      "Vy thu gom được 74 quả xoài.",
+      "Vy thu gom được 38 quả xoài.",
+      "Vy thu gom được 112 quả xoài."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tổng số của hai bạn (74 và 38) có đúng bằng 112 không?",
+    "checkOptions": [
+      "Có, 74 + 38 = 112.",
+      "Không, tổng bằng số khác."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-79",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Vy và Mai thu gom được tổng cộng 112 quả xoài. Vy thu gom được nhiều hơn Mai 36 quả xoài. Hỏi Vy thu gom được bao nhiêu quả xoài?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Tổng số thu gom của hai bạn là 112 quả xoài\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Vy nhiều hơn Mai 36 quả xoài\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số quả xoài của Vy\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Sơ đồ đoạn thẳng (Tổng và Hiệu)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(112 + 36) ÷ 2\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (112 + 36) ÷ 2 = 74 quả xoài",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Vy thu gom được 74 quả xoài.\""
+    ]
+  },
+  {
+    "title": "Tuổi của cha và con",
+    "shortTitle": "Tuổi cha con tổng tỉ",
+    "icon": "🧮",
+    "color": "blue",
+    "skill": "Tổng và Tỉ số",
+    "story": "Tổng số tuổi của bố và Bo là 96 tuổi. Tuổi bố gấp 3 lần tuổi Bo. Hỏi Bo năm nay bao nhiêu tuổi?",
+    "visual": {
+      "type": "compare",
+      "big": 72,
+      "small": 24,
+      "diff": 48,
+      "bigLabel": "Tuổi bố",
+      "smallLabel": "Tuổi Bo"
+    },
+    "retellOptions": [
+      "Tổng số tuổi là 96, bố gấp 3 lần con, tìm tuổi con.",
+      "Bố hơn con 3 tuổi.",
+      "Tìm tuổi bố khi biết hiệu số tuổi."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng số tuổi hai bố con là 96 tuổi",
+      "Tuổi bố gấp 3 lần tuổi Bo",
+      "Tìm số tuổi của Bo"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng tỉ số (Tổng - Tỉ)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "96 ÷ (3 + 1)",
+      "96 ÷ 3",
+      "96 - 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm tổng số phần bằng nhau: 3 + 1 = 4 phần. Số tuổi của con là 1 phần: 96 ÷ 4 = 24.",
+      "Vì chia đều số tuổi cho 3 phần.",
+      "Vì con ít hơn bố 3 tuổi."
+    ],
+    "correctReason": 0,
+    "answer": 24,
+    "unit": "tuổi",
+    "answerOptions": [
+      "Năm nay Bo 24 tuổi.",
+      "Năm nay Bo 26 tuổi.",
+      "Năm nay Bo 72 tuổi."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tuổi bố (72) có đúng là gấp 3 lần tuổi con (24) không?",
+    "checkOptions": [
+      "Có, 24 nhân 3 bằng 72.",
+      "Không, 24 nhân 3 bằng 77."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-80",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Tổng số tuổi của bố và Bo là 96 tuổi. Tuổi bố gấp 3 lần tuổi Bo. Hỏi Bo năm nay bao nhiêu tuổi?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Tổng số tuổi hai bố con là 96 tuổi\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Tuổi bố gấp 3 lần tuổi Bo\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số tuổi của Bo\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Sơ đồ đoạn thẳng tỉ số (Tổng - Tỉ)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"96 ÷ (3 + 1)\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 96 ÷ (3 + 1) = 24 tuổi",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Năm nay Bo 24 tuổi.\""
+    ]
+  },
+  {
+    "title": "Chiều dài hai sợi ruy-băng",
+    "shortTitle": "Sợi dây hiệu tỉ",
+    "icon": "📐",
+    "color": "pink",
+    "skill": "Hiệu và Tỉ số",
+    "story": "Sợi dây màu xanh dài hơn sợi dây màu đỏ 69 cm. Biết rằng sợi dây màu xanh dài gấp 4 lần sợi dây màu đỏ. Hỏi sợi dây màu đỏ dài bao nhiêu xăng-ti-mét?",
+    "visual": {
+      "type": "compare",
+      "big": 92,
+      "small": 23,
+      "diff": 69,
+      "bigLabel": "Sợi xanh",
+      "smallLabel": "Sợi đỏ"
+    },
+    "retellOptions": [
+      "Sợi xanh dài hơn đỏ 69 cm, sợi xanh gấp 4 lần đỏ, tìm sợi đỏ.",
+      "Tổng chiều dài hai sợi dây là 69 cm.",
+      "Tìm chiều dài sợi dây màu xanh."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Sợi dây màu xanh dài hơn sợi đỏ 69 cm",
+      "Sợi xanh dài gấp 4 lần sợi đỏ",
+      "Tìm chiều dài sợi đỏ"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng tỉ số (Hiệu - Tỉ)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "69 ÷ (4 - 1)",
+      "69 ÷ 4",
+      "69 + 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm hiệu số phần bằng nhau: 4 - 1 = 3 phần. Chiều dài sợi đỏ là 1 phần: 69 ÷ 3 = 23.",
+      "Vì lấy hiệu chia cho tỉ số.",
+      "Vì chiều dài sợi đỏ bằng hiệu cộng tỉ số."
+    ],
+    "correctReason": 0,
+    "answer": 23,
+    "unit": "cm",
+    "answerOptions": [
+      "Sợi dây màu đỏ dài 23 cm.",
+      "Sợi dây màu đỏ dài 92 cm.",
+      "Sợi dây màu đỏ dài 28 cm."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Hiệu chiều dài hai sợi dây (92 cm và 23 cm) có đúng bằng 69 cm không?",
+    "checkOptions": [
+      "Đúng, 92 trừ 23 bằng 69.",
+      "Sai, 92 trừ 23 bằng số khác."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-81",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Sợi dây màu xanh dài hơn sợi dây màu đỏ 69 cm. Biết rằng sợi dây màu xanh dài gấp 4 lần sợi dây màu đỏ. Hỏi sợi dây màu đỏ dài bao nhiêu xăng-ti-mét?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Sợi dây màu xanh dài hơn sợi đỏ 69 cm\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Sợi xanh dài gấp 4 lần sợi đỏ\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm chiều dài sợi đỏ\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Sơ đồ đoạn thẳng tỉ số (Hiệu - Tỉ)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"69 ÷ (4 - 1)\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 69 ÷ (4 - 1) = 23 cm",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Sợi dây màu đỏ dài 23 cm.\""
+    ]
+  },
+  {
+    "title": "Giá tiền mua quyển vở",
+    "shortTitle": "Mua quyển vở rút đơn vị",
+    "icon": "📦",
+    "color": "purple",
+    "skill": "Rút về đơn vị",
+    "story": "Mua 5 quyển vở hết 110000 đồng. Hỏi nếu mua 8 quyển vở như thế thì phải trả bao nhiêu tiền?",
+    "visual": {
+      "type": "bar",
+      "values": [
+        110000,
+        176000
+      ],
+      "labels": [
+        "Giá tiền 5 chiếc",
+        "Giá tiền 8 chiếc"
+      ]
+    },
+    "retellOptions": [
+      "Mua 5 chiếc hết 110000 đồng, tìm giá mua 8 chiếc.",
+      "Mua 5 chiếc được tặng 8 chiếc.",
+      "Tìm số lượng chiếc mua được."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mua 5 quyển vở hết 110000 đồng",
+      "Hỏi mua 8 quyển vở",
+      "Tìm số tiền mua 8 quyển vở"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình rút về đơn vị (Tìm giá 1 phần trước)",
+      "Mô hình hai giỏ so sánh",
+      "Sơ đồ đoạn thẳng"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "110000 ÷ 5 × 8",
+      "110000 × 5 ÷ 8",
+      "110000 + 8"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm giá 1 quyển vở (110000 ÷ 5 = 22000 đồng) rồi nhân với 8.",
+      "Vì lấy giá tiền nhân số lượng.",
+      "Vì giá tiền giảm đi."
+    ],
+    "correctReason": 0,
+    "answer": 176000,
+    "unit": "đồng",
+    "answerOptions": [
+      "Mua 8 quyển vở hết 176000 đồng.",
+      "Mua 8 quyển vở hết 186000 đồng.",
+      "Mua 8 quyển vở hết 166000 đồng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Giá 1 quyển vở có phải là 22000 đồng không?",
+    "checkOptions": [
+      "Đúng, vì 110000 chia 5 bằng 22000.",
+      "Sai, chia ra số khác."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-82",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Mua 5 quyển vở hết 110000 đồng. Hỏi nếu mua 8 quyển vở như thế thì phải trả bao nhiêu tiền?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Mua 5 quyển vở hết 110000 đồng\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Hỏi mua 8 quyển vở\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số tiền mua 8 quyển vở\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình rút về đơn vị (Tìm giá 1 phần trước)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"110000 ÷ 5 × 8\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 110000 ÷ 5 × 8 = 176000 đồng",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Mua 8 quyển vở hết 176000 đồng.\""
+    ]
+  },
+  {
+    "title": "Khu vườn hình vuông của bà",
+    "shortTitle": "Vườn hoa diện tích",
+    "icon": "🟩",
+    "color": "green",
+    "skill": "Diện tích",
+    "story": "Một vườn hoa hình vuông có chu vi là 28 m. Tính diện tích của vườn hoa đó.",
+    "visual": {
+      "type": "bar",
+      "values": [
+        28,
+        49
+      ],
+      "labels": [
+        "Chu vi vườn (m)",
+        "Diện tích vườn (m²)"
+      ]
+    },
+    "retellOptions": [
+      "Khu vườn hình vuông có chu vi 28 m, tính diện tích.",
+      "Biết diện tích, tính chu vi vườn.",
+      "So sánh diện tích hai khu vườn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Khu vườn có chu vi 28 m",
+      "Hình vuông có 4 cạnh bằng nhau",
+      "Tìm diện tích vườn"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Diện tích hình vuông (Cạnh nhân cạnh)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(28 ÷ 4) × (28 ÷ 4)",
+      "28 × 4",
+      "28 + 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm cạnh vườn hoa (28 ÷ 4 = 7 m) rồi tính diện tích: 7 × 7 = 49 m².",
+      "Vì diện tích bằng chu vi nhân 4.",
+      "Vì diện tích bằng chu vi cộng 4."
+    ],
+    "correctReason": 0,
+    "answer": 49,
+    "unit": "m²",
+    "answerOptions": [
+      "Diện tích vườn hoa là 49 m².",
+      "Diện tích vườn hoa là 28 m².",
+      "Diện tích vườn hoa là 98 m²."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Cạnh vườn hoa (7 m) nhân với chính nó có đúng bằng 49 không?",
+    "checkOptions": [
+      "Có, 7 nhân 7 bằng 49.",
+      "Không, kết quả bằng số khác."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-83",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Một vườn hoa hình vuông có chu vi là 28 m. Tính diện tích của vườn hoa đó.\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Khu vườn có chu vi 28 m\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Hình vuông có 4 cạnh bằng nhau\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm diện tích vườn\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Diện tích hình vuông (Cạnh nhân cạnh)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(28 ÷ 4) × (28 ÷ 4)\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (28 ÷ 4) × (28 ÷ 4) = 49 m²",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Diện tích vườn hoa là 49 m².\""
+    ]
+  },
+  {
+    "title": "Hái quả cam trong vườn",
+    "shortTitle": "Phân số quả cam",
+    "icon": "🍊",
+    "color": "orange",
+    "skill": "Tìm phân số của một số",
+    "story": "Duy hái được 76 quả cam. Duy tặng cho Hà 2/5 số quả cam đó. Hỏi Duy đã tặng bao nhiêu quả cam?",
+    "visual": {
+      "type": "bar",
+      "values": [
+        76,
+        30.4
+      ],
+      "labels": [
+        "Tổng hái được",
+        "Tặng đi"
+      ]
+    },
+    "retellOptions": [
+      "Có 76 quả cam, cho đi 2/5 số đó, tìm số lượng đã cho.",
+      "Có 76 quả cam, được tặng thêm 2/5 số đó.",
+      "Tìm số còn lại."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Duy hái được 76 quả cam",
+      "Cho đi 2/5 số đó",
+      "Tìm số quả cam cho đi"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình phân số của một số (Lấy tổng nhân với phân số)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "76 × 2 ÷ 5",
+      "76 + 2 - 5",
+      "76 - 2 + 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm 2/5 của 76 bằng cách lấy 76 nhân với 2 rồi chia cho 5.",
+      "Vì ta cộng thêm phân số.",
+      "Vì số lượng bị giảm đi."
+    ],
+    "correctReason": 0,
+    "answer": 30.4,
+    "unit": "quả cam",
+    "answerOptions": [
+      "Duy đã tặng 30.4 quả cam.",
+      "Duy đã tặng 34.4 quả cam.",
+      "Duy đã tặng 26.4 quả cam."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số 30.4 có phải là bằng 2/5 của 76 không?",
+    "checkOptions": [
+      "Đúng, vì 76 chia 5 nhân 2 bằng 30.4.",
+      "Sai, kết quả phải lớn hơn."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-84",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Duy hái được 76 quả cam. Duy tặng cho Hà 2/5 số quả cam đó. Hỏi Duy đã tặng bao nhiêu quả cam?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Duy hái được 76 quả cam\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Cho đi 2/5 số đó\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số quả cam cho đi\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình phân số của một số (Lấy tổng nhân với phân số)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"76 × 2 ÷ 5\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 76 × 2 ÷ 5 = 30.4 quả cam",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Duy đã tặng 30.4 quả cam.\""
+    ]
+  },
+  {
+    "title": "Thu gom quả xoài bảo vệ môi trường",
+    "shortTitle": "Thu gom quả xoài tổng hiệu",
+    "icon": "⚖️",
+    "color": "green",
+    "skill": "Tổng và Hiệu",
+    "story": "Linh và Minh thu gom được tổng cộng 136 quả xoài. Linh thu gom được nhiều hơn Minh 48 quả xoài. Hỏi Linh thu gom được bao nhiêu quả xoài?",
+    "visual": {
+      "type": "compare",
+      "big": 92,
+      "small": 44,
+      "diff": 48,
+      "bigLabel": "Linh",
+      "smallLabel": "Minh"
+    },
+    "retellOptions": [
+      "Tổng thu gom là 136 quả xoài, Linh nhiều hơn Minh 48 quả xoài, tìm số của Linh.",
+      "Tìm hiệu khi biết tổng số.",
+      "Tìm số thu gom của Minh khi biết tỉ số."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng số thu gom của hai bạn là 136 quả xoài",
+      "Linh nhiều hơn Minh 48 quả xoài",
+      "Tìm số quả xoài của Linh"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng (Tổng và Hiệu)",
+      "Mô hình chia đều",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(136 + 48) ÷ 2",
+      "(136 - 48) ÷ 2",
+      "136 + 48"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm số lớn bằng cách lấy (Tổng + Hiệu) chia đôi: (136 + 48) ÷ 2 = 92.",
+      "Vì lấy tổng trừ đi hiệu.",
+      "Vì số lượng gấp đôi."
+    ],
+    "correctReason": 0,
+    "answer": 92,
+    "unit": "quả xoài",
+    "answerOptions": [
+      "Linh thu gom được 92 quả xoài.",
+      "Linh thu gom được 44 quả xoài.",
+      "Linh thu gom được 136 quả xoài."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tổng số của hai bạn (92 và 44) có đúng bằng 136 không?",
+    "checkOptions": [
+      "Có, 92 + 44 = 136.",
+      "Không, tổng bằng số khác."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-85",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Linh và Minh thu gom được tổng cộng 136 quả xoài. Linh thu gom được nhiều hơn Minh 48 quả xoài. Hỏi Linh thu gom được bao nhiêu quả xoài?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Tổng số thu gom của hai bạn là 136 quả xoài\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Linh nhiều hơn Minh 48 quả xoài\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số quả xoài của Linh\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Sơ đồ đoạn thẳng (Tổng và Hiệu)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(136 + 48) ÷ 2\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (136 + 48) ÷ 2 = 92 quả xoài",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Linh thu gom được 92 quả xoài.\""
+    ]
+  },
+  {
+    "title": "Tuổi của cha và con",
+    "shortTitle": "Tuổi cha con tổng tỉ",
+    "icon": "🧮",
+    "color": "blue",
+    "skill": "Tổng và Tỉ số",
+    "story": "Tổng số tuổi của bố và Khoa là 120 tuổi. Tuổi bố gấp 3 lần tuổi Khoa. Hỏi Khoa năm nay bao nhiêu tuổi?",
+    "visual": {
+      "type": "compare",
+      "big": 90,
+      "small": 30,
+      "diff": 60,
+      "bigLabel": "Tuổi bố",
+      "smallLabel": "Tuổi Khoa"
+    },
+    "retellOptions": [
+      "Tổng số tuổi là 120, bố gấp 3 lần con, tìm tuổi con.",
+      "Bố hơn con 3 tuổi.",
+      "Tìm tuổi bố khi biết hiệu số tuổi."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng số tuổi hai bố con là 120 tuổi",
+      "Tuổi bố gấp 3 lần tuổi Khoa",
+      "Tìm số tuổi của Khoa"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng tỉ số (Tổng - Tỉ)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "120 ÷ (3 + 1)",
+      "120 ÷ 3",
+      "120 - 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm tổng số phần bằng nhau: 3 + 1 = 4 phần. Số tuổi của con là 1 phần: 120 ÷ 4 = 30.",
+      "Vì chia đều số tuổi cho 3 phần.",
+      "Vì con ít hơn bố 3 tuổi."
+    ],
+    "correctReason": 0,
+    "answer": 30,
+    "unit": "tuổi",
+    "answerOptions": [
+      "Năm nay Khoa 30 tuổi.",
+      "Năm nay Khoa 32 tuổi.",
+      "Năm nay Khoa 90 tuổi."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tuổi bố (90) có đúng là gấp 3 lần tuổi con (30) không?",
+    "checkOptions": [
+      "Có, 30 nhân 3 bằng 90.",
+      "Không, 30 nhân 3 bằng 95."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-86",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Tổng số tuổi của bố và Khoa là 120 tuổi. Tuổi bố gấp 3 lần tuổi Khoa. Hỏi Khoa năm nay bao nhiêu tuổi?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Tổng số tuổi hai bố con là 120 tuổi\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Tuổi bố gấp 3 lần tuổi Khoa\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số tuổi của Khoa\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Sơ đồ đoạn thẳng tỉ số (Tổng - Tỉ)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"120 ÷ (3 + 1)\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 120 ÷ (3 + 1) = 30 tuổi",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Năm nay Khoa 30 tuổi.\""
+    ]
+  },
+  {
+    "title": "Chiều dài hai sợi ruy-băng",
+    "shortTitle": "Sợi dây hiệu tỉ",
+    "icon": "📐",
+    "color": "pink",
+    "skill": "Hiệu và Tỉ số",
+    "story": "Sợi dây màu xanh dài hơn sợi dây màu đỏ 87 cm. Biết rằng sợi dây màu xanh dài gấp 4 lần sợi dây màu đỏ. Hỏi sợi dây màu đỏ dài bao nhiêu xăng-ti-mét?",
+    "visual": {
+      "type": "compare",
+      "big": 116,
+      "small": 29,
+      "diff": 87,
+      "bigLabel": "Sợi xanh",
+      "smallLabel": "Sợi đỏ"
+    },
+    "retellOptions": [
+      "Sợi xanh dài hơn đỏ 87 cm, sợi xanh gấp 4 lần đỏ, tìm sợi đỏ.",
+      "Tổng chiều dài hai sợi dây là 87 cm.",
+      "Tìm chiều dài sợi dây màu xanh."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Sợi dây màu xanh dài hơn sợi đỏ 87 cm",
+      "Sợi xanh dài gấp 4 lần sợi đỏ",
+      "Tìm chiều dài sợi đỏ"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng tỉ số (Hiệu - Tỉ)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "87 ÷ (4 - 1)",
+      "87 ÷ 4",
+      "87 + 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm hiệu số phần bằng nhau: 4 - 1 = 3 phần. Chiều dài sợi đỏ là 1 phần: 87 ÷ 3 = 29.",
+      "Vì lấy hiệu chia cho tỉ số.",
+      "Vì chiều dài sợi đỏ bằng hiệu cộng tỉ số."
+    ],
+    "correctReason": 0,
+    "answer": 29,
+    "unit": "cm",
+    "answerOptions": [
+      "Sợi dây màu đỏ dài 29 cm.",
+      "Sợi dây màu đỏ dài 116 cm.",
+      "Sợi dây màu đỏ dài 34 cm."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Hiệu chiều dài hai sợi dây (116 cm và 29 cm) có đúng bằng 87 cm không?",
+    "checkOptions": [
+      "Đúng, 116 trừ 29 bằng 87.",
+      "Sai, 116 trừ 29 bằng số khác."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-87",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Sợi dây màu xanh dài hơn sợi dây màu đỏ 87 cm. Biết rằng sợi dây màu xanh dài gấp 4 lần sợi dây màu đỏ. Hỏi sợi dây màu đỏ dài bao nhiêu xăng-ti-mét?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Sợi dây màu xanh dài hơn sợi đỏ 87 cm\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Sợi xanh dài gấp 4 lần sợi đỏ\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm chiều dài sợi đỏ\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Sơ đồ đoạn thẳng tỉ số (Hiệu - Tỉ)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"87 ÷ (4 - 1)\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 87 ÷ (4 - 1) = 29 cm",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Sợi dây màu đỏ dài 29 cm.\""
+    ]
+  },
+  {
+    "title": "Giá tiền mua quyển vở",
+    "shortTitle": "Mua quyển vở rút đơn vị",
+    "icon": "📦",
+    "color": "purple",
+    "skill": "Rút về đơn vị",
+    "story": "Mua 5 quyển vở hết 140000 đồng. Hỏi nếu mua 8 quyển vở như thế thì phải trả bao nhiêu tiền?",
+    "visual": {
+      "type": "bar",
+      "values": [
+        140000,
+        224000
+      ],
+      "labels": [
+        "Giá tiền 5 chiếc",
+        "Giá tiền 8 chiếc"
+      ]
+    },
+    "retellOptions": [
+      "Mua 5 chiếc hết 140000 đồng, tìm giá mua 8 chiếc.",
+      "Mua 5 chiếc được tặng 8 chiếc.",
+      "Tìm số lượng chiếc mua được."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mua 5 quyển vở hết 140000 đồng",
+      "Hỏi mua 8 quyển vở",
+      "Tìm số tiền mua 8 quyển vở"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình rút về đơn vị (Tìm giá 1 phần trước)",
+      "Mô hình hai giỏ so sánh",
+      "Sơ đồ đoạn thẳng"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "140000 ÷ 5 × 8",
+      "140000 × 5 ÷ 8",
+      "140000 + 8"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm giá 1 quyển vở (140000 ÷ 5 = 28000 đồng) rồi nhân với 8.",
+      "Vì lấy giá tiền nhân số lượng.",
+      "Vì giá tiền giảm đi."
+    ],
+    "correctReason": 0,
+    "answer": 224000,
+    "unit": "đồng",
+    "answerOptions": [
+      "Mua 8 quyển vở hết 224000 đồng.",
+      "Mua 8 quyển vở hết 234000 đồng.",
+      "Mua 8 quyển vở hết 214000 đồng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Giá 1 quyển vở có phải là 28000 đồng không?",
+    "checkOptions": [
+      "Đúng, vì 140000 chia 5 bằng 28000.",
+      "Sai, chia ra số khác."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-88",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Mua 5 quyển vở hết 140000 đồng. Hỏi nếu mua 8 quyển vở như thế thì phải trả bao nhiêu tiền?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Mua 5 quyển vở hết 140000 đồng\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Hỏi mua 8 quyển vở\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số tiền mua 8 quyển vở\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình rút về đơn vị (Tìm giá 1 phần trước)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"140000 ÷ 5 × 8\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 140000 ÷ 5 × 8 = 224000 đồng",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Mua 8 quyển vở hết 224000 đồng.\""
+    ]
+  },
+  {
+    "title": "Khu vườn hình vuông của bà",
+    "shortTitle": "Vườn hoa diện tích",
+    "icon": "🟩",
+    "color": "green",
+    "skill": "Diện tích",
+    "story": "Một vườn hoa hình vuông có chu vi là 32 m. Tính diện tích của vườn hoa đó.",
+    "visual": {
+      "type": "bar",
+      "values": [
+        32,
+        64
+      ],
+      "labels": [
+        "Chu vi vườn (m)",
+        "Diện tích vườn (m²)"
+      ]
+    },
+    "retellOptions": [
+      "Khu vườn hình vuông có chu vi 32 m, tính diện tích.",
+      "Biết diện tích, tính chu vi vườn.",
+      "So sánh diện tích hai khu vườn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Khu vườn có chu vi 32 m",
+      "Hình vuông có 4 cạnh bằng nhau",
+      "Tìm diện tích vườn"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Diện tích hình vuông (Cạnh nhân cạnh)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(32 ÷ 4) × (32 ÷ 4)",
+      "32 × 4",
+      "32 + 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm cạnh vườn hoa (32 ÷ 4 = 8 m) rồi tính diện tích: 8 × 8 = 64 m².",
+      "Vì diện tích bằng chu vi nhân 4.",
+      "Vì diện tích bằng chu vi cộng 4."
+    ],
+    "correctReason": 0,
+    "answer": 64,
+    "unit": "m²",
+    "answerOptions": [
+      "Diện tích vườn hoa là 64 m².",
+      "Diện tích vườn hoa là 32 m².",
+      "Diện tích vườn hoa là 128 m²."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Cạnh vườn hoa (8 m) nhân với chính nó có đúng bằng 64 không?",
+    "checkOptions": [
+      "Có, 8 nhân 8 bằng 64.",
+      "Không, kết quả bằng số khác."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-89",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Một vườn hoa hình vuông có chu vi là 32 m. Tính diện tích của vườn hoa đó.\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Khu vườn có chu vi 32 m\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Hình vuông có 4 cạnh bằng nhau\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm diện tích vườn\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Diện tích hình vuông (Cạnh nhân cạnh)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"(32 ÷ 4) × (32 ÷ 4)\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: (32 ÷ 4) × (32 ÷ 4) = 64 m²",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Diện tích vườn hoa là 64 m².\""
+    ]
+  },
+  {
+    "title": "Hái quả cam trong vườn",
+    "shortTitle": "Phân số quả cam",
+    "icon": "🍊",
+    "color": "orange",
+    "skill": "Tìm phân số của một số",
+    "story": "Lan hái được 88 quả cam. Lan tặng cho Nam 2/5 số quả cam đó. Hỏi Lan đã tặng bao nhiêu quả cam?",
+    "visual": {
+      "type": "bar",
+      "values": [
+        88,
+        35.2
+      ],
+      "labels": [
+        "Tổng hái được",
+        "Tặng đi"
+      ]
+    },
+    "retellOptions": [
+      "Có 88 quả cam, cho đi 2/5 số đó, tìm số lượng đã cho.",
+      "Có 88 quả cam, được tặng thêm 2/5 số đó.",
+      "Tìm số còn lại."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Lan hái được 88 quả cam",
+      "Cho đi 2/5 số đó",
+      "Tìm số quả cam cho đi"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình phân số của một số (Lấy tổng nhân với phân số)",
+      "Mô hình gộp hai phần",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "88 × 2 ÷ 5",
+      "88 + 2 - 5",
+      "88 - 2 + 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tìm 2/5 của 88 bằng cách lấy 88 nhân với 2 rồi chia cho 5.",
+      "Vì ta cộng thêm phân số.",
+      "Vì số lượng bị giảm đi."
+    ],
+    "correctReason": 0,
+    "answer": 35.2,
+    "unit": "quả cam",
+    "answerOptions": [
+      "Lan đã tặng 35.2 quả cam.",
+      "Lan đã tặng 39.2 quả cam.",
+      "Lan đã tặng 31.200000000000003 quả cam."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số 35.2 có phải là bằng 2/5 của 88 không?",
+    "checkOptions": [
+      "Đúng, vì 88 chia 5 nhân 2 bằng 35.2.",
+      "Sai, kết quả phải lớn hơn."
+    ],
+    "correctCheck": 0,
+    "id": "lesson-90",
+    "hints": [
+      "Bước 1: Phân tích đề bài - Đọc kỹ câu chuyện toán học: \"Lan hái được 88 quả cam. Lan tặng cho Nam 2/5 số quả cam đó. Hỏi Lan đã tặng bao nhiêu quả cam?\"",
+      "Bước 2: Xác định thông tin đã biết thứ nhất: \"Lan hái được 88 quả cam\"",
+      "Bước 3: Xác định thông tin đã biết tiếp theo: \"Cho đi 2/5 số đó\"",
+      "Bước 4: Xác định mục tiêu cần tìm - Câu hỏi yêu cầu: \"Tìm số quả cam cho đi\"",
+      "Bước 5: Lựa chọn mô hình tư duy - Sử dụng trực quan: \"Mô hình phân số của một số (Lấy tổng nhân với phân số)\"",
+      "Bước 6: Lập phép tính thích hợp để giải toán: \"88 × 2 ÷ 5\"",
+      "Bước 7: Thực hiện tính toán kết quả chính xác: 88 × 2 ÷ 5 = 35.2 quả cam",
+      "Bước 8: Kiểm tra lại kết quả và chọn câu trả lời đúng: \"Lan đã tặng 35.2 quả cam.\""
     ]
   }
 ]

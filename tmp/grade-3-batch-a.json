@@ -1,0 +1,1691 @@
+[
+  {
+    "id": "lesson-41",
+    "title": "Xưởng may đồng phục học sinh",
+    "shortTitle": "May đồng phục",
+    "icon": "🧵",
+    "color": "blue",
+    "skill": "Nhân nhiều chữ số",
+    "story": "Xưởng may của cô Lan nhận đơn hàng may đồng phục. Mỗi ngày xưởng may được 234 bộ đồng phục. Hỏi trong 3 ngày, xưởng may được tất cả bao nhiêu bộ đồng phục?",
+    "visual": {
+      "type": "bar",
+      "values": [234, 234, 234],
+      "labels": ["Ngày 1", "Ngày 2", "Ngày 3"]
+    },
+    "retellOptions": [
+      "Mỗi ngày may 234 bộ, trong 3 ngày may được tất cả bao nhiêu bộ.",
+      "Có 234 bộ đồng phục, chia đều cho 3 lớp, hỏi mỗi lớp bao nhiêu.",
+      "Tìm số ngày cần để may xong 234 bộ đồng phục."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mỗi ngày xưởng may được 234 bộ",
+      "Xưởng may trong 3 ngày",
+      "Tìm tổng số bộ đồng phục may được"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "234 × 3",
+      "234 + 3",
+      "234 ÷ 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì số bộ đồng phục mỗi ngày (234) lặp lại 3 lần nên ta dùng phép nhân.",
+      "Vì xưởng may thêm 3 bộ nữa.",
+      "Vì đồng phục được chia đều cho các ngày."
+    ],
+    "correctReason": 0,
+    "answer": 702,
+    "unit": "bộ đồng phục",
+    "answerOptions": [
+      "Trong 3 ngày, xưởng may được tất cả 702 bộ đồng phục.",
+      "Trong 3 ngày, xưởng may được tất cả 237 bộ đồng phục.",
+      "Trong 3 ngày, xưởng may được tất cả 78 bộ đồng phục."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số 702 bộ có lớn hơn số đồng phục may trong một ngày (234 bộ) không?",
+    "checkOptions": [
+      "Có, 234 nhân 3 đúng bằng 702.",
+      "Không, 234 nhân 3 bằng 237."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đọc kỹ đề bài, tìm số đồng phục may mỗi ngày (234 bộ).",
+      "Bước 2: Xác định số ngày may đồng phục (3 ngày).",
+      "Bước 3: Nhận ra đây là bài toán nhân vì lặp lại 3 lần.",
+      "Bước 4: Đặt tính nhân: 234 × 3.",
+      "Bước 5: Tính từ phải sang trái: 4 × 3 = 12, viết 2 nhớ 1; 3 × 3 = 9, thêm 1 = 10, viết 0 nhớ 1; 2 × 3 = 6, thêm 1 = 7.",
+      "Bước 6: Kết quả: 234 × 3 = 702 bộ đồng phục.",
+      "Bước 7: Kiểm tra lại: 702 ÷ 3 = 234. Đúng!",
+      "Bước 8: Chọn đáp án 702 bộ đồng phục."
+    ]
+  },
+  {
+    "id": "lesson-42",
+    "title": "Nhà máy sản xuất bánh trung thu",
+    "shortTitle": "Bánh trung thu nhà máy",
+    "icon": "🥮",
+    "color": "orange",
+    "skill": "Nhân nhiều chữ số",
+    "story": "Nhà máy của bác Minh sản xuất bánh trung thu. Mỗi ngày nhà máy làm được 156 hộp bánh. Hỏi trong 4 ngày, nhà máy làm được tất cả bao nhiêu hộp bánh trung thu?",
+    "visual": {
+      "type": "bar",
+      "values": [156, 156, 156, 156],
+      "labels": ["Ngày 1", "Ngày 2", "Ngày 3", "Ngày 4"]
+    },
+    "retellOptions": [
+      "Mỗi ngày sản xuất 156 hộp, trong 4 ngày sản xuất được bao nhiêu hộp.",
+      "Có 156 hộp bánh, chia đều cho 4 cửa hàng, hỏi mỗi cửa hàng bao nhiêu.",
+      "Tìm số hộp bánh bị hỏng trong quá trình sản xuất."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mỗi ngày nhà máy làm 156 hộp bánh",
+      "Nhà máy hoạt động trong 4 ngày",
+      "Tìm tổng số hộp bánh trung thu"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "156 × 4",
+      "156 + 4",
+      "156 ÷ 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì số hộp bánh mỗi ngày (156) lặp lại 4 lần nên ta dùng phép nhân.",
+      "Vì nhà máy thêm 4 hộp bánh nữa.",
+      "Vì số bánh bị giảm đi."
+    ],
+    "correctReason": 0,
+    "answer": 624,
+    "unit": "hộp bánh",
+    "answerOptions": [
+      "Trong 4 ngày, nhà máy làm được tất cả 624 hộp bánh trung thu.",
+      "Trong 4 ngày, nhà máy làm được tất cả 160 hộp bánh trung thu.",
+      "Trong 4 ngày, nhà máy làm được tất cả 39 hộp bánh trung thu."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số 624 có bằng tổng 156 + 156 + 156 + 156 không?",
+    "checkOptions": [
+      "Có, 156 nhân 4 đúng bằng 624.",
+      "Không, 156 nhân 4 bằng 160."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số hộp bánh nhà máy làm mỗi ngày (156 hộp).",
+      "Bước 2: Xác định thời gian sản xuất (4 ngày).",
+      "Bước 3: Đây là bài toán nhân: 156 × 4.",
+      "Bước 4: Tính từ phải: 6 × 4 = 24, viết 4 nhớ 2; 5 × 4 = 20, thêm 2 = 22, viết 2 nhớ 2; 1 × 4 = 4, thêm 2 = 6.",
+      "Bước 5: Kết quả: 156 × 4 = 624 hộp bánh.",
+      "Bước 6: Kiểm tra: 624 ÷ 4 = 156. Đúng!",
+      "Bước 7: Chọn đáp án 624 hộp bánh trung thu."
+    ]
+  },
+  {
+    "id": "lesson-43",
+    "title": "Vận chuyển sách giáo khoa",
+    "shortTitle": "Chia sách cho trường",
+    "icon": "📚",
+    "color": "green",
+    "skill": "Chia nhiều chữ số",
+    "story": "Kho sách có 246 cuốn sách giáo khoa Toán. Người ta chia đều số sách đó cho 3 trường tiểu học. Hỏi mỗi trường nhận được bao nhiêu cuốn sách giáo khoa Toán?",
+    "visual": {
+      "type": "bar",
+      "values": [82, 82, 82],
+      "labels": ["Trường 1", "Trường 2", "Trường 3"]
+    },
+    "retellOptions": [
+      "Có 246 cuốn sách, chia đều cho 3 trường, hỏi mỗi trường nhận bao nhiêu.",
+      "Có 246 cuốn sách, thêm 3 cuốn mới, hỏi tất cả bao nhiêu.",
+      "Tìm số sách bị hư hỏng không dùng được."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Kho sách có 246 cuốn sách giáo khoa",
+      "Chia đều cho 3 trường tiểu học",
+      "Tìm số sách mỗi trường nhận được"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "246 ÷ 3",
+      "246 - 3",
+      "246 × 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Ta chia tổng số sách cho số trường để tìm số sách mỗi trường nhận.",
+      "Vì trường trả lại 3 cuốn sách cũ.",
+      "Vì số sách được tăng lên gấp 3 lần."
+    ],
+    "correctReason": 0,
+    "answer": 82,
+    "unit": "cuốn sách",
+    "answerOptions": [
+      "Mỗi trường nhận được 82 cuốn sách giáo khoa Toán.",
+      "Mỗi trường nhận được 243 cuốn sách giáo khoa Toán.",
+      "Mỗi trường nhận được 738 cuốn sách giáo khoa Toán."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số sách mỗi trường là 82 cuốn, nhân với 3 trường có bằng 246 cuốn ban đầu không?",
+    "checkOptions": [
+      "Có, 82 nhân 3 đúng bằng 246.",
+      "Không, 82 nhân 3 bằng 243."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đọc kỹ đề bài, tìm tổng số sách (246 cuốn).",
+      "Bước 2: Xác định số trường nhận sách (3 trường).",
+      "Bước 3: Đây là bài toán chia đều: 246 ÷ 3.",
+      "Bước 4: Chia từ trái: 2 ÷ 3 không đủ, lấy 24 ÷ 3 = 8; 6 ÷ 3 = 2.",
+      "Bước 5: Kết quả: 246 ÷ 3 = 82 cuốn sách.",
+      "Bước 6: Kiểm tra: 82 × 3 = 246. Đúng!",
+      "Bước 7: Chọn đáp án 82 cuốn sách giáo khoa Toán."
+    ]
+  },
+  {
+    "id": "lesson-44",
+    "title": "Chia quà tặng ngày Tết",
+    "shortTitle": "Phát quà Tết",
+    "icon": "🎁",
+    "color": "red",
+    "skill": "Chia nhiều chữ số",
+    "story": "Hội phụ huynh chuẩn bị 450 phần quà Tết cho các em nhỏ. Số quà được chia đều cho 5 lớp học. Hỏi mỗi lớp nhận được bao nhiêu phần quà Tết?",
+    "visual": {
+      "type": "bar",
+      "values": [90, 90, 90, 90, 90],
+      "labels": ["Lớp 1", "Lớp 2", "Lớp 3", "Lớp 4", "Lớp 5"]
+    },
+    "retellOptions": [
+      "Có 450 phần quà, chia đều cho 5 lớp, hỏi mỗi lớp nhận bao nhiêu.",
+      "Có 450 phần quà, thêm 5 phần, hỏi tất cả bao nhiêu.",
+      "Tìm số tiền mua quà Tết."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Có tất cả 450 phần quà Tết",
+      "Chia đều cho 5 lớp học",
+      "Tìm số phần quà mỗi lớp nhận"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "450 ÷ 5",
+      "450 - 5",
+      "450 × 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Ta chia tổng số quà cho số lớp để tìm số quà mỗi lớp nhận được.",
+      "Vì có vài phần quà bị thiếu.",
+      "Vì số quà được tăng lên gấp nhiều lần."
+    ],
+    "correctReason": 0,
+    "answer": 90,
+    "unit": "phần quà",
+    "answerOptions": [
+      "Mỗi lớp nhận được 90 phần quà Tết.",
+      "Mỗi lớp nhận được 445 phần quà Tết.",
+      "Mỗi lớp nhận được 2250 phần quà Tết."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số quà mỗi lớp là 90, nhân với 5 lớp có bằng 450 phần quà ban đầu không?",
+    "checkOptions": [
+      "Có, 90 nhân 5 đúng bằng 450.",
+      "Không, 90 nhân 5 bằng 445."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm tổng số phần quà (450 phần).",
+      "Bước 2: Xác định số lớp nhận quà (5 lớp).",
+      "Bước 3: Đây là bài toán chia đều: 450 ÷ 5.",
+      "Bước 4: Chia từ trái: 4 ÷ 5 không đủ, lấy 45 ÷ 5 = 9; hạ 0, 0 ÷ 5 = 0.",
+      "Bước 5: Kết quả: 450 ÷ 5 = 90 phần quà.",
+      "Bước 6: Kiểm tra: 90 × 5 = 450. Đúng!",
+      "Bước 7: Chọn đáp án 90 phần quà Tết."
+    ]
+  },
+  {
+    "id": "lesson-45",
+    "title": "Siêu thị bán nước ép trái cây",
+    "shortTitle": "Nước ép hai bước",
+    "icon": "🧃",
+    "color": "green",
+    "skill": "Bài toán 2 bước",
+    "story": "Siêu thị nhập về 125 thùng nước ép cam, mỗi thùng có 4 chai. Trong ngày đầu tiên, siêu thị bán được 200 chai. Hỏi siêu thị còn lại bao nhiêu chai nước ép cam?",
+    "visual": {
+      "type": "bar",
+      "values": [500, 200],
+      "labels": ["Tổng số chai nhập", "Số chai đã bán"]
+    },
+    "retellOptions": [
+      "Nhập 125 thùng × 4 chai, bán 200 chai, hỏi còn lại bao nhiêu chai.",
+      "Nhập 125 thùng × 4 chai, mua thêm 200 chai, hỏi tất cả bao nhiêu.",
+      "Tìm số tiền bán được trong ngày đầu."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Siêu thị nhập 125 thùng, mỗi thùng 4 chai",
+      "Đã bán được 200 chai nước ép",
+      "Tìm số chai nước ép còn lại"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "125 × 4 - 200",
+      "125 × 4 + 200",
+      "125 + 4 - 200"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Bước 1: Nhân tìm tổng số chai (125 × 4 = 500). Bước 2: Trừ số chai đã bán (500 - 200 = 300).",
+      "Vì siêu thị nhập thêm hàng mới.",
+      "Vì ta chỉ cộng các con số lại."
+    ],
+    "correctReason": 0,
+    "answer": 300,
+    "unit": "chai nước ép",
+    "answerOptions": [
+      "Siêu thị còn lại 300 chai nước ép cam.",
+      "Siêu thị còn lại 700 chai nước ép cam.",
+      "Siêu thị còn lại 71 chai nước ép cam."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số chai còn lại là 300, có nhỏ hơn tổng số chai nhập (500) không?",
+    "checkOptions": [
+      "Có, bán đi thì số chai phải ít hơn.",
+      "Không, bán đi thì hàng phải nhiều hơn."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số thùng nước ép nhập về (125 thùng) và số chai mỗi thùng (4 chai).",
+      "Bước 2: Tính tổng số chai: 125 × 4 = 500 chai.",
+      "Bước 3: Siêu thị đã bán 200 chai, ta cần trừ đi.",
+      "Bước 4: Thực hiện phép trừ: 500 - 200 = 300 chai.",
+      "Bước 5: Kiểm tra: 300 + 200 = 500 đúng bằng tổng số chai nhập.",
+      "Bước 6: Chọn đáp án 300 chai nước ép cam."
+    ]
+  },
+  {
+    "id": "lesson-46",
+    "title": "Trồng cây xanh trên phố",
+    "shortTitle": "Cây xanh hai bước",
+    "icon": "🌳",
+    "color": "green",
+    "skill": "Bài toán 2 bước",
+    "story": "Đội công nhân trồng được 48 cây bàng mỗi ngày. Sau 5 ngày làm việc, có 15 cây bị héo phải trồng thay. Hỏi tổng cộng số cây bàng sống khỏe mạnh sau 5 ngày là bao nhiêu cây?",
+    "visual": {
+      "type": "bar",
+      "values": [240, 15],
+      "labels": ["Tổng cây đã trồng", "Cây bị héo"]
+    },
+    "retellOptions": [
+      "Trồng 48 cây/ngày × 5 ngày, héo 15 cây, hỏi còn bao nhiêu cây khỏe.",
+      "Trồng 48 cây/ngày × 5 ngày, trồng thêm 15 cây mới, hỏi tất cả bao nhiêu.",
+      "Tìm số ngày cần thêm để trồng xong."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mỗi ngày trồng 48 cây, trồng trong 5 ngày",
+      "Có 15 cây bị héo phải trồng thay",
+      "Tìm số cây bàng sống khỏe mạnh"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình bớt (Cho đi)",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "48 × 5 - 15",
+      "48 × 5 + 15",
+      "48 + 5 - 15"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Bước 1: Nhân tìm tổng số cây đã trồng (48 × 5 = 240). Bước 2: Trừ số cây bị héo (240 - 15 = 225).",
+      "Vì đội trồng thêm cây mới.",
+      "Vì ta chỉ cộng hai con số."
+    ],
+    "correctReason": 0,
+    "answer": 225,
+    "unit": "cây bàng",
+    "answerOptions": [
+      "Tổng cộng có 225 cây bàng sống khỏe mạnh.",
+      "Tổng cộng có 255 cây bàng sống khỏe mạnh.",
+      "Tổng cộng có 38 cây bàng sống khỏe mạnh."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "225 cây khỏe mạnh cộng 15 cây héo có bằng đúng 240 cây đã trồng không?",
+    "checkOptions": [
+      "Có, 225 + 15 = 240 đúng bằng tổng cây trồng.",
+      "Không, 225 + 15 bằng 255."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định số cây trồng mỗi ngày (48 cây) và số ngày (5 ngày).",
+      "Bước 2: Tính tổng số cây trồng: 48 × 5 = 240 cây.",
+      "Bước 3: Có 15 cây bị héo, cần trừ đi.",
+      "Bước 4: Thực hiện phép trừ: 240 - 15 = 225 cây.",
+      "Bước 5: Kiểm tra: 225 + 15 = 240. Đúng!",
+      "Bước 6: Chọn đáp án 225 cây bàng khỏe mạnh."
+    ]
+  },
+  {
+    "id": "lesson-47",
+    "title": "Đàn bò sữa trang trại Hà",
+    "shortTitle": "Gấp bò sữa",
+    "icon": "🐄",
+    "color": "green",
+    "skill": "Gấp một số lần",
+    "story": "Trang trại của bác Hà nuôi 45 con bò sữa. Trang trại của bác Tuấn nuôi số bò gấp 3 lần trang trại bác Hà. Hỏi trang trại bác Tuấn nuôi bao nhiêu con bò sữa?",
+    "visual": {
+      "type": "compare",
+      "big": 135,
+      "small": 45,
+      "diff": 90,
+      "bigLabel": "Bác Tuấn",
+      "smallLabel": "Bác Hà"
+    },
+    "retellOptions": [
+      "Bác Hà nuôi 45 con, bác Tuấn nuôi gấp 3 lần, hỏi bác Tuấn nuôi bao nhiêu.",
+      "Bác Hà nuôi 45 con, bác Tuấn nuôi ít hơn 3 con, hỏi bác Tuấn nuôi bao nhiêu.",
+      "Tìm tổng số bò cả hai trang trại."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bác Hà nuôi 45 con bò sữa",
+      "Bác Tuấn nuôi gấp 3 lần bác Hà",
+      "Tìm số bò sữa bác Tuấn nuôi"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình so sánh hơn kém",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "45 × 3",
+      "45 + 3",
+      "45 ÷ 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì bác Tuấn nuôi gấp 3 lần bác Hà, ta nhân số bò của bác Hà với 3.",
+      "Vì bác Tuấn nuôi nhiều hơn bác Hà 3 con.",
+      "Vì bác Tuấn nuôi ít hơn bác Hà."
+    ],
+    "correctReason": 0,
+    "answer": 135,
+    "unit": "con bò sữa",
+    "answerOptions": [
+      "Trang trại bác Tuấn nuôi 135 con bò sữa.",
+      "Trang trại bác Tuấn nuôi 48 con bò sữa.",
+      "Trang trại bác Tuấn nuôi 15 con bò sữa."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số bò của bác Tuấn (135) có lớn hơn bác Hà (45) không?",
+    "checkOptions": [
+      "Có, gấp 3 lần thì số bò phải nhiều hơn nhiều.",
+      "Không, gấp 3 lần thì số lượng ít đi."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số bò bác Hà nuôi (45 con).",
+      "Bước 2: Bác Tuấn nuôi gấp 3 lần bác Hà.",
+      "Bước 3: Ta thực hiện phép nhân: 45 × 3.",
+      "Bước 4: Tính: 5 × 3 = 15, viết 5 nhớ 1; 4 × 3 = 12, thêm 1 = 13.",
+      "Bước 5: Kết quả: 45 × 3 = 135 con bò sữa.",
+      "Bước 6: Kiểm tra: 135 ÷ 3 = 45. Đúng!",
+      "Bước 7: Chọn đáp án 135 con bò sữa."
+    ]
+  },
+  {
+    "id": "lesson-48",
+    "title": "Cá vàng trong bể kính",
+    "shortTitle": "Giảm cá vàng",
+    "icon": "🐠",
+    "color": "blue",
+    "skill": "Giảm một số lần",
+    "story": "Bể cá lớn của Phúc có 120 con cá vàng. Bể cá nhỏ có số cá giảm đi 4 lần so với bể lớn. Hỏi bể cá nhỏ có bao nhiêu con cá vàng?",
+    "visual": {
+      "type": "compare",
+      "big": 120,
+      "small": 30,
+      "diff": 90,
+      "bigLabel": "Bể lớn",
+      "smallLabel": "Bể nhỏ"
+    },
+    "retellOptions": [
+      "Bể lớn có 120 con, bể nhỏ giảm 4 lần, hỏi bể nhỏ có bao nhiêu con.",
+      "Bể lớn có 120 con, bể nhỏ nhiều hơn bể lớn 4 con.",
+      "Tìm tổng cá vàng cả hai bể."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bể cá lớn có 120 con cá vàng",
+      "Bể nhỏ có số cá giảm 4 lần bể lớn",
+      "Tìm số cá vàng trong bể nhỏ"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình so sánh hơn kém",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "120 ÷ 4",
+      "120 - 4",
+      "120 × 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì số cá bể nhỏ giảm 4 lần bể lớn, ta chia số cá bể lớn cho 4.",
+      "Vì bể nhỏ ít hơn bể lớn 4 con.",
+      "Vì số cá tăng lên gấp 4 lần."
+    ],
+    "correctReason": 0,
+    "answer": 30,
+    "unit": "con cá vàng",
+    "answerOptions": [
+      "Bể cá nhỏ có 30 con cá vàng.",
+      "Bể cá nhỏ có 116 con cá vàng.",
+      "Bể cá nhỏ có 480 con cá vàng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số cá bể nhỏ (30 con) có nhỏ hơn bể lớn (120 con) không?",
+    "checkOptions": [
+      "Có, giảm 4 lần thì số cá phải ít hơn.",
+      "Không, giảm 4 lần thì số lượng nhiều hơn."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số cá vàng bể lớn (120 con).",
+      "Bước 2: Bể nhỏ giảm 4 lần so với bể lớn.",
+      "Bước 3: Giảm nhiều lần nghĩa là chia, ta tính: 120 ÷ 4.",
+      "Bước 4: 12 ÷ 4 = 3, hạ 0: 0 ÷ 4 = 0. Kết quả: 30.",
+      "Bước 5: Kiểm tra: 30 × 4 = 120. Đúng!",
+      "Bước 6: Chọn đáp án 30 con cá vàng."
+    ]
+  },
+  {
+    "id": "lesson-49",
+    "title": "Sân chơi hình chữ nhật trường Lan",
+    "shortTitle": "Chu vi sân chơi",
+    "icon": "🏟️",
+    "color": "blue",
+    "skill": "Chu vi hình",
+    "story": "Sân chơi hình chữ nhật của trường Lan có chiều dài 25 mét và chiều rộng 18 mét. Nhà trường muốn quét sơn viền quanh sân. Hỏi chu vi sân chơi là bao nhiêu mét?",
+    "visual": {
+      "type": "bar",
+      "values": [25, 18],
+      "labels": ["Chiều dài", "Chiều rộng"]
+    },
+    "retellOptions": [
+      "Dài 25 m, rộng 18 m, hỏi chu vi hình chữ nhật bằng bao nhiêu.",
+      "Dài 25 m, rộng 18 m, hỏi diện tích bằng bao nhiêu.",
+      "Tìm số lít sơn cần để quét viền sân."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Chiều dài sân chơi là 25 mét",
+      "Chiều rộng sân chơi là 18 mét",
+      "Tìm chu vi sân chơi hình chữ nhật"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(25 + 18) × 2",
+      "25 + 18",
+      "25 × 18"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Chu vi hình chữ nhật bằng chiều dài cộng chiều rộng rồi nhân với 2.",
+      "Vì chu vi chỉ là tổng hai cạnh kề nhau.",
+      "Vì ta muốn tính diện tích sân chơi."
+    ],
+    "correctReason": 0,
+    "answer": 86,
+    "unit": "mét",
+    "answerOptions": [
+      "Chu vi sân chơi là 86 mét.",
+      "Chu vi sân chơi là 43 mét.",
+      "Chu vi sân chơi là 450 mét."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Chu vi 86 mét có bằng tổng 4 cạnh (25 + 18 + 25 + 18) không?",
+    "checkOptions": [
+      "Có, 25 + 18 + 25 + 18 = 86 mét.",
+      "Không, tổng 4 cạnh bằng 43 mét."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm chiều dài sân chơi (25 mét).",
+      "Bước 2: Tìm chiều rộng sân chơi (18 mét).",
+      "Bước 3: Công thức chu vi hình chữ nhật: (dài + rộng) × 2.",
+      "Bước 4: Tính nửa chu vi: 25 + 18 = 43.",
+      "Bước 5: Nhân với 2: 43 × 2 = 86 mét.",
+      "Bước 6: Kiểm tra: 25 + 18 + 25 + 18 = 86. Đúng!",
+      "Bước 7: Chọn đáp án 86 mét."
+    ]
+  },
+  {
+    "id": "lesson-50",
+    "title": "Khăn trải bàn hình vuông của Mai",
+    "shortTitle": "Chu vi khăn vuông",
+    "icon": "🧣",
+    "color": "purple",
+    "skill": "Chu vi hình",
+    "story": "Mai có một khăn trải bàn hình vuông, mỗi cạnh dài 35 cm. Mai muốn may viền ren xung quanh khăn. Hỏi Mai cần mua bao nhiêu xăng-ti-mét ren để may viền?",
+    "visual": {
+      "type": "bar",
+      "values": [35, 35, 35, 35],
+      "labels": ["Cạnh 1", "Cạnh 2", "Cạnh 3", "Cạnh 4"]
+    },
+    "retellOptions": [
+      "Khăn hình vuông cạnh 35 cm, hỏi chu vi (viền ren) bằng bao nhiêu cm.",
+      "Khăn hình vuông cạnh 35 cm, hỏi diện tích bằng bao nhiêu.",
+      "Tìm giá tiền mua ren để may viền."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Khăn hình vuông cạnh dài 35 cm",
+      "Hình vuông có 4 cạnh bằng nhau",
+      "Tìm chu vi khăn hình vuông (độ dài ren)"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "35 × 4",
+      "35 + 4",
+      "35 × 35"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Chu vi hình vuông bằng cạnh nhân 4, vì 4 cạnh đều bằng nhau.",
+      "Vì ta cộng thêm 4 cm.",
+      "Vì ta tính diện tích khăn vuông."
+    ],
+    "correctReason": 0,
+    "answer": 140,
+    "unit": "cm",
+    "answerOptions": [
+      "Mai cần mua 140 cm ren để may viền.",
+      "Mai cần mua 39 cm ren để may viền.",
+      "Mai cần mua 1225 cm ren để may viền."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Chu vi 140 cm có bằng 35 + 35 + 35 + 35 không?",
+    "checkOptions": [
+      "Có, 35 nhân 4 đúng bằng 140.",
+      "Không, 35 nhân 4 bằng 39."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm chiều dài cạnh khăn vuông (35 cm).",
+      "Bước 2: Hình vuông có 4 cạnh bằng nhau.",
+      "Bước 3: Công thức chu vi hình vuông: cạnh × 4.",
+      "Bước 4: Tính: 35 × 4 = 140 cm.",
+      "Bước 5: Kiểm tra: 35 + 35 + 35 + 35 = 140. Đúng!",
+      "Bước 6: Chọn đáp án 140 cm ren."
+    ]
+  },
+  {
+    "id": "lesson-51",
+    "title": "Mảnh vườn trồng rau của ông ngoại",
+    "shortTitle": "Diện tích vườn rau",
+    "icon": "🥕",
+    "color": "orange",
+    "skill": "Diện tích đơn giản",
+    "story": "Mảnh vườn trồng rau hình chữ nhật của ông ngoại có chiều dài 12 mét và chiều rộng 7 mét. Hỏi diện tích mảnh vườn trồng rau đó là bao nhiêu mét vuông?",
+    "visual": {
+      "type": "bar",
+      "values": [12, 7],
+      "labels": ["Chiều dài", "Chiều rộng"]
+    },
+    "retellOptions": [
+      "Dài 12 m, rộng 7 m, hỏi diện tích hình chữ nhật bằng bao nhiêu.",
+      "Dài 12 m, rộng 7 m, hỏi chu vi bằng bao nhiêu.",
+      "So sánh vườn rau với vườn hoa nhà ông."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Chiều dài mảnh vườn là 12 mét",
+      "Chiều rộng mảnh vườn là 7 mét",
+      "Tìm diện tích mảnh vườn hình chữ nhật"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "12 × 7",
+      "(12 + 7) × 2",
+      "12 + 7"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Diện tích hình chữ nhật bằng chiều dài nhân chiều rộng.",
+      "Vì ta tính chu vi xung quanh mảnh vườn.",
+      "Vì ta chỉ cộng hai số đo lại."
+    ],
+    "correctReason": 0,
+    "answer": 84,
+    "unit": "mét vuông",
+    "answerOptions": [
+      "Diện tích mảnh vườn là 84 mét vuông.",
+      "Diện tích mảnh vườn là 38 mét vuông.",
+      "Diện tích mảnh vườn là 19 mét vuông."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Diện tích 84 mét vuông có bằng tích 12 × 7 không?",
+    "checkOptions": [
+      "Có, 12 nhân 7 đúng bằng 84.",
+      "Không, 12 nhân 7 bằng 38."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm chiều dài mảnh vườn (12 mét).",
+      "Bước 2: Tìm chiều rộng mảnh vườn (7 mét).",
+      "Bước 3: Công thức diện tích HCN: dài × rộng.",
+      "Bước 4: Tính: 12 × 7 = 84 mét vuông.",
+      "Bước 5: Đơn vị diện tích là mét vuông (m²), không phải mét.",
+      "Bước 6: Chọn đáp án 84 mét vuông."
+    ]
+  },
+  {
+    "id": "lesson-52",
+    "title": "Ô gạch lát nền phòng ngủ",
+    "shortTitle": "Diện tích phòng vuông",
+    "icon": "🏠",
+    "color": "pink",
+    "skill": "Diện tích đơn giản",
+    "story": "Phòng ngủ của Duy có nền hình vuông với độ dài cạnh là 6 mét. Bố muốn lát gạch men toàn bộ nền phòng. Hỏi diện tích nền phòng ngủ là bao nhiêu mét vuông?",
+    "visual": {
+      "type": "bar",
+      "values": [6, 6],
+      "labels": ["Cạnh 1", "Cạnh 2"]
+    },
+    "retellOptions": [
+      "Phòng hình vuông cạnh 6 m, hỏi diện tích nền phòng bằng bao nhiêu.",
+      "Phòng hình vuông cạnh 6 m, hỏi chu vi phòng bằng bao nhiêu.",
+      "Tìm số viên gạch cần lát nền phòng."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Phòng ngủ hình vuông cạnh 6 mét",
+      "Diện tích hình vuông = cạnh × cạnh",
+      "Tìm diện tích nền phòng ngủ"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "6 × 6",
+      "6 × 4",
+      "6 + 6"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Diện tích hình vuông bằng cạnh nhân với chính cạnh đó.",
+      "Vì ta tính chu vi xung quanh phòng.",
+      "Vì ta chỉ cộng hai cạnh."
+    ],
+    "correctReason": 0,
+    "answer": 36,
+    "unit": "mét vuông",
+    "answerOptions": [
+      "Diện tích nền phòng ngủ là 36 mét vuông.",
+      "Diện tích nền phòng ngủ là 24 mét vuông.",
+      "Diện tích nền phòng ngủ là 12 mét vuông."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Diện tích 36 mét vuông có bằng 6 × 6 không?",
+    "checkOptions": [
+      "Có, 6 nhân 6 đúng bằng 36.",
+      "Không, 6 nhân 6 bằng 24."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm chiều dài cạnh phòng (6 mét).",
+      "Bước 2: Phòng hình vuông nên chiều dài = chiều rộng = 6 mét.",
+      "Bước 3: Công thức diện tích hình vuông: cạnh × cạnh.",
+      "Bước 4: Tính: 6 × 6 = 36 mét vuông.",
+      "Bước 5: Nhớ đơn vị diện tích là mét vuông.",
+      "Bước 6: Chọn đáp án 36 mét vuông."
+    ]
+  },
+  {
+    "id": "lesson-53",
+    "title": "Chiếc bánh pizza chia đôi",
+    "shortTitle": "Phân số một phần hai",
+    "icon": "🍕",
+    "color": "orange",
+    "skill": "Phân số",
+    "story": "Mẹ mua một chiếc bánh pizza lớn. Mẹ cắt đều chiếc bánh thành 2 phần bằng nhau và cho Khoa ăn 1 phần. Hỏi Khoa được ăn mấy phần của chiếc bánh?",
+    "visual": {
+      "type": "icons",
+      "icon": "🍕",
+      "total": 2,
+      "highlighted": 1
+    },
+    "retellOptions": [
+      "Bánh chia 2 phần bằng nhau, Khoa ăn 1 phần, hỏi Khoa ăn mấy phần.",
+      "Bánh chia 2 phần, Khoa ăn hết cả 2 phần.",
+      "Tìm số tiền mua chiếc bánh pizza."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Chiếc bánh chia thành 2 phần bằng nhau",
+      "Khoa ăn 1 phần trong số đó",
+      "Xác định phần bánh Khoa được ăn",
+      "Tìm phân số biểu diễn phần Khoa ăn"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "1 ÷ 2",
+      "2 - 1",
+      "2 × 1"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Khoa ăn 1 phần trong tổng 2 phần, tức là 1/2 chiếc bánh.",
+      "Vì ta muốn tìm phần còn lại.",
+      "Vì ta nhân số phần lên."
+    ],
+    "correctReason": 0,
+    "answer": 1,
+    "unit": "phần hai (1/2)",
+    "answerOptions": [
+      "Khoa được ăn 1/2 (một phần hai) chiếc bánh.",
+      "Khoa được ăn 2/2 (hai phần hai) chiếc bánh.",
+      "Khoa được ăn 1/4 (một phần tư) chiếc bánh."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Phân số 1/2 có nghĩa là chia đều làm 2 phần, lấy 1 phần, đúng không?",
+    "checkOptions": [
+      "Đúng, 1/2 nghĩa là một phần trong hai phần bằng nhau.",
+      "Sai, 1/2 nghĩa là lấy cả hai phần."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Chiếc bánh pizza được chia thành 2 phần bằng nhau.",
+      "Bước 2: Khoa được ăn 1 phần trong số 2 phần.",
+      "Bước 3: Phân số gồm tử số (phần lấy) và mẫu số (tổng số phần).",
+      "Bước 4: Tử số = 1 (phần Khoa ăn), mẫu số = 2 (tổng số phần).",
+      "Bước 5: Phân số biểu diễn: 1/2 (một phần hai).",
+      "Bước 6: Chọn đáp án 1/2 chiếc bánh."
+    ]
+  },
+  {
+    "id": "lesson-54",
+    "title": "Quả cam chia ba phần",
+    "shortTitle": "Phân số một phần ba",
+    "icon": "🍊",
+    "color": "orange",
+    "skill": "Phân số",
+    "story": "Linh có một quả cam to. Linh cắt đều quả cam thành 3 phần bằng nhau rồi cho bạn Hương 1 phần. Hỏi Hương nhận được mấy phần của quả cam?",
+    "visual": {
+      "type": "icons",
+      "icon": "🍊",
+      "total": 3,
+      "highlighted": 1
+    },
+    "retellOptions": [
+      "Cam chia 3 phần bằng nhau, Hương nhận 1 phần, hỏi Hương được mấy phần.",
+      "Cam chia 3 phần, Hương nhận cả 3 phần.",
+      "Tìm số quả cam Linh còn lại."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Quả cam chia thành 3 phần bằng nhau",
+      "Hương nhận 1 phần",
+      "Xác định phân số phần cam Hương nhận",
+      "Tìm phân số biểu diễn phần Hương được"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "1 ÷ 3",
+      "3 - 1",
+      "3 × 1"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Hương nhận 1 phần trong tổng 3 phần, tức là 1/3 quả cam.",
+      "Vì ta tìm phần cam còn lại.",
+      "Vì ta nhân số phần cam."
+    ],
+    "correctReason": 0,
+    "answer": 1,
+    "unit": "phần ba (1/3)",
+    "answerOptions": [
+      "Hương nhận được 1/3 (một phần ba) quả cam.",
+      "Hương nhận được 3/3 (ba phần ba) quả cam.",
+      "Hương nhận được 1/2 (một phần hai) quả cam."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Phân số 1/3 có nghĩa là chia 3 phần bằng nhau, lấy 1 phần, đúng không?",
+    "checkOptions": [
+      "Đúng, 1/3 nghĩa là 1 phần trong 3 phần bằng nhau.",
+      "Sai, 1/3 nghĩa là lấy cả 3 phần."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Quả cam được chia thành 3 phần bằng nhau.",
+      "Bước 2: Hương nhận 1 phần trong 3 phần.",
+      "Bước 3: Mẫu số cho biết tổng số phần (3).",
+      "Bước 4: Tử số cho biết số phần được lấy (1).",
+      "Bước 5: Phân số: 1/3 (một phần ba).",
+      "Bước 6: Chọn đáp án 1/3 quả cam."
+    ]
+  },
+  {
+    "id": "lesson-55",
+    "title": "Thanh sô-cô-la chia bốn",
+    "shortTitle": "Phân số một phần tư",
+    "icon": "🍫",
+    "color": "purple",
+    "skill": "Phân số",
+    "story": "An có một thanh sô-cô-la dài. An bẻ đều thanh sô-cô-la thành 4 phần bằng nhau và ăn 1 phần. Hỏi An đã ăn mấy phần của thanh sô-cô-la?",
+    "visual": {
+      "type": "icons",
+      "icon": "🍫",
+      "total": 4,
+      "highlighted": 1
+    },
+    "retellOptions": [
+      "Thanh sô-cô-la chia 4 phần, An ăn 1 phần, hỏi An ăn mấy phần.",
+      "An có 4 thanh sô-cô-la, ăn 1 thanh.",
+      "Tìm số tiền mua thanh sô-cô-la."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Thanh sô-cô-la chia thành 4 phần bằng nhau",
+      "An ăn 1 phần",
+      "Xác định phân số phần An ăn",
+      "Tìm phân số biểu diễn phần An ăn"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "1 ÷ 4",
+      "4 - 1",
+      "4 × 1"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "An ăn 1 phần trong 4 phần bằng nhau, nên phân số là 1/4.",
+      "Vì ta tìm phần sô-cô-la còn lại.",
+      "Vì ta gộp số phần sô-cô-la."
+    ],
+    "correctReason": 0,
+    "answer": 1,
+    "unit": "phần tư (1/4)",
+    "answerOptions": [
+      "An đã ăn 1/4 (một phần tư) thanh sô-cô-la.",
+      "An đã ăn 4/4 (bốn phần tư) thanh sô-cô-la.",
+      "An đã ăn 1/3 (một phần ba) thanh sô-cô-la."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "1/4 có nghĩa là chia 4 phần bằng nhau và lấy 1 phần, đúng không?",
+    "checkOptions": [
+      "Đúng, 1/4 là 1 phần trong 4 phần bằng nhau.",
+      "Sai, 1/4 nghĩa là chia 1 phần thành 4 phần nhỏ."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Thanh sô-cô-la chia đều thành 4 phần.",
+      "Bước 2: An ăn 1 phần trong 4 phần.",
+      "Bước 3: Mẫu số = 4 (tổng số phần bằng nhau).",
+      "Bước 4: Tử số = 1 (số phần An ăn).",
+      "Bước 5: Phân số: 1/4 (một phần tư).",
+      "Bước 6: Chọn đáp án 1/4 thanh sô-cô-la."
+    ]
+  },
+  {
+    "id": "lesson-56",
+    "title": "Chiếc bánh chưng ngày Tết",
+    "shortTitle": "Phân số hai phần ba",
+    "icon": "🎍",
+    "color": "green",
+    "skill": "Phân số",
+    "story": "Bà ngoại gói một chiếc bánh chưng lớn cho ngày Tết. Bà cắt đều chiếc bánh thành 3 phần bằng nhau. Bố và mẹ ăn hết 2 phần. Hỏi bố mẹ đã ăn mấy phần của chiếc bánh chưng?",
+    "visual": {
+      "type": "icons",
+      "icon": "🟩",
+      "total": 3,
+      "highlighted": 2
+    },
+    "retellOptions": [
+      "Bánh chia 3 phần, bố mẹ ăn 2 phần, hỏi bố mẹ ăn mấy phần.",
+      "Bánh chia 3 phần, bố mẹ ăn cả 3 phần.",
+      "Tìm số bánh chưng bà gói trong ngày Tết."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bánh chưng chia thành 3 phần bằng nhau",
+      "Bố mẹ ăn 2 phần",
+      "Xác định phân số phần bố mẹ ăn",
+      "Tìm phân số biểu diễn phần bố mẹ ăn"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "2 ÷ 3",
+      "3 - 2",
+      "3 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Bố mẹ ăn 2 phần trong 3 phần bằng nhau, nên phân số là 2/3.",
+      "Vì ta tìm phần bánh còn lại.",
+      "Vì ta gộp tất cả phần bánh lại."
+    ],
+    "correctReason": 0,
+    "answer": 2,
+    "unit": "phần ba (2/3)",
+    "answerOptions": [
+      "Bố mẹ đã ăn 2/3 (hai phần ba) chiếc bánh chưng.",
+      "Bố mẹ đã ăn 1/3 (một phần ba) chiếc bánh chưng.",
+      "Bố mẹ đã ăn 3/3 (ba phần ba) chiếc bánh chưng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Phân số 2/3 có lớn hơn 1/3 không?",
+    "checkOptions": [
+      "Có, 2 phần lớn hơn 1 phần khi cùng chia 3.",
+      "Không, 2/3 nhỏ hơn 1/3."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Bánh chưng chia đều thành 3 phần.",
+      "Bước 2: Bố mẹ ăn hết 2 phần trong 3 phần.",
+      "Bước 3: Mẫu số = 3 (tổng phần), tử số = 2 (phần ăn).",
+      "Bước 4: Phân số: 2/3 (hai phần ba).",
+      "Bước 5: 2/3 > 1/3 vì 2 phần nhiều hơn 1 phần.",
+      "Bước 6: Chọn đáp án 2/3 chiếc bánh chưng."
+    ]
+  },
+  {
+    "id": "lesson-57",
+    "title": "Cái bánh sinh nhật chia năm",
+    "shortTitle": "Phân số một phần năm",
+    "icon": "🎂",
+    "color": "pink",
+    "skill": "Phân số",
+    "story": "Bánh sinh nhật của bé Vy được cắt đều thành 5 phần bằng nhau. Vy mời bạn Hà ăn 1 phần bánh. Hỏi bạn Hà được ăn mấy phần của chiếc bánh sinh nhật?",
+    "visual": {
+      "type": "icons",
+      "icon": "🍰",
+      "total": 5,
+      "highlighted": 1
+    },
+    "retellOptions": [
+      "Bánh chia 5 phần, Hà ăn 1 phần, hỏi Hà ăn mấy phần.",
+      "Bánh chia 5 phần, Hà ăn hết tất cả.",
+      "Tìm số bạn được mời ăn bánh."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bánh sinh nhật chia thành 5 phần bằng nhau",
+      "Hà được ăn 1 phần",
+      "Xác định phân số phần Hà ăn",
+      "Tìm phân số biểu diễn phần Hà ăn"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "1 ÷ 5",
+      "5 - 1",
+      "5 × 1"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Hà ăn 1 phần trong 5 phần bằng nhau, nên phân số là 1/5.",
+      "Vì ta tìm phần bánh còn lại.",
+      "Vì ta gộp các phần bánh."
+    ],
+    "correctReason": 0,
+    "answer": 1,
+    "unit": "phần năm (1/5)",
+    "answerOptions": [
+      "Hà được ăn 1/5 (một phần năm) chiếc bánh sinh nhật.",
+      "Hà được ăn 5/5 (năm phần năm) chiếc bánh sinh nhật.",
+      "Hà được ăn 1/3 (một phần ba) chiếc bánh sinh nhật."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "1/5 có nhỏ hơn 1/2 không?",
+    "checkOptions": [
+      "Có, chia 5 phần thì mỗi phần nhỏ hơn khi chia 2 phần.",
+      "Không, 1/5 lớn hơn 1/2."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Bánh sinh nhật chia đều thành 5 phần.",
+      "Bước 2: Hà ăn 1 phần trong 5 phần.",
+      "Bước 3: Mẫu số = 5, tử số = 1.",
+      "Bước 4: Phân số: 1/5 (một phần năm).",
+      "Bước 5: 1/5 < 1/2 vì chia nhiều phần hơn thì mỗi phần nhỏ hơn.",
+      "Bước 6: Chọn đáp án 1/5 chiếc bánh sinh nhật."
+    ]
+  },
+  {
+    "id": "lesson-58",
+    "title": "Chia bánh flan cho bạn bè",
+    "shortTitle": "Phân số ba phần tư",
+    "icon": "🍮",
+    "color": "yellow",
+    "skill": "Phân số",
+    "story": "Tuấn có một hộp bánh flan lớn. Tuấn cắt đều hộp bánh thành 4 phần bằng nhau rồi mang 3 phần đến lớp mời các bạn. Hỏi Tuấn đã mang đến lớp mấy phần của hộp bánh?",
+    "visual": {
+      "type": "icons",
+      "icon": "🍮",
+      "total": 4,
+      "highlighted": 3
+    },
+    "retellOptions": [
+      "Bánh chia 4 phần, Tuấn mang 3 phần đến lớp, hỏi mang mấy phần.",
+      "Bánh chia 4 phần, Tuấn giữ cả 4 phần ở nhà.",
+      "Tìm số bạn trong lớp Tuấn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Hộp bánh chia thành 4 phần bằng nhau",
+      "Tuấn mang 3 phần đến lớp",
+      "Xác định phân số phần mang đến lớp",
+      "Tìm phân số biểu diễn phần Tuấn mang"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "3 ÷ 4",
+      "4 - 3",
+      "4 × 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tuấn mang 3 phần trong 4 phần, nên phân số là 3/4.",
+      "Vì ta tìm phần bánh để ở nhà.",
+      "Vì ta gộp bánh tăng lên gấp 3."
+    ],
+    "correctReason": 0,
+    "answer": 3,
+    "unit": "phần tư (3/4)",
+    "answerOptions": [
+      "Tuấn đã mang 3/4 (ba phần tư) hộp bánh đến lớp.",
+      "Tuấn đã mang 1/4 (một phần tư) hộp bánh đến lớp.",
+      "Tuấn đã mang 4/4 (bốn phần tư) hộp bánh đến lớp."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "3/4 có lớn hơn 1/2 không?",
+    "checkOptions": [
+      "Có, 3/4 lớn hơn 2/4 = 1/2.",
+      "Không, 3/4 nhỏ hơn 1/2."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Hộp bánh chia đều thành 4 phần.",
+      "Bước 2: Tuấn mang 3 phần đến lớp.",
+      "Bước 3: Mẫu số = 4 (tổng phần), tử số = 3 (phần mang).",
+      "Bước 4: Phân số: 3/4 (ba phần tư).",
+      "Bước 5: 3/4 > 1/2 vì 3 phần nhiều hơn nửa (2 phần).",
+      "Bước 6: Chọn đáp án 3/4 hộp bánh."
+    ]
+  },
+  {
+    "id": "lesson-59",
+    "title": "So sánh hai miếng dưa hấu",
+    "shortTitle": "So sánh phân số cùng mẫu",
+    "icon": "🍉",
+    "color": "red",
+    "skill": "So sánh phân số",
+    "story": "Mẹ cắt quả dưa hấu thành 5 phần bằng nhau. Nam ăn 2 phần, Minh ăn 3 phần. Hỏi ai ăn nhiều dưa hấu hơn?",
+    "visual": {
+      "type": "compare",
+      "big": 3,
+      "small": 2,
+      "diff": 1,
+      "bigLabel": "Minh (3/5)",
+      "smallLabel": "Nam (2/5)"
+    },
+    "retellOptions": [
+      "Dưa chia 5 phần, Nam ăn 2/5, Minh ăn 3/5, hỏi ai ăn nhiều hơn.",
+      "Nam ăn 2 quả dưa, Minh ăn 3 quả dưa.",
+      "Tìm tổng số phần dưa hai bạn ăn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Quả dưa chia thành 5 phần bằng nhau",
+      "Nam ăn 2/5 quả dưa",
+      "Minh ăn 3/5 quả dưa",
+      "So sánh xem ai ăn nhiều hơn"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình so sánh hơn kém",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "3 ÷ 5 so với 2 ÷ 5",
+      "3 + 2",
+      "5 - 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Cùng mẫu số 5, so sánh tử số: 3 > 2 nên 3/5 > 2/5, Minh ăn nhiều hơn.",
+      "Vì ta cộng số phần hai bạn ăn.",
+      "Vì ta tìm phần dưa còn lại."
+    ],
+    "correctReason": 0,
+    "answer": 3,
+    "unit": "phần năm (3/5 > 2/5)",
+    "answerOptions": [
+      "Minh ăn nhiều dưa hấu hơn vì 3/5 lớn hơn 2/5.",
+      "Nam ăn nhiều dưa hấu hơn vì 2/5 lớn hơn 3/5.",
+      "Hai bạn ăn bằng nhau."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Khi hai phân số cùng mẫu, phân số nào có tử số lớn hơn thì lớn hơn, đúng không?",
+    "checkOptions": [
+      "Đúng, cùng mẫu số thì so sánh tử số: 3 > 2 nên 3/5 > 2/5.",
+      "Sai, phân số có tử số nhỏ hơn mới lớn hơn."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Nam ăn 2 phần, Minh ăn 3 phần trong cùng 5 phần.",
+      "Bước 2: Phân số của Nam: 2/5, phân số của Minh: 3/5.",
+      "Bước 3: Hai phân số cùng mẫu số (5).",
+      "Bước 4: So sánh tử số: 3 > 2.",
+      "Bước 5: Vậy 3/5 > 2/5, Minh ăn nhiều hơn.",
+      "Bước 6: Quy tắc: Cùng mẫu số, tử số nào lớn hơn thì phân số đó lớn hơn.",
+      "Bước 7: Chọn đáp án: Minh ăn nhiều hơn."
+    ]
+  },
+  {
+    "id": "lesson-60",
+    "title": "Hai sợi ruy-băng tặng quà",
+    "shortTitle": "So sánh phân số ruy-băng",
+    "icon": "🎀",
+    "color": "pink",
+    "skill": "So sánh phân số",
+    "story": "Vy cắt một sợi ruy-băng dài thành 4 phần bằng nhau. Vy dùng 1 phần buộc quà cho Lan và 3 phần buộc quà cho An. Hỏi quà bạn nào được buộc nhiều ruy-băng hơn?",
+    "visual": {
+      "type": "compare",
+      "big": 3,
+      "small": 1,
+      "diff": 2,
+      "bigLabel": "An (3/4)",
+      "smallLabel": "Lan (1/4)"
+    },
+    "retellOptions": [
+      "Ruy-băng chia 4 phần, Lan dùng 1/4, An dùng 3/4, hỏi ai nhiều hơn.",
+      "Lan dùng 1 sợi, An dùng 3 sợi ruy-băng.",
+      "Tìm chiều dài sợi ruy-băng."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Ruy-băng chia 4 phần bằng nhau",
+      "Lan dùng 1/4 sợi ruy-băng",
+      "An dùng 3/4 sợi ruy-băng",
+      "So sánh phần ruy-băng của hai bạn"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình so sánh hơn kém",
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "3 ÷ 4 so với 1 ÷ 4",
+      "3 + 1",
+      "4 - 1"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Cùng mẫu số 4, so tử: 3 > 1 nên 3/4 > 1/4, An được nhiều ruy-băng hơn.",
+      "Vì ta cộng số phần của hai bạn.",
+      "Vì ta tìm phần ruy-băng thừa."
+    ],
+    "correctReason": 0,
+    "answer": 3,
+    "unit": "phần tư (3/4 > 1/4)",
+    "answerOptions": [
+      "Quà An được buộc nhiều ruy-băng hơn vì 3/4 lớn hơn 1/4.",
+      "Quà Lan được buộc nhiều ruy-băng hơn vì 1/4 lớn hơn 3/4.",
+      "Hai bạn được buộc bằng nhau."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "3/4 lớn hơn 1/4 vì 3 > 1, đúng không?",
+    "checkOptions": [
+      "Đúng, cùng mẫu 4, tử 3 > tử 1 nên 3/4 > 1/4.",
+      "Sai, 1/4 lớn hơn 3/4."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Ruy-băng chia 4 phần bằng nhau.",
+      "Bước 2: Lan dùng 1 phần (1/4), An dùng 3 phần (3/4).",
+      "Bước 3: Hai phân số cùng mẫu số (4).",
+      "Bước 4: So sánh tử số: 3 > 1.",
+      "Bước 5: Vậy 3/4 > 1/4, An nhiều hơn.",
+      "Bước 6: Chọn đáp án: Quà An nhiều ruy-băng hơn."
+    ]
+  },
+  {
+    "id": "lesson-61",
+    "title": "Chia kẹo mút cho lớp học",
+    "shortTitle": "Một phần ba của 12",
+    "icon": "🍭",
+    "color": "purple",
+    "skill": "Phân số của một số",
+    "story": "Cô giáo có 12 cây kẹo mút. Cô chia cho tổ 1 được 1/3 tổng số kẹo. Hỏi tổ 1 nhận được bao nhiêu cây kẹo mút?",
+    "visual": {
+      "type": "icons",
+      "icon": "🍭",
+      "total": 12,
+      "highlighted": 4
+    },
+    "retellOptions": [
+      "Có 12 cây kẹo, tổ 1 nhận 1/3 tổng số, hỏi tổ 1 nhận bao nhiêu.",
+      "Có 12 cây kẹo, chia đều cho 12 bạn.",
+      "Tìm số kẹo cô giáo mua thêm."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Cô giáo có 12 cây kẹo mút",
+      "Tổ 1 nhận 1/3 tổng số kẹo",
+      "Tìm số kẹo tổ 1 nhận được"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "12 ÷ 3",
+      "12 - 3",
+      "12 × 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Muốn tìm 1/3 của 12, ta chia 12 cho 3 vì lấy 1 phần trong 3 phần bằng nhau.",
+      "Vì cô giáo bớt 3 cây kẹo.",
+      "Vì số kẹo tăng gấp 3."
+    ],
+    "correctReason": 0,
+    "answer": 4,
+    "unit": "cây kẹo mút",
+    "answerOptions": [
+      "Tổ 1 nhận được 4 cây kẹo mút.",
+      "Tổ 1 nhận được 9 cây kẹo mút.",
+      "Tổ 1 nhận được 36 cây kẹo mút."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "1/3 của 12 là 4 cây, vậy 4 × 3 có bằng 12 không?",
+    "checkOptions": [
+      "Có, 4 nhân 3 đúng bằng 12.",
+      "Không, 4 nhân 3 bằng 9."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định tổng số kẹo (12 cây).",
+      "Bước 2: Cần tìm 1/3 của 12.",
+      "Bước 3: Muốn tìm 1/3 của một số, ta chia số đó cho 3.",
+      "Bước 4: Tính: 12 ÷ 3 = 4 cây kẹo.",
+      "Bước 5: Kiểm tra: 4 × 3 = 12. Đúng!",
+      "Bước 6: Chọn đáp án 4 cây kẹo mút."
+    ]
+  },
+  {
+    "id": "lesson-62",
+    "title": "Vở bài tập trong thư viện",
+    "shortTitle": "Một phần tư của 20",
+    "icon": "📓",
+    "color": "blue",
+    "skill": "Phân số của một số",
+    "story": "Thư viện trường có 20 quyển vở bài tập mới. Cô thủ thư phát cho lớp 3A số vở bằng 1/4 tổng số vở. Hỏi lớp 3A nhận được bao nhiêu quyển vở?",
+    "visual": {
+      "type": "icons",
+      "icon": "📓",
+      "total": 20,
+      "highlighted": 5
+    },
+    "retellOptions": [
+      "Có 20 quyển vở, lớp 3A nhận 1/4, hỏi lớp 3A được bao nhiêu quyển.",
+      "Có 20 quyển vở, chia đều cho 20 bạn.",
+      "Tìm số tiền mua vở bài tập."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Thư viện có 20 quyển vở mới",
+      "Lớp 3A nhận 1/4 tổng số vở",
+      "Tìm số vở lớp 3A nhận được"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "20 ÷ 4",
+      "20 - 4",
+      "20 × 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Muốn tìm 1/4 của 20, ta chia 20 cho 4.",
+      "Vì cô thủ thư cất 4 quyển đi.",
+      "Vì số vở tăng gấp 4 lần."
+    ],
+    "correctReason": 0,
+    "answer": 5,
+    "unit": "quyển vở",
+    "answerOptions": [
+      "Lớp 3A nhận được 5 quyển vở bài tập.",
+      "Lớp 3A nhận được 16 quyển vở bài tập.",
+      "Lớp 3A nhận được 80 quyển vở bài tập."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "1/4 của 20 là 5, vậy 5 × 4 có bằng 20 không?",
+    "checkOptions": [
+      "Có, 5 nhân 4 đúng bằng 20.",
+      "Không, 5 nhân 4 bằng 16."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tổng số vở trong thư viện là 20 quyển.",
+      "Bước 2: Lớp 3A nhận 1/4 tổng số vở.",
+      "Bước 3: Muốn tìm 1/4 của một số, ta chia số đó cho 4.",
+      "Bước 4: Tính: 20 ÷ 4 = 5 quyển vở.",
+      "Bước 5: Kiểm tra: 5 × 4 = 20. Đúng!",
+      "Bước 6: Chọn đáp án 5 quyển vở bài tập."
+    ]
+  },
+  {
+    "id": "lesson-63",
+    "title": "Bộ sưu tập tem của Duy",
+    "shortTitle": "Một phần năm của 35",
+    "icon": "💌",
+    "color": "green",
+    "skill": "Phân số của một số",
+    "story": "Duy có bộ sưu tập 35 con tem quý. Duy tặng cho bạn Khoa 1/5 bộ sưu tập tem của mình. Hỏi Duy đã tặng Khoa bao nhiêu con tem?",
+    "visual": {
+      "type": "icons",
+      "icon": "💌",
+      "total": 35,
+      "highlighted": 7
+    },
+    "retellOptions": [
+      "Duy có 35 tem, tặng Khoa 1/5, hỏi tặng bao nhiêu tem.",
+      "Duy có 35 tem, mua thêm 5 tem mới.",
+      "Tìm tổng số tem cả hai bạn có."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Duy có 35 con tem quý",
+      "Duy tặng Khoa 1/5 bộ sưu tập",
+      "Tìm số tem Duy tặng Khoa"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "35 ÷ 5",
+      "35 - 5",
+      "35 × 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Muốn tìm 1/5 của 35, ta chia 35 cho 5.",
+      "Vì Duy bớt đi 5 con tem.",
+      "Vì số tem tăng gấp 5 lần."
+    ],
+    "correctReason": 0,
+    "answer": 7,
+    "unit": "con tem",
+    "answerOptions": [
+      "Duy đã tặng Khoa 7 con tem.",
+      "Duy đã tặng Khoa 30 con tem.",
+      "Duy đã tặng Khoa 175 con tem."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "1/5 của 35 là 7, vậy 7 × 5 có bằng 35 không?",
+    "checkOptions": [
+      "Có, 7 nhân 5 đúng bằng 35.",
+      "Không, 7 nhân 5 bằng 30."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Duy có 35 con tem quý.",
+      "Bước 2: Duy tặng 1/5 bộ sưu tập cho Khoa.",
+      "Bước 3: Muốn tìm 1/5 của 35, ta chia 35 cho 5.",
+      "Bước 4: Tính: 35 ÷ 5 = 7 con tem.",
+      "Bước 5: Kiểm tra: 7 × 5 = 35. Đúng!",
+      "Bước 6: Chọn đáp án 7 con tem."
+    ]
+  },
+  {
+    "id": "lesson-64",
+    "title": "Nhà máy đóng hộp cá ngừ",
+    "shortTitle": "Nhân chia tổng hợp",
+    "icon": "🐟",
+    "color": "blue",
+    "skill": "Nhân nhiều chữ số",
+    "story": "Nhà máy đóng hộp cá ngừ của chú Dũng. Mỗi ngày nhà máy đóng được 318 hộp cá ngừ. Hỏi trong 3 ngày, nhà máy đóng được tổng cộng bao nhiêu hộp cá ngừ?",
+    "visual": {
+      "type": "bar",
+      "values": [318, 318, 318],
+      "labels": ["Ngày 1", "Ngày 2", "Ngày 3"]
+    },
+    "retellOptions": [
+      "Mỗi ngày đóng 318 hộp, hỏi 3 ngày đóng được bao nhiêu hộp.",
+      "Có 318 hộp, chia đều cho 3 xưởng.",
+      "Tìm số công nhân làm việc ở nhà máy."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mỗi ngày đóng được 318 hộp cá ngừ",
+      "Sản xuất trong 3 ngày",
+      "Tìm tổng số hộp cá ngừ"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "318 × 3",
+      "318 + 3",
+      "318 ÷ 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì số hộp mỗi ngày (318) lặp lại 3 lần, ta dùng phép nhân.",
+      "Vì nhà máy thêm 3 hộp mới.",
+      "Vì sản xuất ít đi."
+    ],
+    "correctReason": 0,
+    "answer": 954,
+    "unit": "hộp cá ngừ",
+    "answerOptions": [
+      "Trong 3 ngày, nhà máy đóng được 954 hộp cá ngừ.",
+      "Trong 3 ngày, nhà máy đóng được 321 hộp cá ngừ.",
+      "Trong 3 ngày, nhà máy đóng được 106 hộp cá ngừ."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "954 hộp có bằng 318 + 318 + 318 không?",
+    "checkOptions": [
+      "Có, 318 nhân 3 đúng bằng 954.",
+      "Không, 318 nhân 3 bằng 321."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số hộp cá ngừ đóng mỗi ngày (318 hộp).",
+      "Bước 2: Nhà máy hoạt động 3 ngày.",
+      "Bước 3: Đặt phép nhân: 318 × 3.",
+      "Bước 4: Tính: 8 × 3 = 24, viết 4 nhớ 2; 1 × 3 = 3, thêm 2 = 5; 3 × 3 = 9.",
+      "Bước 5: Kết quả: 318 × 3 = 954 hộp.",
+      "Bước 6: Kiểm tra: 954 ÷ 3 = 318. Đúng!",
+      "Bước 7: Chọn đáp án 954 hộp cá ngừ."
+    ]
+  },
+  {
+    "id": "lesson-65",
+    "title": "Phát bút chì cho học sinh",
+    "shortTitle": "Chia bút cho lớp",
+    "icon": "✏️",
+    "color": "yellow",
+    "skill": "Chia nhiều chữ số",
+    "story": "Nhà trường mua 648 cây bút chì HB mới. Số bút được chia đều cho 6 lớp học. Hỏi mỗi lớp nhận được bao nhiêu cây bút chì?",
+    "visual": {
+      "type": "bar",
+      "values": [108, 108, 108, 108, 108, 108],
+      "labels": ["Lớp 1", "Lớp 2", "Lớp 3", "Lớp 4", "Lớp 5", "Lớp 6"]
+    },
+    "retellOptions": [
+      "Có 648 bút chì, chia đều cho 6 lớp, hỏi mỗi lớp nhận bao nhiêu.",
+      "Có 648 bút chì, mua thêm 6 cây mới.",
+      "Tìm giá tiền mua bút chì."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Nhà trường có 648 cây bút chì",
+      "Chia đều cho 6 lớp học",
+      "Tìm số bút mỗi lớp nhận"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "648 ÷ 6",
+      "648 - 6",
+      "648 × 6"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Ta chia tổng số bút cho số lớp để tìm số bút mỗi lớp nhận.",
+      "Vì nhà trường bớt 6 cây bút hỏng.",
+      "Vì số bút được tăng lên gấp 6."
+    ],
+    "correctReason": 0,
+    "answer": 108,
+    "unit": "cây bút chì",
+    "answerOptions": [
+      "Mỗi lớp nhận được 108 cây bút chì.",
+      "Mỗi lớp nhận được 642 cây bút chì.",
+      "Mỗi lớp nhận được 3888 cây bút chì."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "108 cây bút nhân 6 lớp có bằng 648 cây ban đầu không?",
+    "checkOptions": [
+      "Có, 108 nhân 6 đúng bằng 648.",
+      "Không, 108 nhân 6 bằng 642."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm tổng số bút chì (648 cây).",
+      "Bước 2: Xác định số lớp nhận bút (6 lớp).",
+      "Bước 3: Đặt phép chia: 648 ÷ 6.",
+      "Bước 4: Chia từ trái: 6 ÷ 6 = 1; 4 ÷ 6 không đủ, lấy 48 ÷ 6 = 8. Kết quả: 108.",
+      "Bước 5: Kết quả: 648 ÷ 6 = 108 cây bút chì.",
+      "Bước 6: Kiểm tra: 108 × 6 = 648. Đúng!",
+      "Bước 7: Chọn đáp án 108 cây bút chì."
+    ]
+  }
+]

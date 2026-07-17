@@ -1,23 +1,24 @@
 # Continuity & Operational Learnings
 
 ## Active Goal
-Audit toàn bộ các bài toán lớp 4 trong public/lessons/grade-4/math.json đảm bảo độ chính xác toán học và cấu trúc dữ liệu, tối ưu UX stepper cho các bài suy luận logic.
+Chuyển đổi menu profile (cũ dạng dropdown nhỏ khó nhấn) thành giao diện Bottom Sheet toàn màn hình (trên di động) / Dialog Modal (trên máy tính) với các nút bấm dạng thẻ/pill lớn, dễ tương tác và nâng cấp trong tương lai.
 
 ## Next Actions
-- [x] 1.1 Tạo file kiểm thử tự động scripts/audit-lessons.js
-- [x] 1.2 Tích hợp scripts/audit-lessons.js làm Gate 3 trong scripts/test-gate.js
-- [x] 2.1 Cập nhật nextStep, isStepAnswered, và validateStep trong src/App.jsx để bỏ qua Bước 5 khi giải bài suy luận logic
+- [x] 1.1 Thêm các class CSS cho backdrop, bottom-sheet panel và các component lựa chọn mới vào `src/App.css`
+- [x] 1.2 Cập nhật component hiển thị menu profile trong `src/App.jsx` sang Bottom Sheet có nút đóng, drag handle và click bên ngoài để đóng
+- [x] 2.1 Thay thế bộ chọn mascot dropdown thành giao diện danh sách thẻ (card) trực quan trong Bottom Sheet
+- [x] 2.2 Thay thế bộ chọn grade (lớp học) và studyMode (chế độ học) thành hàng các nút dạng thuốc nhộng (pills)
 
 ## Current Phase
-completed
+complete
 
 ## Working Context
-- Đã xác thực toàn bộ 55 bài toán tính toán lớp 4 đúng logic toán học.
-- Phát hiện 5 bài toán suy luận logic/so sánh biểu đồ (bài 53-57) có câu trả lời phi số (hoặc answer = 0) gây cản trở ở bước Tự tính toán (bắt học sinh điền số 0).
-- Thống nhất và triển khai thành công phương án bỏ qua bước 5 (Tự tính) của stepper đối với các bài toán phi số này.
-- Đã kiểm định toàn bộ dự án qua 6 cổng kiểm thử tự động `npm run test:gate` thành công 100%.
+- Đã hoàn thành triển khai thiết kế Bottom Sheet / Centered Modal mới.
+- Đã sửa lỗi trắng trang khi click vào Profile do thiếu khai báo state `isDevMode` trong App.jsx.
+- Đã chạy kiểm thử logic, linter và build và toàn bộ đều đã vượt qua thành công.
 
 ## Decisions
+- [Decision]: Chuyển menu profile thành Bottom Sheet toàn màn hình (mobile) và Centered Modal (desktop) với các card chọn Mascot và pill chọn Lớp/Môn để trẻ em dễ dàng thao tác — scope: file:src/App.jsx
 - [Decision]: Tách riêng component OnboardingLesson để độc lập hóa logic của Bài 0 với các bài học thực tế, giữ LessonView sạch sẽ — scope: file:src/App.jsx
 - [Decision]: Tạo Service Worker thủ công (public/sw.js) để không phụ thuộc plugin build giúp ứng dụng biên dịch nhanh và nhẹ nhàng — scope: global
 - [Decision]: Sử dụng file lịch biểu .ics làm fallback thông báo nhắc nhở để bảo đảm tính năng hoạt động trên mọi thiết bị và hệ điều hành (bao gồm cả iOS Safari) — scope: global
@@ -28,8 +29,16 @@ completed
 - [Decision]: Trích xuất các tham số tỷ lệ phát âm thành các hằng số rõ ràng (SPEECH_RATE_SLOW, SPEECH_RATE_FAST, SPEECH_RATE_NORMAL) để tăng độ rõ ràng — scope: file:src/utils.js
 - [Decision]: Trích xuất khoảng thời gian giữ kết nối giọng nói thành hằng số KEEP_ALIVE_INTERVAL_MS — scope: file:src/audio.js
 - [Decision]: Tự động bỏ qua Bước 5 (Tự tính toán) trong App.jsx khi bài học thuộc kỹ năng 'Suy luận logic' hoặc có answer = 0 để tránh bắt trẻ nhập các giá trị dummy vô nghĩa. — scope: file:src/App.jsx
+- [Decision]: Loại bỏ các hàm chết `getEncourageLine` và `getLessonBadge` khỏi `src/utils.js` do không còn sử dụng — scope: file:src/utils.js
+- [Decision]: Áp dụng nguyên tắc DRY, sử dụng `isChallengeModeActive` thay vì viết lại biểu thức `progress.challengeMode || lesson?.difficulty === 'hard'` ở 3 nơi trong `src/App.jsx` — scope: file:src/App.jsx
+- [Decision]: Cải thiện đặt tên biến, đổi tên biến đơn tự `m` thành `mascotProfile` và `n` thành `visibleCount` trong `src/App.jsx` để tăng tính tường minh — scope: file:src/App.jsx
 
 ## Learnings
+- **What Failed**: Uncaught ReferenceError: isDevMode is not defined (Gây lỗi trắng trang khi bấm vào nút Profile).
+- **Why It Failed**: Linter không phát hiện ra biến bị thiếu do `isDevMode` nằm sâu trong cấu trúc JSX điều kiện của profile-menu `{menuOpen && ...}` vốn chỉ được render khi người dùng click tương tác thực tế, đồng thời state `isDevMode` đã bị xóa nhầm trong commit dọn dẹp trước đó.
+- **How to Prevent**: Luôn kiểm tra kỹ các biến được sử dụng trong các đoạn JSX có điều kiện để chắc chắn trạng thái state của chúng được định nghĩa đầy đủ, hoặc viết smoke test tự động hóa click mở tất cả các panel tương tác.
+- **Scope**: file:src/App.jsx
+
 - **What Worked**: File lịch biểu .ics là một giải pháp cực kỳ sáng tạo và hiệu quả cho các ứng dụng PWA chạy local thuần frontend không có backend để kích hoạt thông báo hẹn giờ một cách chính xác.
 - **How to Benefit**: Áp dụng cho các tính năng lên lịch, báo thức, hẹn giờ nhắc nhở trong các dự án offline-first/no-backend tương tự.
 - **Scope**: global

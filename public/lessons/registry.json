@@ -8,7 +8,7 @@
           "id": "math",
           "title": "Toán học",
           "icon": "📐",
-          "comingSoon": true
+          "lessonsPath": "/lessons/grade-1/math.json"
         }
       ]
     },
@@ -20,7 +20,7 @@
           "id": "math",
           "title": "Toán học",
           "icon": "🧮",
-          "comingSoon": true
+          "lessonsPath": "/lessons/grade-2/math.json"
         }
       ]
     },
@@ -32,7 +32,7 @@
           "id": "math",
           "title": "Toán học",
           "icon": "📐",
-          "comingSoon": true
+          "lessonsPath": "/lessons/grade-3/math.json"
         }
       ]
     },
@@ -68,7 +68,7 @@
           "id": "math",
           "title": "Toán học",
           "icon": "📐",
-          "comingSoon": true
+          "lessonsPath": "/lessons/grade-5/math.json"
         }
       ]
     }

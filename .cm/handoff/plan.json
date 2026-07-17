@@ -1,15 +1,16 @@
 {
   "schema": "plan@1",
-  "goal": "Audit toàn bộ các bài toán đảm bảo bài tập và lời giải chính xác, sửa UX cho các bài toán logic loại trừ.",
+  "goal": "Redesign Profile Menu into a Full Screen Bottom Sheet / Centered Dialog with grid selectors and interactive pills for easier tapping.",
   "decisions": [
-    "Viết scripts/audit-lessons.js để kiểm thử tự động nội dung và đáp án các bài học Toán lớp 4.",
-    "Tích hợp scripts/audit-lessons.js làm Gate 3: Lessons Data Integrity trong test-gate.js.",
-    "Bỏ qua bước 5 (Tự tính) đối với các bài toán Suy luận logic hoặc bài toán có answer: 0 trong src/App.jsx."
+    "Use backdrop with blur and click dismiss",
+    "Replace mascot select dropdown with card grid selection UI",
+    "Replace grade select dropdown with horizontal pill selection UI",
+    "Make bottom sheet slide up from bottom on mobile and center on desktop"
   ],
   "first_tasks": [
-    "1.1 Create automated lesson audit validator script scripts/audit-lessons.js",
-    "1.2 Integrate scripts/audit-lessons.js as Gate 3 in scripts/test-gate.js",
-    "2.1 Update stepper step transition in src/App.jsx (nextStep) to skip Step 5"
+    "1.1 Add styles for bottom sheet backdrop and layout panel in src/App.css",
+    "1.2 Add responsive styles (bottom sheet on mobile, centered modal on desktop)",
+    "2.1 Refactor the toggle wrapper of menuOpen to render bottom sheet overlay and panel in src/App.jsx"
   ],
-  "openspec_path": "openspec/changes/audit-lessons/"
+  "openspec_path": "openspec/changes/profile-bottom-sheet/"
 }

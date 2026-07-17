@@ -92,7 +92,7 @@ function runGate1() {
   printHeader('Gate 1: Syntax & Lint Validation');
   try {
     console.log('Running linter (oxlint)...');
-    execSync('npm run lint', { stdio: 'inherit', cwd: ROOT_DIR });
+    execSync('./node_modules/.bin/oxlint', { stdio: 'inherit', cwd: ROOT_DIR });
     printSuccess('Syntax and lint check passed.');
   } catch {
     printFailure('Linting failed. Please fix syntax errors before deploying.');
@@ -209,7 +209,7 @@ function runGate4_5() {
   printHeader('Gates 4 & 5: Build & Dist Verification');
   try {
     console.log('Compiling production bundle...');
-    execSync('npm run build', { stdio: 'inherit', cwd: ROOT_DIR });
+    execSync('./node_modules/.bin/vite build', { stdio: 'inherit', cwd: ROOT_DIR });
     printSuccess('Build compilation succeeded.');
     
     const distHtmlPath = path.join(ROOT_DIR, 'dist', 'index.html');

@@ -1,4 +1,5 @@
-import { isUnlocked, resolveSpeechRate, generateIcsContent, isChallengeModeActive, getActiveProgress, applyLessonResult, getLearningPlan, getRecentlyStudiedLesson, getUnlockedAchievementIds } from './utils.js';
+import { isUnlocked, resolveSpeechRate, generateIcsContent, isChallengeModeActive, getActiveProgress, applyLessonResult, getLearningPlan, getRecentlyStudiedLesson, getUnlockedAchievementIds, analyzeBehavioralProfile, updateBehavioralMetrics } from './utils.js';
+import { getMascotSpeech, getIndicatorGuide, MASCOT_PROFILES } from './mascotDialogs.js';
 import assert from 'assert';
 
 const mockLessons = [
@@ -140,7 +141,7 @@ try {
   process.exit(1);
 }
 
-import { getMascotSpeech, MASCOT_PROFILES } from './mascotDialogs.js';
+
 
 console.log('Running tests for mascotDialogs...');
 
@@ -290,12 +291,12 @@ try {
   assert.ok(unlocks2.includes('perfect_score')); // stars 3 on lesson-1
   assert.ok(!unlocks2.includes('explainer')); // only 2 completed, explainer needs 4
 
-  // Case 3: Unlocks logic_brain (xp >= 300) and daily_streak (streak >= 3)
+  // Case 3: Unlocks logic_brain (xp >= 1000) and daily_streak (streak >= 3)
   const progress3 = {
     completed: {
       'lesson-1': { stars: 3, challengeMode: false }
     },
-    xp: 350,
+    xp: 1050,
     streak: 4,
     notificationsEnabled: false
   };
@@ -361,6 +362,183 @@ try {
   console.log('✅ applyLessonResult duration tracking tests passed!');
 } catch (e) {
   console.error('❌ applyLessonResult duration tracking tests failed:', e.message);
+  process.exit(1);
+}
+
+console.log('Running tests for mascotDialogs...');
+
+// Test 1: Verify exactly 9 mascot profiles exist
+try {
+  const keys = Object.keys(MASCOT_PROFILES);
+  assert.strictEqual(keys.length, 9);
+  const expectedKeys = ['owl', 'robot', 'turtle', 'babyshark', 'poli', 'steve', 'elsa', 'pinkfong', 'peppa'];
+  expectedKeys.forEach(k => {
+    assert.ok(keys.includes(k), `Mascot profile ${k} is missing`);
+    const p = MASCOT_PROFILES[k];
+    assert.ok(p.name, `Mascot ${k} is missing name`);
+    assert.ok(p.emoji, `Mascot ${k} is missing emoji`);
+    assert.ok(p.desc, `Mascot ${k} is missing desc`);
+    assert.ok(typeof p.pitch === 'number', `Mascot ${k} pitch must be number`);
+    assert.ok(typeof p.rateOffset === 'number', `Mascot ${k} rateOffset must be number`);
+    assert.ok(p.achievementPraise, `Mascot ${k} is missing achievementPraise`);
+  });
+  console.log('✅ Test: All 9 mascot profiles are defined and structured correctly');
+} catch (e) {
+  console.error('❌ Mascot profiles structure test failed:', e.message);
+  process.exit(1);
+}
+
+// Test 2: Verify getMascotSpeech resolves correctly for all 9 mascots
+try {
+  const expectedKeys = ['owl', 'robot', 'turtle', 'babyshark', 'poli', 'steve', 'elsa', 'pinkfong', 'peppa'];
+  expectedKeys.forEach(k => {
+    const praise = getMascotSpeech(k, true, 'Test Praise');
+    const encourage = getMascotSpeech(k, false, 'Test Encourage');
+    assert.ok(praise.includes('Test Praise'), `Mascot ${k} praise missing message`);
+    assert.ok(encourage.includes('Test Encourage'), `Mascot ${k} encourage missing message`);
+  });
+  console.log('✅ Test: getMascotSpeech returns correct custom text for all mascots');
+} catch (e) {
+  console.error('❌ getMascotSpeech tests failed:', e.message);
+  process.exit(1);
+}
+
+// Test 3: Verify getIndicatorGuide resolves and formats correctly for new mascots
+try {
+  const progress = { level: 4, streak: 12, xp: 450 };
+  
+  // Test baby shark indicator guide formatting
+  const lvlGuide = getIndicatorGuide('babyshark', 'level', progress);
+  assert.ok(lvlGuide.intro.includes('4'), `Expected "4" in intro, got: ${lvlGuide.intro}`);
+  
+  const streakGuide = getIndicatorGuide('steve', 'streak', progress);
+  assert.ok(streakGuide.intro.includes('12'), `Expected "12" in intro, got: ${streakGuide.intro}`);
+  
+  const xpGuide = getIndicatorGuide('elsa', 'xp', progress);
+  assert.ok(xpGuide.intro.includes('450'), `Expected "450" in intro, got: ${xpGuide.intro}`);
+  
+  console.log('✅ Test: getIndicatorGuide formats dynamic placeholders for new mascots correctly');
+} catch (e) {
+  console.error('❌ getIndicatorGuide formatting tests failed:', e.message);
+  process.exit(1);
+}
+
+// Test 4: Verify analyzeBehavioralProfile and updateBehavioralMetrics
+try {
+  console.log('Running tests for behavioral profile tracking...');
+  let progress = {
+    xp: 0,
+    behavioralProfile: {
+      totalStepsPlayed: 0,
+      totalMistakes: 0,
+      quickAnswersCount: 0,
+      quickMistakesCount: 0,
+      immediateHintsCount: 0,
+      idleStuckCount: 0,
+      exitMidwayCount: 0,
+      currentArchetype: 'balanced',
+      lastAnalyzedAt: null
+    }
+  };
+
+  // Test pioneer (impulsive)
+  // quickMistakesCount >= 2 and totalStepsPlayed >= 3
+  progress = updateBehavioralMetrics(progress, 'step_attempt', { latency: 3, isCorrect: false });
+  progress = updateBehavioralMetrics(progress, 'step_attempt', { latency: 4, isCorrect: false });
+  progress = updateBehavioralMetrics(progress, 'step_attempt', { latency: 10, isCorrect: true }); // totalStepsPlayed = 3
+  assert.strictEqual(progress.behavioralProfile.currentArchetype, 'pioneer');
+  console.log('✅ Test Passed: pioneer archetype correctly classified');
+
+  // Reset progress to test budding_thinker
+  progress = {
+    xp: 0,
+    behavioralProfile: {
+      totalStepsPlayed: 0,
+      totalMistakes: 0,
+      quickAnswersCount: 0,
+      quickMistakesCount: 0,
+      immediateHintsCount: 0,
+      idleStuckCount: 0,
+      exitMidwayCount: 0,
+      currentArchetype: 'balanced',
+      lastAnalyzedAt: null
+    }
+  };
+
+  // immediateHintsCount >= 2 and totalStepsPlayed >= 3
+  progress = updateBehavioralMetrics(progress, 'hint_opened', { latency: 2, step: 1 });
+  progress = updateBehavioralMetrics(progress, 'step_attempt', { latency: 15, isCorrect: true });
+  progress = updateBehavioralMetrics(progress, 'hint_opened', { latency: 3, step: 2 });
+  progress = updateBehavioralMetrics(progress, 'step_attempt', { latency: 12, isCorrect: true });
+  progress = updateBehavioralMetrics(progress, 'step_attempt', { latency: 12, isCorrect: true }); // totalStepsPlayed = 3
+  assert.strictEqual(progress.behavioralProfile.currentArchetype, 'budding_thinker');
+  console.log('✅ Test Passed: budding_thinker archetype correctly classified');
+
+  // Test active_seeker
+  progress = {
+    xp: 0,
+    behavioralProfile: {
+      totalStepsPlayed: 0,
+      totalMistakes: 0,
+      quickAnswersCount: 0,
+      quickMistakesCount: 0,
+      immediateHintsCount: 0,
+      idleStuckCount: 0,
+      exitMidwayCount: 0,
+      currentArchetype: 'balanced',
+      lastAnalyzedAt: null
+    }
+  };
+
+  // exitMidwayCount >= 2 and totalStepsPlayed >= 3
+  progress = updateBehavioralMetrics(progress, 'exit_lesson', { step: 3, mistakes: 2 });
+  progress = updateBehavioralMetrics(progress, 'exit_lesson', { step: 4, mistakes: 1 });
+  progress = updateBehavioralMetrics(progress, 'step_attempt', { latency: 15, isCorrect: true });
+  progress = updateBehavioralMetrics(progress, 'step_attempt', { latency: 15, isCorrect: true });
+  progress = updateBehavioralMetrics(progress, 'step_attempt', { latency: 15, isCorrect: true });
+  assert.strictEqual(progress.behavioralProfile.currentArchetype, 'active_seeker');
+  console.log('✅ Test Passed: active_seeker archetype correctly classified');
+
+  // Test scholar
+  progress = {
+    xp: 0,
+    behavioralProfile: {
+      totalStepsPlayed: 0,
+      totalMistakes: 0,
+      quickAnswersCount: 0,
+      quickMistakesCount: 0,
+      immediateHintsCount: 0,
+      idleStuckCount: 0,
+      exitMidwayCount: 0,
+      currentArchetype: 'balanced',
+      lastAnalyzedAt: null
+    }
+  };
+
+  // totalStepsPlayed >= 8, quickMistakesCount <= 1, mistake rate <= 0.15
+  for (let i = 0; i < 8; i++) {
+    progress = updateBehavioralMetrics(progress, 'step_attempt', { latency: 15, isCorrect: i > 0 });
+  }
+  assert.strictEqual(progress.behavioralProfile.currentArchetype, 'scholar');
+  console.log('✅ Test Passed: scholar archetype correctly classified');
+
+  // Test direct call of analyzeBehavioralProfile
+  const directProfile = analyzeBehavioralProfile({
+    behavioralProfile: {
+      totalStepsPlayed: 10,
+      totalMistakes: 1,
+      quickAnswersCount: 0,
+      quickMistakesCount: 0,
+      immediateHintsCount: 0,
+      idleStuckCount: 0,
+      exitMidwayCount: 0
+    }
+  });
+  assert.strictEqual(directProfile.currentArchetype, 'scholar');
+  console.log('✅ Test Passed: direct analyzeBehavioralProfile call returns scholar');
+  
+} catch (e) {
+  console.error('❌ Behavioral profile tests failed:', e.stack);
   process.exit(1);
 }
 

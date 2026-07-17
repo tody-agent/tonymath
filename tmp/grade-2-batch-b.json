@@ -1,0 +1,2025 @@
+[
+  {
+    "id": "lesson-61",
+    "title": "Mỗi bàn có 4 bạn ngồi",
+    "shortTitle": "Nhân 4 với bàn học",
+    "icon": "🪑",
+    "color": "blue",
+    "skill": "Nhân (bảng nhân 4)",
+    "story": "Trong lớp học của cô Hoa, mỗi bàn có 4 bạn ngồi. Lớp có 5 bàn. Hỏi lớp cô Hoa có tất cả bao nhiêu bạn?",
+    "visual": {
+      "type": "icons",
+      "values": [4, 4, 4, 4, 4],
+      "labels": ["Bàn 1", "Bàn 2", "Bàn 3", "Bàn 4", "Bàn 5"],
+      "icons": ["👦", "👦", "👦", "👦", "👦"]
+    },
+    "retellOptions": [
+      "Mỗi bàn 4 bạn, có 5 bàn, hỏi lớp có bao nhiêu bạn.",
+      "Lớp có 4 bạn, chia ra 5 bàn, hỏi mỗi bàn mấy bạn.",
+      "Có 5 bạn ngồi 4 bàn, hỏi thừa mấy bạn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mỗi bàn có 4 bạn",
+      "Lớp có 5 bàn",
+      "Tìm tổng số bạn trong lớp"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình nhóm bằng nhau (Nhân)",
+      "Mô hình chia đều",
+      "Mô hình so sánh hơn kém"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "4 × 5",
+      "4 + 5",
+      "5 - 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì mỗi bàn có số bạn bằng nhau, ta lấy số bạn mỗi bàn nhân với số bàn.",
+      "Vì ta cộng số bàn và số bạn lại.",
+      "Vì ta tìm bàn thừa bao nhiêu."
+    ],
+    "correctReason": 0,
+    "answer": 20,
+    "unit": "bạn",
+    "answerOptions": [
+      "Lớp cô Hoa có tất cả 20 bạn.",
+      "Lớp cô Hoa có tất cả 9 bạn.",
+      "Lớp cô Hoa có tất cả 15 bạn."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "4 × 5 = 20. Ta thử kiểm tra: 20 ÷ 5 = 4, đúng số bạn mỗi bàn không?",
+    "checkOptions": [
+      "Đúng, 20 ÷ 5 = 4, khớp với đề bài.",
+      "Sai, 20 ÷ 5 không bằng 4."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đọc đề và tìm số bạn ở mỗi bàn (4 bạn).",
+      "Bước 2: Tìm số bàn trong lớp (5 bàn).",
+      "Bước 3: Nhận ra mỗi bàn đều có số bạn bằng nhau → phép nhân.",
+      "Bước 4: Viết phép tính: 4 × 5.",
+      "Bước 5: Tính 4 × 5 = 20.",
+      "Bước 6: Viết đáp án: Lớp có 20 bạn.",
+      "Bước 7: Kiểm tra bằng phép chia: 20 ÷ 5 = 4. Đúng!"
+    ]
+  },
+  {
+    "id": "lesson-62",
+    "title": "Chia kẹo cho các bạn",
+    "shortTitle": "Chia đều kẹo sô-cô-la",
+    "icon": "🍫",
+    "color": "pink",
+    "skill": "Chia đều",
+    "story": "Minh có 15 chiếc kẹo sô-cô-la. Minh muốn chia đều cho 3 bạn. Hỏi mỗi bạn được mấy chiếc kẹo?",
+    "visual": {
+      "type": "bar",
+      "values": [15],
+      "labels": ["Tổng kẹo"]
+    },
+    "retellOptions": [
+      "Minh có 15 kẹo, chia đều cho 3 bạn, hỏi mỗi bạn được mấy kẹo.",
+      "Minh có 15 kẹo, mua thêm 3 kẹo nữa, hỏi có tất cả bao nhiêu.",
+      "Minh có 3 kẹo, cho thêm 15 kẹo, hỏi tổng bao nhiêu kẹo."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Minh có 15 chiếc kẹo",
+      "Chia đều cho 3 bạn",
+      "Tìm số kẹo mỗi bạn được nhận"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh hơn kém"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "15 ÷ 3",
+      "15 - 3",
+      "15 × 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì chia đều 15 kẹo cho 3 bạn, ta lấy tổng kẹo chia cho số bạn.",
+      "Vì ta bớt đi 3 chiếc kẹo.",
+      "Vì mỗi bạn được gấp 3 lần."
+    ],
+    "correctReason": 0,
+    "answer": 5,
+    "unit": "chiếc kẹo",
+    "answerOptions": [
+      "Mỗi bạn được 5 chiếc kẹo.",
+      "Mỗi bạn được 12 chiếc kẹo.",
+      "Mỗi bạn được 45 chiếc kẹo."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Nếu mỗi bạn được 5 kẹo, 3 bạn nhận tổng cộng 5 × 3 = 15 kẹo, có khớp không?",
+    "checkOptions": [
+      "Có, 5 × 3 = 15, đúng với tổng kẹo ban đầu.",
+      "Không, 5 × 3 khác 15."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm tổng số kẹo Minh có (15 chiếc).",
+      "Bước 2: Tìm số bạn được chia (3 bạn).",
+      "Bước 3: Nhận ra bài yêu cầu chia đều → phép chia.",
+      "Bước 4: Viết phép tính: 15 ÷ 3.",
+      "Bước 5: Tính 15 ÷ 3 = 5.",
+      "Bước 6: Viết đáp án: Mỗi bạn được 5 chiếc kẹo.",
+      "Bước 7: Kiểm tra: 5 × 3 = 15. Đúng!"
+    ]
+  },
+  {
+    "id": "lesson-63",
+    "title": "Xếp hàng mua kem",
+    "shortTitle": "Nhân 3 với kem",
+    "icon": "🍦",
+    "color": "purple",
+    "skill": "Nhân (bảng nhân 3)",
+    "story": "Cửa hàng bán kem xếp mỗi hộp 3 cây kem. Bạn Lan mua 4 hộp. Hỏi Lan có tất cả bao nhiêu cây kem?",
+    "visual": {
+      "type": "icons",
+      "values": [3, 3, 3, 3],
+      "labels": ["Hộp 1", "Hộp 2", "Hộp 3", "Hộp 4"],
+      "icons": ["🍦", "🍦", "🍦", "🍦"]
+    },
+    "retellOptions": [
+      "Mỗi hộp 3 cây kem, mua 4 hộp, hỏi có bao nhiêu cây kem.",
+      "Có 3 hộp kem, mỗi hộp 4 cây, hỏi bán được bao nhiêu.",
+      "Lan mua 3 cây kem rồi trả lại 4 cây."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mỗi hộp có 3 cây kem",
+      "Lan mua 4 hộp",
+      "Tìm tổng số cây kem"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình nhóm bằng nhau (Nhân)",
+      "Mô hình bớt (Cho đi)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "3 × 4",
+      "3 + 4",
+      "4 - 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì mỗi hộp đều có 3 cây kem, mua 4 hộp thì nhân 3 với 4.",
+      "Vì ta cộng số hộp với số kem.",
+      "Vì ta tìm số hộp còn thừa."
+    ],
+    "correctReason": 0,
+    "answer": 12,
+    "unit": "cây kem",
+    "answerOptions": [
+      "Lan có tất cả 12 cây kem.",
+      "Lan có tất cả 7 cây kem.",
+      "Lan có tất cả 1 cây kem."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "3 × 4 = 12. Kiểm tra: 12 ÷ 4 = 3 cây mỗi hộp, có khớp không?",
+    "checkOptions": [
+      "Có, 12 ÷ 4 = 3, đúng với đề bài.",
+      "Không, 12 ÷ 4 khác 3."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đọc đề, tìm số kem trong mỗi hộp (3 cây).",
+      "Bước 2: Tìm số hộp Lan mua (4 hộp).",
+      "Bước 3: Các hộp đều có số kem bằng nhau → phép nhân.",
+      "Bước 4: Viết phép tính: 3 × 4.",
+      "Bước 5: Tính 3 × 4 = 12.",
+      "Bước 6: Viết đáp án: Lan có tất cả 12 cây kem.",
+      "Bước 7: Kiểm tra: 12 ÷ 4 = 3. Đúng với đề bài!"
+    ]
+  },
+  {
+    "id": "lesson-64",
+    "title": "Chia táo cho nhóm bạn",
+    "shortTitle": "Chia đều táo xanh",
+    "icon": "🍏",
+    "color": "green",
+    "skill": "Chia đều",
+    "story": "Hà hái được 20 quả táo xanh. Hà muốn chia đều cho 4 nhóm bạn. Hỏi mỗi nhóm bạn được bao nhiêu quả táo?",
+    "visual": {
+      "type": "bar",
+      "values": [20],
+      "labels": ["Tổng táo"]
+    },
+    "retellOptions": [
+      "Hà có 20 táo, chia đều cho 4 nhóm, hỏi mỗi nhóm được bao nhiêu.",
+      "Hà có 20 táo, ăn hết 4 quả, hỏi còn bao nhiêu.",
+      "4 nhóm hái thêm 20 quả táo, hỏi tổng bao nhiêu."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Hà có 20 quả táo xanh",
+      "Chia đều cho 4 nhóm bạn",
+      "Tìm số táo mỗi nhóm được nhận"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình nhóm bằng nhau (Nhân)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "20 ÷ 4",
+      "20 - 4",
+      "20 + 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì chia đều 20 táo cho 4 nhóm, ta dùng phép chia.",
+      "Vì bớt đi 4 quả táo.",
+      "Vì thêm táo cho nhóm."
+    ],
+    "correctReason": 0,
+    "answer": 5,
+    "unit": "quả táo",
+    "answerOptions": [
+      "Mỗi nhóm bạn được 5 quả táo.",
+      "Mỗi nhóm bạn được 16 quả táo.",
+      "Mỗi nhóm bạn được 24 quả táo."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "5 × 4 = 20. Có bằng tổng táo ban đầu không?",
+    "checkOptions": [
+      "Có, 5 × 4 = 20 đúng bằng tổng táo.",
+      "Không, 5 × 4 khác 20."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm tổng số táo Hà có (20 quả).",
+      "Bước 2: Tìm số nhóm bạn (4 nhóm).",
+      "Bước 3: Đề bài yêu cầu 'chia đều' → dùng phép chia.",
+      "Bước 4: Viết phép tính: 20 ÷ 4.",
+      "Bước 5: Tính 20 ÷ 4 = 5.",
+      "Bước 6: Viết đáp án: Mỗi nhóm được 5 quả táo.",
+      "Bước 7: Kiểm tra lại: 5 × 4 = 20. Đúng!"
+    ]
+  },
+  {
+    "id": "lesson-65",
+    "title": "Nhà Nam nhiều hơn nhà An",
+    "shortTitle": "Nhiều hơn gà vịt",
+    "icon": "🐓",
+    "color": "yellow",
+    "skill": "Nhiều hơn một số đơn vị",
+    "story": "Nhà An nuôi 24 con gà. Nhà Nam nuôi nhiều hơn nhà An 18 con gà. Hỏi nhà Nam nuôi bao nhiêu con gà?",
+    "visual": {
+      "type": "compare",
+      "values": [24, 18],
+      "bigLabel": "Nhà Nam",
+      "smallLabel": "Nhà An"
+    },
+    "retellOptions": [
+      "Nhà An nuôi 24 con gà, nhà Nam nuôi nhiều hơn 18 con, hỏi nhà Nam nuôi bao nhiêu.",
+      "Nhà An nuôi 24 con, nhà Nam nuôi 18 con, hỏi tổng bao nhiêu.",
+      "Nhà Nam ít hơn nhà An 18 con gà."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Nhà An nuôi 24 con gà",
+      "Nhà Nam nuôi nhiều hơn nhà An 18 con",
+      "Tìm số gà nhà Nam nuôi"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình so sánh (Nhiều hơn → Cộng)",
+      "Mô hình bớt (Cho đi)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "24 + 18",
+      "24 - 18",
+      "24 × 18"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Nhà Nam nuôi nhiều hơn, nên ta lấy số gà nhà An cộng thêm phần nhiều hơn.",
+      "Vì nhiều hơn nên ta trừ đi.",
+      "Vì nhân hai số lại với nhau."
+    ],
+    "correctReason": 0,
+    "answer": 42,
+    "unit": "con gà",
+    "answerOptions": [
+      "Nhà Nam nuôi 42 con gà.",
+      "Nhà Nam nuôi 6 con gà.",
+      "Nhà Nam nuôi 40 con gà."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "42 con gà có nhiều hơn 24 con gà không?",
+    "checkOptions": [
+      "Có, 42 lớn hơn 24, hợp lý vì nhà Nam nuôi nhiều hơn.",
+      "Không, nhà Nam phải ít hơn nhà An."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số gà nhà An (24 con).",
+      "Bước 2: Tìm phần nhiều hơn (18 con).",
+      "Bước 3: 'Nhiều hơn' nghĩa là ta phải cộng thêm.",
+      "Bước 4: Viết phép tính: 24 + 18.",
+      "Bước 5: Tính 24 + 18 = 42.",
+      "Bước 6: Viết đáp án: Nhà Nam nuôi 42 con gà.",
+      "Bước 7: Kiểm tra: 42 - 24 = 18, đúng phần nhiều hơn."
+    ]
+  },
+  {
+    "id": "lesson-66",
+    "title": "Ít hơn mấy bông hoa",
+    "shortTitle": "Ít hơn hoa hồng",
+    "icon": "🌹",
+    "color": "red",
+    "skill": "Ít hơn một số đơn vị",
+    "story": "Vườn bà Mai có 45 bông hoa hồng. Vườn bà Lan có ít hơn vườn bà Mai 17 bông. Hỏi vườn bà Lan có bao nhiêu bông hoa hồng?",
+    "visual": {
+      "type": "compare",
+      "values": [45, 17],
+      "bigLabel": "Vườn bà Mai",
+      "smallLabel": "Vườn bà Lan"
+    },
+    "retellOptions": [
+      "Vườn bà Mai có 45 bông, vườn bà Lan ít hơn 17 bông, hỏi vườn bà Lan có bao nhiêu.",
+      "Hai vườn cộng lại có 45 bông, tìm mỗi vườn.",
+      "Vườn bà Lan nhiều hơn vườn bà Mai 17 bông."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Vườn bà Mai có 45 bông hoa hồng",
+      "Vườn bà Lan ít hơn 17 bông",
+      "Tìm số hoa hồng vườn bà Lan"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình so sánh (Ít hơn → Trừ)",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình nhóm bằng nhau (Nhân)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "45 - 17",
+      "45 + 17",
+      "45 ÷ 17"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vườn bà Lan ít hơn, nên ta lấy số hoa vườn bà Mai trừ đi phần ít hơn.",
+      "Vì ít hơn nên ta cộng thêm.",
+      "Vì chia đều cho hai vườn."
+    ],
+    "correctReason": 0,
+    "answer": 28,
+    "unit": "bông hoa hồng",
+    "answerOptions": [
+      "Vườn bà Lan có 28 bông hoa hồng.",
+      "Vườn bà Lan có 62 bông hoa hồng.",
+      "Vườn bà Lan có 30 bông hoa hồng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "28 bông có ít hơn 45 bông không? Và 45 - 28 có bằng 17 không?",
+    "checkOptions": [
+      "Có, 28 < 45 và 45 - 28 = 17. Đúng!",
+      "Không, 28 phải nhiều hơn 45."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số hoa vườn bà Mai (45 bông).",
+      "Bước 2: Tìm phần ít hơn (17 bông).",
+      "Bước 3: 'Ít hơn' nghĩa là ta phải trừ đi.",
+      "Bước 4: Viết phép tính: 45 - 17.",
+      "Bước 5: Tính 45 - 17 = 28.",
+      "Bước 6: Viết đáp án: Vườn bà Lan có 28 bông hoa hồng.",
+      "Bước 7: Kiểm tra: 45 - 28 = 17. Đúng phần ít hơn!"
+    ]
+  },
+  {
+    "id": "lesson-67",
+    "title": "Gấp đôi số cá của Tuấn",
+    "shortTitle": "Gấp 2 lần số cá",
+    "icon": "🐟",
+    "color": "blue",
+    "skill": "Gấp 2 lần",
+    "story": "Tuấn câu được 8 con cá. Số cá của Duy gấp 2 lần số cá của Tuấn. Hỏi Duy câu được bao nhiêu con cá?",
+    "visual": {
+      "type": "compare",
+      "values": [8, 8],
+      "bigLabel": "Duy (gấp 2 lần)",
+      "smallLabel": "Tuấn"
+    },
+    "retellOptions": [
+      "Tuấn câu 8 con cá, Duy gấp 2 lần Tuấn, hỏi Duy câu bao nhiêu.",
+      "Tuấn câu 8 con, Duy câu 2 con, hỏi ai câu nhiều hơn.",
+      "Duy câu 8 con, Tuấn gấp 2 lần Duy."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tuấn câu được 8 con cá",
+      "Số cá Duy gấp 2 lần số cá Tuấn",
+      "Tìm số cá Duy câu được"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình gấp lần (Nhân)",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "8 × 2",
+      "8 + 2",
+      "8 ÷ 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Gấp 2 lần nghĩa là lấy số đó nhân với 2.",
+      "Vì gấp 2 lần tức là cộng thêm 2.",
+      "Vì gấp 2 lần tức là chia cho 2."
+    ],
+    "correctReason": 0,
+    "answer": 16,
+    "unit": "con cá",
+    "answerOptions": [
+      "Duy câu được 16 con cá.",
+      "Duy câu được 10 con cá.",
+      "Duy câu được 4 con cá."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "16 có bằng 2 lần của 8 không?",
+    "checkOptions": [
+      "Có, 8 × 2 = 16, đúng gấp 2 lần.",
+      "Không, gấp 2 lần 8 phải bằng 10."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số cá Tuấn câu được (8 con).",
+      "Bước 2: Đề nói 'gấp 2 lần' → phép nhân với 2.",
+      "Bước 3: Viết phép tính: 8 × 2.",
+      "Bước 4: Tính 8 × 2 = 16.",
+      "Bước 5: Viết đáp án: Duy câu được 16 con cá.",
+      "Bước 6: Kiểm tra: 16 ÷ 2 = 8. Đúng với số cá Tuấn!"
+    ]
+  },
+  {
+    "id": "lesson-68",
+    "title": "Gấp 3 lần số kẹo",
+    "shortTitle": "Gấp 3 lần kẹo mút",
+    "icon": "🍭",
+    "color": "orange",
+    "skill": "Gấp 3 lần",
+    "story": "Linh có 5 chiếc kẹo mút. Số kẹo của Phúc gấp 3 lần số kẹo của Linh. Hỏi Phúc có bao nhiêu chiếc kẹo mút?",
+    "visual": {
+      "type": "compare",
+      "values": [5, 5],
+      "bigLabel": "Phúc (gấp 3 lần)",
+      "smallLabel": "Linh"
+    },
+    "retellOptions": [
+      "Linh có 5 kẹo, Phúc gấp 3 lần Linh, hỏi Phúc có bao nhiêu kẹo.",
+      "Linh có 5 kẹo, Phúc có 3 kẹo, hỏi tổng bao nhiêu.",
+      "Phúc có 5 kẹo, Linh gấp 3 lần Phúc."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Linh có 5 chiếc kẹo mút",
+      "Phúc có số kẹo gấp 3 lần Linh",
+      "Tìm số kẹo của Phúc"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình gấp lần (Nhân)",
+      "Mô hình so sánh hơn kém",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "5 × 3",
+      "5 + 3",
+      "5 ÷ 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Gấp 3 lần nghĩa là lấy số đó nhân với 3.",
+      "Vì gấp 3 lần tức là cộng thêm 3.",
+      "Vì chia ra thành 3 phần."
+    ],
+    "correctReason": 0,
+    "answer": 15,
+    "unit": "chiếc kẹo mút",
+    "answerOptions": [
+      "Phúc có 15 chiếc kẹo mút.",
+      "Phúc có 8 chiếc kẹo mút.",
+      "Phúc có 2 chiếc kẹo mút."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "15 có bằng 3 lần của 5 không?",
+    "checkOptions": [
+      "Có, 5 × 3 = 15, đúng gấp 3 lần.",
+      "Không, 3 lần của 5 phải là 8."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số kẹo Linh có (5 chiếc).",
+      "Bước 2: Đề nói 'gấp 3 lần' → nhân với 3.",
+      "Bước 3: Viết phép tính: 5 × 3.",
+      "Bước 4: Tính 5 × 3 = 15.",
+      "Bước 5: Viết đáp án: Phúc có 15 chiếc kẹo mút.",
+      "Bước 6: Kiểm tra: 15 ÷ 3 = 5. Đúng với số kẹo Linh!"
+    ]
+  },
+  {
+    "id": "lesson-69",
+    "title": "Đo chiều dài bàn học",
+    "shortTitle": "Đổi mét ra cm",
+    "icon": "📏",
+    "color": "green",
+    "skill": "Đổi đơn vị (m và cm)",
+    "story": "Bàn học của Khoa dài 1 mét 20 xăng-ti-mét. Hỏi bàn học dài bao nhiêu xăng-ti-mét?",
+    "visual": {
+      "type": "bar",
+      "values": [100, 20],
+      "labels": ["1 mét = 100 cm", "Thêm 20 cm"]
+    },
+    "retellOptions": [
+      "Bàn dài 1m 20cm, hỏi bàn dài bao nhiêu cm.",
+      "Bàn dài 120m, hỏi đổi ra cm được bao nhiêu.",
+      "Bàn dài 20cm, hỏi đổi ra mét được bao nhiêu."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bàn dài 1 mét 20 xăng-ti-mét",
+      "1 mét = 100 xăng-ti-mét",
+      "Tìm chiều dài bàn tính bằng xăng-ti-mét"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình đổi đơn vị (Cộng gộp)",
+      "Mô hình so sánh hơn kém",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "100 + 20",
+      "100 - 20",
+      "100 × 20"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "1 mét = 100 cm, cộng thêm 20 cm nữa thành tổng số cm.",
+      "Vì ta bớt đi 20 cm.",
+      "Vì nhân 100 với 20."
+    ],
+    "correctReason": 0,
+    "answer": 120,
+    "unit": "cm",
+    "answerOptions": [
+      "Bàn học dài 120 cm.",
+      "Bàn học dài 80 cm.",
+      "Bàn học dài 2000 cm."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "120 cm có lớn hơn 100 cm (1 mét) không?",
+    "checkOptions": [
+      "Có, 120 > 100 vì bàn dài hơn 1 mét.",
+      "Không, 120 cm phải nhỏ hơn 1 mét."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Nhớ quy tắc: 1 mét = 100 xăng-ti-mét.",
+      "Bước 2: Bàn dài 1 mét = 100 cm.",
+      "Bước 3: Cộng thêm phần lẻ: 20 cm.",
+      "Bước 4: Viết phép tính: 100 + 20.",
+      "Bước 5: Tính 100 + 20 = 120.",
+      "Bước 6: Viết đáp án: Bàn dài 120 cm."
+    ]
+  },
+  {
+    "id": "lesson-70",
+    "title": "Giờ học vẽ kéo dài bao lâu",
+    "shortTitle": "Thời gian giờ vẽ",
+    "icon": "🎨",
+    "color": "purple",
+    "skill": "Bài toán về thời gian",
+    "story": "Giờ học vẽ bắt đầu lúc 2 giờ chiều và kết thúc lúc 4 giờ chiều. Hỏi giờ học vẽ kéo dài bao nhiêu giờ?",
+    "visual": {
+      "type": "bar",
+      "values": [2, 4],
+      "labels": ["Bắt đầu: 2 giờ", "Kết thúc: 4 giờ"]
+    },
+    "retellOptions": [
+      "Giờ vẽ từ 2 giờ đến 4 giờ chiều, hỏi kéo dài bao nhiêu giờ.",
+      "Giờ vẽ bắt đầu lúc 4 giờ, kết thúc lúc 2 giờ.",
+      "Bạn vẽ được 2 bức tranh trong 4 giờ."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Giờ vẽ bắt đầu lúc 2 giờ chiều",
+      "Giờ vẽ kết thúc lúc 4 giờ chiều",
+      "Tìm thời gian kéo dài"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình trục thời gian (Trừ)",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình nhóm bằng nhau (Nhân)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "4 - 2",
+      "4 + 2",
+      "4 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Để tìm thời gian kéo dài, ta lấy giờ kết thúc trừ giờ bắt đầu.",
+      "Vì cộng hai mốc thời gian lại.",
+      "Vì nhân giờ bắt đầu với giờ kết thúc."
+    ],
+    "correctReason": 0,
+    "answer": 2,
+    "unit": "giờ",
+    "answerOptions": [
+      "Giờ học vẽ kéo dài 2 giờ.",
+      "Giờ học vẽ kéo dài 6 giờ.",
+      "Giờ học vẽ kéo dài 8 giờ."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Bắt đầu lúc 2 giờ, cộng 2 giờ nữa có ra 4 giờ không?",
+    "checkOptions": [
+      "Có, 2 + 2 = 4 giờ. Đúng với giờ kết thúc!",
+      "Không, 2 + 2 khác 4 giờ."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm giờ bắt đầu (2 giờ chiều).",
+      "Bước 2: Tìm giờ kết thúc (4 giờ chiều).",
+      "Bước 3: Để tìm thời gian kéo dài → lấy kết thúc trừ bắt đầu.",
+      "Bước 4: Viết phép tính: 4 - 2.",
+      "Bước 5: Tính 4 - 2 = 2.",
+      "Bước 6: Viết đáp án: Giờ vẽ kéo dài 2 giờ.",
+      "Bước 7: Kiểm tra: 2 giờ + 2 giờ = 4 giờ. Đúng!"
+    ]
+  },
+  {
+    "id": "lesson-71",
+    "title": "Mua vở và bút chì",
+    "shortTitle": "Tiền mua đồ học",
+    "icon": "✏️",
+    "color": "yellow",
+    "skill": "Bài toán về tiền (trả lại)",
+    "story": "Mai mua 1 quyển vở giá 5 nghìn đồng. Mai đưa cho cô bán hàng tờ 10 nghìn đồng. Hỏi cô bán hàng phải trả lại Mai bao nhiêu nghìn đồng?",
+    "visual": {
+      "type": "compare",
+      "values": [10, 5],
+      "bigLabel": "Tiền đưa",
+      "smallLabel": "Tiền vở"
+    },
+    "retellOptions": [
+      "Vở giá 5 nghìn, Mai đưa 10 nghìn, hỏi trả lại bao nhiêu.",
+      "Mai mua 10 quyển vở giá 5 nghìn mỗi quyển.",
+      "Mai mua vở 10 nghìn, bán lại 5 nghìn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Quyển vở giá 5 nghìn đồng",
+      "Mai đưa 10 nghìn đồng",
+      "Tìm số tiền thừa trả lại"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình bớt (Trả lại tiền thừa)",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình nhóm bằng nhau (Nhân)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "10 - 5",
+      "10 + 5",
+      "10 × 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tiền thừa = Tiền đưa - Tiền hàng, nên ta lấy 10 trừ 5.",
+      "Vì cộng tiền đưa và tiền vở lại.",
+      "Vì nhân số tiền."
+    ],
+    "correctReason": 0,
+    "answer": 5,
+    "unit": "nghìn đồng",
+    "answerOptions": [
+      "Cô bán hàng trả lại Mai 5 nghìn đồng.",
+      "Cô bán hàng trả lại Mai 15 nghìn đồng.",
+      "Cô bán hàng trả lại Mai 50 nghìn đồng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tiền vở (5 nghìn) + tiền thừa (5 nghìn) có bằng 10 nghìn không?",
+    "checkOptions": [
+      "Có, 5 + 5 = 10 nghìn. Đúng!",
+      "Không, 5 + 5 khác 10."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm giá quyển vở (5 nghìn đồng).",
+      "Bước 2: Tìm số tiền Mai đưa (10 nghìn đồng).",
+      "Bước 3: Tiền thừa = Tiền đưa − Tiền hàng.",
+      "Bước 4: Viết phép tính: 10 - 5.",
+      "Bước 5: Tính 10 - 5 = 5.",
+      "Bước 6: Viết đáp án: Trả lại 5 nghìn đồng.",
+      "Bước 7: Kiểm tra: 5 + 5 = 10. Đúng!"
+    ]
+  },
+  {
+    "id": "lesson-72",
+    "title": "Xếp trứng vào khay",
+    "shortTitle": "Nhân 5 khay trứng",
+    "icon": "🥚",
+    "color": "orange",
+    "skill": "Nhân (bảng nhân 5)",
+    "story": "Mỗi khay đựng được 5 quả trứng. Cô Hương xếp đầy 4 khay. Hỏi cô Hương có tất cả bao nhiêu quả trứng?",
+    "visual": {
+      "type": "icons",
+      "values": [5, 5, 5, 5],
+      "labels": ["Khay 1", "Khay 2", "Khay 3", "Khay 4"],
+      "icons": ["🥚", "🥚", "🥚", "🥚"]
+    },
+    "retellOptions": [
+      "Mỗi khay 5 quả trứng, có 4 khay, hỏi tổng bao nhiêu trứng.",
+      "Có 5 khay, mỗi khay 4 quả, hỏi ăn hết bao nhiêu.",
+      "Cô Hương mua 5 quả trứng, chia vào 4 khay."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mỗi khay đựng 5 quả trứng",
+      "Cô Hương xếp đầy 4 khay",
+      "Tìm tổng số quả trứng"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình nhóm bằng nhau (Nhân)",
+      "Mô hình bớt (Cho đi)",
+      "Mô hình so sánh hơn kém"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "5 × 4",
+      "5 + 4",
+      "5 - 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Mỗi khay bằng nhau 5 quả, có 4 khay, nên nhân 5 × 4.",
+      "Vì cộng khay và trứng.",
+      "Vì bớt đi số khay."
+    ],
+    "correctReason": 0,
+    "answer": 20,
+    "unit": "quả trứng",
+    "answerOptions": [
+      "Cô Hương có tất cả 20 quả trứng.",
+      "Cô Hương có tất cả 9 quả trứng.",
+      "Cô Hương có tất cả 1 quả trứng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "20 ÷ 4 = 5, có đúng mỗi khay 5 quả không?",
+    "checkOptions": [
+      "Đúng, 20 ÷ 4 = 5, khớp với đề bài.",
+      "Sai, 20 ÷ 4 khác 5."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số trứng mỗi khay (5 quả).",
+      "Bước 2: Tìm số khay (4 khay).",
+      "Bước 3: Các khay đều bằng nhau → phép nhân.",
+      "Bước 4: Viết phép tính: 5 × 4.",
+      "Bước 5: Tính 5 × 4 = 20.",
+      "Bước 6: Viết đáp án: Có tất cả 20 quả trứng.",
+      "Bước 7: Kiểm tra: 20 ÷ 4 = 5. Chính xác!"
+    ]
+  },
+  {
+    "id": "lesson-73",
+    "title": "Bài toán hai bước: mua và chia bánh",
+    "shortTitle": "Hai bước bánh quy",
+    "icon": "🍪",
+    "color": "pink",
+    "skill": "Bài toán hai bước (+, ÷)",
+    "story": "Mẹ mua 6 chiếc bánh quy sô-cô-la và 6 chiếc bánh quy vani. Mẹ chia đều tất cả cho 3 con. Hỏi mỗi con được bao nhiêu chiếc bánh quy?",
+    "visual": {
+      "type": "bar",
+      "values": [6, 6],
+      "labels": ["Bánh sô-cô-la", "Bánh vani"]
+    },
+    "retellOptions": [
+      "Mẹ mua 6 bánh sô-cô-la và 6 bánh vani, chia đều cho 3 con, hỏi mỗi con được bao nhiêu.",
+      "Mẹ mua 6 bánh, chia cho 6 con, mỗi con được 3 bánh.",
+      "Mẹ mua 3 bánh sô-cô-la và 6 bánh vani."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mẹ mua 6 chiếc bánh sô-cô-la",
+      "Mẹ mua 6 chiếc bánh vani",
+      "Chia đều cho 3 con",
+      "Tìm số bánh mỗi con được nhận"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình hai bước: Gộp rồi chia đều",
+      "Mô hình nhóm bằng nhau (Nhân)",
+      "Mô hình so sánh hơn kém"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(6 + 6) ÷ 3",
+      "6 + 6 + 3",
+      "6 × 6 ÷ 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Trước hết gộp tổng bánh lại (6 + 6 = 12), rồi chia đều cho 3 con.",
+      "Vì cộng tất cả lại.",
+      "Vì nhân hai loại bánh rồi chia."
+    ],
+    "correctReason": 0,
+    "answer": 4,
+    "unit": "chiếc bánh quy",
+    "answerOptions": [
+      "Mỗi con được 4 chiếc bánh quy.",
+      "Mỗi con được 15 chiếc bánh quy.",
+      "Mỗi con được 2 chiếc bánh quy."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "4 × 3 = 12 và 6 + 6 = 12. Có khớp không?",
+    "checkOptions": [
+      "Có, 4 × 3 = 12 = 6 + 6. Hoàn toàn khớp!",
+      "Không, 4 × 3 khác 12."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số bánh sô-cô-la (6 chiếc).",
+      "Bước 2: Tìm số bánh vani (6 chiếc).",
+      "Bước 3: Tính tổng bánh: 6 + 6 = 12.",
+      "Bước 4: Chia đều 12 bánh cho 3 con.",
+      "Bước 5: Viết phép tính: 12 ÷ 3 = 4.",
+      "Bước 6: Viết đáp án: Mỗi con được 4 chiếc bánh quy.",
+      "Bước 7: Kiểm tra: 4 × 3 = 12. Đúng!"
+    ]
+  },
+  {
+    "id": "lesson-74",
+    "title": "Dãy số tăng dần thần kỳ",
+    "shortTitle": "Dãy số cộng 3",
+    "icon": "🔢",
+    "color": "blue",
+    "skill": "Nhận dạng quy luật dãy số",
+    "story": "Bo viết một dãy số: 2, 5, 8, 11, 14, ... Mỗi số đều lớn hơn số trước 3 đơn vị. Hỏi số tiếp theo trong dãy là bao nhiêu?",
+    "visual": {
+      "type": "bar",
+      "values": [2, 5, 8, 11, 14],
+      "labels": ["Số 1", "Số 2", "Số 3", "Số 4", "Số 5"]
+    },
+    "retellOptions": [
+      "Dãy số 2, 5, 8, 11, 14 mỗi lần cộng 3, hỏi số tiếp theo.",
+      "Dãy số 2, 5, 8, 11, 14 mỗi lần trừ 3.",
+      "Dãy số tăng ngẫu nhiên, không có quy luật."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Dãy số: 2, 5, 8, 11, 14",
+      "Quy luật: cộng thêm 3",
+      "Tìm số tiếp theo trong dãy"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình dãy số (Cộng đều)",
+      "Mô hình so sánh hơn kém",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "14 + 3",
+      "14 - 3",
+      "14 × 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Quy luật cộng 3, nên số tiếp theo = số cuối + 3.",
+      "Vì dãy giảm dần nên trừ 3.",
+      "Vì nhân với 3."
+    ],
+    "correctReason": 0,
+    "answer": 17,
+    "unit": "",
+    "answerOptions": [
+      "Số tiếp theo trong dãy là 17.",
+      "Số tiếp theo trong dãy là 11.",
+      "Số tiếp theo trong dãy là 42."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "17 - 14 = 3, có đúng quy luật cộng 3 không?",
+    "checkOptions": [
+      "Đúng, 17 - 14 = 3, đúng quy luật.",
+      "Sai, 17 - 14 khác 3."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đọc dãy số: 2, 5, 8, 11, 14.",
+      "Bước 2: Tìm hiệu giữa hai số liên tiếp: 5 - 2 = 3.",
+      "Bước 3: Kiểm tra: 8 - 5 = 3, 11 - 8 = 3, 14 - 11 = 3.",
+      "Bước 4: Nhận ra quy luật: cộng thêm 3.",
+      "Bước 5: Số tiếp theo = 14 + 3 = 17.",
+      "Bước 6: Viết đáp án: Số tiếp theo là 17."
+    ]
+  },
+  {
+    "id": "lesson-75",
+    "title": "Đếm cạnh hình vuông",
+    "shortTitle": "Cạnh hình vuông",
+    "icon": "🟧",
+    "color": "orange",
+    "skill": "Hình học (đếm cạnh)",
+    "story": "Vy cắt ra 3 tấm bìa hình vuông. Mỗi hình vuông có 4 cạnh. Hỏi 3 hình vuông có tất cả bao nhiêu cạnh?",
+    "visual": {
+      "type": "icons",
+      "values": [4, 4, 4],
+      "labels": ["Hình 1", "Hình 2", "Hình 3"],
+      "icons": ["🟧", "🟧", "🟧"]
+    },
+    "retellOptions": [
+      "Có 3 hình vuông, mỗi hình 4 cạnh, hỏi tổng bao nhiêu cạnh.",
+      "Có 4 hình vuông, mỗi hình 3 cạnh.",
+      "Có 3 hình chữ nhật, mỗi hình 4 cạnh."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Có 3 hình vuông",
+      "Mỗi hình vuông có 4 cạnh",
+      "Tìm tổng số cạnh của 3 hình vuông"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình nhóm bằng nhau (Nhân)",
+      "Mô hình bớt (Cho đi)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "4 × 3",
+      "4 + 3",
+      "4 - 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Mỗi hình vuông có 4 cạnh, nhân với 3 hình.",
+      "Vì cộng số cạnh với số hình.",
+      "Vì bớt đi số hình."
+    ],
+    "correctReason": 0,
+    "answer": 12,
+    "unit": "cạnh",
+    "answerOptions": [
+      "3 hình vuông có tất cả 12 cạnh.",
+      "3 hình vuông có tất cả 7 cạnh.",
+      "3 hình vuông có tất cả 1 cạnh."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "12 ÷ 3 = 4 cạnh mỗi hình, có đúng hình vuông không?",
+    "checkOptions": [
+      "Đúng, hình vuông luôn có 4 cạnh.",
+      "Sai, hình vuông chỉ có 3 cạnh."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Nhớ: Hình vuông có 4 cạnh.",
+      "Bước 2: Đếm số hình vuông (3 hình).",
+      "Bước 3: Mỗi hình có số cạnh bằng nhau → phép nhân.",
+      "Bước 4: Viết phép tính: 4 × 3.",
+      "Bước 5: Tính 4 × 3 = 12.",
+      "Bước 6: Viết đáp án: 3 hình vuông có 12 cạnh.",
+      "Bước 7: Kiểm tra: 12 ÷ 3 = 4. Đúng!"
+    ]
+  },
+  {
+    "id": "lesson-76",
+    "title": "Nhóm bạn tập thể dục",
+    "shortTitle": "Chia đều 2 nhóm",
+    "icon": "🤸",
+    "color": "green",
+    "skill": "Chia đều",
+    "story": "Có 18 bạn học sinh tập thể dục. Thầy giáo chia đều thành 2 nhóm. Hỏi mỗi nhóm có bao nhiêu bạn?",
+    "visual": {
+      "type": "bar",
+      "values": [18],
+      "labels": ["Tổng học sinh"]
+    },
+    "retellOptions": [
+      "18 bạn chia đều 2 nhóm, hỏi mỗi nhóm mấy bạn.",
+      "2 bạn tập thể dục, thêm 18 bạn nữa.",
+      "18 bạn chia thành 18 nhóm."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Có 18 bạn học sinh",
+      "Chia đều thành 2 nhóm",
+      "Tìm số bạn mỗi nhóm"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình so sánh hơn kém"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "18 ÷ 2",
+      "18 - 2",
+      "18 + 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Chia đều 18 bạn cho 2 nhóm, ta lấy 18 chia 2.",
+      "Vì bớt đi 2 bạn.",
+      "Vì thêm 2 bạn nữa."
+    ],
+    "correctReason": 0,
+    "answer": 9,
+    "unit": "bạn",
+    "answerOptions": [
+      "Mỗi nhóm có 9 bạn.",
+      "Mỗi nhóm có 16 bạn.",
+      "Mỗi nhóm có 20 bạn."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "9 × 2 = 18, có bằng tổng học sinh ban đầu không?",
+    "checkOptions": [
+      "Có, 9 × 2 = 18. Chính xác!",
+      "Không, 9 × 2 khác 18."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm tổng số bạn (18 bạn).",
+      "Bước 2: Tìm số nhóm (2 nhóm).",
+      "Bước 3: 'Chia đều' → phép chia.",
+      "Bước 4: Viết phép tính: 18 ÷ 2.",
+      "Bước 5: Tính 18 ÷ 2 = 9.",
+      "Bước 6: Viết đáp án: Mỗi nhóm có 9 bạn.",
+      "Bước 7: Kiểm tra: 9 × 2 = 18. Đúng!"
+    ]
+  },
+  {
+    "id": "lesson-77",
+    "title": "Mua bút màu ở nhà sách",
+    "shortTitle": "Tiền mua bút màu",
+    "icon": "🖍️",
+    "color": "red",
+    "skill": "Bài toán về tiền (mua bán)",
+    "story": "Bộ bút màu giá 8 nghìn đồng. Khoa mua 3 bộ bút màu. Hỏi Khoa phải trả tất cả bao nhiêu nghìn đồng?",
+    "visual": {
+      "type": "icons",
+      "values": [8, 8, 8],
+      "labels": ["Bộ 1", "Bộ 2", "Bộ 3"],
+      "icons": ["🖍️", "🖍️", "🖍️"]
+    },
+    "retellOptions": [
+      "Mỗi bộ bút màu 8 nghìn, mua 3 bộ, hỏi trả bao nhiêu tiền.",
+      "Có 8 bút màu chia cho 3 bạn.",
+      "Mua 8 bộ bút, mỗi bộ 3 nghìn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mỗi bộ bút màu giá 8 nghìn đồng",
+      "Khoa mua 3 bộ",
+      "Tìm tổng số tiền phải trả"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình nhóm bằng nhau (Nhân)",
+      "Mô hình bớt (Cho đi)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "8 × 3",
+      "8 + 3",
+      "8 - 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Mỗi bộ giá bằng nhau 8 nghìn, mua 3 bộ thì nhân 8 × 3.",
+      "Vì cộng giá bộ và số lượng.",
+      "Vì trừ đi số bộ."
+    ],
+    "correctReason": 0,
+    "answer": 24,
+    "unit": "nghìn đồng",
+    "answerOptions": [
+      "Khoa phải trả tất cả 24 nghìn đồng.",
+      "Khoa phải trả tất cả 11 nghìn đồng.",
+      "Khoa phải trả tất cả 5 nghìn đồng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "24 ÷ 3 = 8, có đúng giá mỗi bộ không?",
+    "checkOptions": [
+      "Đúng, 24 ÷ 3 = 8 nghìn/bộ. Khớp!",
+      "Sai, 24 ÷ 3 khác 8."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm giá mỗi bộ bút (8 nghìn đồng).",
+      "Bước 2: Tìm số bộ mua (3 bộ).",
+      "Bước 3: Giá bằng nhau, mua nhiều bộ → phép nhân.",
+      "Bước 4: Viết phép tính: 8 × 3.",
+      "Bước 5: Tính 8 × 3 = 24.",
+      "Bước 6: Viết đáp án: Khoa trả 24 nghìn đồng.",
+      "Bước 7: Kiểm tra: 24 ÷ 3 = 8. Chính xác!"
+    ]
+  },
+  {
+    "id": "lesson-78",
+    "title": "Bài toán hai bước: mua rồi trả lại",
+    "shortTitle": "Hai bước tiền thừa",
+    "icon": "💰",
+    "color": "yellow",
+    "skill": "Bài toán hai bước (×, −)",
+    "story": "Mỗi quyển truyện giá 4 nghìn đồng. Hà mua 5 quyển truyện và đưa cho cô bán hàng 50 nghìn đồng. Hỏi cô bán hàng phải trả lại Hà bao nhiêu nghìn đồng?",
+    "visual": {
+      "type": "bar",
+      "values": [4, 4, 4, 4, 4],
+      "labels": ["Truyện 1", "Truyện 2", "Truyện 3", "Truyện 4", "Truyện 5"]
+    },
+    "retellOptions": [
+      "Mỗi truyện 4 nghìn, mua 5 quyển, đưa 50 nghìn, hỏi trả lại bao nhiêu.",
+      "Hà mua 50 quyển truyện giá 4 nghìn mỗi quyển.",
+      "Mua 4 quyển giá 5 nghìn, đưa 50 nghìn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mỗi quyển truyện giá 4 nghìn đồng",
+      "Hà mua 5 quyển",
+      "Hà đưa 50 nghìn đồng",
+      "Tìm số tiền thừa trả lại"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình hai bước: Nhân tìm tổng tiền, Trừ tìm tiền thừa",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "50 - 4 × 5",
+      "50 + 4 × 5",
+      "50 ÷ 4 × 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Bước 1: Tổng tiền truyện = 4 × 5 = 20. Bước 2: Tiền thừa = 50 - 20 = 30.",
+      "Vì cộng tiền đưa với tiền mua.",
+      "Vì chia tiền đưa cho giá rồi nhân."
+    ],
+    "correctReason": 0,
+    "answer": 30,
+    "unit": "nghìn đồng",
+    "answerOptions": [
+      "Cô bán hàng trả lại Hà 30 nghìn đồng.",
+      "Cô bán hàng trả lại Hà 70 nghìn đồng.",
+      "Cô bán hàng trả lại Hà 20 nghìn đồng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tiền mua (20 nghìn) + Tiền thừa (30 nghìn) = 50 nghìn. Có khớp không?",
+    "checkOptions": [
+      "Có, 20 + 30 = 50 nghìn. Đúng!",
+      "Không, 20 + 30 khác 50."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm giá mỗi quyển truyện (4 nghìn đồng).",
+      "Bước 2: Tìm số quyển mua (5 quyển).",
+      "Bước 3: Tính tổng tiền truyện: 4 × 5 = 20 nghìn.",
+      "Bước 4: Tìm số tiền Hà đưa (50 nghìn).",
+      "Bước 5: Tính tiền thừa: 50 - 20 = 30.",
+      "Bước 6: Viết đáp án: Trả lại 30 nghìn đồng.",
+      "Bước 7: Kiểm tra: 20 + 30 = 50. Đúng!"
+    ]
+  },
+  {
+    "id": "lesson-79",
+    "title": "Dãy số nhân 2",
+    "shortTitle": "Dãy số gấp đôi",
+    "icon": "✨",
+    "color": "purple",
+    "skill": "Nhận dạng quy luật dãy số",
+    "story": "Vy viết một dãy số: 1, 2, 4, 8, 16, ... Mỗi số gấp 2 lần số đứng trước. Hỏi số tiếp theo trong dãy là bao nhiêu?",
+    "visual": {
+      "type": "bar",
+      "values": [1, 2, 4, 8, 16],
+      "labels": ["Số 1", "Số 2", "Số 3", "Số 4", "Số 5"]
+    },
+    "retellOptions": [
+      "Dãy 1, 2, 4, 8, 16 mỗi lần gấp đôi, hỏi số tiếp theo.",
+      "Dãy 1, 2, 4, 8, 16 mỗi lần cộng 2.",
+      "Dãy 1, 2, 4, 8, 16 không có quy luật."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Dãy số: 1, 2, 4, 8, 16",
+      "Quy luật: gấp 2 lần số trước",
+      "Tìm số tiếp theo"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình dãy số (Nhân đều)",
+      "Mô hình dãy số (Cộng đều)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "16 × 2",
+      "16 + 2",
+      "16 - 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Quy luật gấp 2 lần, nên số tiếp theo = số cuối × 2.",
+      "Vì cộng thêm 2.",
+      "Vì bớt đi 2."
+    ],
+    "correctReason": 0,
+    "answer": 32,
+    "unit": "",
+    "answerOptions": [
+      "Số tiếp theo trong dãy là 32.",
+      "Số tiếp theo trong dãy là 18.",
+      "Số tiếp theo trong dãy là 14."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "32 ÷ 2 = 16, có đúng số trước đó không?",
+    "checkOptions": [
+      "Đúng, 32 ÷ 2 = 16, khớp quy luật.",
+      "Sai, 32 ÷ 2 khác 16."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đọc dãy số: 1, 2, 4, 8, 16.",
+      "Bước 2: Tính: 2 ÷ 1 = 2, 4 ÷ 2 = 2, 8 ÷ 4 = 2, 16 ÷ 8 = 2.",
+      "Bước 3: Nhận ra: mỗi số gấp 2 lần số trước.",
+      "Bước 4: Viết phép tính: 16 × 2.",
+      "Bước 5: Tính 16 × 2 = 32.",
+      "Bước 6: Viết đáp án: Số tiếp theo là 32.",
+      "Bước 7: Kiểm tra: 32 ÷ 2 = 16. Đúng quy luật!"
+    ]
+  },
+  {
+    "id": "lesson-80",
+    "title": "Đếm cạnh hình chữ nhật",
+    "shortTitle": "Cạnh hình chữ nhật",
+    "icon": "🟦",
+    "color": "blue",
+    "skill": "Hình học (đếm cạnh)",
+    "story": "Trong phòng học có 5 khung tranh hình chữ nhật treo trên tường. Mỗi hình chữ nhật có 4 cạnh. Hỏi 5 khung tranh có tất cả bao nhiêu cạnh?",
+    "visual": {
+      "type": "icons",
+      "values": [4, 4, 4, 4, 4],
+      "labels": ["Tranh 1", "Tranh 2", "Tranh 3", "Tranh 4", "Tranh 5"],
+      "icons": ["🖼️", "🖼️", "🖼️", "🖼️", "🖼️"]
+    },
+    "retellOptions": [
+      "5 khung tranh hình chữ nhật, mỗi hình 4 cạnh, hỏi tổng cạnh.",
+      "4 khung tranh hình vuông, mỗi hình 5 cạnh.",
+      "Có 5 tranh tròn, mỗi tranh không có cạnh."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Có 5 khung tranh hình chữ nhật",
+      "Mỗi hình chữ nhật có 4 cạnh",
+      "Tìm tổng số cạnh"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình nhóm bằng nhau (Nhân)",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "4 × 5",
+      "4 + 5",
+      "5 - 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Mỗi hình có 4 cạnh bằng nhau, có 5 hình, nên nhân 4 × 5.",
+      "Cộng số cạnh và số hình.",
+      "Trừ để so sánh."
+    ],
+    "correctReason": 0,
+    "answer": 20,
+    "unit": "cạnh",
+    "answerOptions": [
+      "5 khung tranh có tất cả 20 cạnh.",
+      "5 khung tranh có tất cả 9 cạnh.",
+      "5 khung tranh có tất cả 1 cạnh."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "20 ÷ 5 = 4 cạnh mỗi tranh. Hình chữ nhật có 4 cạnh đúng không?",
+    "checkOptions": [
+      "Đúng, hình chữ nhật luôn có 4 cạnh.",
+      "Sai, hình chữ nhật có 6 cạnh."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Nhớ: Hình chữ nhật có 4 cạnh.",
+      "Bước 2: Đếm số khung tranh (5 khung).",
+      "Bước 3: Mỗi khung cùng số cạnh → phép nhân.",
+      "Bước 4: Viết phép tính: 4 × 5.",
+      "Bước 5: Tính 4 × 5 = 20.",
+      "Bước 6: Viết đáp án: 5 khung tranh có 20 cạnh.",
+      "Bước 7: Kiểm tra: 20 ÷ 5 = 4. Đúng!"
+    ]
+  },
+  {
+    "id": "lesson-81",
+    "title": "Nhân 2 với đôi giày",
+    "shortTitle": "Nhân 2 đôi giày",
+    "icon": "👟",
+    "color": "pink",
+    "skill": "Nhân (bảng nhân 2)",
+    "story": "Mỗi đôi giày có 2 chiếc. Cửa hàng bán được 5 đôi giày trong buổi sáng. Hỏi cửa hàng bán được tất cả bao nhiêu chiếc giày?",
+    "visual": {
+      "type": "icons",
+      "values": [2, 2, 2, 2, 2],
+      "labels": ["Đôi 1", "Đôi 2", "Đôi 3", "Đôi 4", "Đôi 5"],
+      "icons": ["👟", "👟", "👟", "👟", "👟"]
+    },
+    "retellOptions": [
+      "Mỗi đôi 2 chiếc, bán 5 đôi, hỏi tổng bao nhiêu chiếc.",
+      "Bán 2 đôi giày, mỗi đôi 5 chiếc.",
+      "Có 5 chiếc giày, mỗi chiếc 2 đôi."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mỗi đôi giày có 2 chiếc",
+      "Cửa hàng bán 5 đôi",
+      "Tìm tổng số chiếc giày"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình nhóm bằng nhau (Nhân)",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "2 × 5",
+      "2 + 5",
+      "5 - 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Mỗi đôi đều có 2 chiếc, bán 5 đôi nên nhân 2 × 5.",
+      "Vì cộng số chiếc và số đôi.",
+      "Vì bớt đi số chiếc."
+    ],
+    "correctReason": 0,
+    "answer": 10,
+    "unit": "chiếc giày",
+    "answerOptions": [
+      "Cửa hàng bán được 10 chiếc giày.",
+      "Cửa hàng bán được 7 chiếc giày.",
+      "Cửa hàng bán được 3 chiếc giày."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "10 ÷ 5 = 2, có đúng mỗi đôi 2 chiếc không?",
+    "checkOptions": [
+      "Đúng, 10 ÷ 5 = 2 chiếc/đôi.",
+      "Sai, 10 ÷ 5 khác 2."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Mỗi đôi giày có 2 chiếc.",
+      "Bước 2: Cửa hàng bán 5 đôi.",
+      "Bước 3: Các đôi đều có số chiếc bằng nhau → nhân.",
+      "Bước 4: Viết phép tính: 2 × 5.",
+      "Bước 5: Tính 2 × 5 = 10.",
+      "Bước 6: Viết đáp án: Bán được 10 chiếc giày.",
+      "Bước 7: Kiểm tra: 10 ÷ 5 = 2. Chính xác!"
+    ]
+  },
+  {
+    "id": "lesson-82",
+    "title": "Chia quà tặng ngày sinh nhật",
+    "shortTitle": "Chia quà sinh nhật",
+    "icon": "🎁",
+    "color": "red",
+    "skill": "Chia đều",
+    "story": "Ngày sinh nhật, bà ngoại tặng cho 4 anh chị em nhà Duy tổng cộng 20 chiếc kẹo. Bà chia đều cho mỗi người. Hỏi mỗi người được bao nhiêu chiếc kẹo?",
+    "visual": {
+      "type": "bar",
+      "values": [20],
+      "labels": ["Tổng kẹo bà tặng"]
+    },
+    "retellOptions": [
+      "Bà tặng 20 kẹo, chia đều cho 4 người, hỏi mỗi người được bao nhiêu.",
+      "4 người mua 20 kẹo, hỏi giá mỗi kẹo.",
+      "Bà tặng 4 kẹo, chia cho 20 người."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bà tặng tổng cộng 20 chiếc kẹo",
+      "Chia đều cho 4 anh chị em",
+      "Tìm số kẹo mỗi người được"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình chia đều",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình nhóm bằng nhau (Nhân)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "20 ÷ 4",
+      "20 - 4",
+      "20 × 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Chia đều 20 kẹo cho 4 người, ta dùng phép chia.",
+      "Vì bớt đi 4 chiếc.",
+      "Vì mỗi người được gấp 4 lần."
+    ],
+    "correctReason": 0,
+    "answer": 5,
+    "unit": "chiếc kẹo",
+    "answerOptions": [
+      "Mỗi người được 5 chiếc kẹo.",
+      "Mỗi người được 16 chiếc kẹo.",
+      "Mỗi người được 80 chiếc kẹo."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "5 × 4 = 20, có bằng tổng kẹo bà tặng không?",
+    "checkOptions": [
+      "Có, 5 × 4 = 20. Đúng!",
+      "Không, 5 × 4 khác 20."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm tổng kẹo bà tặng (20 chiếc).",
+      "Bước 2: Tìm số người chia (4 người).",
+      "Bước 3: 'Chia đều' → phép chia.",
+      "Bước 4: Viết phép tính: 20 ÷ 4.",
+      "Bước 5: Tính 20 ÷ 4 = 5.",
+      "Bước 6: Viết đáp án: Mỗi người được 5 chiếc kẹo.",
+      "Bước 7: Kiểm tra: 5 × 4 = 20. Chính xác!"
+    ]
+  },
+  {
+    "id": "lesson-83",
+    "title": "Đo sợi dây của Hương",
+    "shortTitle": "Đổi cm ra tổng",
+    "icon": "🧵",
+    "color": "green",
+    "skill": "Đổi đơn vị (m và cm)",
+    "story": "Hương có một sợi dây dài 2 mét. Hương cắt bớt 30 cm. Hỏi sợi dây còn lại dài bao nhiêu xăng-ti-mét?",
+    "visual": {
+      "type": "bar",
+      "values": [200, 30],
+      "labels": ["2 mét = 200 cm", "Cắt bớt 30 cm"]
+    },
+    "retellOptions": [
+      "Sợi dây 2 mét, cắt bớt 30 cm, hỏi còn bao nhiêu cm.",
+      "Sợi dây 30 cm, cắt bớt 2 mét.",
+      "Sợi dây 200 mét, thêm 30 cm."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Sợi dây dài 2 mét = 200 cm",
+      "Cắt bớt 30 cm",
+      "Tìm chiều dài sợi dây còn lại (tính bằng cm)"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình hai bước: Đổi đơn vị rồi trừ",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình nhóm bằng nhau (Nhân)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "200 - 30",
+      "200 + 30",
+      "2 - 30"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Đổi 2 mét = 200 cm, rồi trừ đi 30 cm đã cắt.",
+      "Vì thêm 30 cm vào sợi dây.",
+      "Vì lấy 2 trừ 30."
+    ],
+    "correctReason": 0,
+    "answer": 170,
+    "unit": "cm",
+    "answerOptions": [
+      "Sợi dây còn lại dài 170 cm.",
+      "Sợi dây còn lại dài 230 cm.",
+      "Sợi dây còn lại dài 28 cm."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "170 + 30 = 200 cm = 2 mét, có khớp không?",
+    "checkOptions": [
+      "Có, 170 + 30 = 200 cm. Đúng!",
+      "Không, 170 + 30 khác 200."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đổi 2 mét = 200 cm.",
+      "Bước 2: Tìm phần cắt bớt (30 cm).",
+      "Bước 3: Cắt bớt → phép trừ.",
+      "Bước 4: Viết phép tính: 200 - 30.",
+      "Bước 5: Tính 200 - 30 = 170.",
+      "Bước 6: Viết đáp án: Sợi dây còn 170 cm.",
+      "Bước 7: Kiểm tra: 170 + 30 = 200. Đúng!"
+    ]
+  },
+  {
+    "id": "lesson-84",
+    "title": "Buổi chiều xem phim hoạt hình",
+    "shortTitle": "Thời gian xem phim",
+    "icon": "📺",
+    "color": "purple",
+    "skill": "Bài toán về thời gian",
+    "story": "Nam bắt đầu xem phim hoạt hình lúc 3 giờ chiều. Phim kéo dài 2 giờ. Hỏi phim kết thúc lúc mấy giờ?",
+    "visual": {
+      "type": "bar",
+      "values": [3, 2],
+      "labels": ["Bắt đầu: 3 giờ", "Kéo dài: 2 giờ"]
+    },
+    "retellOptions": [
+      "Phim bắt đầu lúc 3 giờ, kéo dài 2 giờ, hỏi kết thúc lúc mấy giờ.",
+      "Phim kết thúc lúc 3 giờ, kéo dài 2 giờ.",
+      "Nam xem 3 bộ phim, mỗi bộ 2 giờ."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Phim bắt đầu lúc 3 giờ chiều",
+      "Phim kéo dài 2 giờ",
+      "Tìm giờ kết thúc"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình trục thời gian (Cộng)",
+      "Mô hình bớt (Trừ)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "3 + 2",
+      "3 - 2",
+      "3 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Giờ kết thúc = Giờ bắt đầu + Thời gian kéo dài.",
+      "Vì trừ đi thời gian xem.",
+      "Vì nhân giờ bắt đầu với thời gian."
+    ],
+    "correctReason": 0,
+    "answer": 5,
+    "unit": "giờ chiều",
+    "answerOptions": [
+      "Phim kết thúc lúc 5 giờ chiều.",
+      "Phim kết thúc lúc 1 giờ chiều.",
+      "Phim kết thúc lúc 6 giờ chiều."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "5 giờ - 3 giờ = 2 giờ. Có đúng thời gian kéo dài không?",
+    "checkOptions": [
+      "Đúng, 5 - 3 = 2 giờ, khớp với đề!",
+      "Sai, 5 - 3 khác 2."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm giờ bắt đầu xem phim (3 giờ chiều).",
+      "Bước 2: Tìm thời gian kéo dài (2 giờ).",
+      "Bước 3: Giờ kết thúc = giờ bắt đầu + thời gian kéo dài.",
+      "Bước 4: Viết phép tính: 3 + 2.",
+      "Bước 5: Tính 3 + 2 = 5.",
+      "Bước 6: Viết đáp án: Phim kết thúc lúc 5 giờ chiều.",
+      "Bước 7: Kiểm tra: 5 - 3 = 2. Đúng!"
+    ]
+  },
+  {
+    "id": "lesson-85",
+    "title": "Bài toán hai bước: trồng rồi bớt",
+    "shortTitle": "Hai bước nhân trừ",
+    "icon": "🌻",
+    "color": "yellow",
+    "skill": "Bài toán hai bước (×, −)",
+    "story": "Bác Phúc trồng 3 luống hoa hướng dương, mỗi luống 5 cây. Sau đó có 4 cây bị héo. Hỏi còn lại bao nhiêu cây hoa hướng dương?",
+    "visual": {
+      "type": "icons",
+      "values": [5, 5, 5],
+      "labels": ["Luống 1", "Luống 2", "Luống 3"],
+      "icons": ["🌻", "🌻", "🌻"]
+    },
+    "retellOptions": [
+      "3 luống mỗi luống 5 cây, héo 4 cây, hỏi còn bao nhiêu.",
+      "Trồng 5 cây, thêm 3 luống, hỏi tổng bao nhiêu.",
+      "Có 4 cây héo, trồng thêm 3 luống 5 cây."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Có 3 luống hoa hướng dương",
+      "Mỗi luống 5 cây",
+      "4 cây bị héo",
+      "Tìm số cây hoa còn lại"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình hai bước: Nhân tìm tổng, Trừ phần héo",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "3 × 5 - 4",
+      "3 + 5 - 4",
+      "3 × 5 + 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Bước 1: Tổng cây = 3 × 5 = 15. Bước 2: Còn lại = 15 - 4 = 11.",
+      "Vì cộng rồi trừ.",
+      "Vì nhân rồi cộng thêm cây héo."
+    ],
+    "correctReason": 0,
+    "answer": 11,
+    "unit": "cây hoa",
+    "answerOptions": [
+      "Còn lại 11 cây hoa hướng dương.",
+      "Còn lại 4 cây hoa hướng dương.",
+      "Còn lại 19 cây hoa hướng dương."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "11 + 4 = 15, và 3 × 5 = 15. Có khớp không?",
+    "checkOptions": [
+      "Có, 11 + 4 = 15 = 3 × 5. Đúng!",
+      "Không, 11 + 4 khác 15."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số luống hoa (3 luống).",
+      "Bước 2: Tìm số cây mỗi luống (5 cây).",
+      "Bước 3: Tính tổng cây: 3 × 5 = 15.",
+      "Bước 4: Tìm số cây héo (4 cây).",
+      "Bước 5: Tính cây còn lại: 15 - 4 = 11.",
+      "Bước 6: Viết đáp án: Còn lại 11 cây hoa.",
+      "Bước 7: Kiểm tra: 11 + 4 = 15. Chính xác!"
+    ]
+  },
+  {
+    "id": "lesson-86",
+    "title": "Tiền thưởng cho đội bóng",
+    "shortTitle": "Gấp 2 lần tiền thưởng",
+    "icon": "⚽",
+    "color": "green",
+    "skill": "Gấp 2 lần",
+    "story": "Đội bóng Sao Vàng được thưởng 10 nghìn đồng. Đội bóng Rồng Xanh được thưởng gấp 2 lần đội Sao Vàng. Hỏi đội Rồng Xanh được thưởng bao nhiêu nghìn đồng?",
+    "visual": {
+      "type": "compare",
+      "values": [10, 10],
+      "bigLabel": "Rồng Xanh (gấp 2 lần)",
+      "smallLabel": "Sao Vàng"
+    },
+    "retellOptions": [
+      "Sao Vàng 10 nghìn, Rồng Xanh gấp 2 lần, hỏi Rồng Xanh bao nhiêu.",
+      "Hai đội chia đều 10 nghìn đồng.",
+      "Rồng Xanh 10 nghìn, Sao Vàng gấp 2 lần."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Đội Sao Vàng được 10 nghìn đồng",
+      "Đội Rồng Xanh gấp 2 lần Sao Vàng",
+      "Tìm tiền thưởng đội Rồng Xanh"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình gấp lần (Nhân)",
+      "Mô hình gộp (Thêm vào)",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "10 × 2",
+      "10 + 2",
+      "10 ÷ 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Gấp 2 lần nghĩa là nhân với 2.",
+      "Vì cộng thêm 2 nghìn.",
+      "Vì chia cho 2 đội."
+    ],
+    "correctReason": 0,
+    "answer": 20,
+    "unit": "nghìn đồng",
+    "answerOptions": [
+      "Đội Rồng Xanh được thưởng 20 nghìn đồng.",
+      "Đội Rồng Xanh được thưởng 12 nghìn đồng.",
+      "Đội Rồng Xanh được thưởng 5 nghìn đồng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "20 có bằng 2 lần của 10 không?",
+    "checkOptions": [
+      "Có, 10 × 2 = 20. Đúng gấp 2 lần!",
+      "Không, 2 lần 10 phải bằng 12."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm tiền thưởng đội Sao Vàng (10 nghìn).",
+      "Bước 2: Đề nói 'gấp 2 lần' → nhân với 2.",
+      "Bước 3: Viết phép tính: 10 × 2.",
+      "Bước 4: Tính 10 × 2 = 20.",
+      "Bước 5: Viết đáp án: Rồng Xanh được 20 nghìn đồng.",
+      "Bước 6: Kiểm tra: 20 ÷ 2 = 10. Chính xác!"
+    ]
+  },
+  {
+    "id": "lesson-87",
+    "title": "Dãy số bước nhảy cóc",
+    "shortTitle": "Dãy số cộng 5",
+    "icon": "🐸",
+    "color": "green",
+    "skill": "Nhận dạng quy luật dãy số",
+    "story": "Chú ếch nhảy theo dãy số: 5, 10, 15, 20, 25, ... Mỗi bước nhảy thêm 5 đơn vị. Hỏi chú ếch nhảy tiếp sẽ đến số nào?",
+    "visual": {
+      "type": "bar",
+      "values": [5, 10, 15, 20, 25],
+      "labels": ["Bước 1", "Bước 2", "Bước 3", "Bước 4", "Bước 5"]
+    },
+    "retellOptions": [
+      "Dãy 5, 10, 15, 20, 25 cộng 5 mỗi lần, hỏi số tiếp theo.",
+      "Dãy 5, 10, 15, 20, 25 trừ 5 mỗi lần.",
+      "Chú ếch nhảy ngẫu nhiên, không theo quy luật."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Dãy số: 5, 10, 15, 20, 25",
+      "Quy luật: cộng thêm 5",
+      "Tìm số tiếp theo"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình dãy số (Cộng đều)",
+      "Mô hình so sánh hơn kém",
+      "Mô hình nhóm bằng nhau (Nhân)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "25 + 5",
+      "25 - 5",
+      "25 × 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Quy luật cộng 5, số tiếp = 25 + 5.",
+      "Vì dãy giảm dần.",
+      "Vì nhân 25 với 5."
+    ],
+    "correctReason": 0,
+    "answer": 30,
+    "unit": "",
+    "answerOptions": [
+      "Chú ếch nhảy tiếp đến số 30.",
+      "Chú ếch nhảy tiếp đến số 20.",
+      "Chú ếch nhảy tiếp đến số 125."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "30 - 25 = 5, có đúng quy luật cộng 5 không?",
+    "checkOptions": [
+      "Đúng, 30 - 25 = 5. Khớp quy luật!",
+      "Sai, 30 - 25 khác 5."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đọc dãy số: 5, 10, 15, 20, 25.",
+      "Bước 2: Tính hiệu: 10 - 5 = 5.",
+      "Bước 3: Kiểm tra: 15 - 10 = 5, 20 - 15 = 5, 25 - 20 = 5.",
+      "Bước 4: Nhận ra quy luật: cộng thêm 5.",
+      "Bước 5: Số tiếp theo = 25 + 5 = 30.",
+      "Bước 6: Viết đáp án: Số tiếp theo là 30."
+    ]
+  },
+  {
+    "id": "lesson-88",
+    "title": "Mua quà tặng cô giáo",
+    "shortTitle": "Hai bước tiền quà",
+    "icon": "🎀",
+    "color": "pink",
+    "skill": "Bài toán hai bước (+, ×)",
+    "story": "Lớp 2A mua tặng cô giáo 1 bó hoa giá 15 nghìn đồng và 2 hộp bánh, mỗi hộp giá 10 nghìn đồng. Hỏi lớp phải trả tất cả bao nhiêu nghìn đồng?",
+    "visual": {
+      "type": "bar",
+      "values": [15, 10, 10],
+      "labels": ["Bó hoa", "Hộp bánh 1", "Hộp bánh 2"]
+    },
+    "retellOptions": [
+      "Mua 1 bó hoa 15 nghìn và 2 hộp bánh mỗi hộp 10 nghìn, hỏi tổng tiền.",
+      "Mua 15 bó hoa và 10 hộp bánh.",
+      "Mua 2 bó hoa 15 nghìn và 1 hộp bánh 10 nghìn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "1 bó hoa giá 15 nghìn đồng",
+      "2 hộp bánh, mỗi hộp 10 nghìn đồng",
+      "Tìm tổng số tiền phải trả"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình hai bước: Nhân tìm tiền bánh, Cộng tiền hoa",
+      "Mô hình chia đều",
+      "Mô hình bớt (Cho đi)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "15 + 10 × 2",
+      "15 × 10 × 2",
+      "15 - 10 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Bước 1: Tiền bánh = 10 × 2 = 20. Bước 2: Tổng = 15 + 20 = 35.",
+      "Vì nhân tất cả lại.",
+      "Vì trừ tiền bánh khỏi tiền hoa."
+    ],
+    "correctReason": 0,
+    "answer": 35,
+    "unit": "nghìn đồng",
+    "answerOptions": [
+      "Lớp phải trả tất cả 35 nghìn đồng.",
+      "Lớp phải trả tất cả 300 nghìn đồng.",
+      "Lớp phải trả tất cả 5 nghìn đồng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "15 + 10 + 10 = 35, có khớp không?",
+    "checkOptions": [
+      "Có, 15 + 10 + 10 = 35. Đúng!",
+      "Không, 15 + 10 + 10 khác 35."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm giá bó hoa (15 nghìn đồng).",
+      "Bước 2: Tìm giá mỗi hộp bánh (10 nghìn đồng).",
+      "Bước 3: Tính tiền 2 hộp bánh: 10 × 2 = 20 nghìn.",
+      "Bước 4: Tính tổng tiền: 15 + 20 = 35 nghìn.",
+      "Bước 5: Viết đáp án: Lớp trả 35 nghìn đồng.",
+      "Bước 6: Kiểm tra: 15 + 10 + 10 = 35. Đúng!",
+      "Bước 7: 35 nghìn là hợp lý vì lớn hơn mỗi món."
+    ]
+  },
+  {
+    "id": "lesson-89",
+    "title": "Gấp 3 lần số sao vàng",
+    "shortTitle": "Gấp 3 lần ngôi sao",
+    "icon": "⭐",
+    "color": "yellow",
+    "skill": "Gấp 3 lần",
+    "story": "Lớp 2A có 7 ngôi sao vàng trên bảng danh dự. Lớp 2B có số sao gấp 3 lần lớp 2A. Hỏi lớp 2B có bao nhiêu ngôi sao vàng?",
+    "visual": {
+      "type": "compare",
+      "values": [7, 7],
+      "bigLabel": "Lớp 2B (gấp 3 lần)",
+      "smallLabel": "Lớp 2A"
+    },
+    "retellOptions": [
+      "Lớp 2A có 7 sao, lớp 2B gấp 3 lần, hỏi lớp 2B có bao nhiêu sao.",
+      "Lớp 2A có 3 sao, lớp 2B có 7 sao.",
+      "Lớp 2B có 7 sao, lớp 2A gấp 3 lần."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Lớp 2A có 7 ngôi sao",
+      "Lớp 2B gấp 3 lần lớp 2A",
+      "Tìm số sao lớp 2B"
+    ],
+    "factRoles": ["known", "known", "unknown"],
+    "models": [
+      "Mô hình gấp lần (Nhân)",
+      "Mô hình so sánh hơn kém",
+      "Mô hình chia đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "7 × 3",
+      "7 + 3",
+      "7 - 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Gấp 3 lần tức là nhân với 3.",
+      "Vì cộng thêm 3.",
+      "Vì bớt đi 3."
+    ],
+    "correctReason": 0,
+    "answer": 21,
+    "unit": "ngôi sao",
+    "answerOptions": [
+      "Lớp 2B có 21 ngôi sao vàng.",
+      "Lớp 2B có 10 ngôi sao vàng.",
+      "Lớp 2B có 4 ngôi sao vàng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "21 ÷ 3 = 7, có đúng số sao lớp 2A không?",
+    "checkOptions": [
+      "Đúng, 21 ÷ 3 = 7, khớp với lớp 2A.",
+      "Sai, 21 ÷ 3 khác 7."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số sao lớp 2A (7 sao).",
+      "Bước 2: Đề nói 'gấp 3 lần' → nhân với 3.",
+      "Bước 3: Viết phép tính: 7 × 3.",
+      "Bước 4: Tính 7 × 3 = 21.",
+      "Bước 5: Viết đáp án: Lớp 2B có 21 ngôi sao.",
+      "Bước 6: Kiểm tra: 21 ÷ 3 = 7. Chính xác!"
+    ]
+  },
+  {
+    "id": "lesson-90",
+    "title": "Bài toán tổng hợp: chuẩn bị dã ngoại",
+    "shortTitle": "Hai bước dã ngoại",
+    "icon": "🏕️",
+    "color": "blue",
+    "skill": "Bài toán hai bước (×, +)",
+    "story": "Cô giáo chuẩn bị cho buổi dã ngoại. Cô mua 4 gói bánh, mỗi gói có 5 chiếc bánh. Bạn Minh tặng thêm 3 chiếc bánh nữa. Hỏi tất cả có bao nhiêu chiếc bánh?",
+    "visual": {
+      "type": "icons",
+      "values": [5, 5, 5, 5, 3],
+      "labels": ["Gói 1", "Gói 2", "Gói 3", "Gói 4", "Minh tặng"],
+      "icons": ["🍪", "🍪", "🍪", "🍪", "🎁"]
+    },
+    "retellOptions": [
+      "4 gói mỗi gói 5 bánh, thêm 3 bánh tặng, hỏi tổng bao nhiêu.",
+      "Mua 5 gói mỗi gói 4 bánh, bớt 3 bánh.",
+      "Có 3 gói bánh và 4 chiếc, hỏi tổng."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Cô mua 4 gói bánh",
+      "Mỗi gói có 5 chiếc bánh",
+      "Bạn Minh tặng thêm 3 chiếc",
+      "Tìm tổng số bánh"
+    ],
+    "factRoles": ["known", "known", "known", "unknown"],
+    "models": [
+      "Mô hình hai bước: Nhân tìm bánh mua, Cộng bánh tặng",
+      "Mô hình chia đều",
+      "Mô hình bớt (Cho đi)"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "4 × 5 + 3",
+      "4 + 5 + 3",
+      "4 × 5 - 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Bước 1: Bánh mua = 4 × 5 = 20. Bước 2: Tổng = 20 + 3 = 23.",
+      "Vì cộng ba số lại.",
+      "Vì nhân rồi trừ phần tặng."
+    ],
+    "correctReason": 0,
+    "answer": 23,
+    "unit": "chiếc bánh",
+    "answerOptions": [
+      "Tất cả có 23 chiếc bánh.",
+      "Tất cả có 12 chiếc bánh.",
+      "Tất cả có 17 chiếc bánh."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "23 - 3 = 20, và 20 ÷ 4 = 5 bánh/gói. Có khớp không?",
+    "checkOptions": [
+      "Có, 23 - 3 = 20 và 20 ÷ 4 = 5. Đúng!",
+      "Không, 23 - 3 khác 20."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm số gói bánh (4 gói).",
+      "Bước 2: Tìm số bánh mỗi gói (5 chiếc).",
+      "Bước 3: Tính bánh mua: 4 × 5 = 20.",
+      "Bước 4: Tìm số bánh Minh tặng (3 chiếc).",
+      "Bước 5: Tính tổng: 20 + 3 = 23.",
+      "Bước 6: Viết đáp án: Tất cả có 23 chiếc bánh.",
+      "Bước 7: Kiểm tra: 23 - 3 = 20 và 20 ÷ 4 = 5. Đúng!"
+    ]
+  }
+]
