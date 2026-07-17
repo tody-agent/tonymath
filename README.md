@@ -1,4 +1,4 @@
-# Học Toán – Học cách học
+# TonyMath – Học cách học
 
 Web app mobile-first giúp học sinh lớp 3–4 học cách đọc hiểu và giải toán lời văn từng bước.
 
@@ -22,7 +22,7 @@ npm run preview
 - `src/App.jsx`: luồng học 8 bước, mở khóa bài, điểm và localStorage.
 - `src/App.css`: giao diện responsive cho desktop và mobile.
 
-Tiến độ được lưu tại localStorage với key `hoc-toan-vui-progress-v1`.
+Tiến độ được lưu tại localStorage với key `tonymath-progress-v1`.
 
 ## Nội dung hiện có
 

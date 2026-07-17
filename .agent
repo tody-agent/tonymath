@@ -1,9 +1,9 @@
 {
-  "project": "hoc-toan-vui",
+  "project": "tonymath",
   "github": {
     "account": "tody-agent",
-    "repo": "hoc-toan-vui",
-    "remoteUrl": "https://github.com/tody-agent/hoc-toan-vui.git",
+    "repo": "tonymath",
+    "remoteUrl": "https://github.com/tody-agent/tonymath.git",
     "user": {
       "name": "tody-agent",
       "email": "tracuuphat@gmail.com"
@@ -12,7 +12,7 @@
   "cloudflare": {
     "account": "TodyAI",
     "accountId": "5a183e617c2e686d9b59b6b75b398b58",
-    "projectName": "hoc-toan-vui",
+    "projectName": "tonymath",
     "productionBranch": "main"
   }
 }

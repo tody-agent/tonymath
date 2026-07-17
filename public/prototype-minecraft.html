@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minecraft Math - TonyMath Prototype</title>
+  <!-- Google Font: Retro Press Start 2P & VT323 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* DESIGN SYSTEM: MINECRAFT PREMIUM THEME */
+    :root {
+      /* Official Minecraft localization style: heavy sans-serif with shadows for Vietnamese readability */
+      --mc-font-pixel: 'Inter', system-ui, -apple-system, sans-serif;
+      --mc-font-num: 'Press Start 2P', monospace;
+      --mc-font-sub: 'VT323', monospace;
+      --mc-font-body: 'Inter', sans-serif;
+      
+      /* Colors */
+      --color-dirt: #866043;
+      --color-dirt-dark: #573d26;
+      --color-grass: #5c8e32;
+      --color-grass-dark: #3b5c20;
+      --color-stone: #4a4a4a;
+      --color-stone-dark: #2e2e2e;
+      --color-wood: #b8863f;
+      --color-wood-dark: #7b5828;
+      --color-wood-light: #dfa85a;
+      --color-btn-grey: #adadad;
+      --color-btn-border-light: #e0e0e0;
+      --color-btn-border-dark: #5c5c5c;
+      --color-text-yellow: #ffff55;
+      --color-text-green: #55ff55;
+      --color-text-red: #ff5555;
+      --color-xp-bar: #55ff55;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--mc-font-body);
+      background-color: #1e1e1e;
+      /* Tiled dirt-like pixelated background using CSS gradients */
+      background-image: 
+        linear-gradient(45deg, #151515 25%, transparent 25%), 
+        linear-gradient(-45deg, #151515 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, #151515 75%), 
+        linear-gradient(-45deg, transparent 75%, #151515 75%);
+      background-size: 40px 40px;
+      background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+      background-color: #2c2c2c;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* TYPOGRAPHY */
+    h1, h2, h3, h4, .pixel-text {
+      font-family: var(--mc-font-pixel);
+      font-weight: 900;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 0px #000000;
+      letter-spacing: 0.5px;
+    }
+
+    .sub-pixel-text {
+      font-family: var(--mc-font-sub);
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    /* MINECRAFT BLOCK CONTAINERS */
+    .mc-panel {
+      background-color: #c6c6c6;
+      border: 4px solid #000000;
+      box-shadow: 
+        inset 4px 4px 0px var(--mc-border-light, #ffffff),
+        inset -4px -4px 0px var(--mc-border-dark, #555555);
+      image-rendering: pixelated;
+      padding: 16px;
+      position: relative;
+      color: #3f3f3f;
+    }
+
+    .mc-panel.dark {
+      background-color: #2e2e2e;
+      --mc-border-light: #4a4a4a;
+      --mc-border-dark: #151515;
+      color: #ffffff;
+    }
+
+    .mc-panel.wood {
+      background-color: var(--color-wood);
+      --mc-border-light: var(--color-wood-light);
+      --mc-border-dark: var(--color-wood-dark);
+      color: #ffffff;
+    }
+
+    .mc-panel.dirt-wall {
+      background-color: var(--color-dirt);
+      --mc-border-light: #a67653;
+      --mc-border-dark: var(--color-dirt-dark);
+      color: #ffffff;
+    }
+
+    /* MINECRAFT BUTTONS */
+    .mc-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-btn-grey);
+      border: 4px solid #000000;
+      box-shadow: 
+        inset 4px 4px 0px var(--color-btn-border-light),
+        inset -4px -4px 0px var(--color-btn-border-dark);
+      color: #ffffff;
+      font-family: var(--mc-font-pixel);
+      font-size: 10px;
+      padding: 12px 18px;
+      cursor: pointer;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 0px #2e2e2e;
+      transition: all 0.05s ease;
+      user-select: none;
+      position: relative;
+    }
+
+    .mc-btn:active {
+      box-shadow: 
+        inset 4px 4px 0px var(--color-btn-border-dark),
+        inset -4px -4px 0px var(--color-btn-border-light);
+      transform: translateY(2px);
+    }
+
+    .mc-btn:hover {
+      background-color: #bebebe;
+      border-color: #ffffff;
+      color: var(--color-text-yellow);
+      text-shadow: 2px 2px 0px #3f3f00;
+    }
+
+    .mc-btn.green {
+      background-color: var(--color-grass);
+      --color-btn-border-light: #7cb243;
+      --color-btn-border-dark: var(--color-grass-dark);
+    }
+    .mc-btn.green:hover {
+      background-color: #6da63b;
+      color: #ffffff;
+    }
+
+    .mc-btn.red {
+      background-color: #b83f3f;
+      --color-btn-border-light: #e55a5a;
+      --color-btn-border-dark: #7b2828;
+    }
+    .mc-btn.red:hover {
+      background-color: #c74a4a;
+      color: #ffffff;
+    }
+
+    .mc-btn.gold {
+      background-color: #e5aa24;
+      --color-btn-border-light: #fcd95b;
+      --color-btn-border-dark: #966b0a;
+    }
+    .mc-btn.gold:hover {
+      background-color: #f1b72e;
+      color: #ffffff;
+    }
+
+    .mc-btn:disabled {
+      background-color: #555555;
+      --color-btn-border-light: #777777;
+      --color-btn-border-dark: #333333;
+      color: #aaaaaa;
+      text-shadow: none;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* HEADER & STATS BAR */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background-color: #151515;
+      border-bottom: 4px solid #000000;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .block-mascot {
+      width: 36px;
+      height: 36px;
+      background-color: #5c8e32;
+      border: 3px solid #000000;
+      box-shadow: inset 3px 3px 0px #7cb243;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      image-rendering: pixelated;
+    }
+
+    .brand-title {
+      font-size: 11px;
+      color: #ffffff;
+    }
+    .brand-title span {
+      color: var(--color-text-green);
+    }
+
+    .stats-hub {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .heart-container {
+      display: flex;
+      gap: 3px;
+    }
+
+    .mc-heart {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.2s ease;
+    }
+
+    .mc-heart.lost {
+      filter: grayscale(1) opacity(0.4);
+    }
+
+    .stat-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #2c2c2c;
+      border: 2px solid #000000;
+      padding: 4px 8px;
+      font-family: var(--mc-font-num);
+      font-size: 9px;
+    }
+
+    .stat-badge .icon {
+      font-size: 12px;
+    }
+
+    /* APP LAYOUT */
+    .app-container {
+      max-width: 1024px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .main-grid {
+        grid-template-columns: 280px 1fr;
+      }
+    }
+
+    /* SIDEBAR / ADVENTURE PLAN */
+    .mc-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* ADVENTURE BOARD (HOME VIEW) */
+    .quest-board {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .quest-card {
+      background-color: #2e2e2e;
+      border: 4px solid #000000;
+      box-shadow: inset 4px 4px 0px #4a4a4a;
+      padding: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.1s ease;
+    }
+
+    .quest-card:hover {
+      border-color: var(--color-text-yellow);
+      background-color: #373737;
+    }
+
+    .quest-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .quest-name {
+      font-family: var(--mc-font-pixel);
+      font-size: 9px;
+      color: #ffffff;
+    }
+
+    .quest-card:hover .quest-name {
+      color: var(--color-text-yellow);
+    }
+
+    .quest-desc {
+      font-size: 13px;
+      color: #aaaaaa;
+      margin-top: 4px;
+    }
+
+    .quest-stars {
+      color: var(--color-text-yellow);
+      font-size: 16px;
+      display: flex;
+      gap: 2px;
+      text-shadow: 2px 2px 0px #000000;
+    }
+
+    .quest-badge {
+      font-family: var(--mc-font-pixel);
+      font-size: 8px;
+      padding: 3px 6px;
+      border: 2px solid #000000;
+      text-transform: uppercase;
+    }
+
+    .quest-badge.new { background-color: #00aa00; color: #fff; }
+    .quest-badge.done { background-color: #5555ff; color: #fff; }
+    .quest-badge.review { background-color: #ff5555; color: #fff; }
+
+    /* LESSON VIEW & STEPS */
+    .lesson-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .lesson-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 4px solid #000000;
+      padding-bottom: 12px;
+    }
+
+    .step-indicator {
+      display: flex;
+      justify-content: space-between;
+      gap: 4px;
+      margin-bottom: 12px;
+      background: #151515;
+      padding: 6px;
+      border: 3px solid #000000;
+    }
+
+    .step-dot {
+      flex: 1;
+      height: 8px;
+      background-color: #555555;
+      border: 1px solid #000;
+    }
+
+    .step-dot.active {
+      background-color: var(--color-xp-bar);
+      box-shadow: 0 0 8px var(--color-xp-bar);
+    }
+
+    .step-dot.passed {
+      background-color: #00aa00;
+    }
+
+    /* STORY BOX (MINECRAFT DIALOGUE) */
+    .story-box {
+      display: flex;
+      gap: 16px;
+      background-color: #2a2a2a;
+      border: 4px solid #000000;
+      box-shadow: inset 4px 4px 0px #404040;
+      padding: 16px;
+      position: relative;
+    }
+
+    .story-mascot {
+      width: 72px;
+      height: 72px;
+      background-color: var(--color-dirt);
+      border: 4px solid #000000;
+      box-shadow: inset 4px 4px 0px #a67653;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      flex-shrink: 0;
+      image-rendering: pixelated;
+    }
+
+    .story-bubble {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .story-text {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #ffffff;
+    }
+
+    /* QUESTION AREA */
+    .question-area {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 600px) {
+      .option-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .option-card {
+      background-color: #c6c6c6;
+      border: 4px solid #000000;
+      box-shadow: 
+        inset 4px 4px 0px #ffffff,
+        inset -4px -4px 0px #888888;
+      padding: 14px 18px;
+      color: #303030;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bold;
+      transition: all 0.05s ease;
+      user-select: none;
+    }
+
+    .option-card:hover {
+      background-color: #bebebe;
+      border-color: #ffffff;
+      color: #000000;
+    }
+
+    .option-card.selected {
+      background-color: #92b870;
+      box-shadow: 
+        inset 4px 4px 0px #c2e2a2,
+        inset -4px -4px 0px #5c7e3a;
+      color: #ffffff;
+      border-color: #5c8e32;
+    }
+
+    .option-index {
+      font-family: var(--mc-font-pixel);
+      font-size: 10px;
+      background: #4a4a4a;
+      color: #ffffff;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #000;
+    }
+
+    .option-card.selected .option-index {
+      background: var(--color-grass);
+    }
+
+    /* SORTING / DRAG-DROP BOXES */
+    .drag-zone {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: #1a1a1a;
+      border: 4px solid #000;
+      padding: 12px;
+    }
+
+    .drag-item {
+      background: #3c3c3c;
+      border: 3px solid #000;
+      box-shadow: inset 3px 3px 0px #5a5a5a;
+      padding: 10px;
+      cursor: grab;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .drop-bucket {
+      border: 4px dashed #555555;
+      background: #252525;
+      min-height: 80px;
+      padding: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .drop-bucket.active {
+      border-color: var(--color-xp-bar);
+      background: #2d382d;
+    }
+
+    /* DYNAMIC NOTIFICATIONS & FLOATING LABELS */
+    .feedback-box {
+      border: 4px solid #000000;
+      padding: 14px;
+      display: none;
+      animation: popIn 0.2s ease-out;
+    }
+
+    .feedback-box.correct {
+      background-color: #2d382d;
+      border-color: #5c8e32;
+      color: #a2e870;
+    }
+
+    .feedback-box.wrong {
+      background-color: #3d2525;
+      border-color: #b83f3f;
+      color: #ff8585;
+    }
+
+    /* POMODORO TIMER PANEL */
+    .pomo-widget {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #1a1a1a;
+      border: 4px solid #000;
+      box-shadow: inset 4px 4px 0 #2c2c2c;
+      padding: 12px;
+    }
+
+    .pomo-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pomo-timer {
+      font-family: var(--mc-font-num);
+      font-size: 11px;
+      color: var(--color-text-yellow);
+    }
+
+    /* POMODORO FULLSCREEN OVERLAY (SLEEP MOD) */
+    .pomo-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(10, 10, 10, 0.95);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .pomo-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .pomo-panel {
+      max-width: 480px;
+      width: 90%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sleeping-mascot {
+      font-size: 72px;
+      animation: sleepingFloat 2s infinite ease-in-out;
+      margin: 12px 0;
+      position: relative;
+    }
+
+    .sleeping-zzz {
+      position: absolute;
+      font-family: var(--mc-font-pixel);
+      font-size: 18px;
+      color: #55ffff;
+      animation: zzzFlow 2s infinite linear;
+      opacity: 0;
+    }
+
+    /* BREATHING SPHERE ANIMATION */
+    .breath-ring-container {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .breath-ring {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(85, 255, 255, 0.2);
+      border: 4px solid #55ffff;
+      border-radius: 50%;
+      animation: breatheAnimation 8s infinite ease-in-out;
+    }
+
+    .breath-label {
+      position: absolute;
+      font-family: var(--mc-font-pixel);
+      font-size: 8px;
+      color: #ffffff;
+      text-shadow: 2px 2px 0px #000;
+      pointer-events: none;
+    }
+
+    /* MINECRAFT XP BAR AT BOTTOM */
+    .xp-bar-wrapper {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      background: #111;
+      border-top: 4px solid #000;
+      padding: 10px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      z-index: 90;
+    }
+
+    .xp-bar-container {
+      width: 100%;
+      max-width: 800px;
+      height: 12px;
+      background: #333333;
+      border: 2px solid #000;
+      position: relative;
+    }
+
+    .xp-bar-fill {
+      height: 100%;
+      background: var(--color-xp-bar);
+      width: 65%; /* Simulated current level progress */
+      transition: width 0.3s ease;
+    }
+
+    .xp-level-badge {
+      font-family: var(--mc-font-num);
+      font-size: 14px;
+      color: var(--color-text-green);
+      text-shadow: 1px 1px 0px #000000, -1px -1px 0px #000000, 1px -1px 0px #000000, -1px 1px 0px #000000;
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* CARD DECK & INVENTORY VIEW */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    @media (min-width: 600px) {
+      .card-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .card-slot {
+      background: #8b8b8b;
+      border: 3px solid #373737;
+      box-shadow: 
+        inset 3px 3px 0px #555555,
+        inset -3px -3px 0px #c6c6c6;
+      aspect-ratio: 3/4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      padding: 6px;
+    }
+
+    .card-slot:hover {
+      outline: 3px solid #ffffff;
+      box-shadow: none;
+    }
+
+    .card-slot.empty {
+      background: #8b8b8b;
+    }
+
+    .card-slot.locked {
+      background: #555555;
+      filter: brightness(0.6);
+    }
+
+    .card-slot .card-emoji {
+      font-size: 32px;
+      filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5));
+    }
+
+    .card-slot .card-title {
+      font-family: var(--mc-font-body);
+      font-weight: 600;
+      font-size: 9px;
+      color: #fff;
+      text-align: center;
+      margin-top: 6px;
+      text-shadow: 1px 1px 0px #000;
+      word-break: break-word;
+    }
+
+    /* FLOATING COIN ANIMATION ELEMENT */
+    .particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 1000;
+      font-family: var(--mc-font-pixel);
+      font-size: 12px;
+      color: var(--color-text-yellow);
+      text-shadow: 2px 2px 0px #000;
+      animation: particleFloat 1s forwards ease-out;
+    }
+
+    /* CONFETTI CONTAINER */
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 999;
+      pointer-events: none;
+    }
+
+    /* ANIMATIONS */
+    @keyframes popIn {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes particleFloat {
+      0% { transform: translate(0, 0) scale(1); opacity: 1; }
+      100% { transform: translate(var(--x), var(--y)) scale(0.8); opacity: 0; }
+    }
+
+    @keyframes sleepingFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes zzzFlow {
+      0% { transform: translate(10px, -10px) scale(0.5); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translate(30px, -40px) scale(1.2); opacity: 0; }
+    }
+
+    @keyframes breatheAnimation {
+      0%, 100% { transform: scale(1); background-color: rgba(85, 255, 255, 0.15); }
+      50% { transform: scale(2.2); background-color: rgba(85, 255, 255, 0.45); }
+    }
+
+    /* SPEED GAUGE FX */
+    .speed-tag {
+      font-family: var(--mc-font-pixel);
+      font-size: 8px;
+      color: #55ffff;
+      text-shadow: 1px 1px 0px #000;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      animation: pulse 1s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+
+    /* MYSTERY BOX GACHA */
+    .chest-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      gap: 16px;
+      background: #1e1e1e;
+      border: 4px solid #000;
+    }
+
+    .mc-chest {
+      font-size: 80px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      filter: drop-shadow(4px 4px 0px #000);
+      user-select: none;
+    }
+
+    .mc-chest:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .mc-chest.shaking {
+      animation: shake 0.5s infinite;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0) scale(1.1); }
+      25% { transform: translateX(-5px) rotate(-3deg) scale(1.1); }
+      75% { transform: translateX(5px) rotate(3deg) scale(1.1); }
+    }
+
+    /* RETAIN APP SPACE FOR XP BAR */
+    .spacer-bottom {
+      height: 60px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FLOATING CONFETTI CANVAS -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- TOP STATS BAR -->
+  <header class="top-bar">
+    <div class="brand-area">
+      <div class="block-mascot">🦉</div>
+      <div class="brand-title">
+        <h1 style="font-size: 9px; margin-bottom: 2px;">MINECRAFT <span style="color:#55ff55">MATH</span></h1>
+        <p class="sub-pixel-text" style="color: #aaa; font-size: 1rem;">Toán Vui Học Cách Suy Luận</p>
+      </div>
+    </div>
+    
+    <div class="stats-hub">
+      <!-- HEARTS -->
+      <div class="heart-container" id="heart-box">
+        <svg class="mc-heart" viewBox="0 0 9 9" fill="red">
+          <path d="M1,2 h1 v-1 h1 v1 h1 v-1 h1 v1 h1 v-1 h1 v1 h1 v2 h-1 v1 h-1 v1 h-1 v1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 z" />
+        </svg>
+        <svg class="mc-heart" viewBox="0 0 9 9" fill="red">
+          <path d="M1,2 h1 v-1 h1 v1 h1 v-1 h1 v1 h1 v-1 h1 v1 h1 v2 h-1 v1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 z" />
+        </svg>
+        <svg class="mc-heart" viewBox="0 0 9 9" fill="red">
+          <path d="M1,2 h1 v-1 h1 v1 h1 v-1 h1 v1 h1 v-1 h1 v1 h1 v2 h-1 v1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 v-1 h-1 z" />
+        </svg>
+      </div>
+
+      <!-- COINS -->
+      <div class="stat-badge">
+        <span class="icon">🪙</span>
+        <span id="coin-count">0</span>
+      </div>
+
+      <!-- STREAK -->
+      <div class="stat-badge" style="color: #ffaa00;">
+        <span class="icon">🔥</span>
+        <span>5</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- APP CONTAINER -->
+  <div class="app-container">
+    
+    <!-- POMODORO FLOATING STATUS -->
+    <div class="pomo-widget">
+      <div class="pomo-status">
+        <span style="font-size: 20px;">⏱️</span>
+        <div>
+          <h4 style="font-size: 8px; color: #fff; margin-bottom: 2px;">CỐ VẤN POMODORO</h4>
+          <p class="sub-pixel-text" style="color: #aaa; font-size: 1.1rem;" id="pomo-state-text">Đang trong giờ học</p>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="pomo-timer" id="pomo-clock">19:42</span>
+        <!-- FAST FORWARD TIMER (FOR PROTOTYPE DEMO) -->
+        <button class="mc-btn green" onclick="demoTriggerPomodoroBreak()" style="padding: 6px 10px; font-size: 8px;">Break Demo</button>
+      </div>
+    </div>
+
+    <!-- MAIN BODY GRID -->
+    <div class="main-grid">
+      
+      <!-- SIDEBAR: INVENTORY / CARDS ALBUM -->
+      <div class="mc-sidebar">
+        <!-- MASCOT CARD -->
+        <div class="mc-panel dark">
+          <h3 style="font-size: 8px; color: var(--color-text-yellow); margin-bottom: 12px; border-bottom: 2px dashed #444; padding-bottom: 6px;">CỐ VẤN ĐỒNG HÀNH</h3>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <div class="block-mascot" style="width: 50px; height: 50px; font-size: 32px;">🦉</div>
+            <div>
+              <h2 style="font-size: 10px;" id="mascot-name">Cú Khôn Ngoan</h2>
+              <p class="sub-pixel-text" style="color: var(--color-text-green);">Cấp độ 4 (Pháp sư)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ALBUM CARDS -->
+        <div class="mc-panel dark" style="flex: 1;">
+          <h3 style="font-size: 8px; color: #ffffff; margin-bottom: 12px; display: flex; justify-content: space-between;">
+            <span>THẺ BÀI TOÁN HỌC</span>
+            <span style="color: var(--color-text-yellow);" id="deck-ratio">3/12</span>
+          </h3>
+          <div class="card-grid" id="card-album-grid">
+            <!-- Dynamically populated slots -->
+          </div>
+          
+          <!-- SPIN BOX FOR COLLECTING -->
+          <div style="margin-top: 14px; text-align: center; border-top: 2px dashed #444; padding-top: 12px;">
+            <p class="sub-pixel-text" style="color: #aaa; margin-bottom: 8px;">Mua rương mở thẻ mới</p>
+            <button class="mc-btn gold" onclick="openGachaView()" style="width: 100%;">🔑 MỞ RƯƠNG (50 🪙)</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN AREA: ACTIVE QUEST / LESSON -->
+      <div class="mc-panel" id="main-content-panel" style="background-color: #2b2b2b; --mc-border-light: #444; --mc-border-dark: #151515;">
+        
+        <!-- ================= HOME QUEST BOARD VIEW ================= -->
+        <div id="home-view" class="quest-board" style="display: none;">
+          <h2 style="font-size: 12px; color: var(--color-text-yellow); margin-bottom: 12px; text-align: center;">BẢN ĐỒ THỬ THÁCH</h2>
+          
+          <div class="quest-card" onclick="startLessonDemo(0)">
+            <div class="quest-info">
+              <span class="quest-badge done">BÀI 1</span>
+              <h3 class="quest-name" style="margin-top: 4px;">Tổng và Hiệu Số Học</h3>
+              <p class="quest-desc">Bé Lan và Hùng có tất cả 12 quả táo...</p>
+            </div>
+            <div style="text-align: right;">
+              <div class="quest-stars">⭐⭐⭐</div>
+              <p class="sub-pixel-text" style="color: var(--color-text-green); font-size: 1.1rem; margin-top: 4px;">Đã xong</p>
+            </div>
+          </div>
+
+          <div class="quest-card" onclick="startLessonDemo(1)">
+            <div class="quest-info">
+              <span class="quest-badge review" style="background-color: #b8863f;">BÀI 2 (Yếu)</span>
+              <h3 class="quest-name" style="margin-top: 4px;">Tìm Hai Số Khi Biết Hiệu</h3>
+              <p class="quest-desc">Đàn gà nhà Minh có nhiều hơn đàn vịt...</p>
+            </div>
+            <div style="text-align: right;">
+              <div class="quest-stars">⭐</div>
+              <p class="sub-pixel-text" style="color: #e55a5a; font-size: 1.1rem; margin-top: 4px;">Cần ôn lại</p>
+            </div>
+          </div>
+
+          <div class="quest-card" onclick="startLessonDemo(2)">
+            <div class="quest-info">
+              <span class="quest-badge new">BÀI 3</span>
+              <h3 class="quest-name" style="margin-top: 4px;">Trung Bình Cộng Quái Vật 👾</h3>
+              <p class="quest-desc">Trung bình mỗi rương kho báu chứa...</p>
+            </div>
+            <div style="text-align: right;">
+              <div class="quest-stars" style="color: #555;">⭐⭐⭐</div>
+              <p class="sub-pixel-text" style="color: #aaa; font-size: 1.1rem; margin-top: 4px;">Bài mới</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= LESSON VIEW (8-STEPS SOLVER) ================= -->
+        <div id="lesson-view" class="lesson-container">
+          <!-- Lesson Title -->
+          <div class="lesson-header">
+            <button class="mc-btn red" onclick="goHome()" style="padding: 6px 10px; font-size: 8px;">◀ THOÁT</button>
+            <h2 id="lesson-title" style="font-size: 10px; color: var(--color-text-yellow);">BÀI 1: TỔNG VÀ HIỆU</h2>
+            <div class="speed-tag" id="step-speed-indicator">
+              ⚡ TỐC ĐỘ: BÌNH THƯỜNG
+            </div>
+          </div>
+
+          <!-- 8 Step Indicator Dots -->
+          <div class="step-indicator" id="step-dots-bar">
+            <div class="step-dot active"></div>
+            <div class="step-dot"></div>
+            <div class="step-dot"></div>
+            <div class="step-dot"></div>
+            <div class="step-dot"></div>
+            <div class="step-dot"></div>
+            <div class="step-dot"></div>
+            <div class="step-dot"></div>
+          </div>
+
+          <!-- Step Guide and Mascot Dialog -->
+          <div class="story-box">
+            <div class="story-mascot">🦉</div>
+            <div class="story-bubble">
+              <h4 id="step-name" style="font-size: 8px; color: var(--color-text-yellow); margin-bottom: 6px;">BƯỚC 1: XEM CÂU CHUYỆN</h4>
+              <p class="story-text" id="step-instructions">Đọc kỹ câu chuyện dưới đây để tìm manh mối nhé!</p>
+            </div>
+          </div>
+
+          <!-- Step Interactive Area -->
+          <div class="question-area" id="step-interactive-area">
+            <!-- Content dynamically rendered depending on step -->
+          </div>
+
+          <!-- Action Buttons / Next / Submit -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px; border-top: 2px solid #333; padding-top: 16px;">
+            <button class="mc-btn" id="hint-btn" onclick="triggerHint()" style="background-color: var(--color-wood); --color-btn-border-light: var(--color-wood-light); --color-btn-border-dark: var(--color-wood-dark);">💡 GỢI Ý (-1 ❤️)</button>
+            <div style="display: flex; gap: 10px;">
+              <button class="mc-btn green" id="check-btn" onclick="submitAnswer()">KIỂM TRA ✔</button>
+              <button class="mc-btn" id="next-btn" onclick="nextStep()" style="display: none;">TIẾP THEO ▶</button>
+            </div>
+          </div>
+
+          <!-- Feedback Box -->
+          <div class="feedback-box" id="step-feedback-box">
+            <h4 id="feedback-headline" style="font-size: 8px; margin-bottom: 4px;">CHÍNH XÁC!</h4>
+            <p id="feedback-body" style="font-size: 13px;">Bé làm xuất sắc lắm. Điểm tích lũy cộng thêm!</p>
+          </div>
+        </div>
+
+        <!-- ================= GACHA CARD CHEST VIEW ================= -->
+        <div id="gacha-view" class="chest-area" style="display: none;">
+          <h2 style="font-size: 11px; color: var(--color-text-yellow); text-align: center;">🔑 RƯƠNG THẺ BÀI BÍ ẨN</h2>
+          <p class="sub-pixel-text" style="color: #aaa; text-align: center;">Chạm vào rương để phá khóa!</p>
+          
+          <div class="mc-chest" id="mystery-chest" onclick="triggerGachaOpening()">📦</div>
+          
+          <div id="gacha-result" class="mc-panel dark" style="display: none; width: 100%; max-width: 320px; text-align: center;">
+            <!-- Will render dynamic card here -->
+          </div>
+
+          <div style="display: flex; gap: 12px;">
+            <button class="mc-btn red" onclick="goHome()">◀ VỀ BẢN ĐỒ</button>
+            <button class="mc-btn gold" id="buy-another-btn" onclick="triggerAnotherGacha()">MỞ TIẾP (50 🪙)</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="spacer-bottom"></div>
+  </div>
+
+  <!-- FIXED XP BAR AT BOTTOM -->
+  <div class="xp-bar-wrapper">
+    <div class="xp-bar-container">
+      <div class="xp-bar-fill" id="xp-bar-fill-indicator"></div>
+      <div class="xp-level-badge" id="xp-level-text">CẤP ĐỘ 24</div>
+    </div>
+    <div style="font-family: var(--mc-font-pixel); font-size: 7px; color: #888;">
+      XP TÍCH LŨY: <span id="xp-numbers" style="color: #fff;">240/1000</span>
+    </div>
+  </div>
+
+  <!-- POMODORO BREAK SCREEN (BED MOD) -->
+  <div class="pomo-overlay" id="pomo-break-overlay">
+    <div class="pomo-panel mc-panel dark" style="border-color: #55ffff; box-shadow: inset 4px 4px 0 #333, 0 0 20px rgba(85,255,255,0.4);">
+      <h2 style="color: #55ffff; font-size: 14px;">⏰ GIỜ NGHỈ NGƠI! ⏰</h2>
+      
+      <div class="sleeping-mascot" id="mascot-sleeping-avatar">
+        🦉
+        <span class="sleeping-zzz" style="left: 20px; top: -10px; animation-delay: 0s;">Z</span>
+        <span class="sleeping-zzz" style="left: 40px; top: -25px; animation-delay: 0.7s;">z</span>
+        <span class="sleeping-zzz" style="left: 60px; top: -40px; animation-delay: 1.4s;">z</span>
+      </div>
+
+      <h3 style="font-size: 9px; color: #ffffff;">CỐ VẤN ĐANG ĐI NGỦ...</h3>
+      <p class="sub-pixel-text" style="color: #aaa;">Đã học 20 phút rồi. Hãy cho đôi mắt của con nghỉ ngơi 5 phút nhé.</p>
+
+      <!-- Breathing Ring Game -->
+      <div class="mc-panel" style="background-color: #1a1a1a; border-color: #000; padding: 12px; margin: 10px 0;">
+        <h4 style="font-size: 8px; color: #55ffff; margin-bottom: 12px;">TRÒ CHƠI THẢ LỎNG MẮT</h4>
+        <div class="breath-ring-container">
+          <div class="breath-ring" id="breathing-bubble"></div>
+          <div class="breath-label" id="breathing-label">HÍT VÀO...</div>
+        </div>
+        <p class="sub-pixel-text" style="color: #55ff55; font-size: 1.1rem; margin-top: 12px;">Đưa mắt nhìn theo nhịp thở của vòng tròn để thư giãn!</p>
+      </div>
+
+      <div style="font-family: var(--mc-font-pixel); font-size: 18px; color: var(--color-text-yellow);" id="break-countdown">
+        05:00
+      </div>
+
+      <div style="display: flex; gap: 12px; justify-content: center;">
+        <button class="mc-btn red" onclick="skipBreak()">BỎ QUA NGHỈ</button>
+        <button class="mc-btn green" id="claim-break-btn" onclick="claimBreakReward()" disabled>NHẬN THƯỞNG (+20 🪙)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUDIO CONTEXT & SFX SCRIPTS -->
+  <script>
+    // WEB AUDIO API SOUND SYNTHESIS
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function tone({ freq, type = 'sine', start, dur = 0.15, peak = 0.14, slideTo = null }) {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime + (start || 0);
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, now);
+        if (slideTo != null) {
+          osc.frequency.exponentialRampToValueAtTime(Math.max(20, slideTo), now + dur);
+        }
+        gain.gain.setValueAtTime(0, now);
+        gain.gain.linearRampToValueAtTime(peak, now + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + dur);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + dur + 0.02);
+      } catch (e) {
+        console.warn("Audio block error", e);
+      }
+    }
+
+    function playSfx(type) {
+      const now = 0;
+      if (type === 'click') {
+        // Minecraft UI click (wood button snap)
+        tone({ freq: 600, type: 'triangle', dur: 0.05, peak: 0.15, slideTo: 100 });
+      } else if (type === 'xp') {
+        // Minecraft orb pickup sound (bright chime)
+        tone({ freq: 880, type: 'sine', dur: 0.12, peak: 0.15 });
+        setTimeout(() => tone({ freq: 1174, type: 'sine', dur: 0.18, peak: 0.15 }), 50);
+      } else if (type === 'wrong') {
+        // Minecraft damage / hit sound (low growl)
+        tone({ freq: 150, type: 'sawtooth', dur: 0.25, peak: 0.2, slideTo: 80 });
+      } else if (type === 'level_up') {
+        // Minecraft level up ding
+        const notes = [440, 554, 659, 880, 1109, 1318, 1760];
+        notes.forEach((freq, idx) => {
+          tone({ freq, type: 'triangle', start: idx * 0.08, dur: 0.3, peak: 0.15 });
+        });
+      } else if (type === 'chest_shake') {
+        tone({ freq: 100, type: 'sine', dur: 0.1, peak: 0.1, slideTo: 50 });
+      } else if (type === 'chest_open') {
+        tone({ freq: 587, type: 'triangle', dur: 0.15, peak: 0.15 });
+        setTimeout(() => tone({ freq: 698, type: 'triangle', dur: 0.15, peak: 0.15 }), 80);
+        setTimeout(() => tone({ freq: 880, type: 'triangle', dur: 0.3, peak: 0.18 }), 160);
+      }
+    }
+
+    // Attach click to all mc-btn
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.mc-btn, .option-card, .quest-card, .card-slot')) {
+        playSfx('click');
+      }
+    });
+  </script>
+
+  <!-- PROTOTYPE STATE & INTERACTIVE LOGIC -->
+  <script>
+    // GAME MOCK STATE
+    const state = {
+      coins: 120,
+      xp: 240,
+      level: 24,
+      hearts: 3,
+      currentView: 'home', // home, lesson, gacha
+      lessonIndex: 0,
+      currentStep: 0,
+      stepStartTime: 0,
+      solveSpeedSeconds: 0,
+      pomoSecondsRemaining: 1200, // 20 mins = 1200s
+      pomoBreakRemaining: 300, // 5 mins = 300s
+      isBreakActive: false,
+      cardsDeck: [
+        { id: 1, emoji: '🦊', title: 'Cáo Số Học', unlocked: true },
+        { id: 2, emoji: '🐢', title: 'Rùa Hình Học', unlocked: true },
+        { id: 3, emoji: '🐝', title: 'Ong Đo Lường', unlocked: true },
+        { id: 4, emoji: '🦉', title: 'Cú Đất', unlocked: false },
+        { id: 5, emoji: '🦖', title: 'Khủng Long Đại Số', unlocked: false },
+        { id: 6, emoji: '🐙', title: 'Bạch Tuộc Xác Suất', unlocked: false },
+        { id: 7, emoji: '🐼', title: 'Gấu Tỉ Lệ', unlocked: false },
+        { id: 8, emoji: '🦈', title: 'Cá Mập Phân Số', unlocked: false }
+      ]
+    };
+
+    // LESSON DATA FOR PROTOTYPE
+    const mockLessons = [
+      {
+        title: "TÌM HAI SỐ KHI BIẾT TỔNG VÀ HIỆU",
+        steps: [
+          {
+            name: "BƯỚC 1: XEM CÂU CHUYỆN HÌNH 📖",
+            instruction: "Bé Lan và Hùng có tất cả 12 quả táo. Bé Lan có nhiều hơn Hùng 4 quả táo.",
+            type: "read_only",
+            content: `
+              <div style="display:flex; justify-content:center; align-items:center; gap: 15px; padding: 10px; background:#1e1e1e; border:3px solid #000;">
+                <div style="text-align:center;">
+                  <div style="font-size:32px;">👧</div>
+                  <div class="sub-pixel-text" style="color:var(--color-text-yellow); font-size:1.1rem;">Lan (Nhiều hơn)</div>
+                </div>
+                <div style="font-size:24px; font-family:var(--mc-font-pixel); color:#fff; text-shadow:2px 2px 0 #000;">➕</div>
+                <div style="text-align:center;">
+                  <div style="font-size:32px;">👦</div>
+                  <div class="sub-pixel-text" style="color:var(--color-text-yellow); font-size:1.1rem;">Hùng (Ít hơn)</div>
+                </div>
+                <div style="font-size:20px; font-family:var(--mc-font-pixel); color:#55ff55; text-shadow:2px 2px 0 #000;">= 12 🍎</div>
+              </div>
+              <p style="text-align:center; font-size:12px; margin-top:8px; color:#aaa;">Hiệu số táo của hai bạn là 4 quả.</p>
+            `
+          },
+          {
+            name: "BƯỚC 2: KỂ LẠI BẰNG LỜI 💬",
+            instruction: "Hãy chọn câu kể lại đúng nhất tình huống đề bài:",
+            type: "single_choice",
+            options: [
+              "Lan và Hùng có tổng là 12 quả táo, Lan có ít hơn Hùng 4 quả.",
+              "Tổng số táo của hai bạn là 12 quả, và Lan có nhiều hơn Hùng 4 quả.",
+              "Hiệu số táo của hai bạn là 12 quả, tổng số táo là 4 quả."
+            ],
+            correctIndex: 1
+          },
+          {
+            name: "BƯỚC 3: PHÂN LOẠI DỮ KIỆN 📂",
+            instruction: "Đâu là 'TỔNG', đâu là 'HIỆU'? Hãy ghép thẻ tương ứng.",
+            type: "sorting",
+            leftBox: "12 quả táo",
+            rightBox: "4 quả táo",
+            options: ["TỔNG SỐ TÁO", "HIỆU SỐ TÁO"],
+            correctMap: { "TỔNG SỐ TÁO": "left", "HIỆU SỐ TÁO": "right" }
+          },
+          {
+            name: "BƯỚC 4: CHỌN SƠ ĐỒ PHÙ HỢP 📊",
+            instruction: "Mô hình đoạn thẳng nào diễn tả đúng đề bài toán?",
+            type: "single_choice",
+            options: [
+              "Sơ đồ 1: Đoạn thẳng của Lan dài hơn, phần chênh lệch ghi 4, tổng ghi 12.",
+              "Sơ đồ 2: Đoạn thẳng của Hùng dài hơn, phần chênh lệch ghi 4, tổng ghi 12.",
+              "Sơ đồ 3: Hai đoạn thẳng bằng nhau, tổng ghi 12."
+            ],
+            correctIndex: 0
+          },
+          {
+            name: "BƯỚC 5: CHỌN CÔNG THỨC 💡",
+            instruction: "Công thức nào dùng để tìm số táo của Lan (Số lớn)?",
+            type: "single_choice",
+            options: [
+              "Số lớn = (Tổng - Hiệu) : 2",
+              "Số lớn = (Tổng + Hiệu) : 2",
+              "Số lớn = Tổng + Hiệu"
+            ],
+            correctIndex: 1
+          },
+          {
+            name: "BƯỚC 6: TÍNH TOÁN KẾT QUẢ 🧮",
+            instruction: "Tính số táo của Lan: (12 + 4) : 2 = ?",
+            type: "input_number",
+            correctValue: 8
+          },
+          {
+            name: "BƯỚC 7: CÂU TRẢ LỜI ĐẦY ĐỦ 📝",
+            instruction: "Chọn câu trả lời có lập luận tốt nhất:",
+            type: "single_choice",
+            options: [
+              "Lan có số quả táo là: (12 + 4) : 2 = 8 quả. Hùng có: 12 - 8 = 4 quả.",
+              "Lan có 8 quả táo, Hùng có 4 quả táo.",
+              "Số táo của Lan là 8 quả vì em tính nhẩm ra."
+            ],
+            correctIndex: 0
+          },
+          {
+            name: "BƯỚC 8: THỬ THÁCH TRÙM CUỐI 👾",
+            instruction: "Nếu Hùng cho Lan thêm 2 quả táo, thì bây giờ Lan nhiều hơn Hùng bao nhiêu quả?",
+            type: "input_number",
+            correctValue: 8
+          }
+        ]
+      },
+      {
+        title: "TÌM HAI SỐ KHI BIẾT HIỆU VÀ TỈ",
+        steps: [
+          {
+            name: "BƯỚC 1: ĐỀ BÀI QUÁI VẬT 👾",
+            instruction: "Đàn gà nhà Minh nhiều hơn đàn vịt là 15 con. Số gà gấp 4 lần số vịt.",
+            type: "read_only",
+            content: `<p style="text-align:center; font-size:14px; background:#1e1e1e; padding:12px; border:3px solid #000;">Gà = 4 phần 🐓 | Vịt = 1 phần 🦆 | Hiệu = 15 con</p>`
+          },
+          {
+            name: "BƯỚC 2: TỈ SỐ LÀ GÌ? 📊",
+            instruction: "Số gà gấp 4 lần số vịt nghĩa là tỉ số gà so với vịt là:",
+            type: "single_choice",
+            options: ["1 phần 4", "4 phần 1 (gấp 4 lần)", "1 phần 5"],
+            correctIndex: 1
+          },
+          {
+            name: "BƯỚC 3: TÍNH HIỆU SỐ PHẦN 🧮",
+            instruction: "Hiệu số phần bằng nhau của gà và vịt là:",
+            type: "single_choice",
+            options: ["4 - 1 = 3 phần", "4 + 1 = 5 phần", "4 x 1 = 4 phần"],
+            correctIndex: 0
+          },
+          {
+            name: "BƯỚC 4: GIÁ TRỊ MỘT PHẦN 💎",
+            instruction: "Giá trị của 1 phần (số vịt) là bao nhiêu? (Lấy Hiệu chia cho Hiệu số phần)",
+            type: "input_number",
+            correctValue: 5
+          },
+          {
+            name: "BƯỚC 5: TÍNH SỐ GÀ 🐓",
+            instruction: "Số gà nhà Minh là bao nhiêu con?",
+            type: "input_number",
+            correctValue: 20
+          }
+        ]
+      }
+    ];
+
+    // RENDER INTERACTION AREA DYNAMICALLY
+    function renderStep() {
+      const lesson = mockLessons[state.lessonIndex];
+      const stepData = lesson.steps[state.currentStep];
+      const area = document.getElementById('step-interactive-area');
+      
+      // Update dialogue
+      document.getElementById('step-name').innerText = stepData.name;
+      document.getElementById('step-instructions').innerText = stepData.instruction;
+      
+      // Reset layout
+      area.innerHTML = '';
+      document.getElementById('step-feedback-box').style.display = 'none';
+      document.getElementById('check-btn').style.display = 'inline-flex';
+      document.getElementById('check-btn').disabled = false;
+      document.getElementById('next-btn').style.display = 'none';
+      
+      // Set start time for speed tracking
+      state.stepStartTime = Date.now();
+      
+      if (stepData.type === 'read_only') {
+        area.innerHTML = stepData.content;
+        // Read only step requires just clicking Continue
+        document.getElementById('check-btn').innerText = "ĐÃ ĐỌC XONG ▶";
+      } 
+      else if (stepData.type === 'single_choice') {
+        document.getElementById('check-btn').innerText = "KIỂM TRA ✔";
+        const grid = document.createElement('div');
+        grid.className = 'option-grid';
+        
+        stepData.options.forEach((opt, idx) => {
+          const card = document.createElement('div');
+          card.className = 'option-card';
+          card.innerHTML = `<span class="option-index">${String.fromCharCode(65 + idx)}</span> <span>${opt}</span>`;
+          card.onclick = () => selectOption(idx, card);
+          grid.appendChild(card);
+        });
+        area.appendChild(grid);
+        state.selectedOption = null;
+      } 
+      else if (stepData.type === 'input_number') {
+        document.getElementById('check-btn').innerText = "KIỂM TRA ✔";
+        const wrapper = document.createElement('div');
+        wrapper.style.display = 'flex';
+        wrapper.style.flexDirection = 'column';
+        wrapper.style.alignItems = 'center';
+        wrapper.style.gap = '12px';
+        
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.id = 'step-number-input';
+        input.placeholder = 'Nhập đáp án số...';
+        input.style.fontFamily = 'var(--mc-font-pixel)';
+        input.style.fontSize = '16px';
+        input.style.padding = '12px';
+        input.style.border = '4px solid #000';
+        input.style.background = '#000';
+        input.style.color = 'var(--color-xp-bar)';
+        input.style.textAlign = 'center';
+        input.style.outline = 'none';
+        input.style.width = '200px';
+        
+        wrapper.appendChild(input);
+        area.appendChild(wrapper);
+        setTimeout(() => input.focus(), 100);
+      }
+      else if (stepData.type === 'sorting') {
+        document.getElementById('check-btn').innerText = "KIỂM TRA ✔";
+        
+        const dragGrid = document.createElement('div');
+        dragGrid.style.display = 'grid';
+        dragGrid.style.gridTemplateColumns = '1fr';
+        dragGrid.style.gap = '12px';
+        
+        const bucketsWrapper = document.createElement('div');
+        bucketsWrapper.style.display = 'grid';
+        bucketsWrapper.style.gridTemplateColumns = '1fr 1fr';
+        bucketsWrapper.style.gap = '12px';
+        
+        bucketsWrapper.innerHTML = `
+          <div class="drop-bucket mc-panel dark" id="bucket-left" ondragover="event.preventDefault()" ondrop="dropItem(event, 'left')">
+            <h4 style="font-size:7px; color:var(--color-text-yellow); margin-bottom:8px; width:100%;">${stepData.leftBox}</h4>
+          </div>
+          <div class="drop-bucket mc-panel dark" id="bucket-right" ondragover="event.preventDefault()" ondrop="dropItem(event, 'right')">
+            <h4 style="font-size:7px; color:var(--color-text-yellow); margin-bottom:8px; width:100%;">${stepData.rightBox}</h4>
+          </div>
+        `;
+        
+        const itemsWrapper = document.createElement('div');
+        itemsWrapper.className = 'drag-zone';
+        itemsWrapper.innerHTML = `<p class="sub-pixel-text" style="color:#888; font-size:1.1rem; margin-bottom:4px;">Kéo thả các khối vào ô đúng:</p>`;
+        
+        stepData.options.forEach((opt, idx) => {
+          const item = document.createElement('div');
+          item.className = 'drag-item';
+          item.draggable = true;
+          item.id = `drag-item-${idx}`;
+          item.innerText = opt;
+          item.ondragstart = (e) => {
+            e.dataTransfer.setData('text/plain', opt);
+            e.dataTransfer.setData('element-id', item.id);
+          };
+          // Also supports mobile touch click matching
+          item.onclick = () => {
+            // Cycle item between left and right buckets
+            const leftBucket = document.getElementById('bucket-left');
+            const rightBucket = document.getElementById('bucket-right');
+            if (item.parentNode.id === 'bucket-left') {
+              rightBucket.appendChild(item);
+            } else {
+              leftBucket.appendChild(item);
+            }
+          };
+          itemsWrapper.appendChild(item);
+        });
+        
+        dragGrid.appendChild(bucketsWrapper);
+        dragGrid.appendChild(itemsWrapper);
+        area.appendChild(dragGrid);
+      }
+      
+      // Update step dots
+      const dots = document.getElementById('step-dots-bar').children;
+      Array.from(dots).forEach((dot, idx) => {
+        dot.className = 'step-dot';
+        if (idx === state.currentStep) {
+          dot.classList.add('active');
+        } else if (idx < state.currentStep) {
+          dot.classList.add('passed');
+        }
+      });
+      
+      // Monitor speed in real time
+      updateSpeedLabel('BÌNH THƯỜNG');
+    }
+
+    function selectOption(index, cardEl) {
+      state.selectedOption = index;
+      document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+      cardEl.classList.add('selected');
+    }
+
+    function dropItem(e, bucketType) {
+      e.preventDefault();
+      const text = e.dataTransfer.getData('text/plain');
+      const elemId = e.dataTransfer.getData('element-id');
+      const item = document.getElementById(elemId);
+      const bucket = document.getElementById(`bucket-${bucketType}`);
+      if (item && bucket) {
+        bucket.appendChild(item);
+      }
+    }
+
+    // SPEED INDICATOR UTILITY
+    function updateSpeedLabel(speedType) {
+      const el = document.getElementById('step-speed-indicator');
+      if (speedType === 'TIA CHỚP') {
+        el.className = 'speed-tag';
+        el.innerHTML = '⚡ TỐC ĐỘ: TIA CHỚP (+5 🪙)';
+        el.style.color = '#55ffff';
+      } else {
+        el.className = '';
+        el.style.fontFamily = 'var(--mc-font-pixel)';
+        el.style.fontSize = '8px';
+        el.style.color = '#aaa';
+        el.innerHTML = '⏱️ TỐC ĐỘ: BÌNH THƯỜNG';
+      }
+    }
+
+    // CHECK & SUBMIT ANSWER
+    function submitAnswer() {
+      const lesson = mockLessons[state.lessonIndex];
+      const stepData = lesson.steps[state.currentStep];
+      const feedbackBox = document.getElementById('step-feedback-box');
+      const headline = document.getElementById('feedback-headline');
+      const bodyText = document.getElementById('feedback-body');
+      
+      let isCorrect = false;
+      let feedText = '';
+      
+      // Calculate speed
+      const duration = (Date.now() - state.stepStartTime) / 1000;
+      const isLightningFast = duration < 8; // lightning solved in 8s
+      
+      if (stepData.type === 'read_only') {
+        isCorrect = true;
+        feedText = "Hãy tiếp tục bước tiếp theo để khám phá lời giải!";
+      } 
+      else if (stepData.type === 'single_choice') {
+        if (state.selectedOption === null) {
+          alert('Con hãy chọn một phương án trước nhé!');
+          return;
+        }
+        if (state.selectedOption === stepData.correctIndex) {
+          isCorrect = true;
+          feedText = "Chính xác! Con lập luận rất hợp lý.";
+        } else {
+          feedText = "Chưa đúng rồi! Hãy thử suy nghĩ lại một chút nhé.";
+        }
+      } 
+      else if (stepData.type === 'input_number') {
+        const inputVal = parseInt(document.getElementById('step-number-input').value);
+        if (isNaN(inputVal)) {
+          alert('Con hãy nhập một số nhé!');
+          return;
+        }
+        if (inputVal === stepData.correctValue) {
+          isCorrect = true;
+          feedText = `Đúng rồi! Đáp án là ${stepData.correctValue}. Con tính toán rất giỏi!`;
+        } else {
+          feedText = `Chưa đúng! Đáp án đó chưa chính xác. Cố lên nhé!`;
+        }
+      }
+      else if (stepData.type === 'sorting') {
+        // Check sorting correctness
+        const leftBucket = document.getElementById('bucket-left');
+        const rightBucket = document.getElementById('bucket-right');
+        
+        let allCorrect = true;
+        // Verify left items
+        Array.from(leftBucket.children).forEach(child => {
+          if (child.className === 'drag-item') {
+            const key = child.innerText;
+            if (stepData.correctMap[key] !== 'left') allCorrect = false;
+          }
+        });
+        // Verify right items
+        Array.from(rightBucket.children).forEach(child => {
+          if (child.className === 'drag-item') {
+            const key = child.innerText;
+            if (stepData.correctMap[key] !== 'right') allCorrect = false;
+          }
+        });
+        
+        // Ensure all placed
+        const totalItemsInBuckets = Array.from(leftBucket.querySelectorAll('.drag-item')).length + Array.from(rightBucket.querySelectorAll('.drag-item')).length;
+        if (totalItemsInBuckets < stepData.options.length) {
+          alert('Con hãy xếp tất cả các khối vào ô trước nhé!');
+          return;
+        }
+        
+        if (allCorrect) {
+          isCorrect = true;
+          feedText = "Ghép cặp tuyệt vời! Bản chất dữ kiện đã được phân loại rõ ràng.";
+        } else {
+          feedText = "Có khối bị xếp sai vị trí rồi. Con hãy thử kéo xếp lại nhé.";
+        }
+      }
+      
+      // SHOW FEEDBACK & REWARDS
+      feedbackBox.className = 'feedback-box ' + (isCorrect ? 'correct' : 'wrong');
+      headline.innerText = isCorrect ? '✔ CHÍNH XÁC!' : '❌ CHƯA ĐÚNG!';
+      
+      if (isCorrect) {
+        playSfx('xp');
+        let bonusCoins = 10;
+        
+        if (stepData.type !== 'read_only' && isLightningFast) {
+          bonusCoins += 5;
+          updateSpeedLabel('TIA CHỚP');
+          feedText += " ⚡ Con giải cực kỳ nhanh luôn! (+5 Xu Tốc độ)";
+          createFlyingCoins(5);
+        } else {
+          createFlyingCoins(3);
+        }
+        
+        bodyText.innerText = feedText;
+        addCoins(bonusCoins);
+        addXp(15);
+        
+        document.getElementById('check-btn').style.display = 'none';
+        document.getElementById('next-btn').style.display = 'inline-flex';
+        
+        // Trigger particle sparks
+        spawnConfettiParticles();
+      } else {
+        playSfx('wrong');
+        bodyText.innerText = feedText;
+        loseHeart();
+        document.getElementById('check-btn').disabled = true;
+        // Prompt retry after 1s
+        setTimeout(() => {
+          document.getElementById('check-btn').disabled = false;
+        }, 1200);
+      }
+      
+      feedbackBox.style.display = 'block';
+      feedbackBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function nextStep() {
+      const lesson = mockLessons[state.lessonIndex];
+      if (state.currentStep < lesson.steps.length - 1) {
+        state.currentStep++;
+        renderStep();
+      } else {
+        // Completed the whole lesson!
+        playSfx('level_up');
+        alert("🎉 CHÚC MỪNG CON ĐÃ CHINH PHỤC THÀNH CÔNG BÀI HỌC! 🎉\nNhận +50 Xu chiến công và 1 Thẻ bài mới!");
+        addCoins(50);
+        addXp(100);
+        
+        // Open card chest reward view
+        openGachaView();
+      }
+    }
+
+    function triggerHint() {
+      if (state.hearts <= 1) {
+        alert("❤️ Con chỉ còn 1 quả tim, không thể đổi lấy gợi ý lúc này đâu!");
+        return;
+      }
+      const confirmHint = confirm("💡 Con có muốn đổi 1 ❤️ để mở gợi ý giải bài này?");
+      if (confirmHint) {
+        loseHeart();
+        const lesson = mockLessons[state.lessonIndex];
+        const stepData = lesson.steps[state.currentStep];
+        
+        // Simple hint prompt
+        let hintMsg = "Gợi ý: ";
+        if (stepData.type === 'single_choice') {
+          hintMsg += `Đáp án đúng là phương án số ${stepData.correctIndex + 1}.`;
+        } else if (stepData.type === 'input_number') {
+          hintMsg += `Đáp án là số ${stepData.correctValue}.`;
+        } else {
+          hintMsg += "Đọc kĩ đề và ghép các dữ kiện theo màu sắc.";
+        }
+        alert(hintMsg);
+      }
+    }
+
+    // COINS & XP UPGRADES
+    function addCoins(amount) {
+      state.coins += amount;
+      document.getElementById('coin-count').innerText = state.coins;
+    }
+
+    function addXp(amount) {
+      state.xp += amount;
+      const nextLevelXp = 1000;
+      if (state.xp >= nextLevelXp) {
+        state.xp = state.xp - nextLevelXp;
+        state.level += 1;
+        playSfx('level_up');
+        alert(`🌟 LÊN CẤP! Con đã đạt Cấp độ ${state.level}! 🌟`);
+      }
+      
+      // Update visual indicators
+      document.getElementById('xp-level-text').innerText = `CẤP ĐỘ ${state.level}`;
+      document.getElementById('xp-numbers').innerText = `${state.xp}/${nextLevelXp}`;
+      const fillPercentage = (state.xp / nextLevelXp) * 100;
+      document.getElementById('xp-bar-fill-indicator').style.width = `${fillPercentage}%`;
+    }
+
+    function loseHeart() {
+      state.hearts--;
+      const heartSVGs = document.getElementById('heart-box').children;
+      if (state.hearts >= 0 && state.hearts < 3) {
+        heartSVGs[state.hearts].classList.add('lost');
+      }
+      
+      if (state.hearts <= 0) {
+        playSfx('wrong');
+        alert("💔 HẾT TIM MẤT RỒI!\nMascot gửi bé 3 tim mới để làm lại bài học từ đầu.");
+        resetHearts();
+        state.currentStep = 0;
+        renderStep();
+      }
+    }
+
+    function resetHearts() {
+      state.hearts = 3;
+      const heartSVGs = document.getElementById('heart-box').children;
+      Array.from(heartSVGs).forEach(h => h.classList.remove('lost'));
+    }
+
+    // FLYING COIN EFFECT ON RESPONSIVE SCREEN
+    function createFlyingCoins(count) {
+      const clickBtn = document.getElementById('check-btn');
+      const rect = clickBtn.getBoundingClientRect();
+      
+      for(let i=0; i<count; i++) {
+        const coin = document.createElement('div');
+        coin.className = 'particle';
+        coin.innerText = '🪙';
+        coin.style.left = `${rect.left + rect.width/2}px`;
+        coin.style.top = `${rect.top}px`;
+        
+        // Random drift destination
+        const driftX = (Math.random() - 0.5) * 150;
+        const driftY = -150 - Math.random() * 100;
+        coin.style.setProperty('--x', `${driftX}px`);
+        coin.style.setProperty('--y', `${driftY}px`);
+        
+        document.body.appendChild(coin);
+        setTimeout(() => coin.remove(), 1000);
+      }
+    }
+
+    // MAIN ROUTER
+    function startLessonDemo(index) {
+      state.lessonIndex = index;
+      state.currentStep = 0;
+      state.currentView = 'lesson';
+      resetHearts();
+      
+      document.getElementById('home-view').style.display = 'none';
+      document.getElementById('gacha-view').style.display = 'none';
+      document.getElementById('lesson-view').style.display = 'flex';
+      
+      const lesson = mockLessons[index];
+      document.getElementById('lesson-title').innerText = lesson.title;
+      
+      // Redo step indicators
+      const bar = document.getElementById('step-dots-bar');
+      bar.innerHTML = '';
+      lesson.steps.forEach(() => {
+        const dot = document.createElement('div');
+        dot.className = 'step-dot';
+        bar.appendChild(dot);
+      });
+      
+      renderStep();
+    }
+
+    function goHome() {
+      state.currentView = 'home';
+      document.getElementById('lesson-view').style.display = 'none';
+      document.getElementById('gacha-view').style.display = 'none';
+      document.getElementById('home-view').style.display = 'flex';
+    }
+
+    // ================== POMODORO CLOCK ENGINE ==================
+    function startPomoTimer() {
+      setInterval(() => {
+        if (state.isBreakActive) return;
+        
+        if (state.pomoSecondsRemaining > 0) {
+          state.pomoSecondsRemaining--;
+          updatePomoClock();
+        } else {
+          // Break time!
+          triggerPomodoroBreak();
+        }
+      }, 1000);
+    }
+
+    function updatePomoClock() {
+      const minutes = Math.floor(state.pomoSecondsRemaining / 60);
+      const seconds = state.pomoSecondsRemaining % 60;
+      document.getElementById('pomo-clock').innerText = 
+        `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    function demoTriggerPomodoroBreak() {
+      state.pomoSecondsRemaining = 0;
+      updatePomoClock();
+      triggerPomodoroBreak();
+    }
+
+    function triggerPomodoroBreak() {
+      state.isBreakActive = true;
+      state.pomoBreakRemaining = 300; // 5 mins
+      
+      document.getElementById('pomo-state-text').innerText = "Đến giờ nghỉ ngơi! 🛌";
+      document.getElementById('claim-break-btn').disabled = true;
+      document.getElementById('pomo-break-overlay').classList.add('active');
+      
+      // Play sleep chime
+      playSfx('level_up');
+      
+      // Start break countdown
+      const interval = setInterval(() => {
+        if (!state.isBreakActive) {
+          clearInterval(interval);
+          return;
+        }
+        
+        if (state.pomoBreakRemaining > 0) {
+          state.pomoBreakRemaining--;
+          const minutes = Math.floor(state.pomoBreakRemaining / 60);
+          const seconds = state.pomoBreakRemaining % 60;
+          document.getElementById('break-countdown').innerText = 
+            `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+          
+          // Switch breathing text
+          const breathingTick = state.pomoBreakRemaining % 8;
+          const bubble = document.getElementById('breathing-bubble');
+          const label = document.getElementById('breathing-label');
+          if (breathingTick >= 4) {
+            label.innerText = "THỞ RA... 🧘";
+            bubble.style.borderColor = "#ff55ff";
+          } else {
+            label.innerText = "HÍT VÀO... 🌀";
+            bubble.style.borderColor = "#55ffff";
+          }
+        } else {
+          // Finished break! Enable reward button
+          document.getElementById('claim-break-btn').disabled = false;
+          document.getElementById('break-countdown').innerText = "XONG! HOÀN THÀNH 🎉";
+          clearInterval(interval);
+        }
+      }, 1000);
+    }
+
+    function skipBreak() {
+      state.isBreakActive = false;
+      state.pomoSecondsRemaining = 1200; // reset
+      updatePomoClock();
+      document.getElementById('pomo-state-text').innerText = "Đang trong giờ học";
+      document.getElementById('pomo-break-overlay').classList.remove('active');
+    }
+
+    function claimBreakReward() {
+      state.isBreakActive = false;
+      state.pomoSecondsRemaining = 1200; // reset
+      updatePomoClock();
+      
+      addCoins(20);
+      playSfx('xp');
+      
+      alert("🎁 Nhận thành công +20 Xu Mắt Sáng! Mascot của con đã thức dậy rồi!");
+      
+      document.getElementById('pomo-state-text').innerText = "Đang trong giờ học";
+      document.getElementById('pomo-break-overlay').classList.remove('active');
+    }
+
+    // ================= CARD ALBUM & GACHA SYSTEM =================
+    function renderCardAlbum() {
+      const grid = document.getElementById('card-album-grid');
+      grid.innerHTML = '';
+      
+      let unlockedCount = 0;
+      state.cardsDeck.forEach((card) => {
+        const slot = document.createElement('div');
+        slot.className = `card-slot ${card.unlocked ? '' : 'locked'}`;
+        
+        if (card.unlocked) {
+          unlockedCount++;
+          slot.innerHTML = `
+            <span class="card-emoji">${card.emoji}</span>
+            <span class="card-title">${card.title}</span>
+          `;
+          slot.onclick = () => alert(`Thẻ bài: ${card.title}\nNăng lực toán học: Siêu phàm!`);
+        } else {
+          slot.innerHTML = `
+            <span class="card-emoji" style="font-size: 24px;">❓</span>
+            <span class="card-title" style="color: #888;">Khóa</span>
+          `;
+        }
+        grid.appendChild(slot);
+      });
+      
+      document.getElementById('deck-ratio').innerText = `${unlockedCount}/${state.cardsDeck.length}`;
+    }
+
+    function openGachaView() {
+      state.currentView = 'gacha';
+      document.getElementById('lesson-view').style.display = 'none';
+      document.getElementById('home-view').style.display = 'none';
+      document.getElementById('gacha-view').style.display = 'flex';
+      
+      // Reset chest
+      const chest = document.getElementById('mystery-chest');
+      chest.innerText = '📦';
+      chest.className = 'mc-chest';
+      document.getElementById('gacha-result').style.display = 'none';
+      document.getElementById('buy-another-btn').style.display = 'none';
+    }
+
+    function triggerGachaOpening() {
+      const chest = document.getElementById('mystery-chest');
+      if (chest.innerText === '🔓') return; // already opened
+      
+      chest.className = 'mc-chest shaking';
+      playSfx('chest_shake');
+      
+      setTimeout(() => {
+        chest.className = 'mc-chest';
+        chest.innerText = '🔓';
+        playSfx('chest_open');
+        
+        // Find a random locked card
+        const lockedCards = state.cardsDeck.filter(c => !c.unlocked);
+        let rewardCard = null;
+        if (lockedCards.length > 0) {
+          rewardCard = lockedCards[Math.floor(Math.random() * lockedCards.length)];
+          rewardCard.unlocked = true;
+        } else {
+          // All unlocked, pick anyone
+          rewardCard = state.cardsDeck[Math.floor(Math.random() * state.cardsDeck.length)];
+        }
+        
+        // Update album
+        renderCardAlbum();
+        
+        // Render result card panel
+        const result = document.getElementById('gacha-result');
+        result.innerHTML = `
+          <h4 style="font-size:8px; color:var(--color-text-yellow); margin-bottom:8px;">NHẬN THẺ MỚI!</h4>
+          <span style="font-size: 54px; filter: drop-shadow(3px 3px 0 #000);">${rewardCard.emoji}</span>
+          <h2 style="font-size: 11px; margin-top:8px;">${rewardCard.title}</h2>
+          <p class="sub-pixel-text" style="color:var(--color-text-green); font-size:1.2rem; margin-top:4px;">+500 Thủy Quái Lực</p>
+        `;
+        result.style.display = 'block';
+        document.getElementById('buy-another-btn').style.display = 'inline-flex';
+        
+        // Shower of sparks
+        spawnConfettiParticles();
+      }, 1500);
+    }
+
+    function triggerAnotherGacha() {
+      if (state.coins < 50) {
+        alert("🪙 Bé không có đủ xu! Hãy giải thêm bài tập để kiếm xu nhé.");
+        return;
+      }
+      addCoins(-50);
+      openGachaView();
+      triggerGachaOpening();
+    }
+
+    // ================= CONFETTI EFFECTS (WITHOUT EXTERNAL LIBS) =================
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function spawnConfettiParticles() {
+      const colors = ['#55ff55', '#ffff55', '#ff5555', '#55ffff', '#ff55ff', '#ffaa00'];
+      const count = 80;
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+          vx: (Math.random() - 0.5) * 15,
+          vy: (Math.random() - 0.7) * 15 - 5,
+          size: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 10,
+          life: 1.0,
+          decay: Math.random() * 0.02 + 0.01
+        });
+      }
+    }
+
+    function drawConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach((p, idx) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.4; // gravity
+        p.vx *= 0.98; // air resistance
+        p.rotation += p.rotationSpeed;
+        p.life -= p.decay;
+        
+        if (p.life <= 0 || p.y > canvas.height) {
+          particles.splice(idx, 1);
+          return;
+        }
+        
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation * Math.PI / 180);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.life;
+        // Draw pixel block confetti
+        ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+        ctx.restore();
+      });
+      
+      requestAnimationFrame(drawConfetti);
+    }
+    drawConfetti();
+
+    // ================= INITIALIZE =================
+    window.onload = () => {
+      renderCardAlbum();
+      goHome();
+      startPomoTimer();
+      
+      // Auto pre-add level and coin display
+      document.getElementById('coin-count').innerText = state.coins;
+      addXp(0); // init bar width
+    };
+  </script>
+</body>
+</html>

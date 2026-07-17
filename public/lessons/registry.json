@@ -1,0 +1,45 @@
+{
+  "grades": [
+    {
+      "id": "grade-4",
+      "title": "Lớp 4",
+      "subjects": [
+        {
+          "id": "math",
+          "title": "Toán học",
+          "icon": "📐",
+          "lessonsPath": "/lessons/grade-4/math.json"
+        },
+        {
+          "id": "vietnamese",
+          "title": "Tiếng Việt",
+          "icon": "📖",
+          "comingSoon": true
+        },
+        {
+          "id": "english",
+          "title": "Tiếng Anh",
+          "icon": "💬",
+          "comingSoon": true
+        }
+      ]
+    },
+    {
+      "id": "grade-3",
+      "title": "Lớp 3",
+      "subjects": [
+        {
+          "id": "math",
+          "title": "Toán học",
+          "icon": "🧮",
+          "comingSoon": true
+        }
+      ]
+    },
+    {
+      "id": "grade-5",
+      "title": "Lớp 5",
+      "comingSoon": true
+    }
+  ]
+}

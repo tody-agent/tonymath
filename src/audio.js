@@ -130,6 +130,8 @@ function stopKeepAlive() {
   }
 }
 
+const KEEP_ALIVE_INTERVAL_MS = 10000;
+
 /**
  * Keeps SpeechSynthesis alive on Chrome by triggering brief pause/resume every 10s.
  */
@@ -141,7 +143,7 @@ function startKeepAlive() {
       synth.pause();
       synth.resume();
     }
-  }, 10000);
+  }, KEEP_ALIVE_INTERVAL_MS);
 }
 
 /**
@@ -163,7 +165,7 @@ export function cancelSpeech() {
  * @param {function} onStart - Callback when speech starts
  * @param {function} onEnd - Callback when speech ends or fails
  */
-export function speakText(text, rate = 0.95, onStart = null, onEnd = null) {
+export function speakText(text, rate = 0.95, onStart = null, onEnd = null, pitch = 1.05) {
   if (!('speechSynthesis' in window)) {
     if (onEnd) onEnd();
     return;
@@ -185,7 +187,7 @@ export function speakText(text, rate = 0.95, onStart = null, onEnd = null) {
   const utterance = new SpeechSynthesisUtterance(cleanText);
   utterance.lang = 'vi-VN';
   utterance.rate = rate;
-  utterance.pitch = 1.05;
+  utterance.pitch = pitch;
 
   const voices = synth.getVoices();
   let selectedVoice = null;

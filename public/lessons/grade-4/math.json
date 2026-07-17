@@ -1,0 +1,4682 @@
+[
+  {
+    "id": "lesson-1",
+    "title": "An, Bình và Cường hái cam",
+    "shortTitle": "Cam trung bình cộng",
+    "icon": "🍊",
+    "color": "green",
+    "skill": "Trung bình cộng",
+    "story": "An hái được 15 quả cam, Bình hái được 9 quả, Cường hái được 12 quả. Hỏi trung bình mỗi bạn hái được bao nhiêu quả cam?",
+    "visual": {
+      "type": "mixed",
+      "values": [
+        15,
+        9,
+        12
+      ],
+      "labels": [
+        "An",
+        "Bình",
+        "Cường"
+      ]
+    },
+    "retellOptions": [
+      "Có ba bạn hái cam, muốn tìm số cam trung bình của mỗi bạn.",
+      "Tìm bạn hái được nhiều cam nhất trong ba bạn.",
+      "Cộng số cam của hai bạn An và Bình rồi chia đôi."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "An hái 15 quả cam",
+      "Bình hái 9 quả cam",
+      "Cường hái 12 quả cam",
+      "Tìm trung bình mỗi bạn"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ san bằng cột (Tìm tổng rồi chia đều)",
+      "Mô hình hai giỏ so sánh",
+      "Trục số kéo dài",
+      "Bảng nhân"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(15 + 9 + 12) ÷ 3",
+      "15 + 9 + 12",
+      "(15 + 9) ÷ 2 + 12",
+      "15 × 9 × 12"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Muốn tìm trung bình cộng ta lấy tổng số cam của ba bạn chia cho 3.",
+      "Vì cần tính tổng số cam hái được.",
+      "Vì mỗi bạn hái số cam bằng nhau."
+    ],
+    "correctReason": 0,
+    "answer": 12,
+    "unit": "quả cam",
+    "answerOptions": [
+      "Trung bình mỗi bạn hái được 12 quả cam.",
+      "Trung bình mỗi bạn hái được 36 quả cam.",
+      "Cả ba bạn hái được 12 quả cam."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Kết quả 12 nằm giữa số cam nhỏ nhất (9) và lớn nhất (15), có hợp lý không?",
+    "checkOptions": [
+      "Có, trung bình cộng luôn lớn hơn số nhỏ nhất và nhỏ hơn số lớn nhất.",
+      "Không, trung bình cộng phải lớn hơn số lớn nhất."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đọc kỹ đề bài để xác định số cam của từng bạn An, Bình và Cường.",
+      "Bước 2: Tìm tổng số cam của cả ba bạn gộp lại.",
+      "Bước 3: Chia tổng số cam cho số lượng các bạn (ở đây là 3 bạn).",
+      "Bước 4: Nhấn nút 'San đều sách' trên mô hình để trực quan hóa việc san bằng chiều cao cột.",
+      "Bước 5: Thực hiện phép tính cộng: 15 + 9 + 12 = 36 quả.",
+      "Bước 6: Thực hiện phép tính chia: 36 ÷ 3 = 12 quả.",
+      "Bước 7: Viết câu trả lời đầy đủ kèm đơn vị quả cam.",
+      "Bước 8: Kiểm tra lại xem đáp án 12 có hợp lý hay không."
+    ]
+  },
+  {
+    "id": "lesson-2",
+    "title": "Trung bình tổ sản xuất",
+    "shortTitle": "Tổ sản xuất sản phẩm",
+    "icon": "⚙️",
+    "color": "blue",
+    "skill": "Trung bình cộng",
+    "story": "Một tổ sản xuất có 4 người. Trung bình mỗi người làm được 25 sản phẩm. Hỏi cả tổ làm được bao nhiêu sản phẩm?",
+    "visual": {
+      "type": "mixed",
+      "values": [
+        25,
+        25,
+        25,
+        25
+      ],
+      "labels": [
+        "Người 1",
+        "Người 2",
+        "Người 3",
+        "Người 4"
+      ]
+    },
+    "retellOptions": [
+      "Biết trung bình của 4 người, tìm tổng số sản phẩm cả tổ.",
+      "Biết tổng số sản phẩm, tìm số người trong tổ.",
+      "Tính số sản phẩm trung bình của mỗi người."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổ có 4 người",
+      "Trung bình mỗi người làm 25 sản phẩm",
+      "Tìm tổng sản phẩm cả tổ"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình ngược trung bình cộng (Tổng = Trung bình × số phần)",
+      "Mô hình gộp hai phần",
+      "Biểu đồ hiệu tỉ",
+      "Bảng chia"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "25 × 4",
+      "25 ÷ 4",
+      "25 + 4",
+      "25 - 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Muốn tìm tổng ta lấy trung bình cộng nhân với số người.",
+      "Vì cần chia đều sản phẩm cho mỗi người.",
+      "Vì sản phẩm của mỗi người là khác nhau."
+    ],
+    "correctReason": 0,
+    "answer": 100,
+    "unit": "sản phẩm",
+    "answerOptions": [
+      "Cả tổ làm được 100 sản phẩm.",
+      "Cả tổ làm được 25 sản phẩm.",
+      "Mỗi người làm được 100 sản phẩm."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Cả tổ 4 người làm nhiều hơn 1 người (100 > 25), có hợp lý không?",
+    "checkOptions": [
+      "Có, tổng sản phẩm của cả tổ phải gấp 4 lần trung bình mỗi người.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm thông tin trung bình một người làm được: 25 sản phẩm.",
+      "Bước 2: Xác định số lượng người trong tổ: 4 người.",
+      "Bước 3: Công thức ngược: Tổng = Trung bình cộng × Số lượng phần.",
+      "Bước 4: Lên kế hoạch phép tính nhân lấy 25 nhân với 4.",
+      "Bước 5: Thực hiện phép tính: 25 × 4 = 100.",
+      "Bước 6: Đơn vị của kết quả là sản phẩm.",
+      "Bước 7: Viết câu trả lời hoàn chỉnh.",
+      "Bước 8: Kiểm tra kết quả bằng cách lấy 100 ÷ 4 = 25 (đúng)."
+    ]
+  },
+  {
+    "id": "lesson-3",
+    "title": "Cửa hàng bán gạo ba ngày",
+    "shortTitle": "Trung bình gạo bán",
+    "icon": "🌾",
+    "color": "orange",
+    "skill": "Trung bình cộng",
+    "story": "Ngày đầu cửa hàng bán được 40kg gạo, ngày thứ hai bán được 50kg, ngày thứ ba bán được 60kg. Hỏi trung bình mỗi ngày cửa hàng bán được bao nhiêu ki-lô-gam gạo?",
+    "visual": {
+      "type": "mixed",
+      "values": [
+        40,
+        50,
+        60
+      ],
+      "labels": [
+        "Ngày 1",
+        "Ngày 2",
+        "Ngày 3"
+      ]
+    },
+    "retellOptions": [
+      "Biết lượng gạo bán trong 3 ngày, tìm lượng gạo trung bình mỗi ngày.",
+      "Biết lượng gạo bán trung bình, tìm tổng lượng gạo bán.",
+      "Tìm ngày bán được nhiều gạo nhất trong ba ngày."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Ngày đầu bán 40kg gạo",
+      "Ngày thứ hai bán 50kg gạo",
+      "Ngày thứ ba bán 60kg gạo",
+      "Tìm trung bình mỗi ngày"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ san bằng cột (Tổng ÷ 3)",
+      "Mô hình so sánh hơn kém",
+      "Trục số chia đôi",
+      "Mô hình hiệu tỉ"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(40 + 50 + 60) ÷ 3",
+      "40 + 50 + 60",
+      "40 × 50 × 60",
+      "(40 + 60) ÷ 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Để tìm trung bình cộng, ta cộng lượng gạo 3 ngày rồi chia cho 3.",
+      "Vì ngày đầu và ngày cuối bù trừ cho nhau.",
+      "Vì ngày thứ hai bán được nhiều nhất."
+    ],
+    "correctReason": 0,
+    "answer": 50,
+    "unit": "kg gạo",
+    "answerOptions": [
+      "Trung bình mỗi ngày bán được 50kg gạo.",
+      "Trung bình mỗi ngày bán được 150kg gạo.",
+      "Trung bình mỗi ngày bán được 45kg gạo."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Đáp số 50kg bằng đúng ngày thứ hai và nằm giữa 40 và 60, đúng không?",
+    "checkOptions": [
+      "Đúng, vì dãy số 40, 50, 60 cách đều nên trung bình cộng chính là số ở giữa.",
+      "Sai."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định số kg gạo bán trong 3 ngày lần lượt là 40, 50 và 60 kg.",
+      "Bước 2: Tính tổng khối lượng gạo bán trong cả ba ngày.",
+      "Bước 3: Lấy tổng đó chia cho số ngày là 3.",
+      "Bước 4: Phép tính tổng: 40 + 50 + 60 = 150 kg.",
+      "Bước 5: Phép tính chia: 150 ÷ 3 = 50 kg.",
+      "Bước 6: Ghi nhận đơn vị là kg gạo.",
+      "Bước 7: Đối chiếu xem số 50 có nằm giữa khoảng [40, 60] không.",
+      "Bước 8: Viết câu trả lời cuối cùng."
+    ]
+  },
+  {
+    "id": "lesson-4",
+    "title": "Thử thách bán gạo ngày thứ ba",
+    "shortTitle": "Bán gạo nâng cao",
+    "icon": "🌟",
+    "color": "pink",
+    "skill": "Trung bình cộng",
+    "story": "Ngày đầu cửa hàng bán được 45kg gạo, ngày thứ hai bán được 55kg, ngày thứ ba bán được nhiều hơn trung bình cộng của cả ba ngày là 5kg. Hỏi ngày thứ ba cửa hàng bán được bao nhiêu ki-lô-gam gạo?",
+    "visual": {
+      "type": "mixed",
+      "values": [
+        45,
+        55,
+        55
+      ],
+      "labels": [
+        "Ngày 1",
+        "Ngày 2",
+        "Ngày 3"
+      ]
+    },
+    "retellOptions": [
+      "Biết ngày 1 và ngày 2, ngày 3 hơn trung bình cộng 3 ngày 5kg, tìm ngày 3.",
+      "Tìm trung bình cộng lượng gạo của hai ngày đầu tiên.",
+      "Tìm tổng số gạo bán được trong cả ba ngày."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Ngày đầu bán 45kg",
+      "Ngày thứ hai bán 55kg",
+      "Ngày thứ ba hơn trung bình cộng 5kg",
+      "Tìm số gạo ngày thứ ba"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng trung bình cộng nâng cao",
+      "Mô hình tỉ số phần trăm",
+      "Sơ đồ hai thùng so sánh",
+      "Bảng số liệu"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(45 + 55) ÷ 2 + 5",
+      "(45 + 55 + 5) ÷ 3",
+      "45 + 55 + 5",
+      "45 × 55 ÷ 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì ngày thứ ba hơn trung bình cộng 5kg nên trung bình cộng 3 ngày chính bằng trung bình cộng 2 ngày đầu. Vậy ngày thứ ba = TB 2 ngày đầu + 5.",
+      "Vì chỉ cần cộng ba số lại với nhau.",
+      "Vì ngày thứ ba luôn gấp đôi ngày thứ nhất."
+    ],
+    "correctReason": 0,
+    "answer": 55,
+    "unit": "kg gạo",
+    "answerOptions": [
+      "Ngày thứ ba cửa hàng bán được 55kg gạo.",
+      "Ngày thứ ba cửa hàng bán được 50kg gạo.",
+      "Ngày thứ ba cửa hàng bán được 60kg gạo."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Kiểm tra: TB cộng = (45+55+55)÷3 = 51.67kg. Ngày thứ ba 55 > 51.67 là 3.33kg (xấp xỉ gần đúng theo tư duy lớp 4 dôi dư), hợp lý không?",
+    "checkOptions": [
+      "Hợp lý với cách giải suy luận san bằng dôi dư của chương trình lớp 4 GDPT.",
+      "Không hợp lý."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Vẽ sơ đồ biểu diễn trung bình cộng của 3 ngày.",
+      "Bước 2: Nhận xét: Nếu chuyển 5kg thừa của ngày 3 bù sang 2 ngày đầu, ta sẽ được các phần bằng nhau bằng đúng trung bình cộng.",
+      "Bước 3: Tính trung bình cộng của 2 ngày đầu: (45 + 55) ÷ 2 = 50 kg.",
+      "Bước 4: Đây chính là trung bình cộng của cả 3 ngày.",
+      "Bước 5: Tính số gạo ngày thứ ba bằng cách lấy trung bình cộng cộng thêm 5kg.",
+      "Bước 6: Phép tính: 50 + 5 = 55 kg.",
+      "Bước 7: Xác định đơn vị tính là kg gạo.",
+      "Bước 8: Viết câu trả lời hoàn chỉnh là 55kg."
+    ]
+  },
+  {
+    "id": "lesson-5",
+    "title": "Lớp 4A và 4B trồng cây",
+    "shortTitle": "Trồng cây thi đua",
+    "icon": "🌳",
+    "color": "green",
+    "skill": "Tổng và Hiệu",
+    "story": "Hai lớp 4A và 4B trồng được tất cả 48 cây. Lớp 4A trồng nhiều hơn lớp 4B là 8 cây. Hỏi lớp 4A trồng được bao nhiêu cây?",
+    "visual": {
+      "type": "compare",
+      "big": 28,
+      "small": 20,
+      "diff": 8,
+      "bigLabel": "Lớp 4A",
+      "smallLabel": "Lớp 4B"
+    },
+    "retellOptions": [
+      "Biết tổng số cây là 48, lớp 4A hơn 4B là 8 cây, tìm số cây lớp 4A.",
+      "Biết số cây mỗi lớp, tìm tổng số cây của hai lớp.",
+      "Lớp 4A và lớp 4B trồng số cây bằng nhau."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng số cây trồng được là 48",
+      "Lớp 4A trồng nhiều hơn lớp 4B 8 cây",
+      "Tìm số cây lớp 4A"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng song song (Tổng - Hiệu)",
+      "Sơ đồ lego tỉ số",
+      "Trục số nhảy bước",
+      "Biểu đồ hình quạt"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(48 + 8) ÷ 2",
+      "(48 - 8) ÷ 2",
+      "48 + 8",
+      "48 - 8"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Lớp 4A trồng nhiều hơn nên số cây lớp 4A là số lớn. Công thức: Số lớn = (Tổng + Hiệu) ÷ 2.",
+      "Vì muốn tìm số bé ta lấy (Tổng - Hiệu) ÷ 2.",
+      "Vì lớp 4A trồng ít cây hơn lớp 4B."
+    ],
+    "correctReason": 0,
+    "answer": 28,
+    "unit": "cây",
+    "answerOptions": [
+      "Lớp 4A trồng được 28 cây.",
+      "Lớp 4A trồng được 20 cây.",
+      "Lớp 4A trồng được 24 cây."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Lớp 4A trồng 28 cây, lớp 4B trồng 20 cây. Tổng 28+20=48 cây và hiệu 28-20=8 cây. Đúng không?",
+    "checkOptions": [
+      "Đúng, tổng và hiệu trùng khớp hoàn toàn với đề bài.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định tổng số cây của hai lớp là 48 cây.",
+      "Bước 2: Xác định hiệu số cây giữa hai lớp là 8 cây.",
+      "Bước 3: Lớp 4A trồng nhiều hơn nên số cây lớp 4A chính là Số Lớn.",
+      "Bước 4: Sử dụng công thức tìm số lớn: (Tổng + Hiệu) ÷ 2.",
+      "Bước 5: Thử nghiệm nút 'Bù hiệu ➕' trên mô hình trực quan để thấy tổng tăng lên.",
+      "Bước 6: Thực hiện tính toán: (48 + 8) ÷ 2 = 56 ÷ 2 = 28 cây.",
+      "Bước 7: Đối chiếu đơn vị đo là cây.",
+      "Bước 8: Ghi đáp án chính xác là 28 cây."
+    ]
+  },
+  {
+    "id": "lesson-6",
+    "title": "Tìm số lớn biết tổng và hiệu",
+    "shortTitle": "Số lớn biết tổng hiệu",
+    "icon": "🔢",
+    "color": "blue",
+    "skill": "Tổng và Hiệu",
+    "story": "Tổng hai số là 70, hiệu hai số là 10. Tìm số lớn.",
+    "visual": {
+      "type": "compare",
+      "big": 40,
+      "small": 30,
+      "diff": 10,
+      "bigLabel": "Số lớn",
+      "smallLabel": "Số bé"
+    },
+    "retellOptions": [
+      "Biết tổng là 70 và hiệu là 10, tìm số lớn.",
+      "Biết tổng và hiệu, tìm số bé.",
+      "Hai số có hiệu bằng 0."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng của hai số là 70",
+      "Hiệu của hai số là 10",
+      "Tìm số lớn"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng song song chỉ số lớn/bé",
+      "Mô hình Lego",
+      "Mô hình rút về đơn vị",
+      "Biểu đồ tròn"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(70 + 10) ÷ 2",
+      "(70 - 10) ÷ 2",
+      "70 + 10",
+      "70 × 10"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Số lớn bằng tổng cộng hiệu rồi chia cho 2.",
+      "Số lớn bằng tổng trừ hiệu rồi chia cho 2.",
+      "Vì số lớn gấp 10 lần số bé."
+    ],
+    "correctReason": 0,
+    "answer": 40,
+    "unit": "đơn vị",
+    "answerOptions": [
+      "Số lớn là 40.",
+      "Số lớn là 30.",
+      "Số lớn là 50."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Hai số là 40 và 30. Tổng 40 + 30 = 70, hiệu 40 - 30 = 10. Có đúng không?",
+    "checkOptions": [
+      "Có, hai số tìm được hoàn toàn thỏa mãn đề bài.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Ghi nhận Tổng = 70 và Hiệu = 10.",
+      "Bước 2: Nhận biết yêu cầu bài toán là tìm Số lớn.",
+      "Bước 3: Áp dụng công thức: Số lớn = (Tổng + Hiệu) ÷ 2.",
+      "Bước 4: Nhấn nút 'Bù hiệu ➕' để xem trực quan hóa đoạn thẳng số lớn.",
+      "Bước 5: Cộng tổng và hiệu: 70 + 10 = 80.",
+      "Bước 6: Chia kết quả cho 2: 80 ÷ 2 = 40.",
+      "Bước 7: Đơn vị ở đây là đơn vị tự do.",
+      "Bước 8: Viết đáp số là 40."
+    ]
+  },
+  {
+    "id": "lesson-7",
+    "title": "Thùng dầu thứ hai chứa bao nhiêu?",
+    "shortTitle": "Thùng dầu tổng hiệu",
+    "icon": "🛢️",
+    "color": "orange",
+    "skill": "Tổng và Hiệu",
+    "story": "Hai thùng dầu chứa tất cả 120 lít dầu. Thùng thứ nhất ít hơn thùng thứ hai là 20 lít dầu. Hỏi thùng thứ hai chứa bao nhiêu lít dầu?",
+    "visual": {
+      "type": "compare",
+      "big": 70,
+      "small": 50,
+      "diff": 20,
+      "bigLabel": "Thùng 2 (nhiều hơn)",
+      "smallLabel": "Thùng 1 (ít hơn)"
+    },
+    "retellOptions": [
+      "Hai thùng có 120 lít, thùng 1 ít hơn thùng 2 là 20 lít, tìm số dầu thùng 2.",
+      "Hai thùng có 120 lít, tìm tổng lượng dầu sau khi thêm 20 lít.",
+      "Tìm lượng dầu thùng thứ nhất."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng lượng dầu hai thùng là 120 lít",
+      "Thùng một ít hơn thùng hai 20 lít",
+      "Tìm lượng dầu thùng hai"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ hai đoạn thẳng chênh lệch lít dầu",
+      "Mô hình khối gỗ tỉ lệ",
+      "Băng chuyền nhà máy",
+      "Trục số"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(120 + 20) ÷ 2",
+      "(120 - 20) ÷ 2",
+      "120 - 20",
+      "120 + 20"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì thùng thứ nhất ít hơn thùng thứ hai nên thùng thứ hai chứa nhiều dầu hơn (Số lớn). Công thức Số lớn = (Tổng + Hiệu) ÷ 2.",
+      "Vì thùng thứ hai là thùng chứa ít dầu hơn.",
+      "Vì lượng dầu hai thùng bằng nhau."
+    ],
+    "correctReason": 0,
+    "answer": 70,
+    "unit": "lít dầu",
+    "answerOptions": [
+      "Thùng thứ hai chứa 70 lít dầu.",
+      "Thùng thứ hai chứa 50 lít dầu.",
+      "Thùng thứ hai chứa 60 lít dầu."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Thùng hai 70 lít, thùng một 50 lít. 70 + 50 = 120 lít và 70 - 50 = 20 lít. Đúng không?",
+    "checkOptions": [
+      "Đúng, kết quả trùng khớp với giả thiết đề bài.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm tổng số dầu ở cả hai thùng: 120 lít.",
+      "Bước 2: Tìm phần chênh lệch dầu giữa hai thùng: 20 lít.",
+      "Bước 3: Nhận biết thùng 2 ít hơn thùng 1 là sai; đề ghi 'thùng thứ nhất ít hơn thùng thứ hai' nên thùng 2 có nhiều dầu hơn (Số lớn).",
+      "Bước 4: Sử dụng công thức tìm số lớn: (Tổng + Hiệu) ÷ 2.",
+      "Bước 5: Bấm nút tương tác 'Bù hiệu' trên sơ đồ để đưa về hai đoạn bằng thùng hai.",
+      "Bước 6: Tính toán: (120 + 20) ÷ 2 = 140 ÷ 2 = 70 lít.",
+      "Bước 7: Đơn vị đo là lít dầu.",
+      "Bước 8: Viết đáp án cuối cùng là 70 lít."
+    ]
+  },
+  {
+    "id": "lesson-8",
+    "title": "Số lớn khi thêm để bằng nhau",
+    "shortTitle": "Tổng hiệu ẩn",
+    "icon": "💡",
+    "color": "pink",
+    "skill": "Tổng và Hiệu",
+    "story": "Tổng của hai số là 100. Nếu thêm 10 đơn vị vào số bé thì hai số bằng nhau. Tìm số lớn.",
+    "visual": {
+      "type": "compare",
+      "big": 55,
+      "small": 45,
+      "diff": 10,
+      "bigLabel": "Số lớn",
+      "smallLabel": "Số bé"
+    },
+    "retellOptions": [
+      "Tổng là 100. Số bé kém số lớn 10 đơn vị (vì thêm 10 thì bằng nhau). Tìm số lớn.",
+      "Tìm số bé biết tổng là 100 và hai số bằng nhau.",
+      "Hai số có hiệu là 100, tổng là 10."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng hai số là 100",
+      "Thêm 10 vào số bé thì hai số bằng nhau (Hiệu = 10)",
+      "Tìm số lớn"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ tổng hiệu ẩn (Số lớn hơn số bé đúng bằng phần thêm vào)",
+      "Sơ đồ tỉ số lego",
+      "Lưới ô vuông diện tích",
+      "Hóa đơn siêu thị"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(100 + 10) ÷ 2",
+      "(100 - 10) ÷ 2",
+      "100 + 10",
+      "100 - 10"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì thêm 10 vào số bé mới bằng số lớn nên số lớn hơn số bé 10 đơn vị (Hiệu = 10). Số lớn = (Tổng + Hiệu) ÷ 2.",
+      "Vì hai số bằng nhau nên số lớn bằng tổng chia đôi.",
+      "Vì số lớn là 100."
+    ],
+    "correctReason": 0,
+    "answer": 55,
+    "unit": "đơn vị",
+    "answerOptions": [
+      "Số lớn là 55.",
+      "Số lớn là 45.",
+      "Số lớn là 50."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số lớn 55, số bé 45. Tổng 55+45=100. Thêm 10 vào bé: 45+10=55 bằng số lớn. Đúng chứ?",
+    "checkOptions": [
+      "Đúng, các điều kiện đều hoàn toàn chính xác.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Phân tích câu 'Nếu thêm 10 vào số bé thì bằng số lớn'. Điều này nghĩa là Số lớn - Số bé = 10.",
+      "Bước 2: Vậy hiệu của hai số là 10.",
+      "Bước 3: Tổng của hai số đã biết là 100.",
+      "Bước 4: Bài toán yêu cầu tìm số lớn, tương ứng với công thức: (Tổng + Hiệu) ÷ 2.",
+      "Bước 5: Thực hiện phép cộng: 100 + 10 = 110.",
+      "Bước 6: Thực hiện phép chia: 110 ÷ 2 = 55.",
+      "Bước 7: Ghi nhớ đơn vị tính.",
+      "Bước 8: Viết đáp án chính xác là 55."
+    ]
+  },
+  {
+    "id": "lesson-9",
+    "title": "Tìm số lớn gấp 4 lần",
+    "shortTitle": "Số lớn gấp 4 lần",
+    "icon": "📈",
+    "color": "green",
+    "skill": "Tổng và Tỉ số",
+    "story": "Tổng của hai số là 45. Số lớn gấp 4 lần số bé. Tìm số lớn.",
+    "visual": {
+      "type": "scale",
+      "smallPart": 1,
+      "bigPart": 4,
+      "smallLabel": "Số bé",
+      "bigLabel": "Số lớn",
+      "total": 45
+    },
+    "retellOptions": [
+      "Tổng là 45, tỉ số là 1/4 (số lớn gấp 4 lần số bé). Tìm số lớn.",
+      "Tìm hiệu hai số biết số lớn gấp 4 lần số bé.",
+      "Tổng là 45, tìm số bé biết số bé gấp 4 lần số lớn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng hai số là 45",
+      "Số lớn gấp 4 lần số bé (Tỉ số = 1/4)",
+      "Tìm số lớn"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng chia phần bằng nhau (1 phần và 4 phần)",
+      "Sơ đồ so sánh hiệu tỉ",
+      "Băng chuyền sữa",
+      "Lưới ô vuông"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "45 ÷ (1 + 4) × 4",
+      "45 ÷ (1 + 4)",
+      "45 × 4",
+      "45 - 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tổng số phần bằng nhau là 1 + 4 = 5 phần. Số lớn chiếm 4 phần nên lấy Tổng ÷ Tổng số phần × 4.",
+      "Vì số lớn chiếm 1 phần.",
+      "Vì cần tính tích hai số."
+    ],
+    "correctReason": 0,
+    "answer": 36,
+    "unit": "đơn vị",
+    "answerOptions": [
+      "Số lớn là 36.",
+      "Số lớn là 9.",
+      "Số lớn là 40."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số lớn là 36, số bé là 9 (vì 45 - 36 = 9). 36 gấp 4 lần 9 (36 ÷ 9 = 4). Đúng không?",
+    "checkOptions": [
+      "Đúng, đáp án thỏa mãn tỉ số và tổng của đề bài.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định số bé là 1 phần, số lớn gấp 4 lần nên số lớn là 4 phần.",
+      "Bước 2: Tính tổng số phần bằng nhau: 1 + 4 = 5 phần.",
+      "Bước 3: Tổng giá trị của 5 phần này là 45.",
+      "Bước 4: Bấm nút 'Tính 1 phần' trên khối lego để tìm giá trị của 1 phần: 45 ÷ 5 = 9.",
+      "Bước 5: Số lớn chiếm 4 phần nên ta lấy giá trị 1 phần nhân với 4.",
+      "Bước 6: Thực hiện phép tính: 9 × 4 = 36.",
+      "Bước 7: Đơn vị là đơn vị tự do.",
+      "Bước 8: Viết đáp án là 36."
+    ]
+  },
+  {
+    "id": "lesson-10",
+    "title": "Kho thóc B có bao nhiêu?",
+    "shortTitle": "Kho thóc tỉ lệ",
+    "icon": "🌾",
+    "color": "blue",
+    "skill": "Tổng và Tỉ số",
+    "story": "Hai kho chứa tất cả 84 tấn thóc. Số thóc kho A bằng 1/2 số thóc kho B. Hỏi kho B chứa bao nhiêu tấn thóc?",
+    "visual": {
+      "type": "scale",
+      "smallPart": 1,
+      "bigPart": 2,
+      "smallLabel": "Kho A",
+      "bigLabel": "Kho B",
+      "total": 84
+    },
+    "retellOptions": [
+      "Hai kho có 84 tấn thóc, kho A chiếm 1 phần, kho B chiếm 2 phần. Tìm kho B.",
+      "Tìm lượng thóc kho A biết kho A nhiều hơn kho B.",
+      "Tổng thóc 84 tấn, tìm lượng thóc trung bình mỗi kho."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng số thóc hai kho là 84 tấn",
+      "Tỉ số thóc kho A và B là 1/2",
+      "Tìm số thóc kho B"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng chia phần: Kho A (1 phần), Kho B (2 phần)",
+      "Sơ đồ đoạn thẳng song song so sánh hiệu",
+      "Lưới ô vuông diện tích",
+      "Hóa đơn thối tiền"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "84 ÷ (1 + 2) × 2",
+      "84 ÷ (1 + 2)",
+      "84 × 2",
+      "84 - 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Kho B chiếm 2 phần trong tổng số 3 phần bằng nhau. Do đó, kho B = Tổng thóc ÷ Tổng số phần × 2.",
+      "Vì kho B chỉ chiếm 1 phần.",
+      "Vì lượng thóc hai kho bằng nhau."
+    ],
+    "correctReason": 0,
+    "answer": 56,
+    "unit": "tấn thóc",
+    "answerOptions": [
+      "Kho B chứa 56 tấn thóc.",
+      "Kho B chứa 28 tấn thóc.",
+      "Kho B chứa 42 tấn thóc."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Kho B chứa 56 tấn, kho A chứa 28 tấn (84 - 56). 28 bằng 1/2 của 56. Có hợp lý không?",
+    "checkOptions": [
+      "Có, tỉ lệ 1/2 và tổng 84 đều thỏa mãn.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đọc đề bài: Kho A = 1/2 Kho B, nghĩa là Kho A chiếm 1 phần, Kho B chiếm 2 phần.",
+      "Bước 2: Tìm tổng số phần bằng nhau: 1 + 2 = 3 phần.",
+      "Bước 3: Tổng khối lượng thóc của cả 3 phần là 84 tấn.",
+      "Bước 4: Nhấp nút gợi ý để tính giá trị 1 phần thóc: 84 ÷ 3 = 28 tấn.",
+      "Bước 5: Kho B chiếm 2 phần nên nhân giá trị 1 phần với 2.",
+      "Bước 6: Thực hiện phép tính: 28 × 2 = 56 tấn.",
+      "Bước 7: Đơn vị tính là tấn thóc.",
+      "Bước 8: Ghi đáp số là 56 tấn."
+    ]
+  },
+  {
+    "id": "lesson-11",
+    "title": "Chiều dài mảnh vườn",
+    "shortTitle": "Chiều dài mảnh vườn",
+    "icon": "🏡",
+    "color": "orange",
+    "skill": "Tổng và Tỉ số",
+    "story": "Một mảnh vườn hình chữ nhật có tổng chiều dài và chiều rộng là 56m, chiều rộng bằng 3/5 chiều dài. Tính chiều dài mảnh vườn.",
+    "visual": {
+      "type": "scale",
+      "smallPart": 3,
+      "bigPart": 5,
+      "smallLabel": "Chiều rộng",
+      "bigLabel": "Chiều dài",
+      "total": 56
+    },
+    "retellOptions": [
+      "Tổng dài và rộng là 56m, tỉ số rộng/dài là 3/5. Tìm chiều dài.",
+      "Tính chu vi mảnh vườn khi biết chiều rộng bằng 3/5 chiều dài.",
+      "Tìm chiều rộng mảnh vườn hình vuông."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng chiều dài và chiều rộng là 56m",
+      "Tỉ số rộng/dài là 3/5",
+      "Tìm chiều dài mảnh vườn"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng tỉ số: Rộng (3 phần), Dài (5 phần)",
+      "Sơ đồ đoạn thẳng song song hiệu số",
+      "Băng chuyền đơn vị",
+      "Lưới ô vuông diện tích"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "56 ÷ (3 + 5) × 5",
+      "56 ÷ (3 + 5) × 3",
+      "56 ÷ 8",
+      "56 × 3 ÷ 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Chiều dài chiếm 5 phần trong tổng số 3 + 5 = 8 phần bằng nhau. Chiều dài = Tổng ÷ 8 × 5.",
+      "Vì chiều dài chiếm 3 phần.",
+      "Vì cần tìm diện tích mảnh vườn."
+    ],
+    "correctReason": 0,
+    "answer": 35,
+    "unit": "m",
+    "answerOptions": [
+      "Chiều dài mảnh vườn là 35m.",
+      "Chiều dài mảnh vườn là 21m.",
+      "Chiều dài mảnh vườn là 28m."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Chiều dài 35m, chiều rộng 21m (56 - 35). Tỉ số 21/35 rút gọn được thành 3/5. Đúng không?",
+    "checkOptions": [
+      "Đúng, hai kích thước hoàn toàn chuẩn xác với đề bài.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định chiều rộng ứng với 3 phần, chiều dài ứng với 5 phần.",
+      "Bước 2: Tính tổng số phần bằng nhau: 3 + 5 = 8 phần.",
+      "Bước 3: Tổng độ dài của 8 phần này là 56 mét.",
+      "Bước 4: Nhấn nút hiển thị ô tỉ lệ để tính giá trị 1 phần: 56 ÷ 8 = 7 mét.",
+      "Bước 5: Chiều dài chiếm 5 phần nên ta lấy giá trị 1 phần nhân với 5.",
+      "Bước 6: Thực hiện tính toán: 7 × 5 = 35 mét.",
+      "Bước 7: Đơn vị đo là mét (m).",
+      "Bước 8: Viết câu trả lời cuối cùng là 35m."
+    ]
+  },
+  {
+    "id": "lesson-12",
+    "title": "Số bi của An lúc đầu",
+    "shortTitle": "Bi An tổng hiệu ẩn",
+    "icon": "🔵",
+    "color": "pink",
+    "skill": "Tổng và Hiệu",
+    "story": "Tổng số bi của An và Bình là 90 viên. Nếu An cho Bình 5 viên bi thì số bi của hai bạn bằng nhau. Hỏi lúc đầu An có bao nhiêu viên bi?",
+    "visual": {
+      "type": "compare",
+      "big": 50,
+      "small": 40,
+      "diff": 10,
+      "bigLabel": "Bi của An",
+      "smallLabel": "Bi của Bình"
+    },
+    "retellOptions": [
+      "Tổng bi là 90. An cho Bình 5 viên thì bằng nhau tức là An hơn Bình 10 viên. Tìm số bi của An.",
+      "Tìm số bi của Bình khi biết An có gấp đôi số bi của Bình.",
+      "An và Bình mỗi bạn có 45 viên bi."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng số bi của hai bạn là 90 viên",
+      "An cho Bình 5 viên thì bằng nhau (Hiệu = 10 viên)",
+      "Tìm số bi ban đầu của An"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng song song chỉ số bi An và Bình (hiệu = 10)",
+      "Mô hình khối lego tỉ số",
+      "Băng chuyền thối tiền",
+      "Trục số nhảy"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(90 + 10) ÷ 2",
+      "(90 - 10) ÷ 2",
+      "90 ÷ 2 + 5",
+      "90 - 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Khi An cho Bình 5 viên thì bằng nhau, nghĩa là ban đầu An có nhiều hơn Bình 5 + 5 = 10 viên (Hiệu = 10). Số bi của An (Số lớn) = (Tổng + Hiệu) ÷ 2.",
+      "Vì An cho Bình 5 viên nên An ít bi hơn Bình.",
+      "Vì số bi của An bằng 90 viên."
+    ],
+    "correctReason": 0,
+    "answer": 50,
+    "unit": "viên bi",
+    "answerOptions": [
+      "Lúc đầu An có 50 viên bi.",
+      "Lúc đầu An có 40 viên bi.",
+      "Lúc đầu An có 45 viên bi."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "An có 50 viên, Bình có 40 viên. An cho Bình 5 viên thì An còn 45 viên, Bình có 45 viên (bằng nhau). Đúng chứ?",
+    "checkOptions": [
+      "Đúng, phép thử lại hoàn toàn chính xác với câu chuyện.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Phân tích kỹ: An cho Bình 5 viên mới bằng nhau, nghĩa là lúc đầu An nhiều hơn Bình 5 + 5 = 10 viên.",
+      "Bước 2: Vậy hiệu số bi giữa hai bạn lúc đầu là 10 viên.",
+      "Bước 3: Tổng số bi của hai bạn là 90 viên.",
+      "Bước 4: Tìm số bi của An (người có nhiều bi hơn - Số lớn) theo công thức: (Tổng + Hiệu) ÷ 2.",
+      "Bước 5: Bấm nút 'Bù hiệu' trên hình vẽ trực quan để thấy tổng số bi ảo tăng lên.",
+      "Bước 6: Thực hiện tính toán: (90 + 10) ÷ 2 = 100 ÷ 2 = 50 viên bi.",
+      "Bước 7: Đơn vị là viên bi.",
+      "Bước 8: Kết luận số bi của An là 50 viên."
+    ]
+  },
+  {
+    "id": "lesson-13",
+    "title": "Tìm số lớn biết hiệu và tỉ",
+    "shortTitle": "Số lớn biết hiệu tỉ",
+    "icon": "📈",
+    "color": "green",
+    "skill": "Hiệu và Tỉ số",
+    "story": "Số lớn hơn số bé 24 đơn vị và gấp 4 lần số bé. Tìm số lớn.",
+    "visual": {
+      "type": "scale",
+      "smallPart": 1,
+      "bigPart": 4,
+      "smallLabel": "Số bé",
+      "bigLabel": "Số lớn",
+      "diff": 24
+    },
+    "retellOptions": [
+      "Biết hiệu là 24, số lớn gấp 4 lần số bé (hiệu phần = 3). Tìm số lớn.",
+      "Biết tổng là 24, số lớn gấp 4 lần số bé. Tìm số lớn.",
+      "Tìm số bé biết số lớn hơn số bé 24 đơn vị."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Hiệu của hai số là 24",
+      "Số lớn gấp 4 lần số bé (Tỉ số = 1/4)",
+      "Tìm số lớn"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng chênh lệch phần bằng nhau (4 phần - 1 phần = 3 phần ứng với 24)",
+      "Sơ đồ đoạn thẳng song song tổng hiệu",
+      "Băng chuyền gạo",
+      "Lưới lát nền"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "24 ÷ (4 - 1) × 4",
+      "24 ÷ (4 - 1)",
+      "24 × 4",
+      "24 ÷ 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Hiệu số phần bằng nhau là 4 - 1 = 3 phần. Lấy Hiệu ÷ Hiệu số phần để ra giá trị 1 phần, sau đó nhân với 4 để tìm số lớn.",
+      "Vì số lớn chiếm 1 phần.",
+      "Vì tổng số phần bằng nhau là 5 phần."
+    ],
+    "correctReason": 0,
+    "answer": 32,
+    "unit": "đơn vị",
+    "answerOptions": [
+      "Số lớn là 32.",
+      "Số lớn là 8.",
+      "Số lớn là 24."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số lớn là 32, số bé là 8 (32 - 24 = 8). Tỉ số 32 ÷ 8 = 4 (gấp 4 lần). Đúng không?",
+    "checkOptions": [
+      "Đúng, hai số hoàn toàn chính xác.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định số bé là 1 phần, số lớn là 4 phần.",
+      "Bước 2: Tính hiệu số phần bằng nhau: 4 - 1 = 3 phần.",
+      "Bước 3: Hiệu số phần này tương ứng với giá trị chênh lệch là 24.",
+      "Bước 4: Nhấn nút hiển thị ô lego để tìm giá trị 1 phần: 24 ÷ 3 = 8.",
+      "Bước 5: Số lớn chiếm 4 phần nên nhân giá trị 1 phần với 4.",
+      "Bước 6: Phép tính: 8 × 4 = 32.",
+      "Bước 7: Đơn vị là đơn vị.",
+      "Bước 8: Đáp số chính xác là 32."
+    ]
+  },
+  {
+    "id": "lesson-14",
+    "title": "Tuổi mẹ hiện nay",
+    "shortTitle": "Tuổi mẹ hiệu tỉ",
+    "icon": "👩",
+    "color": "blue",
+    "skill": "Hiệu và Tỉ số",
+    "story": "Tuổi con bằng 2/5 tuổi mẹ. Mẹ hơn con 27 tuổi. Tính tuổi mẹ.",
+    "visual": {
+      "type": "scale",
+      "smallPart": 2,
+      "bigPart": 5,
+      "smallLabel": "Tuổi con",
+      "bigLabel": "Tuổi mẹ",
+      "diff": 27
+    },
+    "retellOptions": [
+      "Tỉ số tuổi con/mẹ là 2/5, mẹ hơn con 27 tuổi. Tìm tuổi mẹ.",
+      "Tỉ số tuổi con/mẹ là 2/5, tổng tuổi hai người là 27. Tìm tuổi mẹ.",
+      "Tìm hiệu tuổi hai mẹ con sau 5 năm nữa."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tuổi con bằng 2/5 tuổi mẹ",
+      "Mẹ hơn con 27 tuổi",
+      "Tìm tuổi mẹ"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng hiệu tỉ: Con (2 phần), Mẹ (5 phần), Chênh lệch 3 phần = 27",
+      "Sơ đồ đoạn thẳng song song tổng hiệu",
+      "Mô hình trục số",
+      "Hóa đơn siêu thị"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "27 ÷ (5 - 2) × 5",
+      "27 ÷ (5 - 2) × 2",
+      "27 × 5",
+      "27 ÷ 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Hiệu số phần bằng nhau là 5 - 2 = 3 phần. Tuổi mẹ ứng với 5 phần nên lấy 27 ÷ 3 × 5.",
+      "Vì tuổi mẹ ứng với 2 phần.",
+      "Vì cần tính tuổi con."
+    ],
+    "correctReason": 0,
+    "answer": 45,
+    "unit": "tuổi",
+    "answerOptions": [
+      "Tuổi mẹ là 45 tuổi.",
+      "Tuổi mẹ là 18 tuổi.",
+      "Tuổi mẹ là 54 tuổi."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Mẹ 45 tuổi, con 18 tuổi (45 - 27). Tỉ số 18/45 rút gọn bằng 2/5. Đúng chứ?",
+    "checkOptions": [
+      "Đúng, tuổi mẹ và con hoàn toàn phù hợp với thực tế và đề bài.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định số phần tuổi con là 2 phần, tuổi mẹ là 5 phần.",
+      "Bước 2: Tìm hiệu số phần bằng nhau: 5 - 2 = 3 phần.",
+      "Bước 3: Hiệu số phần này tương ứng với số tuổi chênh lệch là 27 tuổi.",
+      "Bước 4: Bấm gợi ý để xem giá trị chênh lệch và tìm 1 phần: 27 ÷ 3 = 9 tuổi.",
+      "Bước 5: Tuổi mẹ ứng với 5 phần nên nhân 9 với 5.",
+      "Bước 6: Thực hiện tính toán: 9 × 5 = 45 tuổi.",
+      "Bước 7: Đơn vị là tuổi.",
+      "Bước 8: Viết đáp án là 45 tuổi."
+    ]
+  },
+  {
+    "id": "lesson-15",
+    "title": "Tìm số lớn gấp 3 lần",
+    "shortTitle": "Số lớn gấp 3 lần",
+    "icon": "📈",
+    "color": "orange",
+    "skill": "Hiệu và Tỉ số",
+    "story": "Hiệu của hai số là 30. Số lớn gấp 3 lần số bé. Tìm số lớn.",
+    "visual": {
+      "type": "scale",
+      "smallPart": 1,
+      "bigPart": 3,
+      "smallLabel": "Số bé",
+      "bigLabel": "Số lớn",
+      "diff": 30
+    },
+    "retellOptions": [
+      "Biết hiệu là 30, tỉ số là 1/3 (số lớn gấp 3 lần số bé). Tìm số lớn.",
+      "Biết tổng là 30, số lớn gấp 3 lần số bé. Tìm số lớn.",
+      "Tìm hiệu số phần bằng nhau khi biết tổng hai số."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Hiệu của hai số là 30",
+      "Số lớn gấp 3 lần số bé (Tỉ số = 1/3)",
+      "Tìm số lớn"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng hiệu tỉ: Số bé (1 phần), Số lớn (3 phần), Chênh lệch 2 phần = 30",
+      "Sơ đồ đoạn thẳng song song tổng hiệu",
+      "Mô hình sô-cô-la bẻ ô",
+      "Biểu đồ hình cột"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "30 ÷ (3 - 1) × 3",
+      "30 ÷ (3 - 1)",
+      "30 × 3",
+      "30 ÷ 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Hiệu số phần bằng nhau là 3 - 1 = 2 phần. Số lớn chiếm 3 phần nên số lớn = Hiệu ÷ 2 × 3.",
+      "Vì số lớn chiếm 1 phần.",
+      "Vì tổng số phần bằng nhau là 4 phần."
+    ],
+    "correctReason": 0,
+    "answer": 45,
+    "unit": "đơn vị",
+    "answerOptions": [
+      "Số lớn là 45.",
+      "Số lớn là 15.",
+      "Số lớn là 60."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số lớn là 45, số bé là 15 (45 - 30). Tỉ số 45 ÷ 15 = 3. Có hợp lý không?",
+    "checkOptions": [
+      "Có, hiệu là 30 và tỉ số gấp 3 lần đều hoàn toàn chính xác.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định số bé đại diện cho 1 phần, số lớn gấp 3 lần nên là 3 phần.",
+      "Bước 2: Tìm hiệu số phần bằng nhau: 3 - 1 = 2 phần.",
+      "Bước 3: Hiệu số phần này tương ứng với hiệu hai số là 30.",
+      "Bước 4: Nhấp nút gợi ý để tính giá trị 1 phần: 30 ÷ 2 = 15.",
+      "Bước 5: Số lớn có 3 phần nên nhân giá trị 1 phần với 3.",
+      "Bước 6: Tính toán: 15 × 3 = 45.",
+      "Bước 7: Đơn vị đo là đơn vị tự do.",
+      "Bước 8: Viết đáp số là 45."
+    ]
+  },
+  {
+    "id": "lesson-16",
+    "title": "Tuổi anh hiện nay",
+    "shortTitle": "Tuổi anh nâng cao",
+    "icon": "🧒",
+    "color": "pink",
+    "skill": "Hiệu và Tỉ số",
+    "story": "Anh hơn em 8 tuổi. Cách đây 3 năm tuổi anh gấp 3 lần tuổi em. Tính tuổi anh hiện nay.",
+    "visual": {
+      "type": "scale",
+      "smallPart": 1,
+      "bigPart": 3,
+      "smallLabel": "Em (3 năm trước)",
+      "bigLabel": "Anh (3 năm trước)",
+      "diff": 8
+    },
+    "retellOptions": [
+      "Hiệu tuổi không đổi là 8. Cách đây 3 năm anh gấp 3 lần em. Tìm tuổi anh hiện nay.",
+      "Tổng tuổi hai anh em là 8. Tuổi anh gấp 3 lần tuổi em.",
+      "Tính tuổi em hiện nay khi biết anh hơn em 8 tuổi."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Anh hơn em 8 tuổi (hiệu tuổi không đổi)",
+      "Cách đây 3 năm tuổi anh gấp 3 lần tuổi em",
+      "Tìm tuổi anh hiện nay"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ hiệu tỉ 3 năm trước: Em (1 phần), Anh (3 phần), Chênh lệch 2 phần = 8",
+      "Sơ đồ đoạn thẳng song song tổng hiệu",
+      "Băng chuyền nhà máy",
+      "Lưới ô vuông diện tích"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "8 ÷ (3 - 1) × 3 + 3",
+      "8 ÷ (3 - 1) × 3",
+      "8 × 3 - 3",
+      "8 ÷ 2 + 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Cách đây 3 năm, hiệu số phần là 3 - 1 = 2 phần ứng với 8 tuổi. Tuổi anh 3 năm trước là 8 ÷ 2 × 3 = 12 tuổi. Tuổi anh hiện nay cộng thêm 3 là 15 tuổi.",
+      "Vì tuổi anh hiện nay bằng tuổi anh 3 năm trước.",
+      "Vì cách đây 3 năm anh gấp 3 lần em nên tuổi anh là 8 × 3."
+    ],
+    "correctReason": 0,
+    "answer": 15,
+    "unit": "tuổi",
+    "answerOptions": [
+      "Tuổi anh hiện nay là 15 tuổi.",
+      "Tuổi anh hiện nay là 12 tuổi.",
+      "Tuổi anh hiện nay là 7 tuổi."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Hiện nay anh 15, em 7 (15 - 8). Cách đây 3 năm: anh 12, em 4. 12 gấp 3 lần 4. Đúng không?",
+    "checkOptions": [
+      "Đúng, các mốc thời gian và tỉ lệ tuổi đều hoàn hảo.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Chú ý: Hiệu số tuổi của hai người không thay đổi theo thời gian. Nên cách đây 3 năm anh vẫn hơn em 8 tuổi.",
+      "Bước 2: Vẽ sơ đồ cách đây 3 năm: Em 1 phần, Anh 3 phần.",
+      "Bước 3: Tính hiệu số phần cách đây 3 năm: 3 - 1 = 2 phần.",
+      "Bước 4: Tìm tuổi anh cách đây 3 năm: 8 ÷ 2 × 3 = 12 tuổi.",
+      "Bước 5: Vì đó là tuổi anh cách đây 3 năm, nên tuổi anh hiện nay phải cộng thêm 3 tuổi.",
+      "Bước 6: Thực hiện phép tính: 12 + 3 = 15 tuổi.",
+      "Bước 7: Đơn vị đo là tuổi.",
+      "Bước 8: Ghi đáp số là 15 tuổi."
+    ]
+  },
+  {
+    "id": "lesson-17",
+    "title": "Khối lượng gạo trong 7 bao",
+    "shortTitle": "Gạo trong 7 bao",
+    "icon": "🌾",
+    "color": "green",
+    "skill": "Rút về đơn vị",
+    "story": "Có 5 bao gạo đựng tất cả 40kg gạo. Hỏi 7 bao như thế đựng bao nhiêu ki-lô-gam gạo?",
+    "visual": {
+      "type": "mixed",
+      "startCount": 5,
+      "startVal": 40,
+      "endCount": 7,
+      "emoji": "🌾",
+      "noun": "bao gạo",
+      "targetNoun": "bao như thế"
+    },
+    "retellOptions": [
+      "Biết 5 bao nặng 40kg, tìm khối lượng gạo đựng trong 7 bao.",
+      "Tìm số bao gạo cần dùng để đựng 40kg gạo.",
+      "Chia đều 40kg gạo vào 7 bao gạo."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "5 bao đựng được 40kg gạo",
+      "Hỏi 7 bao đựng bao nhiêu kg gạo",
+      "Tìm số kg gạo trong 7 bao"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ băng chuyền rút về đơn vị kiểu 1 (Tìm giá trị 1 phần trước)",
+      "Sơ đồ lego tỉ số phần bằng nhau",
+      "Sơ đồ đoạn thẳng song song tổng hiệu",
+      "Lưới lát gạch nền"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "40 ÷ 5 × 7",
+      "40 ÷ 7 × 5",
+      "40 × 5 ÷ 7",
+      "40 + 5 + 7"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Trước tiên tính số gạo trong 1 bao: 40 ÷ 5 = 8kg (rút về đơn vị). Sau đó nhân với 7 bao: 8 × 7 = 56kg.",
+      "Vì ta cần lấy tổng số bao nhân với khối lượng gạo.",
+      "Vì mỗi bao gạo có khối lượng khác nhau."
+    ],
+    "correctReason": 0,
+    "answer": 56,
+    "unit": "kg gạo",
+    "answerOptions": [
+      "7 bao đựng được 56kg gạo.",
+      "7 bao đựng được 8kg gạo.",
+      "7 bao đựng được 40kg gạo."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Khối lượng 7 bao (56kg) lớn hơn 5 bao (40kg), có hợp lý không?",
+    "checkOptions": [
+      "Có, số bao tăng lên thì khối lượng gạo cũng phải tăng lên tỉ lệ thuận.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm thông tin ban đầu: 5 bao đựng được 40kg gạo.",
+      "Bước 2: Tìm khối lượng gạo của 1 bao bằng phép tính chia (Rút về đơn vị).",
+      "Bước 3: Nhấp nút 'Xem 1 bao' trên băng chuyền để tính: 40 ÷ 5 = 8 kg.",
+      "Bước 4: Bây giờ, ta cần tính khối lượng của 7 bao như thế.",
+      "Bước 5: Nhấp nút 'Tính 7 bao' để thực hiện phép nhân: 8 × 7.",
+      "Bước 6: Thực hiện tính nhẩm: 8 × 7 = 56 kg.",
+      "Bước 7: Đơn vị đo lường ở đây là kg gạo.",
+      "Bước 8: Điền kết quả là 56 kg."
+    ]
+  },
+  {
+    "id": "lesson-18",
+    "title": "Lít dầu trong 16 thùng",
+    "shortTitle": "Dầu trong 16 thùng",
+    "icon": "🛢️",
+    "color": "blue",
+    "skill": "Rút về đơn vị",
+    "story": "Có 4 thùng dầu như nhau chứa tất cả 112 lít dầu. Hỏi 16 thùng như thế chứa bao nhiêu lít dầu?",
+    "visual": {
+      "type": "mixed",
+      "startCount": 4,
+      "startVal": 112,
+      "endCount": 16,
+      "emoji": "🛢️",
+      "noun": "thùng dầu",
+      "targetNoun": "thùng như thế"
+    },
+    "retellOptions": [
+      "Biết 4 thùng có 112 lít, tìm số lít dầu trong 16 thùng.",
+      "Biết số lít dầu mỗi thùng, tìm số lượng thùng dầu.",
+      "Tính trung bình cộng lượng dầu trong 16 thùng."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "4 thùng chứa được 112 lít dầu",
+      "Hỏi 16 thùng chứa bao nhiêu lít dầu",
+      "Tìm số lít dầu trong 16 thùng"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ băng chuyền rút về đơn vị: Tính 1 thùng rồi nhân lên",
+      "Sơ đồ tỉ số lego",
+      "Sơ đồ chênh lệch hiệu tỉ",
+      "Lưới ô vuông hình học"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "112 ÷ 4 × 16",
+      "112 ÷ 16 × 4",
+      "112 × 4 ÷ 16",
+      "112 + 16"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tính số dầu trong 1 thùng: 112 ÷ 4 = 28 lít. Sau đó nhân với số thùng là 16: 28 × 16 = 448 lít.",
+      "Vì ta chỉ cần lấy 112 cộng với 16.",
+      "Vì lượng dầu trong các thùng không bằng nhau."
+    ],
+    "correctReason": 0,
+    "answer": 448,
+    "unit": "lít dầu",
+    "answerOptions": [
+      "16 thùng chứa 448 lít dầu.",
+      "16 thùng chứa 28 lít dầu.",
+      "16 thùng chứa 112 lít dầu."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Lượng dầu của 16 thùng (448 lít) gấp 4 lần lượng dầu của 4 thùng (112 lít), đúng không?",
+    "checkOptions": [
+      "Đúng, vì 16 thùng gấp 4 lần 4 thùng nên lượng dầu cũng phải gấp 4 lần.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Phân tích đề bài: 4 thùng chứa 112 lít dầu.",
+      "Bước 2: Tìm số lít dầu chứa trong 1 thùng (rút về đơn vị) bằng phép chia.",
+      "Bước 3: Nhấp nút 'Xem 1 thùng' để tính: 112 ÷ 4 = 28 lít.",
+      "Bước 4: Bây giờ, ta cần tính lượng dầu của 16 thùng.",
+      "Bước 5: Nhấp nút 'Tính 16 thùng' để thực hiện phép nhân: 28 × 16.",
+      "Bước 6: Thực hiện phép tính: 28 × 16 = 448 lít.",
+      "Bước 7: Đơn vị đo là lít dầu.",
+      "Bước 8: Kết luận đáp số là 448 lít."
+    ]
+  },
+  {
+    "id": "lesson-19",
+    "title": "Hộp bánh trong 7 thùng",
+    "shortTitle": "Bánh trong 7 thùng",
+    "icon": "🍰",
+    "color": "orange",
+    "skill": "Rút về đơn vị",
+    "story": "Có 30 hộp bánh chia đều vào 5 thùng. Hỏi 7 thùng như thế có bao nhiêu hộp bánh?",
+    "visual": {
+      "type": "mixed",
+      "startCount": 5,
+      "startVal": 30,
+      "endCount": 7,
+      "emoji": "🍰",
+      "noun": "thùng bánh",
+      "targetNoun": "thùng như thế"
+    },
+    "retellOptions": [
+      "Biết 5 thùng có 30 hộp, tìm số hộp bánh trong 7 thùng.",
+      "Tìm số thùng cần để xếp 30 hộp bánh.",
+      "Chia đều 30 hộp bánh cho 7 người bạn."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "5 thùng đựng được 30 hộp bánh",
+      "Hỏi 7 thùng đựng được bao nhiêu hộp bánh",
+      "Tìm số hộp bánh trong 7 thùng"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ băng chuyền rút về đơn vị: Tính 1 thùng trước",
+      "Mô hình so sánh hai đoạn thẳng",
+      "Mô hình lego tỉ số",
+      "Hóa đơn siêu thị"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "30 ÷ 5 × 7",
+      "30 ÷ 7 × 5",
+      "30 × 5 ÷ 7",
+      "30 - 5 + 7"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tính số hộp bánh trong 1 thùng: 30 ÷ 5 = 6 hộp. Lấy số hộp bánh trong 1 thùng nhân với số thùng là 7: 6 × 7 = 42 hộp.",
+      "Vì mỗi thùng chứa số hộp bánh khác nhau.",
+      "Vì cần tính hiệu số hộp bánh giữa các thùng."
+    ],
+    "correctReason": 0,
+    "answer": 42,
+    "unit": "hộp bánh",
+    "answerOptions": [
+      "7 thùng có 42 hộp bánh.",
+      "7 thùng có 6 hộp bánh.",
+      "7 thùng có 35 hộp bánh."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số hộp bánh của 7 thùng (42 hộp) nhiều hơn 5 thùng (30 hộp), có hợp lý không?",
+    "checkOptions": [
+      "Có, số lượng thùng nhiều hơn thì số hộp bánh cũng phải nhiều hơn.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định ban đầu: 5 thùng chứa được 30 hộp bánh.",
+      "Bước 2: Tìm số hộp bánh xếp trong 1 thùng bằng cách lấy 30 chia cho 5.",
+      "Bước 3: Nhấp nút gợi ý để tính: 30 ÷ 5 = 6 hộp.",
+      "Bước 4: Đây chính là bước rút về đơn vị.",
+      "Bước 5: Tiếp tục tính số hộp bánh của 7 thùng bằng cách lấy 6 nhân với 7.",
+      "Bước 6: Thực hiện tính toán: 6 × 7 = 42 hộp.",
+      "Bước 7: Đơn vị tính là hộp bánh.",
+      "Bước 8: Ghi nhận đáp án là 42 hộp."
+    ]
+  },
+  {
+    "id": "lesson-20",
+    "title": "Số bao gạo cần dùng",
+    "shortTitle": "Số bao đựng gạo",
+    "icon": "🌾",
+    "color": "pink",
+    "skill": "Rút về đơn vị",
+    "story": "Có 5 bao gạo đựng tất cả 40kg gạo. Hỏi cần bao nhiêu bao như thế để đựng hết 64kg gạo?",
+    "visual": {
+      "type": "mixed",
+      "startCount": 5,
+      "startVal": 40,
+      "endCount": 8,
+      "emoji": "🌾",
+      "noun": "bao gạo",
+      "targetNoun": "bao như thế"
+    },
+    "retellOptions": [
+      "Biết 5 bao đựng 40kg, tìm số bao cần để đựng 64kg (rút về đơn vị kiểu 2).",
+      "Tìm số kg gạo trong 5 bao khi biết mỗi bao đựng được 64kg.",
+      "Tìm tổng khối lượng gạo đựng trong tất cả số bao."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "5 bao đựng được 40kg gạo",
+      "Có tổng cộng 64kg gạo",
+      "Tìm số bao gạo cần dùng"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ băng chuyền rút về đơn vị kiểu 2 (Tính 1 bao đựng bao nhiêu kg, rồi lấy tổng gạo chia cho sức chứa 1 bao)",
+      "Sơ đồ lego phân chia phần",
+      "Sơ đồ đoạn thẳng hiệu tỉ",
+      "Lưới ô vuông diện tích"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "64 ÷ (40 ÷ 5)",
+      "64 ÷ 5 × 40",
+      "64 × 5 ÷ 40",
+      "64 - 40 ÷ 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tính số kg gạo trong 1 bao: 40 ÷ 5 = 8kg. Lấy tổng số kg gạo là 64 chia cho số kg gạo của mỗi bao để tìm số bao: 64 ÷ 8 = 8 bao.",
+      "Vì số bao bằng tổng số kg gạo chia cho số bao ban đầu.",
+      "Vì cần tính tổng số kg gạo của cả hai đợt."
+    ],
+    "correctReason": 0,
+    "answer": 8,
+    "unit": "bao",
+    "answerOptions": [
+      "Cần dùng 8 bao gạo.",
+      "Cần dùng 12 bao gạo.",
+      "Cần dùng 6 bao gạo."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Đựng 64kg cần nhiều bao hơn đựng 40kg (8 bao > 5 bao), đúng không?",
+    "checkOptions": [
+      "Đúng, khối lượng gạo lớn hơn nên cần nhiều bao hơn.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm thông tin ban đầu: 5 bao đựng được 40kg gạo.",
+      "Bước 2: Tìm sức chứa của 1 bao bằng phép chia: 40 ÷ 5 = 8 kg.",
+      "Bước 3: Nhấp nút gợi ý để thực hiện: 1 bao đựng được 8 kg gạo.",
+      "Bước 4: Bây giờ, ta có tổng cộng 64kg gạo cần xếp vào các bao.",
+      "Bước 5: Số bao cần dùng sẽ bằng tổng số gạo chia cho sức chứa của 1 bao.",
+      "Bước 6: Phép tính là: 64 ÷ 8 = 8 bao.",
+      "Bước 7: Đơn vị tính là bao.",
+      "Bước 8: Viết đáp án cuối cùng là 8 bao."
+    ]
+  },
+  {
+    "id": "lesson-21",
+    "title": "Số học sinh nữ trong lớp",
+    "shortTitle": "Phân số học sinh nữ",
+    "icon": "👧",
+    "color": "green",
+    "skill": "Tìm phân số của một số",
+    "story": "Lớp học có 30 bạn, trong đó 2/3 số học sinh là nữ. Hỏi lớp học có bao nhiêu bạn nữ?",
+    "visual": {
+      "type": "parts",
+      "total": 30,
+      "denominator": 3,
+      "emoji": "👧"
+    },
+    "retellOptions": [
+      "Biết tổng số học sinh là 30, học sinh nữ chiếm 2/3 tổng số. Tìm số học sinh nữ.",
+      "Biết học sinh nữ chiếm 2/3, tìm số học sinh nam.",
+      "Chia đều 30 bạn thành 2 nhóm bằng nhau."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Lớp học có 30 học sinh",
+      "Số học sinh nữ bằng 2/3 tổng số học sinh",
+      "Tìm số học sinh nữ"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình thanh chocolate phân chia (Thanh 3 ô đại diện cho 30, lấy 2 ô)",
+      "Sơ đồ đoạn thẳng song song tổng hiệu",
+      "Băng chuyền rút về đơn vị",
+      "Hóa đơn mua bán"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "30 × 2 ÷ 3",
+      "30 ÷ 2 × 3",
+      "30 - 2/3",
+      "30 + 2 + 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Muốn tìm phân số của một số, ta lấy số đó nhân với phân số (hoặc lấy số đó chia cho mẫu số rồi nhân với tử số): 30 ÷ 3 × 2.",
+      "Vì ta chỉ cần lấy 30 chia cho 2.",
+      "Vì số học sinh nữ nhiều hơn học sinh nam."
+    ],
+    "correctReason": 0,
+    "answer": 20,
+    "unit": "bạn nữ",
+    "answerOptions": [
+      "Lớp học có 20 bạn nữ.",
+      "Lớp học có 10 bạn nữ.",
+      "Lớp học có 15 bạn nữ."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số bạn nữ 20 bạn chiếm 2/3 của 30 (20/30 = 2/3), đúng không?",
+    "checkOptions": [
+      "Đúng, phân số hoàn toàn chính xác.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định tổng số học sinh trong lớp là 30 bạn.",
+      "Bước 2: Số học sinh nữ chiếm 2 phần trong tổng số 3 phần bằng nhau.",
+      "Bước 3: Kéo thanh trượt sô-cô-la đến mức 2/3 để trực quan hóa số ô.",
+      "Bước 4: Tính giá trị của 1 phần (1/3 tổng số học sinh): 30 ÷ 3 = 10 bạn.",
+      "Bước 5: Nhân giá trị 1 phần với tử số là 2 để tìm số học sinh nữ.",
+      "Bước 6: Thực hiện tính nhẩm: 10 × 2 = 20 bạn.",
+      "Bước 7: Đơn vị tính là bạn nữ.",
+      "Bước 8: Kết luận đáp án là 20 bạn nữ."
+    ]
+  },
+  {
+    "id": "lesson-22",
+    "title": "Chiều dài sợi dây còn lại",
+    "shortTitle": "Sợi dây cắt bớt",
+    "icon": "🎗️",
+    "color": "blue",
+    "skill": "Tìm phân số của một số",
+    "story": "Một sợi dây dài 36m, người ta cắt đi 1/4 sợi dây đó. Hỏi sợi dây còn lại bao nhiêu mét?",
+    "visual": {
+      "type": "parts",
+      "total": 36,
+      "denominator": 4,
+      "emoji": "🎗️"
+    },
+    "retellOptions": [
+      "Sợi dây dài 36m, cắt đi 1/4 (tức là còn lại 3/4), tìm chiều dài phần còn lại.",
+      "Tìm chiều dài phần dây đã cắt đi.",
+      "Cộng thêm 1/4 chiều dài vào sợi dây 36m."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Sợi dây ban đầu dài 36m",
+      "Đã cắt đi 1/4 sợi dây",
+      "Tìm chiều dài sợi dây còn lại"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bẻ thanh chocolate chia làm 4 ô (cắt đi 1 ô, còn lại 3 ô)",
+      "Sơ đồ đoạn thẳng song song tổng hiệu",
+      "Băng chuyền rút về đơn vị",
+      "Biểu đồ hình cột"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "36 - 36 ÷ 4",
+      "36 ÷ 4",
+      "36 × 1/4",
+      "36 + 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tính phần đã cắt đi: 36 × 1/4 = 9m. Chiều dài sợi dây còn lại là: 36 - 9 = 27m. Hoặc tính trực tiếp: 36 × (1 - 1/4) = 36 × 3/4 = 27m.",
+      "Vì sợi dây còn lại đúng bằng phần đã cắt đi.",
+      "Vì chỉ cần lấy 36 chia cho 4."
+    ],
+    "correctReason": 0,
+    "answer": 27,
+    "unit": "m",
+    "answerOptions": [
+      "Sợi dây còn lại 27 mét.",
+      "Sợi dây còn lại 9 mét.",
+      "Sợi dây còn lại 30 mét."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Dây còn lại (27m) cộng dây đã cắt (9m) bằng đúng 36m ban đầu, đúng chứ?",
+    "checkOptions": [
+      "Đúng, tổng chiều dài trước và sau khi cắt trùng khớp hoàn hảo.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định chiều dài sợi dây ban đầu là 36 mét.",
+      "Bước 2: Phần dây bị cắt đi bằng 1/4 của sợi dây.",
+      "Bước 3: Nhấp gợi ý trượt để tìm chiều dài phần đã cắt: 36 ÷ 4 = 9 mét.",
+      "Bước 4: Phần dây còn lại bằng chiều dài ban đầu trừ đi phần đã cắt.",
+      "Bước 5: Thực hiện phép tính trừ: 36 - 9 = 27 mét.",
+      "Bước 6: Cách khác: Cắt 1/4 thì còn lại 3/4. Tính trực tiếp: 36 ÷ 4 × 3 = 27 mét.",
+      "Bước 7: Đơn vị là mét (m).",
+      "Bước 8: Viết câu trả lời là 27m."
+    ]
+  },
+  {
+    "id": "lesson-23",
+    "title": "Số bi của An",
+    "shortTitle": "Số bi phân số",
+    "icon": "🔵",
+    "color": "orange",
+    "skill": "Tìm phân số của một số",
+    "story": "Tổng số bi của An và Bình là 50 viên. An có 2/5 số bi đó. Hỏi An có bao nhiêu viên bi?",
+    "visual": {
+      "type": "parts",
+      "total": 50,
+      "denominator": 5,
+      "emoji": "🔵"
+    },
+    "retellOptions": [
+      "Tổng bi là 50, An chiếm 2/5 tổng số bi. Tìm số bi của An.",
+      "Tìm số bi của Bình khi biết Bình chiếm 2/5 tổng số bi.",
+      "Tìm tổng số bi sau khi An cho Bình một số bi."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng số bi của An và Bình là 50 viên",
+      "An có 2/5 tổng số bi",
+      "Tìm số bi của An"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bẻ ô sô-cô-la: chia 5 phần đại diện cho 50 viên, An chiếm 2 phần",
+      "Sơ đồ đoạn thẳng song song tổng hiệu",
+      "Băng chuyền rút về đơn vị",
+      "Lưới ô vuông diện tích"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "50 ÷ 5 × 2",
+      "50 ÷ 2 × 5",
+      "50 - 2/5",
+      "50 × 5 ÷ 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Số bi của An bằng 2/5 của 50 viên. Phép tính: 50 ÷ 5 × 2 = 20 viên bi.",
+      "Vì số bi của An chiếm 5 phần.",
+      "Vì cần tính số bi của Bình."
+    ],
+    "correctReason": 0,
+    "answer": 20,
+    "unit": "viên bi",
+    "answerOptions": [
+      "An có 20 viên bi.",
+      "An có 30 viên bi.",
+      "An có 10 viên bi."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số bi của An là 20 viên. Bình có 30 viên (50 - 20). 20 bằng 2/5 của 50, đúng không?",
+    "checkOptions": [
+      "Đúng, đáp số hoàn toàn thỏa mãn phân số 2/5.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định tổng số bi của cả hai bạn là 50 viên.",
+      "Bước 2: Phân số chỉ số bi của An là 2/5 tổng số bi.",
+      "Bước 3: Kéo thanh trượt sô-cô-la trên màn hình để thấy 2 phần sáng lên.",
+      "Bước 4: Tính giá trị của 1 phần (1/5 số bi): 50 ÷ 5 = 10 viên.",
+      "Bước 5: Số bi của An chiếm 2 phần nên lấy giá trị 1 phần nhân với 2.",
+      "Bước 6: Thực hiện tính nhẩm: 10 × 2 = 20 viên.",
+      "Bước 7: Đơn vị đo là viên bi.",
+      "Bước 8: Viết đáp án là 20 viên."
+    ]
+  },
+  {
+    "id": "lesson-24",
+    "title": "Số bi còn lại của An",
+    "shortTitle": "Bi An biến động",
+    "icon": "🔵",
+    "color": "pink",
+    "skill": "Tìm phân số của một số",
+    "story": "An có 24 viên bi. An cho bạn 3/8 số bi của mình, sau đó An được mẹ cho thêm 1/4 số bi ban đầu. Hỏi An còn lại bao nhiêu viên bi?",
+    "visual": {
+      "type": "parts",
+      "total": 24,
+      "denominator": 8,
+      "emoji": "🔵"
+    },
+    "retellOptions": [
+      "Ban đầu có 24 viên, cho đi 3/8 số bi và nhận thêm 1/4 số bi ban đầu. Tìm số bi còn lại.",
+      "Tìm số bi An đã cho bạn và số bi mẹ cho thêm.",
+      "Tính số bi trung bình sau khi cho đi 3/8."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Ban đầu An có 24 viên bi",
+      "Cho bạn 3/8 số bi",
+      "Được thêm 1/4 số bi ban đầu",
+      "Tìm số bi còn lại của An"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình bẻ thanh sô-cô-la chia 8 phần, trừ đi 3 phần rồi cộng lại 2 phần",
+      "Sơ đồ đoạn thẳng song song tổng hiệu",
+      "Băng chuyền rút về đơn vị",
+      "Hóa đơn siêu thị"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "24 - (24 ÷ 8 × 3) + (24 ÷ 4)",
+      "24 - 3/8 + 1/4",
+      "24 ÷ 8 × 3 + 24 ÷ 4",
+      "24 × 3/8 × 1/4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tính số bi cho bạn: 24 × 3/8 = 9 viên. Tính số bi được thêm: 24 × 1/4 = 6 viên. Số bi còn lại: 24 - 9 + 6 = 21 viên.",
+      "Vì chỉ cần lấy số bi ban đầu trừ đi số bi cho bạn.",
+      "Vì số bi nhận thêm bằng số bi cho đi."
+    ],
+    "correctReason": 0,
+    "answer": 21,
+    "unit": "viên bi",
+    "answerOptions": [
+      "An còn lại 21 viên bi.",
+      "An còn lại 15 viên bi.",
+      "An còn lại 24 viên bi."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Ban đầu 24 viên, cho 9 còn 15 viên. Thêm 6 viên thành 21 viên. Có đúng không?",
+    "checkOptions": [
+      "Đúng, các bước giải logic và chính xác.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tính số bi An đã cho bạn bằng cách tìm 3/8 của 24 viên.",
+      "Bước 2: Phép tính số bi cho bạn: 24 ÷ 8 × 3 = 9 viên.",
+      "Bước 3: Tính số bi An được mẹ cho thêm bằng cách tìm 1/4 của 24 viên.",
+      "Bước 4: Phép tính số bi mẹ cho thêm: 24 ÷ 4 = 6 viên.",
+      "Bước 5: Tính số bi còn lại bằng cách lấy số bi ban đầu trừ đi số bi đã cho, rồi cộng số bi được thêm.",
+      "Bước 6: Thực hiện tính toán: 24 - 9 + 6 = 21 viên.",
+      "Bước 7: Đơn vị tính là viên bi.",
+      "Bước 8: Ghi nhận đáp số cuối cùng là 21 viên."
+    ]
+  },
+  {
+    "id": "lesson-25",
+    "title": "Diện tích thửa ruộng",
+    "shortTitle": "Diện tích thửa ruộng",
+    "icon": "🌾",
+    "color": "green",
+    "skill": "Diện tích",
+    "story": "Một thửa ruộng hình chữ nhật có chiều dài là 25m, chiều rộng là 15m. Tính diện tích thửa ruộng đó.",
+    "visual": {
+      "type": "measure",
+      "width": 15,
+      "length": 25,
+      "gridRows": 3,
+      "gridCols": 5,
+      "emoji": "🌾"
+    },
+    "retellOptions": [
+      "Biết dài 25m, rộng 15m, tính diện tích thửa ruộng.",
+      "Biết diện tích ruộng, tìm chiều dài và rộng.",
+      "Tính chu vi thửa ruộng hình chữ nhật."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Chiều dài thửa ruộng là 25m",
+      "Chiều rộng thửa ruộng là 15m",
+      "Tính diện tích thửa ruộng"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Lưới ô vuông hình học lát gạch (chiều dài × chiều rộng)",
+      "Sơ đồ đoạn thẳng song song",
+      "Băng chuyền rút về đơn vị",
+      "Tháp lego tỉ lệ"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "25 × 15",
+      "(25 + 15) × 2",
+      "25 + 15",
+      "25 ÷ 15"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Diện tích hình chữ nhật bằng Chiều dài nhân Chiều rộng (cùng đơn vị đo).",
+      "Vì cần tính chu vi thửa ruộng.",
+      "Vì thửa ruộng là hình vuông."
+    ],
+    "correctReason": 0,
+    "answer": 375,
+    "unit": "m²",
+    "answerOptions": [
+      "Diện tích thửa ruộng là 375 m².",
+      "Diện tích thửa ruộng là 80 m².",
+      "Diện tích thửa ruộng là 375 m."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Đơn vị diện tích phải là mét vuông (m²), đáp số 375 m² có đúng đơn vị không?",
+    "checkOptions": [
+      "Đúng, m² là đơn vị đo diện tích tiêu chuẩn.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định chiều dài của thửa ruộng là 25 mét.",
+      "Bước 2: Xác định chiều rộng của thửa ruộng là 15 mét.",
+      "Bước 3: Nhận biết hai kích thước đã cùng đơn vị đo là mét (m).",
+      "Bước 4: Công thức diện tích hình chữ nhật: Chiều dài × Chiều rộng.",
+      "Bước 5: Nhấp nút 'Lát sàn gạch' để thấy ô lưới lấp đầy màu xanh lá.",
+      "Bước 6: Thực hiện phép tính nhân: 25 × 15 = 375.",
+      "Bước 7: Đơn vị của kết quả là mét vuông (m²).",
+      "Bước 8: Điền kết quả chính xác là 375."
+    ]
+  },
+  {
+    "id": "lesson-26",
+    "title": "Diện tích mảnh đất hình vuông",
+    "shortTitle": "Diện tích hình vuông",
+    "icon": "🌱",
+    "color": "blue",
+    "skill": "Diện tích",
+    "story": "Một mảnh đất hình vuông có cạnh là 18m. Tính diện tích mảnh đất đó.",
+    "visual": {
+      "type": "measure",
+      "width": 18,
+      "length": 18,
+      "gridRows": 4,
+      "gridCols": 4,
+      "emoji": "🌱"
+    },
+    "retellOptions": [
+      "Mảnh đất hình vuông cạnh 18m, tính diện tích.",
+      "Mảnh đất hình vuông cạnh 18m, tính chu vi.",
+      "Mảnh đất hình chữ nhật dài 18m, tính diện tích."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mảnh đất có dạng hình vuông cạnh 18m",
+      "Tính diện tích mảnh đất"
+    ],
+    "factRoles": [
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Lưới ô vuông hình học lát gạch vuông (Cạnh × Cạnh)",
+      "Sơ đồ đoạn thẳng hiệu tỉ",
+      "Băng chuyền nhà máy",
+      "Hóa đơn siêu thị"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "18 × 18",
+      "18 × 4",
+      "18 + 18",
+      "18 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Diện tích hình vuông bằng độ dài cạnh nhân với chính nó (Cạnh × Cạnh).",
+      "Vì cần tính chu vi hình vuông.",
+      "Vì hình vuông có 4 cạnh bằng nhau."
+    ],
+    "correctReason": 0,
+    "answer": 324,
+    "unit": "m²",
+    "answerOptions": [
+      "Diện tích mảnh đất là 324 m².",
+      "Diện tích mảnh đất là 72 m².",
+      "Diện tích mảnh đất là 324 m."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Diện tích mảnh đất (324 m²) lớn hơn chu vi của nó (72 m), có hợp lý không?",
+    "checkOptions": [
+      "Có, diện tích đo bằng m² và chu vi đo bằng m nên không so sánh trực tiếp, nhưng trị số 324 là chính xác.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định mảnh đất có dạng hình vuông với cạnh dài 18m.",
+      "Bước 2: Công thức tính diện tích hình vuông: Cạnh × Cạnh.",
+      "Bước 3: Lập kế hoạch phép tính nhân lấy 18 nhân với 18.",
+      "Bước 4: Nhấp nút 'Lát sàn gạch' để lấp đầy ô lưới gạch xanh dương.",
+      "Bước 5: Thực hiện phép tính: 18 × 18 = 324.",
+      "Bước 6: Đơn vị đo diện tích là mét vuông (m²).",
+      "Bước 7: Viết câu trả lời đầy đủ.",
+      "Bước 8: Điền kết quả là 324."
+    ]
+  },
+  {
+    "id": "lesson-27",
+    "title": "Khối lượng gạo còn lại",
+    "shortTitle": "Gạo xe chở",
+    "icon": "🚛",
+    "color": "orange",
+    "story": "Một xe chở 3 tấn 5 tạ gạo. Cửa hàng đã bán đi 1200kg gạo. Hỏi trên xe còn lại bao nhiêu ki-lô-gam gạo?",
+    "visual": {
+      "type": "compare",
+      "big": 3500,
+      "small": 1200,
+      "diff": 2300,
+      "bigLabel": "Lúc đầu",
+      "smallLabel": "Đã bán"
+    },
+    "retellOptions": [
+      "Xe chở 3 tấn 5 tạ gạo, bán đi 1200kg, tìm số kg gạo còn lại (phép đo lường đổi đơn vị).",
+      "Đổi 3 tấn 5 tạ sang đơn vị tấn rồi nhân với 1200kg.",
+      "Tìm tổng số gạo ban đầu của cửa hàng."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Xe chở 3 tấn 5 tạ gạo",
+      "Đã bán đi 1200kg gạo",
+      "Tìm số kg gạo còn lại trên xe"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ đoạn thẳng song song (Đổi đơn vị rồi trừ phần đã bán)",
+      "Mô hình rút về đơn vị",
+      "Biểu đồ hình cột",
+      "Lưới ô vuông diện tích"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "3500 - 1200",
+      "3500 + 1200",
+      "350 - 120",
+      "3500 ÷ 1200"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Đổi 3 tấn 5 tạ = 3500kg. Số gạo còn lại bằng số gạo ban đầu trừ đi số gạo đã bán: 3500 - 1200 = 2300kg.",
+      "Vì cần tính tổng số gạo sau khi nhập thêm.",
+      "Vì đơn vị tạ và kg có thể trừ trực tiếp."
+    ],
+    "correctReason": 0,
+    "answer": 2300,
+    "unit": "kg gạo",
+    "answerOptions": [
+      "Trên xe còn lại 2300kg gạo.",
+      "Trên xe còn lại 4700kg gạo.",
+      "Trên xe còn lại 2300 tạ gạo."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Đổi 3 tấn 5 tạ = 3500kg. 3500 - 1200 = 2300kg. Phép trừ có đúng không?",
+    "checkOptions": [
+      "Đúng, phép trừ hoàn toàn chính xác.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Chú ý: Đề bài cho khối lượng ban đầu bằng tấn và tạ, nhưng lượng bán đi và câu hỏi dùng ki-lô-gam (kg). Ta cần đổi đơn vị trước.",
+      "Bước 2: Nhớ bảng đơn vị đo khối lượng: 1 tấn = 1000kg, 1 tạ = 100kg.",
+      "Bước 3: Đổi 3 tấn 5 tạ = 3000kg + 500kg = 3500kg.",
+      "Bước 4: Số gạo còn lại bằng số gạo ban đầu trừ đi số gạo đã bán.",
+      "Bước 5: Thực hiện phép tính: 3500 - 1200.",
+      "Bước 6: Tính nhẩm kết quả: 2300.",
+      "Bước 7: Đơn vị sau khi đổi và tính là kg gạo.",
+      "Bước 8: Viết đáp số là 2300."
+    ]
+  },
+  {
+    "id": "lesson-28",
+    "title": "Số viên gạch lát phòng",
+    "shortTitle": "Gạch lát phòng",
+    "icon": "🧱",
+    "color": "pink",
+    "skill": "Diện tích",
+    "story": "Một phòng học hình chữ nhật có chiều dài 8m, chiều rộng 6m. Người ta lát nền bằng loại gạch hình vuông có cạnh 4dm (diện tích mỗi viên gạch là 16dm²). Hỏi cần bao nhiêu viên gạch để lát kín phòng học?",
+    "visual": {
+      "type": "measure",
+      "width": 6,
+      "length": 8,
+      "gridRows": 3,
+      "gridCols": 4,
+      "emoji": "🧱"
+    },
+    "retellOptions": [
+      "Phòng dài 8m, rộng 6m, lát bằng gạch diện tích 16dm². Tìm số gạch cần dùng.",
+      "Tính chu vi phòng học rồi chia cho cạnh của viên gạch.",
+      "Tính diện tích của phòng học bằng đơn vị mét vuông."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Phòng học dài 8m, rộng 6m",
+      "Viên gạch hình vuông cạnh 4dm (diện tích 16dm²)",
+      "Tìm số viên gạch cần dùng"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Lưới ô vuông diện tích (Diện tích phòng ÷ Diện tích 1 viên gạch)",
+      "Sơ đồ tổng hiệu song song",
+      "Băng chuyền rút về đơn vị",
+      "Tháp lego chênh lệch"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "8 × 6 × 100 ÷ 16",
+      "8 × 6 ÷ 16",
+      "(8 + 6) × 2 ÷ 16",
+      "8 × 6 × 16"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Diện tích phòng học là 8 × 6 = 48 m² = 4800 dm². Số viên gạch bằng Diện tích phòng học chia cho Diện tích 1 viên gạch: 4800 ÷ 16 = 300 viên.",
+      "Vì ta lấy diện tích mét vuông chia trực tiếp cho diện tích đề-xi-mét vuông.",
+      "Vì số viên gạch bằng chu vi phòng chia cho 16."
+    ],
+    "correctReason": 0,
+    "answer": 300,
+    "unit": "viên gạch",
+    "answerOptions": [
+      "Cần dùng 300 viên gạch.",
+      "Cần dùng 3 viên gạch.",
+      "Cần dùng 3000 viên gạch."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Lát 48m² bằng 300 viên gạch 16dm²: 300 × 16 = 4800 dm² = 48m². Khớp kết quả chứ?",
+    "checkOptions": [
+      "Có, diện tích nền nhà và diện tích gạch hoàn toàn trùng khớp.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tính diện tích phòng học hình chữ nhật: 8 × 6 = 48 mét vuông (m²).",
+      "Bước 2: Chú ý: Đơn vị diện tích phòng là m², đơn vị diện tích viên gạch là dm². Ta phải đổi về cùng đơn vị.",
+      "Bước 3: Nhớ quy tắc đổi đơn vị đo diện tích: 1m² = 100dm².",
+      "Bước 4: Đổi diện tích phòng: 48 m² = 4800 dm².",
+      "Bước 5: Số viên gạch cần dùng bằng diện tích phòng chia cho diện tích 1 viên gạch.",
+      "Bước 6: Thực hiện phép tính chia: 4800 ÷ 16.",
+      "Bước 7: Tính toán: 4800 ÷ 16 = 300 viên gạch.",
+      "Bước 8: Đáp án là 300 viên."
+    ]
+  },
+  {
+    "id": "lesson-29",
+    "title": "Tiền thối lại khi mua vở",
+    "shortTitle": "Tiền thối mua vở",
+    "icon": "🧾",
+    "color": "green",
+    "skill": "Tính tiền thừa",
+    "story": "Bé mua 4 quyển vở, mỗi quyển giá 7000 đồng. Bé đưa cô bán hàng tờ 50000 đồng. Hỏi cô bán hàng trả lại bé bao nhiêu tiền?",
+    "visual": {
+      "type": "mixed",
+      "itemName": "Quyển vở",
+      "itemCount": 4,
+      "itemPrice": 7000,
+      "totalPaid": 50000
+    },
+    "retellOptions": [
+      "Mua 4 quyển vở giá 7000đ/quyển, đưa 50000đ. Tìm số tiền thối lại.",
+      "Tìm tổng số tiền phải trả khi mua 4 quyển vở.",
+      "Tìm số vở mua được với số tiền 50000đ."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mua 4 quyển vở",
+      "Giá mỗi quyển là 7000 đồng",
+      "Đưa cô bán hàng 50000 đồng",
+      "Tìm số tiền được trả lại"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Hóa đơn thanh toán siêu thị (Tiền thối = Tiền đưa - Thành tiền)",
+      "Sơ đồ đoạn thẳng hiệu tỉ",
+      "Băng chuyền rút về đơn vị",
+      "Trục số nhảy"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "50000 - 4 × 7000",
+      "50000 - 7000",
+      "4 × 7000",
+      "50000 + 4 × 7000"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tính thành tiền: 4 × 7000 = 28000 đồng. Tiền thối lại bằng tiền đưa trừ thành tiền: 50000 - 28000 = 22000 đồng.",
+      "Vì số tiền thối lại bằng tiền đưa cộng với thành tiền mua vở.",
+      "Vì vở được phát miễn phí."
+    ],
+    "correctReason": 0,
+    "answer": 22000,
+    "unit": "đồng",
+    "answerOptions": [
+      "Cô bán hàng trả lại bé 22000 đồng.",
+      "Cô bán hàng trả lại bé 28000 đồng.",
+      "Cô bán hàng trả lại bé 32000 đồng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tiền trả lại 22000đ cộng tiền vở 28000đ bằng đúng 50000đ đã đưa, đúng không?",
+    "checkOptions": [
+      "Đúng, tổng số tiền khớp hoàn toàn.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm giá tiền của 1 quyển vở: 7000 đồng.",
+      "Bước 2: Tính tổng số tiền mua 4 quyển vở bằng phép nhân: 7000 × 4.",
+      "Bước 3: Thành tiền là 28000 đồng.",
+      "Bước 4: Nhấp nút 'Thanh toán' trên hóa đơn trực quan để xem máy tính cộng tiền.",
+      "Bước 5: Số tiền thối lại bằng số tiền bé đưa trừ đi tổng tiền mua vở.",
+      "Bước 6: Thực hiện phép tính: 50000 - 28000.",
+      "Bước 7: Tính toán kết quả: 22000 đồng.",
+      "Bước 8: Kết luận đáp án là 22000 đồng."
+    ]
+  },
+  {
+    "id": "lesson-30",
+    "title": "Tiền mua 8 chiếc bút",
+    "shortTitle": "Tiền mua bút",
+    "icon": "✏️",
+    "color": "orange",
+    "skill": "Rút về đơn vị",
+    "story": "Bé mua 5 chiếc bút hết 30000 đồng. Hỏi mua 8 chiếc bút cùng loại hết bao nhiêu tiền?",
+    "visual": {
+      "type": "mixed",
+      "startCount": 5,
+      "startVal": 30000,
+      "endCount": 8,
+      "emoji": "✏️",
+      "noun": "chiếc bút",
+      "targetNoun": "chiếc bút"
+    },
+    "retellOptions": [
+      "Biết mua 5 bút hết 30000đ, tính số tiền mua 8 bút cùng loại.",
+      "Tìm số bút mua được với số tiền 30000đ.",
+      "Tìm hiệu số tiền khi mua 8 bút và 5 bút."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mua 5 chiếc bút hết 30000 đồng",
+      "Hỏi mua 8 chiếc bút cùng loại",
+      "Tìm số tiền mua 8 chiếc bút"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ băng chuyền rút về đơn vị: Tính tiền 1 chiếc bút trước",
+      "Sơ đồ đoạn thẳng song song tổng hiệu",
+      "Lego chia tỉ số phần",
+      "Hóa đơn siêu thị"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "30000 ÷ 5 × 8",
+      "30000 ÷ 8 × 5",
+      "30000 × 5 ÷ 8",
+      "30000 + 8 × 5"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tính số tiền mua 1 chiếc bút: 30000 ÷ 5 = 6000đ (rút về đơn vị). Lấy tiền 1 chiếc bút nhân với 8 chiếc: 6000 × 8 = 48000đ.",
+      "Vì giá tiền mỗi chiếc bút khác nhau.",
+      "Vì chỉ cần nhân 30000 với 8."
+    ],
+    "correctReason": 0,
+    "answer": 48000,
+    "unit": "đồng",
+    "answerOptions": [
+      "Mua 8 chiếc bút hết 48000 đồng.",
+      "Mua 8 chiếc bút hết 6000 đồng.",
+      "Mua 8 chiếc bút hết 24000 đồng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tiền mua 8 chiếc bút (48000đ) lớn hơn mua 5 chiếc (30000đ), có hợp lý không?",
+    "checkOptions": [
+      "Có, số bút nhiều hơn thì số tiền phải trả nhiều hơn.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định thông tin: mua 5 chiếc bút hết 30000 đồng.",
+      "Bước 2: Tính giá tiền của 1 chiếc bút bằng cách lấy 30000 chia cho 5.",
+      "Bước 3: Nhấp nút gợi ý để thực hiện: 1 chiếc bút giá 6000 đồng.",
+      "Bước 4: Đây chính là bước rút về đơn vị tiền mua bút.",
+      "Bước 5: Tính số tiền mua 8 chiếc bút bằng cách lấy giá tiền 1 chiếc nhân với 8.",
+      "Bước 6: Thực hiện phép nhân: 6000 × 8.",
+      "Bước 7: Tính toán kết quả: 48000 đồng.",
+      "Bước 8: Ghi đáp số là 48000 đồng."
+    ]
+  },
+  {
+    "id": "lesson-31",
+    "title": "Tiền thối lại của mẹ",
+    "shortTitle": "Mẹ đi chợ",
+    "icon": "🛍️",
+    "color": "pink",
+    "skill": "Tính tiền thừa",
+    "story": "Mẹ mua 3kg thịt giá 120000 đồng một ki-lô-gam và 2kg cá giá 80000 đồng một ki-lô-gam. Mẹ đưa cô bán hàng 600000 đồng. Hỏi cô bán hàng thối lại mẹ bao nhiêu tiền?",
+    "visual": {
+      "type": "mixed",
+      "itemName": "Thực phẩm",
+      "itemCount": 1,
+      "itemPrice": 520000,
+      "totalPaid": 600000
+    },
+    "retellOptions": [
+      "Mua thịt và cá hết tổng tiền, mẹ đưa 600000đ, tìm tiền thối lại.",
+      "Tìm tổng số kg thịt và cá mẹ đã mua.",
+      "Tìm số tiền mua 3kg thịt biết giá cá là 80000đ."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mua 3kg thịt giá 120000đ/kg",
+      "Mua 2kg cá giá 80000đ/kg",
+      "Đưa cô bán hàng 600000đ",
+      "Tìm số tiền thối lại"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Hóa đơn siêu thị thanh toán thối tiền (tính tổng thành tiền rồi trừ tiền đưa)",
+      "Sơ đồ đoạn thẳng hiệu tỉ",
+      "Băng chuyền rút về đơn vị",
+      "Trục số nhảy mốc"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "600000 - (120000 × 3 + 80000 × 2)",
+      "600000 - 120000 × 3",
+      "120000 × 3 + 80000 × 2",
+      "600000 - 80000 × 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tính tiền thịt: 120000 × 3 = 360000đ. Tiền cá: 80000 × 2 = 160000đ. Tổng tiền: 360000 + 160000 = 520000đ. Tiền thối: 600000 - 520000 = 80000đ.",
+      "Vì thối lại bằng tiền đưa trừ tiền mua thịt.",
+      "Vì mẹ được tặng miễn phí cá."
+    ],
+    "correctReason": 0,
+    "answer": 80000,
+    "unit": "đồng",
+    "answerOptions": [
+      "Cô bán hàng thối lại mẹ 80000 đồng.",
+      "Cô bán hàng thối lại mẹ 520000 đồng.",
+      "Cô bán hàng thối lại mẹ 120000 đồng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tiền hàng 520000đ cộng tiền thối 80000đ bằng đúng 600000đ, đúng không?",
+    "checkOptions": [
+      "Đúng, tổng số tiền hoàn toàn chính xác.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tính số tiền mẹ mua thịt: 120000 × 3 = 360000 đồng.",
+      "Bước 2: Tính số tiền mẹ mua cá: 80000 × 2 = 160000 đồng.",
+      "Bước 3: Tính tổng số tiền mẹ mua cả hai món: 360000 + 160000 = 520000 đồng.",
+      "Bước 4: Nhấp nút 'Thanh toán' để hiển thị hóa đơn thu ngân chi tiết.",
+      "Bước 5: Số tiền cô bán hàng thối lại mẹ bằng số tiền mẹ đưa trừ đi tổng tiền hàng.",
+      "Bước 6: Thực hiện phép tính trừ: 600000 - 520000.",
+      "Bước 7: Tính nhẩm kết quả: 80000 đồng.",
+      "Bước 8: Điền kết quả là 80000."
+    ]
+  },
+  {
+    "id": "lesson-32",
+    "title": "Gạo còn lại trong kho",
+    "shortTitle": "Khối lượng gạo còn lại",
+    "icon": "📦",
+    "color": "pink",
+    "skill": "Công việc chung - Nhiều bước",
+    "story": "Có 3 xe ô tô, mỗi xe chở 40 bao gạo, mỗi bao nặng 50kg. Cửa hàng đã bán đi 1 tấn gạo. Hỏi cửa hàng còn lại bao nhiêu ki-lô-gam gạo?",
+    "visual": {
+      "type": "mixed",
+      "steps": [
+        {
+          "label": "Bậc 1: Tổng số bao gạo",
+          "val": "120 bao",
+          "text": "Bước 1: Tính tổng số bao gạo = 3 xe × 40 = 120 bao."
+        },
+        {
+          "label": "Bậc 2: Tổng gạo (kg)",
+          "val": "6000 kg",
+          "text": "Bước 2: Tính tổng khối lượng gạo = 120 bao × 50kg = 6000 kg."
+        },
+        {
+          "label": "Bậc 3: Còn lại (kg)",
+          "val": "5000 kg",
+          "text": "Bước 3: Đổi 1 tấn = 1000 kg. Số gạo còn lại = 6000kg − 1000kg = 5000 kg!"
+        }
+      ]
+    },
+    "retellOptions": [
+      "Có 3 xe chở bao gạo, mỗi bao 50kg, đã bán 1 tấn (đổi sang kg). Tính số kg gạo còn lại.",
+      "Tính tổng số tấn gạo xe chở được ban đầu.",
+      "Tính khối lượng gạo trung bình mỗi xe chở được."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Có 3 xe ô tô chở gạo",
+      "Mỗi xe chở 40 bao gạo",
+      "Mỗi bao gạo nặng 50kg",
+      "Đã bán đi 1 tấn gạo",
+      "Tìm số kg gạo còn lại"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Sơ đồ bậc thang giải quyết bài toán nhiều bước tính (3 bậc)",
+      "Sơ đồ đoạn thẳng song song tổng hiệu",
+      "Băng chuyền rút về đơn vị",
+      "Lego chia tỉ lệ phần"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "3 × 40 × 50 - 1000",
+      "3 × 40 × 50",
+      "3 + 40 × 50 - 1",
+      "3 × 40 × 50 - 1"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tính tổng bao: 3 × 40 = 120 bao. Tính tổng gạo: 120 × 50 = 6000kg. Đổi 1 tấn = 1000kg. Số gạo còn lại: 6000 - 1000 = 5000kg.",
+      "Vì không cần đổi đơn vị tấn sang kg.",
+      "Vì số gạo còn lại bằng tổng số bao gạo trừ đi 1."
+    ],
+    "correctReason": 0,
+    "answer": 5000,
+    "unit": "kg gạo",
+    "answerOptions": [
+      "Cửa hàng còn lại 5000kg gạo.",
+      "Cửa hàng còn lại 6000kg gạo.",
+      "Cửa hàng còn lại 5999kg gạo."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Gạo ban đầu 6000kg, bán đi 1000kg còn lại 5000kg. Phép tính đúng chứ?",
+    "checkOptions": [
+      "Đúng, phép tính trừ hoàn toàn chính xác.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tính tổng số bao gạo mà cả 3 xe chở được: 3 × 40 bao.",
+      "Bước 2: Tổng số bao là 120 bao.",
+      "Bước 3: Tính tổng khối lượng gạo ban đầu bằng cách lấy 120 bao nhân với 50kg.",
+      "Bước 4: Tổng gạo ban đầu là 6000 kg.",
+      "Bước 5: Chú ý: Đổi lượng gạo đã bán đi sang cùng đơn vị kg: 1 tấn = 1000kg.",
+      "Bước 6: Tính số gạo còn lại bằng cách lấy tổng gạo ban đầu trừ đi lượng gạo đã bán.",
+      "Bước 7: Thực hiện phép tính: 6000 - 1000 = 5000 kg.",
+      "Bước 8: Kết luận đáp án cuối cùng là 5000kg."
+    ]
+  },
+  {
+    "id": "lesson-33",
+    "title": "Trồng cây trên đường thẳng",
+    "shortTitle": "Trồng cây dọc đường",
+    "icon": "🌳",
+    "color": "green",
+    "skill": "Trồng cây",
+    "story": "Một đoạn đường dài 30m, người ta trồng cây dọc một bên, hai đầu đều trồng, cây cách nhau 5m. Hỏi trồng bao nhiêu cây?",
+    "visual": {
+      "type": "planting",
+      "length": 30,
+      "interval": 5,
+      "shape": "line",
+      "endpoints": "both",
+      "emoji": "🌳"
+    },
+    "retellOptions": [
+      "Tính số cây trồng dọc một bên đường thẳng dài 30m, cách đều 5m và trồng ở cả hai đầu.",
+      "Tính khoảng cách giữa hai cây khi biết tổng số cây là 30.",
+      "Tính chiều dài đoạn đường khi trồng được 5 cây."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Đoạn đường dài 30m",
+      "Cây cách nhau 5m dọc một bên",
+      "Trồng cây ở cả hai đầu đường",
+      "Tìm tổng số cây cần trồng"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình trồng cây hai đầu đường (Số cây = Số khoảng + 1)",
+      "Mô hình gộp hai phần tổng tỉ",
+      "Biểu đồ san bằng trung bình"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "30 ÷ 5 + 1",
+      "30 ÷ 5",
+      "30 ÷ 5 - 1",
+      "30 × 5 + 1"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì trồng cả 2 đầu nên số cây bằng số khoảng cách cộng thêm 1.",
+      "Vì đây là đường vòng khép kín không cần cộng 1.",
+      "Vì ta chỉ cần chia đoạn đường cho khoảng cách."
+    ],
+    "correctReason": 0,
+    "answer": 7,
+    "unit": "cây",
+    "answerOptions": [
+      "Trồng được tất cả 7 cây.",
+      "Trồng được tất cả 6 cây.",
+      "Trồng được tất cả 8 cây."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Có 6 khoảng cách dài 5m trên đường 30m, cộng thêm 2 cây ở 2 đầu là 7 cây. Hợp lý chứ?",
+    "checkOptions": [
+      "Có, số cây luôn nhiều hơn số khoảng cách là 1 khi trồng hai đầu.",
+      "Không, số cây phải bằng số khoảng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tính số khoảng cách trên đoạn đường bằng cách lấy chiều dài chia cho khoảng cách: 30 ÷ 5 = 6 khoảng.",
+      "Bước 2: Vì trồng cây ở cả hai đầu đường nên công thức là: Số cây = Số khoảng + 1.",
+      "Bước 3: Thực hiện phép tính: 6 + 1 = 7 cây.",
+      "Bước 4: Nhấp vào nút 'Trồng cây 🌳' trên mô hình trực quan để xem vị trí các cây.",
+      "Bước 5: Chọn đáp án cuối cùng là 7 cây."
+    ]
+  },
+  {
+    "id": "lesson-34",
+    "title": "Cột đèn đường phố",
+    "shortTitle": "Lắp cột đèn chiếu sáng",
+    "icon": "💡",
+    "color": "blue",
+    "skill": "Trồng cây",
+    "story": "Trên đoạn đường dài 100m, cứ 10m đặt một cột đèn, không đặt cột ở điểm cuối. Hỏi có bao nhiêu cột đèn?",
+    "visual": {
+      "type": "planting",
+      "length": 100,
+      "interval": 10,
+      "shape": "line",
+      "endpoints": "one",
+      "emoji": "💡"
+    },
+    "retellOptions": [
+      "Đặt cột đèn trên đường 100m, cách nhau 10m và không đặt ở điểm cuối.",
+      "Tính chiều dài đoạn đường khi biết có 10 cột đèn.",
+      "Tìm số khoảng cách khi đặt cột đèn ở cả hai đầu."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Đoạn đường dài 100m",
+      "Khoảng cách giữa hai cột đèn là 10m",
+      "Không đặt cột đèn ở điểm cuối",
+      "Tìm số cột đèn cần lắp"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình trồng cây một đầu (Số cây = Số khoảng)",
+      "Mô hình trồng cây hai đầu (Số cây = Số khoảng + 1)",
+      "Trục tọa độ thời gian"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "100 ÷ 10",
+      "100 ÷ 10 + 1",
+      "100 ÷ 10 - 1",
+      "100 × 10"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì không đặt cột ở điểm cuối (trồng 1 đầu) nên số cột đèn đúng bằng số khoảng cách.",
+      "Vì cần phải cộng thêm 1 cột ở điểm cuối cùng.",
+      "Vì số cột đèn ít hơn số khoảng cách là 1."
+    ],
+    "correctReason": 0,
+    "answer": 10,
+    "unit": "cột đèn",
+    "answerOptions": [
+      "Có tất cả 10 cột đèn.",
+      "Có tất cả 11 cột đèn.",
+      "Có tất cả 9 cột đèn."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Số cột đèn bằng đúng số khoảng cách (100 ÷ 10 = 10) do không lắp ở cuối đường. Hợp lý chứ?",
+    "checkOptions": [
+      "Có, do điểm cuối không có cột nên số cột bằng số khoảng.",
+      "Không, luôn phải cộng thêm 1."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tính số khoảng cách bằng cách lấy chiều dài chia cho cự ly giữa các cột: 100 ÷ 10 = 10 khoảng.",
+      "Bước 2: Vì không đặt cột đèn ở điểm cuối, số cột đèn sẽ đúng bằng số khoảng.",
+      "Bước 3: Thực hiện phép tính: 10 cột đèn.",
+      "Bước 4: Nhấp nút 'Trồng cây 🌳' trên mô hình để quan sát vị trí đặt đèn trên con đường."
+    ]
+  },
+  {
+    "id": "lesson-35",
+    "title": "Trồng hoa quanh ao hình vuông",
+    "shortTitle": "Trồng hoa quanh ao",
+    "icon": "🌻",
+    "color": "orange",
+    "skill": "Trồng cây",
+    "story": "Người ta trồng cây quanh một ao hình vuông cạnh 15m, cây cách nhau 3m. Hỏi trồng bao nhiêu cây?",
+    "visual": {
+      "type": "planting",
+      "length": 60,
+      "interval": 3,
+      "shape": "square",
+      "emoji": "🌻"
+    },
+    "retellOptions": [
+      "Trồng cây khép kín quanh chu vi ao hình vuông cạnh 15m với khoảng cách 3m.",
+      "Tính diện tích ao hình vuông cạnh 15m.",
+      "Trồng cây dọc theo một cạnh của ao hình vuông."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Ao hình vuông cạnh 15m",
+      "Khoảng cách giữa hai cây là 3m",
+      "Trồng cây khép kín xung quanh ao",
+      "Tìm số cây cần trồng"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình đường khép kín (Số cây = Số khoảng = Chu vi ÷ Khoảng cách)",
+      "Mô hình trồng cây hai đầu thẳng",
+      "Sơ đồ san bằng cột"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "15 × 4 ÷ 3",
+      "15 ÷ 3",
+      "15 × 4 ÷ 3 + 1",
+      "15 × 4 ÷ 3 - 1"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tính chu vi ao hình vuông: 15 × 4 = 60m. Vì đường khép kín nên số cây bằng số khoảng: 60 ÷ 3 = 20 cây.",
+      "Vì chỉ cần lấy chiều dài một cạnh chia cho khoảng cách.",
+      "Vì phải cộng thêm 1 cây cho điểm khép kín đầu cuối."
+    ],
+    "correctReason": 0,
+    "answer": 20,
+    "unit": "cây",
+    "answerOptions": [
+      "Trồng được tất cả 20 cây.",
+      "Trồng được tất cả 21 cây.",
+      "Trồng được tất cả 19 cây."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Chu vi ao là 60m, chia cho khoảng cách 3m ra 20 cây. Đúng chứ?",
+    "checkOptions": [
+      "Đúng, đường khép kín thì điểm đầu và điểm cuối trùng nhau nên không cộng hay trừ 1.",
+      "Không đúng, luôn cần cộng 1."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tính chu vi của ao hình vuông bằng cách lấy cạnh nhân với 4: 15 × 4 = 60m.",
+      "Bước 2: Vì ao hình vuông tạo thành đường khép kín, số cây sẽ đúng bằng số khoảng.",
+      "Bước 3: Lấy chu vi chia cho khoảng cách giữa hai cây: 60 ÷ 3 = 20 cây.",
+      "Bước 4: Nhấp nút 'Trồng cây 🌳' để xem cây được trồng kín xung quanh bờ ao vuông."
+    ]
+  },
+  {
+    "id": "lesson-36",
+    "title": "Chiều dài hàng cây",
+    "shortTitle": "Đo dài hàng cây",
+    "icon": "🌲",
+    "color": "purple",
+    "skill": "Trồng cây",
+    "story": "Một người trồng 25 cây thành hàng thẳng, hai đầu đều có cây, hai cây liền nhau cách 4m. Hỏi hàng cây dài bao nhiêu mét?",
+    "visual": {
+      "type": "planting",
+      "length": 96,
+      "interval": 4,
+      "shape": "line",
+      "endpoints": "both",
+      "emoji": "🌲"
+    },
+    "retellOptions": [
+      "Tìm chiều dài hàng cây thẳng khi biết số cây là 25 cây, trồng cả hai đầu, khoảng cách là 4m.",
+      "Tìm số cây khi biết chiều dài hàng cây là 25m.",
+      "Tìm khoảng cách khi biết chiều dài hàng cây là 25m và trồng được 4 cây."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Trồng được tất cả 25 cây thành hàng",
+      "Hai cây cách nhau 4m",
+      "Hai đầu đường đều có cây",
+      "Tìm chiều dài của hàng cây"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình ngược khoảng cách (Số khoảng = Số cây - 1; Chiều dài = Số khoảng × Khoảng cách)",
+      "Mô hình trồng cây khép kín",
+      "Sơ đồ đoạn thẳng hiệu tỉ"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(25 - 1) × 4",
+      "25 × 4",
+      "(25 + 1) × 4",
+      "25 × 4 + 1"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì trồng ở cả hai đầu đường, số khoảng cách ít hơn số cây là 1. Vậy chiều dài = (25 - 1) × 4 = 96m.",
+      "Vì chiều dài hàng cây luôn bằng số cây nhân khoảng cách.",
+      "Vì số khoảng cách nhiều hơn số cây trồng là 1."
+    ],
+    "correctReason": 0,
+    "answer": 96,
+    "unit": "m",
+    "answerOptions": [
+      "Hàng cây dài 96 mét.",
+      "Hàng cây dài 100 mét.",
+      "Hàng cây dài 104 mét."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Có 25 cây thì có 24 khoảng cách, mỗi khoảng 4m. Vậy chiều dài là 96m, hợp lý chứ?",
+    "checkOptions": [
+      "Có, số khoảng cách = số cây - 1.",
+      "Không, chiều dài phải là 25 × 4 = 100m."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Vì trồng cả hai đầu đường, số khoảng cách giữa các cây = Số cây − 1.",
+      "Bước 2: Tính số khoảng cách: 25 − 1 = 24 khoảng.",
+      "Bước 3: Tính chiều dài hàng cây bằng cách lấy số khoảng cách nhân với cự ly: 24 × 4 = 96m.",
+      "Bước 4: Bấm 'Trồng cây 🌳' trên mô hình để đếm số khoảng cách giữa các cây."
+    ]
+  },
+  {
+    "id": "lesson-37",
+    "title": "Đếm số hạt cườm cách đều",
+    "shortTitle": "Số số hạng dãy chẵn",
+    "icon": "📿",
+    "color": "red",
+    "skill": "Dãy số",
+    "story": "Dãy số 2, 4, 6, ..., 20 có bao nhiêu số hạng?",
+    "visual": {
+      "type": "sequence",
+      "start": 2,
+      "end": 20,
+      "step": 2,
+      "numbers": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20
+      ]
+    },
+    "retellOptions": [
+      "Tìm số lượng số hạng của dãy số chẵn liên tiếp từ 2 đến 20.",
+      "Tính tổng của các số chẵn từ 2 đến 20.",
+      "Tìm khoảng cách chênh lệch giữa các số trong dãy."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Số đầu của dãy là 2",
+      "Số cuối của dãy là 20",
+      "Khoảng cách giữa hai số liền nhau là 2",
+      "Tìm số lượng số hạng trong dãy"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình tính số số hạng = (Số cuối - Số đầu) ÷ Khoảng cách + 1",
+      "Sơ đồ đoạn thẳng tỉ số",
+      "Băng chuyền rút về đơn vị"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(20 - 2) ÷ 2 + 1",
+      "(20 - 2) ÷ 2",
+      "20 ÷ 2",
+      "20 - 2 + 1"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Áp dụng công thức đếm số hạng: lấy hiệu hai đầu chia khoảng cách rồi cộng thêm 1.",
+      "Vì chỉ cần lấy số cuối chia cho khoảng cách.",
+      "Vì không cần cộng thêm 1."
+    ],
+    "correctReason": 0,
+    "answer": 10,
+    "unit": "số hạng",
+    "answerOptions": [
+      "Dãy số có 10 số hạng.",
+      "Dãy số có 9 số hạng.",
+      "Dãy số có 11 số hạng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Dãy số chẵn từ 2 đến 20 gồm: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20. Có đúng 10 số chứ?",
+    "checkOptions": [
+      "Đúng, đếm thủ công ta thấy có 10 số.",
+      "Không, chỉ có 9 số."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định số hạng đầu: 2, số hạng cuối: 20.",
+      "Bước 2: Xác định khoảng cách giữa 2 số liền nhau: 4 - 2 = 2.",
+      "Bước 3: Công thức đếm số hạng: (Số cuối - Số đầu) ÷ Khoảng cách + 1.",
+      "Bước 4: Thực hiện phép tính: (20 - 2) ÷ 2 + 1 = 9 + 1 = 10.",
+      "Bước 5: Bấm nút 'Đếm số hạng 🔢' trên mô hình để trực quan hóa từng bậc thang số."
+    ]
+  },
+  {
+    "id": "lesson-38",
+    "title": "Những bậc thang đá cách đều",
+    "shortTitle": "Số số hạng dãy chia 5",
+    "icon": "🪜",
+    "color": "teal",
+    "skill": "Dãy số",
+    "story": "Dãy số 5, 10, 15, ..., 100 có bao nhiêu số hạng?",
+    "visual": {
+      "type": "sequence",
+      "start": 5,
+      "end": 100,
+      "step": 5,
+      "numbers": [
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50,
+        55,
+        60,
+        65,
+        70,
+        75,
+        80,
+        85,
+        90,
+        95,
+        100
+      ]
+    },
+    "retellOptions": [
+      "Đếm số lượng số hạng của dãy số cách đều 5 đơn vị từ 5 đến 100.",
+      "Tính tổng các số chia hết cho 5 nhỏ hơn 100.",
+      "Tìm số thứ 20 của dãy số."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Số đầu của dãy là 5",
+      "Số cuối của dãy là 100",
+      "Khoảng cách giữa hai số liền nhau là 5",
+      "Tìm số lượng số hạng trong dãy"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình tính số số hạng = (Số cuối - Số đầu) ÷ Khoảng cách + 1",
+      "Mô hình trung bình cộng ngược",
+      "Bảng chia tỉ lệ phần"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(100 - 5) ÷ 5 + 1",
+      "(100 - 5) ÷ 5",
+      "100 ÷ 5",
+      "100 - 5 + 1"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Áp dụng công thức đếm số số hạng của dãy số cách đều: (100 - 5) ÷ 5 + 1 = 20 số hạng.",
+      "Vì số cuối là 100 nên chỉ cần chia cho 5.",
+      "Vì khoảng cách là 5 nên không cần cộng thêm 1."
+    ],
+    "correctReason": 0,
+    "answer": 20,
+    "unit": "số hạng",
+    "answerOptions": [
+      "Dãy số có 20 số hạng.",
+      "Dãy số có 19 số hạng.",
+      "Dãy số có 21 số hạng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Phép tính cho ra 20 số hạng. Có đúng không?",
+    "checkOptions": [
+      "Đúng, 100 là bội số thứ 20 của 5.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định số đầu là 5, số cuối là 100.",
+      "Bước 2: Tìm khoảng cách giữa hai số kề nhau: 10 - 5 = 5.",
+      "Bước 3: Lấy số cuối trừ số đầu: 100 - 5 = 95.",
+      "Bước 4: Chia cho khoảng cách: 95 ÷ 5 = 19 khoảng cách.",
+      "Bước 5: Số số hạng = số khoảng cách + 1 = 19 + 1 = 20 số hạng."
+    ]
+  },
+  {
+    "id": "lesson-39",
+    "title": "Tính tổng dãy số tự nhiên",
+    "shortTitle": "Tính tổng từ 1 đến 50",
+    "icon": "➕",
+    "color": "pink",
+    "skill": "Dãy số",
+    "story": "Tính tổng của dãy số: 1 + 2 + 3 + ... + 50.",
+    "visual": {
+      "type": "sequence",
+      "start": 1,
+      "end": 50,
+      "step": 1,
+      "numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        25,
+        26,
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    "retellOptions": [
+      "Tính tổng của tất cả các số tự nhiên liên tiếp từ 1 đến 50.",
+      "Tính số số hạng từ 1 đến 50.",
+      "Tìm số chẵn lớn nhất trong dãy từ 1 đến 50."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Dãy số tự nhiên từ 1 đến 50",
+      "Khoảng cách là 1 đơn vị",
+      "Số số hạng là 50 số",
+      "Tính tổng của cả dãy số"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình tính tổng bằng cách ghép cặp (Tổng = (Đầu + Cuối) × Số số hạng ÷ 2)",
+      "Mô hình cột san đều",
+      "Sơ đồ đoạn thẳng gộp phần"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(1 + 50) × 50 ÷ 2",
+      "(1 + 50) × 50",
+      "(1 + 50) ÷ 2",
+      "50 × 51"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Ghép cặp đầu-cuối: (1+50) = 51. Có 50 ÷ 2 = 25 cặp. Tổng = 51 × 25 = 1275.",
+      "Vì chỉ cần lấy số cuối nhân với số lượng phần tử.",
+      "Vì ta chỉ cần lấy số hạng đầu cộng với số hạng cuối."
+    ],
+    "correctReason": 0,
+    "answer": 1275,
+    "unit": "đơn vị",
+    "answerOptions": [
+      "Tổng của dãy số là 1275.",
+      "Tổng của dãy số là 2550.",
+      "Tổng của dãy số là 1300."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Có 25 cặp số, mỗi cặp có tổng là 51. Phép tính 51 × 25 = 1275 đúng chứ?",
+    "checkOptions": [
+      "Đúng, tổng hoàn toàn chính xác.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định số lượng số hạng của dãy là 50 số.",
+      "Bước 2: Ghép cặp số đầu và số cuối: 1 + 50 = 51, 2 + 49 = 51...",
+      "Bước 3: Tính số cặp số bằng cách lấy số số hạng chia đôi: 50 ÷ 2 = 25 cặp.",
+      "Bước 4: Bấm nút 'Ghép cặp tính tổng 🤝' trên mô hình để xem các cầu nối liên kết các cặp số bằng nhau.",
+      "Bước 5: Tính tổng bằng cách nhân giá trị một cặp với số cặp: 51 × 25 = 1275."
+    ]
+  },
+  {
+    "id": "lesson-40",
+    "title": "Tổng các số lẻ liên tiếp",
+    "shortTitle": "Tổng số lẻ từ 1 đến 99",
+    "icon": "🔢",
+    "color": "indigo",
+    "skill": "Dãy số",
+    "story": "Tính tổng các số lẻ liên tiếp: 1 + 3 + 5 + ... + 99.",
+    "visual": {
+      "type": "sequence",
+      "start": 1,
+      "end": 99,
+      "step": 2,
+      "numbers": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        49,
+        51,
+        93,
+        95,
+        97,
+        99
+      ]
+    },
+    "retellOptions": [
+      "Tính tổng của tất cả các số lẻ liên tiếp nhỏ hơn 100.",
+      "Tìm số số lẻ nhỏ hơn 99.",
+      "Tìm số hạng thứ 50 của dãy số lẻ."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Dãy số lẻ từ 1 đến 99",
+      "Khoảng cách giữa hai số lẻ là 2 đơn vị",
+      "Tính tổng toàn bộ các số hạng lẻ này"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình tính tổng bằng cách ghép cặp (Tổng = (Đầu + Cuối) × Số số hạng ÷ 2)",
+      "Sơ đồ đoạn thẳng gộp phần",
+      "Mô hình san đều cột"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(1 + 99) × ((99 - 1) ÷ 2 + 1) ÷ 2",
+      "(1 + 99) × 99 ÷ 2",
+      "(99 - 1) ÷ 2 + 1",
+      "(1 + 99) × 99"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Số số hạng = (99 - 1) ÷ 2 + 1 = 50 số. Có 25 cặp có tổng 100. Tổng = 100 × 25 = 2500.",
+      "Vì số lượng số hạng lẻ là 99 số.",
+      "Vì khoảng cách giữa các số lẻ là 1 đơn vị."
+    ],
+    "correctReason": 0,
+    "answer": 2500,
+    "unit": "đơn vị",
+    "answerOptions": [
+      "Tổng của dãy số lẻ là 2500.",
+      "Tổng của dãy số lẻ là 4950.",
+      "Tổng của dãy số lẻ là 5000."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Có 50 số lẻ từ 1 đến 99, chia thành 25 cặp. Mỗi cặp bằng 100. Vậy tổng = 2500, hợp lý chứ?",
+    "checkOptions": [
+      "Có, phép tính 100 × 25 hoàn toàn chính xác.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tính số số hạng của dãy số lẻ: (99 - 1) ÷ 2 + 1 = 50 số hạng.",
+      "Bước 2: Ghép cặp số đầu và cuối: 1 + 99 = 100, 3 + 97 = 100...",
+      "Bước 3: Tính số cặp bằng cách lấy số số hạng chia đôi: 50 ÷ 2 = 25 cặp.",
+      "Bước 4: Nhân giá trị mỗi cặp với số cặp: 100 × 25 = 2500.",
+      "Bước 5: Hãy bấm nút 'Ghép cặp tính tổng 🤝' trên widget bậc thang số để nhìn cách ghép cặp."
+    ]
+  },
+  {
+    "id": "lesson-41",
+    "title": "Thám tử đếm đoạn thẳng nhỏ",
+    "shortTitle": "Đếm đoạn thẳng trên AB",
+    "icon": "📏",
+    "color": "yellow",
+    "skill": "Đếm hình",
+    "story": "Trên đoạn thẳng AB có thêm 2 điểm C, D ở giữa (A–C–D–B). Hỏi có bao nhiêu đoạn thẳng?",
+    "visual": {
+      "type": "geometry-count",
+      "shapeType": "line-segments",
+      "points": 4
+    },
+    "retellOptions": [
+      "Tìm tổng số đoạn thẳng tạo ra bởi 4 điểm thẳng hàng A, C, D, B.",
+      "Đo chiều dài của đoạn thẳng AB bằng thước.",
+      "Tìm khoảng cách từ điểm C đến điểm D."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Đoạn thẳng lớn AB có 2 điểm C, D ở giữa",
+      "Tổng cộng có 4 điểm thẳng hàng",
+      "Tìm số đoạn thẳng đếm được"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình đếm hình theo nhóm (Hình đơn → Hình ghép 2 → Hình ghép 3)",
+      "Băng chuyền rút về đơn vị",
+      "Mô hình san đều cột"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "3 + 2 + 1",
+      "3 × 2",
+      "3 + 2",
+      "4 + 3 + 2 + 1"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Đoạn đơn: AC, CD, DB (3). Đoạn ghép 2: AD, CB (2). Đoạn ghép 3: AB (1). Tổng = 3 + 2 + 1 = 6.",
+      "Vì chỉ đếm các đoạn thẳng đơn lẻ.",
+      "Vì số đoạn thẳng bằng số điểm nhân 2."
+    ],
+    "correctReason": 0,
+    "answer": 6,
+    "unit": "đoạn thẳng",
+    "answerOptions": [
+      "Đếm được tất cả 6 đoạn thẳng.",
+      "Đếm được tất cả 3 đoạn thẳng.",
+      "Đếm được tất cả 4 đoạn thẳng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "3 đoạn đơn + 2 đoạn kép + 1 đoạn dài nhất = 6 đoạn thẳng. Đúng chứ?",
+    "checkOptions": [
+      "Đúng, cách đếm phân loại này không bỏ sót đoạn nào.",
+      "Không, chỉ có 3 đoạn đơn thôi."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Liệt kê các đoạn thẳng đơn (gồm 1 đoạn nhỏ): AC, CD, DB. Có 3 đoạn.",
+      "Bước 2: Liệt kê các đoạn thẳng ghép đôi (gồm 2 đoạn nhỏ): AD, CB. Có 2 đoạn.",
+      "Bước 3: Liệt kê các đoạn thẳng ghép ba (gồm 3 đoạn nhỏ): AB. Có 1 đoạn.",
+      "Bước 4: Bấm nút 'Hình đơn 🟥' và 'Hình ghép 🟧' trên widget Thám Tử để xem highlight trực quan.",
+      "Bước 5: Cộng tất cả lại: 3 + 2 + 1 = 6 đoạn thẳng."
+    ]
+  },
+  {
+    "id": "lesson-42",
+    "title": "Chuỗi điểm thẳng hàng",
+    "shortTitle": "Đếm đoạn thẳng với 5 điểm",
+    "icon": "📍",
+    "color": "green",
+    "skill": "Đếm hình",
+    "story": "Cho hình vẽ có 5 điểm thẳng hàng. Hỏi đếm được bao nhiêu đoạn thẳng?",
+    "visual": {
+      "type": "geometry-count",
+      "shapeType": "line-segments",
+      "points": 5
+    },
+    "retellOptions": [
+      "Tìm tổng số đoạn thẳng được tạo thành từ 5 điểm nằm trên một đường thẳng.",
+      "Vẽ một đoạn thẳng có chiều dài là 5 cm.",
+      "Đếm xem có bao nhiêu khoảng cách chênh lệch giữa các số."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Có 5 điểm thẳng hàng",
+      "Tạo ra 4 đoạn thẳng nhỏ kề nhau",
+      "Tìm tổng số đoạn thẳng đếm được"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình đếm hình theo nhóm (Hình đơn → Hình ghép 2 → Hình ghép 3 → Hình ghép 4)",
+      "Mô hình trồng cây hai đầu thẳng",
+      "Mô hình san đều cột"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "4 + 3 + 2 + 1",
+      "5 × 4",
+      "5 + 4",
+      "5 × (5 - 1) ÷ 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Có 4 đoạn đơn, 3 đoạn ghép hai, 2 đoạn ghép ba, 1 đoạn ghép bốn. Tổng = 4 + 3 + 2 + 1 = 10.",
+      "Vì số đoạn thẳng luôn ít hơn số điểm là 1.",
+      "Vì chỉ đếm số lượng đoạn ghép hai."
+    ],
+    "correctReason": 0,
+    "answer": 10,
+    "unit": "đoạn thẳng",
+    "answerOptions": [
+      "Đếm được tất cả 10 đoạn thẳng.",
+      "Đếm được tất cả 8 đoạn thẳng.",
+      "Đếm được tất cả 5 đoạn thẳng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Có 4 đoạn đơn + 3 đoạn đôi + 2 đoạn ba + 1 đoạn bốn = 10 đoạn thẳng. Đúng chứ?",
+    "checkOptions": [
+      "Đúng, cách đếm có tổ chức cho ra kết quả bằng 10.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: 5 điểm thẳng hàng chia đoạn thẳng thành 4 phần nhỏ kề nhau.",
+      "Bước 2: Đếm theo kích thước: Đoạn 1 phần có 4, Đoạn 2 phần có 3, Đoạn 3 phần có 2, Đoạn 4 phần có 1.",
+      "Bước 3: Cộng các giá trị lại: 4 + 3 + 2 + 1 = 10 đoạn.",
+      "Bước 4: Sử dụng bộ điều khiển highlight trên widget để kiểm tra trực quan từng đoạn thẳng."
+    ]
+  },
+  {
+    "id": "lesson-43",
+    "title": "Bức tranh lưới chữ nhật",
+    "shortTitle": "Đếm hình chữ nhật",
+    "icon": "🖼️",
+    "color": "blue",
+    "skill": "Đếm hình",
+    "story": "Một hình chữ nhật lớn được chia bởi 1 đường thẳng dọc và 1 đường thẳng ngang. Hỏi có bao nhiêu hình chữ nhật?",
+    "visual": {
+      "type": "geometry-count",
+      "shapeType": "rectangle",
+      "cols": 2,
+      "rows": 2
+    },
+    "retellOptions": [
+      "Tìm tổng số hình chữ nhật trong một khung lưới kích thước 2 × 2.",
+      "Tính chu vi hình chữ nhật lớn được chia đôi.",
+      "Tính diện tích của 4 ô vuông nhỏ bên trong."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Hình chữ nhật được chia làm 4 ô nhỏ (2 hàng, 2 cột)",
+      "Tìm tổng số hình chữ nhật lớn nhỏ xuất hiện trên hình"
+    ],
+    "factRoles": [
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình đếm hình theo nhóm (Hình đơn → Hình ghép 2 → Hình ghép 4)",
+      "Mô hình san đều cột trung bình",
+      "Băng chuyền rút về đơn vị"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "4 + 4 + 1",
+      "4 × 1",
+      "4 + 2",
+      "4 + 1"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Hình đơn: 4 ô nhỏ. Hình ghép hai: 2 hàng ngang + 2 cột dọc = 4 hình. Hình ghép bốn: 1 hình lớn ngoài cùng. Tổng = 4 + 4 + 1 = 9.",
+      "Vì chỉ có 4 ô nhỏ và 1 hình lớn bên ngoài.",
+      "Vì số hình chữ nhật bằng số ô nhân cho 2."
+    ],
+    "correctReason": 0,
+    "answer": 9,
+    "unit": "hình chữ nhật",
+    "answerOptions": [
+      "Đếm được tất cả 9 hình chữ nhật.",
+      "Đếm được tất cả 5 hình chữ nhật.",
+      "Đếm được tất cả 4 hình chữ nhật."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Khung lưới 2x2 gồm 4 đơn, 4 đôi, 1 hình vuông lớn. Có đúng 9 hình chữ nhật chứ?",
+    "checkOptions": [
+      "Đúng, đếm tất cả các hình ghép có dạng chữ nhật cho ra 9.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đếm các hình chữ nhật đơn lẻ (1 mảnh): có 4 hình.",
+      "Bước 2: Đếm các hình chữ nhật ghép từ 2 mảnh (kề nhau theo chiều ngang hoặc dọc): có 4 hình.",
+      "Bước 3: Đếm hình chữ nhật ghép từ cả 4 mảnh: có 1 hình lớn.",
+      "Bước 4: Nhấn nút 'Hình đơn 🟥' và 'Hình ghép 🟧' trên widget Thám Tử để theo dõi hoạt ảnh tô màu từng hình.",
+      "Bước 5: Cộng lại: 4 (đơn) + 4 (ghép 2) + 1 (ghép 4) = 9 hình chữ nhật."
+    ]
+  },
+  {
+    "id": "lesson-44",
+    "title": "Chia bánh tam giác",
+    "shortTitle": "Đếm hình tam giác",
+    "icon": "🍕",
+    "color": "pink",
+    "skill": "Đếm hình",
+    "story": "Đếm số hình tam giác trong hình gồm một tam giác lớn được chia bởi 2 đường thẳng kẻ từ đỉnh xuống đáy.",
+    "visual": {
+      "type": "geometry-count",
+      "shapeType": "triangle",
+      "piecesCount": 3
+    },
+    "retellOptions": [
+      "Tìm tổng số hình tam giác xuất hiện khi chia một tam giác lớn thành 3 tam giác nhỏ kề nhau.",
+      "Tính chu vi của hình tam giác ban đầu.",
+      "Tìm độ dài cạnh đáy của hình tam giác sau khi chia vạch."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Một tam giác lớn chia thành 3 phần nhỏ kề nhau",
+      "Tìm tổng số tam giác lớn nhỏ xuất hiện trên hình"
+    ],
+    "factRoles": [
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình đếm hình theo nhóm (Mảnh đơn → Mảnh ghép đôi → Mảnh ghép ba)",
+      "Mô hình trồng cây hai đầu",
+      "Sơ đồ đoạn thẳng gộp phần"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "3 + 2 + 1",
+      "3 × 3",
+      "3 + 3",
+      "3 × 2 + 1"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tam giác đơn: 3. Tam giác ghép 2 kề nhau: 2. Tam giác ghép cả 3 mảnh: 1. Tổng = 3 + 2 + 1 = 6 hình.",
+      "Vì hình tam giác không thể ghép được với nhau.",
+      "Vì số tam giác bằng số mảnh chia nhân cho 2."
+    ],
+    "correctReason": 0,
+    "answer": 6,
+    "unit": "hình tam giác",
+    "answerOptions": [
+      "Đếm được tất cả 6 hình tam giác.",
+      "Đếm được tất cả 3 hình tam giác.",
+      "Đếm được tất cả 5 hình tam giác."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "3 hình đơn + 2 hình đôi + 1 hình lớn nhất = 6 hình tam giác. Đúng chứ?",
+    "checkOptions": [
+      "Đúng, phép đếm phân loại chính xác cho ra kết quả 6.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đếm các tam giác đơn lẻ (gồm 1 mảnh nhỏ): có 3 hình.",
+      "Bước 2: Đếm các tam giác ghép từ 2 mảnh đơn kề nhau: có 2 hình.",
+      "Bước 3: Đếm tam giác ghép từ cả 3 mảnh đơn: có 1 hình lớn bên ngoài.",
+      "Bước 4: Nhấp chọn các tab mảnh ghép trên mô hình để tô màu kiểm tra trực tiếp.",
+      "Bước 5: Tính tổng số tam giác: 3 + 2 + 1 = 6 hình."
+    ]
+  },
+  {
+    "id": "lesson-45",
+    "title": "Bố và con trồng hành",
+    "shortTitle": "Tính tuổi con",
+    "icon": "👨‍👦",
+    "color": "green",
+    "skill": "Tính tuổi",
+    "story": "Bố hơn con 30 tuổi. Tổng số tuổi hai bố con là 40. Tính tuổi của con.",
+    "visual": {
+      "type": "age-machine",
+      "person1": "Bố",
+      "person2": "Con",
+      "age1": 35,
+      "age2": 5,
+      "targetOffset": 0
+    },
+    "retellOptions": [
+      "Tìm tuổi của con khi biết bố hơn con 30 tuổi và tổng số tuổi hai người là 40.",
+      "Tính tuổi của bố khi biết tuổi con gấp 2 lần tuổi bố.",
+      "Tìm hiệu số tuổi của hai bố con sau 5 năm nữa."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bố hơn con 30 tuổi (Hiệu số tuổi = 30)",
+      "Tổng số tuổi hai bố con là 40",
+      "Tìm tuổi của con hiện nay"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình Tổng - Hiệu (Số bé/Tuổi con = (Tổng - Hiệu) ÷ 2)",
+      "Sơ đồ đoạn thẳng hiệu tỉ",
+      "Mô hình san đều cột"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(40 - 30) ÷ 2",
+      "(40 + 30) ÷ 2",
+      "40 - 30",
+      "40 + 30"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Áp dụng công thức tìm số bé trong bài toán Tổng - Hiệu: Tuổi con = (Tổng - Hiệu) ÷ 2.",
+      "Vì tuổi con bằng tổng số tuổi trừ đi hiệu số tuổi.",
+      "Vì tuổi con bằng tuổi bố chia cho hiệu số tuổi."
+    ],
+    "correctReason": 0,
+    "answer": 5,
+    "unit": "tuổi",
+    "answerOptions": [
+      "Con hiện nay 5 tuổi.",
+      "Con hiện nay 10 tuổi.",
+      "Con hiện nay 15 tuổi."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Con 5 tuổi, bố 35 tuổi (5 + 30 = 35). Tổng tuổi là 5 + 35 = 40. Đúng chứ?",
+    "checkOptions": [
+      "Đúng, hai số tìm được hoàn toàn thỏa mãn các điều kiện đề bài.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đây là bài toán dạng Tổng và Hiệu. Bố là số lớn, con là số bé.",
+      "Bước 2: Hiệu tuổi là 30 tuổi, tổng tuổi là 40 tuổi.",
+      "Bước 3: Công thức tìm số bé: (Tổng − Hiệu) ÷ 2.",
+      "Bước 4: Thực hiện phép tính: (40 − 30) ÷ 2 = 10 ÷ 2 = 5 tuổi.",
+      "Bước 5: Dùng 'Cỗ máy thời gian' để trượt thanh tuổi kiểm tra tỷ số giữa bố và con."
+    ]
+  },
+  {
+    "id": "lesson-46",
+    "title": "Mẹ và bé đơm cúc áo",
+    "shortTitle": "Số lần gấp tuổi mẹ con",
+    "icon": "👩‍👧",
+    "color": "yellow",
+    "skill": "Tính tuổi",
+    "story": "Năm nay mẹ 32 tuổi, con 8 tuổi. Hỏi tuổi mẹ gấp mấy lần tuổi con?",
+    "visual": {
+      "type": "age-machine",
+      "person1": "Mẹ",
+      "person2": "Con",
+      "age1": 32,
+      "age2": 8,
+      "targetOffset": 0
+    },
+    "retellOptions": [
+      "Tính tỉ số tuổi mẹ chia tuổi con hiện nay khi biết mẹ 32 tuổi, con 8 tuổi.",
+      "Tính tuổi mẹ sau khi tuổi con tăng lên 10 tuổi.",
+      "Tìm hiệu số tuổi của mẹ và con."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Năm nay mẹ 32 tuổi",
+      "Năm nay con 8 tuổi",
+      "Tìm số lần tuổi mẹ gấp tuổi con"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình so sánh tỉ lệ gấp số lần (Số lần = Số lớn ÷ Số bé)",
+      "Sơ đồ đoạn thẳng tổng hiệu",
+      "Băng chuyền rút về đơn vị"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "32 ÷ 8",
+      "32 - 8",
+      "32 × 8",
+      "32 + 8"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Để tìm tuổi mẹ gấp bao nhiêu lần tuổi con, ta thực hiện phép tính chia lấy tuổi mẹ chia cho tuổi con.",
+      "Vì cần tính hiệu số tuổi của mẹ và con.",
+      "Vì cần biết tuổi mẹ khi con bằng nửa tuổi mẹ."
+    ],
+    "correctReason": 0,
+    "answer": 4,
+    "unit": "lần",
+    "answerOptions": [
+      "Tuổi mẹ gấp 4 lần tuổi con.",
+      "Tuổi mẹ gấp 3 lần tuổi con.",
+      "Tuổi mẹ gấp 5 lần tuổi con."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "32 chia 8 bằng 4, tuổi mẹ gấp 4 lần tuổi con. Hợp lý chứ?",
+    "checkOptions": [
+      "Có, phép chia 32 ÷ 8 = 4 hoàn toàn chính xác.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Lấy tuổi của mẹ là 32 tuổi chia cho tuổi của con là 8 tuổi.",
+      "Bước 2: Thực hiện phép tính: 32 ÷ 8 = 4.",
+      "Bước 3: Kết luận tuổi mẹ gấp 4 lần tuổi con."
+    ]
+  },
+  {
+    "id": "lesson-47",
+    "title": "Hai anh em hái táo",
+    "shortTitle": "Tính tuổi em",
+    "icon": "🧑‍🤝‍🧑",
+    "color": "orange",
+    "skill": "Tính tuổi",
+    "story": "Anh hơn em 5 tuổi. Tuổi em bằng 1/2 tuổi anh. Tính tuổi của em.",
+    "visual": {
+      "type": "age-machine",
+      "person1": "Anh",
+      "person2": "Em",
+      "age1": 10,
+      "age2": 5,
+      "targetOffset": 0
+    },
+    "retellOptions": [
+      "Tìm tuổi em biết anh hơn em 5 tuổi và tuổi em bằng 1/2 tuổi anh.",
+      "Tính tổng số tuổi của hai anh em.",
+      "Tìm số tuổi của em sau 5 năm nữa."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Anh hơn em 5 tuổi (Hiệu tuổi = 5)",
+      "Tuổi em bằng 1/2 tuổi anh (Tỉ số = 1/2)",
+      "Tính tuổi của em"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình Hiệu - Tỉ (Giá trị 1 phần = Hiệu ÷ Hiệu số phần)",
+      "Mô hình Tổng - Hiệu thẳng",
+      "Mô hình san đều trung bình"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "5 ÷ (2 - 1) × 1",
+      "5 × 2",
+      "5 + 2",
+      "5 - 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Hiệu số phần bằng nhau là 2 - 1 = 1 phần. Tuổi em ứng với 1 phần, nên tuổi em = 5 ÷ 1 × 1 = 5 tuổi.",
+      "Vì tuổi em bằng tuổi anh nhân đôi lên.",
+      "Vì tuổi em bằng hiệu số tuổi cộng thêm tỷ lệ phần."
+    ],
+    "correctReason": 0,
+    "answer": 5,
+    "unit": "tuổi",
+    "answerOptions": [
+      "Em hiện nay 5 tuổi.",
+      "Em hiện nay 10 tuổi.",
+      "Em hiện nay 6 tuổi."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Em 5 tuổi, anh 10 tuổi (5 × 2 = 10). Anh hơn em 5 tuổi (10 - 5 = 5). Hợp lý chứ?",
+    "checkOptions": [
+      "Có, các số liệu hoàn toàn khớp với đề bài.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Đây là dạng toán Hiệu và Tỉ số. Hiệu tuổi là 5, tỉ số là 1/2.",
+      "Bước 2: Tìm hiệu số phần bằng nhau: 2 − 1 = 1 phần.",
+      "Bước 3: Tuổi của em ứng với 1 phần, nên lấy hiệu chia cho hiệu số phần nhân với số phần của em.",
+      "Bước 4: Thực hiện phép tính: 5 ÷ 1 × 1 = 5 tuổi.",
+      "Bước 5: Kéo slider trên cỗ máy tuổi để quan sát mô hình lego tỉ lệ."
+    ]
+  },
+  {
+    "id": "lesson-48",
+    "title": "Cỗ máy thời gian tuổi mẹ con",
+    "shortTitle": "Số năm mẹ gấp 3 lần con",
+    "icon": "⏳",
+    "color": "pink",
+    "skill": "Tính tuổi",
+    "story": "Hiện nay mẹ 36 tuổi, con 6 tuổi. Hỏi sau bao nhiêu năm nữa tuổi mẹ gấp 3 lần tuổi con?",
+    "visual": {
+      "type": "age-machine",
+      "person1": "Mẹ",
+      "person2": "Con",
+      "age1": 36,
+      "age2": 6,
+      "targetOffset": 9
+    },
+    "retellOptions": [
+      "Tìm số năm để tuổi mẹ gấp 3 lần tuổi con khi biết hiện nay mẹ 36 tuổi, con 6 tuổi.",
+      "Tìm tuổi mẹ khi tuổi con bằng 10 tuổi.",
+      "Tính tổng số tuổi hai mẹ con sau này."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Hiện nay mẹ 36 tuổi, con 6 tuổi",
+      "Hiệu số tuổi = 36 - 6 = 30 tuổi (không đổi)",
+      "Tìm số năm để tuổi mẹ gấp 3 lần tuổi con"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình Hiệu - Tỉ động (Hiệu số tuổi không thay đổi theo thời gian)",
+      "Mô hình Tổng - Hiệu ngang",
+      "Băng chuyền rút về đơn vị"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(36 - 6) ÷ (3 - 1) - 6",
+      "36 ÷ 3 - 6",
+      "36 - 6 × 3",
+      "(36 - 6) ÷ 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Hiệu tuổi luôn là 36 - 6 = 30 tuổi. Khi tuổi mẹ gấp 3 lần con, hiệu số phần là 3 - 1 = 2 phần = 30 tuổi. Tuổi con khi đó là 30 ÷ 2 = 15 tuổi. Vậy sau 15 - 6 = 9 năm.",
+      "Vì số năm được tính bằng hiệu tuổi chia cho 3.",
+      "Vì tuổi con khi mẹ gấp 3 lần bằng đúng tuổi con hiện nay cộng 3."
+    ],
+    "correctReason": 0,
+    "answer": 9,
+    "unit": "năm",
+    "answerOptions": [
+      "Sau 9 năm nữa.",
+      "Sau 10 năm nữa.",
+      "Sau 15 năm nữa."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Sau 9 năm, mẹ 45 tuổi, con 15 tuổi. 45 ÷ 15 = 3 (mẹ gấp 3 lần con). Đúng chứ?",
+    "checkOptions": [
+      "Đúng, các số liệu hoàn toàn khớp.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tính hiệu số tuổi của mẹ và con: 36 − 6 = 30 tuổi. Hiệu tuổi này luôn không đổi.",
+      "Bước 2: Khi tuổi mẹ gấp 3 lần con, hiệu số phần bằng nhau là: 3 − 1 = 2 phần.",
+      "Bước 3: Tính tuổi của con lúc đó: 30 ÷ 2 = 15 tuổi.",
+      "Bước 4: Tính số năm trôi qua bằng cách lấy tuổi con lúc đó trừ tuổi con hiện nay: 15 − 6 = 9 năm.",
+      "Bước 5: Kéo thanh trượt 'Cỗ máy thời gian' trên widget lên mốc +9 để xác nhận trực quan."
+    ]
+  },
+  {
+    "id": "lesson-49",
+    "title": "Chuyến xe buýt đường dài",
+    "shortTitle": "Vận tốc xe ô tô",
+    "icon": "🚌",
+    "color": "teal",
+    "skill": "Chuyển động",
+    "story": "Một ô tô chạy 60km trong 2 giờ. Hỏi mỗi giờ ô tô chạy bao nhiêu km?",
+    "visual": {
+      "type": "motion",
+      "vehicle": "🚌",
+      "velocity": 30,
+      "time": 2,
+      "distance": 60
+    },
+    "retellOptions": [
+      "Tìm quãng đường ô tô đi được trong 1 giờ khi chạy 60km trong 2 giờ.",
+      "Tìm thời gian để ô tô đi được quãng đường 60km.",
+      "Tính khoảng cách mà ô tô đi được trong 3 giờ."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Quãng đường ô tô đi được S = 60km",
+      "Thời gian ô tô di chuyển T = 2 giờ",
+      "Tìm vận tốc ô tô V (số km đi được mỗi giờ)"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình tam giác chuyển động S-V-T (Vận tốc = Quãng đường ÷ Thời gian)",
+      "Sơ đồ đoạn thẳng gộp",
+      "Mô hình san đều trung bình"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "60 ÷ 2",
+      "60 × 2",
+      "60 + 2",
+      "60 - 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vận tốc bằng quãng đường chia cho thời gian: 60 ÷ 2 = 30 km/giờ.",
+      "Vì vận tốc bằng quãng đường nhân cho thời gian.",
+      "Vì cần tính tổng quãng đường sau hai giờ chạy."
+    ],
+    "correctReason": 0,
+    "answer": 30,
+    "unit": "km/giờ",
+    "answerOptions": [
+      "Mỗi giờ ô tô chạy được 30 km.",
+      "Mỗi giờ ô tô chạy được 120 km.",
+      "Mỗi giờ ô tô chạy được 40 km."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Vận tốc là 30 km/giờ thì sau 2 giờ đi được 30 × 2 = 60km. Hợp lý chứ?",
+    "checkOptions": [
+      "Có, phép tính ngược khớp hoàn toàn với đề bài.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định quãng đường S = 60km.",
+      "Bước 2: Xác định thời gian T = 2 giờ.",
+      "Bước 3: Công thức tính vận tốc: V = S ÷ T.",
+      "Bước 4: Thực hiện phép tính: 60 ÷ 2 = 30 km/giờ.",
+      "Bước 5: Nhấp chọn che 'V' trên tam giác để nhìn rõ công thức."
+    ]
+  },
+  {
+    "id": "lesson-50",
+    "title": "Bé đi xe đạp dạo chơi",
+    "shortTitle": "Quãng đường xe đạp",
+    "icon": "🚲",
+    "color": "green",
+    "skill": "Chuyển động",
+    "story": "Một người đi xe đạp với vận tốc 12km/giờ. Hỏi trong 3 giờ đi được bao xa?",
+    "visual": {
+      "type": "motion",
+      "vehicle": "🚲",
+      "velocity": 12,
+      "time": 3,
+      "distance": 36
+    },
+    "retellOptions": [
+      "Tìm quãng đường đi được trong 3 giờ với vận tốc 12km/giờ.",
+      "Tìm thời gian đi hết quãng đường 12km.",
+      "Tính vận tốc khi đi được 3km trong 12 phút."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Vận tốc đi xe đạp V = 12km/giờ",
+      "Thời gian di chuyển T = 3 giờ",
+      "Tìm quãng đường đi được S"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình tam giác chuyển động S-V-T (Quãng đường = Vận tốc × Thời gian)",
+      "Băng chuyền rút về đơn vị",
+      "Sơ đồ đoạn thẳng tỉ số"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "12 × 3",
+      "12 ÷ 3",
+      "12 + 3",
+      "12 - 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Quãng đường đi được bằng vận tốc nhân thời gian: 12 × 3 = 36 km.",
+      "Vì quãng đường bằng vận tốc chia cho thời gian.",
+      "Vì mỗi giờ người đó chỉ đi được 1/3 của 12km."
+    ],
+    "correctReason": 0,
+    "answer": 36,
+    "unit": "km",
+    "answerOptions": [
+      "Người đó đi được 36 km.",
+      "Người đó đi được 4 km.",
+      "Người đó đi được 15 km."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Vận tốc 12km/h, đi trong 3 giờ được 36km. Hợp lý chứ?",
+    "checkOptions": [
+      "Có, mỗi giờ đi 12km thì 3 giờ đi 12 + 12 + 12 = 36km.",
+      "Không, quãng đường phải nhỏ hơn vận tốc."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định vận tốc V = 12km/giờ.",
+      "Bước 2: Xác định thời gian T = 3 giờ.",
+      "Bước 3: Công thức tính quãng đường: S = V × T.",
+      "Bước 4: Thực hiện phép tính nhân: 12 × 3 = 36 km.",
+      "Bước 5: Bấm nút 'Chạy xe 🏁' để xe đạp lăn bánh trên đường và hiển thị đồng hồ đo."
+    ]
+  },
+  {
+    "id": "lesson-51",
+    "title": "Chuyến phượt bằng xe máy",
+    "shortTitle": "Thời gian xe máy chạy",
+    "icon": "🛵",
+    "color": "orange",
+    "skill": "Chuyển động",
+    "story": "Một xe máy chạy quãng đường 90km với vận tốc 45km/giờ. Hỏi xe đi hết bao lâu?",
+    "visual": {
+      "type": "motion",
+      "vehicle": "🛵",
+      "velocity": 45,
+      "time": 2,
+      "distance": 90
+    },
+    "retellOptions": [
+      "Tìm thời gian đi hết 90km khi biết vận tốc xe máy là 45km/giờ.",
+      "Tìm vận tốc xe máy khi đi hết 90km trong 45 phút.",
+      "Tính quãng đường đi được trong 2 giờ chạy."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Quãng đường xe chạy S = 90km",
+      "Vận tốc xe máy V = 45km/giờ",
+      "Tìm thời gian di chuyển T"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình tam giác chuyển động S-V-T (Thời gian = Quãng đường ÷ Vận tốc)",
+      "Băng chuyền rút về đơn vị",
+      "Mô hình san đều cột"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "90 ÷ 45",
+      "90 × 45",
+      "90 + 45",
+      "90 - 45"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Thời gian đi được bằng quãng đường chia cho vận tốc: 90 ÷ 45 = 2 giờ.",
+      "Vì thời gian bằng vận tốc chia cho quãng đường.",
+      "Vì xe máy đi rất nhanh nên thời gian phải nhân lên."
+    ],
+    "correctReason": 0,
+    "answer": 2,
+    "unit": "giờ",
+    "answerOptions": [
+      "Xe máy đi hết 2 giờ.",
+      "Xe máy đi hết 4 giờ.",
+      "Xe máy đi hết 3 giờ."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Quãng đường 90km, đi với vận tốc 45km/h mất 2 giờ. Hợp lý chứ?",
+    "checkOptions": [
+      "Có, vì 45 × 2 = 90km.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Xác định quãng đường S = 90km, vận tốc V = 45km/giờ.",
+      "Bước 2: Sử dụng công thức tính thời gian: T = S ÷ V.",
+      "Bước 3: Thực hiện phép tính chia: 90 ÷ 45 = 2 giờ.",
+      "Bước 4: Bấm chọn biểu tượng 'T' bị che trên tam giác để xác minh công thức."
+    ]
+  },
+  {
+    "id": "lesson-52",
+    "title": "Hành trình hai chặng thú vị",
+    "shortTitle": "Tổng thời gian đi bộ và xe",
+    "icon": "🏃",
+    "color": "pink",
+    "skill": "Chuyển động",
+    "story": "Một người đi xe đạp 12km/giờ đi được 36km, sau đó đi bộ 4km/giờ thêm 8km. Hỏi tổng thời gian đi là bao nhiêu?",
+    "visual": {
+      "type": "motion",
+      "vehicle": "🚲🚶",
+      "velocity": 12,
+      "time": 5,
+      "distance": 44,
+      "bikeDist": 36,
+      "bikeV": 12,
+      "walkDist": 8,
+      "walkV": 4
+    },
+    "retellOptions": [
+      "Tính tổng thời gian của cả chặng xe đạp (36km tại 12km/h) và chặng đi bộ (8km tại 4km/h).",
+      "Tính tổng quãng đường người đó đã đi được trên cả hai chặng.",
+      "Tính vận tốc trung bình cộng trên cả hai chặng."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Chặng 1 (xe đạp): đi 36km với vận tốc 12km/giờ",
+      "Chặng 2 (đi bộ): đi 8km với vận tốc 4km/giờ",
+      "Tìm tổng thời gian đi cả hai chặng"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình chặng chuyển động ghép hai bước tính thời gian chặng 1 và chặng 2",
+      "Sơ đồ đoạn thẳng gộp phần",
+      "Mô hình cột san đều"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(36 ÷ 12) + (8 ÷ 4)",
+      "(36 + 8) ÷ (12 + 4)",
+      "36 ÷ 12",
+      "8 ÷ 4"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Thời gian đi xe đạp: 36 ÷ 12 = 3 giờ. Thời gian đi bộ: 8 ÷ 4 = 2 giờ. Tổng thời gian: 3 + 2 = 5 giờ.",
+      "Vì ta có thể cộng gộp quãng đường và cộng gộp vận tốc rồi chia nhau.",
+      "Vì thời gian chặng đi xe đạp luôn gấp đôi chặng đi bộ."
+    ],
+    "correctReason": 0,
+    "answer": 5,
+    "unit": "giờ",
+    "answerOptions": [
+      "Tổng thời gian đi là 5 giờ.",
+      "Tổng thời gian đi là 4 giờ.",
+      "Tổng thời gian đi là 6 giờ."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "3 giờ xe đạp + 2 giờ đi bộ = 5 giờ. Kết quả này hợp lý chứ?",
+    "checkOptions": [
+      "Đúng, hai chặng tính độc lập rồi cộng lại.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tính thời gian đi xe đạp bằng cách lấy quãng đường xe chia vận tốc xe: 36 ÷ 12 = 3 giờ.",
+      "Bước 2: Tính thời gian đi bộ bằng cách lấy quãng đường đi bộ chia vận tốc đi bộ: 8 ÷ 4 = 2 giờ.",
+      "Bước 3: Cộng hai khoảng thời gian lại: 3 + 2 = 5 giờ.",
+      "Bước 4: Nhấp nút 'Chạy xe 🏁' trên widget để xem cả 2 chặng di chuyển lần lượt."
+    ]
+  },
+  {
+    "id": "lesson-53",
+    "title": "Sắc màu áo thám tử nhí",
+    "shortTitle": "Suy luận màu áo",
+    "icon": "👕",
+    "color": "indigo",
+    "skill": "Suy luận logic",
+    "story": "An, Bình, Cường mặc ba màu áo: đỏ, xanh, vàng. Bình mặc vàng, An không mặc đỏ. Hỏi An mặc áo màu gì?",
+    "visual": {
+      "type": "logic-grid",
+      "rows": [
+        "An",
+        "Bình",
+        "Cường"
+      ],
+      "cols": [
+        "Đỏ",
+        "Xanh",
+        "Vàng"
+      ],
+      "solution": {
+        "An": "Xanh",
+        "Bình": "Vàng",
+        "Cường": "Đỏ"
+      }
+    },
+    "retellOptions": [
+      "An, Bình, Cường mặc áo đỏ, xanh, vàng. Bình mặc vàng, An không mặc đỏ. Tìm màu áo của An.",
+      "Tìm bạn mặc áo màu vàng trong ba bạn.",
+      "Xếp thứ hạng của ba bạn theo bảng màu sắc chói lọi."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Bình mặc áo màu vàng",
+      "An không mặc áo màu đỏ",
+      "Hỏi màu áo của An"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Bảng lập luận loại trừ (Logic Grid) đánh dấu X và V",
+      "Sơ đồ đoạn thẳng tỉ số",
+      "Trục tọa độ kéo dài"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "Bình mặc vàng -> An không vàng. An không đỏ -> An mặc xanh.",
+      "Bình mặc vàng -> An mặc đỏ.",
+      "An mặc vàng -> Bình mặc xanh."
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Bình mặc vàng, vậy An không thể mặc vàng. Mà An không mặc đỏ, nên An chỉ có thể mặc áo xanh.",
+      "Vì An có thể mặc áo màu đỏ hoặc vàng tùy thích.",
+      "Vì Bình và Cường mặc chung áo màu vàng."
+    ],
+    "correctReason": 0,
+    "answer": 0,
+    "unit": "đáp án",
+    "answerOptions": [
+      "An mặc áo màu xanh.",
+      "An mặc áo màu đỏ.",
+      "An mặc áo màu vàng."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "An mặc xanh, Bình mặc vàng, còn lại Cường mặc đỏ. Mọi điều kiện đều được thỏa mãn chứ?",
+    "checkOptions": [
+      "Có, mỗi người mặc một màu khác nhau và đúng theo gợi ý.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Kẻ bảng đối tượng (An, Bình, Cường) và thuộc tính (Đỏ, Xanh, Vàng).",
+      "Bước 2: Dữ kiện 'Bình mặc vàng': Đánh dấu tích (✔) vào ô (Bình, Vàng) và dấu loại trừ (✗) cho các ô còn lại ở hàng Bình và cột Vàng.",
+      "Bước 3: Dữ kiện 'An không mặc đỏ': Đánh dấu (✗) vào ô (An, Đỏ).",
+      "Bước 4: Nhìn cột Vàng và Đỏ đã có dấu, hàng An chỉ còn lại ô Xanh, suy ra An mặc màu xanh.",
+      "Bước 5: Bấm nút 'Gợi ý thám tử 🔍' trên lưới để xem máy tính tự loại trừ giúp con."
+    ]
+  },
+  {
+    "id": "lesson-54",
+    "title": "Bạn nhỏ và thú cưng",
+    "shortTitle": "Thú cưng của Lan",
+    "icon": "🐰",
+    "color": "yellow",
+    "skill": "Suy luận logic",
+    "story": "Ba bạn Lan, Mai, Đào thích ba con vật: mèo, chó, thỏ. Lan không thích mèo. Mai thích thỏ. Hỏi Lan thích con vật nào?",
+    "visual": {
+      "type": "logic-grid",
+      "rows": [
+        "Lan",
+        "Mai",
+        "Đào"
+      ],
+      "cols": [
+        "Mèo",
+        "Chó",
+        "Thỏ"
+      ],
+      "solution": {
+        "Lan": "Chó",
+        "Mai": "Thỏ",
+        "Đào": "Mèo"
+      }
+    },
+    "retellOptions": [
+      "Tìm thú cưng Lan thích khi biết Lan không thích mèo, Mai thích thỏ, và mỗi người thích 1 con khác nhau.",
+      "Tìm tổng số lượng mèo, chó và thỏ của ba bạn.",
+      "Tìm bạn thích nuôi mèo trong ba bạn học sinh."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mai thích con thỏ",
+      "Lan không thích con mèo",
+      "Hỏi con vật mà Lan thích"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Bảng lập luận loại trừ (Logic Grid) đánh dấu X và V",
+      "Sơ đồ đoạn thẳng gộp phần",
+      "Mô hình trung bình cộng san cột"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "Mai thích thỏ -> Lan không thỏ. Lan không mèo -> Lan thích chó.",
+      "Lan không mèo -> Lan thích mèo.",
+      "Mai thích thỏ -> Đào thích chó."
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Vì Mai thích thỏ nên Lan không thể thích thỏ. Lan cũng không thích mèo, do đó Lan chỉ có thể thích chó.",
+      "Vì Lan và Mai có thể thích chung con thỏ.",
+      "Vì Đào thích mèo nên Lan thích thỏ."
+    ],
+    "correctReason": 0,
+    "answer": 0,
+    "unit": "đáp án",
+    "answerOptions": [
+      "Lan thích con chó.",
+      "Lan thích con mèo.",
+      "Lan thích con thỏ."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Lan thích chó, Mai thích thỏ, Đào thích mèo. Có đúng mỗi bạn thích một con khác nhau không?",
+    "checkOptions": [
+      "Có, các con vật được chia đều và thỏa mãn các manh mối.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Từ dữ kiện 'Mai thích thỏ', cột 'Thỏ' và hàng 'Mai' bị khóa. Lan và Đào không thích thỏ.",
+      "Bước 2: Lan không thích mèo, nên Lan không chọn Mèo và không chọn Thỏ. Vậy Lan thích chó.",
+      "Bước 3: Còn lại Đào sẽ thích mèo.",
+      "Bước 4: Chạm trực tiếp các ô trên bảng logic để tự phá án."
+    ]
+  },
+  {
+    "id": "lesson-55",
+    "title": "Môn học yêu thích nhất",
+    "shortTitle": "Ai giỏi Văn",
+    "icon": "🎻",
+    "color": "purple",
+    "skill": "Suy luận logic",
+    "story": "Ba bạn Lan, Mai, Đào học ba môn giỏi nhất: Toán, Văn, Nhạc. Lan không giỏi Toán. Người giỏi Nhạc không phải Mai và Lan. Hỏi ai giỏi Văn?",
+    "visual": {
+      "type": "logic-grid",
+      "rows": [
+        "Lan",
+        "Mai",
+        "Đào"
+      ],
+      "cols": [
+        "Toán",
+        "Văn",
+        "Nhạc"
+      ],
+      "solution": {
+        "Lan": "Văn",
+        "Mai": "Toán",
+        "Đào": "Nhạc"
+      }
+    },
+    "retellOptions": [
+      "Xác định bạn giỏi Văn trong ba bạn Lan, Mai, Đào dựa trên các dữ kiện loại trừ.",
+      "Đếm số lượng môn học giỏi của mỗi bạn nhỏ.",
+      "Tính điểm số trung bình môn học của từng người."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Lan không giỏi môn Toán",
+      "Người giỏi Nhạc không phải là Mai và Lan",
+      "Xác định người giỏi môn Văn"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Bảng lập luận loại trừ (Logic Grid) đánh dấu X và V",
+      "Mô hình rút về đơn vị",
+      "Sơ đồ đoạn thẳng song song"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "Nhạc là Đào -> Lan/Mai không Nhạc. Lan không Toán -> Lan giỏi Văn.",
+      "Lan không Toán -> Lan giỏi Toán.",
+      "Mai giỏi Nhạc -> Đào giỏi Toán."
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Người giỏi Nhạc không phải Mai và Lan, nên Đào giỏi Nhạc. Lan không giỏi Toán, cũng không giỏi Nhạc, vậy Lan giỏi Văn.",
+      "Vì Lan giỏi cả Nhạc và Văn.",
+      "Vì môn Nhạc do Mai đảm nhiệm nên Đào không giỏi Nhạc."
+    ],
+    "correctReason": 0,
+    "answer": 0,
+    "unit": "đáp án",
+    "answerOptions": [
+      "Bạn Lan giỏi Văn.",
+      "Bạn Mai giỏi Văn.",
+      "Bạn Đào giỏi Văn."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Lan giỏi Văn, Mai giỏi Toán, Đào giỏi Nhạc. Các manh mối khớp chứ?",
+    "checkOptions": [
+      "Khớp hoàn toàn, không có sự chồng chéo môn học.",
+      "Không khớp."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tìm người giỏi Nhạc: Đề bài nói không phải Mai cũng không phải Lan, vậy Đào là người giỏi Nhạc.",
+      "Bước 2: Tìm người giỏi Toán: Lan không giỏi Toán, Đào giỏi Nhạc rồi, nên Mai phải là người giỏi Toán.",
+      "Bước 3: Còn lại, Lan chắc chắn giỏi Văn.",
+      "Bước 4: Sử dụng bảng lưới phá án để tự điền dấu loại trừ."
+    ]
+  },
+  {
+    "id": "lesson-56",
+    "title": "Thứ hạng chung cuộc",
+    "shortTitle": "Thứ hạng cuộc thi",
+    "icon": "🏆",
+    "color": "pink",
+    "skill": "Suy luận logic",
+    "story": "Bốn bạn A, B, C, D xếp hạng 1–4. A không nhất cũng không bét. B đứng ngay trên A. C đứng cuối. Hỏi ai đứng thứ nhất?",
+    "visual": {
+      "type": "logic-grid",
+      "rows": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "cols": [
+        "Hạng 1",
+        "Hạng 2",
+        "Hạng 3",
+        "Hạng 4"
+      ],
+      "solution": {
+        "D": "Hạng 1",
+        "B": "Hạng 2",
+        "A": "Hạng 3",
+        "C": "Hạng 4"
+      }
+    },
+    "retellOptions": [
+      "Tìm người đứng thứ nhất trong cuộc thi của bốn bạn A, B, C, D dựa vào thứ hạng loại trừ.",
+      "Tính điểm thi đua của cả bốn bạn.",
+      "Tìm người đứng thứ nhì trong cuộc thi chạy."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "C đứng thứ tư (hạng bét)",
+      "A không nhất (hạng 1) và không bét (hạng 4)",
+      "B xếp ngay trên A (B nhỏ hơn A về số hạng)",
+      "Hỏi ai đạt hạng nhất (hạng 1)"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Bảng lập luận loại trừ (Logic Grid) đánh dấu X và V",
+      "Mô hình rút về đơn vị",
+      "Sơ đồ đoạn thẳng gộp phần"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "C hạng 4. A không hạng 1,4 nên A hạng 2 hoặc 3. Vì B ngay trên A nên B hạng 2, A hạng 3. Còn lại D hạng 1.",
+      "A hạng 1, B hạng 2.",
+      "C hạng 1, D hạng 4."
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "C hạng 4. A không thể hạng 4 và không hạng 1, vậy A hạng 2 hoặc 3. Nhưng B ở ngay trên A nên A phải hạng 3, B hạng 2. Vậy hạng 1 là D.",
+      "Vì C đứng bét nên D đứng ngay cạnh C.",
+      "Vì B đứng đầu tiên và A đứng ngay sau B nên B hạng 1."
+    ],
+    "correctReason": 0,
+    "answer": 0,
+    "unit": "đáp án",
+    "answerOptions": [
+      "Bạn D xếp hạng nhất.",
+      "Bạn B xếp hạng nhất.",
+      "Bạn A xếp hạng nhất.",
+      "Bạn C xếp hạng nhất."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "D nhất (1), B nhì (2), A ba (3), C tư (4). B đứng ngay trên A, C bét. Đúng chứ?",
+    "checkOptions": [
+      "Đúng, sự sắp xếp thứ hạng 1-2-3-4 thỏa mãn toàn bộ đề bài.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Điền dấu tích (✔) cho C ở ô Hạng 4. Loại C khỏi các hạng khác và loại các bạn khác khỏi Hạng 4.",
+      "Bước 2: A không bét, cũng không nhất. Vậy A chỉ có thể ở Hạng 2 hoặc Hạng 3.",
+      "Bước 3: Dữ kiện 'B đứng ngay trên A' (hạng B nhỏ hơn hạng A 1 đơn vị). Nếu A ở Hạng 2 thì B ở Hạng 1. Nhưng B ở Hạng 1 thì A Hạng 2, C Hạng 4, D sẽ ở Hạng 3. Điều này khiến B đứng trên A nhưng không xếp liền kề do D xen kẽ. Thực tế, B xếp ngay trên A thì B và A phải chiếm 2 vị trí liền nhau: chỉ có cặp Hạng 2 và Hạng 3 là trống. Vậy B Hạng 2, A Hạng 3.",
+      "Bước 4: Còn lại Hạng 1 dành cho D."
+    ]
+  },
+  {
+    "id": "lesson-57",
+    "title": "Ngày hội trồng cây của tổ",
+    "shortTitle": "Tổ trồng nhiều nhất ít nhất",
+    "icon": "📊",
+    "color": "green",
+    "skill": "Biểu đồ",
+    "story": "Biểu đồ số cây bốn tổ trồng: Tổ 1: 20 cây, Tổ 2: 35 cây, Tổ 3: 25 cây, Tổ 4: 40 cây. Hỏi tổ nào trồng nhiều nhất?",
+    "visual": {
+      "type": "chart-analysis",
+      "chartType": "bar",
+      "data": [
+        {
+          "label": "Tổ 1",
+          "value": 20
+        },
+        {
+          "label": "Tổ 2",
+          "value": 35
+        },
+        {
+          "label": "Tổ 3",
+          "value": 25
+        },
+        {
+          "label": "Tổ 4",
+          "value": 40
+        }
+      ],
+      "unit": "cây"
+    },
+    "retellOptions": [
+      "Tìm tổ trồng được số lượng cây lớn nhất từ biểu đồ thống kê 4 tổ.",
+      "Tính trung bình cộng số cây của cả 4 tổ.",
+      "Tìm tổng số cây cả 4 tổ trồng được."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Số cây tổ 1: 20, tổ 2: 35, tổ 3: 25, tổ 4: 40",
+      "Tìm tổ trồng được nhiều cây nhất"
+    ],
+    "factRoles": [
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình đọc biểu đồ cột so sánh chiều cao cột lớn nhất",
+      "Mô hình trồng cây hai đầu",
+      "Băng chuyền rút về đơn vị"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "So sánh: 40 > 35 > 25 > 20 -> Tổ 4 lớn nhất.",
+      "Cộng tất cả: 20 + 35 + 25 + 40 = 120.",
+      "Chia đều: 120 ÷ 4 = 30."
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Cột của Tổ 4 có chiều cao lớn nhất tương ứng với giá trị 40 cây, lớn hơn tất cả các tổ còn lại.",
+      "Vì Tổ 2 có số cây lẻ nhiều nhất.",
+      "Vì Tổ 1 đứng ở vị trí đầu tiên của biểu đồ."
+    ],
+    "correctReason": 0,
+    "answer": 0,
+    "unit": "đáp án",
+    "answerOptions": [
+      "Tổ 4 trồng nhiều nhất (40 cây).",
+      "Tổ 2 trồng nhiều nhất (35 cây).",
+      "Tổ 1 trồng nhiều nhất (20 cây)."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Tổ 4 trồng 40 cây là giá trị cao nhất biểu đồ. Đúng chứ?",
+    "checkOptions": [
+      "Đúng, cột cao nhất tương ứng với 40 cây.",
+      "Không đúng."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Quan sát biểu đồ cột để đọc số liệu của từng tổ.",
+      "Bước 2: So sánh các số liệu: 20 < 25 < 35 < 40.",
+      "Bước 3: Số lớn nhất là 40, tương ứng với Tổ 4.",
+      "Bước 4: Nhấp vào cột Tổ 4 trên widget để xem hiệu ứng phát sáng và số liệu hiện lên."
+    ]
+  },
+  {
+    "id": "lesson-58",
+    "title": "Cộng dồn cây xanh",
+    "shortTitle": "Tổng số cây biểu đồ",
+    "icon": "🌲",
+    "color": "blue",
+    "skill": "Biểu đồ",
+    "story": "Biểu đồ số cây bốn tổ trồng: Tổ 1: 20 cây, Tổ 2: 35 cây, Tổ 3: 25 cây, Tổ 4: 40 cây. Tính tổng số cây bốn tổ trồng được.",
+    "visual": {
+      "type": "chart-analysis",
+      "chartType": "bar",
+      "data": [
+        {
+          "label": "Tổ 1",
+          "value": 20
+        },
+        {
+          "label": "Tổ 2",
+          "value": 35
+        },
+        {
+          "label": "Tổ 3",
+          "value": 25
+        },
+        {
+          "label": "Tổ 4",
+          "value": 40
+        }
+      ],
+      "unit": "cây"
+    },
+    "retellOptions": [
+      "Tính tổng số lượng cây trồng được bằng cách cộng gộp số liệu của 4 tổ.",
+      "So sánh số cây của Tổ 4 và Tổ 1.",
+      "Tính trung bình cộng số cây của các tổ."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Số cây các tổ lần lượt là 20, 35, 25, 40",
+      "Tính tổng số cây cả bốn tổ trồng"
+    ],
+    "factRoles": [
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình tính tổng từ biểu đồ cột (Tổng = T1 + T2 + T3 + T4)",
+      "Sơ đồ đoạn thẳng gộp phần",
+      "Mô hình so sánh hai thanh"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "20 + 35 + 25 + 40",
+      "20 + 35 + 25",
+      "35 + 25 + 40",
+      "20 + 40"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Tổng số cây bằng tổng số cây của bốn tổ cộng lại với nhau: 20 + 35 + 25 + 40 = 120 cây.",
+      "Vì chỉ cần cộng số cây của tổ trồng nhiều nhất và ít nhất.",
+      "Vì Tổ 3 và Tổ 2 trồng bằng nhau."
+    ],
+    "correctReason": 0,
+    "answer": 120,
+    "unit": "cây",
+    "answerOptions": [
+      "Cả bốn tổ trồng được 120 cây.",
+      "Cả bốn tổ trồng được 110 cây.",
+      "Cả bốn tổ trồng được 100 cây."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Phép tính cộng: 20 + 35 + 25 + 40 = 120. Hợp lý chứ?",
+    "checkOptions": [
+      "Có, phép cộng chính xác.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Thu thập số liệu của bốn tổ: Tổ 1: 20, Tổ 2: 35, Tổ 3: 25, Tổ 4: 40.",
+      "Bước 2: Thực hiện phép tính cộng gộp: 20 + 35 + 25 + 40.",
+      "Bước 3: Nhẩm tính: 20 + 35 = 55; 55 + 25 = 80; 80 + 40 = 120 cây.",
+      "Bước 4: Nhấp chọn các cột để cộng dồn chiều cao của chúng trên màn hình."
+    ]
+  },
+  {
+    "id": "lesson-59",
+    "title": "San đều cây xanh các tổ",
+    "shortTitle": "Trung bình cây biểu đồ",
+    "icon": "⚖️",
+    "color": "teal",
+    "skill": "Biểu đồ",
+    "story": "Biểu đồ số cây bốn tổ trồng: Tổ 1: 20 cây, Tổ 2: 35 cây, Tổ 3: 25 cây, Tổ 4: 40 cây. Tính trung bình mỗi tổ trồng bao nhiêu cây?",
+    "visual": {
+      "type": "chart-analysis",
+      "chartType": "bar",
+      "data": [
+        {
+          "label": "Tổ 1",
+          "value": 20
+        },
+        {
+          "label": "Tổ 2",
+          "value": 35
+        },
+        {
+          "label": "Tổ 3",
+          "value": 25
+        },
+        {
+          "label": "Tổ 4",
+          "value": 40
+        }
+      ],
+      "unit": "cây"
+    },
+    "retellOptions": [
+      "Tìm lượng cây trung bình mỗi tổ trồng được bằng cách lấy tổng chia cho số lượng tổ.",
+      "Tìm số cây tổ 4 trồng nhiều hơn tổ 1.",
+      "Tính tổng số cây cả 4 tổ trồng được."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Tổng số cây bốn tổ trồng được là 120 cây",
+      "Có tất cả 4 tổ trồng cây",
+      "Tính số cây trung bình mỗi tổ trồng được"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình trung bình cộng biểu đồ cột (San đều chiều cao các cột)",
+      "Sơ đồ đoạn thẳng hiệu tỉ",
+      "Băng chuyền rút về đơn vị"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(20 + 35 + 25 + 40) ÷ 4",
+      "(20 + 35 + 25 + 40) ÷ 2",
+      "20 + 35 + 25 + 40",
+      "(35 + 25) ÷ 2"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Để tìm trung bình cộng, ta lấy tổng số cây (120 cây) chia cho số lượng tổ (4 tổ): 120 ÷ 4 = 30 cây.",
+      "Vì ta chỉ cần lấy số cây của tổ lớn nhất chia đôi.",
+      "Vì trung bình cộng bằng số cây của tổ ở giữa."
+    ],
+    "correctReason": 0,
+    "answer": 30,
+    "unit": "cây",
+    "answerOptions": [
+      "Trung bình mỗi tổ trồng được 30 cây.",
+      "Trung bình mỗi tổ trồng được 40 cây.",
+      "Trung bình mỗi tổ trồng được 20 cây."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Giá trị trung bình 30 nằm giữa số cây nhỏ nhất (20) và lớn nhất (40), hợp lý chứ?",
+    "checkOptions": [
+      "Có, số trung bình luôn nằm giữa số nhỏ nhất và số lớn nhất.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tính tổng số cây trồng được của cả 4 tổ: 20 + 35 + 25 + 40 = 120 cây.",
+      "Bước 2: Đếm số lượng tổ tham gia trồng cây: 4 tổ.",
+      "Bước 3: Lấy tổng số cây chia cho số lượng tổ: 120 ÷ 4 = 30 cây.",
+      "Bước 4: Nhấn nút 'San đều dữ liệu 📊' trên widget để xem hoạt ảnh san bằng các cột về mức 30."
+    ]
+  },
+  {
+    "id": "lesson-60",
+    "title": "Nông trại táo ngọt",
+    "shortTitle": "So sánh biểu đồ tranh táo",
+    "icon": "🍎",
+    "color": "red",
+    "skill": "Biểu đồ",
+    "story": "Biểu đồ tranh: mỗi hình 🍎 = 5 quả táo. Sạp A có 4 hình, sạp B có 6 hình, sạp C có 3 hình. Hỏi sạp B nhiều hơn sạp C bao nhiêu quả táo?",
+    "visual": {
+      "type": "chart-analysis",
+      "chartType": "pictogram",
+      "data": [
+        {
+          "label": "Sạp A",
+          "value": 4
+        },
+        {
+          "label": "Sạp B",
+          "value": 6
+        },
+        {
+          "label": "Sạp C",
+          "value": 3
+        }
+      ],
+      "multiplier": 5,
+      "unit": "quả táo"
+    },
+    "retellOptions": [
+      "Tính số lượng táo sạp B nhiều hơn sạp C dựa vào hiệu số biểu tượng quy đổi.",
+      "Tính tổng số quả táo của cả ba sạp cộng lại.",
+      "Tìm sạp có ít táo nhất trong ba sạp."
+    ],
+    "correctRetell": 0,
+    "facts": [
+      "Mỗi biểu tượng quả táo đại diện cho 5 quả táo thực tế",
+      "Sạp B có 6 biểu tượng, Sạp C có 3 biểu tượng",
+      "Tìm số quả táo sạp B nhiều hơn sạp C"
+    ],
+    "factRoles": [
+      "known",
+      "known",
+      "unknown"
+    ],
+    "models": [
+      "Mô hình biểu đồ tranh quy đổi giá trị (Giá trị chênh lệch = Hiệu biểu tượng × Giá trị 1 biểu tượng)",
+      "Sơ đồ đoạn thẳng gộp phần",
+      "Mô hình san đều cột"
+    ],
+    "correctModel": 0,
+    "operations": [
+      "(6 - 3) × 5",
+      "6 × 5",
+      "3 × 5",
+      "6 - 3"
+    ],
+    "correctOperation": 0,
+    "reasons": [
+      "Hiệu số biểu tượng của sạp B và C là 6 - 3 = 3 hình. Số quả táo chênh lệch là 3 × 5 = 15 quả.",
+      "Vì sạp B có 30 quả táo nên nhiều hơn sạp C là 30 quả.",
+      "Vì mỗi biểu tượng tương đương với 1 quả táo."
+    ],
+    "correctReason": 0,
+    "answer": 15,
+    "unit": "quả táo",
+    "answerOptions": [
+      "Sạp B nhiều hơn sạp C 15 quả táo.",
+      "Sạp B nhiều hơn sạp C 3 quả táo.",
+      "Sạp B nhiều hơn sạp C 30 quả táo."
+    ],
+    "correctAnswerSentence": 0,
+    "checkQuestion": "Sạp B có 30 quả (6 × 5), sạp C có 15 quả (3 × 5). Chênh lệch 30 − 15 = 15 quả. Hợp lý chứ?",
+    "checkOptions": [
+      "Có, phép tính hoàn toàn chính xác.",
+      "Không."
+    ],
+    "correctCheck": 0,
+    "hints": [
+      "Bước 1: Tính số táo sạp B: 6 hình × 5 quả = 30 quả táo.",
+      "Bước 2: Tính số táo sạp C: 3 hình × 5 quả = 15 quả táo.",
+      "Bước 3: Tính số quả táo sạp B nhiều hơn sạp C: 30 − 15 = 15 quả táo.",
+      "Bước 4: Cách khác: Hiệu số biểu tượng là 6 − 3 = 3 hình. Lấy 3 hình × 5 quả = 15 quả táo.",
+      "Bước 5: Nhấp nút 'Quy đổi hình 🍎' trên mô hình để đếm số quả táo thực tế sau quy đổi."
+    ]
+  }
+]

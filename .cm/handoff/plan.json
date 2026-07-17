@@ -1,15 +1,15 @@
 {
   "schema": "plan@1",
-  "goal": "Bổ sung Onboarding Flow gamified (chào mừng, chọn cố vấn Mascot, học Bài 0 hướng dẫn 8 bước trực quan) và PWA Reminders (Service Worker chạy offline, cài đặt nhắc nhở, tải file lịch biểu .ics).",
+  "goal": "Audit toàn bộ các bài toán đảm bảo bài tập và lời giải chính xác, sửa UX cho các bài toán logic loại trừ.",
   "decisions": [
-    "Tạo OnboardingView và OnboardingLesson riêng biệt để không ảnh hưởng cấu trúc bài học thực tế, giữ mã nguồn LessonView sạch sẽ.",
-    "Sử dụng Service Worker tự viết (sw.js) để tối giản hóa phụ thuộc, hỗ trợ caching offline hiệu quả.",
-    "Cung cấp chức năng nhắc nhở thông báo PWA và nút tải file lịch biểu .ics để đảm bảo chuông báo thức hoạt động 100% trên mọi thiết bị kể cả iOS Safari."
+    "Viết scripts/audit-lessons.js để kiểm thử tự động nội dung và đáp án các bài học Toán lớp 4.",
+    "Tích hợp scripts/audit-lessons.js làm Gate 3: Lessons Data Integrity trong test-gate.js.",
+    "Bỏ qua bước 5 (Tự tính) đối với các bài toán Suy luận logic hoặc bài toán có answer: 0 trong src/App.jsx."
   ],
   "first_tasks": [
-    "Cấu hình file manifest.json, sw.js và đăng ký Service Worker trong main.jsx.",
-    "Bổ sung giao diện OnboardingView đón bé, cho chọn Mascot (Cú Ú, Rô Bốt, Rùa Con).",
-    "Tích hợp Bài học số 0 trực quan có highlight chỉ dẫn cách thực hành 8 bước giải toán."
+    "1.1 Create automated lesson audit validator script scripts/audit-lessons.js",
+    "1.2 Integrate scripts/audit-lessons.js as Gate 3 in scripts/test-gate.js",
+    "2.1 Update stepper step transition in src/App.jsx (nextStep) to skip Step 5"
   ],
-  "openspec_path": "openspec/changes/onboarding-reminders-pwa/"
+  "openspec_path": "openspec/changes/audit-lessons/"
 }

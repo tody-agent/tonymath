@@ -192,6 +192,18 @@ function runGate2() {
   }
 }
 
+// --- GATE 3: LESSONS DATA INTEGRITY ---
+function runGate3() {
+  printHeader('Gate 3: Lessons Data Integrity');
+  try {
+    console.log('Running lessons data audit...');
+    execSync('node scripts/audit-lessons.js', { stdio: 'inherit', cwd: ROOT_DIR });
+    printSuccess('Lessons data integrity check passed.');
+  } catch {
+    printFailure('Lessons data audit failed. Please fix incorrect question structures or math solutions.');
+  }
+}
+
 // --- GATE 4-5: BUILD & DIST VERIFICATION ---
 function runGate4_5() {
   printHeader('Gates 4 & 5: Build & Dist Verification');
@@ -246,6 +258,7 @@ function main() {
   runGate0();
   runGate1();
   runGate2();
+  runGate3();
   runGate4_5();
   runGate6();
   console.log('\n🌟==================================================');

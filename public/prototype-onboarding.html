@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hồ Sơ Năng Lực Toán Học - Onboarding Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --color-reading: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+      --color-arithmetic: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+      --color-solving: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+      --color-purple-btn: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      /* Soft premium gradient background matching the uploaded image */
+      background: linear-gradient(135deg, #e0f2fe 0%, #f3e8ff 50%, #fae8ff 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* FLOATING DECORATIONS */
+    .floating-element {
+      position: absolute;
+      pointer-events: none;
+      font-size: 28px;
+      opacity: 0.65;
+      user-select: none;
+      z-index: 1;
+      animation: floatAround 6s infinite ease-in-out;
+    }
+
+    @keyframes floatAround {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(10deg); }
+    }
+
+    /* CONTAINER CARD */
+    .outer-container {
+      width: 100%;
+      max-width: 780px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 36px;
+      box-shadow: 0 20px 50px rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(15px);
+      padding: 40px;
+      text-align: center;
+      z-index: 10;
+      position: relative;
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* TITLE */
+    .profile-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 36px;
+      color: #1e3a8a;
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+    }
+
+    .profile-title span {
+      color: #f97316; /* Orange color for "Toán Học" */
+    }
+
+    /* MASCOT WRAPPER */
+    .mascot-card-frame {
+      background: #ffffff;
+      border-radius: 28px;
+      border: 1px solid #eef2ff;
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.06);
+      width: 100%;
+      max-width: 380px;
+      margin: 0 auto 28px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+
+    .mascot-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 18px;
+    }
+
+    /* SKILLS LIST */
+    .skills-wrapper {
+      max-width: 440px;
+      margin: 0 auto 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      text-align: left;
+    }
+
+    .skill-row {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .skill-name {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 16px;
+      color: #4b5563;
+    }
+
+    .skill-percentage {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 13px;
+      color: #f59e0b;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* PROGRESS BAR TRACK */
+    .progress-track {
+      height: 28px;
+      background: #e2e8f0;
+      border-radius: 9999px;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 9999px;
+      width: 0;
+      transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .progress-fill.reading { background: var(--color-reading); }
+    .progress-fill.arithmetic { background: var(--color-arithmetic); }
+    .progress-fill.solving { background: var(--color-solving); }
+
+    /* CTA BUTTON */
+    .btn-journey {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 18px;
+      color: #ffffff;
+      background: var(--color-purple-btn);
+      padding: 16px 40px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35), inset 0 -4px 0px rgba(0,0,0,0.2);
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      user-select: none;
+      text-decoration: none;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .btn-journey:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(99, 102, 241, 0.45), inset 0 -4px 0px rgba(0,0,0,0.2);
+      background: linear-gradient(135deg, #7174f7 0%, #5b52eb 100%);
+    }
+
+    .btn-journey:active {
+      transform: translateY(2px);
+      box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FLOATING DECORATIONS -->
+  <span class="floating-element" style="left: 10%; top: 15%; animation-delay: 0s;">✏️</span>
+  <span class="floating-element" style="right: 12%; top: 20%; animation-delay: 1.5s;">⭐</span>
+  <span class="floating-element" style="left: 15%; bottom: 25%; animation-delay: 3s;">8</span>
+  <span class="floating-element" style="right: 15%; bottom: 15%; animation-delay: 4.5s;">1</span>
+  <span class="floating-element" style="left: 45%; top: 8%; animation-delay: 2s; font-size: 20px;">🟢</span>
+
+  <!-- CONTAINER -->
+  <div class="outer-container">
+    
+    <h1 class="profile-title">Hồ Sơ Năng Lực <span>Toán Học</span></h1>
+    
+    <!-- MASCOT CARD -->
+    <div class="mascot-card-frame">
+      <img class="mascot-img" src="/detective_owl.jpg" alt="Mascot Thám tử Cú Ú">
+    </div>
+
+    <!-- SKILLS PROGRESS LIST -->
+    <div class="skills-wrapper">
+      
+      <!-- SKILL 1 -->
+      <div class="skill-row">
+        <div class="skill-info">
+          <span class="skill-name" style="color: #3b82f6;">Đọc hiểu đề</span>
+          <span class="skill-percentage">⭐ 85%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill reading" id="fill-reading"></div>
+        </div>
+      </div>
+
+      <!-- SKILL 2 -->
+      <div class="skill-row">
+        <div class="skill-info">
+          <span class="skill-name" style="color: #10b981;">Phép tính cơ bản</span>
+          <span class="skill-percentage">⭐ 92%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill arithmetic" id="fill-arithmetic"></div>
+        </div>
+      </div>
+
+      <!-- SKILL 3 -->
+      <div class="skill-row">
+        <div class="skill-info">
+          <span class="skill-name" style="color: #f59e0b;">Giải toán 2 bước</span>
+          <span class="skill-percentage">⭐ 78%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill solving" id="fill-solving"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- START BUTTON -->
+    <button class="btn-journey" onclick="startLearning()">
+      Bắt đầu hành trình học 🚀
+    </button>
+
+  </div>
+
+  <script>
+    // Animate progress bars on load
+    window.onload = () => {
+      setTimeout(() => {
+        document.getElementById('fill-reading').style.width = '85%';
+        document.getElementById('fill-arithmetic').style.width = '92%';
+        document.getElementById('fill-solving').style.width = '78%';
+      }, 300);
+    };
+
+    function startLearning() {
+      // Play a click sfx tone
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.frequency.setValueAtTime(440, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15);
+        gain.gain.setValueAtTime(0.15, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.16);
+      } catch (e) {}
+      
+      alert("Hành trình giải toán của con bắt đầu! Chúc con học thật vui nhé!");
+    }
+  </script>
+</body>
+</html>
