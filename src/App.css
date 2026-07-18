@@ -201,7 +201,15 @@ button:disabled { cursor: not-allowed; }
   .achievement-grid { grid-template-columns:repeat(2,1fr); }.result-card { grid-template-columns:1fr; }.complete-screen { padding:25px 16px; }.complete-screen h1 { font-size:29px; }.big-stars { font-size:43px; }
 }
 @media (max-width: 430px) {
-  .top-stats .stat:nth-child(2) { display:none; }
+  /* The full level card makes the header wider than a phone screen. Streak,
+     coins, sound and profile remain directly available in the compact header. */
+  .level-card {
+    display: none;
+  }
+  .top-stats .stat { min-height: 40px; padding: 5px 8px; gap: 3px; }
+  .top-stats .stat > span { font-size: 16px; }
+  .top-stats .stat b { font-size: 13px; }
+  .top-stats .stat small { display: none; }
   .journey-hero { border-radius:20px; }.journey-hero h1 { font-size:24px; }.treasure { display:none; }
   .daily-strip small { font-size:11px; }.daily-score { padding:7px 11px; }
   .lesson-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.lesson-card { min-height:186px; }.lesson-card small { font-size:11px; }
@@ -5866,4 +5874,349 @@ button:disabled { cursor: not-allowed; }
   }
 }
 
+/* ==========================================================================
+   MOBILE UX FIXES — prevent overflow / broken layouts on small screens
+   ========================================================================== */
+
+/* The lesson page is locked to the viewport (overflow:hidden). Many custom
+   widgets use fixed inline widths/heights, so we let the question area scroll
+   on both axes and force widgets to shrink instead of overflowing. */
+@media (max-width: 880px) {
+  .lesson-page {
+    height: 100dvh;
+    /* Leave room for the OS home indicator / browser chrome */
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    /* Allow the whole page to scroll when the on-screen keyboard pushes
+       content up, instead of locking overflow and hiding inputs. */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .exercise-card {
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .question-area {
+    overflow-x: hidden;
+    min-height: 0;
+    width: 100%;
+  }
+
+  /* Custom widgets must never exceed the card width */
+  .custom-widget,
+  .visual-story,
+  .widget-controls {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Geometry grid uses fixed 180px width inline — let it fill */
+  .rectangle-grid-count .grid-matrix {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 3 / 2;
+  }
+
+  /* Fraction chocolate bar: 8 fixed columns is fine but ensure it wraps
+     within the card and shrinks on tiny screens */
+  .chocolate-bar {
+    width: 100% !important;
+  }
+  .chocolate-segment {
+    padding: 4px 0 !important;
+    font-size: 16px !important;
+  }
+
+  /* Motion formula grid is an inline 1fr 1fr — stack on mobile */
+  .motion-formulas-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .tri-btn {
+    padding: 10px 10px !important;
+    font-size: 12px !important;
+  }
+
+  /* Age bars / gap marker use % widths — already responsive, just add gap */
+  .age-slider-control {
+    padding: 0 4px;
+  }
+
+  /* Planting circular pond uses absolute px positions — keep it centered */
+  .planting-pond-container {
+    overflow: hidden;
+  }
+
+  /* Sequence + logic grid: allow horizontal scroll if needed, not page break */
+  .sequence-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .logic-grid-table {
+    font-size: 13px;
+  }
+  .logic-grid-table td {
+    min-width: 40px !important;
+    padding: 6px !important;
+  }
+
+  /* Chart bars fixed 60px columns — shrink a bit */
+  .chart-bar-column {
+    width: 44px !important;
+  }
+
+  /* Lego bricks rows should wrap */
+  .lego-line {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Manufacturing factory shelves */
+  .factory-items {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Onboarding test: stack toolbar text, give options full width tap targets */
+  .test-progress-text {
+    margin-right: 8px !important;
+    font-size: 12px !important;
+  }
+  .test-exercise-card {
+    max-width: 100% !important;
+  }
+
+  /* Lesson footer: keep feedback banner above buttons, full-width buttons */
+  .lesson-footer {
+    padding: 10px 12px !important;
+  }
+  .footer-content {
+    gap: 8px;
+  }
+  .feedback-banner {
+    flex: 1 1 100%;
+  }
+  .footer-actions {
+    width: 100%;
+  }
+  .footer-actions button {
+    flex: 1;
+  }
+
+  /* Smaller touch targets still meet 44px min but are tighter */
+  .widget-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .widget-controls button {
+    flex: 1 1 auto;
+    min-height: 44px;
+  }
+
+  /* Geometry tabs wrap instead of overflowing */
+  .geometry-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+  }
+  .geometry-tabs button {
+    font-size: 11px;
+    padding: 6px 8px;
+  }
+
+  /* Fraction slider track full width */
+  .fraction-slider-control input[type="range"] {
+    width: 100%;
+  }
+
+  /* Home hero: stack speech bubble + CTA cleanly */
+  .home-hero-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 20px;
+    text-align: center;
+  }
+  .mascot-hero-wrapper {
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+  }
+  .speech-bubble::after {
+    display: none;
+  }
+  .speech-bubble {
+    font-size: 14px;
+    text-align: left;
+  }
+  .hero-cta-box {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-cta-info {
+    align-items: center;
+    text-align: center;
+  }
+  .secondary-quests-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .personalized-progress-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Insights: single column already via inline; tighten gaps */
+  .insights-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .attributes-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .quests-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .skill-map-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Arena / buddy: tighter cards */
+  .arena-question-card {
+    padding: 18px !important;
+  }
+  .arena-math-display {
+    flex-wrap: wrap;
+    font-size: 22px;
+  }
+  .arena-math-display input {
+    width: 72px;
+    font-size: 26px;
+  }
+  .buddy-mascot-chat {
+    flex-direction: column;
+    text-align: center;
+  }
+  .buddy-decision-buttons {
+    flex-direction: column;
+  }
+  .buddy-dec-btn {
+    width: 100%;
+  }
+}
+
+/* Very small phones: ensure nothing is cut off horizontally */
+@media (max-width: 380px) {
+  .top-stats > .stat:nth-child(3) { display: none; }
+  .lesson-card strong { font-size: 13px; }
+  .journey-hero h1 { font-size: 21px; }
+  .chocolate-segment { font-size: 13px !important; }
+  .chart-bar-column { width: 36px !important; }
+}
+
+/* Touch feedback: mobile has no hover, so give an :active state so tapping
+   an option / card clearly shows the press. */
+@media (hover: none) {
+  .option:active:not(:disabled),
+  .model-card:active:not(:disabled),
+  .operation-grid button:active:not(:disabled),
+  .fact-card > div > button:active:not(:disabled),
+  .reason-list button:active:not(:disabled),
+  .lesson-card:active:not(:disabled),
+  .secondary-quest-card:active,
+  .progress-history-card:active,
+  .speed-buttons button:active,
+  .pill-button:active:not(:disabled),
+  .grade-select-btn:active,
+  .mascot-select-card:active,
+  .nav-button:active,
+  .btn-action:active,
+  .btn-action-outline:active,
+  .primary-button:active:not(:disabled),
+  .secondary-button:active:not(:disabled),
+  .footer-submit:active:not(:disabled),
+  .footer-next:active:not(:disabled),
+  .widget-controls button:active:not(:disabled),
+  .buddy-dec-btn:active,
+  .arena-submit-btn:active:not(:disabled),
+  .challenge-btn:active {
+    transform: scale(0.97);
+    filter: brightness(0.97);
+    transition: transform 0.08s ease;
+  }
+
+  /* Make selected/active choice obvious without relying on hover */
+  .option:active:not(:disabled) {
+    border-color: #6d59e8;
+    background: #f5f2ff;
+  }
+}
+
+/* ==========================================================================
+   GENERAL MOBILE UX POLISH (applies to all small screens)
+   ========================================================================== */
+@media (max-width: 880px) {
+  /* Respect the notch / home indicator on notched phones (only horizontal
+     chrome — do NOT override the page's own 24px content padding) */
+  .app-shell {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  .topbar {
+    padding-left: max(15px, env(safe-area-inset-left));
+    padding-right: max(15px, env(safe-area-inset-right));
+  }
+  .mobile-nav {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: max(5px, env(safe-area-inset-bottom));
+    height: calc(70px + env(safe-area-inset-bottom));
+  }
+  .pwa-install-drawer {
+    left: max(20px, env(safe-area-inset-left));
+    right: max(20px, env(safe-area-inset-right));
+    bottom: calc(84px + env(safe-area-inset-bottom));
+  }
+
+  /* Pictogram rows can be long — let them wrap instead of overflowing */
+  .picto-row {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .picto-row-label {
+    width: auto !important;
+    min-width: 60px;
+  }
+
+  /* Slightly larger base tap text for readability on phones */
+  body {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Prevent horizontal page scroll from any stray fixed-width element */
+  .app-shell,
+  main.main-content {
+    overflow-x: hidden;
+  }
+
+  /* Give the lesson toolbar a bit more breathing room */
+  .lesson-toolbar {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  /* Profile sheet should sit above the mobile nav and not be clipped */
+  .profile-sheet-panel {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .profile-sheet-footer-actions {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
 

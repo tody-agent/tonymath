@@ -1,4 +1,4 @@
-import { isUnlocked, resolveSpeechRate, generateIcsContent, isChallengeModeActive, getActiveProgress, applyLessonResult, getLearningPlan, getRecentlyStudiedLesson, getUnlockedAchievementIds, analyzeBehavioralProfile, updateBehavioralMetrics } from './utils.js';
+import { isUnlocked, resolveSpeechRate, generateIcsContent, isChallengeModeActive, getActiveProgress, applyLessonResult, getLearningPlan, getRecentlyStudiedLesson, getUnlockedAchievementIds, analyzeBehavioralProfile, updateBehavioralMetrics, getDailyQuests } from './utils.js';
 import { getMascotSpeech, getIndicatorGuide, MASCOT_PROFILES } from './mascotDialogs.js';
 import assert from 'assert';
 
@@ -542,7 +542,68 @@ try {
   process.exit(1);
 }
 
+// Test 5: Verify getMascotSpeech resolves options (careless, lazy, streak)
+try {
+  console.log('Running tests for mascotDialogs emotional options...');
+  const expectedKeys = ['owl', 'robot', 'turtle', 'babyshark', 'poli', 'steve', 'elsa', 'pinkfong', 'peppa'];
+  expectedKeys.forEach(k => {
+    // Careless check
+    const carelessMsg = getMascotSpeech(k, false, 'Dữ liệu sai', { isCareless: true });
+    assert.ok(carelessMsg.includes('Dữ liệu sai'), `Mascot ${k} careless response missing core message`);
+    const hasCarelessTemplate = MASCOT_PROFILES[k].carelessTemplates.some(t => carelessMsg.includes(t.slice(0, 10)));
+    assert.ok(hasCarelessTemplate, `Mascot ${k} careless response did not use carelessTemplates`);
+
+    // Lazy check
+    const lazyMsg = getMascotSpeech(k, true, 'Dữ liệu đúng', { isLazy: true });
+    const hasLazyTemplate = MASCOT_PROFILES[k].lazyTemplates.some(t => lazyMsg.includes(t.slice(0, 10)));
+    assert.ok(hasLazyTemplate, `Mascot ${k} lazy response did not use lazyTemplates`);
+
+    // Streak check
+    const streakMsg = getMascotSpeech(k, true, 'Dữ liệu đúng', { currentStreak: 5 });
+    assert.ok(streakMsg.includes('Dữ liệu đúng'), `Mascot ${k} streak response missing core message`);
+    const hasStreakTemplate = MASCOT_PROFILES[k].streakHighTemplates.some(t => streakMsg.includes(t.slice(0, 10)));
+    assert.ok(hasStreakTemplate, `Mascot ${k} streak response did not use streakHighTemplates`);
+  });
+  console.log('✅ Test Passed: getMascotSpeech maps careless, lazy, and streak templates correctly for all 9 mascots');
+} catch (e) {
+  console.error('❌ MascotDialogs emotional options tests failed:', e.stack);
+  process.exit(1);
+}
+
+// Test 6: Verify getDailyQuests
+try {
+  console.log('Running tests for getDailyQuests...');
+  const progress1 = {
+    xp: 120,
+    streak: 5,
+    lastStudyDate: '2026-07-18',
+    completed: {}
+  };
+  const quests1 = getDailyQuests(progress1, '2026-07-18');
+  assert.strictEqual(quests1.length, 3);
+  assert.strictEqual(quests1[0].completed, true); // Completed lesson today
+  assert.strictEqual(quests1[1].completed, true); // 3 correct answers
+  assert.strictEqual(quests1[2].completed, true); // Streak >= 1
+  
+  const progress2 = {
+    xp: 100,
+    streak: 0,
+    lastStudyDate: '2026-07-17',
+    completed: {}
+  };
+  const quests2 = getDailyQuests(progress2, '2026-07-18');
+  assert.strictEqual(quests2[0].completed, false); // No lesson today
+  assert.strictEqual(quests2[1].completed, false);
+  assert.strictEqual(quests2[2].completed, false); // Streak is 0
+  
+  console.log('✅ Test Passed: getDailyQuests computes quests correctly');
+} catch (e) {
+  console.error('❌ getDailyQuests tests failed:', e.stack);
+  process.exit(1);
+}
+
 console.log('🎉 All tests passed successfully!');
+
 
 
 

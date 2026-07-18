@@ -1,7 +1,7 @@
 {
   "schema": "intent@1",
-  "initiative": "nang-cap-thau-hieu",
-  "goal": "Nâng cấp trang Tiến độ thành trang Thấu hiểu (Insights) giàu tính tương tác game hóa (RPG Status Screen), phân tích thời gian học, tốc độ, độ chính xác, lỗi sai phổ biến và các nhiệm vụ phục hồi điểm số.",
-  "recommended_option": "Option A: Giao diện Bản đồ Chỉ số Anh Hùng (RPG Hero Status Dashboard)",
-  "openspec_path": "openspec/changes/nang-cap-thau-hieu/proposal.md"
+  "initiative": "ui-finalization",
+  "goal": "Hoàn thiện và đánh bóng giao diện người dùng (UI/UX) di động của TonyMath dựa trên thiết kế prototype của file tonymath-mobile-prototype.html, bao gồm việc tích hợp Lộ trình Đường học trực quan (zigzag learning path), màn hình giới thiệu bài học (Intro screen), bảng nhiệm vụ hằng ngày (Quests) và chức năng Ôn câu sai.",
+  "recommended_option": "Option C: Unified Premium Redesign (Hybrid)",
+  "openspec_path": "openspec/changes/ui-finalization/proposal.md"
 }

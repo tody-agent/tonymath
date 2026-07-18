@@ -1,0 +1,1771 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+  <title>TonyMath — Prototype mobile hoàn chỉnh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #eef2fb;
+      --phone-bg: #f5f7fc;
+      --surface: #ffffff;
+      --fg: #21304d;
+      --muted: #70809d;
+      --border: #e3e8f2;
+      --primary: #6851e8;
+      --primary-dark: #523bc7;
+      --primary-soft: #f0edff;
+      --green: #2fbd68;
+      --green-dark: #20984f;
+      --green-soft: #e9f9ef;
+      --gold: #f0b429;
+      --gold-soft: #fff7da;
+      --danger: #e45757;
+      --danger-soft: #fff0f0;
+      --sky: #4587e8;
+      --orange: #f39a41;
+      --pink: #ec69a2;
+      --shadow: 0 10px 28px rgba(40, 54, 88, 0.1);
+      --shadow-soft: 0 4px 14px rgba(40, 54, 88, 0.06);
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --phone-w: 390px;
+      --phone-h: 844px;
+      --safe-b: 18px;
+      --nav-h: 72px;
+      --font: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html, body { height: 100%; }
+    body {
+      font-family: var(--font);
+      color: var(--fg);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #dfe6ff 0%, transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, #dff7ea 0%, transparent 50%),
+        var(--bg);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px 16px;
+    }
+    button, input { font: inherit; color: inherit; border: 0; background: none; }
+    button { cursor: pointer; }
+    button:disabled { cursor: not-allowed; opacity: 0.55; }
+    img { display: block; max-width: 100%; }
+
+    .stage {
+      width: min(100%, 1180px);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      align-items: center;
+      justify-items: center;
+    }
+    @media (min-width: 960px) {
+      .stage { grid-template-columns: 1fr auto; justify-items: stretch; }
+    }
+
+    .brief { max-width: 440px; padding: 8px 4px; }
+    .brief .kicker {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--primary); background: var(--primary-soft); border-radius: 999px; padding: 6px 12px; margin-bottom: 14px;
+    }
+    .brief h1 {
+      font-size: clamp(26px, 3.6vw, 38px); font-weight: 900; letter-spacing: -0.02em; line-height: 1.12; margin-bottom: 10px;
+    }
+    .brief p { color: var(--muted); font-size: 14px; line-height: 1.55; font-weight: 700; margin-bottom: 14px; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .chip {
+      font-size: 11px; font-weight: 800; color: var(--fg); background: var(--surface);
+      border: 1.5px solid var(--border); border-radius: 999px; padding: 6px 11px; box-shadow: var(--shadow-soft);
+    }
+    .flow-list { list-style: none; display: grid; gap: 8px; margin-bottom: 14px; }
+    .flow-list li {
+      display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start;
+      font-size: 13px; font-weight: 700; color: var(--muted); line-height: 1.4;
+    }
+    .flow-list b { color: var(--fg); }
+    .flow-list .n {
+      width: 28px; height: 28px; border-radius: 10px; background: var(--primary-soft); color: var(--primary-dark);
+      display: grid; place-items: center; font-size: 12px; font-weight: 900;
+    }
+    .hint { font-size: 13px; font-weight: 700; color: var(--muted); line-height: 1.5; }
+    .hint strong { color: var(--primary-dark); }
+    @media (max-width: 959px) {
+      .brief { display: none; }
+      body { padding: 0; background: #0f1220; place-items: stretch; }
+      .stage { min-height: 100vh; width: 100%; }
+    }
+
+    .phone-shell {
+      width: min(100vw, var(--phone-w));
+      height: min(100dvh, var(--phone-h));
+      background: #111322; border-radius: 44px; padding: 12px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 30px 80px rgba(20, 28, 60, 0.35);
+      position: relative;
+    }
+    @media (max-width: 959px) {
+      .phone-shell { width: 100%; height: 100dvh; border-radius: 0; padding: 0; box-shadow: none; }
+    }
+    .phone {
+      width: 100%; height: 100%; background: var(--phone-bg); border-radius: 34px;
+      overflow: hidden; position: relative; display: flex; flex-direction: column;
+    }
+    @media (max-width: 959px) { .phone { border-radius: 0; } }
+
+    .status-bar {
+      height: 52px; padding: 14px 22px 0; display: flex; align-items: center; justify-content: space-between;
+      font-size: 14px; font-weight: 800; color: var(--fg); flex-shrink: 0; position: relative; z-index: 5;
+    }
+    .status-icons { display: flex; gap: 6px; align-items: center; font-size: 12px; }
+    .dynamic-island {
+      position: absolute; left: 50%; top: 10px; transform: translateX(-50%);
+      width: 112px; height: 28px; background: #0b0d16; border-radius: 20px; z-index: 6;
+    }
+    @media (max-width: 959px) {
+      .dynamic-island { display: none; }
+      .status-bar { height: 44px; padding-top: 10px; }
+    }
+
+    .screens { flex: 1; min-height: 0; position: relative; overflow: hidden; }
+    .screen {
+      position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden;
+      padding: 8px 16px calc(var(--nav-h) + var(--safe-b) + 8px);
+      opacity: 0; visibility: hidden; transform: translateY(10px);
+      transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+      scrollbar-width: none;
+    }
+    .screen::-webkit-scrollbar { display: none; }
+    .screen.active { opacity: 1; visibility: visible; transform: translateY(0); z-index: 2; }
+    .screen.no-tab { padding-bottom: calc(var(--safe-b) + 24px); }
+    .screen.immersive { padding: 0; background: #f5f7fc; }
+
+    .tabbar {
+      position: absolute; left: 12px; right: 12px; bottom: 10px; height: var(--nav-h);
+      background: rgba(255,255,255,0.96); border: 1.5px solid var(--border); border-radius: 24px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; padding: 6px;
+      box-shadow: 0 12px 30px rgba(33, 48, 77, 0.12); backdrop-filter: blur(14px); z-index: 20;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .tabbar.hidden { opacity: 0; pointer-events: none; transform: translateY(16px); }
+    .tab {
+      border-radius: 18px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 2px; color: var(--muted); min-height: 56px; transition: 0.15s ease;
+    }
+    .tab .ico { font-size: 20px; line-height: 1; }
+    .tab .lbl { font-size: 10px; font-weight: 800; letter-spacing: 0.02em; }
+    .tab.active { background: var(--primary-soft); color: var(--primary-dark); }
+    .tab:active { transform: scale(0.96); }
+
+    .top-stats { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+    .brand-mini { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .logo {
+      width: 42px; height: 42px; border-radius: 14px; background: linear-gradient(160deg, #fff1c7, #ffe08a);
+      display: grid; place-items: center; font-size: 24px; box-shadow: inset 0 -3px 0 rgba(0,0,0,0.06); flex-shrink: 0;
+    }
+    .brand-mini b { display: block; font-size: 17px; font-weight: 900; color: #275082; line-height: 1.1; letter-spacing: -0.01em; }
+    .brand-mini small { display: block; font-size: 11px; font-weight: 800; color: var(--muted); margin-top: 2px; }
+    .stat-pills { display: flex; gap: 6px; flex-shrink: 0; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 4px; min-height: 34px; padding: 0 10px; border-radius: 999px;
+      background: var(--surface); border: 1.5px solid var(--border); font-size: 13px; font-weight: 900; box-shadow: var(--shadow-soft);
+    }
+    .pill.fire { background: #fff4e8; border-color: #ffd7a8; color: #c56a12; }
+    .pill.xp { background: var(--gold-soft); border-color: #f2d473; color: #8a6300; }
+    .pill.heart { background: var(--danger-soft); border-color: #ffcaca; color: var(--danger); }
+
+    .card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 48px; padding: 0 18px; border-radius: 14px; font-weight: 900; font-size: 15px;
+      letter-spacing: 0.02em; transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.15s ease;
+    }
+    .btn:active:not(:disabled) { transform: translateY(2px); }
+    .btn-primary { background: linear-gradient(180deg, #7a66f0, var(--primary)); color: #fff; box-shadow: 0 6px 0 var(--primary-dark); }
+    .btn-primary:active:not(:disabled) { box-shadow: 0 3px 0 var(--primary-dark); }
+    .btn-success { background: linear-gradient(180deg, #3fd078, var(--green)); color: #fff; box-shadow: 0 6px 0 var(--green-dark); }
+    .btn-success:active:not(:disabled) { box-shadow: 0 3px 0 var(--green-dark); }
+    .btn-danger { background: linear-gradient(180deg, #f07070, var(--danger)); color: #fff; box-shadow: 0 6px 0 #c03d3d; }
+    .btn-ghost { background: var(--surface); border: 1.5px solid var(--border); color: var(--fg); }
+    .btn-soft { background: var(--primary-soft); color: var(--primary-dark); }
+    .btn-block { width: 100%; }
+    .btn-sm { min-height: 40px; padding: 0 14px; font-size: 13px; border-radius: 12px; }
+
+    .section-title { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin: 18px 0 10px; }
+    .section-title h2 { font-size: 18px; font-weight: 900; letter-spacing: -0.01em; }
+    .section-title span, .section-title button.linkish {
+      font-size: 12px; font-weight: 800; color: var(--primary);
+    }
+    .linkish { background: none; border: 0; padding: 0; cursor: pointer; }
+
+    .hero {
+      background: linear-gradient(135deg, #7553e8 0%, #5f41d1 100%); color: #fff; border-radius: 24px;
+      padding: 18px 18px 16px; position: relative; overflow: hidden;
+      box-shadow: 0 16px 32px rgba(93, 66, 210, 0.28); margin-bottom: 14px;
+    }
+    .hero::after {
+      content: ""; position: absolute; width: 160px; height: 160px; border-radius: 50%;
+      right: -40px; top: -50px; background: rgba(255,255,255,0.1);
+    }
+    .hero-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; position: relative; z-index: 1; }
+    .hero h1 { font-size: 22px; font-weight: 900; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 6px; }
+    .hero p { font-size: 13px; font-weight: 700; opacity: 0.92; line-height: 1.4; max-width: 230px; }
+    .mascot-bubble {
+      width: 72px; height: 72px; border-radius: 22px; background: rgba(255,255,255,0.18);
+      display: grid; place-items: center; font-size: 40px; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.25);
+    }
+    .hero-cta { margin-top: 14px; position: relative; z-index: 1; display: flex; gap: 8px; }
+    .hero-cta .btn { flex: 1; background: #fff; color: var(--primary-dark); box-shadow: 0 5px 0 rgba(40, 20, 100, 0.25); min-height: 44px; }
+    .hero-cta .btn.secondary {
+      background: rgba(255,255,255,0.16); color: #fff; border: 1.5px solid rgba(255,255,255,0.3); box-shadow: none;
+    }
+
+    .daily {
+      display: flex; align-items: center; gap: 12px; padding: 12px 14px; margin-bottom: 4px; width: 100%; text-align: left;
+    }
+    .daily .icon {
+      width: 44px; height: 44px; border-radius: 14px; background: var(--gold-soft);
+      display: grid; place-items: center; font-size: 22px; flex-shrink: 0;
+    }
+    .daily b { display: block; font-size: 14px; font-weight: 900; }
+    .daily small { display: block; font-size: 12px; font-weight: 700; color: var(--muted); margin-top: 2px; }
+    .daily .score {
+      margin-left: auto; text-align: center; background: var(--green-soft); color: var(--green-dark);
+      border-radius: 12px; padding: 6px 10px; min-width: 58px;
+    }
+    .daily .score b { font-size: 16px; }
+    .daily .score small { color: var(--green-dark); font-size: 10px; font-weight: 800; }
+
+    .quest-row { display: grid; gap: 8px; margin-top: 10px; }
+    .quest-item {
+      display: grid; grid-template-columns: 36px 1fr auto; gap: 10px; align-items: center;
+      padding: 12px; border-radius: 16px; background: #f8fafc; border: 1.5px solid var(--border);
+    }
+    .quest-item .qi {
+      width: 36px; height: 36px; border-radius: 12px; display: grid; place-items: center; font-size: 18px;
+    }
+    .quest-item b { display: block; font-size: 13px; font-weight: 900; }
+    .quest-item small { display: block; font-size: 11px; font-weight: 700; color: var(--muted); margin-top: 2px; }
+    .quest-item .reward { font-size: 12px; font-weight: 900; color: #8a6300; background: var(--gold-soft); padding: 4px 8px; border-radius: 999px; }
+    .quest-item.done { opacity: 0.72; }
+    .quest-item.done b::after { content: " ✓"; color: var(--green); }
+
+    .path { position: relative; padding: 8px 0 4px; }
+    .path-line {
+      position: absolute; left: 50%; top: 28px; bottom: 40px; width: 6px; transform: translateX(-50%);
+      background: linear-gradient(180deg, #c9bdf8, #d5e9ff 40%, #b8ebc8); border-radius: 99px; z-index: 0;
+    }
+    .path-node { position: relative; z-index: 1; display: flex; justify-content: center; margin: 0 0 18px; }
+    .path-node:nth-child(odd) { padding-right: 88px; }
+    .path-node:nth-child(even) { padding-left: 88px; }
+    .node-btn {
+      width: 74px; height: 74px; border-radius: 50%; display: grid; place-items: center; font-size: 30px;
+      position: relative; border: 4px solid #fff; box-shadow: 0 8px 0 rgba(0,0,0,0.08); transition: transform 0.12s ease;
+    }
+    .node-btn:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 4px 0 rgba(0,0,0,0.08); }
+    .node-btn.done { background: linear-gradient(180deg, #55d88a, var(--green)); }
+    .node-btn.current { background: linear-gradient(180deg, #8b78f5, var(--primary)); animation: pulse 1.8s ease-in-out infinite; }
+    .node-btn.chest { background: linear-gradient(180deg, #ffd76a, #f0b429); }
+    .node-btn.boss { background: linear-gradient(180deg, #ff8e8e, #e45757); }
+    .node-btn.locked { background: #d7dde8; color: #9aa7bc; box-shadow: 0 6px 0 #c2cad8; filter: grayscale(0.2); }
+    .node-btn .badge {
+      position: absolute; bottom: -6px; right: -4px; min-width: 26px; height: 22px; padding: 0 6px;
+      border-radius: 999px; background: #fff; border: 2px solid var(--border); font-size: 11px; font-weight: 900;
+      display: grid; place-items: center; color: var(--gold);
+    }
+    .node-label { position: absolute; top: 50%; transform: translateY(-50%); width: 108px; text-align: left; }
+    .path-node:nth-child(odd) .node-label { left: calc(50% + 52px); }
+    .path-node:nth-child(even) .node-label { right: calc(50% + 52px); text-align: right; }
+    .node-label b { display: block; font-size: 13px; font-weight: 900; line-height: 1.2; }
+    .node-label small { display: block; font-size: 11px; font-weight: 700; color: var(--muted); margin-top: 2px; }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 8px 0 rgba(0,0,0,0.08), 0 0 0 0 rgba(104,81,232,0.35); }
+      50% { box-shadow: 0 8px 0 rgba(0,0,0,0.08), 0 0 0 12px rgba(104,81,232,0); }
+    }
+
+    .grade-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+    .grade-tab {
+      min-height: 44px; border-radius: 14px; border: 1.5px solid var(--border); background: var(--surface);
+      font-weight: 900; font-size: 13px; color: var(--muted);
+    }
+    .grade-tab.active {
+      background: var(--primary-soft); border-color: #cfc7ff; color: var(--primary-dark); box-shadow: inset 0 0 0 1px #d9d2ff;
+    }
+    .topic-grid { display: grid; gap: 10px; }
+    .topic-card {
+      display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center;
+      padding: 14px; text-align: left; transition: border-color 0.15s ease, transform 0.12s ease; width: 100%;
+    }
+    .topic-card:active { transform: scale(0.99); }
+    .topic-icon { width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center; font-size: 28px; }
+    .topic-card b { display: block; font-size: 15px; font-weight: 900; }
+    .topic-card small { display: block; font-size: 12px; font-weight: 700; color: var(--muted); margin-top: 3px; }
+    .progress-ring {
+      width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center;
+      font-size: 11px; font-weight: 900; color: var(--primary-dark);
+      background: conic-gradient(var(--primary) var(--p, 40%), #e8ecf4 0); position: relative;
+    }
+    .progress-ring::after { content: ""; position: absolute; inset: 5px; background: #fff; border-radius: 50%; }
+    .progress-ring span { position: relative; z-index: 1; }
+
+    .unit-hero {
+      background: linear-gradient(140deg, #5f9cf0, #4587e8); color: #fff; border-radius: 22px; padding: 18px;
+      margin-bottom: 14px; position: relative; overflow: hidden;
+    }
+    .unit-hero h1 { font-size: 22px; font-weight: 900; margin: 8px 0 6px; letter-spacing: -0.02em; }
+    .unit-hero p { font-size: 13px; font-weight: 700; opacity: 0.92; line-height: 1.4; }
+    .unit-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .unit-meta span {
+      background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 999px; padding: 5px 10px; font-size: 11px; font-weight: 800;
+    }
+    .lesson-list { display: grid; gap: 10px; }
+    .lesson-item {
+      display: grid; grid-template-columns: 48px 1fr auto; gap: 12px; align-items: center;
+      padding: 12px; text-align: left; width: 100%;
+    }
+    .lesson-item .li {
+      width: 48px; height: 48px; border-radius: 16px; display: grid; place-items: center; font-size: 22px;
+    }
+    .lesson-item b { display: block; font-size: 14px; font-weight: 900; }
+    .lesson-item small { display: block; font-size: 11px; font-weight: 700; color: var(--muted); margin-top: 2px; }
+    .stars-mini { color: var(--gold); font-size: 12px; font-weight: 900; white-space: nowrap; }
+    .stars-mini.off { color: #c8d0de; }
+
+    .page-head {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+    }
+    .page-head h1 { font-size: 18px; font-weight: 900; letter-spacing: -0.01em; flex: 1; }
+    .icon-btn {
+      width: 42px; height: 42px; border-radius: 13px; background: var(--surface); border: 1.5px solid var(--border);
+      display: grid; place-items: center; font-size: 18px; flex-shrink: 0; box-shadow: var(--shadow-soft);
+    }
+
+    /* INTRO */
+    .intro-wrap {
+      min-height: 100%; display: flex; flex-direction: column; padding: 12px 16px 24px;
+    }
+    .intro-mascot {
+      text-align: center; padding: 18px 10px 8px;
+    }
+    .intro-mascot .owl {
+      width: 120px; height: 120px; margin: 0 auto 12px; border-radius: 36px;
+      background: linear-gradient(160deg, #fff1c7, #ffe08a); display: grid; place-items: center;
+      font-size: 72px; box-shadow: var(--shadow); border: 4px solid #fff;
+      animation: bob 2.4s ease-in-out infinite;
+    }
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .speech {
+      background: #fff; border: 1.5px solid var(--border); border-radius: 18px; padding: 14px 16px;
+      font-size: 15px; font-weight: 800; line-height: 1.45; position: relative; box-shadow: var(--shadow-soft);
+      text-align: left;
+    }
+    .speech::before {
+      content: ""; position: absolute; top: -8px; left: 50%; transform: translateX(-50%) rotate(45deg);
+      width: 14px; height: 14px; background: #fff; border-left: 1.5px solid var(--border); border-top: 1.5px solid var(--border);
+    }
+    .facts {
+      display: grid; gap: 8px; margin: 16px 0; flex: 1;
+    }
+    .fact {
+      display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: center;
+      padding: 12px 14px; border-radius: 14px; background: #fff; border: 1.5px solid var(--border);
+      font-size: 13px; font-weight: 800;
+    }
+    .fact .dot {
+      width: 28px; height: 28px; border-radius: 10px; display: grid; place-items: center; font-size: 12px; font-weight: 900; color: #fff;
+    }
+    .fact.known .dot { background: var(--sky); }
+    .fact.ask .dot { background: var(--orange); }
+    .step-pills { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+    .step-pill {
+      font-size: 11px; font-weight: 900; padding: 5px 10px; border-radius: 999px;
+      background: #edf0f6; color: var(--muted);
+    }
+    .step-pill.on { background: var(--primary-soft); color: var(--primary-dark); }
+    .step-pill.done { background: var(--green-soft); color: var(--green-dark); }
+
+    /* PRACTICE */
+    .practice-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .progress-track { flex: 1; height: 12px; background: #e6eaf2; border-radius: 99px; overflow: hidden; }
+    .progress-track > i {
+      display: block; height: 100%; width: 0%; background: linear-gradient(90deg, #6bd86c, #30b968);
+      border-radius: inherit; transition: width 0.35s ease;
+    }
+    .hearts {
+      min-height: 42px; padding: 0 10px; border-radius: 12px; background: var(--danger-soft);
+      border: 1.5px solid #ffcaca; color: var(--danger); font-weight: 900; font-size: 13px;
+      display: grid; place-items: center; white-space: nowrap;
+    }
+    .story {
+      display: grid; grid-template-columns: 40px 1fr; gap: 10px; padding: 14px;
+      background: linear-gradient(100deg, #fff7db, #fff9e9); border: 1.5px solid #f2d473;
+      border-radius: 18px; margin-bottom: 14px;
+    }
+    .story .sound {
+      width: 40px; height: 40px; border-radius: 50%; background: #fff; border: 1.5px solid #e8d49a;
+      display: grid; place-items: center; font-size: 18px;
+    }
+    .story p { font-size: 14px; font-weight: 800; line-height: 1.45; color: #5c4710; }
+    .q-card { padding: 16px; margin-bottom: 12px; }
+    .q-card .step-tag {
+      display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 900;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--green-dark); background: var(--green-soft);
+      border-radius: 999px; padding: 5px 10px; margin-bottom: 10px;
+    }
+    .q-card h2 { font-size: 18px; font-weight: 900; letter-spacing: -0.015em; line-height: 1.3; margin-bottom: 14px; }
+
+    .visual-avg {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px;
+      background: #f7f9fc; border-radius: 16px; padding: 12px;
+    }
+    .v-col {
+      background: #fff; border: 1.5px solid var(--border); border-radius: 14px; padding: 10px 6px; text-align: center;
+    }
+    .v-col .bar-wrap { height: 72px; display: flex; align-items: flex-end; justify-content: center; margin: 6px 0; }
+    .v-col .bar {
+      width: 28px; border-radius: 8px 8px 4px 4px; background: linear-gradient(180deg, #8b78f5, var(--primary));
+    }
+    .v-col b { display: block; font-size: 12px; font-weight: 900; }
+    .v-col small { display: block; font-size: 11px; font-weight: 800; color: var(--muted); margin-top: 2px; }
+
+    .model-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .model-card {
+      padding: 12px; border-radius: 14px; border: 2px solid var(--border); background: #fff;
+      text-align: center; font-weight: 800; font-size: 12px; line-height: 1.3; min-height: 92px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+    }
+    .model-card span { font-size: 26px; }
+    .model-card.selected { border-color: var(--primary); background: var(--primary-soft); }
+    .model-card.correct { border-color: var(--green); background: var(--green-soft); }
+    .model-card.wrong { border-color: #f0a090; background: #fff3f0; }
+
+    .options { display: grid; gap: 10px; }
+    .option {
+      display: grid; grid-template-columns: 36px 1fr; gap: 10px; align-items: center; text-align: left;
+      padding: 12px; border-radius: 15px; border: 2px solid var(--border); background: #fff;
+      font-weight: 800; transition: 0.12s ease; min-height: 54px; font-size: 14px;
+    }
+    .option > span {
+      width: 34px; height: 34px; border-radius: 10px; background: #edf0f6;
+      display: grid; place-items: center; font-weight: 900; font-size: 14px;
+    }
+    .option.selected { border-color: var(--primary); background: var(--primary-soft); }
+    .option.selected > span { background: var(--primary); color: #fff; }
+    .option.correct { border-color: var(--green); background: var(--green-soft); }
+    .option.correct > span { background: var(--green); color: #fff; }
+    .option.wrong { border-color: #f0a090; background: #fff3f0; }
+    .option.wrong > span { background: var(--danger); color: #fff; }
+
+    .numpad-wrap { margin-top: 4px; }
+    .answer-display {
+      min-height: 56px; border-radius: 16px; border: 2px dashed #cfc7ff; background: var(--primary-soft);
+      display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px;
+      font-size: 28px; font-weight: 900; color: var(--primary-dark); letter-spacing: 0.04em;
+    }
+    .answer-display .unit-label { font-size: 14px; color: var(--muted); font-weight: 800; }
+    .numpad {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    }
+    .numpad button {
+      min-height: 48px; border-radius: 14px; background: #fff; border: 1.5px solid var(--border);
+      font-size: 18px; font-weight: 900; box-shadow: var(--shadow-soft);
+    }
+    .numpad button:active { transform: scale(0.96); background: var(--primary-soft); }
+    .numpad button.wide { grid-column: span 1; }
+    .numpad button.danger-soft { color: var(--danger); background: var(--danger-soft); border-color: #ffcaca; }
+
+    .feedback {
+      display: none; align-items: flex-start; gap: 10px; margin-top: 12px; padding: 12px 14px;
+      border-radius: 14px; font-size: 14px; font-weight: 700; line-height: 1.4;
+    }
+    .feedback.show { display: flex; }
+    .feedback.ok { background: var(--green-soft); color: #247d46; border: 1.5px solid #8bd8a8; }
+    .feedback.bad { background: #fff4e8; color: #9a5d1a; border: 1.5px solid #f1c58f; }
+    .feedback b { display: block; font-size: 15px; margin-bottom: 2px; }
+
+    .practice-actions { display: grid; grid-template-columns: 1fr 1.4fr; gap: 10px; margin-top: 14px; }
+    .practice-actions.single { grid-template-columns: 1fr; }
+
+    /* Overlay / sheets */
+    .overlay {
+      position: absolute; inset: 0; background: rgba(20, 28, 55, 0.45); z-index: 40;
+      display: none; align-items: flex-end; justify-content: center; padding: 12px;
+    }
+    .overlay.show { display: flex; }
+    .overlay.center { align-items: center; }
+    .sheet {
+      width: 100%; background: #fff; border-radius: 28px 28px 24px 24px; padding: 22px 18px 18px;
+      box-shadow: var(--shadow); animation: slideUp 0.28s ease; max-height: 92%; overflow-y: auto;
+    }
+    .sheet.compact { border-radius: 24px; max-width: 340px; }
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity: 0.4; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .cele { text-align: center; margin-bottom: 16px; }
+    .cele .burst { font-size: 56px; line-height: 1; margin-bottom: 8px; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.12)); }
+    .cele h2 { font-size: 24px; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .cele p { font-size: 14px; font-weight: 700; color: var(--muted); line-height: 1.4; }
+    .stars-row { display: flex; justify-content: center; gap: 8px; font-size: 36px; margin: 14px 0 18px; }
+    .stars-row span { filter: grayscale(1); opacity: 0.28; transform: scale(0.85); transition: 0.25s ease; }
+    .stars-row span.on { filter: none; opacity: 1; transform: scale(1); }
+    .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+    .result-grid .card { padding: 12px 8px; text-align: center; }
+    .result-grid .card span { display: block; font-size: 22px; margin-bottom: 4px; }
+    .result-grid .card b { display: block; font-size: 16px; font-weight: 900; }
+    .result-grid .card small { display: block; font-size: 11px; font-weight: 800; color: var(--muted); margin-top: 2px; }
+    .streak-banner {
+      display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px;
+      background: linear-gradient(100deg, #fff4e8, #fff7da); border: 1.5px solid #ffd7a8; margin-bottom: 14px;
+    }
+    .streak-banner .fire {
+      width: 48px; height: 48px; border-radius: 16px; background: #fff; display: grid; place-items: center;
+      font-size: 26px; box-shadow: var(--shadow-soft);
+    }
+    .streak-banner b { display: block; font-size: 15px; font-weight: 900; }
+    .streak-banner small { display: block; font-size: 12px; font-weight: 700; color: #a66a18; margin-top: 2px; }
+    .xp-bar-wrap { margin-bottom: 16px; }
+    .xp-bar-wrap .row {
+      display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; color: var(--muted); margin-bottom: 6px;
+    }
+    .xp-bar { height: 14px; background: #e9edf4; border-radius: 99px; overflow: hidden; }
+    .xp-bar i { display: block; height: 100%; width: 62%; background: linear-gradient(90deg, #7ee56c, #39bf64); border-radius: inherit; transition: width 0.6s ease; }
+
+    .profile-hero {
+      text-align: center; padding: 18px 14px 16px; margin-bottom: 12px; position: relative; overflow: hidden;
+    }
+    .profile-hero::before {
+      content: ""; position: absolute; inset: 0 0 40% 0; background: linear-gradient(135deg, #7553e8, #5f41d1);
+    }
+    .avatar {
+      width: 84px; height: 84px; border-radius: 28px; background: linear-gradient(160deg, #fff1c7, #ffe08a);
+      display: grid; place-items: center; font-size: 46px; margin: 8px auto 10px; border: 4px solid #fff;
+      box-shadow: var(--shadow); position: relative; z-index: 1;
+    }
+    .profile-hero h2 { position: relative; z-index: 1; font-size: 22px; font-weight: 900; letter-spacing: -0.015em; }
+    .profile-hero p { position: relative; z-index: 1; font-size: 13px; font-weight: 700; color: var(--muted); margin-top: 4px; }
+    .level-pill {
+      position: relative; z-index: 1; display: inline-flex; margin-top: 10px; background: var(--primary-soft);
+      color: var(--primary-dark); font-size: 12px; font-weight: 900; padding: 6px 12px; border-radius: 999px;
+    }
+    .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+    .stat-row .card { padding: 12px 8px; text-align: center; }
+    .stat-row span { font-size: 22px; display: block; }
+    .stat-row b { display: block; font-size: 16px; font-weight: 900; margin-top: 4px; }
+    .stat-row small { display: block; font-size: 11px; font-weight: 800; color: var(--muted); margin-top: 2px; }
+    .ach-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .ach { padding: 14px 12px; text-align: center; filter: grayscale(1); opacity: 0.55; }
+    .ach.on { filter: none; opacity: 1; border-color: #f1d47a; background: linear-gradient(180deg, #fffefa, #fff8da); }
+    .ach span { display: block; font-size: 32px; margin-bottom: 6px; }
+    .ach b { display: block; font-size: 13px; font-weight: 900; }
+    .ach small { display: block; font-size: 11px; font-weight: 700; color: var(--muted); margin-top: 4px; line-height: 1.3; }
+
+    .menu-list { display: grid; gap: 8px; margin-top: 8px; }
+    .menu-item {
+      display: grid; grid-template-columns: 40px 1fr auto; gap: 12px; align-items: center;
+      padding: 12px 14px; text-align: left; width: 100%;
+    }
+    .menu-item .mi {
+      width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font-size: 18px; background: var(--primary-soft);
+    }
+    .menu-item b { display: block; font-size: 14px; font-weight: 900; }
+    .menu-item small { display: block; font-size: 11px; font-weight: 700; color: var(--muted); margin-top: 2px; }
+    .menu-item .chev { color: var(--muted); font-weight: 900; }
+
+    .lb-list { display: grid; gap: 8px; }
+    .lb-row {
+      display: grid; grid-template-columns: 32px 40px 1fr auto; gap: 10px; align-items: center;
+      padding: 10px 12px;
+    }
+    .lb-row.me { border-color: #cfc7ff; background: var(--primary-soft); }
+    .lb-rank { font-weight: 900; font-size: 14px; color: var(--muted); text-align: center; }
+    .lb-rank.top { color: var(--gold); }
+    .lb-av {
+      width: 40px; height: 40px; border-radius: 14px; background: #fff1c7; display: grid; place-items: center; font-size: 22px;
+    }
+    .lb-row b { display: block; font-size: 13px; font-weight: 900; }
+    .lb-row small { display: block; font-size: 11px; font-weight: 700; color: var(--muted); }
+    .lb-xp { font-size: 13px; font-weight: 900; color: #8a6300; }
+
+    .settings-group { margin-bottom: 16px; }
+    .settings-group h3 { font-size: 12px; font-weight: 900; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .setting-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 14px; margin-bottom: 8px;
+    }
+    .setting-row b { display: block; font-size: 14px; font-weight: 900; }
+    .setting-row small { display: block; font-size: 11px; font-weight: 700; color: var(--muted); margin-top: 2px; }
+    .switch {
+      width: 48px; height: 28px; border-radius: 999px; background: #d7dde8; position: relative; flex-shrink: 0;
+      transition: 0.2s ease;
+    }
+    .switch.on { background: var(--green); }
+    .switch i {
+      position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%;
+      background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.15); transition: 0.2s ease;
+    }
+    .switch.on i { left: 23px; }
+
+    .review-list { display: grid; gap: 10px; }
+    .review-card { padding: 14px; text-align: left; width: 100%; }
+    .review-card .tag {
+      display: inline-flex; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em;
+      padding: 4px 8px; border-radius: 999px; background: #fff0f0; color: var(--danger); margin-bottom: 8px;
+    }
+    .review-card b { display: block; font-size: 14px; font-weight: 900; line-height: 1.35; }
+    .review-card small { display: block; font-size: 12px; font-weight: 700; color: var(--muted); margin-top: 6px; line-height: 1.35; }
+
+    .chest-scene { text-align: center; padding: 10px 0 6px; }
+    .chest-scene .box {
+      font-size: 72px; line-height: 1; animation: bob 1.6s ease-in-out infinite; margin-bottom: 8px;
+      filter: drop-shadow(0 10px 12px rgba(0,0,0,0.12));
+    }
+    .reward-pills { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin: 14px 0; }
+    .reward-pills span {
+      background: var(--gold-soft); border: 1.5px solid #f2d473; border-radius: 999px;
+      padding: 8px 12px; font-size: 13px; font-weight: 900; color: #8a6300;
+    }
+
+    .empty {
+      text-align: center; padding: 28px 16px; color: var(--muted);
+    }
+    .empty .e { font-size: 48px; margin-bottom: 10px; }
+    .empty b { display: block; font-size: 16px; font-weight: 900; color: var(--fg); margin-bottom: 6px; }
+    .empty p { font-size: 13px; font-weight: 700; line-height: 1.45; }
+
+    .toast {
+      position: absolute; left: 50%; top: 64px; transform: translateX(-50%) translateY(-12px);
+      background: var(--fg); color: #fff; font-size: 13px; font-weight: 800; padding: 10px 16px;
+      border-radius: 999px; z-index: 50; opacity: 0; pointer-events: none; transition: 0.25s ease; white-space: nowrap;
+      box-shadow: var(--shadow);
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .home-indicator {
+      position: absolute; left: 50%; bottom: 4px; transform: translateX(-50%);
+      width: 120px; height: 4px; background: rgba(0,0,0,0.18); border-radius: 99px; z-index: 30; pointer-events: none;
+    }
+    @media (max-width: 959px) { .home-indicator { bottom: 6px; } }
+
+    .confetti {
+      position: absolute; inset: 0; pointer-events: none; z-index: 45; overflow: hidden; display: none;
+    }
+    .confetti.show { display: block; }
+    .confetti i {
+      position: absolute; top: -10px; width: 8px; height: 12px; border-radius: 2px;
+      animation: fall 1.4s linear forwards;
+    }
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(360deg); opacity: 0.2; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <aside class="brief">
+      <div class="kicker">TonyMath · v2 multi-screen</div>
+      <h1>Prototype mobile học toán đầy đủ luồng</h1>
+      <p>Clickable, mobile-first, lớp 3–5. Brand TonyMath (tím/xanh/Nunito/cú). Nhiều màn + tình huống: đúng/sai, hết tim, rương, streak, xếp hạng, ôn sai.</p>
+      <div class="chip-row">
+        <span class="chip">Home path</span>
+        <span class="chip">Unit + intro</span>
+        <span class="chip">4 bước bài tập</span>
+        <span class="chip">XP / streak</span>
+        <span class="chip">Hết tim</span>
+        <span class="chip">Rương</span>
+        <span class="chip">Hồ sơ</span>
+        <span class="chip">Xếp hạng</span>
+        <span class="chip">Cài đặt</span>
+      </div>
+      <ol class="flow-list">
+        <li><span class="n">1</span><span><b>Home</b> → Bắt đầu học / node đang học</span></li>
+        <li><span class="n">2</span><span><b>Unit</b> → chọn bài → <b>Intro</b> cú giải thích</span></li>
+        <li><span class="n">3</span><span><b>Bài tập</b> 4 bước: hiểu đề → mô hình → phép tính → đáp án</span></li>
+        <li><span class="n">4</span><span>Thử chọn sai (mất tim) · gợi ý · hết tim · kết quả · rương</span></li>
+      </ol>
+      <p class="hint">Trên mobile, khung phone full-screen. Thử <strong>sai đáp án</strong> 3 lần để xem màn hết tim.</p>
+    </aside>
+
+    <div class="phone-shell" aria-label="TonyMath mobile prototype">
+      <div class="phone">
+        <div class="dynamic-island" aria-hidden="true"></div>
+        <div class="status-bar">
+          <span class="time" id="clock">9:41</span>
+          <div class="status-icons" aria-hidden="true">
+            <span>●●●●</span><span>Wi‑Fi</span><span>🔋</span>
+          </div>
+        </div>
+
+        <div class="toast" id="toast" role="status"></div>
+        <div class="confetti" id="confetti" aria-hidden="true"></div>
+
+        <div class="screens">
+          <!-- HOME -->
+          <section class="screen active" id="screen-home" data-tab="home">
+            <div class="top-stats">
+              <div class="brand-mini">
+                <div class="logo" aria-hidden="true">🦉</div>
+                <div>
+                  <b>TonyMath</b>
+                  <small>Xin chào, Minh Anh!</small>
+                </div>
+              </div>
+              <div class="stat-pills">
+                <button class="pill fire" type="button" data-go="quests" title="Streak">🔥 <span id="ui-streak">7</span></button>
+                <button class="pill xp" type="button" data-go="profile" title="XP">⭐ <span id="ui-xp">1240</span></button>
+              </div>
+            </div>
+
+            <div class="hero">
+              <div class="hero-top">
+                <div>
+                  <h1>Tiếp tục đường học lớp 4</h1>
+                  <p>Còn 2 bài nữa là xong unit “So sánh & gấp lần”.</p>
+                </div>
+                <div class="mascot-bubble" aria-hidden="true">🦉</div>
+              </div>
+              <div class="hero-cta">
+                <button class="btn" type="button" data-go="unit">Bắt đầu học</button>
+                <button class="btn secondary" type="button" data-go="topics">Đổi chủ đề</button>
+              </div>
+            </div>
+
+            <button class="card daily" type="button" data-go="quests">
+              <div class="icon" aria-hidden="true">🎯</div>
+              <div>
+                <b>Nhiệm vụ hôm nay</b>
+                <small>2/3 xong · giữ streak 7 ngày</small>
+              </div>
+              <div class="score">
+                <b>2/3</b>
+                <small>nv</small>
+              </div>
+            </button>
+
+            <div class="section-title">
+              <h2>Đường học của em</h2>
+              <button class="linkish" type="button" data-go="unit">Unit 3 ›</button>
+            </div>
+
+            <div class="path" role="list">
+              <div class="path-line" aria-hidden="true"></div>
+              <div class="path-node" role="listitem">
+                <button class="node-btn done" type="button" data-go="practice" data-start="0" aria-label="Đọc hiểu đề đã xong">
+                  📖<span class="badge">★★★</span>
+                </button>
+                <div class="node-label"><b>Đọc hiểu đề</b><small>Đã xong</small></div>
+              </div>
+              <div class="path-node" role="listitem">
+                <button class="node-btn done" type="button" data-go="practice" data-start="0" aria-label="Tổng phần đã xong">
+                  ➕<span class="badge">★★☆</span>
+                </button>
+                <div class="node-label"><b>Tổng – phần</b><small>Đã xong</small></div>
+              </div>
+              <div class="path-node" role="listitem">
+                <button class="node-btn current" type="button" data-go="intro" aria-label="So sánh số đang học">
+                  ⚖️<span class="badge">▶</span>
+                </button>
+                <div class="node-label"><b>So sánh số</b><small>Đang học</small></div>
+              </div>
+              <div class="path-node" role="listitem">
+                <button class="node-btn locked" type="button" data-locked="1" aria-label="Gấp nhiều lần khóa">🔒</button>
+                <div class="node-label"><b>Gấp nhiều lần</b><small>Mở sau</small></div>
+              </div>
+              <div class="path-node" role="listitem">
+                <button class="node-btn chest" type="button" data-go="chest" aria-label="Rương unit">🎁</button>
+                <div class="node-label"><b>Rương unit</b><small>+80 XP</small></div>
+              </div>
+              <div class="path-node" role="listitem">
+                <button class="node-btn locked boss" type="button" data-locked="1" aria-label="Thử thách boss khóa">⚔️</button>
+                <div class="node-label"><b>Thử thách</b><small>Boss unit</small></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- TOPICS -->
+          <section class="screen" id="screen-topics" data-tab="topics">
+            <div class="top-stats">
+              <div class="brand-mini">
+                <div class="logo" aria-hidden="true">📚</div>
+                <div><b>Chọn chủ đề</b><small>Theo lớp & kỹ năng</small></div>
+              </div>
+              <button class="icon-btn" type="button" data-go="leaderboard" aria-label="Xếp hạng">🏆</button>
+            </div>
+            <div class="grade-tabs" role="tablist" aria-label="Chọn lớp">
+              <button class="grade-tab" type="button" data-grade="3">Lớp 3</button>
+              <button class="grade-tab active" type="button" data-grade="4">Lớp 4</button>
+              <button class="grade-tab" type="button" data-grade="5">Lớp 5</button>
+            </div>
+            <div class="topic-grid" id="topic-list"></div>
+          </section>
+
+          <!-- UNIT -->
+          <section class="screen no-tab" id="screen-unit" data-tab="">
+            <div class="page-head">
+              <button class="icon-btn" type="button" data-go="home" aria-label="Quay lại">‹</button>
+              <h1>Unit 3 · So sánh & gấp lần</h1>
+              <button class="icon-btn" type="button" data-go="settings" aria-label="Cài đặt">⚙️</button>
+            </div>
+            <div class="unit-hero">
+              <div style="font-size:28px">⚖️</div>
+              <h1>So sánh số & gấp lần</h1>
+              <p>Em học cách đọc đề, chọn mô hình và tính toán khi đề nói “gấp”, “hơn”, “kém”.</p>
+              <div class="unit-meta">
+                <span>6 bài</span><span>≈ 25 phút</span><span>Lớp 4</span><span>3/6 ★</span>
+              </div>
+            </div>
+            <div class="section-title"><h2>Danh sách bài</h2><span>3/6</span></div>
+            <div class="lesson-list">
+              <button class="card lesson-item" type="button" data-go="intro">
+                <div class="li" style="background:#eafaf1">📖</div>
+                <div><b>1. Đọc hiểu đề so sánh</b><small>Hiểu “hơn / kém / gấp”</small></div>
+                <span class="stars-mini">★★★</span>
+              </button>
+              <button class="card lesson-item" type="button" data-go="intro">
+                <div class="li" style="background:#eaf2ff">➕</div>
+                <div><b>2. Tổng – phần trong so sánh</b><small>Vẽ sơ đồ phần–toàn phần</small></div>
+                <span class="stars-mini">★★☆</span>
+              </button>
+              <button class="card lesson-item" type="button" data-go="intro" style="border-color:#cfc7ff;background:linear-gradient(180deg,#faf9ff,#fff)">
+                <div class="li" style="background:var(--primary-soft)">⚖️</div>
+                <div><b>3. So sánh số (đang học)</b><small>Bài cam trung bình · 4 bước</small></div>
+                <span class="stars-mini off">☆☆☆</span>
+              </button>
+              <button class="card lesson-item" type="button" data-locked="1" style="opacity:.65">
+                <div class="li" style="background:#edf0f6">✖️</div>
+                <div><b>4. Gấp nhiều lần</b><small>Khóa · cần 2★ bài 3</small></div>
+                <span style="font-size:18px">🔒</span>
+              </button>
+              <button class="card lesson-item" type="button" data-locked="1" style="opacity:.65">
+                <div class="li" style="background:#edf0f6">🧠</div>
+                <div><b>5. Bài toán hai bước</b><small>Khóa</small></div>
+                <span style="font-size:18px">🔒</span>
+              </button>
+              <button class="card lesson-item" type="button" data-go="chest">
+                <div class="li" style="background:var(--gold-soft)">🎁</div>
+                <div><b>Rương unit</b><small>Mở khi xong 5 bài</small></div>
+                <span class="stars-mini">+80</span>
+              </button>
+            </div>
+            <div style="margin-top:16px">
+              <button class="btn btn-primary btn-block" type="button" data-go="intro">Học bài đang dở</button>
+            </div>
+          </section>
+
+          <!-- INTRO -->
+          <section class="screen no-tab immersive" id="screen-intro" data-tab="">
+            <div class="intro-wrap">
+              <div class="page-head" style="padding: 8px 0 0">
+                <button class="icon-btn" type="button" data-go="unit" aria-label="Quay lại">‹</button>
+                <h1>Trước khi làm</h1>
+                <button class="icon-btn" type="button" id="btn-skip-intro" aria-label="Bỏ qua">⏭</button>
+              </div>
+              <div class="intro-mascot">
+                <div class="owl" aria-hidden="true">🦉</div>
+                <div class="speech" id="intro-speech">
+                  Chào Minh Anh! Hôm nay mình cùng làm bài “An, Bình và Cường hái cam”. Mình sẽ đi 4 bước: hiểu đề → chọn mô hình → chọn phép tính → viết đáp án.
+                </div>
+              </div>
+              <div class="facts">
+                <div class="fact known"><span class="dot">1</span><span>An hái <b>15</b> quả cam</span></div>
+                <div class="fact known"><span class="dot">2</span><span>Bình hái <b>9</b> quả cam</span></div>
+                <div class="fact known"><span class="dot">3</span><span>Cường hái <b>12</b> quả cam</span></div>
+                <div class="fact ask"><span class="dot">?</span><span>Tìm <b>trung bình</b> mỗi bạn hái được bao nhiêu?</span></div>
+              </div>
+              <button class="btn btn-success btn-block" type="button" data-go="practice" data-start="0">Bắt đầu 4 bước · ❤️ 3</button>
+              <button class="btn btn-ghost btn-block" type="button" style="margin-top:8px" data-go="unit">Quay lại unit</button>
+            </div>
+          </section>
+
+          <!-- PRACTICE -->
+          <section class="screen no-tab" id="screen-practice" data-tab="practice">
+            <div class="practice-top">
+              <button class="icon-btn" type="button" id="btn-close-practice" aria-label="Đóng">✕</button>
+              <div class="progress-track" aria-hidden="true"><i id="prac-progress"></i></div>
+              <div class="hearts" id="hearts">❤️ 3</div>
+            </div>
+            <div class="step-pills" id="step-pills" aria-label="Tiến trình 4 bước"></div>
+            <div class="story">
+              <button class="sound" type="button" aria-label="Nghe đề" id="btn-speak">🔊</button>
+              <p id="story-text">An hái 15 quả cam, Bình hái 9 quả, Cường hái 12 quả. Hỏi trung bình mỗi bạn hái được bao nhiêu quả cam?</p>
+            </div>
+            <div class="card q-card">
+              <div class="step-tag" id="step-tag">Bước 1 · Hiểu đề</div>
+              <h2 id="q-title">Câu nào kể đúng ý của đề?</h2>
+              <div id="q-visual"></div>
+              <div id="q-body"></div>
+              <div class="feedback" id="feedback" role="status"></div>
+            </div>
+            <div class="practice-actions" id="practice-actions">
+              <button class="btn btn-ghost" type="button" id="btn-hint">💡 Gợi ý</button>
+              <button class="btn btn-success btn-block" type="button" id="btn-check" disabled>Kiểm tra</button>
+            </div>
+          </section>
+
+          <!-- QUESTS -->
+          <section class="screen no-tab" id="screen-quests" data-tab="">
+            <div class="page-head">
+              <button class="icon-btn" type="button" data-go="home" aria-label="Quay lại">‹</button>
+              <h1>Nhiệm vụ hôm nay</h1>
+              <span class="pill fire">🔥 7</span>
+            </div>
+            <div class="card" style="padding:14px;margin-bottom:12px;background:linear-gradient(100deg,#fff4e8,#fff7da);border-color:#ffd7a8">
+              <div style="display:flex;gap:12px;align-items:center">
+                <div style="font-size:36px">🔥</div>
+                <div>
+                  <b style="display:block;font-size:16px;font-weight:900">Streak 7 ngày</b>
+                  <small style="display:block;font-size:12px;font-weight:700;color:#a66a18;margin-top:3px">Hoàn thành 1 nhiệm vụ nữa để giữ lửa!</small>
+                </div>
+              </div>
+            </div>
+            <div class="quest-row">
+              <div class="quest-item done">
+                <div class="qi" style="background:var(--green-soft)">✅</div>
+                <div><b>Hoàn thành 1 bài</b><small>Đã xong lúc 08:12</small></div>
+                <span class="reward">+15 XP</span>
+              </div>
+              <div class="quest-item done">
+                <div class="qi" style="background:var(--green-soft)">✅</div>
+                <div><b>Trả lời đúng 3 câu</b><small>Đã xong</small></div>
+                <span class="reward">+20 XP</span>
+              </div>
+              <div class="quest-item">
+                <div class="qi" style="background:var(--primary-soft)">🎯</div>
+                <div><b>Xong 1 unit step hôm nay</b><small>Còn bài “So sánh số”</small></div>
+                <span class="reward">+30 XP</span>
+              </div>
+            </div>
+            <div class="section-title"><h2>Tuần này</h2><span>5/7 ngày</span></div>
+            <div class="card" style="padding:14px;display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center">
+              <div><div style="font-size:18px">🔥</div><small style="font-size:10px;font-weight:800;color:var(--muted)">T2</small></div>
+              <div><div style="font-size:18px">🔥</div><small style="font-size:10px;font-weight:800;color:var(--muted)">T3</small></div>
+              <div><div style="font-size:18px">🔥</div><small style="font-size:10px;font-weight:800;color:var(--muted)">T4</small></div>
+              <div><div style="font-size:18px">🔥</div><small style="font-size:10px;font-weight:800;color:var(--muted)">T5</small></div>
+              <div><div style="font-size:18px">🔥</div><small style="font-size:10px;font-weight:800;color:var(--muted)">T6</small></div>
+              <div><div style="font-size:18px">❄️</div><small style="font-size:10px;font-weight:800;color:var(--muted)">T7</small></div>
+              <div><div style="font-size:18px">·</div><small style="font-size:10px;font-weight:800;color:var(--primary)">CN</small></div>
+            </div>
+            <div style="margin-top:16px">
+              <button class="btn btn-primary btn-block" type="button" data-go="intro">Làm nhiệm vụ còn lại</button>
+            </div>
+          </section>
+
+          <!-- LEADERBOARD -->
+          <section class="screen no-tab" id="screen-leaderboard" data-tab="">
+            <div class="page-head">
+              <button class="icon-btn" type="button" data-go="topics" aria-label="Quay lại">‹</button>
+              <h1>Bảng xếp hạng lớp</h1>
+              <button class="icon-btn" type="button" data-go="profile" aria-label="Hồ sơ">👤</button>
+            </div>
+            <div class="card" style="padding:14px;margin-bottom:12px;text-align:center;background:linear-gradient(135deg,#7553e8,#5f41d1);color:#fff;border:0">
+              <div style="font-size:12px;font-weight:800;opacity:.9">Tuần này · Lớp 4A</div>
+              <div style="font-size:28px;font-weight:900;margin:6px 0">Hạng #3</div>
+              <div style="font-size:13px;font-weight:700;opacity:.9">Còn 85 XP để lên hạng 2</div>
+            </div>
+            <div class="lb-list">
+              <div class="card lb-row"><span class="lb-rank top">1</span><div class="lb-av">🐯</div><div><b>Bảo Ngọc</b><small>Cấp 10</small></div><span class="lb-xp">1680</span></div>
+              <div class="card lb-row"><span class="lb-rank top">2</span><div class="lb-av">🦊</div><div><b>Đức Anh</b><small>Cấp 9</small></div><span class="lb-xp">1325</span></div>
+              <div class="card lb-row me"><span class="lb-rank">3</span><div class="lb-av">🦉</div><div><b>Minh Anh (em)</b><small>Cấp 8</small></div><span class="lb-xp">1240</span></div>
+              <div class="card lb-row"><span class="lb-rank">4</span><div class="lb-av">🐰</div><div><b>Hà My</b><small>Cấp 8</small></div><span class="lb-xp">1105</span></div>
+              <div class="card lb-row"><span class="lb-rank">5</span><div class="lb-av">🐼</div><div><b>Gia Huy</b><small>Cấp 7</small></div><span class="lb-xp">980</span></div>
+            </div>
+            <div style="margin-top:14px">
+              <button class="btn btn-soft btn-block" type="button" data-go="practice" data-start="0">Học thêm để vượt hạng</button>
+            </div>
+          </section>
+
+          <!-- REVIEW -->
+          <section class="screen no-tab" id="screen-review" data-tab="">
+            <div class="page-head">
+              <button class="icon-btn" type="button" data-go="profile" aria-label="Quay lại">‹</button>
+              <h1>Ôn câu sai</h1>
+              <span class="pill" style="background:var(--danger-soft);border-color:#ffcaca;color:var(--danger)">3 câu</span>
+            </div>
+            <div class="review-list">
+              <button class="card review-card" type="button" data-go="practice" data-start="1">
+                <div class="tag">Mô hình</div>
+                <b>Chọn sai sơ đồ san bằng cột cho bài trung bình cộng</b>
+                <small>Gợi ý: trung bình = tổng ÷ số phần bằng nhau.</small>
+              </button>
+              <button class="card review-card" type="button" data-go="practice" data-start="2">
+                <div class="tag">Phép tính</div>
+                <b>Nhầm (15+9)÷2 thay vì (15+9+12)÷3</b>
+                <small>Đề có 3 bạn — chia cho 3.</small>
+              </button>
+              <button class="card review-card" type="button" data-go="practice" data-start="3">
+                <div class="tag">Đáp án</div>
+                <b>Viết 36 thay vì 12 (quên chia)</b>
+                <small>36 là tổng, chưa phải trung bình.</small>
+              </button>
+            </div>
+            <div class="empty" style="padding-top:18px">
+              <p style="font-weight:800;color:var(--muted)">Làm lại giúp em “gỡ sai” và nhận +10 XP mỗi câu.</p>
+            </div>
+            <button class="btn btn-primary btn-block" type="button" data-go="practice" data-start="0">Ôn cả 3 câu</button>
+          </section>
+
+          <!-- SETTINGS -->
+          <section class="screen no-tab" id="screen-settings" data-tab="">
+            <div class="page-head">
+              <button class="icon-btn" type="button" data-go="profile" aria-label="Quay lại">‹</button>
+              <h1>Cài đặt</h1>
+              <span></span>
+            </div>
+            <div class="settings-group">
+              <h3>Học tập</h3>
+              <div class="card setting-row">
+                <div><b>Đọc đề to</b><small>Tự đọc khi vào bài</small></div>
+                <button class="switch on" type="button" data-switch aria-pressed="true"><i></i></button>
+              </div>
+              <div class="card setting-row">
+                <div><b>Gợi ý thông minh</b><small>Hiện gợi ý sau 1 lần sai</small></div>
+                <button class="switch on" type="button" data-switch aria-pressed="true"><i></i></button>
+              </div>
+              <div class="card setting-row">
+                <div><b>Chế độ tập trung</b><small>Ẩn xếp hạng khi học</small></div>
+                <button class="switch" type="button" data-switch aria-pressed="false"><i></i></button>
+              </div>
+            </div>
+            <div class="settings-group">
+              <h3>Thông báo</h3>
+              <div class="card setting-row">
+                <div><b>Nhắc giữ streak</b><small>18:30 mỗi ngày</small></div>
+                <button class="switch on" type="button" data-switch aria-pressed="true"><i></i></button>
+              </div>
+              <div class="card setting-row">
+                <div><b>Báo cáo phụ huynh</b><small>Tóm tắt cuối tuần</small></div>
+                <button class="switch on" type="button" data-switch aria-pressed="true"><i></i></button>
+              </div>
+            </div>
+            <div class="settings-group">
+              <h3>Tài khoản</h3>
+              <div class="menu-list">
+                <button class="card menu-item" type="button" data-toast="Đã sao chép mã lớp 4A-MINH">
+                  <div class="mi">👨‍👩‍👧</div>
+                  <div><b>Liên kết phụ huynh</b><small>Mã: 4A-MINH</small></div>
+                  <span class="chev">›</span>
+                </button>
+                <button class="card menu-item" type="button" data-toast="Phiên bản prototype 2.0">
+                  <div class="mi" style="background:#eaf2ff">ℹ️</div>
+                  <div><b>Về TonyMath</b><small>Prototype UI · v2</small></div>
+                  <span class="chev">›</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- PROFILE -->
+          <section class="screen" id="screen-profile" data-tab="profile">
+            <div class="card profile-hero">
+              <div class="avatar" aria-hidden="true">🦉</div>
+              <h2>Minh Anh</h2>
+              <p>Thám tử toán · Lớp 4</p>
+              <div class="level-pill">Cấp 8 · <span id="profile-xp">1240</span> XP</div>
+            </div>
+            <div class="stat-row">
+              <div class="card"><span>🔥</span><b id="profile-streak">7</b><small>Streak</small></div>
+              <div class="card"><span>⭐</span><b>42</b><small>Bài xong</small></div>
+              <div class="card"><span>🏆</span><b>6</b><small>Huy hiệu</small></div>
+            </div>
+            <div class="menu-list" style="margin-bottom:12px">
+              <button class="card menu-item" type="button" data-go="review">
+                <div class="mi" style="background:var(--danger-soft)">📝</div>
+                <div><b>Ôn câu sai</b><small>3 câu cần gỡ</small></div>
+                <span class="chev">›</span>
+              </button>
+              <button class="card menu-item" type="button" data-go="leaderboard">
+                <div class="mi" style="background:var(--gold-soft)">🏅</div>
+                <div><b>Xếp hạng lớp</b><small>Hạng 3 tuần này</small></div>
+                <span class="chev">›</span>
+              </button>
+              <button class="card menu-item" type="button" data-go="settings">
+                <div class="mi">⚙️</div>
+                <div><b>Cài đặt & phụ huynh</b><small>Âm thanh, nhắc nhở</small></div>
+                <span class="chev">›</span>
+              </button>
+            </div>
+            <div class="section-title"><h2>Thành tích</h2><span>6/10</span></div>
+            <div class="ach-grid">
+              <div class="card ach on"><span>🌱</span><b>Ngày đầu tiên</b><small>Hoàn thành bài đầu</small></div>
+              <div class="card ach on"><span>🔥</span><b>Lửa 7 ngày</b><small>Streak một tuần</small></div>
+              <div class="card ach on"><span>🧠</span><b>Đọc đề giỏi</b><small>10 bài hiểu đề</small></div>
+              <div class="card ach on"><span>⚡</span><b>Siêu tốc</b><small>Xong bài dưới 3 phút</small></div>
+              <div class="card ach on"><span>🎯</span><b>Bắn hạ sai lầm</b><small>Ôn lại 5 câu sai</small></div>
+              <div class="card ach on"><span>📚</span><b>Unit explorer</b><small>Mở 3 unit</small></div>
+              <div class="card ach"><span>🏅</span><b>Unit master</b><small>3 sao cả unit</small></div>
+              <div class="card ach"><span>🦉</span><b>Bạn của cú</b><small>Học 30 ngày</small></div>
+            </div>
+            <div class="section-title"><h2>Kỹ năng đang luyện</h2></div>
+            <div class="card" style="padding:14px;display:grid;gap:12px;">
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:800;margin-bottom:6px;">
+                  <span>Đọc hiểu đề</span><span style="color:var(--primary)">86%</span>
+                </div>
+                <div class="xp-bar"><i style="width:86%"></i></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:800;margin-bottom:6px;">
+                  <span>Phép tính</span><span style="color:var(--green)">72%</span>
+                </div>
+                <div class="xp-bar"><i style="width:72%;background:linear-gradient(90deg,#7ee56c,#39bf64)"></i></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:800;margin-bottom:6px;">
+                  <span>Suy luận</span><span style="color:var(--orange)">58%</span>
+                </div>
+                <div class="xp-bar"><i style="width:58%;background:linear-gradient(90deg,#fbbf24,#f39a41)"></i></div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- RESULT SUCCESS -->
+        <div class="overlay" id="result-overlay" aria-hidden="true">
+          <div class="sheet" role="dialog" aria-labelledby="result-title">
+            <div class="cele">
+              <div class="burst" id="result-burst">🎉</div>
+              <h2 id="result-title">Tuyệt vời!</h2>
+              <p id="result-sub">Em đã nắm “trung bình = tổng ÷ số phần”.</p>
+            </div>
+            <div class="stars-row" id="result-stars" aria-label="Sao">
+              <span>⭐</span><span>⭐</span><span>⭐</span>
+            </div>
+            <div class="result-grid">
+              <div class="card"><span>⭐</span><b id="result-xp-gain">+45</b><small>XP</small></div>
+              <div class="card"><span>⏱️</span><b id="result-time">2:18</b><small>Thời gian</small></div>
+              <div class="card"><span>🎯</span><b id="result-acc">100%</b><small>Chính xác</small></div>
+            </div>
+            <div class="streak-banner" id="result-streak-banner">
+              <div class="fire">🔥</div>
+              <div>
+                <b id="result-streak-title">Streak 8 ngày!</b>
+                <small id="result-streak-sub">Học thêm ngày mai để giữ lửa nhé.</small>
+              </div>
+            </div>
+            <div class="xp-bar-wrap">
+              <div class="row"><span>Cấp 8</span><span id="result-xp-label">1240 → 1285 XP</span></div>
+              <div class="xp-bar"><i id="result-xp-bar" style="width:62%"></i></div>
+            </div>
+            <div style="display:grid;gap:8px;">
+              <button class="btn btn-success btn-block" type="button" id="btn-continue">Tiếp tục đường học</button>
+              <button class="btn btn-ghost btn-block" type="button" id="btn-result-chest">Mở rương unit</button>
+              <button class="btn btn-ghost btn-block" type="button" data-go="profile" id="btn-result-profile">Xem thành tích</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- OUT OF HEARTS -->
+        <div class="overlay center" id="hearts-overlay" aria-hidden="true">
+          <div class="sheet compact" role="dialog" aria-labelledby="hearts-title">
+            <div class="cele">
+              <div class="burst">💔</div>
+              <h2 id="hearts-title">Hết tim rồi!</h2>
+              <p>Em đã thử 3 lần. Nghỉ một chút hoặc xem gợi ý rồi quay lại nhé.</p>
+            </div>
+            <div style="display:grid;gap:8px;">
+              <button class="btn btn-primary btn-block" type="button" id="btn-refill-hint">💡 Xem gợi ý & +1 tim</button>
+              <button class="btn btn-ghost btn-block" type="button" id="btn-practice-home">Về Home</button>
+              <button class="btn btn-soft btn-block" type="button" id="btn-retry-full">Thử lại từ đầu · ❤️ 3</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXIT CONFIRM -->
+        <div class="overlay center" id="exit-overlay" aria-hidden="true">
+          <div class="sheet compact" role="dialog">
+            <div class="cele">
+              <div class="burst">😮</div>
+              <h2>Dừng bài học?</h2>
+              <p>Tiến trình bước này sẽ được lưu, nhưng em chưa nhận XP đâu.</p>
+            </div>
+            <div style="display:grid;gap:8px;">
+              <button class="btn btn-primary btn-block" type="button" id="btn-stay">Tiếp tục học</button>
+              <button class="btn btn-ghost btn-block" type="button" id="btn-leave">Thoát về Home</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CHEST -->
+        <div class="overlay center" id="chest-overlay" aria-hidden="true">
+          <div class="sheet compact" role="dialog">
+            <div class="chest-scene">
+              <div class="box" id="chest-emoji">🎁</div>
+              <h2 style="font-size:22px;font-weight:900;margin-bottom:6px" id="chest-title">Rương unit!</h2>
+              <p style="font-size:13px;font-weight:700;color:var(--muted)" id="chest-sub">Chạm để mở phần thưởng</p>
+              <div class="reward-pills" id="chest-rewards" hidden>
+                <span>⭐ +80 XP</span>
+                <span>🏅 Huy hiệu Unit</span>
+                <span>🧊 1 Streak Freeze</span>
+              </div>
+            </div>
+            <div style="display:grid;gap:8px;margin-top:8px">
+              <button class="btn btn-success btn-block" type="button" id="btn-open-chest">Mở rương</button>
+              <button class="btn btn-ghost btn-block" type="button" id="btn-close-chest">Đóng</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- HINT SHEET -->
+        <div class="overlay" id="hint-overlay" aria-hidden="true">
+          <div class="sheet" role="dialog">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+              <div style="width:48px;height:48px;border-radius:16px;background:var(--gold-soft);display:grid;place-items:center;font-size:24px">🦉</div>
+              <div>
+                <b style="display:block;font-size:16px;font-weight:900">Gợi ý từ Cú Tony</b>
+                <small style="font-size:12px;font-weight:700;color:var(--muted)">Không trừ điểm · chỉ -5 XP nếu xem</small>
+              </div>
+            </div>
+            <p id="hint-text" style="font-size:15px;font-weight:800;line-height:1.5;margin-bottom:16px;padding:14px;background:var(--gold-soft);border-radius:16px;border:1.5px solid #f2d473"></p>
+            <button class="btn btn-primary btn-block" type="button" id="btn-close-hint">Hiểu rồi, làm tiếp</button>
+          </div>
+        </div>
+
+        <nav class="tabbar" id="tabbar" aria-label="Điều hướng chính">
+          <button class="tab active" type="button" data-go="home"><span class="ico">🏠</span><span class="lbl">Home</span></button>
+          <button class="tab" type="button" data-go="topics"><span class="ico">🗺️</span><span class="lbl">Chủ đề</span></button>
+          <button class="tab" type="button" data-go="practice" data-start="0"><span class="ico">✏️</span><span class="lbl">Bài tập</span></button>
+          <button class="tab" type="button" data-go="profile"><span class="ico">👤</span><span class="lbl">Hồ sơ</span></button>
+        </nav>
+        <div class="home-indicator" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var state = {
+      xp: 1240,
+      streak: 7,
+      hearts: 3,
+      step: 0,
+      selected: null,
+      answered: false,
+      mistakes: 0,
+      correctSteps: 0,
+      startedAt: 0,
+      numAnswer: "",
+      usedHint: false,
+      chestOpened: false
+    };
+
+    var topicsByGrade = {
+      "3": [
+        { icon: "🔢", name: "Cộng trừ trong 1000", meta: "12 bài · 4 unit", p: "70%", color: "#eaf2ff" },
+        { icon: "✖️", name: "Nhân bảng cửu chương", meta: "10 bài · 3 unit", p: "45%", color: "#eafaf1" },
+        { icon: "🧩", name: "Toán lời văn ngắn", meta: "8 bài · 2 unit", p: "30%", color: "#fff4e8" },
+        { icon: "📏", name: "Đo độ dài", meta: "6 bài", p: "10%", color: "#fde8f2" }
+      ],
+      "4": [
+        { icon: "📖", name: "Đọc hiểu đề toán", meta: "14 bài · đang học", p: "62%", color: "#f0edff" },
+        { icon: "⚖️", name: "So sánh & gấp lần", meta: "11 bài · unit 3", p: "40%", color: "#eafaf1" },
+        { icon: "💰", name: "Tiền & đơn vị đo", meta: "9 bài", p: "15%", color: "#fff7da" },
+        { icon: "📐", name: "Chu vi · diện tích", meta: "10 bài", p: "0%", color: "#fde8f2" },
+        { icon: "🍊", name: "Trung bình cộng", meta: "Bài cam · demo", p: "25%", color: "#eaf2ff" }
+      ],
+      "5": [
+        { icon: "⅟", name: "Phân số cơ bản", meta: "12 bài", p: "20%", color: "#eaf2ff" },
+        { icon: "📊", name: "Biểu đồ & số liệu", meta: "8 bài", p: "0%", color: "#eafaf1" },
+        { icon: "🧠", name: "Bài toán hai bước", meta: "15 bài", p: "10%", color: "#f0edff" },
+        { icon: "📦", name: "Thể tích hình hộp", meta: "7 bài", p: "0%", color: "#fff4e8" }
+      ]
+    };
+
+    var steps = [
+      {
+        tag: "Bước 1 · Hiểu đề",
+        title: "Câu nào kể đúng ý của đề?",
+        type: "mcq",
+        hint: "Đề cho số cam của 3 bạn và hỏi “trung bình mỗi bạn” — không phải tìm bạn hái nhiều nhất.",
+        visual: "bars",
+        options: [
+          { t: "Có ba bạn hái cam, muốn tìm số cam trung bình của mỗi bạn.", ok: true },
+          { t: "Tìm bạn hái được nhiều cam nhất trong ba bạn.", ok: false },
+          { t: "Cộng số cam của hai bạn An và Bình rồi chia đôi.", ok: false }
+        ],
+        okFb: "Đúng rồi! Đề đang hỏi trung bình cộng của 3 bạn.",
+        badFb: "Chưa khớp. Đề không hỏi “nhiều nhất”, cũng không chỉ tính 2 bạn."
+      },
+      {
+        tag: "Bước 2 · Mô hình",
+        title: "Chọn mô hình giúp giải bài này",
+        type: "model",
+        hint: "Muốn “san đều” số cam của 3 bạn → sơ đồ cột san bằng / tổng rồi chia.",
+        visual: "bars",
+        options: [
+          { t: "Sơ đồ san bằng cột", icon: "📊", ok: true },
+          { t: "Hai giỏ so sánh", icon: "🧺", ok: false },
+          { t: "Trục số kéo dài", icon: "↔️", ok: false },
+          { t: "Bảng nhân", icon: "✖️", ok: false }
+        ],
+        okFb: "Chuẩn! San bằng cột giúp thấy trung bình nằm giữa các cột.",
+        badFb: "Mô hình này chưa khớp. Trung bình cộng gần với “san đều” hơn."
+      },
+      {
+        tag: "Bước 3 · Phép tính",
+        title: "Phép tính nào đúng?",
+        type: "mcq",
+        hint: "Tổng cam của 3 bạn, rồi chia cho 3: (15 + 9 + 12) ÷ 3.",
+        visual: "bars",
+        options: [
+          { t: "(15 + 9 + 12) ÷ 3", ok: true },
+          { t: "15 + 9 + 12", ok: false },
+          { t: "(15 + 9) ÷ 2 + 12", ok: false },
+          { t: "15 × 9 × 12", ok: false }
+        ],
+        okFb: "Hay lắm! Cộng tất cả rồi chia cho số bạn.",
+        badFb: "Đó là tổng hoặc công thức khác. Trung bình cần ÷ số phần."
+      },
+      {
+        tag: "Bước 4 · Đáp án",
+        title: "Trung bình mỗi bạn hái được?",
+        type: "number",
+        hint: "15 + 9 + 12 = 36, rồi 36 ÷ 3 = 12 quả cam.",
+        visual: "bars",
+        answer: "12",
+        unit: "quả cam",
+        okFb: "Chính xác! 12 nằm giữa 9 và 15 — hợp lý cho trung bình.",
+        badFb: "Chưa đúng. Nhớ: tổng 36, chia 3 bạn → 12."
+      }
+    ];
+
+    var screens = {};
+    ["home","topics","unit","intro","practice","profile","quests","leaderboard","review","settings"].forEach(function (id) {
+      screens[id] = document.getElementById("screen-" + id);
+    });
+
+    var tabbar = document.getElementById("tabbar");
+    var tabs = Array.prototype.slice.call(document.querySelectorAll(".tabbar .tab"));
+    var topicList = document.getElementById("topic-list");
+    var feedback = document.getElementById("feedback");
+    var checkBtn = document.getElementById("btn-check");
+    var heartsEl = document.getElementById("hearts");
+    var progEl = document.getElementById("prac-progress");
+    var qBody = document.getElementById("q-body");
+    var qVisual = document.getElementById("q-visual");
+
+    function $(id) { return document.getElementById(id); }
+
+    function setClock() {
+      var d = new Date();
+      $("clock").textContent = String(d.getHours()).padStart(2,"0") + ":" + String(d.getMinutes()).padStart(2,"0");
+    }
+    setClock();
+    setInterval(setClock, 30000);
+
+    function toast(msg) {
+      var el = $("toast");
+      el.textContent = msg;
+      el.classList.add("show");
+      clearTimeout(toast._t);
+      toast._t = setTimeout(function () { el.classList.remove("show"); }, 1800);
+    }
+
+    function updateXPUI() {
+      $("ui-xp").textContent = state.xp;
+      $("ui-streak").textContent = state.streak;
+      $("profile-xp").textContent = state.xp;
+      $("profile-streak").textContent = state.streak;
+    }
+
+    function hideOverlays() {
+      ["result-overlay","hearts-overlay","exit-overlay","chest-overlay","hint-overlay"].forEach(function (id) {
+        var el = $(id);
+        el.classList.remove("show");
+        el.setAttribute("aria-hidden", "true");
+      });
+    }
+
+    function showOverlay(id) {
+      hideOverlays();
+      var el = $(id);
+      el.classList.add("show");
+      el.setAttribute("aria-hidden", "false");
+    }
+
+    function go(name, opts) {
+      opts = opts || {};
+      if (!screens[name]) return;
+      hideOverlays();
+      Object.keys(screens).forEach(function (k) {
+        screens[k].classList.toggle("active", k === name);
+      });
+      var tabScreens = { home:1, topics:1, practice:1, profile:1 };
+      tabbar.classList.toggle("hidden", !tabScreens[name]);
+      tabs.forEach(function (t) {
+        var g = t.getAttribute("data-go");
+        t.classList.toggle("active", g === name || (name === "unit" && g === "home") || (name === "intro" && g === "practice") || ((name === "quests" || name === "chest") && g === "home") || ((name === "review" || name === "settings") && g === "profile") || (name === "leaderboard" && g === "topics"));
+      });
+      if (name === "practice") {
+        if (typeof opts.start === "number") state.step = opts.start;
+        startPractice(opts.reset !== false);
+      }
+      if (name === "chest") openChestUI(false);
+      screens[name].scrollTop = 0;
+    }
+
+    document.body.addEventListener("click", function (e) {
+      var locked = e.target.closest("[data-locked]");
+      if (locked) {
+        toast("Bài này đang khóa — hoàn thành bài trước nhé!");
+        return;
+      }
+      var sw = e.target.closest("[data-switch]");
+      if (sw) {
+        sw.classList.toggle("on");
+        sw.setAttribute("aria-pressed", sw.classList.contains("on") ? "true" : "false");
+        toast(sw.classList.contains("on") ? "Đã bật" : "Đã tắt");
+        return;
+      }
+      var tbtn = e.target.closest("[data-toast]");
+      if (tbtn) {
+        toast(tbtn.getAttribute("data-toast"));
+        return;
+      }
+      var el = e.target.closest("[data-go]");
+      if (!el) return;
+      var target = el.getAttribute("data-go");
+      if (target === "practice" && el.id !== "btn-skip-intro" && screens.practice && !screens.practice.classList.contains("active")) {
+        var start = el.getAttribute("data-start");
+        go("practice", { start: start != null ? parseInt(start, 10) : 0, reset: true });
+        return;
+      }
+      if (target === "profile" && $("result-overlay").classList.contains("show")) {
+        hideOverlays();
+      }
+      if (target === "chest") {
+        go("home");
+        openChestUI(false);
+        return;
+      }
+      go(target, { start: el.getAttribute("data-start") != null ? parseInt(el.getAttribute("data-start"), 10) : undefined });
+    });
+
+    function renderTopics(grade) {
+      var list = topicsByGrade[grade] || topicsByGrade["4"];
+      topicList.innerHTML = list.map(function (t) {
+        return (
+          '<button class="card topic-card" type="button" data-go="unit">' +
+            '<div class="topic-icon" style="background:' + t.color + '">' + t.icon + "</div>" +
+            "<div><b>" + t.name + "</b><small>" + t.meta + "</small></div>" +
+            '<div class="progress-ring" style="--p:' + t.p + '"><span>' + t.p + "</span></div>" +
+          "</button>"
+        );
+      }).join("");
+    }
+    renderTopics("4");
+
+    document.querySelectorAll(".grade-tab").forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        document.querySelectorAll(".grade-tab").forEach(function (t) { t.classList.remove("active"); });
+        tab.classList.add("active");
+        renderTopics(tab.getAttribute("data-grade"));
+      });
+    });
+
+    function renderStepPills() {
+      $("step-pills").innerHTML = steps.map(function (s, i) {
+        var cls = "step-pill";
+        if (i < state.step) cls += " done";
+        if (i === state.step) cls += " on";
+        return '<span class="' + cls + '">' + (i + 1) + ". " + ["Hiểu", "Mô hình", "Phép tính", "Đáp án"][i] + "</span>";
+      }).join("");
+    }
+
+    function renderBars() {
+      return (
+        '<div class="visual-avg" aria-hidden="true">' +
+          '<div class="v-col"><b>An</b><div class="bar-wrap"><div class="bar" style="height:78%"></div></div><small>15</small></div>' +
+          '<div class="v-col"><b>Bình</b><div class="bar-wrap"><div class="bar" style="height:48%;background:linear-gradient(180deg,#6bd86c,#2fbd68)"></div></div><small>9</small></div>' +
+          '<div class="v-col"><b>Cường</b><div class="bar-wrap"><div class="bar" style="height:64%;background:linear-gradient(180deg,#fbbf24,#f39a41)"></div></div><small>12</small></div>' +
+        "</div>"
+      );
+    }
+
+    function renderStep() {
+      var s = steps[state.step];
+      state.selected = null;
+      state.answered = false;
+      state.numAnswer = "";
+      state.usedHint = false;
+      checkBtn.disabled = true;
+      checkBtn.textContent = "Kiểm tra";
+      feedback.className = "feedback";
+      feedback.innerHTML = "";
+      $("step-tag").textContent = s.tag;
+      $("q-title").textContent = s.title;
+      qVisual.innerHTML = s.visual === "bars" ? renderBars() : "";
+      renderStepPills();
+      progEl.style.width = Math.round((state.step / steps.length) * 100) + "%";
+      heartsEl.textContent = "❤️ " + state.hearts;
+
+      if (s.type === "mcq") {
+        qBody.innerHTML = '<div class="options" id="options">' + s.options.map(function (o, i) {
+          return '<button class="option" type="button" data-i="' + i + '" data-ok="' + (o.ok ? "1" : "0") + '"><span>' +
+            String.fromCharCode(65 + i) + "</span><div>" + o.t + "</div></button>";
+        }).join("") + "</div>";
+      } else if (s.type === "model") {
+        qBody.innerHTML = '<div class="model-grid" id="options">' + s.options.map(function (o, i) {
+          return '<button class="model-card" type="button" data-i="' + i + '" data-ok="' + (o.ok ? "1" : "0") + '"><span>' +
+            o.icon + "</span>" + o.t + "</button>";
+        }).join("") + "</div>";
+      } else if (s.type === "number") {
+        qBody.innerHTML =
+          '<div class="numpad-wrap">' +
+            '<div class="answer-display" id="answer-display"><span id="num-val">?</span><span class="unit-label">' + s.unit + "</span></div>" +
+            '<div class="numpad" id="numpad">' +
+              [1,2,3,4,5,6,7,8,9,"⌫",0,"C"].map(function (k) {
+                var cls = (k === "⌫" || k === "C") ? " danger-soft" : "";
+                return '<button type="button" class="' + cls + '" data-key="' + k + '">' + k + "</button>";
+              }).join("") +
+            "</div>" +
+          "</div>";
+      }
+    }
+
+    function startPractice(reset) {
+      if (reset) {
+        state.hearts = 3;
+        state.mistakes = 0;
+        state.correctSteps = 0;
+        state.startedAt = Date.now();
+        if (state.step < 0 || state.step >= steps.length) state.step = 0;
+      }
+      renderStep();
+    }
+
+    qBody.addEventListener("click", function (e) {
+      var key = e.target.closest("[data-key]");
+      if (key) {
+        var k = key.getAttribute("data-key");
+        if (k === "C") state.numAnswer = "";
+        else if (k === "⌫") state.numAnswer = state.numAnswer.slice(0, -1);
+        else if (state.numAnswer.length < 4) state.numAnswer += k;
+        var val = $("num-val");
+        if (val) val.textContent = state.numAnswer || "?";
+        checkBtn.disabled = !state.numAnswer;
+        return;
+      }
+      var opt = e.target.closest("[data-i]");
+      if (!opt || state.answered) return;
+      qBody.querySelectorAll("[data-i]").forEach(function (o) { o.classList.remove("selected"); });
+      opt.classList.add("selected");
+      state.selected = opt;
+      checkBtn.disabled = false;
+    });
+
+    $("btn-hint").addEventListener("click", function () {
+      var s = steps[state.step];
+      $("hint-text").textContent = s.hint;
+      state.usedHint = true;
+      showOverlay("hint-overlay");
+    });
+    $("btn-close-hint").addEventListener("click", hideOverlays);
+
+    $("btn-speak").addEventListener("click", function () {
+      var text = $("story-text").textContent;
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+        var u = new SpeechSynthesisUtterance(text);
+        u.lang = "vi-VN";
+        u.rate = 0.95;
+        window.speechSynthesis.speak(u);
+      } else toast("Trình duyệt không hỗ trợ đọc to");
+    });
+
+    $("btn-close-practice").addEventListener("click", function () {
+      showOverlay("exit-overlay");
+    });
+    $("btn-stay").addEventListener("click", hideOverlays);
+    $("btn-leave").addEventListener("click", function () { hideOverlays(); go("home"); });
+    $("btn-skip-intro").addEventListener("click", function () { go("practice", { start: 0, reset: true }); });
+
+    function confettiBurst() {
+      var box = $("confetti");
+      box.innerHTML = "";
+      box.classList.add("show");
+      var colors = ["#6851e8","#2fbd68","#f0b429","#ec69a2","#4587e8"];
+      for (var i = 0; i < 28; i++) {
+        var el = document.createElement("i");
+        el.style.left = Math.random() * 100 + "%";
+        el.style.background = colors[i % colors.length];
+        el.style.animationDelay = (Math.random() * 0.3) + "s";
+        el.style.animationDuration = (1.1 + Math.random() * 0.6) + "s";
+        box.appendChild(el);
+      }
+      setTimeout(function () { box.classList.remove("show"); box.innerHTML = ""; }, 1600);
+    }
+
+    function openResult() {
+      var total = steps.length;
+      var acc = Math.round((state.correctSteps / total) * 100);
+      var stars = acc >= 90 ? 3 : acc >= 70 ? 2 : 1;
+      var gain = 30 + stars * 15 + Math.max(0, 3 - state.mistakes) * 5 - (state.usedHint ? 5 : 0);
+      var secs = Math.round((Date.now() - state.startedAt) / 1000) || 138;
+      var mm = String(Math.floor(secs / 60));
+      var ss = String(secs % 60).padStart(2, "0");
+      var prev = state.xp;
+      state.xp += gain;
+      state.streak += 1;
+      updateXPUI();
+
+      $("result-burst").textContent = stars === 3 ? "🎉" : stars === 2 ? "🌟" : "👍";
+      $("result-title").textContent = stars === 3 ? "Tuyệt vời!" : stars === 2 ? "Tốt lắm!" : "Có tiến bộ!";
+      $("result-sub").textContent = stars === 3
+        ? "Em đã nắm “trung bình = tổng ÷ số phần”."
+        : "Ôn lại câu sai trong Hồ sơ để lên 3 sao nhé.";
+      $("result-xp-gain").textContent = "+" + gain;
+      $("result-time").textContent = mm + ":" + ss;
+      $("result-acc").textContent = acc + "%";
+      $("result-streak-title").textContent = "Streak " + state.streak + " ngày!";
+      $("result-streak-sub").textContent = "Học thêm ngày mai để giữ lửa nhé.";
+      $("result-xp-label").textContent = prev + " → " + state.xp + " XP";
+      var starEls = $("result-stars").querySelectorAll("span");
+      starEls.forEach(function (el, i) { el.classList.toggle("on", i < stars); });
+      var bar = $("result-xp-bar");
+      bar.style.width = "62%";
+      showOverlay("result-overlay");
+      confettiBurst();
+      requestAnimationFrame(function () {
+        setTimeout(function () { bar.style.width = Math.min(96, 62 + stars * 8) + "%"; }, 80);
+      });
+      progEl.style.width = "100%";
+    }
+
+    function loseHeart() {
+      state.hearts = Math.max(0, state.hearts - 1);
+      state.mistakes += 1;
+      heartsEl.textContent = "❤️ " + state.hearts;
+      if (state.hearts <= 0) {
+        setTimeout(function () { showOverlay("hearts-overlay"); }, 500);
+      }
+    }
+
+    checkBtn.addEventListener("click", function () {
+      var s = steps[state.step];
+      if (state.answered) {
+        if (state.step >= steps.length - 1) openResult();
+        else {
+          state.step += 1;
+          renderStep();
+        }
+        return;
+      }
+
+      var ok = false;
+      if (s.type === "number") {
+        ok = state.numAnswer === s.answer;
+        if (ok) $("answer-display").style.borderColor = "var(--green)";
+        else $("answer-display").style.borderColor = "var(--danger)";
+      } else if (state.selected) {
+        ok = state.selected.getAttribute("data-ok") === "1";
+        qBody.querySelectorAll("[data-i]").forEach(function (o) {
+          o.disabled = true;
+          if (o.getAttribute("data-ok") === "1") o.classList.add("correct");
+        });
+        if (ok) state.selected.classList.add("correct");
+        else state.selected.classList.add("wrong");
+      } else return;
+
+      if (ok) {
+        state.answered = true;
+        state.correctSteps += 1;
+        feedback.className = "feedback show ok";
+        feedback.innerHTML = "<span>✅</span><div><b>Chính xác!</b>" + s.okFb + "</div>";
+        progEl.style.width = Math.round(((state.step + 1) / steps.length) * 100) + "%";
+        checkBtn.textContent = state.step >= steps.length - 1 ? "Xem kết quả" : "Bước tiếp";
+        checkBtn.disabled = false;
+      } else {
+        feedback.className = "feedback show bad";
+        feedback.innerHTML = "<span>😅</span><div><b>Chưa đúng</b>" + s.badFb + "</div>";
+        loseHeart();
+        if (state.hearts > 0) {
+          checkBtn.textContent = "Thử lại";
+          checkBtn.disabled = false;
+          state.answered = false;
+          setTimeout(function () {
+            if (s.type === "number") {
+              state.numAnswer = "";
+              if ($("num-val")) $("num-val").textContent = "?";
+              if ($("answer-display")) $("answer-display").style.borderColor = "#cfc7ff";
+            } else {
+              qBody.querySelectorAll("[data-i]").forEach(function (o) {
+                o.disabled = false;
+                o.classList.remove("wrong", "correct", "selected");
+              });
+              state.selected = null;
+            }
+            checkBtn.disabled = true;
+            checkBtn.textContent = "Kiểm tra";
+          }, 900);
+        } else {
+          checkBtn.disabled = true;
+        }
+      }
+    });
+
+    $("btn-refill-hint").addEventListener("click", function () {
+      state.hearts = 1;
+      heartsEl.textContent = "❤️ 1";
+      hideOverlays();
+      $("hint-text").textContent = steps[state.step].hint;
+      showOverlay("hint-overlay");
+      toast("Đã tặng 1 tim · xem gợi ý nhé");
+    });
+    $("btn-practice-home").addEventListener("click", function () { hideOverlays(); go("home"); });
+    $("btn-retry-full").addEventListener("click", function () {
+      hideOverlays();
+      state.step = 0;
+      startPractice(true);
+    });
+
+    $("btn-continue").addEventListener("click", function () { hideOverlays(); go("home"); });
+    $("btn-result-chest").addEventListener("click", function () { hideOverlays(); openChestUI(true); });
+    $("btn-result-profile").addEventListener("click", function () { hideOverlays(); go("profile"); });
+
+    function openChestUI(fromResult) {
+      state._chestFromResult = fromResult;
+      $("chest-emoji").textContent = "🎁";
+      $("chest-title").textContent = "Rương unit!";
+      $("chest-sub").textContent = "Chạm để mở phần thưởng";
+      $("chest-rewards").hidden = true;
+      $("btn-open-chest").textContent = state.chestOpened ? "Đã mở · +80 XP" : "Mở rương";
+      $("btn-open-chest").disabled = false;
+      showOverlay("chest-overlay");
+    }
+    $("btn-open-chest").addEventListener("click", function () {
+      if (state.chestOpened) {
+        toast("Em đã nhận thưởng rương này rồi");
+        return;
+      }
+      state.chestOpened = true;
+      state.xp += 80;
+      updateXPUI();
+      $("chest-emoji").textContent = "✨";
+      $("chest-title").textContent = "Nổ quà!";
+      $("chest-sub").textContent = "Phần thưởng đã vào túi đồ";
+      $("chest-rewards").hidden = false;
+      $("btn-open-chest").textContent = "Nhận xong";
+      confettiBurst();
+    });
+    $("btn-close-chest").addEventListener("click", function () {
+      hideOverlays();
+      go("home");
+    });
+
+    updateXPUI();
+    progEl.style.width = "0%";
+  })();
+  </script>
+</body>
+</html>

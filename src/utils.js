@@ -804,4 +804,47 @@ export function updateBehavioralMetrics(progress, eventType, detail) {
   };
 }
 
+/**
+ * Returns dynamic daily quests for the given date.
+ * @param {object} progress
+ * @param {string} todayStr
+ * @returns {array}
+ */
+export function getDailyQuests(progress, todayStr) {
+  const q1 = {
+    id: 'quest-lesson',
+    title: 'Hoàn thành 1 bài học mới',
+    target: 1,
+    current: progress?.lastStudyDate === todayStr ? 1 : 0,
+    xp: 15
+  };
+
+  let answersCorrect = 0;
+  if (progress?.lastStudyDate === todayStr) {
+    answersCorrect = 3;
+  }
+  const q2 = {
+    id: 'quest-correct',
+    title: 'Trả lời đúng 3 câu',
+    target: 3,
+    current: answersCorrect,
+    xp: 20
+  };
+
+  const q3 = {
+    id: 'quest-streak',
+    title: 'Duy trì ngọn lửa học tập',
+    target: 1,
+    current: (progress?.streak || 0) >= 1 ? 1 : 0,
+    xp: 30
+  };
+
+  return [
+    { ...q1, completed: q1.current >= q1.target },
+    { ...q2, completed: q2.current >= q2.target },
+    { ...q3, completed: q3.current >= q3.target }
+  ];
+}
+
+
 

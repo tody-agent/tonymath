@@ -1,16 +1,15 @@
 # Continuity & Operational Learnings
 
 ## Active Goal
-Chuyển đổi menu profile (cũ dạng dropdown nhỏ khó nhấn) thành giao diện Bottom Sheet toàn màn hình (trên di động) / Dialog Modal (trên máy tính) với các nút bấm dạng thẻ/pill lớn, dễ tương tác và nâng cấp trong tương lai.
+Hoàn thiện và đánh bóng giao diện người dùng (UI/UX) di động của TonyMath dựa trên thiết kế prototype của file tonymath-mobile-prototype.html, bao gồm việc tích hợp Lộ trình Đường học trực quan (zigzag learning path), màn hình giới thiệu bài học (Intro screen), bảng nhiệm vụ hằng ngày (Quests) và chức năng Ôn câu sai.
 
 ## Next Actions
-- [x] 1.1 Thêm các class CSS cho backdrop, bottom-sheet panel và các component lựa chọn mới vào `src/App.css`
-- [x] 1.2 Cập nhật component hiển thị menu profile trong `src/App.jsx` sang Bottom Sheet có nút đóng, drag handle và click bên ngoài để đóng
-- [x] 2.1 Thay thế bộ chọn mascot dropdown thành giao diện danh sách thẻ (card) trực quan trong Bottom Sheet
-- [x] 2.2 Thay thế bộ chọn grade (lớp học) và studyMode (chế độ học) thành hàng các nút dạng thuốc nhộng (pills)
+- [ ] 1.1 Add design styling rules to `src/App.css` for the Duolingo zigzag learning path and intro screens.
+- [ ] 1.2 Implement the `<LearningPath />` and `<DailyQuests />` sub-components in `src/App.jsx` and display them on the Home dashboard.
+- [ ] 1.3 Implement the Mascot Intro screen (`<IntroView />`) in `src/App.jsx` and hook it into the `openLesson` transition.
 
 ## Current Phase
-complete
+planning
 
 ## Working Context
 - Đã hoàn thành triển khai thiết kế Bottom Sheet / Centered Modal mới.

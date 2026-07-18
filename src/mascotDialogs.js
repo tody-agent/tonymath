@@ -4,6 +4,7 @@ export const MASCOT_PROFILES = {
   owl: {
     name: 'Cú Ú',
     emoji: '🦉',
+    emojis: { idle: '🦉', happy: '🦉🥳', sad: '🦉🥺', shocked: '🦉🧐', sleepy: '🦉😴', worried: '🦉😰' },
     pitch: 1.0,
     rateOffset: 0.95,
     desc: 'Thích hỏi "Tại sao?", lý luận',
@@ -36,14 +37,27 @@ export const MASCOT_PROFILES = {
       'Có một thử thách nhỏ ở đây. Hãy đọc kỹ gợi ý nhé.',
       'Đừng lo lắng, con hãy nhìn lại các dữ kiện một lần nữa xem sao.',
       'Bình tĩnh suy nghĩ nào, Cú Ú tin con sẽ tìm ra quy luật.'
+    ],
+    carelessTemplates: [
+      'Thông thái không đi kèm vội vã. Đọc kỹ lại đề nhé con!',
+      'Học toán cần cẩn thận hơn một chút nè! Đọc kỹ đề rồi tính nhé con.'
+    ],
+    lazyTemplates: [
+      'Sách vở đang đợi con mở ra đó! Học bài cùng Cú Ú thôi nào!',
+      'Đừng để kiến thức bị đóng bụi nhé! Vào luyện tập thôi con.'
+    ],
+    streakHighTemplates: [
+      'Vĩ đại quá! Con đang tiến bộ vượt bậc với chuỗi đúng liên tiếp!',
+      'Trí tuệ của con sáng suốt như ngọn hải đăng vậy! Chuỗi đúng siêu đẳng!'
     ]
   },
   robot: {
     name: 'Rô Bốt',
     emoji: '🤖',
+    emojis: { idle: '🤖', happy: '🤖⚡', sad: '🤖⚙️', shocked: '🤖⁉️', sleepy: '🤖😴', worried: '🤖🚨' },
     pitch: 1.25,
     rateOffset: 1.05,
-    desc: 'Logic, vẽ sơ đồ siêu chuẩn',
+    desc: 'Logic, vẽ sơ đồ sơ chuẩn',
     nudgeIntro: 'nhận thấy:',
     achievementPraise: 'Tuyệt vời! Con đã mở khóa mã lệnh thành tích mới. Tiếp tục tối ưu hiệu suất nhé!',
     praiseExclamations: [
@@ -73,11 +87,24 @@ export const MASCOT_PROFILES = {
       'Không sao cả, nạp thêm năng lượng và thử lại lệnh này nha!',
       'Mạch logic chưa khớp câu chuyện. Đọc gợi ý và thử lại nào con ơi!',
       'Lệnh này chưa đúng rồi. Reset tư duy và chọn lại nha!'
+    ],
+    carelessTemplates: [
+      'Cảnh báo: Tốc độ xử lý quá nhanh dễ gây sai sót. Hãy phân tích lại!',
+      'Hệ thống phát hiện lệnh nhập nhanh bất thường. Vui lòng đọc kỹ câu hỏi.'
+    ],
+    lazyTemplates: [
+      'Hệ thống đã ngoại tuyến quá lâu. Khởi động chương trình học toán thôi!',
+      'Nạp năng lượng tư duy nào! Hệ thống đang chờ tín hiệu học tập từ con.'
+    ],
+    streakHighTemplates: [
+      'Hiệu suất đạt tối đa! Con đang duy trì chuỗi xử lý hoàn hảo!',
+      'Tốc độ và sự chính xác đạt 100%! Chuỗi đúng liên tục hoạt động tốt!'
     ]
   },
   turtle: {
     name: 'Rùa Con',
     emoji: '🐢',
+    emojis: { idle: '🐢', happy: '🐢🎉', sad: '🐢💧', shocked: '🐢🧐', sleepy: '🐢😴', worried: '🐢😰' },
     pitch: 0.85,
     rateOffset: 0.88,
     desc: 'Kiên trì, đi chậm mà chắc',
@@ -109,11 +136,24 @@ export const MASCOT_PROFILES = {
       'Gần đúng rồi con ơi. Hít một hơi thật sâu rồi xem lại bài nha.',
       'Sai một chút để bộ não học tập tốt hơn mà. Cố lên con!',
       'Đừng vội vã nhé con yêu, xem kỹ lại các con số một xíu nha.'
+    ],
+    carelessTemplates: [
+      'Chậm mà chắc con ơi! Đọc kỹ đề rồi hãy nhấn nhé.',
+      'Rùa khuyên con nên đi chậm để tránh vấp ngã nha con. Đọc kỹ đề nhé.'
+    ],
+    lazyTemplates: [
+      'Mỗi ngày một chút, kiên trì sẽ thành công! Vào học thôi con ơi.',
+      'Rùa đang đợi con cùng bò qua thử thách toán mới nè!'
+    ],
+    streakHighTemplates: [
+      'Sự kiên trì của con đã đơm hoa kết trái rồi! Chuỗi đúng tuyệt quá!',
+      'Chuỗi đúng liên tiếp thật ấn tượng! Rùa vỗ tay khen con nè.'
     ]
   },
   babyshark: {
     name: 'Baby Shark',
     emoji: '🦈',
+    emojis: { idle: '🦈', happy: '🦈🌈', sad: '🦈🥺', shocked: '🦈⁉️', sleepy: '🦈😴', worried: '🦈😰' },
     pitch: 1.4,
     rateOffset: 1.1,
     desc: 'Năng động, vui nhộn vui vẻ',
@@ -141,11 +181,24 @@ export const MASCOT_PROFILES = {
       'Cùng thử lại góc bơi khác nhé! Con làm được mà!',
       'Đừng lo, hít một hơi thật sâu như khi bơi dưới đại dương và xem kỹ lại đề nha!',
       'Doo doo doo! Quay đầu bơi lại và chọn đáp án đúng hơn nào!'
+    ],
+    carelessTemplates: [
+      'Bơi chậm lại một tí, ngắm kỹ san hô toán học rồi trả lời nha!',
+      'Ối! Nhấn nhanh quá coi chừng va phải đá ngầm đó con!'
+    ],
+    lazyTemplates: [
+      'Doo doo doo... Con đi đâu lâu thế? Về biển học toán cùng bạn Shark nào!',
+      'Đại dương kiến thức đang vẫy gọi, bơi vào học bài thôi con!'
+    ],
+    streakHighTemplates: [
+      'Bùng nổ đại dương luôn! Con giỏi quá đi! Doo doo doo!',
+      'Chuỗi đúng siêu đỉnh, sóng vỗ rào rào chúc mừng chiến tích của con!'
     ]
   },
   poli: {
     name: 'Poli Cảnh Sát',
     emoji: '🚓',
+    emojis: { idle: '🚓', happy: '🚓🚨', sad: '🚓🥺', shocked: '🚓⁉️', sleepy: '🚓😴', worried: '🚓⚠️' },
     pitch: 1.1,
     rateOffset: 1.0,
     desc: 'Dũng cảm, giữ gìn trật tự',
@@ -173,11 +226,24 @@ export const MASCOT_PROFILES = {
       'Đội cứu hộ Poli sẵn sàng hỗ trợ con! Hãy xem kỹ gợi ý và rẽ hướng tư duy nhé!',
       'Không sao cả, cảnh sát dũng cảm không lùi bước! Cùng tuần tra lại đề bài nha!',
       'Chúng ta hãy kiểm tra kỹ lại bản đồ dữ kiện của đề bài để tìm đáp án đúng nha!'
+    ],
+    carelessTemplates: [
+      'Chú ý an toàn! Đi quá tốc độ dễ gây tai nạn toán học đó. Đi chậm lại nhé con!',
+      'Poli nhắc nhở: Tuân thủ quy tắc đọc kỹ đề trước khi bấm nút nha.'
+    ],
+    lazyTemplates: [
+      'Đội tuần tra Poli đã sẵn sàng lên đường! Con cũng xuất phát học toán thôi!',
+      'Đừng để động cơ bị rỉ sét, vào luyện tập tuần tra cùng Poli nào!'
+    ],
+    streakHighTemplates: [
+      'Nhiệm vụ hoàn thành xuất sắc! Con xứng đáng nhận huy chương chuỗi đúng!',
+      'Chuỗi đúng tuyệt vời, tuần tra giao thông toán học cực kỳ an toàn!'
     ]
   },
   steve: {
     name: 'Steve Minecraft',
     emoji: '⛏️',
+    emojis: { idle: '⛏️', happy: '⛏️💎', sad: '⛏️💀', shocked: '⛏️💥', sleepy: '⛏️😴', worried: '⛏️🔥' },
     pitch: 0.8,
     rateOffset: 0.9,
     desc: 'Sáng tạo, xây dựng logic',
@@ -205,11 +271,24 @@ export const MASCOT_PROFILES = {
       'Sử dụng gợi ý giống như bật đuốc trong hang tối, thử lại nhé con!',
       'Logic này chưa khớp công thức chế tạo rồi. Đọc kỹ lại đề và ráp lại xem sao!',
       'Không sợ mất tài nguyên, làm sai thì mình đào lại khối khác tốt hơn nha!'
+    ],
+    carelessTemplates: [
+      'Đào đá cuội cũng cần nhắm trúng chứ đào bừa chỉ hỏng cúp thôi con ơi! Nhìn kỹ lại đề nhé!',
+      'Đừng vội đặt khối block kẻo sập hầm đó nha con!'
+    ],
+    lazyTemplates: [
+      'Kim cương đang đợi con khai thác ở tầng hầm tiếp theo kìa! Vào đào thôi!',
+      'Ngủ trong nhà gỗ đủ rồi, xách cúp đi học toán kiếm kim cương nào!'
+    ],
+    streakHighTemplates: [
+      'Wow! Con vừa đào trúng một mạch kim cương khổng lồ với chuỗi đúng này!',
+      'Chế tạo thành công chuỗi đúng siêu cấp, giáp kim cương lấp lánh!'
     ]
   },
   elsa: {
     name: 'Công chúa Elsa',
     emoji: '❄️',
+    emojis: { idle: '❄️', happy: '❄️👑', sad: '❄️🥺', shocked: '❄️⁉️', sleepy: '❄️😴', worried: '❄️😰' },
     pitch: 1.2,
     rateOffset: 0.95,
     desc: 'Dịu dàng, phép thuật toán học',
@@ -237,11 +316,24 @@ export const MASCOT_PROFILES = {
       'Hãy để Elsa sưởi ấm bộ não và cùng đọc kỹ gợi ý để thử lại nhé!',
       'Không sao đâu con yêu, phép thuật cần sự kiên trì. Mình thử vẽ lại đường băng logic nha!',
       'Bình tĩnh nào, tuyết tan sẽ lộ ra câu trả lời chính xác. Xem lại đề cùng ta nha!'
+    ],
+    carelessTemplates: [
+      'Băng giá cần thời gian để kết tinh. Đừng vội vã, hãy để suy nghĩ của con lấp lánh nhé!',
+      'Chậm lại một chút để phép thuật đóng băng đáp án chính xác hơn con yêu.'
+    ],
+    lazyTemplates: [
+      'Lâu đài băng đang lạnh lẽo vì thiếu tiếng cười toán học của con đó. Luyện tập nào!',
+      'Hãy để ngọn lửa học tập sưởi ấm lâu đài băng giá của chúng ta nhé!'
+    ],
+    streakHighTemplates: [
+      'Phép thuật băng tuyết đang nở rộ rực rỡ quanh con! Chuỗi đúng quá lộng lẫy!',
+      'Con đã kiến tạo một vương quốc toán học tuyết rơi tuyệt đẹp rồi!'
     ]
   },
   pinkfong: {
     name: 'Pinkfong',
     emoji: '🦊',
+    emojis: { idle: '🦊', happy: '🦊⭐️', sad: '🦊🥺', shocked: '🦊⁉️', sleepy: '🦊😴', worried: '🦊😰' },
     pitch: 1.35,
     rateOffset: 1.05,
     desc: 'Đáng yêu, hát nhạc kỳ diệu',
@@ -269,11 +361,24 @@ export const MASCOT_PROFILES = {
       'Hát một giai điệu ngắn rồi cùng xem lại gợi ý để thử lại nha con!',
       'Không sao đâu, phép thuật toán học luôn cần thử nghiệm lại mà! Cố lên con!',
       'Con có năng lực kỳ diệu trong mình, đọc lại đề một lần nữa sẽ làm được thôi!'
+    ],
+    carelessTemplates: [
+      'Phép thuật sao cần ngắm kỹ mục tiêu nha! Đọc lại đề bài một xíu nào con!',
+      'Bùm chíu! Đi chậm lại chút xíu để phép thuật chuẩn xác hơn nhé!'
+    ],
+    lazyTemplates: [
+      'Ngôi sao may mắn đang nhấp nháy gọi tên con học bài đó! Nhanh chân lên nào!',
+      'Pinkfong nhớ con lắm rồi, vào học bài cùng âm nhạc kỳ diệu thôi!'
+    ],
+    streakHighTemplates: [
+      'Con là ngôi sao sáng nhất dải ngân hà TonyMath hôm nay với chuỗi đúng!',
+      'Phép thuật rực rỡ! Chuỗi đúng liên tiếp siêu phàm của bạn nhỏ!'
     ]
   },
   peppa: {
     name: 'Heo Peppa',
     emoji: '🐷',
+    emojis: { idle: '🐷', happy: '🐷🎉', sad: '🐷🥺', shocked: '🐷🐽', sleepy: '🐷😴', worried: '🐷😰' },
     pitch: 1.15,
     rateOffset: 1.0,
     desc: 'Tinh nghịch, nhảy vũng nước',
@@ -301,6 +406,18 @@ export const MASCOT_PROFILES = {
       'Cùng Peppa lau sạch bùn đất trên người rồi xem lại bài toán nha!',
       'Không sao cả, ngã thì mình lại đứng lên cười vang và làm lại nhé, oink oink!',
       'Đọc lại đề thật thong thả như khi Peppa đi dạo chơi cùng George nha con!'
+    ],
+    carelessTemplates: [
+      'Oink oink! Nhảy vũng bùn cũng phải nhìn kỹ chứ nhảy nhầm vũng sâu là ướt hết đó!',
+      'Đọc kỹ đề bài rồi hãy nhảy sang câu tiếp theo nha con yêu!'
+    ],
+    lazyTemplates: [
+      'Vũng nước bong bóng đang đợi chúng mình nhảy lên chơi đó! Vào học nhanh nào!',
+      'Oink oink! Hôm nay con chưa học bài đúng không nè? Đi thôi nào!'
+    ],
+    streakHighTemplates: [
+      'Cười lớn oink oink! Con giỏi nhất luôn! Cả nhà heo tự hào vì chuỗi đúng này!',
+      'Huy chương vàng cho chuỗi trả lời đúng liên tiếp của con!'
     ]
   }
 };
@@ -312,8 +429,35 @@ export const MASCOT_PROFILES = {
  * @param {string} originalMessage - the core feedback message from step validation
  * @returns {string} The customized text to read out loud
  */
-export function getMascotSpeech(mascot, isCorrect, originalMessage, archetype) {
+export function getMascotSpeech(mascot, isCorrect, originalMessage, optionsOrArchetype) {
   const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
+  const cleanMsg = originalMessage ? originalMessage.trim() : '';
+
+  let options = {};
+  let archetype = null;
+  if (typeof optionsOrArchetype === 'string') {
+    archetype = optionsOrArchetype;
+  } else if (typeof optionsOrArchetype === 'object' && optionsOrArchetype !== null) {
+    options = optionsOrArchetype;
+  }
+
+  // 1. Check if lazy state is requested
+  if (options.isLazy) {
+    const lazyPool = profile.lazyTemplates || ['Cùng học toán thôi nào!'];
+    return lazyPool[Math.floor(Math.random() * lazyPool.length)];
+  }
+
+  // 2. Check if careless state (rushing) is triggered
+  if (options.isCareless && !isCorrect) {
+    const carelessPool = profile.carelessTemplates || ['Đọc kỹ lại đề bài nhé!'];
+    return `${carelessPool[Math.floor(Math.random() * carelessPool.length)]} ${cleanMsg}`.trim();
+  }
+
+  // 3. Check if high streak is triggered on correct answers
+  if (isCorrect && options.currentStreak && options.currentStreak >= 5) {
+    const streakPool = profile.streakHighTemplates || ['Con giỏi quá! Chuỗi đúng liên tiếp!'];
+    return `${streakPool[Math.floor(Math.random() * streakPool.length)]} ${cleanMsg}`.trim();
+  }
 
   if (archetype === 'pioneer') {
     if (isCorrect) {
@@ -324,7 +468,7 @@ export function getMascotSpeech(mascot, isCorrect, originalMessage, archetype) {
       ];
       const template = pioneerPraises[Math.floor(Math.random() * pioneerPraises.length)];
       const exc = profile.praiseExclamations[Math.floor(Math.random() * profile.praiseExclamations.length)];
-      return `${exc} ${template} ${originalMessage ? originalMessage.trim() : ''}`.trim();
+      return `${exc} ${template} ${cleanMsg}`.trim();
     } else {
       const pioneerEncourages = [
         `Bình tĩnh nào con ơi. Con đang làm rất nhanh, thử dừng lại 2 giây đọc thật kỹ lại câu hỏi nha.`,
@@ -333,7 +477,7 @@ export function getMascotSpeech(mascot, isCorrect, originalMessage, archetype) {
       ];
       const template = pioneerEncourages[Math.floor(Math.random() * pioneerEncourages.length)];
       const exc = profile.encourageExclamations[Math.floor(Math.random() * profile.encourageExclamations.length)];
-      return `${exc} ${originalMessage ? originalMessage.trim() : ''} ${template}`.trim();
+      return `${exc} ${cleanMsg} ${template}`.trim();
     }
   }
 
@@ -346,7 +490,7 @@ export function getMascotSpeech(mascot, isCorrect, originalMessage, archetype) {
       ];
       const template = buddingPraises[Math.floor(Math.random() * buddingPraises.length)];
       const exc = profile.praiseExclamations[Math.floor(Math.random() * profile.praiseExclamations.length)];
-      return `${exc} ${template} ${originalMessage ? originalMessage.trim() : ''}`.trim();
+      return `${exc} ${template} ${cleanMsg}`.trim();
     } else {
       const buddingEncourages = [
         `Không sao đâu con yêu, sai một chút là cách bộ não con luyện tập để mạnh mẽ hơn mà. Thử lại cùng tớ nhé!`,
@@ -355,7 +499,7 @@ export function getMascotSpeech(mascot, isCorrect, originalMessage, archetype) {
       ];
       const template = buddingEncourages[Math.floor(Math.random() * buddingEncourages.length)];
       const exc = profile.encourageExclamations[Math.floor(Math.random() * profile.encourageExclamations.length)];
-      return `${exc} ${originalMessage ? originalMessage.trim() : ''} ${template}`.trim();
+      return `${exc} ${cleanMsg} ${template}`.trim();
     }
   }
 
@@ -368,7 +512,7 @@ export function getMascotSpeech(mascot, isCorrect, originalMessage, archetype) {
       ];
       const template = seekerPraises[Math.floor(Math.random() * seekerPraises.length)];
       const exc = profile.praiseExclamations[Math.floor(Math.random() * profile.praiseExclamations.length)];
-      return `${exc} ${template} ${originalMessage ? originalMessage.trim() : ''}`.trim();
+      return `${exc} ${template} ${cleanMsg}`.trim();
     } else {
       const seekerEncourages = [
         `Ồ, lệch một tí rồi! Chúng mình cùng quay lại tìm chiếc rương kho báu đáp án đúng nhé!`,
@@ -377,7 +521,7 @@ export function getMascotSpeech(mascot, isCorrect, originalMessage, archetype) {
       ];
       const template = seekerEncourages[Math.floor(Math.random() * seekerEncourages.length)];
       const exc = profile.encourageExclamations[Math.floor(Math.random() * profile.encourageExclamations.length)];
-      return `${exc} ${originalMessage ? originalMessage.trim() : ''} ${template}`.trim();
+      return `${exc} ${cleanMsg} ${template}`.trim();
     }
   }
 
@@ -390,7 +534,7 @@ export function getMascotSpeech(mascot, isCorrect, originalMessage, archetype) {
       ];
       const template = scholarPraises[Math.floor(Math.random() * scholarPraises.length)];
       const exc = profile.praiseExclamations[Math.floor(Math.random() * profile.praiseExclamations.length)];
-      return `${exc} ${template} ${originalMessage ? originalMessage.trim() : ''}`.trim();
+      return `${exc} ${template} ${cleanMsg}`.trim();
     } else {
       const scholarEncourages = [
         `Ồ, một chi tiết nhỏ chưa khớp. Hãy thử phân tích lại một chút xem sao con nhé.`,
@@ -399,7 +543,7 @@ export function getMascotSpeech(mascot, isCorrect, originalMessage, archetype) {
       ];
       const template = scholarEncourages[Math.floor(Math.random() * scholarEncourages.length)];
       const exc = profile.encourageExclamations[Math.floor(Math.random() * profile.encourageExclamations.length)];
-      return `${exc} ${originalMessage ? originalMessage.trim() : ''} ${template}`.trim();
+      return `${exc} ${cleanMsg} ${template}`.trim();
     }
   }
 
@@ -407,12 +551,10 @@ export function getMascotSpeech(mascot, isCorrect, originalMessage, archetype) {
   if (isCorrect) {
     const exc = profile.praiseExclamations[Math.floor(Math.random() * profile.praiseExclamations.length)];
     const template = profile.praiseTemplates[Math.floor(Math.random() * profile.praiseTemplates.length)];
-    const cleanMsg = originalMessage ? originalMessage.trim() : '';
     return `${exc} ${template} ${cleanMsg}`.trim();
   } else {
     const exc = profile.encourageExclamations[Math.floor(Math.random() * profile.encourageExclamations.length)];
     const template = profile.encourageTemplates[Math.floor(Math.random() * profile.encourageTemplates.length)];
-    const cleanMsg = originalMessage ? originalMessage.trim() : '';
     return `${exc} ${cleanMsg} ${template}`.trim();
   }
 }

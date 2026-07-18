@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useRef } from 'react'
+import { useEffect, useMemo, useState, useRef, useCallback } from 'react'
 import {
   resolveSpeechRate,
   generateIcsContent,
@@ -188,6 +188,7 @@ function App() {
   const [cooldownActive, setCooldownActive] = useState(false)
   const [hasUsedShield, setHasUsedShield] = useState(false)
   const [stepConfettiActive, setStepConfettiActive] = useState(false)
+  const [currentStreak, setCurrentStreak] = useState(0)
 
   // Dynamic lesson packs states
   const [lessons, setLessons] = useState([])
@@ -217,6 +218,43 @@ function App() {
     () => Object.values(activeProgress.completed).reduce((sum, item) => sum + item.stars, 0),
     [activeProgress.completed]
   )
+
+  const getMascotEmotion = useCallback((mascotId) => {
+    const active = mascotId || progress.profile?.mascot || 'owl';
+    const profile = MASCOT_PROFILES[active] || MASCOT_PROFILES.owl;
+    let emotion = 'idle';
+    
+    // 1. If in lesson view and there's a feedback message
+    if (view === 'lesson' && feedback) {
+      if (feedback.correct) {
+        emotion = 'happy';
+      } else {
+        const elapsed = stepStartTime ? (Date.now() - stepStartTime) / 1000 : 0;
+        if (elapsed < 4.0) {
+          emotion = 'shocked';
+        } else {
+          emotion = 'sad';
+        }
+      }
+    }
+    // 2. If low hearts inside lesson
+    else if (view === 'lesson' && hearts <= 1) {
+      emotion = 'worried';
+    }
+    // 3. Lazy check (no studies in 2+ days)
+    else {
+      const lastDateStr = progress.lastActiveDate;
+      if (lastDateStr) {
+        const diffTime = Math.abs(Date.now() - new Date(lastDateStr).getTime());
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        if (diffDays >= 2) {
+          emotion = 'sleepy';
+        }
+      }
+    }
+
+    return profile.emojis?.[emotion] || profile.emoji;
+  }, [view, feedback, hearts, progress.lastActiveDate, progress.profile?.mascot, stepStartTime]);
 
   // Fetch registry & lessons pack
   useEffect(() => {
@@ -544,6 +582,7 @@ function App() {
     setMistakes(0)
     setStepFailsSession({})
     setHasUsedShield(false)
+    setCurrentStreak(0)
     const initialStep = getActiveSteps(progress.studyMode || 'full', lesson)[0]
     resetStepState(initialStep)
     setIsGameOver(false)
@@ -565,6 +604,7 @@ function App() {
     setHearts(3)
     setStepFailsSession({})
     setHasUsedShield(false)
+    setCurrentStreak(0)
     resetStepState(initialStep)
     setLessonStartTime(Date.now())
     setView('lesson')
@@ -768,10 +808,19 @@ function App() {
     const latency = stepStartTime ? Math.round((Date.now() - stepStartTime) / 1000) : 5
     const currentArchetype = progress.behavioralProfile?.currentArchetype || 'balanced'
 
+    let newStreak = currentStreak;
+    if (isCorrect) {
+      newStreak += 1;
+    } else {
+      newStreak = 0;
+    }
+    setCurrentStreak(newStreak);
+    const isCareless = !isCorrect && latency < 4;
+
     if (isCorrect) {
       const praiseSfx = step === 7 ? 'praise' : 'correct'
       playSfx(praiseSfx, audioSettings.muted)
-      const mascotMsg = getMascotSpeech(mascot, true, message, currentArchetype)
+      const mascotMsg = getMascotSpeech(mascot, true, message, { archetype: currentArchetype, currentStreak: newStreak })
       setFeedback({ correct: true, message: mascotMsg })
       if (currentArchetype === 'active_seeker' && (step === 3 || step === 5)) {
         setStepConfettiActive(true)
@@ -793,7 +842,7 @@ function App() {
       }
 
       playSfx(hearts <= 1 ? 'wrong' : 'soft_wrong', audioSettings.muted)
-      const mascotMsg = getMascotSpeech(mascot, false, message, currentArchetype)
+      const mascotMsg = getMascotSpeech(mascot, false, message, { archetype: currentArchetype, isCareless })
       
       let nextHearts = hearts;
       if (hearts <= 1 && currentArchetype === 'budding_thinker' && !hasUsedShield) {
@@ -998,7 +1047,7 @@ function App() {
     return (
       <div className="app-shell loading-shell">
         <div className="loading-card">
-          <span className="loading-mascot">{MASCOT_PROFILES[progress.profile?.mascot || 'owl']?.emoji || '🦉'}</span>
+          <span className="loading-mascot">{getMascotEmotion(progress.profile?.mascot || 'owl')}</span>
           <h2>Đang tải bài học vui...</h2>
           <div className="loading-spinner"></div>
         </div>
@@ -1026,7 +1075,7 @@ function App() {
       {!isSessionActive && (
         <header className="topbar">
           <button className="brand" onClick={() => setView('home')} aria-label="Về trang chủ">
-            <span className="brand-mascot">{MASCOT_PROFILES[progress.profile?.mascot || 'owl']?.emoji || '🦉'}</span>
+            <span className="brand-mascot">{getMascotEmotion(progress.profile?.mascot || 'owl')}</span>
             <span><strong>Học Toán</strong><small>Học cách học</small></span>
           </button>
           <div className="top-stats">
@@ -1374,7 +1423,7 @@ function App() {
             <NavButton icon="📚" label="Bài học" active={view === 'lessons-menu'} onClick={() => setView('lessons-menu')} />
             <NavButton icon="🏆" label="Thành quả" active={view === 'progress'} onClick={() => setView('progress')} />
           </nav>
-          <CoachSidebar progress={progress} plan={learningPlan} openLesson={openLesson} />
+          <CoachSidebar progress={progress} plan={learningPlan} openLesson={openLesson} getMascotEmotion={getMascotEmotion} />
         </aside>
       )}
 
@@ -1396,6 +1445,7 @@ function App() {
             showWelcomeNudge={showWelcomeNudge}
             onDismissNudge={dismissWelcomeNudge}
             audioSettings={audioSettings}
+            getMascotEmotion={getMascotEmotion}
           />
         )}
         {view === 'lessons-menu' && (
@@ -1422,6 +1472,7 @@ function App() {
             onCheckAnswer={handleCheckArenaAnswer}
             onBack={() => { playClick(); setView('home'); }}
             mascot={progress.profile?.mascot || 'owl'}
+            getMascotEmotion={getMascotEmotion}
           />
         )}
         {view === 'buddy' && (
@@ -1433,6 +1484,7 @@ function App() {
             onNext={handleOpenBuddy}
             onBack={() => { playClick(); setView('home'); }}
             mascot={progress.profile?.mascot || 'owl'}
+            getMascotEmotion={getMascotEmotion}
           />
         )}
         {view === 'lesson' && (
@@ -1483,9 +1535,10 @@ function App() {
             onHome={() => setView('home')}
             onOpenLesson={openLesson}
             lessonIndex={lessonIndex}
+            getMascotEmotion={getMascotEmotion}
           />
         )}
-        {view === 'progress' && <InsightsView lessons={lessons} progress={activeProgress} openLesson={openLesson} earnedStars={earnedStars} />}
+        {view === 'progress' && <InsightsView lessons={lessons} progress={activeProgress} openLesson={openLesson} earnedStars={earnedStars} getMascotEmotion={getMascotEmotion} />}
       </main>
 
       {!isSessionActive && (
@@ -1539,7 +1592,7 @@ function App() {
       {activeGuide && (() => {
         const mascot = progress.profile?.mascot || 'owl';
         const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
-        const mascotEmoji = profile.emoji;
+        const mascotEmoji = getMascotEmotion(mascot);
         const mascotName = profile.name;
         const guideData = getIndicatorGuide(mascot, activeGuide, progress);
         
@@ -1648,6 +1701,7 @@ function App() {
           achievements={newlyUnlockedAchievements}
           mascot={progress.profile?.mascot || 'owl'}
           onClose={() => setNewlyUnlockedAchievements([])}
+          getMascotEmotion={getMascotEmotion}
         />
       )}
     </div>
@@ -1702,12 +1756,13 @@ function Home({
   setView,
   showWelcomeNudge,
   onDismissNudge,
-  audioSettings
+  audioSettings,
+  getMascotEmotion
 }) {
   const plan = getLearningPlan(lessons, progress)
   const mascot = progress?.profile?.mascot || 'owl';
   const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
-  const mascotEmoji = profile.emoji;
+  const mascotEmoji = getMascotEmotion ? getMascotEmotion(mascot) : profile.emoji;
   const mascotName = profile.name;
   const themeClass = `theme-${mascot}`;
   const completedCount = Object.keys(progress.completed || {}).length;
@@ -1733,7 +1788,7 @@ function Home({
   };
 
   return (
-    <div className="home-dashboard-page" style={{ padding: '24px', overflowY: 'auto', height: '100dvh', boxSizing: 'border-box', paddingBottom: '120px' }}>
+    <div className="home-dashboard-page" style={{ padding: '24px', overflowY: 'auto', minHeight: '100dvh', boxSizing: 'border-box', paddingBottom: '120px' }}>
       {showWelcomeNudge && (() => {
         const nudge = getWelcomeBackNudge(progress);
         return (
@@ -2015,7 +2070,7 @@ function LessonsMenu({
   };
 
   return (
-    <div className="lessons-menu-page" style={{ padding: '24px', overflowY: 'auto', height: '100dvh', boxSizing: 'border-box', paddingBottom: '120px' }}>
+    <div className="lessons-menu-page" style={{ padding: '24px', overflowY: 'auto', minHeight: '100dvh', boxSizing: 'border-box', paddingBottom: '120px' }}>
       <div className="adventure-map-area">
         <section className="journey-hero">
           <div>
@@ -2147,14 +2202,13 @@ function LessonView(props) {
             if (isChallenge) {
               if (hintUnlockedForCurrentStep) {
                 setHintOpen((open) => !open);
+            } else {
+              if (hearts <= 0) {
+                speakText("Con đã hết ❤️, hãy tự suy nghĩ hoặc bắt đầu lại bài nhé!", resolveSpeechRate(audioSettings.speed));
               } else {
-                if (hearts <= 0) {
-                  speakText("Con đã hết ❤️, hãy tự suy nghĩ hoặc bắt đầu lại bài nhé!", resolveSpeechRate(audioSettings.speed));
-                  alert("Con đã hết ❤️, hãy tự suy nghĩ hoặc bắt đầu lại bài nhé!");
-                } else {
-                  setShowHintConfirm(true);
-                }
+                setShowHintConfirm(true);
               }
+            }
             } else {
               setHintOpen((open) => {
                 const nextVal = !open;
@@ -3974,7 +4028,7 @@ function CalculationStep({ lesson, value, setValue, frozen }) {
     </div>
   )
 }
-function CompleteView({ lesson, mistakes, progress, setProgress, plan, onHome, onOpenLesson, _lessonIndex }) {
+function CompleteView({ lesson, mistakes, progress, setProgress, plan, onHome, onOpenLesson, _lessonIndex, getMascotEmotion }) {
   const stars = mistakes === 0 ? 3 : mistakes <= 2 ? 2 : 1
 
   const hasNext = plan?.primary && plan.primary.lesson.id !== lesson.id
@@ -4035,14 +4089,15 @@ function CompleteView({ lesson, mistakes, progress, setProgress, plan, onHome, o
       {nudgeMode && (() => {
         const nudgeMascot = progress.profile?.mascot || 'owl';
         const nudgeProfile = MASCOT_PROFILES[nudgeMascot] || MASCOT_PROFILES.owl;
+        const nudgeEmoji = getMascotEmotion ? getMascotEmotion(nudgeMascot) : nudgeProfile.emoji;
         return (
           <div className="adaptive-nudge-box">
             <div className="nudge-avatar">
-              {nudgeProfile.emoji}
+              {nudgeEmoji}
             </div>
             <div className="nudge-content">
               <h4>
-                {`${nudgeProfile.emoji} ${nudgeProfile.name} ${nudgeProfile.nudgeIntro || 'khuyên con:'}`}
+                {`${nudgeEmoji} ${nudgeProfile.name} ${nudgeProfile.nudgeIntro || 'khuyên con:'}`}
               </h4>
               <p>
                 {nudgeMode === 'express' 
@@ -4424,7 +4479,7 @@ function OnboardingTest({ name, mascot, grade, onComplete, onSkip }) {
   const questions = ONBOARDING_TEST_QUESTIONS_BY_GRADE[grade] || ONBOARDING_TEST_QUESTIONS_BY_GRADE['grade-4'];
   const currentQuestion = questions[currentIndex];
   const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
-  const mascotEmoji = profile.emoji;
+  const mascotEmoji = profile.emojis?.idle || profile.emoji;
   const mascotName = profile.name;
 
   useEffect(() => {
@@ -4577,7 +4632,7 @@ function OnboardingTest({ name, mascot, grade, onComplete, onSkip }) {
 
 function AssessmentReport({ name, mascot, grade, score, setProgress, setView }) {
   const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
-  const mascotEmoji = profile.emoji;
+  const mascotEmoji = profile.emojis?.idle || profile.emoji;
   const mascotName = profile.name;
 
   let tier = '';
@@ -4742,9 +4797,10 @@ function ArenaView({
   arenaFeedback,
   onCheckAnswer,
   onBack,
-  mascot
+  mascot,
+  getMascotEmotion
 }) {
-  const mascotEmoji = MASCOT_PROFILES[mascot]?.emoji || '🦉'
+  const mascotEmoji = getMascotEmotion ? getMascotEmotion(mascot) : (MASCOT_PROFILES[mascot]?.emoji || '🦉')
 
   return (
     <div className="arena-page">
@@ -4834,10 +4890,11 @@ function BuddyView({
   onCheckAnswer,
   onNext,
   onBack,
-  mascot
+  mascot,
+  getMascotEmotion
 }) {
   const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
-  const mascotEmoji = profile.emoji;
+  const mascotEmoji = getMascotEmotion ? getMascotEmotion(mascot) : profile.emoji;
   const mascotName = profile.name;
 
   return (
@@ -4897,7 +4954,7 @@ function BuddyView({
 
 
 
-function InsightsView({ lessons, progress, openLesson, earnedStars }) {
+function InsightsView({ lessons, progress, openLesson, earnedStars, getMascotEmotion }) {
   const [selectedAchievement, setSelectedAchievement] = useState(null)
 
   // 1. Character & Header indicators
@@ -4908,7 +4965,7 @@ function InsightsView({ lessons, progress, openLesson, earnedStars }) {
   
   const mascot = progress.profile?.mascot || 'owl';
   const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
-  const mascotEmoji = profile.emoji;
+  const mascotEmoji = getMascotEmotion ? getMascotEmotion(mascot) : profile.emoji;
   const mascotName = profile.name;
   const studentName = progress.profile?.name || 'Bé';
 
@@ -5424,10 +5481,10 @@ function InsightsView({ lessons, progress, openLesson, earnedStars }) {
   );
 }
 
-function CoachSidebar({ progress, plan, openLesson }) {
+function CoachSidebar({ progress, plan, openLesson, getMascotEmotion }) {
   const mascot = progress?.profile?.mascot || 'owl';
   const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
-  const mascotEmoji = profile.emoji;
+  const mascotEmoji = getMascotEmotion ? getMascotEmotion(mascot) : profile.emoji;
   const mascotName = profile.name;
   
   const primary = plan?.primary;
@@ -5558,14 +5615,14 @@ function ConfettiCanvas({ active }) {
   );
 }
 
-function AchievementCelebration({ achievements, mascot, onClose }) {
+function AchievementCelebration({ achievements, mascot, onClose, getMascotEmotion }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const current = achievements[currentIndex];
   
   if (!current) return null;
 
   const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
-  const mascotEmoji = profile.emoji;
+  const mascotEmoji = getMascotEmotion ? getMascotEmotion(mascot) : profile.emoji;
   const mascotName = profile.name;
 
   const handleNext = () => {
