@@ -1,7 +1,7 @@
 {
   "schema": "intent@1",
-  "initiative": "ui-finalization",
-  "goal": "Hoàn thiện và đánh bóng giao diện người dùng (UI/UX) di động của TonyMath dựa trên thiết kế prototype của file tonymath-mobile-prototype.html, bao gồm việc tích hợp Lộ trình Đường học trực quan (zigzag learning path), màn hình giới thiệu bài học (Intro screen), bảng nhiệm vụ hằng ngày (Quests) và chức năng Ôn câu sai.",
-  "recommended_option": "Option C: Unified Premium Redesign (Hybrid)",
-  "openspec_path": "openspec/changes/ui-finalization/proposal.md"
+  "initiative": "profile-simplification",
+  "goal": "Đơn giản hóa trang Hồ sơ & Thiết lập bằng cách phân chia giao diện thành hai phần: Hồ sơ học sinh (với Mascot, đổi tên, XP, Streak, Badges) và Góc Phụ huynh (được bảo vệ bằng Math Gate để ngăn trẻ em vô tình thao tác thay đổi dữ liệu hoặc cấu hình học tập).",
+  "recommended_option": "Option A: Persona-Tabs with Math Gate & Gamification",
+  "openspec_path": "openspec/changes/profile-simplification/proposal.md"
 }

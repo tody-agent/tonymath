@@ -1,22 +1,25 @@
 # Continuity & Operational Learnings
 
 ## Active Goal
-Hoàn thiện và đánh bóng giao diện người dùng (UI/UX) di động của TonyMath dựa trên thiết kế prototype của file tonymath-mobile-prototype.html, bao gồm việc tích hợp Lộ trình Đường học trực quan (zigzag learning path), màn hình giới thiệu bài học (Intro screen), bảng nhiệm vụ hằng ngày (Quests) và chức năng Ôn câu sai.
+Đơn giản hóa trang Hồ sơ & Thiết lập bằng cách chia thành 2 phần: Hồ sơ học sinh (Mascot, đổi tên, XP, Streak, Badges) và Góc Phụ huynh (được bảo vệ bằng Math Gate để trẻ không vô tình thao tác thay đổi dữ liệu hoặc cấu hình học tập).
 
 ## Next Actions
-- [ ] 1.1 Add design styling rules to `src/App.css` for the Duolingo zigzag learning path and intro screens.
-- [ ] 1.2 Implement the `<LearningPath />` and `<DailyQuests />` sub-components in `src/App.jsx` and display them on the Home dashboard.
-- [ ] 1.3 Implement the Mascot Intro screen (`<IntroView />`) in `src/App.jsx` and hook it into the `openLesson` transition.
+- [x] 1.1 Add tab headers and transition animations in App.css.
+- [x] 1.2 Add kid metrics layout classes (level, XP progression bar, streak fire).
+- [x] 2.1 Define states for profileTab, showMathGate, mathGateQuestion, mathGateInput, mathGateError, selectedBadgeInfo, and mascotSpeechBubble in App.jsx.
 
 ## Current Phase
-planning
+verification
 
 ## Working Context
-- Đã hoàn thành triển khai thiết kế Bottom Sheet / Centered Modal mới.
-- Đã sửa lỗi trắng trang khi click vào Profile do thiếu khai báo state `isDevMode` trong App.jsx.
-- Đã chạy kiểm thử logic, linter và build và toàn bộ đều đã vượt qua thành công.
+- Đã hoàn thiện thiết kế UI/UX giao diện Hồ sơ học sinh (Hồ sơ của Bé) và Góc Phụ huynh (Math Gate).
+- Đã hoàn tất cài đặt toàn bộ code CSS/JSX và logic kiểm thử unit test.
+- Đã chạy kiểm thử linter, logic unit tests, lessons data audit, vite build và smoke test thành công qua toàn bộ 6 Cổng (test-gate.js).
 
 ## Decisions
+- [Decision]: Tách biệt menu Hồ sơ thành 2 không gian: Tab của Bé (khoe XP/Streak/Huy hiệu) và Tab của Phụ huynh được bảo mật bằng cổng toán học Math Gate ngẫu nhiên tránh việc trẻ tự ý reset dữ liệu — scope: file:src/App.jsx
+- [Decision]: Tích hợp tính năng TTS Mascot thoại trực tiếp bằng Web Speech Synthesis khi học sinh đổi nhân vật đồng hành trong Hồ sơ để tạo tương tác vui tươi — scope: file:src/App.jsx
+- [Decision]: Thiết kế lưới huy hiệu đã đạt và chưa đạt trong Hồ sơ học sinh kèm popup popover hiển thị mô tả cụ thể điều kiện và lời khuyên theo mascot — scope: file:src/App.jsx
 - [Decision]: Chuyển menu profile thành Bottom Sheet toàn màn hình (mobile) và Centered Modal (desktop) với các card chọn Mascot và pill chọn Lớp/Môn để trẻ em dễ dàng thao tác — scope: file:src/App.jsx
 - [Decision]: Tách riêng component OnboardingLesson để độc lập hóa logic của Bài 0 với các bài học thực tế, giữ LessonView sạch sẽ — scope: file:src/App.jsx
 - [Decision]: Tạo Service Worker thủ công (public/sw.js) để không phụ thuộc plugin build giúp ứng dụng biên dịch nhanh và nhẹ nhàng — scope: global

@@ -1,16 +1,15 @@
 {
   "schema": "plan@1",
-  "goal": "Hoàn thiện và đánh bóng giao diện người dùng (UI/UX) di động của TonyMath dựa trên thiết kế prototype của file tonymath-mobile-prototype.html, bao gồm việc tích hợp Lộ trình Đường học trực quan (zigzag learning path), màn hình giới thiệu bài học (Intro screen), bảng nhiệm vụ hằng ngày (Quests) và chức năng Ôn câu sai.",
+  "goal": "Đơn giản hóa trang Hồ sơ & Thiết lập bằng cách chia thành 2 phần: Hồ sơ học sinh (Mascot, đổi tên, XP, Streak, Badges) và Góc Phụ huynh (được bảo vệ bằng Math Gate để trẻ không vô tình thao tác thay đổi dữ liệu hoặc cấu hình học tập).",
   "decisions": [
-    "Sử dụng CSS của prototype để tạo ra đường học zigzag xoay chiều động dựa trên index của bài học.",
-    "Tạo IntroView để giúp học sinh chuẩn bị tâm lý thông qua tóm tắt Dữ kiện & Câu hỏi và các bước học.",
-    "Tích hợp DailyQuests và StreakCalendar trực tiếp trên Home sử dụng dữ liệu progress sẵn có để tối ưu tài nguyên.",
-    "Bổ sung màn hình Ôn câu sai chuyên biệt truy cập qua nút bấm tại tab hồ sơ để ôn tập lại các bài chưa đạt 3 sao."
+    "Sử dụng Math Gate dạng ngẫu nhiên phép nhân một chữ số để phụ huynh mở khóa Tab thiết lập.",
+    "Giọng đọc Mascot TTS phát qua Web Speech Synthesis đồng bộ với bong bóng hội thoại 5 giây khi chọn.",
+    "Tích hợp hiển thị Huy hiệu (Badges) từ danh sách ACHIEVEMENT_DEFINITIONS ngay trong hồ sơ bé."
   ],
   "first_tasks": [
-    "1.1 Add design styling rules to `src/App.css` for the Duolingo zigzag learning path and intro screens.",
-    "1.2 Implement the `<LearningPath />` and `<DailyQuests />` sub-components in `src/App.jsx` and display them on the Home dashboard.",
-    "1.3 Implement the Mascot Intro screen (`<IntroView />`) in `src/App.jsx` and hook it into the `openLesson` transition."
+    "1.1 Add tab headers and transition animations in App.css.",
+    "1.2 Add kid metrics layout classes (level, XP progression bar, streak fire).",
+    "2.1 Define states for profileTab, showMathGate, mathGateQuestion, mathGateInput, mathGateError, selectedBadgeInfo, and mascotSpeechBubble in App.jsx."
   ],
-  "openspec_path": "openspec/changes/ui-finalization/"
+  "openspec_path": "openspec/changes/profile-simplification/"
 }

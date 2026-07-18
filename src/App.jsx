@@ -12,7 +12,10 @@ import {
   ACHIEVEMENT_DEFINITIONS,
   getUnlockedAchievementIds,
   isChallengeModeActive,
-  updateBehavioralMetrics
+  updateBehavioralMetrics,
+  getDailyQuests,
+  generateMathGateQuestion,
+  verifyMathGateAnswer
 } from './utils.js'
 import { playSfx, speakText, cancelSpeech } from './audio.js'
 import { getMascotSpeech, MASCOT_PROFILES, getIndicatorGuide } from './mascotDialogs.js'
@@ -173,6 +176,14 @@ function App() {
   const [mistakes, setMistakes] = useState(0)
   const [hearts, setHearts] = useState(3)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [profileTab, setProfileTab] = useState('kid')
+  const [showMathGate, setShowMathGate] = useState(false)
+  const [mathGateQuestion, setMathGateQuestion] = useState(null)
+  const [mathGateInput, setMathGateInput] = useState('')
+  const [mathGateError, setMathGateError] = useState('')
+  const [selectedBadgeInfo, setSelectedBadgeInfo] = useState(null)
+  const [mascotSpeechBubble, setMascotSpeechBubble] = useState('')
+  const mascotBubbleTimeout = useRef(null)
   const [isDevMode, setIsDevMode] = useState(false)
   const [activeGuide, setActiveGuide] = useState(null)
   const [isEditingName, setIsEditingName] = useState(false)
@@ -189,6 +200,10 @@ function App() {
   const [hasUsedShield, setHasUsedShield] = useState(false)
   const [stepConfettiActive, setStepConfettiActive] = useState(false)
   const [currentStreak, setCurrentStreak] = useState(0)
+
+  const [showChestOverlay, setShowChestOverlay] = useState(false)
+  const [showBossOverlay, setShowBossOverlay] = useState(false)
+  const [chestRewardAwarded, setChestRewardAwarded] = useState(false)
 
   // Dynamic lesson packs states
   const [lessons, setLessons] = useState([])
@@ -606,10 +621,35 @@ function App() {
     setHasUsedShield(false)
     setCurrentStreak(0)
     resetStepState(initialStep)
-    setLessonStartTime(Date.now())
-    setView('lesson')
+    setView('intro')
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
+
+  const handleOpenUnitChest = () => {
+    playClick();
+    playSfx('sparkle', audioSettings.muted);
+    setProgress(old => ({
+      ...old,
+      xp: (old.xp || 0) + 80,
+      completed: {
+        ...(old.completed || {}),
+        [`${currentGrade}_${currentSubject}_unit_chest`]: {
+          stars: 3,
+          completedAt: new Date().toISOString(),
+          mistakes: 0,
+          duration: 0,
+          playCount: 1
+        }
+      }
+    }));
+    setChestRewardAwarded(true);
+  };
+
+  const handleStartBossChallenge = () => {
+    playClick();
+    setShowBossOverlay(false);
+    openLesson(lessons.length - 1);
+  };
 
   function saveProfileName() {
     const trimmed = tempName.trim();
@@ -625,6 +665,60 @@ function App() {
     }
     setIsEditingName(false);
   }
+
+  const handleOpenParentGate = () => {
+    const q = generateMathGateQuestion();
+    setMathGateQuestion(q);
+    setMathGateInput('');
+    setMathGateError('');
+    setShowMathGate(true);
+    playSfx('click', audioSettings.muted);
+  };
+
+  const handleVerifyMathGate = () => {
+    if (verifyMathGateAnswer(mathGateInput, mathGateQuestion.answer)) {
+      playSfx('correct', audioSettings.muted);
+      setProfileTab('parent');
+      setShowMathGate(false);
+      setMathGateError('');
+    } else {
+      playSfx('wrong', audioSettings.muted);
+      setMathGateError('Chưa chính xác rồi ba mẹ ơi! Hãy thử lại phép tính nhé.');
+    }
+  };
+
+  const handleMascotSelectAndSpeak = (key) => {
+    playSfx('click', audioSettings.muted);
+    setProgress(old => {
+      const updated = { ...old, profile: { ...old.profile, mascot: key } };
+      localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
+      return updated;
+    });
+
+    const mascotProfile = MASCOT_PROFILES[key] || MASCOT_PROFILES.owl;
+    let greetingText = '';
+    if (key === 'owl') {
+      greetingText = 'Chào bạn nhỏ! Cú Ú sẽ cùng con giải những bài toán logic thông thái nhất nhé!';
+    } else if (key === 'robot') {
+      greetingText = 'Khởi động chương trình! Rô Bốt đã sẵn sàng tính toán siêu tốc cùng bạn!';
+    } else {
+      greetingText = 'Chào bạn nhỏ! Rùa Con sẽ cùng bạn học chậm rãi nhưng siêu chắc chắn nha!';
+    }
+
+    cancelSpeech();
+    const baseRate = audioSettings.speed === 'slow' ? 0.75 : audioSettings.speed === 'fast' ? 1.15 : 0.95;
+    const rate = baseRate * (mascotProfile.rateOffset || 1.0);
+    const pitch = mascotProfile.pitch || 1.0;
+    speakText(greetingText, rate, null, null, pitch);
+
+    setMascotSpeechBubble(greetingText);
+    if (mascotBubbleTimeout.current) {
+      clearTimeout(mascotBubbleTimeout.current);
+    }
+    mascotBubbleTimeout.current = setTimeout(() => {
+      setMascotSpeechBubble('');
+    }, 5000);
+  };
 
   const handleOpenArena = () => {
     playClick()
@@ -1079,9 +1173,9 @@ function App() {
             <span><strong>Học Toán</strong><small>Học cách học</small></span>
           </button>
           <div className="top-stats">
-            <div className="level-card" onClick={() => handleOpenGuide('level')} title="Bấm để xem giải thích cấp độ"><span>⭐</span><div><b>Cấp độ {level}</b><div className="mini-progress"><i style={{ width: `${levelProgress}%` }} /></div></div></div>
-            <div className="stat" onClick={() => handleOpenGuide('streak')} title="Bấm để xem giải thích ngày liên tiếp"><span>🔥</span><b>{progress.streak}</b><small>ngày</small></div>
-            <div className="stat" onClick={() => handleOpenGuide('xp')} title="Bấm để xem giải thích điểm vàng"><span>🪙</span><b>{progress.xp}</b><small>điểm</small></div>
+            <div className="level-card" onClick={() => { playClick(); setView('progress'); }} title="Bấm để xem giải thích cấp độ"><span>⭐</span><div><b>Cấp độ {level}</b><div className="mini-progress"><i style={{ width: `${levelProgress}%` }} /></div></div></div>
+            <div className="stat" onClick={() => { playClick(); setView('quests'); }} title="Bấm để xem giải thích ngày liên tiếp"><span>🔥</span><b>{progress.streak}</b><small>ngày</small></div>
+            <div className="stat" onClick={() => { playClick(); setView('progress'); }} title="Bấm để xem giải thích điểm vàng"><span>🪙</span><b>{progress.xp}</b><small>điểm</small></div>
             <div className="audio-settings-wrapper">
               <button className="audio-settings-toggle" onClick={() => { setAudioPanelOpen(prev => !prev); setMenuOpen(false); }} aria-label="Cài đặt âm thanh">
                 {audioSettings.muted ? '🔇' : '🔊'}
@@ -1163,253 +1257,474 @@ function App() {
                 <div className="profile-sheet-drag-handle" />
                 <div className="profile-sheet-header">
                   <h3>👦 Hồ sơ & Thiết lập</h3>
-                  <button className="profile-sheet-close-btn" onClick={() => setMenuOpen(false)} aria-label="Đóng">✕</button>
+                  <button className="profile-sheet-close-btn" onClick={() => { setMenuOpen(false); setProfileTab('kid'); setShowMathGate(false); }} aria-label="Đóng">✕</button>
                 </div>
-                <div className="profile-sheet-body">
+                <div className="profile-sheet-body" style={{ position: 'relative' }}>
                   
-                  {/* Hồ sơ học sinh */}
-                  <div className="profile-sheet-card">
-                    {isEditingName ? (
-                      <div className="profile-name-edit-container">
-                        <input
-                          type="text"
-                          className="profile-name-input"
-                          value={tempName}
-                          onChange={(e) => setTempName(e.target.value)}
-                          maxLength={20}
-                          autoFocus
-                        />
-                        <button className="profile-name-save-btn" onClick={saveProfileName}>Lưu</button>
-                        <button className="profile-name-cancel-btn" onClick={() => setIsEditingName(false)}>Hủy</button>
-                      </div>
-                    ) : (
-                      <div className="profile-name-edit-container">
-                        <span className="profile-display-name">
-                          {progress.profile?.name ? `Bé ${progress.profile.name}` : 'Bạn nhỏ chăm học'}
-                        </span>
-                        <button
-                          className="profile-edit-name-btn"
-                          onClick={() => {
-                            setTempName(progress.profile?.name || '');
-                            setIsEditingName(true);
-                          }}
-                          aria-label="Sửa tên học sinh"
-                        >
-                          ✏️ Sửa tên
-                        </button>
-                      </div>
-                    )}
+                  {/* Tab bar header */}
+                  <div className="profile-tab-header">
+                    <button 
+                      className={`profile-tab-btn ${profileTab === 'kid' ? 'active' : ''}`}
+                      onClick={() => { playSfx('click', audioSettings.muted); setProfileTab('kid'); }}
+                    >
+                      👦 Của Bé
+                    </button>
+                    <button 
+                      className={`profile-tab-btn ${profileTab === 'parent' ? 'active' : ''}`}
+                      onClick={() => {
+                        if (profileTab !== 'parent') {
+                          handleOpenParentGate();
+                        }
+                      }}
+                    >
+                      ⚙️ Cho Ba Mẹ
+                    </button>
                   </div>
 
-                  {/* Lớp & Môn học */}
-                  <div className="profile-sheet-card">
-                    <h4>🏫 Lớp học của con</h4>
-                    <div className="pills-grid" style={{ marginBottom: '16px' }}>
-                      {registry?.grades.map(g => (
-                        <button
-                          key={g.id}
-                          disabled={g.comingSoon}
-                          className={`pill-button ${currentGrade === g.id ? 'selected' : ''}`}
-                          onClick={() => {
-                            const newGrade = g.id;
-                            const gradeObj = registry?.grades.find(gr => gr.id === newGrade);
-                            const defaultSub = gradeObj?.subjects?.find(s => !s.comingSoon)?.id || 'math';
-                            playSfx('click', audioSettings.muted);
-                            setProgress(old => ({ ...old, currentGrade: newGrade, currentSubject: defaultSub }));
-                          }}
-                        >
-                          {g.title} {g.comingSoon ? '(Sắp có)' : ''}
-                        </button>
-                      ))}
-                    </div>
+                  {/* Kid View Tab */}
+                  {profileTab === 'kid' && (
+                    <>
+                      {/* Thẻ thông tin học sinh */}
+                      <div className="profile-sheet-card">
+                        {isEditingName ? (
+                          <div className="profile-name-edit-container">
+                            <input
+                              type="text"
+                              className="profile-name-input"
+                              value={tempName}
+                              onChange={(e) => setTempName(e.target.value)}
+                              maxLength={20}
+                              autoFocus
+                            />
+                            <button className="profile-name-save-btn" onClick={saveProfileName}>Lưu</button>
+                            <button className="profile-name-cancel-btn" onClick={() => setIsEditingName(false)}>Hủy</button>
+                          </div>
+                        ) : (
+                          <div className="profile-name-edit-container">
+                            <span className="profile-display-name" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                              <span style={{ fontSize: '24px' }}>👦</span> {progress.profile?.name ? `Bé ${progress.profile.name}` : 'Bạn nhỏ chăm học'}
+                            </span>
+                            <button
+                              className="profile-edit-name-btn"
+                              onClick={() => {
+                                setTempName(progress.profile?.name || '');
+                                setIsEditingName(true);
+                              }}
+                              aria-label="Sửa tên học sinh"
+                            >
+                              ✏️ Sửa tên
+                            </button>
+                          </div>
+                        )}
 
-                    <h4>📖 Môn học đăng ký</h4>
-                    <div className="pills-grid">
-                      {registry?.grades.find(g => g.id === currentGrade)?.subjects?.map(s => (
-                        <button
-                          key={s.id}
-                          disabled={s.comingSoon}
-                          className={`pill-button ${currentSubject === s.id ? 'selected' : ''}`}
-                          onClick={() => {
-                            playSfx('click', audioSettings.muted);
-                            setProgress(old => ({ ...old, currentSubject: s.id }));
-                          }}
-                        >
-                          {s.title} {s.comingSoon ? '(Sắp có)' : ''}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+                        {/* Level & Streak Stats */}
+                        <div className="profile-kid-stats-row">
+                          <div className="profile-stat-box">
+                            <span className="profile-stat-value">🔥 {progress.streak || 0}</span>
+                            <span className="profile-stat-label">Ngày liên tiếp</span>
+                          </div>
+                          <div className="profile-stat-box">
+                            <span className="profile-stat-value">⭐ {progress.xp || 0}</span>
+                            <span className="profile-stat-label">Tổng điểm XP</span>
+                          </div>
+                        </div>
 
-                  {/* Cố vấn học tập */}
-                  <div className="profile-sheet-card">
-                    <h4>{MASCOT_PROFILES[progress.profile?.mascot || 'owl']?.emoji || '🦉'} Cố vấn học tập</h4>
-                    <div className="mascot-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginTop: '12px' }}>
-                      {Object.keys(MASCOT_PROFILES).map(key => {
-                        const mascotProfile = MASCOT_PROFILES[key];
-                        const isSelected = (progress.profile?.mascot || 'owl') === key;
-                        return (
-                          <div 
-                            key={key}
-                            className={`mascot-select-card ${isSelected ? 'selected' : ''}`}
+                        {/* Level progress bar */}
+                        <div className="profile-level-container">
+                          <div className="profile-level-header">
+                            <span className="profile-level-title">Cấp độ {Math.floor((progress.xp || 0) / 100) + 1}</span>
+                            <span className="profile-level-xp">{(progress.xp || 0) % 100}/100 XP</span>
+                          </div>
+                          <div className="profile-level-bar-bg">
+                            <div className="profile-level-bar-fill" style={{ width: `${(progress.xp || 0) % 100}%` }} />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Mascot selection and interaction */}
+                      <div className="profile-sheet-card">
+                        <h4 style={{ margin: '0 0 12px 0', fontSize: '15px', color: '#312e81', fontWeight: 800 }}>
+                          {MASCOT_PROFILES[progress.profile?.mascot || 'owl']?.emoji || '🦉'} Chọn bạn đồng hành
+                        </h4>
+                        
+                        {/* Dynamic Speech bubble */}
+                        {mascotSpeechBubble && (
+                          <div className="profile-mascot-dialogue">
+                            <span>💬</span>
+                            <span>{mascotSpeechBubble}</span>
+                          </div>
+                        )}
+
+                        <div className="mascot-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginTop: '12px' }}>
+                          {Object.keys(MASCOT_PROFILES).map(key => {
+                            const mascotProfile = MASCOT_PROFILES[key];
+                            const isSelected = (progress.profile?.mascot || 'owl') === key;
+                            return (
+                              <div 
+                                key={key}
+                                className={`mascot-select-card ${isSelected ? 'selected' : ''}`}
+                                onClick={() => handleMascotSelectAndSpeak(key)}
+                                style={{
+                                  padding: '10px 4px',
+                                  borderRadius: '12px',
+                                  border: isSelected ? '2px solid var(--primary)' : '1px solid #e5e7eb',
+                                  background: isSelected ? 'var(--primary-light)' : '#ffffff',
+                                  cursor: 'pointer',
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  textAlign: 'center',
+                                  transition: 'all 0.2s ease'
+                                }}
+                              >
+                                <span className="mascot-emoji" style={{ fontSize: '24px', display: 'block', marginBottom: '2px' }}>{mascotProfile.emoji}</span>
+                                <span className="mascot-label" style={{ fontSize: '11px', fontWeight: 'bold' }}>{mascotProfile.name}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Badge achievements grid */}
+                      <div className="profile-sheet-card">
+                        <h4 style={{ margin: '0 0 12px 0', fontSize: '15px', color: '#312e81', fontWeight: 800 }}>
+                          🏆 Huy hiệu đã đạt
+                        </h4>
+                        <div className="profile-badges-grid">
+                          {ACHIEVEMENT_DEFINITIONS.map(def => {
+                            const isUnlocked = progress.unlockedAchievements?.[def.id] || def.checkUnlocked(progress, progress.xp, []);
+                            return (
+                              <div 
+                                key={def.id}
+                                className={`profile-badge-card ${isUnlocked ? 'unlocked' : 'locked'}`}
+                                onClick={() => {
+                                  playSfx('click', audioSettings.muted);
+                                  setSelectedBadgeInfo({
+                                    ...def,
+                                    isUnlocked
+                                  });
+                                }}
+                              >
+                                <span className="profile-badge-icon">{def.icon}</span>
+                                <span className="profile-badge-title">{def.title}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Math Gate launcher */}
+                      <button 
+                        onClick={handleOpenParentGate}
+                        style={{
+                          width: '100%',
+                          padding: '12px',
+                          borderRadius: '14px',
+                          border: 'none',
+                          background: '#f1f5f9',
+                          color: '#475569',
+                          fontWeight: '800',
+                          fontSize: '14px',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '6px',
+                          marginTop: '8px',
+                          boxShadow: '0 1px 3px rgba(15, 23, 42, 0.05)'
+                        }}
+                      >
+                        ⚙️ Góc dành cho Phụ huynh
+                      </button>
+                    </>
+                  )}
+
+                  {/* Parent View Tab */}
+                  {profileTab === 'parent' && (
+                    <>
+                      {/* Back navigation to Kid view */}
+                      <button 
+                        onClick={() => { playSfx('click', audioSettings.muted); setProfileTab('kid'); }}
+                        style={{
+                          width: '100%',
+                          padding: '10px 14px',
+                          borderRadius: '12px',
+                          border: '1px solid #e2e8f0',
+                          background: '#ffffff',
+                          color: '#4f46e5',
+                          fontWeight: '800',
+                          fontSize: '13px',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '6px',
+                          marginBottom: '16px'
+                        }}
+                      >
+                        ⬅️ Quay về Hồ sơ của Bé
+                      </button>
+
+                      {/* Lớp & Môn học */}
+                      <div className="profile-sheet-card">
+                        <h4>🏫 Lớp học của con</h4>
+                        <div className="pills-grid" style={{ marginBottom: '16px' }}>
+                          {registry?.grades.map(g => (
+                            <button
+                              key={g.id}
+                              disabled={g.comingSoon}
+                              className={`pill-button ${currentGrade === g.id ? 'selected' : ''}`}
+                              onClick={() => {
+                                const newGrade = g.id;
+                                const gradeObj = registry?.grades.find(gr => gr.id === newGrade);
+                                const defaultSub = gradeObj?.subjects?.find(s => !s.comingSoon)?.id || 'math';
+                                playSfx('click', audioSettings.muted);
+                                setProgress(old => ({ ...old, currentGrade: newGrade, currentSubject: defaultSub }));
+                              }}
+                            >
+                              {g.title} {g.comingSoon ? '(Sắp có)' : ''}
+                            </button>
+                          ))}
+                        </div>
+
+                        <h4>📖 Môn học đăng ký</h4>
+                        <div className="pills-grid">
+                          {registry?.grades.find(g => g.id === currentGrade)?.subjects?.map(s => (
+                            <button
+                              key={s.id}
+                              disabled={s.comingSoon}
+                              className={`pill-button ${currentSubject === s.id ? 'selected' : ''}`}
+                              onClick={() => {
+                                playSfx('click', audioSettings.muted);
+                                setProgress(old => ({ ...old, currentSubject: s.id }));
+                              }}
+                            >
+                              {s.title} {s.comingSoon ? '(Sắp có)' : ''}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Chế độ học tập */}
+                      <div className="profile-sheet-card">
+                        <h4>🎓 Chế độ học tập</h4>
+                        <div className="pills-grid">
+                          <button
+                            className={`pill-button ${(progress.studyMode || 'full') === 'full' ? 'selected' : ''}`}
                             onClick={() => {
                               setProgress(old => {
-                                const updated = { ...old, profile: { ...old.profile, mascot: key } };
+                                const updated = { ...old, studyMode: 'full' };
                                 localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
                                 return updated;
                               });
                               playSfx('click', audioSettings.muted);
                             }}
-                            style={{
-                              padding: '10px 4px',
-                              borderRadius: '12px',
-                              border: isSelected ? '2px solid var(--primary)' : '1px solid #e5e7eb',
-                              background: isSelected ? 'var(--primary-light)' : '#ffffff',
-                              cursor: 'pointer',
-                              display: 'flex',
-                              flexDirection: 'column',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              textAlign: 'center',
-                              transition: 'all 0.2s ease'
+                          >
+                            Từng bước (8 bước)
+                          </button>
+                          <button
+                            className={`pill-button ${progress.studyMode === 'express' ? 'selected' : ''}`}
+                            onClick={() => {
+                              setProgress(old => {
+                                const updated = { ...old, studyMode: 'express' };
+                                localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
+                                return updated;
+                              });
+                              playSfx('click', audioSettings.muted);
                             }}
                           >
-                            <span className="mascot-emoji" style={{ fontSize: '24px', display: 'block', marginBottom: '2px' }}>{mascotProfile.emoji}</span>
-                            <span className="mascot-label" style={{ fontSize: '11px', fontWeight: 'bold' }}>{mascotProfile.name}</span>
+                            Rút gọn (5 bước)
+                          </button>
+                          <button
+                            className={`pill-button ${progress.studyMode === 'pro' ? 'selected' : ''}`}
+                            onClick={() => {
+                              setProgress(old => {
+                                const updated = { ...old, studyMode: 'pro' };
+                                localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
+                                return updated;
+                              });
+                              playSfx('click', audioSettings.muted);
+                            }}
+                          >
+                            Siêu tốc (3 bước)
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Nhắc nhở tự động */}
+                      <div className="profile-sheet-card">
+                        <h4>⏰ Nhắc nhở tự động</h4>
+                        <div className="custom-switch-row" style={{ marginBottom: '12px' }}>
+                          <div className="switch-label-desc">
+                            <span>Chuông báo học hằng ngày</span>
+                            <small>Nhắc bé vào học đúng giờ mỗi ngày</small>
                           </div>
-                        );
-                      })}
-                    </div>
-                  </div>
+                          <label className="custom-switch">
+                            <input
+                              type="checkbox"
+                              checked={progress.notificationsEnabled}
+                              onChange={(e) => toggleNotifications(e.target.checked)}
+                            />
+                            <span className="custom-slider"></span>
+                          </label>
+                        </div>
 
-                  {/* Chế độ học tập */}
-                  <div className="profile-sheet-card">
-                    <h4>🎓 Chế độ học tập</h4>
-                    <div className="pills-grid">
-                      <button
-                        className={`pill-button ${(progress.studyMode || 'full') === 'full' ? 'selected' : ''}`}
-                        onClick={() => {
-                          setProgress(old => {
-                            const updated = { ...old, studyMode: 'full' };
-                            localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
-                            return updated;
-                          });
-                          playSfx('click', audioSettings.muted);
-                        }}
-                      >
-                        Từng bước (8 bước)
-                      </button>
-                      <button
-                        className={`pill-button ${progress.studyMode === 'express' ? 'selected' : ''}`}
-                        onClick={() => {
-                          setProgress(old => {
-                            const updated = { ...old, studyMode: 'express' };
-                            localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
-                            return updated;
-                          });
-                          playSfx('click', audioSettings.muted);
-                        }}
-                      >
-                        Rút gọn (5 bước)
-                      </button>
-                      <button
-                        className={`pill-button ${progress.studyMode === 'pro' ? 'selected' : ''}`}
-                        onClick={() => {
-                          setProgress(old => {
-                            const updated = { ...old, studyMode: 'pro' };
-                            localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
-                            return updated;
-                          });
-                          playSfx('click', audioSettings.muted);
-                        }}
-                      >
-                        Siêu tốc (3 bước)
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Nhắc nhở tự động */}
-                  <div className="profile-sheet-card">
-                    <h4>⏰ Nhắc nhở tự động</h4>
-                    <div className="custom-switch-row" style={{ marginBottom: '12px' }}>
-                      <div className="switch-label-desc">
-                        <span>Chuông báo học hằng ngày</span>
-                        <small>Nhắc bé vào học đúng giờ mỗi ngày</small>
-                      </div>
-                      <label className="custom-switch">
-                        <input
-                          type="checkbox"
-                          checked={progress.notificationsEnabled}
-                          onChange={(e) => toggleNotifications(e.target.checked)}
-                        />
-                        <span className="custom-slider"></span>
-                      </label>
-                    </div>
-
-                    {progress.notificationsEnabled && (
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '13px', marginBottom: '12px', background: '#fff', padding: '10px 14px', borderRadius: '12px', border: '1px solid #f1f5f9' }}>
-                        <span style={{ fontWeight: '600', color: '#475569' }}>Chọn giờ báo chuông:</span>
-                        <select
-                          value={progress.reminderTime || '19:00'}
-                          onChange={(e) => changeReminderTime(e.target.value)}
-                          className="custom-select-styled"
+                        {progress.notificationsEnabled && (
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '13px', marginBottom: '12px', background: '#fff', padding: '10px 14px', borderRadius: '12px', border: '1px solid #f1f5f9' }}>
+                            <span style={{ fontWeight: '600', color: '#475569' }}>Chọn giờ báo chuông:</span>
+                            <select
+                              value={progress.reminderTime || '19:00'}
+                              onChange={(e) => changeReminderTime(e.target.value)}
+                              className="custom-select-styled"
+                            >
+                              <option value="08:00">08:00 Sáng</option>
+                              <option value="09:00">09:00 Sáng</option>
+                              <option value="17:00">17:00 Chiều</option>
+                              <option value="19:00">19:00 Tối</option>
+                              <option value="20:00">20:00 Tối</option>
+                              <option value="21:00">21:00 Tối</option>
+                            </select>
+                          </div>
+                        )}
+                        
+                        <button 
+                          onClick={downloadIcsReminder}
+                          className="calendar-btn-link"
+                          style={{ width: '100%', padding: '10px', fontSize: '13px', marginTop: '6px', cursor: 'pointer', borderRadius: '10px', border: '1.5px dashed #4f46e5', color: '#4f46e5', fontWeight: 'bold', background: 'transparent' }}
                         >
-                          <option value="08:00">08:00 Sáng</option>
-                          <option value="09:00">09:00 Sáng</option>
-                          <option value="17:00">17:00 Chiều</option>
-                          <option value="19:00">19:00 Tối</option>
-                          <option value="20:00">20:00 Tối</option>
-                          <option value="21:00">21:00 Tối</option>
-                        </select>
+                          ⏰ Đặt lịch chuông điện thoại
+                        </button>
                       </div>
-                    )}
-                    
-                    <button 
-                      onClick={downloadIcsReminder}
-                      className="calendar-btn-link"
-                      style={{ width: '100%', padding: '10px', fontSize: '13px', marginTop: '6px', cursor: 'pointer', borderRadius: '10px', border: '1.5px dashed #4f46e5', color: '#4f46e5', fontWeight: 'bold', background: 'transparent' }}
-                    >
-                      ⏰ Đặt lịch chuông điện thoại
-                    </button>
-                  </div>
 
-                  {/* Chế độ thử thách */}
-                  <div className="profile-sheet-card">
-                    <h4>🏆 Chế độ thử thách</h4>
-                    <div className="custom-switch-row">
-                      <div className="switch-label-desc">
-                        <span>Chế độ Thử thách ⚡</span>
-                        <small>Gợi ý tốn 1 ❤️. Hết ❤️ phải học lại từ đầu (Bắt buộc với bài nâng cao lớp 4).</small>
+                      {/* Chế độ thử thách */}
+                      <div className="profile-sheet-card">
+                        <h4>🏆 Chế độ thử thách</h4>
+                        <div className="custom-switch-row">
+                          <div className="switch-label-desc">
+                            <span>Chế độ Thử thách ⚡</span>
+                            <small>Gợi ý tốn 1 ❤️. Hết ❤️ phải học lại từ đầu (Bắt buộc với bài nâng cao lớp 4).</small>
+                          </div>
+                          <label className="custom-switch">
+                            <input
+                              type="checkbox"
+                              checked={progress.challengeMode || false}
+                              onChange={(e) => {
+                                playSfx('click', audioSettings.muted);
+                                setProgress((old) => ({ ...old, challengeMode: e.target.checked }));
+                              }}
+                            />
+                            <span className="custom-slider"></span>
+                          </label>
+                        </div>
                       </div>
-                      <label className="custom-switch">
+
+                      {/* Khu vực nhà phát triển / Đặt lại */}
+                      <div className="profile-sheet-footer-actions" style={{ borderTop: '2px dashed #f1f5f9', paddingTop: '16px', marginTop: '16px' }}>
+                        <button 
+                          onClick={() => { setIsDevMode(prev => !prev); setMenuOpen(false); }} 
+                          className="btn-styled-dev"
+                        >
+                          {isDevMode ? '🔒 Khóa chế độ Dev' : '🔓 Mở khóa tất cả bài học'}
+                        </button>
+                        <button 
+                          onClick={resetAllProgress} 
+                          className="btn-styled-reset"
+                        >
+                          Xóa toàn bộ tiến độ
+                        </button>
+                      </div>
+                    </>
+                  )}
+
+                  {/* Math Gate dialogue overlay */}
+                  {showMathGate && (
+                    <div className="math-gate-panel">
+                      <div className="math-gate-lock-icon">🔒</div>
+                      <div className="math-gate-title">Góc của Phụ huynh</div>
+                      <div className="math-gate-subtitle">Vui lòng hoàn thành phép tính để mở khóa cấu hình</div>
+                      <div className="math-gate-question">
+                        {mathGateQuestion?.questionText || 'Ba mẹ ơi, hãy tính giúp con: ?'}
+                      </div>
+                      
+                      <div className="math-gate-input-wrapper">
                         <input
-                          type="checkbox"
-                          checked={progress.challengeMode || false}
+                          type="number"
+                          pattern="[0-9]*"
+                          inputMode="numeric"
+                          className={`math-gate-input ${mathGateError ? 'error' : ''}`}
+                          value={mathGateInput}
                           onChange={(e) => {
-                            playSfx('click', audioSettings.muted);
-                            setProgress((old) => ({ ...old, challengeMode: e.target.checked }));
+                            setMathGateInput(e.target.value);
+                            setMathGateError('');
                           }}
+                          placeholder="Kết quả"
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              handleVerifyMathGate();
+                            }
+                          }}
+                          autoFocus
                         />
-                        <span className="custom-slider"></span>
-                      </label>
-                    </div>
-                  </div>
+                        <button 
+                          className="math-gate-verify-btn"
+                          onClick={handleVerifyMathGate}
+                        >
+                          Xác nhận
+                        </button>
+                      </div>
 
-                  {/* Khu vực nhà phát triển / Đặt lại */}
-                  <div className="profile-sheet-footer-actions">
-                    <button 
-                      onClick={() => { setIsDevMode(prev => !prev); setMenuOpen(false); }} 
-                      className="btn-styled-dev"
-                    >
-                      {isDevMode ? '🔒 Khóa chế độ Dev' : '🔓 Mở khóa tất cả bài học'}
-                    </button>
-                    <button 
-                      onClick={resetAllProgress} 
-                      className="btn-styled-reset"
-                    >
-                      Xóa toàn bộ tiến độ
-                    </button>
-                  </div>
+                      <div className="math-gate-error-msg">
+                        {mathGateError}
+                      </div>
+
+                      <button 
+                        className="math-gate-cancel-btn"
+                        onClick={() => {
+                          playSfx('click', audioSettings.muted);
+                          setShowMathGate(false);
+                          setProfileTab('kid');
+                        }}
+                      >
+                        Quay lại
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Badge detailed popover dialogue */}
+                  {selectedBadgeInfo && (
+                    <div className="badge-popover-overlay" onClick={() => setSelectedBadgeInfo(null)}>
+                      <div className="badge-popover-card" onClick={(e) => e.stopPropagation()}>
+                        <div className="badge-popover-icon">{selectedBadgeInfo.icon}</div>
+                        <h4 className="badge-popover-title">{selectedBadgeInfo.title}</h4>
+                        <p className="badge-popover-desc">{selectedBadgeInfo.description}</p>
+                        
+                        {/* Custom advice from active mascot */}
+                        <div className="badge-popover-advice">
+                          <strong style={{ display: 'block', marginBottom: '4px', color: '#1e1b4b' }}>
+                            {MASCOT_PROFILES[progress.profile?.mascot || 'owl']?.emoji || '🦉'}{' '}
+                            {MASCOT_PROFILES[progress.profile?.mascot || 'owl']?.name || 'Cú Ú'} khuyên:
+                          </strong>
+                          {selectedBadgeInfo.advice?.[progress.profile?.mascot || 'owl'] || selectedBadgeInfo.description}
+                        </div>
+
+                        {/* Lock / Unlock progress status */}
+                        <div style={{ fontSize: '11px', fontWeight: 'bold', color: selectedBadgeInfo.isUnlocked ? '#22c55e' : '#94a3b8', marginBottom: '16px' }}>
+                          {selectedBadgeInfo.isUnlocked ? '🎉 Đã mở khóa thành công!' : `🔒 Tiến trình: ${selectedBadgeInfo.current(progress, progress.xp)} / ${selectedBadgeInfo.target}`}
+                        </div>
+
+                        <button 
+                          className="badge-popover-close-btn"
+                          onClick={() => {
+                            playSfx('click', audioSettings.muted);
+                            setSelectedBadgeInfo(null);
+                          }}
+                        >
+                          Đóng
+                        </button>
+                      </div>
+                    </div>
+                  )}
 
                 </div>
               </div>
@@ -1419,9 +1734,16 @@ function App() {
       {!isSessionActive && (
         <aside className="sidebar">
           <nav>
-            <NavButton icon="🏠" label="Trang chủ" active={view === 'home'} onClick={() => setView('home')} />
-            <NavButton icon="📚" label="Bài học" active={view === 'lessons-menu'} onClick={() => setView('lessons-menu')} />
-            <NavButton icon="🏆" label="Thành quả" active={view === 'progress'} onClick={() => setView('progress')} />
+            <NavButton icon="🏠" label="Home" active={view === 'home'} onClick={() => setView('home')} />
+            <NavButton icon="🗺️" label="Chủ đề" active={view === 'lessons-menu'} onClick={() => setView('lessons-menu')} />
+            <NavButton icon="✏️" label="Bài tập" active={view === 'lesson' || view === 'intro'} onClick={() => {
+              if (learningPlan?.primary) {
+                openLesson(learningPlan.primary.index);
+              } else {
+                openLesson(0);
+              }
+            }} />
+            <NavButton icon="👤" label="Hồ sơ" active={view === 'progress'} onClick={() => setView('progress')} />
           </nav>
           <CoachSidebar progress={progress} plan={learningPlan} openLesson={openLesson} getMascotEmotion={getMascotEmotion} />
         </aside>
@@ -1446,6 +1768,9 @@ function App() {
             onDismissNudge={dismissWelcomeNudge}
             audioSettings={audioSettings}
             getMascotEmotion={getMascotEmotion}
+            onOpenChest={() => { playClick(); setChestRewardAwarded(false); setShowChestOverlay(true); }}
+            onOpenBoss={() => { playClick(); setShowBossOverlay(true); }}
+            onOpenQuests={() => { playClick(); setView('quests'); }}
           />
         )}
         {view === 'lessons-menu' && (
@@ -1458,6 +1783,7 @@ function App() {
             registry={registry}
             currentGrade={currentGrade}
             currentSubject={currentSubject}
+            onOpenLeaderboard={() => { playClick(); setView('leaderboard'); }}
           />
         )}
         {view === 'arena' && (
@@ -1538,16 +1864,76 @@ function App() {
             getMascotEmotion={getMascotEmotion}
           />
         )}
-        {view === 'progress' && <InsightsView lessons={lessons} progress={activeProgress} openLesson={openLesson} earnedStars={earnedStars} getMascotEmotion={getMascotEmotion} />}
+        {view === 'progress' && (
+          <InsightsView
+            lessons={lessons}
+            progress={activeProgress}
+            openLesson={openLesson}
+            earnedStars={earnedStars}
+            getMascotEmotion={getMascotEmotion}
+            onOpenReview={() => { playClick(); setView('review-list'); }}
+            onOpenSettings={() => { playClick(); setView('settings'); }}
+          />
+        )}
+        {view === 'intro' && (
+          <IntroView
+            lesson={lesson}
+            progress={activeProgress}
+            onStart={() => {
+              playClick();
+              setLessonStartTime(Date.now());
+              setView('lesson');
+            }}
+            onBack={() => { playClick(); setView('home'); }}
+            mascot={progress.profile?.mascot || 'owl'}
+            getMascotEmotion={getMascotEmotion}
+          />
+        )}
+        {view === 'review-list' && (
+          <ReviewListView
+            lessons={lessons}
+            progress={activeProgress}
+            openLesson={openLesson}
+            onBack={() => { playClick(); setView('home'); }}
+          />
+        )}
+        {view === 'quests' && (
+          <QuestsView
+            progress={activeProgress}
+            onBack={() => setView('home')}
+            openLesson={openLesson}
+            plan={learningPlan}
+          />
+        )}
+        {view === 'leaderboard' && (
+          <LeaderboardView
+            onBack={() => setView('lessons-menu')}
+            openLesson={openLesson}
+            plan={learningPlan}
+            progress={activeProgress}
+          />
+        )}
+        {view === 'settings' && (
+          <SettingsView
+            onBack={() => setView('progress')}
+            progress={activeProgress}
+            setProgress={setProgress}
+          />
+        )}
       </main>
 
-      {!isSessionActive && (
-        <nav className="mobile-nav">
-          <NavButton icon="🏠" label="Trang chủ" active={view === 'home'} onClick={() => setView('home')} />
-          <NavButton icon="📚" label="Bài học" active={view === 'lessons-menu'} onClick={() => setView('lessons-menu')} />
-          <NavButton icon="🏆" label="Thành quả" active={view === 'progress'} onClick={() => setView('progress')} />
-        </nav>
-      )}
+      <nav className={`tabbar${isSessionActive ? ' hidden' : ''}`}>
+        <NavButton icon="🏠" label="Home" active={view === 'home'} onClick={() => setView('home')} />
+        <NavButton icon="🗺️" label="Chủ đề" active={view === 'lessons-menu'} onClick={() => setView('lessons-menu')} />
+        <NavButton icon="✏️" label="Bài tập" active={view === 'lesson' || view === 'intro'} onClick={() => {
+          if (learningPlan?.primary) {
+            openLesson(learningPlan.primary.index);
+          } else {
+            openLesson(0);
+          }
+        }} />
+        <NavButton icon="👤" label="Hồ sơ" active={view === 'progress'} onClick={() => setView('progress')} />
+      </nav>
 
       {!isSessionActive && showInstallPrompt && (
         <div className="pwa-install-drawer">
@@ -1561,6 +1947,78 @@ function App() {
           <div className="pwa-install-actions">
             <button className="install-confirm" onClick={handleInstallClick}>Cài đặt</button>
             <button className="install-dismiss" onClick={dismissInstallPrompt}>Đóng</button>
+          </div>
+        </div>
+      )}
+
+      {showChestOverlay && (
+        <div className="confirm-modal-overlay" style={{ zIndex: 100000 }}>
+          <div className="confirm-modal" style={{ maxWidth: '340px', padding: '24px', textAlign: 'center' }}>
+            {!chestRewardAwarded ? (
+              <>
+                <div style={{ fontSize: '72px', animation: 'bob-avatar 2s infinite alternate', marginBottom: '12px' }}>🎁</div>
+                <h3>🎉 Rương Unit!</h3>
+                <p style={{ fontSize: '14px', color: '#64748b', marginBottom: '20px' }}>
+                  Chúc mừng con đã hoàn thành tất cả bài học trong unit này. Nhấn nút để nhận phần quà bí ẩn!
+                </p>
+                <button 
+                  className="hero-primary-btn" 
+                  style={{ width: '100%', padding: '12px', borderRadius: '12px', fontSize: '15px' }}
+                  onClick={handleOpenUnitChest}
+                >
+                  Mở rương 🔑
+                </button>
+              </>
+            ) : (
+              <>
+                <div style={{ fontSize: '72px', animation: 'bob-avatar 2s infinite alternate', marginBottom: '12px' }}>✨</div>
+                <h3>🎉 Nhận Quà Xong!</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', margin: '14px 0', textAlign: 'left' }}>
+                  <div style={{ padding: '8px 12px', background: '#fff7da', borderRadius: '10px', fontWeight: '850', color: '#8a6300', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span>⭐</span> +80 XP tích lũy
+                  </div>
+                  <div style={{ padding: '8px 12px', background: '#eef2fb', borderRadius: '10px', fontWeight: '850', color: '#6851e8', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span>🏅</span> Huy hiệu Unit Explorer
+                  </div>
+                  <div style={{ padding: '8px 12px', background: '#e9f9ef', borderRadius: '10px', fontWeight: '850', color: '#2fbd68', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span>🧊</span> 1 Streak Freeze bảo vệ lửa
+                  </div>
+                </div>
+              </>
+            )}
+            <button 
+              className="btn-cancel" 
+              style={{ width: '100%', padding: '10px', borderRadius: '12px', fontSize: '13px', marginTop: '8px' }}
+              onClick={() => setShowChestOverlay(false)}
+            >
+              Đóng
+            </button>
+          </div>
+        </div>
+      )}
+
+      {showBossOverlay && (
+        <div className="confirm-modal-overlay" style={{ zIndex: 100000 }}>
+          <div className="confirm-modal" style={{ maxWidth: '340px', padding: '24px', textAlign: 'center' }}>
+            <div style={{ fontSize: '72px', marginBottom: '12px' }}>⚔️</div>
+            <h3>🔥 Thử Thách Boss Unit!</h3>
+            <p style={{ fontSize: '14.5px', color: '#64748b', marginBottom: '20px', lineHeight: '1.4' }}>
+              Chào mừng con đến với trận quyết đấu Boss! Hãy hoàn thành bài toán tổng hợp khó nhất của Unit để khẳng định bản thân nào!
+            </p>
+            <button 
+              className="hero-primary-btn" 
+              style={{ width: '100%', padding: '12px', borderRadius: '12px', fontSize: '15px' }}
+              onClick={handleStartBossChallenge}
+            >
+              Quyết đấu ngay! ⚔️
+            </button>
+            <button 
+              className="btn-cancel" 
+              style={{ width: '100%', padding: '10px', borderRadius: '12px', fontSize: '13px', marginTop: '8px' }}
+              onClick={() => setShowBossOverlay(false)}
+            >
+              Rút lui 🏃‍♂️
+            </button>
           </div>
         </div>
       )}
@@ -1732,14 +2190,14 @@ function SectionHeading({ num, title, desc, textToSpeak }) {
 function NavButton({ icon, label, active, onClick }) {
   return (
     <button 
-      className={active ? 'nav-button active' : 'nav-button'} 
+      className={`tab${active ? ' active' : ''}`} 
       onClick={(e) => {
         playClick();
         onClick(e);
       }}
     >
-      <span>{icon}</span>
-      <b>{label}</b>
+      <span className="ico">{icon}</span>
+      <span className="lbl">{label}</span>
     </button>
   )
 }
@@ -1757,7 +2215,10 @@ function Home({
   showWelcomeNudge,
   onDismissNudge,
   audioSettings,
-  getMascotEmotion
+  getMascotEmotion,
+  onOpenChest,
+  onOpenBoss,
+  onOpenQuests
 }) {
   const plan = getLearningPlan(lessons, progress)
   const mascot = progress?.profile?.mascot || 'owl';
@@ -1787,241 +2248,181 @@ function Home({
     speakText(speechBubbleText, rate * (profile.rateOffset || 1.0), null, null, profile.pitch || 1.0);
   };
 
+  const gradeLabel = currentGrade === 'grade-1' ? 'Lớp 1' : currentGrade === 'grade-2' ? 'Lớp 2' : currentGrade === 'grade-3' ? 'Lớp 3' : currentGrade === 'grade-4' ? 'Lớp 4' : 'Lớp 5';
+  const remainingCount = lessons.length - completedCount;
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const quests = getDailyQuests(progress, todayStr);
+  const completedQuestsCount = quests.filter(q => q.completed).length;
+  const totalQuestsCount = quests.length;
+
   return (
-    <div className="home-dashboard-page" style={{ padding: '24px', overflowY: 'auto', minHeight: '100dvh', boxSizing: 'border-box', paddingBottom: '120px' }}>
+    <div className="home-dashboard-page" style={{ padding: '16px', overflowY: 'auto', minHeight: '100dvh', boxSizing: 'border-box', paddingBottom: 'calc(var(--nav-h, 72px) + var(--safe-b, 18px) + 16px)' }}>
+      {/* Top Stats Header */}
+      <div className="top-stats">
+        <div className="brand-mini">
+          <div className="logo" onClick={handleSpeakMascot}>{mascotEmoji}</div>
+          <div>
+            <b>TonyMath</b>
+            <small>Xin chào, {progress.profile?.name || 'bạn nhỏ'}!</small>
+          </div>
+        </div>
+        <div className="stat-pills">
+          <button className="pill fire" onClick={onOpenQuests}>🔥 {progress.streak || 0}</button>
+          <button className="pill xp" onClick={() => setView('progress')}>⭐ {progress.xp || 0}</button>
+        </div>
+      </div>
+
+      {/* Welcome nudge */}
       {showWelcomeNudge && (() => {
         const nudge = getWelcomeBackNudge(progress);
         return (
-          <div className="welcome-nudge-banner" style={{
-            background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
-            border: '2px solid #bfdbfe',
-            borderRadius: '20px',
-            padding: '20px 24px',
-            marginBottom: '24px',
-            position: 'relative',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '16px'
-          }}>
-            <span style={{ fontSize: '40px' }}>{nudge.mascotEmoji}</span>
+          <div className="card" style={{ padding: '14px 16px', marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <span style={{ fontSize: '36px' }}>{nudge.mascotEmoji}</span>
             <div style={{ flex: 1 }}>
-              <h3 style={{ margin: '0 0 4px 0', fontSize: '16px', fontWeight: '800', color: '#1e3a8a' }}>{nudge.title}</h3>
-              <p style={{ margin: 0, fontSize: '14px', color: '#1e40af', lineHeight: '1.4' }}>{nudge.body}</p>
+              <b style={{ fontSize: '14px' }}>{nudge.title}</b>
+              <small style={{ display: 'block', marginTop: '2px', color: 'var(--muted)', fontSize: '12px', fontWeight: 700, lineHeight: '1.4' }}>{nudge.body}</small>
             </div>
-            <button 
-              onClick={onDismissNudge} 
-              style={{
-                background: '#ffffff',
-                border: '1px solid #bfdbfe',
-                color: '#2563eb',
-                padding: '6px 12px',
-                borderRadius: '8px',
-                fontSize: '13px',
-                fontWeight: 'bold',
-                cursor: 'pointer'
-              }}
-            >
-              Đã hiểu!
-            </button>
+            <button className="btn btn-soft btn-sm" onClick={onDismissNudge}>OK</button>
           </div>
         )
       })()}
 
-      <section className="home-hero-container">
-        <div className={`home-hero-card ${themeClass}`}>
-          <div className="mascot-hero-wrapper" onClick={handleSpeakMascot} title="Bấm để nghe tớ nói!">
-            <div className="mascot-hero-avatar">
-              <span className="mascot-emoji-large">{mascotEmoji}</span>
+      {/* Hero Card */}
+      {plan?.primary ? (
+        <div className="hero" onClick={handleSpeakMascot}>
+          <div className="hero-top">
+            <div>
+              <h1>{plan.primary.kind === 'review' ? 'Ôn bài cũ' : `Tiếp tục ${gradeLabel}`}</h1>
+              <p>{plan.primary.kind === 'review'
+                ? `Ôn lại "${plan.primary.lesson.shortTitle}" để ghi nhớ tốt hơn.`
+                : `Còn ${remainingCount} bài nữa. Chinh phục "${plan.primary.lesson.shortTitle}" nhé!`
+              }</p>
             </div>
-            <span className="mascot-name-tag">{mascotName} 🔊</span>
+            <div className="mascot-bubble">{mascotEmoji}</div>
           </div>
-
-          <div className="speech-bubble-container" onClick={handleSpeakMascot} title="Bấm để nghe tớ nói!">
-            <div className="speech-bubble">
-              <p>{speechBubbleText}</p>
-              <span className="speech-bubble-speaker-hint">🔊 Bấm để nghe</span>
-            </div>
-          </div>
-
-          {plan?.primary ? (
-            <div className="hero-cta-box">
-              <div className="hero-cta-info">
-                <span className="hero-cta-badge">
-                  {plan.primary.kind === 'review' ? '🔄 ÔN TẬP' : '🚀 HỌC BÀI MỚI'}
-                </span>
-                <h3 className="hero-cta-title">
-                  <span className="hero-cta-icon">{plan.primary.lesson.icon}</span>
-                  {plan.primary.lesson.shortTitle}
-                </h3>
-                <span className="hero-skill-tag">{plan.primary.lesson.skill}</span>
-                <p className="hero-blurb">{plan.primary.blurb}</p>
-              </div>
-              <button 
-                className="hero-primary-btn" 
-                onClick={() => { playSfx('click', audioSettings?.muted); openLesson(plan.primary.index); }}
-              >
-                {plan.primary.kind === 'review' ? 'Ôn tập ngay 🔄' : 'Chinh phục ngay 🚀'}
-              </button>
-            </div>
-          ) : (
-            <div className="hero-cta-box">
-              <div className="hero-cta-info">
-                <span className="hero-cta-badge">🏆 HOÀN THÀNH</span>
-                <h3 className="hero-cta-title">
-                  <span className="hero-cta-icon">🎉</span>
-                  Đã hoàn tất!
-                </h3>
-                <p className="hero-blurb">Con đã vượt qua xuất sắc toàn bộ bài học. Luyện thêm Đấu trường nhé!</p>
-              </div>
-              <button 
-                className="hero-primary-btn" 
-                onClick={() => { playSfx('click', audioSettings?.muted); onOpenArena(); }}
-              >
-                Vào Đấu Trường ⚡
-              </button>
-            </div>
-          )}
-        </div>
-      </section>
-
-      <section className="grade-progress-section" style={{
-        background: '#ffffff',
-        borderRadius: '24px',
-        padding: '20px 24px',
-        marginBottom: '24px',
-        border: '1px solid #e5e7eb',
-        boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)'
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
-          <h3 style={{ margin: 0, fontSize: '15px', fontWeight: '800', color: '#1e3a8a', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>🏫</span> Lộ trình: {currentGrade === 'grade-1' ? 'Lớp 1' : currentGrade === 'grade-2' ? 'Lớp 2' : currentGrade === 'grade-3' ? 'Lớp 3' : currentGrade === 'grade-4' ? 'Lớp 4' : 'Lớp 5'}
-          </h3>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#92400e', background: '#fef3c7', padding: '4px 8px', borderRadius: '8px' }}>
-              🎖️ {progress.profile?.academicLevel || 'Thành viên mới'}
-            </span>
-            <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#2563eb', background: '#eff6ff', padding: '4px 8px', borderRadius: '8px' }}>
-              {completedCount}/{lessons.length} bài đã học ({Math.round((completedCount / (lessons.length || 1)) * 100)}%)
-            </span>
+          <div className="hero-cta">
+            <button className="btn" onClick={(e) => { e.stopPropagation(); playSfx('click', audioSettings?.muted); openLesson(plan.primary.index); }}>
+              {plan.primary.kind === 'review' ? 'Ôn tập ngay' : 'Bắt đầu học'}
+            </button>
+            <button className="btn secondary" onClick={(e) => { e.stopPropagation(); playSfx('click', audioSettings?.muted); setView('lessons-menu'); }}>
+              Đổi chủ đề
+            </button>
           </div>
         </div>
-        <div style={{ height: '12px', background: '#f3f4f6', borderRadius: '6px', overflow: 'hidden', position: 'relative' }}>
-          <div style={{
-            height: '100%',
-            background: 'linear-gradient(90deg, #3b82f6 0%, #10b981 100%)',
-            width: `${(completedCount / (lessons.length || 1)) * 100}%`,
-            borderRadius: '6px',
-            transition: 'width 1s ease-out'
-          }}></div>
-        </div>
-      </section>
-
-      <section className="secondary-quests-section">
-        <h2 className="section-title-cute">🎮 Hoạt động rèn luyện</h2>
-        <div className="secondary-quests-grid">
-          <div className="secondary-quest-card card-arena" onClick={onOpenArena}>
-            <div className="badge reflex">Luyện phản xạ</div>
-            <div className="icon">⏱️</div>
-            <h3>Đấu trường Tính nhanh</h3>
-            <p>Giải nhanh các phép tính của bài đã học trong 60 giây.</p>
-            <div className="bonus-xp">🔥 +5 XP / câu đúng</div>
-            <button className="btn-action" onClick={(e) => { e.stopPropagation(); onOpenArena(); }}>Vào đấu trường ⚡</button>
+      ) : (
+        <div className="hero" onClick={handleSpeakMascot}>
+          <div className="hero-top">
+            <div>
+              <h1>Hoàn thành xuất sắc! 🎉</h1>
+              <p>Con đã vượt qua tất cả bài học. Thử sức Đấu trường nhé!</p>
+            </div>
+            <div className="mascot-bubble">{mascotEmoji}</div>
           </div>
-
-          <div className="secondary-quest-card card-buddy" onClick={onOpenBuddy}>
-            <div className="badge fix">Sửa lỗi sai</div>
-            <div className="icon">🐢</div>
-            <h3>Góc Cố Vấn</h3>
-            <p>Giúp Rùa Con/Cú Ú phát hiện lỗi sai trong bài tập.</p>
-            <div className="bonus-xp">🧠 +15 XP / câu sửa sai</div>
-            <button className="btn-action" onClick={(e) => { e.stopPropagation(); onOpenBuddy(); }}>Chữa lỗi sai 🩺</button>
-          </div>
-
-          <div className="secondary-quest-card card-map" onClick={() => setView('lessons-menu')}>
-            <div className="badge map">Tất cả bài học</div>
-            <div className="icon">🗺️</div>
-            <h3>Bản đồ bài học</h3>
-            <p>Tự do xem bản đồ và chinh phục lại các bài học.</p>
-            <div className="bonus-xp">⭐ Săn sao & học lại</div>
-            <button className="btn-action" onClick={(e) => { e.stopPropagation(); setView('lessons-menu'); }}>Mở bản đồ 🏝️</button>
+          <div className="hero-cta">
+            <button className="btn" onClick={(e) => { e.stopPropagation(); playSfx('click', audioSettings?.muted); onOpenArena(); }}>
+              Vào đấu trường ⚡
+            </button>
+            <button className="btn secondary" onClick={(e) => { e.stopPropagation(); playSfx('click', audioSettings?.muted); setView('lessons-menu'); }}>
+              Xem lại bài
+            </button>
           </div>
         </div>
-      </section>
+      )}
 
-      <section className="personalized-progress-section">
-        <h2 className="section-title-cute">📅 Nhật ký học tập của con</h2>
-        <div className="personalized-progress-grid">
-          {/* A. Recently studied */}
-          {(() => {
-            const recentlyStudied = getRecentlyStudiedLesson(lessons, progress, currentGrade, currentSubject);
-            if (recentlyStudied) {
+      {/* Daily Quest Card */}
+      <button className="card daily" onClick={onOpenQuests}>
+        <div className="icon">🎯</div>
+        <div style={{ flex: 1 }}>
+          <b>Nhiệm vụ hôm nay</b>
+          <small>{completedQuestsCount}/{totalQuestsCount} xong · streak {progress.streak || 0} ngày</small>
+        </div>
+        <div className="score">
+          <b>{completedQuestsCount}/{totalQuestsCount}</b>
+          <small>nv</small>
+        </div>
+      </button>
+
+      {/* Learning Path */}
+      <div className="card" style={{ padding: '18px', marginBottom: '14px', textAlign: 'center' }}>
+        <div className="section-title" style={{ marginTop: 0 }}>
+          <h2>🗺️ Đường học của em</h2>
+          <button className="linkish" onClick={() => setView('lessons-menu')}>Xem tất cả ›</button>
+        </div>
+        <LearningPath
+          lessons={lessons}
+          progress={progress}
+          openLesson={openLesson}
+          activeProgress={progress}
+          onOpenChest={onOpenChest}
+          onOpenBoss={onOpenBoss}
+        />
+      </div>
+
+      {/* Grade Progress */}
+      <div className="card" style={{ padding: '14px 16px', marginBottom: '14px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+          <b style={{ fontSize: '14px' }}>🏫 {gradeLabel}</b>
+          <small style={{ fontSize: '12px', fontWeight: 800, color: 'var(--muted)' }}>{completedCount}/{lessons.length} bài ({Math.round((completedCount / (lessons.length || 1)) * 100)}%)</small>
+        </div>
+        <div className="progress-track" style={{ height: '10px' }}>
+          <i style={{ width: `${(completedCount / (lessons.length || 1)) * 100}%` }} />
+        </div>
+      </div>
+
+      {/* Quick Activities */}
+      <div className="section-title">
+        <h2>🎮 Rèn luyện thêm</h2>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '14px' }}>
+        <button className="card" style={{ padding: '14px', textAlign: 'center', cursor: 'pointer', border: 0 }} onClick={onOpenArena}>
+          <span style={{ fontSize: '28px' }}>⏱️</span>
+          <b style={{ display: 'block', fontSize: '13px', marginTop: '6px' }}>Đấu trường</b>
+          <small style={{ display: 'block', fontSize: '11px', color: 'var(--muted)', fontWeight: 700, marginTop: '2px' }}>Tính nhanh 60s</small>
+        </button>
+        <button className="card" style={{ padding: '14px', textAlign: 'center', cursor: 'pointer', border: 0 }} onClick={onOpenBuddy}>
+          <span style={{ fontSize: '28px' }}>🐢</span>
+          <b style={{ display: 'block', fontSize: '13px', marginTop: '6px' }}>Góc cố vấn</b>
+          <small style={{ display: 'block', fontSize: '11px', color: 'var(--muted)', fontWeight: 700, marginTop: '2px' }}>Sửa lỗi sai</small>
+        </button>
+      </div>
+
+      {/* Recently Studied + Review */}
+      {(() => {
+        const recentlyStudied = getRecentlyStudiedLesson(lessons, progress, currentGrade, currentSubject);
+        const actualReview = plan?.reviews?.find(r => r.lesson.id !== plan.primary?.lesson?.id) || plan?.reviews?.[0];
+        if (!recentlyStudied && !actualReview) return null;
+        return (
+          <>
+            <div className="section-title"><h2>📅 Nhật ký</h2></div>
+            {recentlyStudied && (() => {
               const recIndex = lessons.findIndex(l => l.id === recentlyStudied.id);
               const done = progress.completed[recentlyStudied.id];
               return (
-                <div className="progress-history-card" onClick={() => openLesson(recIndex)}>
-                  <div className="card-header">
-                    <span className="badge history">VỪA HỌC</span>
-                    <span className="icon">{recentlyStudied.icon}</span>
+                <button className="card" style={{ padding: '14px', marginBottom: '10px', width: '100%', textAlign: 'left', cursor: 'pointer', display: 'grid', gridTemplateColumns: '40px 1fr', gap: '12px', alignItems: 'center', border: 0 }} onClick={() => openLesson(recIndex)}>
+                  <span style={{ fontSize: '28px' }}>{recentlyStudied.icon}</span>
+                  <div>
+                    <b style={{ fontSize: '14px' }}>{recentlyStudied.shortTitle}</b>
+                    <small style={{ display: 'block', fontSize: '11px', color: 'var(--muted)', fontWeight: 700, marginTop: '2px' }}>
+                      {done ? `⭐ ${done.stars}/3 · ${done.mistakes} lỗi` : 'Đang dở dang'}
+                    </small>
                   </div>
-                  <h3>{recentlyStudied.shortTitle}</h3>
-                  <span className="skill-tag">{recentlyStudied.skill}</span>
-                  <p className="blurb">
-                    {done 
-                      ? `Con đạt ⭐ ${done.stars}/3 sao với ${done.mistakes} lần tự sửa sai.` 
-                      : `Hành trình đang dở dang. Hãy tiếp tục giải đố nào!`
-                    }
-                  </p>
-                  <button className="btn-action-outline">Học lại 🔄</button>
+                </button>
+              );
+            })()}
+            {actualReview && (
+              <button className="card" style={{ padding: '14px', marginBottom: '10px', width: '100%', textAlign: 'left', cursor: 'pointer', display: 'grid', gridTemplateColumns: '40px 1fr', gap: '12px', alignItems: 'center', border: 0, borderLeft: '3px solid var(--orange, #f39a41)' }} onClick={() => openLesson(actualReview.index)}>
+                <span style={{ fontSize: '28px' }}>{actualReview.lesson.icon}</span>
+                <div>
+                  <b style={{ fontSize: '14px' }}>🔄 {actualReview.lesson.shortTitle}</b>
+                  <small style={{ display: 'block', fontSize: '11px', color: 'var(--muted)', fontWeight: 700, marginTop: '2px' }}>
+                    {actualReview.mistakes} lỗi cần ôn
+                  </small>
                 </div>
-              )
-            } else {
-              return (
-                <div className="progress-history-card empty" onClick={() => setView('lessons-menu')}>
-                  <div className="card-header">
-                    <span className="badge history">VỪA HỌC</span>
-                    <span className="icon">🌱</span>
-                  </div>
-                  <h3>Học bài đầu tiên</h3>
-                  <p className="blurb">Bắt đầu hành trình chinh phục toán học đầy thú vị hôm nay.</p>
-                  <button className="btn-action-outline">Bắt đầu học 🚀</button>
-                </div>
-              )
-            }
-          })()}
-
-          {/* B. Recommended review */}
-          {(() => {
-            // Find a review lesson that isn't the primary action
-            const actualReview = plan?.reviews?.find(r => r.lesson.id !== plan.primary?.lesson?.id) || plan?.reviews?.[0];
-            
-            if (actualReview) {
-              return (
-                <div className="progress-history-card review" onClick={() => openLesson(actualReview.index)}>
-                  <div className="card-header">
-                    <span className="badge review">CẦN ÔN TẬP</span>
-                    <span className="icon">{actualReview.lesson.icon}</span>
-                  </div>
-                  <h3>{actualReview.lesson.shortTitle}</h3>
-                  <span className="skill-tag">{actualReview.lesson.skill}</span>
-                  <p className="blurb">
-                    Bài học này con còn {actualReview.mistakes} lỗi cần tự sửa. Ôn lại ngay nhé!
-                  </p>
-                  <button className="btn-action-outline">Ôn tập 🔄</button>
-                </div>
-              )
-            } else {
-              return (
-                <div className="progress-history-card celebratory">
-                  <div className="icon">🏆</div>
-                  <h3>Bộ não siêu phàm</h3>
-                  <p className="blurb">Con giải các bài toán rất chắc chắn, chưa có bài nào cần ôn gấp.</p>
-                  <div className="celebrate-badge">Tuyệt vời! ✨</div>
-                </div>
-              )
-            }
-          })()}
-        </div>
-      </section>
+              </button>
+            )}
+          </>
+        );
+      })()}
     </div>
   )
 }
@@ -2034,7 +2435,8 @@ function LessonsMenu({
   completedCount,
   registry,
   currentGrade,
-  currentSubject
+  currentSubject,
+  onOpenLeaderboard
 }) {
   const activeGradeObj = registry?.grades.find(g => g.id === currentGrade)
   const activeSubjectObj = activeGradeObj?.subjects?.find(s => s.id === currentSubject)
@@ -2049,15 +2451,8 @@ function LessonsMenu({
     { id: 3, title: 'Chương III: Chinh phục & Nâng cao', start: ch2End, end: total, icon: '🏆' }
   ].filter(ch => ch.start < ch.end);
 
-  // Find where the first incomplete lesson is to expand that chapter by default
   const pathIndex = lessons.findIndex(l => !progress.completed?.[l.id]);
-  const activeChapterId = pathIndex === -1 
-    ? 1 
-    : pathIndex < ch1End 
-      ? 1 
-      : pathIndex < ch2End 
-        ? 2 
-        : 3;
+  const activeChapterId = pathIndex === -1 ? 1 : pathIndex < ch1End ? 1 : pathIndex < ch2End ? 2 : 3;
 
   const [expandedChapters, setExpandedChapters] = useState({
     1: activeChapterId === 1,
@@ -2070,92 +2465,79 @@ function LessonsMenu({
   };
 
   return (
-    <div className="lessons-menu-page" style={{ padding: '24px', overflowY: 'auto', minHeight: '100dvh', boxSizing: 'border-box', paddingBottom: '120px' }}>
-      <div className="adventure-map-area">
-        <section className="journey-hero">
-          <div>
-            <h1>Bản đồ phiêu lưu: {activeGradeObj?.title} - {activeSubjectObj?.title} 🚀</h1>
-            <p>Con đang học rất tốt! Chọn bài học con muốn chinh phục hôm nay nhé.</p>
-          </div>
-          <div className="treasure">
-            <span>🧰</span>
-            <b>⭐ {completedCount}/{lessons.length}</b>
-          </div>
-        </section>
-
-        {chapters.map(ch => {
-          const chLessons = lessons.slice(ch.start, ch.end);
-          const chCompleted = chLessons.filter(l => progress.completed[l.id]).length;
-          const isExpanded = expandedChapters[ch.id];
-          
-          return (
-            <div key={ch.id} className="chapter-section" style={{
-              background: '#ffffff',
-              borderRadius: '24px',
-              padding: '20px',
-              marginBottom: '20px',
-              border: '1px solid #e5e7eb',
-              boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)'
-            }}>
-              <div 
-                onClick={() => toggleChapter(ch.id)}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  cursor: 'pointer',
-                  userSelect: 'none'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span style={{ fontSize: '24px' }}>{ch.icon}</span>
-                  <div>
-                    <h3 style={{ margin: 0, fontSize: '15px', fontWeight: '800', color: '#1e3a8a' }}>
-                      {ch.title}
-                    </h3>
-                    <span style={{ fontSize: '12px', color: '#6b7280', fontWeight: '600' }}>
-                      Đã xong: {chCompleted}/{chLessons.length} bài ({Math.round((chCompleted / (chLessons.length || 1)) * 100)}%)
-                    </span>
-                  </div>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span style={{ fontSize: '18px', color: '#9ca3af', fontWeight: 'bold' }}>
-                    {isExpanded ? '▲' : '▼'}
-                  </span>
-                </div>
-              </div>
-              
-              {isExpanded && (
-                <div className="lesson-grid" style={{ marginTop: '20px' }}>
-                  {chLessons.map((lesson, idx) => {
-                    const originalIndex = ch.start + idx;
-                    const complete = progress.completed[lesson.id];
-                    const unlocked = isUnlocked(originalIndex);
-                    return (
-                      <button
-                        key={lesson.id}
-                        className={`lesson-card ${lesson.color} ${!unlocked ? 'locked' : ''} ${complete ? 'completed' : ''}`}
-                        onClick={() => openLesson(originalIndex)}
-                        disabled={!unlocked}
-                      >
-                        <span className="lesson-number">{originalIndex + 1}</span>
-                        <span className="lesson-icon">{lesson.icon}</span>
-                        <strong>{lesson.shortTitle}</strong>
-                        <small>{lesson.skill}</small>
-                        <div className="stars" aria-label={`${complete?.stars || 0} sao`}>
-                          {[0, 1, 2].map((star) => <span key={star}>{complete && star < complete.stars ? '⭐' : '☆'}</span>)}
-                        </div>
-                        {!unlocked && <span className="lock">🔒</span>}
-                        {complete && <span className="check">✓</span>}
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          );
-        })}
+    <div className="lessons-menu-page" style={{ padding: '16px', overflowY: 'auto', minHeight: '100dvh', boxSizing: 'border-box', paddingBottom: 'calc(var(--nav-h, 72px) + var(--safe-b, 18px) + 16px)' }}>
+      {/* Page Head */}
+      <div className="page-head">
+        <h1>📚 Chọn chủ đề</h1>
+        <button className="icon-btn" onClick={onOpenLeaderboard} title="Xem bảng xếp hạng">🏆</button>
       </div>
+
+      {/* Unit Hero */}
+      <div className="unit-hero">
+        <span style={{ fontSize: '32px' }}>{activeSubjectObj?.icon || '📐'}</span>
+        <h1>{activeGradeObj?.title || 'Lớp 3'} — {activeSubjectObj?.title || 'Toán'}</h1>
+        <p>Con đang học rất tốt! Chọn bài con muốn chinh phục hôm nay nhé.</p>
+        <div className="unit-meta">
+          <span>📖 {lessons.length} bài</span>
+          <span>✅ {completedCount} xong</span>
+          <span>⭐ {completedCount * 3} sao</span>
+        </div>
+      </div>
+
+      {/* Chapters as topic cards */}
+      {chapters.map(ch => {
+        const chLessons = lessons.slice(ch.start, ch.end);
+        const chCompleted = chLessons.filter(l => progress.completed[l.id]).length;
+        const chProgress = Math.round((chCompleted / (chLessons.length || 1)) * 100);
+        const isExpanded = expandedChapters[ch.id];
+
+        return (
+          <div key={ch.id} style={{ marginBottom: '14px' }}>
+            <button className="card topic-card" onClick={() => toggleChapter(ch.id)} style={{ width: '100%' }}>
+              <div className="topic-icon" style={{ background: ch.id === 1 ? '#e8f5e9' : ch.id === 2 ? '#fff3e0' : '#fce4ec' }}>
+                {ch.icon}
+              </div>
+              <div>
+                <b>{ch.title}</b>
+                <small>{chCompleted}/{chLessons.length} bài · {chProgress}%</small>
+              </div>
+              <div className="progress-ring" style={{ '--p': chProgress + '%' }}>
+                <span>{chProgress}%</span>
+              </div>
+            </button>
+
+            {isExpanded && (
+              <div className="card lesson-list" style={{ marginTop: '8px', padding: '8px' }}>
+                {chLessons.map((lesson, idx) => {
+                  const originalIndex = ch.start + idx;
+                  const complete = progress.completed[lesson.id];
+                  const unlocked = isUnlocked(originalIndex);
+                  return (
+                    <button
+                      key={lesson.id}
+                      className="lesson-item"
+                      onClick={() => openLesson(originalIndex)}
+                      disabled={!unlocked}
+                      style={{ opacity: unlocked ? 1 : 0.5 }}
+                    >
+                      <div className="li" style={{ background: unlocked ? (lesson.color || '#f0edff') : '#f1f3f5' }}>
+                        {unlocked ? lesson.icon : '🔒'}
+                      </div>
+                      <div>
+                        <b>{originalIndex + 1}. {lesson.shortTitle}</b>
+                        <small>{lesson.skill}</small>
+                      </div>
+                      <div className={`stars-mini${complete ? '' : ' off'}`}>
+                        {[0, 1, 2].map(s => <span key={s}>{complete && s < complete.stars ? '⭐' : '☆'}</span>)}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   )
 }
@@ -2189,11 +2571,18 @@ function LessonView(props) {
   }
 
   return (
-    <div className="lesson-page">
+    <div className="lesson-page" style={{ padding: '12px 16px', paddingBottom: 'calc(var(--nav-h, 72px) + var(--safe-b, 18px) + 16px)' }}>
       {stepConfettiActive && <ConfettiCanvas active={true} />}
-      <div className="lesson-toolbar">
-        <button className="close-button" onClick={() => { playClick(); onBack(); }} aria-label="Quay lại danh sách bài học">✕</button>
-        <div className="lesson-progress"><span style={{ width: `${progressPercent}%` }} /></div>
+      <div className="practice-top">
+        <button className="icon-btn" onClick={() => { playClick(); onBack(); }} aria-label="Quay lại danh sách bài học">←</button>
+        <div className="practice-top-center">
+          <b>{lesson.shortTitle}</b>
+          <div className="step-pills">
+            {lesson.steps.map((_, i) => (
+              <span key={i} className={i < step ? 'done' : i === step ? 'now' : ''} />
+            ))}
+          </div>
+        </div>
         {isChallenge && <span className="challenge-badge">⚡ Thử thách</span>}
         <button 
           className={`hint-button ${hintOpen ? 'active' : ''}`} 
@@ -2223,8 +2612,8 @@ function LessonView(props) {
         >
           💡
         </button>
-        <div className={`hearts ${isChallenge && hearts === 1 ? 'hearts-pulsing' : ''}`}>
-          ❤️ {hearts}
+        <div className="hearts-display">
+          {[...Array(3)].map((_, i) => <span key={i}>{i < hearts ? '❤️' : '🤍'}</span>)}
         </div>
       </div>
 
@@ -4079,47 +4468,77 @@ function CompleteView({ lesson, mistakes, progress, setProgress, plan, onHome, o
   }
 
   return (
-    <section className="complete-screen">
-      <div className="celebration">🎊</div>
-      <h1>Hoàn thành bài học!</h1>
-      <p>Con không chỉ tìm ra đáp án, mà còn biết giải thích cách suy nghĩ.</p>
-      <div className="big-stars">{[0, 1, 2].map((i) => <span key={i} className={i < stars ? 'earned' : ''}>⭐</span>)}</div>
-      <div className="result-card"><div><span>🧠</span><b>+{80 + stars * 10}</b><small>điểm tư duy</small></div><div><span>🌱</span><b>{mistakes}</b><small>lần tự sửa</small></div><div><span>{lesson.icon}</span><b>{lesson.skill}</b><small>kỹ năng mới</small></div></div>
+    <div className="overlay show" style={{ zIndex: 99 }}>
+      <div className="sheet compact">
+        <div className="cele">
+          <div className="burst">🎊</div>
+          <h2>Hoàn thành bài học!</h2>
+          <p>Con không chỉ tìm ra đáp án, mà còn biết giải thích cách suy nghĩ.</p>
+          
+          <div className="stars-row">
+            {[0, 1, 2].map((i) => (
+              <span key={i} className={i < stars ? 'on' : ''}>⭐</span>
+            ))}
+          </div>
 
-      {nudgeMode && (() => {
-        const nudgeMascot = progress.profile?.mascot || 'owl';
-        const nudgeProfile = MASCOT_PROFILES[nudgeMascot] || MASCOT_PROFILES.owl;
-        const nudgeEmoji = getMascotEmotion ? getMascotEmotion(nudgeMascot) : nudgeProfile.emoji;
-        return (
-          <div className="adaptive-nudge-box">
-            <div className="nudge-avatar">
-              {nudgeEmoji}
+          <div className="result-grid">
+            <div className="card">
+              <span>🧠</span>
+              <b>+{80 + stars * 10}</b>
+              <small>Tư duy</small>
             </div>
-            <div className="nudge-content">
-              <h4>
-                {`${nudgeEmoji} ${nudgeProfile.name} ${nudgeProfile.nudgeIntro || 'khuyên con:'}`}
-              </h4>
-              <p>
-                {nudgeMode === 'express' 
-                  ? 'Con giải toán rất nhanh và chính xác! Con có muốn chuyển sang Chế độ học Rút gọn (5 bước) để làm bài nhanh hơn không?' 
-                  : 'Con học toán siêu đỉnh! Con có muốn thử thách bản thân với Chế độ học Siêu tốc (3 bước) để rèn luyện tư duy nhanh hơn không?'}
-              </p>
-              <div className="nudge-actions">
-                <button className="nudge-btn-accept" onClick={handleAcceptNudge}>
-                  {nudgeMode === 'express' ? 'Chuyển sang Rút gọn ⚡' : 'Chuyển sang Siêu tốc 🚀'}
-                </button>
-                <button className="nudge-btn-decline" onClick={handleDeclineNudge}>Giữ nguyên</button>
-              </div>
+            <div className="card">
+              <span>🌱</span>
+              <b>{mistakes}</b>
+              <small>Lần tự sửa</small>
+            </div>
+            <div className="card">
+              <span>{lesson.icon}</span>
+              <b style={{ fontSize: '11px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block' }}>{lesson.skill}</b>
+              <small>Kỹ năng</small>
             </div>
           </div>
-        );
-      })()}
 
-      <div className="complete-actions">
-        <button className="secondary-button" onClick={() => { playClick(); onHome(); }}>Về hành trình</button>
-        {hasNext && <button className="primary-button" onClick={() => { playClick(); onNext(); }}>Bài tiếp theo →</button>}
+          {nudgeMode && (() => {
+            const nudgeMascot = progress.profile?.mascot || 'owl';
+            const nudgeProfile = MASCOT_PROFILES[nudgeMascot] || MASCOT_PROFILES.owl;
+            const nudgeEmoji = getMascotEmotion ? getMascotEmotion(nudgeMascot) : nudgeProfile.emoji;
+            return (
+              <div className="card" style={{ padding: '12px', margin: '12px 0', textAlign: 'left' }}>
+                <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                  <span style={{ fontSize: '32px' }}>{nudgeEmoji}</span>
+                  <div style={{ flex: 1 }}>
+                    <b style={{ fontSize: '13px' }}>{nudgeProfile.name} khuyên con:</b>
+                    <p style={{ fontSize: '12px', color: 'var(--muted)', fontWeight: 700, lineHeight: 1.4, margin: '4px 0 10px' }}>
+                      {nudgeMode === 'express' 
+                        ? 'Con giải toán rất nhanh! Chuyển sang Chế độ Rút gọn (5 bước) nhé?' 
+                        : 'Con học siêu đỉnh! Thử Chế độ Siêu tốc (3 bước) nhé?'}
+                    </p>
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                      <button className="btn btn-primary btn-sm" onClick={handleAcceptNudge}>
+                        {nudgeMode === 'express' ? 'Rút gọn ⚡' : 'Siêu tốc 🚀'}
+                      </button>
+                      <button className="btn btn-ghost btn-sm" onClick={handleDeclineNudge}>Giữ nguyên</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+
+          <div style={{ display: 'grid', gap: '8px', marginTop: '16px' }}>
+            {hasNext && (
+              <button className="btn btn-primary btn-block" onClick={() => { playClick(); onNext(); }}>
+                Bài tiếp theo →
+              </button>
+            )}
+            <button className="btn btn-ghost btn-block" onClick={() => { playClick(); onHome(); }}>
+              Về hành trình
+            </button>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   )
 }
 
@@ -4954,7 +5373,7 @@ function BuddyView({
 
 
 
-function InsightsView({ lessons, progress, openLesson, earnedStars, getMascotEmotion }) {
+function InsightsView({ lessons, progress, openLesson, earnedStars, getMascotEmotion, onOpenReview, onOpenSettings }) {
   const [selectedAchievement, setSelectedAchievement] = useState(null)
 
   // 1. Character & Header indicators
@@ -5202,123 +5621,139 @@ function InsightsView({ lessons, progress, openLesson, earnedStars, getMascotEmo
   }
 
   return (
-    <section className="insights-page" style={{ padding: '24px', overflowY: 'auto', boxSizing: 'border-box', paddingBottom: '120px' }}>
-      <div className="page-title">
-        <span>🏆</span>
-        <div>
-          <h1>Thành quả</h1>
-          <p>Phân tích chỉ số anh hùng, huy hiệu đạt được và bài tập rèn luyện giúp bé tiến bộ.</p>
+    <section className="insights-page" style={{ padding: '16px', paddingBottom: 'calc(var(--nav-h, 72px) + var(--safe-b, 18px) + 16px)', overflowY: 'auto', boxSizing: 'border-box' }}>
+      <div className="page-head">
+        <h1 style={{ flex: 1, margin: 0, fontSize: '18px', fontWeight: '900' }}>🏆 Thành quả</h1>
+        <button 
+          className="icon-btn" 
+          onClick={onOpenSettings} 
+          title="Mở cài đặt"
+          style={{ width: '42px', height: '42px' }}
+        >
+          ⚙️
+        </button>
+      </div>
+
+      {/* Profile Hero Card */}
+      <div className="card profile-hero" style={{ overflow: 'hidden', padding: '18px 14px 16px' }}>
+        <div className="avatar-large">
+          {mascotEmoji}
+        </div>
+        <h2>{studentName}</h2>
+        <p>Đồng hành: <b>{mascotName}</b></p>
+        <div className="level-pill">
+          Cấp độ {level}
+        </div>
+        <div className="xp-bar-wrap" style={{ marginTop: '14px', maxWidth: '300px', marginInline: 'auto' }}>
+          <div className="row">
+            <span>Tiến trình cấp</span>
+            <span>{levelProgress}/100 XP</span>
+          </div>
+          <div className="xp-bar">
+            <i style={{ width: `${levelProgress}%` }}></i>
+          </div>
+        </div>
+        
+        {onOpenReview && (
+          <button 
+            className="btn btn-danger btn-sm btn-block"
+            onClick={onOpenReview}
+            style={{ marginTop: '12px' }}
+          >
+            📝 Sửa câu sai của con
+          </button>
+        )}
+      </div>
+
+      {/* Stat Row */}
+      <div className="stat-row">
+        <div className="card">
+          <span>🔥</span>
+          <b>{streak} ngày</b>
+          <small>Học liên tục</small>
+        </div>
+        <div className="card">
+          <span>⭐</span>
+          <b>{xp} điểm</b>
+          <small>Tích lũy XP</small>
+        </div>
+        <div className="card">
+          <span>🧠</span>
+          <b>{logicPower}%</b>
+          <small>Hoàn thành</small>
         </div>
       </div>
 
-      <div className="insights-grid">
-        {/* Left column: Hero card */}
-        <div className="insights-card hero-card-large">
-          <div className="hero-avatar-wrapper">
-            <span className="hero-mascot">{mascotEmoji}</span>
-            <div className="hero-sparkles">⭐✨</div>
-          </div>
-          <h2>{studentName}</h2>
-          <div className="hero-level">Cấp độ {level}</div>
-          <div className="hero-xp-bar">
-            <div className="hero-xp-fill" style={{ width: `${levelProgress}%` }}></div>
-            <span className="xp-text">{levelProgress}/100 XP</span>
-          </div>
-          <div className="hero-archetype-badge" style={{ backgroundColor: `${archetypeColor}1a`, border: `1px solid ${archetypeColor}`, color: archetypeColor, padding: '6px 12px', borderRadius: '20px', fontSize: '13px', fontWeight: 'bold', display: 'inline-flex', alignItems: 'center', gap: '6px', margin: '8px 0' }}>
-            {archetypeTitle}
-          </div>
-          <p style={{ fontSize: '12px', opacity: 0.8, fontStyle: 'italic', margin: '4px 0 12px 0', lineHeight: '1.4' }}>
-            {archetypeDesc}
-          </p>
-          <div className="hero-quick-stats">
-            <div className="quick-stat-item">
-              <span>🔥</span>
-              <b>{streak} ngày</b>
-              <small>Học liên tục</small>
-            </div>
-            <div className="quick-stat-item">
-              <span>🪙</span>
-              <b>{xp} điểm</b>
-              <small>Tích lũy</small>
-            </div>
-          </div>
-          <p className="hero-quote">
-            "Chào bạn nhỏ! Tớ là <b>{mascotName}</b>. Hãy cùng tớ rèn luyện thêm các thuộc tính để thăng cấp nhé!"
-          </p>
+      {/* Attribute card */}
+      <div className="card" style={{ padding: '16px', marginBottom: '14px' }}>
+        <div className="section-title" style={{ marginTop: 0 }}>
+          <h2>📊 Chỉ số thuộc tính Anh hùng</h2>
         </div>
-
-        {/* Center: Attributes Grid */}
-        <div className="insights-card attributes-card">
-          <h3>📊 Chỉ số thuộc tính Anh hùng</h3>
-          <div className="attributes-grid">
-            {/* Logic Power */}
-            <div className="attr-item">
-              <div className="attr-header">
-                <span>🧠 Trí tuệ Logic</span>
-                <b>{logicPower}%</b>
-              </div>
-              <div className="attr-progress"><div className="attr-progress-fill bg-logic" style={{ width: `${logicPower}%` }}></div></div>
-              <small>Tỷ lệ bài học đã hoàn thành: {completedLessons}/{totalLessons}</small>
+        <div style={{ display: 'grid', gap: '12px' }}>
+          {/* Logic Power */}
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', fontWeight: 800, marginBottom: '6px' }}>
+              <span>🧠 Trí tuệ Logic</span>
+              <b>{logicPower}%</b>
             </div>
-
-            {/* Speed */}
-            <div className="attr-item">
-              <div className="attr-header">
-                <span>⚡ Tốc độ Chớp chớp</span>
-                <b>{speedRank}</b>
-              </div>
-              <div className="attr-progress"><div className="attr-progress-fill bg-speed" style={{ width: `${speedScore}%` }}></div></div>
-              <small>Thời gian giải bài trung bình: {avgDuration}s/bài</small>
+            <div className="progress-track" style={{ height: '8px' }}>
+              <i style={{ width: `${logicPower}%`, background: 'linear-gradient(90deg, #60a5fa, #3b82f6)' }}></i>
             </div>
+          </div>
 
-            {/* Accuracy */}
-            <div className="attr-item">
-              <div className="attr-header">
-                <span>🎯 Độ Chính xác</span>
-                <b>{accuracy}%</b>
-              </div>
-              <div className="attr-progress"><div className="attr-progress-fill bg-accuracy" style={{ width: `${accuracy}%` }}></div></div>
-              <small>Tỷ lệ trả lời đúng qua các bước học</small>
+          {/* Speed */}
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', fontWeight: 800, marginBottom: '6px' }}>
+              <span>⚡ Tốc độ Chớp chớp</span>
+              <b>{speedRank}</b>
             </div>
+            <div className="progress-track" style={{ height: '8px' }}>
+              <i style={{ width: `${speedScore}%`, background: 'linear-gradient(90deg, #f43f5e, #e11d48)' }}></i>
+            </div>
+          </div>
 
-            {/* Stamina */}
-            <div className="attr-item">
-              <div className="attr-header">
-                <span>🔥 Năng lượng Bền bỉ</span>
-                <b>{streak > 0 ? `Cấp ${Math.min(5, streak)}` : 'Chưa kích hoạt'}</b>
-              </div>
-              <div className="attr-progress"><div className="attr-progress-fill bg-stamina" style={{ width: `${staminaScore}%` }}></div></div>
-              <small>Học liên tục rèn luyện ý chí anh hùng</small>
+          {/* Accuracy */}
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', fontWeight: 800, marginBottom: '6px' }}>
+              <span>🎯 Độ Chính xác</span>
+              <b>{accuracy}%</b>
+            </div>
+            <div className="progress-track" style={{ height: '8px' }}>
+              <i style={{ width: `${accuracy}%`, background: 'linear-gradient(90deg, #34d399, #059669)' }}></i>
+            </div>
+          </div>
+
+          {/* Stamina */}
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', fontWeight: 800, marginBottom: '6px' }}>
+              <span>🔥 Năng lượng Bền bỉ</span>
+              <b>{streak > 0 ? `Cấp ${Math.min(5, streak)}` : 'Chưa kích hoạt'}</b>
+            </div>
+            <div className="progress-track" style={{ height: '8px' }}>
+              <i style={{ width: `${staminaScore}%`, background: 'linear-gradient(90deg, #fbbf24, #d97706)' }}></i>
             </div>
           </div>
         </div>
       </div>
 
       {/* 🏆 Achievements grid */}
-      <div className="insights-card achievements-card" style={{ marginTop: '24px' }}>
-        <h3>🏆 Kho báu Thành quả</h3>
-        <div className="achievement-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '16px', marginTop: '16px' }}>
+      <div className="card" style={{ padding: '16px', marginBottom: '14px' }}>
+        <div className="section-title" style={{ marginTop: 0 }}>
+          <h2>🏆 Kho báu Thành quả</h2>
+        </div>
+        <div className="ach-grid" style={{ marginTop: '12px' }}>
           {achievementsList.map(item => (
             <div
               key={item.id}
-              className={item.unlocked ? 'achievement unlocked' : 'achievement'}
+              className={`card ach ${item.unlocked ? 'on' : ''}`}
               onClick={() => setSelectedAchievement(item)}
-              style={{ cursor: 'pointer' }}
             >
-              <span className="achievement-icon">{item.icon}</span>
+              <span>{item.icon}</span>
               <b>{item.title}</b>
               {item.unlocked ? (
-                <small className="status-text unlocked-status-text">✨ Đã mở khóa</small>
+                <small style={{ color: 'var(--gold, #d97706)' }}>✨ Đã mở khóa</small>
               ) : (
-                <>
-                  <div className="achievement-progress-mini">
-                    <div className="progress-bar-bg">
-                      <div className="progress-bar-fill" style={{ width: `${item.percent}%` }}></div>
-                    </div>
-                    <span className="progress-label">{item.current}/{item.target} ({item.percent}%)</span>
-                  </div>
-                  <small className="status-text locked-status-text">Tiếp tục để mở</small>
-                </>
+                <small>{item.current}/{item.target} ({item.percent}%)</small>
               )}
             </div>
           ))}
@@ -5654,6 +6089,501 @@ function AchievementCelebration({ achievements, mascot, onClose, getMascotEmotio
         <button className="celebration-btn" onClick={handleNext}>
           {currentIndex < achievements.length - 1 ? 'Xem tiếp ➡️' : 'Nhận phần thưởng 🎁'}
         </button>
+      </div>
+    </div>
+  );
+}
+
+function LearningPath({ lessons, progress, openLesson, activeProgress, onOpenChest, onOpenBoss }) {
+  const completedCount = Object.keys(activeProgress.completed || {}).length;
+  let firstIncompleteIndex = lessons.findIndex(l => !activeProgress.completed[l.id]);
+  if (firstIncompleteIndex === -1) firstIncompleteIndex = lessons.length;
+
+  const pathNodes = [];
+  lessons.forEach((l, idx) => {
+    const isDone = !!activeProgress.completed[l.id];
+    const isCurrent = idx === firstIncompleteIndex;
+    const stars = activeProgress.completed[l.id]?.stars || 0;
+    
+    pathNodes.push({
+      type: 'lesson',
+      id: l.id,
+      index: idx,
+      icon: l.icon || '📖',
+      title: l.shortTitle || l.title,
+      status: isDone ? 'done' : isCurrent ? 'current' : 'locked',
+      stars: stars
+    });
+  });
+
+  // Chest Node
+  const chestId = 'unit_chest';
+  const chestOpened = !!activeProgress.completed[`${progress.currentGrade || 'grade-4'}_${progress.currentSubject || 'math'}_unit_chest`] || !!activeProgress.completed['unit_chest'];
+  pathNodes.push({
+    type: 'chest',
+    id: chestId,
+    index: lessons.length,
+    icon: chestOpened ? '✨' : '🎁',
+    title: 'Rương unit',
+    status: chestOpened ? 'done' : (completedCount === lessons.length ? 'current' : 'locked'),
+    stars: 0
+  });
+
+  // Boss Node
+  const bossId = 'unit_boss';
+  const bossCompleted = !!activeProgress.completed['unit_boss'];
+  pathNodes.push({
+    type: 'boss',
+    id: bossId,
+    index: lessons.length + 1,
+    icon: '⚔️',
+    title: 'Thử thách Boss',
+    status: bossCompleted ? 'done' : (completedCount === lessons.length && chestOpened ? 'current' : 'locked'),
+    stars: 0
+  });
+
+  return (
+    <div className="path">
+      <div className="path-line" aria-hidden="true"></div>
+      {pathNodes.map((node) => {
+        const clickHandler = () => {
+          if (node.status === 'locked') return;
+          if (node.type === 'lesson') {
+            openLesson(node.index);
+          } else if (node.type === 'chest') {
+            onOpenChest();
+          } else if (node.type === 'boss') {
+            onOpenBoss();
+          }
+        };
+
+        return (
+          <div key={node.id} className="path-node">
+            <button
+              className={`node-btn ${node.status}`}
+              onClick={clickHandler}
+              disabled={node.status === 'locked'}
+              title={node.title}
+            >
+              {node.icon}
+              {node.status === 'done' && node.type === 'lesson' && (
+                <span className="badge">
+                  {'⭐'.repeat(node.stars)}
+                </span>
+              )}
+            </button>
+            <div className="node-label">
+              <b>{node.title}</b>
+              <small>
+                {node.status === 'done' ? 'Đã xong' : node.status === 'current' ? 'Đang học' : 'Mở sau'}
+              </small>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function DailyQuests({ progress }) {
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const quests = getDailyQuests(progress, todayStr);
+  const dayNames = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
+  const todayDayIndex = (new Date().getDay() + 6) % 7;
+  const streak = progress?.streak || 0;
+
+  return (
+    <div className="quests-widget-card">
+      <div className="quests-widget-header">
+        <h3>🎯 Nhiệm vụ hôm nay</h3>
+        <span style={{ fontSize: '13px', fontWeight: '800', color: '#ea580c' }}>🔥 Streak: {streak} ngày</span>
+      </div>
+      
+      <div style={{ marginBottom: '14px' }}>
+        {quests.map(q => (
+          <div key={q.id} className={`quest-row-item ${q.completed ? 'done' : ''}`}>
+            <div className="qi" style={{ background: q.completed ? '#e9f9ef' : '#f0edff' }}>
+              {q.completed ? '✅' : '🎯'}
+            </div>
+            <div style={{ flex: 1 }}>
+              <b>{q.title}</b>
+              <small>{q.completed ? 'Hoàn thành' : `Mục tiêu: ${q.target}`}</small>
+            </div>
+            <span className="reward-pill">+{q.xp} XP</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="quests-widget-header" style={{ marginBottom: '8px', borderTop: '1px solid #edf2f7', paddingTop: '10px' }}>
+        <h3>📅 Tuần này</h3>
+      </div>
+      <div className="streak-week-calendar" style={{ margin: 0, border: 'none', padding: 0 }}>
+        {dayNames.map((day, idx) => {
+          const isActive = idx <= todayDayIndex && idx > todayDayIndex - streak;
+          return (
+            <div key={day} className={`streak-day-cell ${isActive ? 'active-day' : ''}`}>
+              <div className="day-ico">{isActive ? '🔥' : '·'}</div>
+              <div className="day-lbl">{day}</div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function IntroView({ lesson, progress, onStart, onBack, mascot, getMascotEmotion }) {
+  const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
+  const mascotEmoji = getMascotEmotion ? getMascotEmotion(mascot) : profile.emoji;
+  const mascotName = profile.name;
+  
+  const stepsList = getActiveSteps(progress.studyMode || 'full', lesson);
+  const facts = lesson?.facts || [];
+  const roles = lesson?.factRoles || [];
+
+  return (
+    <div className="intro-container">
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', width: '100%' }}>
+        <button className="back-btn" onClick={onBack}>‹ Quay lại</button>
+        <h2 style={{ fontSize: '18px', fontWeight: '900', margin: 0 }}>Chuẩn bị vào bài</h2>
+        <button className="back-btn" onClick={onStart}>Bỏ qua ⏭</button>
+      </div>
+
+      <div className="intro-mascot-box">
+        <div className="intro-mascot-avatar">
+          <span>{mascotEmoji}</span>
+        </div>
+        <div className="intro-bubble">
+          <strong>{mascotName} hướng dẫn:</strong>
+          <p style={{ margin: '6px 0 0 0', fontStyle: 'italic' }}>
+            "Chào bạn nhỏ! Hôm nay chúng mình cùng chinh phục bài toán '{lesson?.shortTitle}'. Chúng mình sẽ trải qua các bước thông minh sau nhé!"
+          </p>
+        </div>
+      </div>
+
+      <div className="intro-step-pills">
+        {stepsList.map((s, idx) => {
+          const label = STEP_LABELS[s]?.[1] || `Bước ${idx + 1}`;
+          const icon = STEP_LABELS[s]?.[0] || '✏️';
+          return (
+            <span key={s} className="intro-step-pill active">
+              {icon} {label}
+            </span>
+          );
+        })}
+      </div>
+
+      <div style={{ textAlign: 'left', marginBottom: '8px' }}>
+        <h4 style={{ margin: 0, fontSize: '14px', fontWeight: '800', color: '#475569' }}>🔍 Tóm tắt dữ kiện:</h4>
+      </div>
+      <div className="facts-list-container">
+        {facts.map((fact, idx) => {
+          const role = roles[idx] || 'known';
+          const isAsk = role === 'unknown';
+          return (
+            <div key={idx} className={`fact-card-item ${isAsk ? 'ask-fact' : 'known-fact'}`}>
+              <div className="num-dot">
+                {isAsk ? '?' : idx + 1}
+              </div>
+              <div>{fact}</div>
+            </div>
+          );
+        })}
+      </div>
+
+      <button className="hero-primary-btn" style={{ width: '100%', padding: '14px', borderRadius: '16px', fontSize: '16px' }} onClick={onStart}>
+        Bắt đầu học ngay · ❤️ 3
+      </button>
+    </div>
+  );
+}
+
+function ReviewListView({ lessons, progress, openLesson, onBack }) {
+  const reviews = getReviewLessons(lessons, progress, 10);
+  
+  return (
+    <div className="review-list-page" style={{ padding: '16px', paddingBottom: 'calc(var(--nav-h, 72px) + var(--safe-b, 18px) + 16px)', overflowY: 'auto', boxSizing: 'border-box' }}>
+      <div className="page-head">
+        <button className="icon-btn" onClick={onBack}>←</button>
+        <h1 style={{ flex: 1, margin: 0 }}>Luyện câu sai</h1>
+        <span className="pill heart" style={{ margin: 0 }}>💔 {reviews.length}</span>
+      </div>
+
+      <div className="card" style={{ padding: '12px 14px', marginBottom: '14px', fontSize: '13px', fontWeight: '800', color: 'var(--muted)', lineHeight: 1.45 }}>
+        Làm lại các bài toán này giúp con gỡ bỏ sai lầm cũ, hiểu sâu kiến thức và tích lũy thêm XP.
+      </div>
+
+      {reviews.length === 0 ? (
+        <div className="empty">
+          <div className="e">🏆</div>
+          <b>Chúc mừng con!</b>
+          <p>Không có bài học nào bị sai cần ôn tập lúc này.</p>
+        </div>
+      ) : (
+        <div className="review-list">
+          {reviews.map((r) => (
+            <button key={r.lesson.id} className="card review-card" onClick={() => openLesson(r.index)}>
+              <span className="tag">
+                {r.reason === 'review-hard' ? 'Thử thách' : r.reason === 'review-mistakes' ? 'Phép tính' : 'Sửa sai'}
+              </span>
+              <b>{r.lesson.title}</b>
+              <small>Lần học trước còn {r.mistakes} lỗi cần tự sửa. Nhấn để gỡ điểm.</small>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function QuestsView({ progress, onBack, openLesson, plan }) {
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const quests = getDailyQuests(progress, todayStr);
+  const dayNames = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
+  const todayDayIndex = (new Date().getDay() + 6) % 7;
+  const streak = progress?.streak || 0;
+
+  return (
+    <div className="quests-page" style={{ padding: '16px', paddingBottom: 'calc(var(--nav-h, 72px) + var(--safe-b, 18px) + 16px)', overflowY: 'auto', boxSizing: 'border-box' }}>
+      <div className="page-head">
+        <button className="icon-btn" onClick={onBack}>←</button>
+        <h1 style={{ flex: 1, margin: 0 }}>Nhiệm vụ</h1>
+        <span className="pill fire">🔥 {streak}</span>
+      </div>
+
+      <div className="streak-banner">
+        <div className="fire">🔥</div>
+        <div>
+          <b>Streak {streak} ngày</b>
+          <small>Hoàn thành 1 nhiệm vụ nữa để giữ lửa!</small>
+        </div>
+      </div>
+
+      <div className="quest-row">
+        {quests.map(q => (
+          <div key={q.id} className={`quest-item ${q.completed ? 'done' : ''}`}>
+            <div className="qi" style={{ background: q.completed ? 'var(--green-soft)' : 'var(--primary-soft)', color: q.completed ? 'var(--green)' : 'var(--primary)' }}>
+              {q.completed ? '✓' : '🎯'}
+            </div>
+            <div>
+              <b>{q.title}</b>
+              <small>{q.completed ? 'Hoàn thành' : `Mục tiêu: ${q.target}`}</small>
+            </div>
+            <span className="reward">+{q.xp} XP</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="section-title" style={{ marginTop: '20px' }}>
+        <h2>Tuần này</h2>
+        <span>{streak}/7 ngày</span>
+      </div>
+      
+      <div className="streak-week-calendar" style={{ marginBottom: '24px' }}>
+        {dayNames.map((day, idx) => {
+          const isActive = idx <= todayDayIndex && idx > todayDayIndex - streak;
+          return (
+            <div key={day} className={`streak-day-cell ${isActive ? 'active-day' : ''}`}>
+              <div className="day-ico">{isActive ? '🔥' : '·'}</div>
+              <div className="day-lbl">{day}</div>
+            </div>
+          );
+        })}
+      </div>
+
+      {plan?.primary && (
+        <button 
+          className="btn btn-primary btn-block" 
+          onClick={() => openLesson(plan.primary.index)}
+        >
+          Làm nhiệm vụ còn lại 🚀
+        </button>
+      )}
+    </div>
+  );
+}
+
+function LeaderboardView({ onBack, openLesson, plan, progress }) {
+  const studentName = progress.profile?.name || 'Minh Anh';
+  const xp = progress.xp || 0;
+  
+  const board = [
+    { rank: 1, icon: '🐯', name: 'Bảo Ngọc', level: 'Cấp 10', xp: 1680, me: false },
+    { rank: 2, icon: '🦊', name: 'Đức Anh', level: 'Cấp 9', xp: Math.max(1325, xp + 85), me: false },
+    { rank: 3, icon: '🦉', name: `${studentName} (em)`, level: `Cấp ${Math.floor(xp / 100) + 1}`, xp: xp, me: true },
+    { rank: 4, icon: '🐰', name: 'Hà My', level: 'Cấp 8', xp: 1105, me: false },
+    { rank: 5, icon: '🐼', name: 'Gia Huy', level: 'Cấp 7', xp: 980, me: false }
+  ].sort((a, b) => b.xp - a.xp);
+
+  const myPosition = board.findIndex(item => item.me);
+  const myRank = myPosition + 1;
+  const nextUp = myPosition > 0 ? board[myPosition - 1] : null;
+  const xpDiff = nextUp ? (nextUp.xp - xp) : 0;
+
+  return (
+    <div className="leaderboard-page" style={{ padding: '16px', paddingBottom: 'calc(var(--nav-h, 72px) + var(--safe-b, 18px) + 16px)', overflowY: 'auto', boxSizing: 'border-box' }}>
+      <div className="page-head">
+        <button className="icon-btn" onClick={onBack}>←</button>
+        <h1 style={{ flex: 1, margin: 0 }}>Bảng xếp hạng lớp</h1>
+      </div>
+
+      <div className="hero" style={{ padding: '16px', marginBottom: '16px', textAlign: 'center' }}>
+        <div style={{ fontSize: '12px', fontWeight: '800', opacity: 0.9 }}>Tuần này · Lớp 4A</div>
+        <h1 style={{ fontSize: '26px', fontWeight: '900', margin: '4px 0' }}>Hạng #{myRank}</h1>
+        <p style={{ margin: 0, fontSize: '13px' }}>
+          {xpDiff > 0 ? `Còn ${xpDiff} XP để lên hạng ${myRank - 1}` : 'Con đang dẫn đầu bảng xếp hạng! 🎉'}
+        </p>
+      </div>
+
+      <div className="lb-list">
+        {board.map((item, idx) => {
+          const isTop = item.rank <= 3;
+          return (
+            <div 
+              key={idx} 
+              className={`card lb-row ${item.me ? 'me' : ''}`}
+            >
+              <span className={`lb-rank ${isTop ? 'top' : ''}`}>
+                {idx + 1}
+              </span>
+              <div className="lb-av">
+                {item.icon}
+              </div>
+              <div>
+                <b>{item.name}</b>
+                <small>{item.level}</small>
+              </div>
+              <span className="lb-xp">
+                {item.xp} XP
+              </span>
+            </div>
+          );
+        })}
+      </div>
+
+      {plan?.primary && (
+        <div style={{ marginTop: '16px' }}>
+          <button 
+            className="btn btn-primary btn-block" 
+            onClick={() => openLesson(plan.primary.index)}
+          >
+            Học thêm để vượt hạng 🚀
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function SettingsView({ onBack, progress, setProgress }) {
+  const toggleNotificationSetting = () => {
+    setProgress(old => ({
+      ...old,
+      notificationsEnabled: !old.notificationsEnabled
+    }));
+  };
+
+  const toggleChallengeMode = () => {
+    setProgress(old => ({
+      ...old,
+      challengeMode: !old.challengeMode
+    }));
+  };
+
+  const autoSpeak = progress.autoSpeak !== false;
+  const toggleAutoSpeak = () => {
+    setProgress(old => ({
+      ...old,
+      autoSpeak: !autoSpeak
+    }));
+  };
+
+  const focusMode = !!progress.focusMode;
+  const toggleFocusMode = () => {
+    setProgress(old => ({
+      ...old,
+      focusMode: !focusMode
+    }));
+  };
+
+  return (
+    <div className="settings-page" style={{ padding: '16px', paddingBottom: 'calc(var(--nav-h, 72px) + var(--safe-b, 18px) + 16px)', boxSizing: 'border-box', overflowY: 'auto' }}>
+      <div className="page-head">
+        <button className="icon-btn" onClick={onBack}>←</button>
+        <h1 style={{ flex: 1, margin: 0, fontSize: '18px', fontWeight: '900' }}>Cài đặt</h1>
+      </div>
+
+      <div style={{ display: 'grid', gap: '16px', textAlign: 'left' }}>
+        <div className="settings-group-proto">
+          <h3>Học tập</h3>
+          <div className="card setting-row-proto">
+            <div>
+              <b>Đọc đề to</b>
+              <small>Tự đọc lời thoại khi vào bài</small>
+            </div>
+            <button className={`switch ${autoSpeak ? 'on' : ''}`} onClick={toggleAutoSpeak}>
+              <i></i>
+            </button>
+          </div>
+          
+          <div className="card setting-row-proto">
+            <div>
+              <b>Chế độ Thử thách</b>
+              <small>Tiêu hao ❤️ khi xem gợi ý</small>
+            </div>
+            <button className={`switch ${progress.challengeMode ? 'on' : ''}`} onClick={toggleChallengeMode}>
+              <i></i>
+            </button>
+          </div>
+
+          <div className="card setting-row-proto">
+            <div>
+              <b>Chế độ tập trung</b>
+              <small>Ẩn bớt hiệu ứng khi học</small>
+            </div>
+            <button className={`switch ${focusMode ? 'on' : ''}`} onClick={toggleFocusMode}>
+              <i></i>
+            </button>
+          </div>
+        </div>
+
+        <div className="settings-group-proto">
+          <h3>Thông báo</h3>
+          <div className="card setting-row-proto">
+            <div>
+              <b>Nhắc giữ streak</b>
+              <small>Báo chuông hằng ngày</small>
+            </div>
+            <button className={`switch ${!!progress.notificationsEnabled ? 'on' : ''}`} onClick={toggleNotificationSetting}>
+              <i></i>
+            </button>
+          </div>
+        </div>
+
+        <div className="settings-group-proto">
+          <h3>Tài khoản</h3>
+          <div className="card setting-row-proto" style={{ cursor: 'pointer' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <span style={{ fontSize: '24px' }}>👨‍👩‍👧</span>
+              <div>
+                <b>Liên kết phụ huynh</b>
+                <small>Mã lớp: 4A-MINH</small>
+              </div>
+            </div>
+            <span className="chev">›</span>
+          </div>
+          
+          <div className="card setting-row-proto" style={{ cursor: 'pointer' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <span style={{ fontSize: '24px' }}>ℹ️</span>
+              <div>
+                <b>Về TonyMath</b>
+                <small>Phiên bản App · v2.1.0</small>
+              </div>
+            </div>
+            <span className="chev">›</span>
+          </div>
+        </div>
       </div>
     </div>
   );

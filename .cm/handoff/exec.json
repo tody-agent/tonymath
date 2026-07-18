@@ -1,0 +1,20 @@
+{
+  "schema": "exec@1",
+  "initiative": "profile-simplification",
+  "status": "completed",
+  "tasks_completed": [
+    "1.1 Add tab headers and transition animations in App.css.",
+    "1.2 Add kid metrics layout classes (level, XP progression bar, streak fire).",
+    "1.3 Add mascot choice grids, speech bubble, badge grids and badge popover styles.",
+    "1.4 Add Math Gate panel and shake keyframes.",
+    "2.1 Define states for profileTab, showMathGate, mathGateQuestion, mathGateInput, mathGateError, selectedBadgeInfo, and mascotSpeechBubble in App.jsx.",
+    "2.2 Implement generateMathGateQuestion and verifyMathGateAnswer in utils.js & unit tests.",
+    "2.3 Wire up Mascot selection and Web Speech TTS speaking with speech bubble disappearing after 5 seconds.",
+    "3.1 Split profile bottom sheet layout into dual-persona tabs.",
+    "3.2 Render Kid profile view with level, streaks, badges, and parent gate launcher.",
+    "3.3 Render Parent view with curricular, study pace, reminder, and dev settings.",
+    "3.4 Render Math Gate validation panel and Badge details popup cards.",
+    "4.1 Verify layout responsiveness and verify all gated deploy pipeline checks."
+  ],
+  "verification_status": "passed"
+}

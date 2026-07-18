@@ -1,4 +1,4 @@
-import { isUnlocked, resolveSpeechRate, generateIcsContent, isChallengeModeActive, getActiveProgress, applyLessonResult, getLearningPlan, getRecentlyStudiedLesson, getUnlockedAchievementIds, analyzeBehavioralProfile, updateBehavioralMetrics, getDailyQuests } from './utils.js';
+import { isUnlocked, resolveSpeechRate, generateIcsContent, isChallengeModeActive, getActiveProgress, applyLessonResult, getLearningPlan, getRecentlyStudiedLesson, getUnlockedAchievementIds, analyzeBehavioralProfile, updateBehavioralMetrics, getDailyQuests, generateMathGateQuestion, verifyMathGateAnswer } from './utils.js';
 import { getMascotSpeech, getIndicatorGuide, MASCOT_PROFILES } from './mascotDialogs.js';
 import assert from 'assert';
 
@@ -599,6 +599,24 @@ try {
   console.log('✅ Test Passed: getDailyQuests computes quests correctly');
 } catch (e) {
   console.error('❌ getDailyQuests tests failed:', e.stack);
+  process.exit(1);
+}
+
+console.log('Running tests for Math Gate functions...');
+try {
+  const gateQ = generateMathGateQuestion();
+  assert.ok(gateQ.num1 >= 2 && gateQ.num1 <= 9);
+  assert.ok(gateQ.num2 >= 2 && gateQ.num2 <= 9);
+  assert.strictEqual(gateQ.answer, gateQ.num1 * gateQ.num2);
+  assert.ok(gateQ.questionText.includes(`${gateQ.num1} x ${gateQ.num2}`));
+  
+  assert.strictEqual(verifyMathGateAnswer(' ' + gateQ.answer + ' ', gateQ.answer), true);
+  assert.strictEqual(verifyMathGateAnswer(String(gateQ.answer), gateQ.answer), true);
+  assert.strictEqual(verifyMathGateAnswer('wrong', gateQ.answer), false);
+  assert.strictEqual(verifyMathGateAnswer('', gateQ.answer), false);
+  console.log('✅ Test Passed: Math Gate functions work correctly');
+} catch (e) {
+  console.error('❌ Math Gate tests failed:', e.stack);
   process.exit(1);
 }
 

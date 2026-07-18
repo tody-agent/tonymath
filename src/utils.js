@@ -846,5 +846,33 @@ export function getDailyQuests(progress, todayStr) {
   ];
 }
 
+/**
+ * Generates a random multiplication question for the Parent Math Gate.
+ * @returns {object} { num1, num2, questionText, answer }
+ */
+export function generateMathGateQuestion() {
+  const num1 = Math.floor(Math.random() * 8) + 2; // 2 to 9
+  const num2 = Math.floor(Math.random() * 8) + 2; // 2 to 9
+  return {
+    num1,
+    num2,
+    questionText: `Ba mẹ ơi, hãy tính giúp con: ${num1} x ${num2} = ?`,
+    answer: num1 * num2
+  };
+}
+
+/**
+ * Verifies if the user input matches the expected math answer.
+ * @param {string|number} input
+ * @param {number} answer
+ * @returns {boolean}
+ */
+export function verifyMathGateAnswer(input, answer) {
+  if (input === null || input === undefined) return false;
+  const cleanInput = String(input).trim();
+  if (!cleanInput) return false;
+  return Number(cleanInput) === answer;
+}
+
 
 
