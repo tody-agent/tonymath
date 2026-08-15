@@ -874,5 +874,18 @@ export function verifyMathGateAnswer(input, answer) {
   return Number(cleanInput) === answer;
 }
 
-
-
+/**
+ * Trigger subtle haptic vibration on supporting mobile devices
+ * @param {'light'|'success'|'warning'} type
+ */
+export function triggerHaptic(type = 'light') {
+  if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
+    try {
+      if (type === 'light') navigator.vibrate(12);
+      else if (type === 'success') navigator.vibrate([20, 35, 20]);
+      else if (type === 'warning') navigator.vibrate([30, 40, 30]);
+    } catch {
+      // ignore
+    }
+  }
+}

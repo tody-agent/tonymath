@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useRef, useCallback } from 'react'
+import React, { useEffect, useMemo, useState, useRef, useCallback, Component } from 'react'
 import {
   resolveSpeechRate,
   generateIcsContent,
@@ -15,11 +15,50 @@ import {
   updateBehavioralMetrics,
   getDailyQuests,
   generateMathGateQuestion,
-  verifyMathGateAnswer
+  verifyMathGateAnswer,
+  triggerHaptic
 } from './utils.js'
 import { playSfx, speakText, cancelSpeech } from './audio.js'
 import { getMascotSpeech, MASCOT_PROFILES, getIndicatorGuide } from './mascotDialogs.js'
 import './App.css'
+
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { hasError: false, error: null }
+  }
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error }
+  }
+  componentDidCatch(error, errorInfo) {
+    console.error('TonyMath ErrorBoundary caught error:', error, errorInfo)
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="error-fallback-card" style={{ padding: '32px 20px', textAlign: 'center', margin: '24px auto', maxWidth: '420px', background: '#fff', borderRadius: '24px', boxShadow: '0 12px 36px rgba(0,0,0,0.08)' }}>
+          <div style={{ fontSize: '56px', marginBottom: '16px' }}>🦉✨</div>
+          <h3 style={{ margin: '0 0 10px', color: '#1e1b4b', fontSize: '20px', fontWeight: 900 }}>Ối, có chút trục trặc nhỏ!</h3>
+          <p style={{ fontSize: '14px', color: '#64748b', marginBottom: '24px', lineHeight: 1.5 }}>
+            Đừng lo lắng nhé thám tử nhí! Bấm nút bên dưới để quay lại bài học hoặc trang chủ.
+          </p>
+          <button 
+            className="hero-primary-btn" 
+            style={{ padding: '14px 28px', borderRadius: '16px', fontSize: '16px', width: '100%', cursor: 'pointer' }}
+            onClick={() => {
+              this.setState({ hasError: false, error: null })
+              if (this.props.onReset) this.props.onReset()
+              else window.location.reload()
+            }}
+          >
+            Quay lại trang chủ 🏠
+          </button>
+        </div>
+      )
+    }
+    return this.props.children
+  }
+}
 
 const STUDY_MODES = {
   full: { id: 'full', title: 'Từng bước (8 bước)', steps: [0, 1, 2, 3, 4, 5, 6, 7] },
@@ -415,20 +454,26 @@ function App() {
   ])
 
   useEffect(() => {
+    const isDismissed = () => {
+      const dismissedUntil = localStorage.getItem('tonymath-pwa-dismissed-until');
+      if (dismissedUntil && Number(dismissedUntil) > Date.now()) return true;
+      if (localStorage.getItem('tonymath-ios-install-dismissed') === 'true') return true;
+      return false;
+    };
+
     const handleBeforeInstall = (e) => {
       e.preventDefault();
       setDeferredPrompt(e);
-      setShowInstallPrompt(true);
+      if (!isDismissed()) {
+        setShowInstallPrompt(true);
+      }
     };
     window.addEventListener('beforeinstallprompt', handleBeforeInstall);
 
     const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
     const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    if (isIos && !isStandalone) {
-      const dismissed = localStorage.getItem('tonymath-ios-install-dismissed');
-      if (dismissed !== 'true') {
-        setShowInstallPrompt(true);
-      }
+    if (isIos && !isStandalone && !isDismissed()) {
+      setShowInstallPrompt(true);
     }
 
     return () => {
@@ -1083,11 +1128,10 @@ function App() {
 
   function dismissInstallPrompt() {
     playClick();
+    triggerHaptic('light');
     setShowInstallPrompt(false);
-    const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    if (isIos) {
-      localStorage.setItem('tonymath-ios-install-dismissed', 'true');
-    }
+    localStorage.setItem('tonymath-pwa-dismissed-until', String(Date.now() + 7 * 24 * 60 * 60 * 1000));
+    localStorage.setItem('tonymath-ios-install-dismissed', 'true');
   }
 
   function toggleNotifications(enabled) {
@@ -1135,7 +1179,7 @@ function App() {
     document.body.removeChild(link);
   }
 
-  const isSessionActive = view === 'onboarding' || view === 'lesson'
+  const isSessionActive = view === 'onboarding' || view === 'lesson' || view === 'intro' || view === 'arena' || view === 'buddy' || view === 'diagnostic' || view === 'boss'
 
   if (loadingPack) {
     return (
@@ -1750,6 +1794,7 @@ function App() {
       )}
 
       <main className={isSessionActive ? "main-content full-width" : "main-content"}>
+        <ErrorBoundary onReset={() => setView('home')}>
         {view === 'onboarding' && (
           <OnboardingView progress={progress} setProgress={setProgress} setView={setView} />
         )}
@@ -1920,6 +1965,7 @@ function App() {
             setProgress={setProgress}
           />
         )}
+        </ErrorBoundary>
       </main>
 
       <nav className={`tabbar${isSessionActive ? ' hidden' : ''}`}>
@@ -2483,7 +2529,6 @@ function LessonsMenu({
           <span>⭐ {completedCount * 3} sao</span>
         </div>
       </div>
-
       {/* Chapters as topic cards */}
       {chapters.map(ch => {
         const chLessons = lessons.slice(ch.start, ch.end);
@@ -2548,8 +2593,9 @@ function LessonView(props) {
     validateStep, nextStep, speakStory, onBack, isAnswered,
     progress, hintUnlockedForCurrentStep, setHintUnlockedForCurrentStep,
     showHintConfirm, setShowHintConfirm, setHearts, setMistakes, audioSettings,
-    stepConfettiActive, cooldownActive
+    stepConfettiActive, cooldownActive, stepStartTime, setProgress
   } = props
+  const [storyExpanded, setStoryExpanded] = useState(false)
   const hasFeedback = Boolean(feedback);
   const isCorrect = feedback?.correct;
 
@@ -2561,26 +2607,30 @@ function LessonView(props) {
 
   function handleConfirmHint() {
     playClick();
+    triggerHaptic('light');
     setShowHintConfirm(false);
     setHearts((h) => Math.max(0, h - 1));
     setMistakes((m) => m + 1);
     setHintUnlockedForCurrentStep(true);
     setHintOpen(true);
     const elapsed = stepStartTime ? Math.round((Date.now() - stepStartTime) / 1000) : 0;
-    setProgress(old => updateBehavioralMetrics(old, 'hint_opened', { latency: elapsed, step }));
+    if (setProgress) {
+      setProgress(old => updateBehavioralMetrics(old, 'hint_opened', { latency: elapsed, step }));
+    }
   }
 
   return (
-    <div className="lesson-page" style={{ padding: '12px 16px', paddingBottom: 'calc(var(--nav-h, 72px) + var(--safe-b, 18px) + 16px)' }}>
+    <div className="lesson-page">
       {stepConfettiActive && <ConfettiCanvas active={true} />}
       <div className="practice-top">
         <button className="icon-btn" onClick={() => { playClick(); onBack(); }} aria-label="Quay lại danh sách bài học">←</button>
         <div className="practice-top-center">
-          <b>{lesson.shortTitle}</b>
-          <div className="step-pills">
-            {lesson.steps.map((_, i) => (
-              <span key={i} className={i < step ? 'done' : i === step ? 'now' : ''} />
-            ))}
+          <div className="practice-progress-bar">
+            <div className="practice-progress-fill" style={{ width: `${progressPercent}%` }}></div>
+          </div>
+          <div className="practice-step-indicator">
+            <span className="step-title-text">{lesson.shortTitle}</span>
+            <span className="step-count-badge">Bước {currentStepIdx + 1}/{activeSteps.length}</span>
           </div>
         </div>
         {isChallenge && <span className="challenge-badge">⚡ Thử thách</span>}
@@ -2588,32 +2638,36 @@ function LessonView(props) {
           className={`hint-button ${hintOpen ? 'active' : ''}`} 
           onClick={() => {
             playClick();
+            triggerHaptic('light');
             if (isChallenge) {
               if (hintUnlockedForCurrentStep) {
                 setHintOpen((open) => !open);
-            } else {
-              if (hearts <= 0) {
-                speakText("Con đã hết ❤️, hãy tự suy nghĩ hoặc bắt đầu lại bài nhé!", resolveSpeechRate(audioSettings.speed));
               } else {
-                setShowHintConfirm(true);
+                if (hearts <= 0) {
+                  speakText("Con đã hết ❤️, hãy tự suy nghĩ hoặc bắt đầu lại bài nhé!", resolveSpeechRate(audioSettings.speed));
+                } else {
+                  setShowHintConfirm(true);
+                }
               }
-            }
             } else {
               setHintOpen((open) => {
                 const nextVal = !open;
                 if (nextVal) {
                   const elapsed = stepStartTime ? Math.round((Date.now() - stepStartTime) / 1000) : 0;
-                  setProgress(old => updateBehavioralMetrics(old, 'hint_opened', { latency: elapsed, step }));
+                  if (setProgress) {
+                    setProgress(old => updateBehavioralMetrics(old, 'hint_opened', { latency: elapsed, step }));
+                  }
                 }
                 return nextVal;
               });
             }
           }}
+          aria-label="Xem gợi ý"
         >
           💡
         </button>
-        <div className="hearts-display">
-          {[...Array(3)].map((_, i) => <span key={i}>{i < hearts ? '❤️' : '🤍'}</span>)}
+        <div className="hearts-display" title={`Còn ${hearts} trái tim`}>
+          {[...Array(3)].map((_, i) => <span key={i} className={`heart-icon ${i < hearts ? 'alive' : 'dead'}`}>{i < hearts ? '❤️' : '🤍'}</span>)}
         </div>
       </div>
 
@@ -2633,10 +2687,21 @@ function LessonView(props) {
 
         <section className="exercise-card">
           <div className="story-box-wrapper">
-            <div className="story-box">
-              <button className="sound-button" onClick={speakStory} aria-label="Đọc đề bài">🔊</button>
-              <p>{lesson.story}</p>
-              <span className="story-emoji">{lesson.icon}</span>
+            <div className={`story-box ${step > 0 && !storyExpanded ? 'compact' : ''}`}>
+              <div className="story-main-row">
+                <button className="sound-button" onClick={speakStory} aria-label="Đọc đề bài">🔊</button>
+                <p className="story-text">{lesson.story}</p>
+                <span className="story-emoji">{lesson.icon}</span>
+              </div>
+              {step > 0 && (
+                <button 
+                  className="story-toggle-btn" 
+                  onClick={() => { playClick(); setStoryExpanded(prev => !prev); }}
+                  aria-label={storyExpanded ? "Thu gọn đề bài" : "Xem toàn bộ đề bài"}
+                >
+                  {storyExpanded ? "Thu gọn đề ▴" : "Xem lại đề bài ▾"}
+                </button>
+              )}
             </div>
 
             {hintOpen && (
@@ -2831,9 +2896,10 @@ function UnderstandStep({ lesson }) {
       const values = v.values || [15, 9, 12]
       const sum = values.reduce((a, b) => a + b, 0)
       const avg = sum / values.length
+      const unit = lesson.unit || 'đơn vị'
       return averageEqual 
-        ? `San đều sách: Mỗi bạn sẽ có ${avg} ${lesson.unit || 'quyển sách'} bằng nhau!` 
-        : 'Hãy bấm "San đều sách 🔄" để thấy chiều cao các cột bằng nhau thế nào nhé.'
+        ? `San đều: Mỗi bạn sẽ có ${avg} ${unit} bằng nhau!` 
+        : `Hãy bấm "San đều ${unit} 🔄" để thấy chiều cao các cột bằng nhau thế nào nhé.`
     }
     if (skill === 'Tổng và Hiệu') {
       const big = v.big || 50
@@ -3019,8 +3085,8 @@ function UnderstandStep({ lesson }) {
           })}
         </div>
         <div className="widget-controls">
-          <button className="primary-button btn-widget-interact" onClick={() => { playClick(); setAverageEqual(prev => !prev); }}>
-            {averageEqual ? 'Xem ban đầu ⏪' : 'San đều sách 🔄'}
+          <button className="primary-button btn-widget-interact" onClick={() => { playClick(); triggerHaptic('light'); setAverageEqual(prev => !prev); }}>
+            {averageEqual ? 'Xem ban đầu ⏪' : `San đều ${lesson.unit || 'cột'} 🔄`}
           </button>
         </div>
       </div>
@@ -4247,7 +4313,7 @@ function OptionQuestion({ title, options, selected, setSelected, frozen }) {
             <button 
               disabled={frozen} 
               className={selected === index ? 'option selected' : 'option'} 
-              onClick={() => { playClick(); setSelected(index); }}
+              onClick={() => { playClick(); triggerHaptic('light'); setSelected(index); }}
             >
               <span>{String.fromCharCode(65 + index)}</span>
               <p>{option}</p>
@@ -4294,8 +4360,8 @@ function FactsStep({ lesson, answers, setAnswers, frozen }) {
               </button>
             </div>
             <div>
-              <button disabled={frozen} className={answers[index] === 'known' ? 'selected' : ''} onClick={() => { playClick(); setRole(index, 'known'); }}>✓ Đã biết</button>
-              <button disabled={frozen} className={answers[index] === 'unknown' ? 'selected' : ''} onClick={() => { playClick(); setRole(index, 'unknown'); }}>? Cần tìm</button>
+              <button disabled={frozen} className={answers[index] === 'known' ? 'selected' : ''} onClick={() => { playClick(); triggerHaptic('light'); setRole(index, 'known'); }}>✓ Đã biết</button>
+              <button disabled={frozen} className={answers[index] === 'unknown' ? 'selected' : ''} onClick={() => { playClick(); triggerHaptic('light'); setRole(index, 'unknown'); }}>? Cần tìm</button>
             </div>
           </div>
         ))}
@@ -6242,58 +6308,65 @@ function IntroView({ lesson, progress, onStart, onBack, mascot, getMascotEmotion
   const roles = lesson?.factRoles || [];
 
   return (
-    <div className="intro-container">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', width: '100%' }}>
-        <button className="back-btn" onClick={onBack}>‹ Quay lại</button>
-        <h2 style={{ fontSize: '18px', fontWeight: '900', margin: 0 }}>Chuẩn bị vào bài</h2>
-        <button className="back-btn" onClick={onStart}>Bỏ qua ⏭</button>
+    <div className="intro-page">
+      <div className="intro-header">
+        <button className="back-btn" onClick={() => { playClick(); onBack(); }}>‹ Quay lại</button>
+        <h2 className="intro-title">Chuẩn bị vào bài</h2>
+        <button className="back-btn" onClick={() => { playClick(); onStart(); }}>Bỏ qua ⏭</button>
       </div>
 
-      <div className="intro-mascot-box">
-        <div className="intro-mascot-avatar">
-          <span>{mascotEmoji}</span>
+      <div className="intro-scroll-body">
+        <div className="intro-mascot-box">
+          <div className="intro-mascot-avatar">
+            <span>{mascotEmoji}</span>
+          </div>
+          <div className="intro-bubble">
+            <strong>{mascotName} hướng dẫn:</strong>
+            <p>
+              "Chào bạn nhỏ! Hôm nay chúng mình cùng chinh phục bài toán '{lesson?.shortTitle}'. Chúng mình sẽ trải qua các bước thông minh sau nhé!"
+            </p>
+          </div>
         </div>
-        <div className="intro-bubble">
-          <strong>{mascotName} hướng dẫn:</strong>
-          <p style={{ margin: '6px 0 0 0', fontStyle: 'italic' }}>
-            "Chào bạn nhỏ! Hôm nay chúng mình cùng chinh phục bài toán '{lesson?.shortTitle}'. Chúng mình sẽ trải qua các bước thông minh sau nhé!"
-          </p>
+
+        <div className="intro-step-pills">
+          {stepsList.map((s, idx) => {
+            const label = STEP_LABELS[s]?.[1] || `Bước ${idx + 1}`;
+            const icon = STEP_LABELS[s]?.[0] || '✏️';
+            return (
+              <span key={s} className="intro-step-pill active">
+                {icon} {label}
+              </span>
+            );
+          })}
         </div>
-      </div>
 
-      <div className="intro-step-pills">
-        {stepsList.map((s, idx) => {
-          const label = STEP_LABELS[s]?.[1] || `Bước ${idx + 1}`;
-          const icon = STEP_LABELS[s]?.[0] || '✏️';
-          return (
-            <span key={s} className="intro-step-pill active">
-              {icon} {label}
-            </span>
-          );
-        })}
-      </div>
-
-      <div style={{ textAlign: 'left', marginBottom: '8px' }}>
-        <h4 style={{ margin: 0, fontSize: '14px', fontWeight: '800', color: '#475569' }}>🔍 Tóm tắt dữ kiện:</h4>
-      </div>
-      <div className="facts-list-container">
-        {facts.map((fact, idx) => {
-          const role = roles[idx] || 'known';
-          const isAsk = role === 'unknown';
-          return (
-            <div key={idx} className={`fact-card-item ${isAsk ? 'ask-fact' : 'known-fact'}`}>
-              <div className="num-dot">
-                {isAsk ? '?' : idx + 1}
+        <div className="intro-facts-heading">
+          <h4>🔍 Tóm tắt dữ kiện:</h4>
+        </div>
+        <div className="facts-list-container">
+          {facts.map((fact, idx) => {
+            const role = roles[idx] || 'known';
+            const isAsk = role === 'unknown';
+            return (
+              <div key={idx} className={`fact-card-item ${isAsk ? 'ask-fact' : 'known-fact'}`}>
+                <div className="num-dot">
+                  {isAsk ? '?' : idx + 1}
+                </div>
+                <div>{fact}</div>
               </div>
-              <div>{fact}</div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
 
-      <button className="hero-primary-btn" style={{ width: '100%', padding: '14px', borderRadius: '16px', fontSize: '16px' }} onClick={onStart}>
-        Bắt đầu học ngay · ❤️ 3
-      </button>
+      <div className="intro-bottom-bar">
+        <button 
+          className="hero-primary-btn intro-start-btn" 
+          onClick={() => { playClick(); triggerHaptic('light'); onStart(); }}
+        >
+          Bắt đầu học ngay · ❤️ 3
+        </button>
+      </div>
     </div>
   );
 }
