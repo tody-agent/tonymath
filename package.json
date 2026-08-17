@@ -9,7 +9,7 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "test:gate": "node scripts/test-gate.js",
-    "deploy": "vite build && wrangler pages deploy dist --project-name tonymath"
+    "deploy": "vite build && npx wrangler pages deploy dist --project-name tonymath"
   },
   "dependencies": {
     "react": "^19.2.7",
