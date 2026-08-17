@@ -194,42 +194,86 @@ function speakManual(text) {
   speakText(text, globalRate);
 }
 
+function getUrlTestParams() {
+  if (typeof window === 'undefined') return {};
+  try {
+    const params = new URLSearchParams(window.location.search);
+    return {
+      view: params.get('view'),
+      step: params.has('step') ? parseInt(params.get('step'), 10) : undefined,
+      feedback: params.get('feedback'),
+      hintConfirm: params.get('hintConfirm') === 'true',
+      hintOpen: params.get('hintOpen') === 'true',
+      guide: params.get('guide'),
+      mathGate: params.get('mathGate') === 'true',
+      chest: params.get('chest') === 'true',
+      boss: params.get('boss') === 'true',
+      gameOver: params.get('gameOver') === 'true',
+      pwaPrompt: params.get('pwaPrompt') === 'true',
+      iosModal: params.get('iosModal') === 'true',
+      welcomeNudge: params.get('welcomeNudge') === 'true',
+      badgeInfo: params.get('badgeInfo')
+    };
+  } catch {
+    return {};
+  }
+}
+
 function App() {
-  const [progress, setProgress] = useState(loadProgress)
-  const [view, setView] = useState(progress.onboarded ? 'home' : 'onboarding')
+  const urlParams = useMemo(() => getUrlTestParams(), [])
+  const [progress, setProgress] = useState(() => {
+    const loaded = loadProgress();
+    if (urlParams.view && urlParams.view !== 'onboarding') {
+      return {
+        ...loaded,
+        onboarded: true,
+        profile: { ...loaded.profile, name: loaded.profile?.name || 'Bảo Minh', mascot: loaded.profile?.mascot || 'owl' }
+      };
+    }
+    return loaded;
+  })
+  const [view, setView] = useState(() => urlParams.view || (progress.onboarded ? 'home' : 'onboarding'))
   const [deferredPrompt, setDeferredPrompt] = useState(null)
-  const [showInstallPrompt, setShowInstallPrompt] = useState(false)
+  const [showInstallPrompt, setShowInstallPrompt] = useState(() => urlParams.pwaPrompt || false)
   const [lessonIndex, setLessonIndex] = useState(progress.currentLesson || 0)
-  const [step, setStep] = useState(0)
+  const [step, setStep] = useState(() => urlParams.step !== undefined ? urlParams.step : 0)
   const [audioSettings, setAudioSettings] = useState(loadAudioSettings)
   const [audioPanelOpen, setAudioPanelOpen] = useState(false)
   const [selected, setSelected] = useState(null)
   const [secondSelected, setSecondSelected] = useState(null)
   const [factAnswers, setFactAnswers] = useState([])
   const [numberAnswer, setNumberAnswer] = useState('')
-  const [feedback, setFeedback] = useState(null)
-  const [hintOpen, setHintOpen] = useState(false)
+  const [feedback, setFeedback] = useState(() => {
+    if (urlParams.feedback === 'correct') {
+      return { correct: true, message: 'Rất chính xác! Con đã tìm ra đúng phép tính và giải thích rất thông minh 🎉' }
+    }
+    if (urlParams.feedback === 'wrong') {
+      return { correct: false, message: 'Chưa chính xác rồi. Hãy đọc kỹ lại dữ kiện và quan sát hình minh họa nhé 🌱' }
+    }
+    return null
+  })
+  const [hintOpen, setHintOpen] = useState(() => urlParams.hintOpen || false)
   const [hintUnlockedForCurrentStep, setHintUnlockedForCurrentStep] = useState(false)
-  const [showHintConfirm, setShowHintConfirm] = useState(false)
-  const [isGameOver, setIsGameOver] = useState(false)
+  const [showHintConfirm, setShowHintConfirm] = useState(() => urlParams.hintConfirm || false)
+  const [isGameOver, setIsGameOver] = useState(() => urlParams.gameOver || false)
   const [mistakes, setMistakes] = useState(0)
   const [hearts, setHearts] = useState(3)
   const [menuOpen, setMenuOpen] = useState(false)
   const [profileTab, setProfileTab] = useState('kid')
-  const [showMathGate, setShowMathGate] = useState(false)
-  const [mathGateQuestion, setMathGateQuestion] = useState(null)
+  const [showMathGate, setShowMathGate] = useState(() => urlParams.mathGate || false)
+  const [mathGateQuestion, setMathGateQuestion] = useState(() => urlParams.mathGate ? generateMathGateQuestion() : null)
   const [mathGateInput, setMathGateInput] = useState('')
   const [mathGateError, setMathGateError] = useState('')
   const [selectedBadgeInfo, setSelectedBadgeInfo] = useState(null)
   const [mascotSpeechBubble, setMascotSpeechBubble] = useState('')
   const mascotBubbleTimeout = useRef(null)
   const [isDevMode, setIsDevMode] = useState(false)
-  const [activeGuide, setActiveGuide] = useState(null)
+  const [activeGuide, setActiveGuide] = useState(() => urlParams.guide || null)
   const [isEditingName, setIsEditingName] = useState(false)
   const [tempName, setTempName] = useState('')
-  const [showIosInstructions, setShowIosInstructions] = useState(false)
+  const [showIosInstructions, setShowIosInstructions] = useState(() => urlParams.iosModal || false)
   const [stepFailsSession, setStepFailsSession] = useState({})
-  const [showWelcomeNudge, setShowWelcomeNudge] = useState(false)
+  const [showWelcomeNudge, setShowWelcomeNudge] = useState(() => urlParams.welcomeNudge || false)
   const [prevXpLevel, setPrevXpLevel] = useState(() => Math.floor((progress.xp || 0) / 100) + 1)
   const [newlyUnlockedAchievements, setNewlyUnlockedAchievements] = useState([])
   const isInitialMount = useRef(true)
@@ -240,8 +284,8 @@ function App() {
   const [stepConfettiActive, setStepConfettiActive] = useState(false)
   const [currentStreak, setCurrentStreak] = useState(0)
 
-  const [showChestOverlay, setShowChestOverlay] = useState(false)
-  const [showBossOverlay, setShowBossOverlay] = useState(false)
+  const [showChestOverlay, setShowChestOverlay] = useState(() => urlParams.chest || false)
+  const [showBossOverlay, setShowBossOverlay] = useState(() => urlParams.boss || false)
   const [chestRewardAwarded, setChestRewardAwarded] = useState(false)
 
   // Dynamic lesson packs states
@@ -1179,7 +1223,14 @@ function App() {
     document.body.removeChild(link);
   }
 
-  const isSessionActive = view === 'onboarding' || view === 'lesson' || view === 'intro' || view === 'arena' || view === 'buddy' || view === 'diagnostic' || view === 'boss'
+  const isSessionActive = view === 'onboarding' || view === 'lesson' || view === 'intro' || view === 'diagnostic' || view === 'boss';
+
+  const todayDateStr = new Date().toISOString().slice(0, 10);
+  const activeDailyQuests = getDailyQuests(activeProgress, todayDateStr);
+  const dailyQuestsDoneCount = activeDailyQuests.filter(q => q.completed).length;
+  const dailyQuestsTotalCount = activeDailyQuests.length;
+  const questsSidebarBadge = `${dailyQuestsDoneCount}/${dailyQuestsTotalCount}`;
+  const mistakeLessonsCount = learningPlan?.reviews?.length || 0;
 
   if (loadingPack) {
     return (
@@ -1666,6 +1717,13 @@ function App() {
                       {/* Khu vực nhà phát triển / Đặt lại */}
                       <div className="profile-sheet-footer-actions" style={{ borderTop: '2px dashed #f1f5f9', paddingTop: '16px', marginTop: '16px' }}>
                         <button 
+                          onClick={() => { playClick(); setMenuOpen(false); setView('onboarding'); }} 
+                          className="btn-styled-dev"
+                          style={{ background: '#eef2ff', color: '#4f46e5', borderColor: '#c7d2fe' }}
+                        >
+                          ✨ Xem lại màn hình Chào mừng (Onboarding)
+                        </button>
+                        <button 
                           onClick={() => { setIsDevMode(prev => !prev); setMenuOpen(false); }} 
                           className="btn-styled-dev"
                         >
@@ -1777,17 +1835,46 @@ function App() {
 
       {!isSessionActive && (
         <aside className="sidebar">
-          <nav>
-            <NavButton icon="🏠" label="Home" active={view === 'home'} onClick={() => setView('home')} />
-            <NavButton icon="🗺️" label="Chủ đề" active={view === 'lessons-menu'} onClick={() => setView('lessons-menu')} />
-            <NavButton icon="✏️" label="Bài tập" active={view === 'lesson' || view === 'intro'} onClick={() => {
-              if (learningPlan?.primary) {
-                openLesson(learningPlan.primary.index);
-              } else {
-                openLesson(0);
-              }
-            }} />
-            <NavButton icon="👤" label="Hồ sơ" active={view === 'progress'} onClick={() => setView('progress')} />
+          <nav className="sidebar-nav">
+            <div className="sidebar-group">
+              <span className="sidebar-group-title">Học tập</span>
+              <NavButton icon="🏠" label="Trang chủ" active={view === 'home'} onClick={() => setView('home')} />
+              <NavButton icon="🗺️" label="Chủ đề bài học" active={view === 'lessons-menu'} onClick={() => setView('lessons-menu')} />
+              <NavButton icon="⏱️" label="Đấu trường 60s" active={view === 'arena'} onClick={handleOpenArena} badge="HOT" badgeType="hot" />
+              <NavButton icon="🦉" label="Bạn học Cú Ú" active={view === 'buddy'} onClick={handleOpenBuddy} />
+            </div>
+
+            <div className="sidebar-group">
+              <span className="sidebar-group-title">Thành tích</span>
+              <NavButton 
+                icon="🎯" 
+                label="Nhiệm vụ" 
+                active={view === 'quests'} 
+                onClick={() => { playClick(); setView('quests'); }} 
+                badge={questsSidebarBadge} 
+                badgeType="quest" 
+              />
+              <NavButton 
+                icon="🏆" 
+                label="Bảng xếp hạng" 
+                active={view === 'leaderboard'} 
+                onClick={() => { playClick(); setView('leaderboard'); }} 
+              />
+              <NavButton 
+                icon="📓" 
+                label="Sổ tay lỗi sai" 
+                active={view === 'review-list'} 
+                onClick={() => { playClick(); setView('review-list'); }} 
+                badge={mistakeLessonsCount > 0 ? `${mistakeLessonsCount}` : null} 
+                badgeType="mistake" 
+              />
+            </div>
+
+            <div className="sidebar-group">
+              <span className="sidebar-group-title">Cá nhân</span>
+              <NavButton icon="📊" label="Hồ sơ & Năng lực" active={view === 'progress'} onClick={() => setView('progress')} />
+              <NavButton icon="⚙️" label="Cài đặt phụ huynh" active={menuOpen && profileTab === 'parent'} onClick={() => { playClick(); setMenuOpen(true); handleOpenParentGate(); }} />
+            </div>
           </nav>
           <CoachSidebar progress={progress} plan={learningPlan} openLesson={openLesson} getMascotEmotion={getMascotEmotion} />
         </aside>
@@ -1816,6 +1903,9 @@ function App() {
             onOpenChest={() => { playClick(); setChestRewardAwarded(false); setShowChestOverlay(true); }}
             onOpenBoss={() => { playClick(); setShowBossOverlay(true); }}
             onOpenQuests={() => { playClick(); setView('quests'); }}
+            onOpenLeaderboard={() => { playClick(); setView('leaderboard'); }}
+            onOpenReview={() => { playClick(); setView('review-list'); }}
+            isUnlocked={isUnlocked}
           />
         )}
         {view === 'lessons-menu' && (
@@ -2233,7 +2323,7 @@ function SectionHeading({ num, title, desc, textToSpeak }) {
   )
 }
 
-function NavButton({ icon, label, active, onClick }) {
+function NavButton({ icon, label, active, onClick, badge, badgeType }) {
   return (
     <button 
       className={`tab${active ? ' active' : ''}`} 
@@ -2244,6 +2334,7 @@ function NavButton({ icon, label, active, onClick }) {
     >
       <span className="ico">{icon}</span>
       <span className="lbl">{label}</span>
+      {badge && <span className={`nav-badge badge-${badgeType || 'default'}`}>{badge}</span>}
     </button>
   )
 }
@@ -2264,14 +2355,16 @@ function Home({
   getMascotEmotion,
   onOpenChest,
   onOpenBoss,
-  onOpenQuests
+  onOpenQuests,
+  onOpenLeaderboard,
+  onOpenReview,
+  isUnlocked
 }) {
-  const plan = getLearningPlan(lessons, progress)
+  const plan = getLearningPlan(lessons, progress);
   const mascot = progress?.profile?.mascot || 'owl';
   const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
   const mascotEmoji = getMascotEmotion ? getMascotEmotion(mascot) : profile.emoji;
   const mascotName = profile.name;
-  const themeClass = `theme-${mascot}`;
   const completedCount = Object.keys(progress.completed || {}).length;
 
   let speechBubbleText = '';
@@ -2290,8 +2383,8 @@ function Home({
   const handleSpeakMascot = () => {
     cancelSpeech();
     const rate = resolveSpeechRate(audioSettings?.speed || 'normal');
-    const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
-    speakText(speechBubbleText, rate * (profile.rateOffset || 1.0), null, null, profile.pitch || 1.0);
+    const mProfile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
+    speakText(speechBubbleText, rate * (mProfile.rateOffset || 1.0), null, null, mProfile.pitch || 1.0);
   };
 
   const gradeLabel = currentGrade === 'grade-1' ? 'Lớp 1' : currentGrade === 'grade-2' ? 'Lớp 2' : currentGrade === 'grade-3' ? 'Lớp 3' : currentGrade === 'grade-4' ? 'Lớp 4' : 'Lớp 5';
@@ -2301,8 +2394,35 @@ function Home({
   const completedQuestsCount = quests.filter(q => q.completed).length;
   const totalQuestsCount = quests.length;
 
+  // Split into 3 chapters for desktop roadmap
+  const totalLessons = lessons.length;
+  const ch1End = Math.min(30, totalLessons);
+  const ch2End = Math.min(60, totalLessons);
+  
+  const chapters = [
+    { id: 1, title: 'Chương I: Khởi động & Làm quen', start: 0, end: ch1End, icon: '🌱' },
+    { id: 2, title: 'Chương II: Thực hành & Tăng tốc', start: ch1End, end: ch2End, icon: '🚀' },
+    { id: 3, title: 'Chương III: Chinh phục & Nâng cao', start: ch2End, end: totalLessons, icon: '🏆' }
+  ].filter(ch => ch.start < ch.end);
+
+  const pathIndex = lessons.findIndex(l => !progress.completed?.[l.id]);
+  const activeChapterId = pathIndex === -1 ? 1 : pathIndex < ch1End ? 1 : pathIndex < ch2End ? 2 : 3;
+
+  const [expandedChapters, setExpandedChapters] = useState({
+    1: true,
+    2: activeChapterId >= 2,
+    3: activeChapterId === 3
+  });
+
+  const toggleChapter = (id) => {
+    setExpandedChapters(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const chestOpened = !!progress.completed?.[`${currentGrade || 'grade-4'}_${currentSubject || 'math'}_unit_chest`] || !!progress.completed?.['unit_chest'];
+  const bossCompleted = !!progress.completed?.['unit_boss'];
+
   return (
-    <div className="home-dashboard-page" style={{ padding: '16px', overflowY: 'auto', minHeight: '100dvh', boxSizing: 'border-box', paddingBottom: 'calc(var(--nav-h, 72px) + var(--safe-b, 18px) + 16px)' }}>
+    <div className="home-dashboard-page">
       {/* Top Stats Header */}
       <div className="top-stats">
         <div className="brand-mini">
@@ -2333,144 +2453,336 @@ function Home({
         )
       })()}
 
-      {/* Hero Card */}
-      {plan?.primary ? (
-        <div className="hero" onClick={handleSpeakMascot}>
-          <div className="hero-top">
-            <div>
-              <h1>{plan.primary.kind === 'review' ? 'Ôn bài cũ' : `Tiếp tục ${gradeLabel}`}</h1>
-              <p>{plan.primary.kind === 'review'
-                ? `Ôn lại "${plan.primary.lesson.shortTitle}" để ghi nhớ tốt hơn.`
-                : `Còn ${remainingCount} bài nữa. Chinh phục "${plan.primary.lesson.shortTitle}" nhé!`
-              }</p>
-            </div>
-            <div className="mascot-bubble">{mascotEmoji}</div>
-          </div>
-          <div className="hero-cta">
-            <button className="btn" onClick={(e) => { e.stopPropagation(); playSfx('click', audioSettings?.muted); openLesson(plan.primary.index); }}>
-              {plan.primary.kind === 'review' ? 'Ôn tập ngay' : 'Bắt đầu học'}
-            </button>
-            <button className="btn secondary" onClick={(e) => { e.stopPropagation(); playSfx('click', audioSettings?.muted); setView('lessons-menu'); }}>
-              Đổi chủ đề
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div className="hero" onClick={handleSpeakMascot}>
-          <div className="hero-top">
-            <div>
-              <h1>Hoàn thành xuất sắc! 🎉</h1>
-              <p>Con đã vượt qua tất cả bài học. Thử sức Đấu trường nhé!</p>
-            </div>
-            <div className="mascot-bubble">{mascotEmoji}</div>
-          </div>
-          <div className="hero-cta">
-            <button className="btn" onClick={(e) => { e.stopPropagation(); playSfx('click', audioSettings?.muted); onOpenArena(); }}>
-              Vào đấu trường ⚡
-            </button>
-            <button className="btn secondary" onClick={(e) => { e.stopPropagation(); playSfx('click', audioSettings?.muted); setView('lessons-menu'); }}>
-              Xem lại bài
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Daily Quest Card */}
-      <button className="card daily" onClick={onOpenQuests}>
-        <div className="icon">🎯</div>
-        <div style={{ flex: 1 }}>
-          <b>Nhiệm vụ hôm nay</b>
-          <small>{completedQuestsCount}/{totalQuestsCount} xong · streak {progress.streak || 0} ngày</small>
-        </div>
-        <div className="score">
-          <b>{completedQuestsCount}/{totalQuestsCount}</b>
-          <small>nv</small>
-        </div>
-      </button>
-
-      {/* Learning Path */}
-      <div className="card" style={{ padding: '18px', marginBottom: '14px', textAlign: 'center' }}>
-        <div className="section-title" style={{ marginTop: 0 }}>
-          <h2>🗺️ Đường học của em</h2>
-          <button className="linkish" onClick={() => setView('lessons-menu')}>Xem tất cả ›</button>
-        </div>
-        <LearningPath
-          lessons={lessons}
-          progress={progress}
-          openLesson={openLesson}
-          activeProgress={progress}
-          onOpenChest={onOpenChest}
-          onOpenBoss={onOpenBoss}
-        />
-      </div>
-
-      {/* Grade Progress */}
-      <div className="card" style={{ padding: '14px 16px', marginBottom: '14px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-          <b style={{ fontSize: '14px' }}>🏫 {gradeLabel}</b>
-          <small style={{ fontSize: '12px', fontWeight: 800, color: 'var(--muted)' }}>{completedCount}/{lessons.length} bài ({Math.round((completedCount / (lessons.length || 1)) * 100)}%)</small>
-        </div>
-        <div className="progress-track" style={{ height: '10px' }}>
-          <i style={{ width: `${(completedCount / (lessons.length || 1)) * 100}%` }} />
-        </div>
-      </div>
-
-      {/* Quick Activities */}
-      <div className="section-title">
-        <h2>🎮 Rèn luyện thêm</h2>
-      </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '14px' }}>
-        <button className="card" style={{ padding: '14px', textAlign: 'center', cursor: 'pointer', border: 0 }} onClick={onOpenArena}>
-          <span style={{ fontSize: '28px' }}>⏱️</span>
-          <b style={{ display: 'block', fontSize: '13px', marginTop: '6px' }}>Đấu trường</b>
-          <small style={{ display: 'block', fontSize: '11px', color: 'var(--muted)', fontWeight: 700, marginTop: '2px' }}>Tính nhanh 60s</small>
-        </button>
-        <button className="card" style={{ padding: '14px', textAlign: 'center', cursor: 'pointer', border: 0 }} onClick={onOpenBuddy}>
-          <span style={{ fontSize: '28px' }}>🐢</span>
-          <b style={{ display: 'block', fontSize: '13px', marginTop: '6px' }}>Góc cố vấn</b>
-          <small style={{ display: 'block', fontSize: '11px', color: 'var(--muted)', fontWeight: 700, marginTop: '2px' }}>Sửa lỗi sai</small>
-        </button>
-      </div>
-
-      {/* Recently Studied + Review */}
-      {(() => {
-        const recentlyStudied = getRecentlyStudiedLesson(lessons, progress, currentGrade, currentSubject);
-        const actualReview = plan?.reviews?.find(r => r.lesson.id !== plan.primary?.lesson?.id) || plan?.reviews?.[0];
-        if (!recentlyStudied && !actualReview) return null;
-        return (
-          <>
-            <div className="section-title"><h2>📅 Nhật ký</h2></div>
-            {recentlyStudied && (() => {
-              const recIndex = lessons.findIndex(l => l.id === recentlyStudied.id);
-              const done = progress.completed[recentlyStudied.id];
-              return (
-                <button className="card" style={{ padding: '14px', marginBottom: '10px', width: '100%', textAlign: 'left', cursor: 'pointer', display: 'grid', gridTemplateColumns: '40px 1fr', gap: '12px', alignItems: 'center', border: 0 }} onClick={() => openLesson(recIndex)}>
-                  <span style={{ fontSize: '28px' }}>{recentlyStudied.icon}</span>
-                  <div>
-                    <b style={{ fontSize: '14px' }}>{recentlyStudied.shortTitle}</b>
-                    <small style={{ display: 'block', fontSize: '11px', color: 'var(--muted)', fontWeight: 700, marginTop: '2px' }}>
-                      {done ? `⭐ ${done.stars}/3 · ${done.mistakes} lỗi` : 'Đang dở dang'}
-                    </small>
-                  </div>
-                </button>
-              );
-            })()}
-            {actualReview && (
-              <button className="card" style={{ padding: '14px', marginBottom: '10px', width: '100%', textAlign: 'left', cursor: 'pointer', display: 'grid', gridTemplateColumns: '40px 1fr', gap: '12px', alignItems: 'center', border: 0, borderLeft: '3px solid var(--orange, #f39a41)' }} onClick={() => openLesson(actualReview.index)}>
-                <span style={{ fontSize: '28px' }}>{actualReview.lesson.icon}</span>
+      <div className="home-dashboard-layout">
+        {/* Main Column: Hero + Chapter Roadmap Islands */}
+        <div className="home-main-col">
+          {/* Hero Card */}
+          {plan?.primary ? (
+            <div className="hero" onClick={handleSpeakMascot}>
+              <div className="hero-top">
                 <div>
-                  <b style={{ fontSize: '14px' }}>🔄 {actualReview.lesson.shortTitle}</b>
-                  <small style={{ display: 'block', fontSize: '11px', color: 'var(--muted)', fontWeight: 700, marginTop: '2px' }}>
-                    {actualReview.mistakes} lỗi cần ôn
-                  </small>
+                  <h1>{plan.primary.kind === 'review' ? 'Ôn bài cũ' : `Tiếp tục ${gradeLabel}`}</h1>
+                  <p>{plan.primary.kind === 'review'
+                    ? `Ôn lại "${plan.primary.lesson.shortTitle}" để ghi nhớ tốt hơn.`
+                    : `Còn ${remainingCount} bài nữa. Chinh phục "${plan.primary.lesson.shortTitle}" nhé!`
+                  }</p>
                 </div>
+                <div className="mascot-bubble">{mascotEmoji}</div>
+              </div>
+              <div className="hero-cta">
+                <button className="btn" onClick={(e) => { e.stopPropagation(); playSfx('click', audioSettings?.muted); openLesson(plan.primary.index); }}>
+                  {plan.primary.kind === 'review' ? 'Ôn tập ngay' : 'Bắt đầu học'}
+                </button>
+                <button className="btn secondary" onClick={(e) => { e.stopPropagation(); playSfx('click', audioSettings?.muted); setView('lessons-menu'); }}>
+                  Đổi chủ đề
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="hero" onClick={handleSpeakMascot}>
+              <div className="hero-top">
+                <div>
+                  <h1>Hoàn thành xuất sắc! 🎉</h1>
+                  <p>Con đã vượt qua tất cả bài học. Thử sức Đấu trường nhé!</p>
+                </div>
+                <div className="mascot-bubble">{mascotEmoji}</div>
+              </div>
+              <div className="hero-cta">
+                <button className="btn" onClick={(e) => { e.stopPropagation(); playSfx('click', audioSettings?.muted); onOpenArena(); }}>
+                  Vào đấu trường ⚡
+                </button>
+                <button className="btn secondary" onClick={(e) => { e.stopPropagation(); playSfx('click', audioSettings?.muted); setView('lessons-menu'); }}>
+                  Xem lại bài
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Grade Progress Bar */}
+          <div className="card" style={{ padding: '14px 18px', marginBottom: '16px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+              <b style={{ fontSize: '15px' }}>🏫 Tiến độ {gradeLabel}</b>
+              <small style={{ fontSize: '13px', fontWeight: 800, color: 'var(--muted)' }}>
+                {completedCount}/{lessons.length} bài ({Math.round((completedCount / (lessons.length || 1)) * 100)}%)
+              </small>
+            </div>
+            <div className="progress-track" style={{ height: '12px' }}>
+              <i style={{ width: `${(completedCount / (lessons.length || 1)) * 100}%` }} />
+            </div>
+          </div>
+
+          {/* Desktop Chapter Islands Roadmap */}
+          <div className="desktop-roadmap-wrapper">
+            <div className="section-title" style={{ marginTop: 0, marginBottom: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h2>🗺️ Lộ trình chinh phục {gradeLabel}</h2>
+              <button className="linkish" onClick={() => setView('lessons-menu')}>Xem dạng danh sách ›</button>
+            </div>
+
+            {chapters.map(ch => {
+              const chLessons = lessons.slice(ch.start, ch.end);
+              const chCompleted = chLessons.filter(l => progress.completed?.[l.id]).length;
+              const chProgress = Math.round((chCompleted / (chLessons.length || 1)) * 100);
+              const isExpanded = expandedChapters[ch.id];
+
+              return (
+                <div key={ch.id} className="chapter-island-card card" style={{ marginBottom: '16px', padding: '16px' }}>
+                  <div className="chapter-island-head" onClick={() => toggleChapter(ch.id)} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <span className="chapter-icon-badge" style={{ fontSize: '24px', background: ch.id === 1 ? '#e8f5e9' : ch.id === 2 ? '#fff3e0' : '#fce4ec', width: '44px', height: '44px', borderRadius: '12px', display: 'grid', placeItems: 'center' }}>
+                        {ch.icon}
+                      </span>
+                      <div>
+                        <b style={{ fontSize: '15px', color: '#1e293b' }}>{ch.title}</b>
+                        <small style={{ display: 'block', color: 'var(--muted)', fontSize: '12px', fontWeight: 700, marginTop: '2px' }}>
+                          {chCompleted}/{chLessons.length} bài hoàn thành · {chProgress}%
+                        </small>
+                      </div>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <div className="progress-ring-mini" style={{ fontWeight: 800, fontSize: '12px', color: '#64748b' }}>
+                        {chProgress}%
+                      </div>
+                      <span style={{ fontSize: '14px', color: '#94a3b8' }}>{isExpanded ? '▲' : '▼'}</span>
+                    </div>
+                  </div>
+
+                  {isExpanded && (
+                    <div className="chapter-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: '10px', marginTop: '16px' }}>
+                      {chLessons.map((l, idx) => {
+                        const originalIndex = ch.start + idx;
+                        const complete = progress.completed?.[l.id];
+                        const unlocked = isUnlocked ? isUnlocked(originalIndex) : true;
+                        const isCurrent = !complete && unlocked;
+
+                        return (
+                          <button
+                            key={l.id}
+                            className={`desktop-lesson-cell ${complete ? 'done' : isCurrent ? 'current' : unlocked ? 'unlocked' : 'locked'}`}
+                            onClick={() => openLesson(originalIndex)}
+                            disabled={!unlocked}
+                            title={`${originalIndex + 1}. ${l.shortTitle}`}
+                          >
+                            <span className="cell-num">{originalIndex + 1}</span>
+                            <span className="cell-icon">{unlocked ? (l.icon || '📖') : '🔒'}</span>
+                            <span className="cell-title">{l.shortTitle}</span>
+                            {complete && (
+                              <span className="cell-stars">
+                                {'⭐'.repeat(complete.stars || 1)}
+                              </span>
+                            )}
+                          </button>
+                        );
+                      })}
+                      {ch.id === 3 && (
+                        <>
+                          <button
+                            className={`desktop-lesson-cell special-cell ${chestOpened ? 'done' : (completedCount === lessons.length ? 'current' : 'locked')}`}
+                            onClick={onOpenChest}
+                            title="Rương phần thưởng Unit"
+                          >
+                            <span className="cell-num">🎁</span>
+                            <span className="cell-icon">{chestOpened ? '✨' : '🎁'}</span>
+                            <span className="cell-title">Rương Unit</span>
+                          </button>
+                          <button
+                            className={`desktop-lesson-cell special-cell ${bossCompleted ? 'done' : (completedCount === lessons.length && chestOpened ? 'current' : 'locked')}`}
+                            onClick={onOpenBoss}
+                            title="Thử thách Trùm Boss"
+                          >
+                            <span className="cell-num">⚔️</span>
+                            <span className="cell-icon">⚔️</span>
+                            <span className="cell-title">Đấu Boss</span>
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Mobile Learning Path (Hidden on Desktop via CSS) */}
+          <div className="card mobile-only-path" style={{ padding: '18px', marginBottom: '14px', textAlign: 'center' }}>
+            <div className="section-title" style={{ marginTop: 0 }}>
+              <h2>🗺️ Đường học của em</h2>
+              <button className="linkish" onClick={() => setView('lessons-menu')}>Xem tất cả ›</button>
+            </div>
+            <LearningPath
+              lessons={lessons}
+              progress={progress}
+              openLesson={openLesson}
+              activeProgress={progress}
+              onOpenChest={onOpenChest}
+              onOpenBoss={onOpenBoss}
+            />
+          </div>
+
+          {/* Recently Studied + Review */}
+          {(() => {
+            const recentlyStudied = getRecentlyStudiedLesson(lessons, progress, currentGrade, currentSubject);
+            const actualReview = plan?.reviews?.find(r => r.lesson.id !== plan.primary?.lesson?.id) || plan?.reviews?.[0];
+            if (!recentlyStudied && !actualReview) return null;
+            return (
+              <div className="card" style={{ padding: '16px', marginBottom: '16px' }}>
+                <div className="section-title" style={{ marginTop: 0, marginBottom: '12px' }}><h2>📅 Lịch sử học tập gần đây</h2></div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '12px' }}>
+                  {recentlyStudied && (() => {
+                    const recIndex = lessons.findIndex(l => l.id === recentlyStudied.id);
+                    const done = progress.completed[recentlyStudied.id];
+                    return (
+                      <button className="history-lesson-item" onClick={() => openLesson(recIndex)}>
+                        <span className="hist-icon">{recentlyStudied.icon}</span>
+                        <div>
+                          <b>{recentlyStudied.shortTitle}</b>
+                          <small>
+                            {done ? `⭐ ${done.stars}/3 · ${done.mistakes} lỗi` : 'Đang học dở dang'}
+                          </small>
+                        </div>
+                      </button>
+                    );
+                  })()}
+                  {actualReview && (
+                    <button className="history-lesson-item review-highlight" onClick={() => openLesson(actualReview.index)}>
+                      <span className="hist-icon">{actualReview.lesson.icon}</span>
+                      <div>
+                        <b>🔄 Cần ôn: {actualReview.lesson.shortTitle}</b>
+                        <small>{actualReview.mistakes} lỗi sai cần luyện lại</small>
+                      </div>
+                    </button>
+                  )}
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+
+        {/* Right Sidecar Column (Desktop Cockpit Widgets) */}
+        <aside className="home-sidecar-panel">
+          {/* Daily Quests Widget */}
+          <div className="sidecar-widget-card card">
+            <div className="widget-header" onClick={onOpenQuests} style={{ cursor: 'pointer' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '20px' }}>🎯</span>
+                <b style={{ fontSize: '14px' }}>Nhiệm vụ hôm nay</b>
+              </div>
+              <span className="widget-badge">{completedQuestsCount}/{totalQuestsCount}</span>
+            </div>
+            <div className="quests-mini-list">
+              {quests.map(q => (
+                <div key={q.id} className={`quest-mini-item ${q.completed ? 'done' : ''}`} onClick={onOpenQuests}>
+                  <span className="quest-checkbox">{q.completed ? '✅' : '⚪'}</span>
+                  <span className="quest-text">{q.title}</span>
+                  <span className="quest-reward">+{q.reward} XP</span>
+                </div>
+              ))}
+            </div>
+            <button className="sidecar-action-btn" onClick={onOpenQuests}>
+              Xem chi tiết nhiệm vụ ›
+            </button>
+          </div>
+
+          {/* Speed Arena Teaser Widget */}
+          <div className="sidecar-widget-card card arena-sidecar">
+            <div className="widget-header">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '20px' }}>⏱️</span>
+                <b style={{ fontSize: '14px' }}>Đấu trường Tính Nhanh</b>
+              </div>
+              <span className="widget-badge hot">60s</span>
+            </div>
+            <p className="widget-desc">Thử thách phản xạ toán học, giải càng nhanh điểm thưởng càng cao!</p>
+            <div className="arena-sidecar-stats">
+              <div className="stat-box">
+                <span>🔥 Chuỗi</span>
+                <b>{progress.streak || 0} ngày</b>
+              </div>
+              <div className="stat-box">
+                <span>⭐ Điểm</span>
+                <b>{progress.xp || 0} XP</b>
+              </div>
+            </div>
+            <button className="sidecar-primary-btn" onClick={onOpenArena}>
+              Bắt đầu đấu trường ⚡
+            </button>
+          </div>
+
+          {/* AI Buddy Advisor Widget */}
+          <div className="sidecar-widget-card card buddy-sidecar">
+            <div className="widget-header">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '20px' }}>{mascotEmoji}</span>
+                <b style={{ fontSize: '14px' }}>{mascotName} Cố Vấn</b>
+              </div>
+              <button className="speech-mini-icon" onClick={handleSpeakMascot} title="Nghe lời khuyên">🔊</button>
+            </div>
+            <p className="buddy-speech-preview">"{speechBubbleText}"</p>
+            <button className="sidecar-soft-btn" onClick={onOpenBuddy}>
+              Sửa lỗi cùng {mascotName} 🐢
+            </button>
+          </div>
+
+          {/* Mistakes Notebook Widget */}
+          {plan?.reviews?.length > 0 ? (
+            <div className="sidecar-widget-card card mistake-sidecar">
+              <div className="widget-header" onClick={onOpenReview} style={{ cursor: 'pointer' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontSize: '20px' }}>📓</span>
+                  <b style={{ fontSize: '14px' }}>Sổ tay lỗi sai</b>
+                </div>
+                <span className="widget-badge danger">{plan.reviews.length} bài</span>
+              </div>
+              <p className="widget-desc">Có {plan.reviews.length} bài học bé từng làm sai cần ôn tập lại để củng cố kiến thức.</p>
+              <button className="sidecar-action-btn" onClick={onOpenReview}>
+                Mở sổ tay câu sai ›
               </button>
-            )}
-          </>
-        );
-      })()}
+            </div>
+          ) : (
+            <div className="sidecar-widget-card card perfect-sidecar">
+              <div className="widget-header">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontSize: '20px' }}>✨</span>
+                  <b style={{ fontSize: '14px' }}>Phong độ xuất sắc</b>
+                </div>
+              </div>
+              <p className="widget-desc">Không có bài học nào bị sai nhiều. Hãy tiếp tục phát huy nhé!</p>
+            </div>
+          )}
+
+          {/* Leaderboard Quick CTA */}
+          <div className="sidecar-widget-card card leaderboard-sidecar">
+            <div className="widget-header" onClick={onOpenLeaderboard} style={{ cursor: 'pointer' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '20px' }}>🏆</span>
+                <b style={{ fontSize: '14px' }}>Bảng xếp hạng tuần</b>
+              </div>
+              <span className="widget-badge gold">Top 1</span>
+            </div>
+            <div className="leaderboard-mini-preview">
+              <div className="mini-rank-item top1">
+                <span>🥇</span>
+                <b>{progress.profile?.name || 'Bé Bạn nhỏ'}</b>
+                <small>{progress.xp || 0} XP</small>
+              </div>
+              <div className="mini-rank-item">
+                <span>🥈</span>
+                <b>Minh An</b>
+                <small>420 XP</small>
+              </div>
+              <div className="mini-rank-item">
+                <span>🥉</span>
+                <b>Bảo Vy</b>
+                <small>380 XP</small>
+              </div>
+            </div>
+            <button className="sidecar-action-btn" onClick={onOpenLeaderboard}>
+              Xem toàn bộ bảng vàng ›
+            </button>
+          </div>
+        </aside>
+      </div>
     </div>
-  )
+  );
 }
 
 function LessonsMenu({
@@ -2552,7 +2864,7 @@ function LessonsMenu({
             </button>
 
             {isExpanded && (
-              <div className="card lesson-list" style={{ marginTop: '8px', padding: '8px' }}>
+              <div className="card lesson-list chapter-lessons-desktop-grid" style={{ marginTop: '8px', padding: '12px' }}>
                 {chLessons.map((lesson, idx) => {
                   const originalIndex = ch.start + idx;
                   const complete = progress.completed[lesson.id];
@@ -2619,6 +2931,32 @@ function LessonView(props) {
     }
   }
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      // Avoid triggering when focused inside an input if input already handles Enter
+      if (e.key === 'Enter') {
+        if (showHintConfirm) return;
+        if (!hasFeedback && isAnswered && !cooldownActive) {
+          e.preventDefault();
+          validateStep();
+        } else if (hasFeedback) {
+          e.preventDefault();
+          if (isCorrect) {
+            nextStep();
+          } else {
+            playClick();
+            setFeedback(null);
+          }
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [hasFeedback, isCorrect, isAnswered, cooldownActive, showHintConfirm, validateStep, nextStep]);
+
+  const mascot = progress?.profile?.mascot || 'owl';
+  const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
+
   return (
     <div className="lesson-page">
       {stepConfettiActive && <ConfettiCanvas active={true} />}
@@ -2672,18 +3010,27 @@ function LessonView(props) {
       </div>
 
       <div className="lesson-layout">
-        <ol className="steps-list">
-          {activeSteps.map((stepNum, idx) => {
-            const [icon, label] = STEP_LABELS[stepNum];
-            const isActive = step === stepNum;
-            const isDone = activeSteps.indexOf(step) > idx;
-            return (
-              <li key={label} className={isActive ? 'active' : isDone ? 'done' : ''}>
-                <span>{isDone ? '✓' : idx + 1}</span><i>{icon}</i><b>{label}</b>
-              </li>
-            );
-          })}
-        </ol>
+        <div className="steps-sidebar-col">
+          <ol className="steps-list">
+            {activeSteps.map((stepNum, idx) => {
+              const [icon, label] = STEP_LABELS[stepNum];
+              const isActive = step === stepNum;
+              const isDone = activeSteps.indexOf(step) > idx;
+              return (
+                <li key={label} className={isActive ? 'active' : isDone ? 'done' : ''}>
+                  <span>{isDone ? '✓' : idx + 1}</span><i>{icon}</i><b>{label}</b>
+                </li>
+              );
+            })}
+          </ol>
+          <div className="mascot-step-companion card desktop-only">
+            <span className="companion-emoji">{profile.emoji}</span>
+            <div className="companion-bubble">
+              <b>{profile.name} đồng hành:</b>
+              <p>Đọc kỹ câu hỏi và làm từng bước con nhé!</p>
+            </div>
+          </div>
+        </div>
 
         <section className="exercise-card">
           <div className="story-box-wrapper">
@@ -2722,10 +3069,58 @@ function LessonView(props) {
           <div className="question-area">
             <StepContent {...props} />
           </div>
+
+          {/* Docked Action Bar inside Exercise Card for Desktop */}
+          <div className={`integrated-action-bar ${hasFeedback ? (isCorrect ? 'footer-correct' : 'footer-wrong') : ''}`}>
+            {hasFeedback ? (
+              <div className="feedback-banner">
+                <span className="feedback-icon">{isCorrect ? '🎉' : '🌱'}</span>
+                <div className="feedback-text">
+                  <b>{`${MASCOT_PROFILES[progress.profile?.mascot || 'owl']?.emoji || '🦉'} ${MASCOT_PROFILES[progress.profile?.mascot || 'owl']?.name || 'Cú Ú'}:`}</b>
+                  <p>{feedback.message}</p>
+                </div>
+                <button 
+                  className="speech-mini-btn feedback-speech" 
+                  onClick={() => {
+                    const mName = progress.profile?.mascot || 'owl';
+                    const mProf = MASCOT_PROFILES[mName] || MASCOT_PROFILES.owl;
+                    const baseRate = resolveSpeechRate(audioSettings.speed);
+                    speakText(feedback.message, baseRate * (mProf.rateOffset || 1.0), null, null, mProf.pitch || 1.0);
+                  }}
+                  aria-label="Đọc phản hồi"
+                >
+                  🔊
+                </button>
+              </div>
+            ) : null}
+
+            <div className="action-buttons-row">
+              {!hasFeedback ? (
+                <>
+                  <button className="secondary-button footer-back" onClick={() => { playClick(); onBack(); }}>Quay lại</button>
+                  <button className="primary-button footer-submit" onClick={validateStep} disabled={!isAnswered || cooldownActive}>
+                    {cooldownActive ? 'Đang tải lại...' : 'Kiểm tra'}
+                    <span className="kbd-shortcut-pill desktop-only">Enter ↵</span>
+                  </button>
+                </>
+              ) : isCorrect ? (
+                <button className="primary-button footer-next" onClick={nextStep} autoFocus>
+                  {activeSteps.indexOf(step) === activeSteps.length - 1 ? 'Hoàn thành' : 'Tiếp theo'} →
+                  <span className="kbd-shortcut-pill desktop-only">Enter ↵</span>
+                </button>
+              ) : (
+                <button className="primary-button footer-next" onClick={() => { playClick(); setFeedback(null); }} autoFocus>
+                  Thử lại
+                  <span className="kbd-shortcut-pill desktop-only">Enter ↵</span>
+                </button>
+              )}
+            </div>
+          </div>
         </section>
       </div>
 
-      <div className={`lesson-footer ${hasFeedback ? (isCorrect ? 'footer-correct' : 'footer-wrong') : ''}`}>
+      {/* Floating mobile footer (hidden on desktop via CSS) */}
+      <div className={`lesson-footer mobile-only-footer ${hasFeedback ? (isCorrect ? 'footer-correct' : 'footer-wrong') : ''}`}>
         <div className="footer-content">
           {hasFeedback ? (
             <div className="feedback-banner">
@@ -4803,44 +5198,57 @@ const ONBOARDING_TEST_QUESTIONS_BY_GRADE = {
 
 function OnboardingView({ setProgress, setView }) {
   const [stage, setStage] = useState('welcome'); // 'welcome' | 'test' | 'assessment'
+  const [step, setStep] = useState(1); // 1: Tên con, 2: Chọn lớp, 3: Chọn bạn đồng hành
   const [name, setName] = useState(() => localStorage.getItem('tonymath-student-name') || '');
-  const [mascot, setMascot] = useState('owl'); // 'owl' | 'robot' | 'turtle'
+  const [mascot, setMascot] = useState('owl');
   const [selectedGrade, setSelectedGrade] = useState('grade-4');
+  const [showAllMascots, setShowAllMascots] = useState(false);
   const [score, setScore] = useState(0);
 
-  const mascots = Object.keys(MASCOT_PROFILES).map(key => ({
-    id: key,
-    emoji: MASCOT_PROFILES[key].emoji,
-    label: MASCOT_PROFILES[key].name,
-    desc: MASCOT_PROFILES[key].desc
-  }));
+  const quickNames = ['Minh An', 'Bảo Long', 'Tuệ Lâm', 'Gia Huy'];
 
   const grades = [
-    { id: 'grade-1', label: 'Lớp 1', emoji: '👶' },
-    { id: 'grade-2', label: 'Lớp 2', emoji: '🎒' },
-    { id: 'grade-3', label: 'Lớp 3', emoji: '✏️' },
-    { id: 'grade-4', label: 'Lớp 4', emoji: '📐' },
-    { id: 'grade-5', label: 'Lớp 5', emoji: '🚀' }
+    { id: 'grade-1', label: 'Lớp 1', emoji: '👶', desc: 'Số đếm & Cộng trừ trong phạm vi 10, 100', color: '#f59e0b', bg: '#fef3c7' },
+    { id: 'grade-2', label: 'Lớp 2', emoji: '🎒', desc: 'Nhân chia & Toán đố có lời văn', color: '#ef4444', bg: '#fee2e2' },
+    { id: 'grade-3', label: 'Lớp 3', emoji: '✏️', desc: 'Bảng cửu chương, Đo lường & Hình học', color: '#f97316', bg: '#ffedd5' },
+    { id: 'grade-4', label: 'Lớp 4', emoji: '📐', desc: 'Trung bình cộng, Tổng-Hiệu, Tìm hai số', color: '#3b82f6', bg: '#dbeafe', badge: 'Phổ biến 🔥' },
+    { id: 'grade-5', label: 'Lớp 5', emoji: '🚀', desc: 'Phân số, Số thập phân & Chuyển động', color: '#8b5cf6', bg: '#f3e8ff' }
   ];
 
-  function handleStartTest() {
-    if (!name.trim()) return;
+  const primaryMascotKeys = ['owl', 'robot', 'turtle'];
+  const allMascotKeys = Object.keys(MASCOT_PROFILES);
+  const displayedMascotKeys = showAllMascots ? allMascotKeys : primaryMascotKeys;
+
+  const currentMascotProfile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
+  const currentGradeObj = grades.find(g => g.id === selectedGrade) || grades[3];
+
+  function handleQuickName(suggestedName) {
     playClick();
-    localStorage.setItem('tonymath-student-name', name.trim());
-    setStage('test');
+    setName(suggestedName);
+    localStorage.setItem('tonymath-student-name', suggestedName);
   }
 
-  function handleSkipTest() {
+  function handleGradeSelect(gradeId) {
+    playClick();
+    setSelectedGrade(gradeId);
+    // Smooth auto-advance to Step 3
+    setTimeout(() => {
+      setStep(3);
+    }, 280);
+  }
+
+  function handleDirectStart() {
     playClick();
     const finalName = name.trim() || 'Bạn nhỏ';
     setProgress(old => ({
       ...old,
       onboarded: true,
       currentGrade: selectedGrade,
+      xp: old.xp + 50,
       profile: {
         name: finalName,
         mascot: mascot,
-        academicLevel: 'Starter',
+        academicLevel: 'Tân binh khởi động',
         startingRecommendation: 'lesson-1'
       }
     }));
@@ -4848,77 +5256,222 @@ function OnboardingView({ setProgress, setView }) {
     setView('home');
   }
 
+  function handleStartChallenge() {
+    if (!name.trim()) return;
+    playClick();
+    localStorage.setItem('tonymath-student-name', name.trim());
+    setStage('test');
+  }
+
   if (stage === 'welcome') {
     return (
       <div className="onboarding-screen">
-        <div className="onboarding-card">
-          <span className="onboarding-header-emoji">🦉✨</span>
-          <h1>Chào mừng con đến với TonyMath!</h1>
-          <p>Học đọc hiểu và giải toán lời văn từng bước một cách thông minh.</p>
-          
-          <div className="onboarding-input-group">
-            <label htmlFor="child-name">🕵️‍♂️ Nhập tên của con:</label>
-            <div className="onboarding-input-wrapper">
-              <span className="input-icon">✍️</span>
-              <input
-                id="child-name"
-                type="text"
-                placeholder="Ví dụ: Minh An, Bảo Vy..."
-                value={name}
-                onChange={e => {
-                  const val = e.target.value;
-                  setName(val);
-                  localStorage.setItem('tonymath-student-name', val);
-                }}
-                maxLength={20}
-              />
+        <div className="onboarding-card onboarding-wizard-card">
+          {/* Step Progress Pills */}
+          <div className="wizard-progress-bar">
+            <div className={`wizard-step-pill ${step >= 1 ? 'active' : ''} ${step > 1 ? 'done' : ''}`} onClick={() => setStep(1)}>
+              <span className="step-num">{step > 1 ? '✓' : '1'}</span>
+              <span className="step-label">Tên con</span>
+            </div>
+            <div className="wizard-connector" style={{ background: step >= 2 ? 'var(--primary, #6366f1)' : '#e2e8f0' }} />
+            <div className={`wizard-step-pill ${step >= 2 ? 'active' : ''} ${step > 2 ? 'done' : ''}`} onClick={() => name.trim() && setStep(2)}>
+              <span className="step-num">{step > 2 ? '✓' : '2'}</span>
+              <span className="step-label">Khối lớp</span>
+            </div>
+            <div className="wizard-connector" style={{ background: step >= 3 ? 'var(--primary, #6366f1)' : '#e2e8f0' }} />
+            <div className={`wizard-step-pill ${step >= 3 ? 'active' : ''}`} onClick={() => name.trim() && setStep(3)}>
+              <span className="step-num">3</span>
+              <span className="step-label">Bạn cố vấn</span>
             </div>
           </div>
-          
-          <div className="mascot-selection-title">Chọn lớp học của con:</div>
-          <div className="grade-select-grid">
-            {grades.map(g => (
-              <button
-                key={g.id}
-                type="button"
-                className={`grade-select-btn grade-btn-${g.id} ${selectedGrade === g.id ? 'selected' : ''}`}
-                onClick={() => { playClick(); setSelectedGrade(g.id); }}
-              >
-                <span className="emoji">{g.emoji}</span>
-                <span>{g.label}</span>
-              </button>
-            ))}
-          </div>
-          
-          <div className="mascot-selection-title">Chọn người bạn đồng hành:</div>
-          <div className="mascot-select-grid">
-            {mascots.map(m => (
-              <button
-                key={m.id}
-                className={`mascot-select-card ${mascot === m.id ? `selected selected-${m.id}` : ''}`}
-                onClick={() => { playClick(); setMascot(m.id); }}
-              >
-                <span className="emoji">{m.emoji}</span>
-                <b>{m.label}</b>
-                <small>{m.desc}</small>
-              </button>
-            ))}
-          </div>
-          
-          <button
-            className="onboarding-btn"
-            disabled={!name.trim()}
-            onClick={handleStartTest}
-          >
-            Bắt đầu Thử thách Thám tử! 🚀
-          </button>
 
-          <button
-            className="onboarding-btn-skip"
-            onClick={handleSkipTest}
-          >
-            Bỏ qua bài test (Vào thẳng bài học)
-          </button>
+          {/* STEP 1: NAME INPUT */}
+          {step === 1 && (
+            <div className="wizard-step-body animate-fade-in">
+              <span className="onboarding-header-emoji">🦉✨</span>
+              <h1>Chào bạn nhỏ! Tên của con là gì?</h1>
+              <p className="wizard-subtitle">Hãy nhập tên để Cú Ú và các bạn linh vật dễ dàng trò chuyện cùng con nhé!</p>
+
+              <div className="onboarding-input-group">
+                <div className="onboarding-input-wrapper">
+                  <span className="input-icon">✍️</span>
+                  <input
+                    id="child-name"
+                    type="text"
+                    placeholder="Ví dụ: Minh An, Bảo Vy, Gia Huy..."
+                    value={name}
+                    onChange={e => {
+                      const val = e.target.value;
+                      setName(val);
+                      localStorage.setItem('tonymath-student-name', val);
+                    }}
+                    onKeyDown={e => {
+                      if (e.key === 'Enter' && name.trim()) {
+                        playClick();
+                        setStep(2);
+                      }
+                    }}
+                    maxLength={20}
+                    autoFocus
+                  />
+                </div>
+              </div>
+
+              {/* Quick Pick Chips */}
+              <div className="quick-name-box">
+                <span className="quick-name-title">💡 Hoặc chọn nhanh:</span>
+                <div className="quick-name-chips">
+                  {quickNames.map(qName => (
+                    <button
+                      key={qName}
+                      type="button"
+                      className={`quick-name-chip ${name === qName ? 'selected' : ''}`}
+                      onClick={() => handleQuickName(qName)}
+                    >
+                      {qName}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="wizard-actions">
+                <button
+                  className="onboarding-btn"
+                  disabled={!name.trim()}
+                  onClick={() => { playClick(); setStep(2); }}
+                >
+                  Tiếp tục chọn Lớp ➜
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* STEP 2: GRADE SELECTION */}
+          {step === 2 && (
+            <div className="wizard-step-body animate-fade-in">
+              <div className="wizard-top-back">
+                <button className="wizard-back-btn" onClick={() => { playClick(); setStep(1); }}>
+                  ← Đổi tên
+                </button>
+              </div>
+              <span className="onboarding-header-emoji">🎒📚</span>
+              <h1>Con đang học Lớp mấy nè?</h1>
+              <p className="wizard-subtitle">TonyMath sẽ chuẩn bị bài học phù hợp nhất với lớp của con!</p>
+
+              <div className="grade-select-wizard-grid">
+                {grades.map(g => (
+                  <button
+                    key={g.id}
+                    type="button"
+                    className={`grade-wizard-card ${selectedGrade === g.id ? 'selected' : ''}`}
+                    style={{
+                      '--card-color': g.color,
+                      '--card-bg': g.bg
+                    }}
+                    onClick={() => handleGradeSelect(g.id)}
+                  >
+                    <div className="grade-card-icon">{g.emoji}</div>
+                    <div className="grade-card-content">
+                      <div className="grade-card-header">
+                        <b>{g.label}</b>
+                        {g.badge && <span className="grade-hot-badge">{g.badge}</span>}
+                      </div>
+                      <small>{g.desc}</small>
+                    </div>
+                    <div className="grade-card-radio">
+                      {selectedGrade === g.id ? '✓' : ''}
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              <div className="wizard-actions">
+                <button
+                  className="onboarding-btn"
+                  onClick={() => { playClick(); setStep(3); }}
+                >
+                  Tiếp tục chọn Bạn Đồng Hành ➜
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* STEP 3: MASCOT SELECTION & INSTANT START */}
+          {step === 3 && (
+            <div className="wizard-step-body animate-fade-in">
+              <div className="wizard-top-back">
+                <button className="wizard-back-btn" onClick={() => { playClick(); setStep(2); }}>
+                  ← Đổi lớp học
+                </button>
+              </div>
+              <span className="onboarding-header-emoji">{currentMascotProfile.emoji}🌟</span>
+              <h1>Chọn Bạn Cố Vấn của con!</h1>
+              <p className="wizard-subtitle">Bạn ấy sẽ luôn bên cạnh cổ vũ và hướng dẫn con trong suốt các bài toán.</p>
+
+              {/* Realtime Mascot Bubble */}
+              <div className="mascot-live-greeting-bubble">
+                <span className="bubble-avatar">{currentMascotProfile.emoji}</span>
+                <div className="bubble-text">
+                  <b>{currentMascotProfile.name}:</b>
+                  <p>Chào <b>{name.trim() || 'bạn nhỏ'}</b>! Tớ rất vui được cùng cậu chinh phục <b>{currentGradeObj.label}</b>!</p>
+                </div>
+              </div>
+
+              <div className="mascot-wizard-grid">
+                {displayedMascotKeys.map(k => {
+                  const mProf = MASCOT_PROFILES[k];
+                  if (!mProf) return null;
+                  return (
+                    <button
+                      key={k}
+                      type="button"
+                      className={`mascot-wizard-card ${mascot === k ? 'selected' : ''}`}
+                      onClick={() => { playClick(); setMascot(k); }}
+                    >
+                      <span className="mascot-card-emoji">{mProf.emoji}</span>
+                      <b>{mProf.name}</b>
+                      <small>{mProf.desc}</small>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {!showAllMascots && (
+                <button
+                  type="button"
+                  className="toggle-more-mascots-btn"
+                  onClick={() => { playClick(); setShowAllMascots(true); }}
+                >
+                  🐾 Xem thêm các bạn linh vật khác ({allMascotKeys.length - primaryMascotKeys.length} bạn)
+                </button>
+              )}
+
+              {/* Action Hub: 2 Clear & Fun Options */}
+              <div className="onboarding-final-cta-grid">
+                <button
+                  className="onboarding-btn primary-start-btn"
+                  onClick={handleDirectStart}
+                >
+                  <span className="btn-icon">🚀</span>
+                  <div className="btn-text-wrap">
+                    <b>Vào Lớp Học Ngay!</b>
+                    <small>Nhận ngay +50 XP Tân Binh</small>
+                  </div>
+                </button>
+
+                <button
+                  className="onboarding-btn-challenge"
+                  onClick={handleStartChallenge}
+                >
+                  <span className="btn-icon">🕵️‍♂️</span>
+                  <div className="btn-text-wrap">
+                    <b>Thử tài 1 câu Thám tử Nhí</b>
+                    <small>Kiểm tra nhanh 30s (+100 XP ⭐)</small>
+                  </div>
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -4934,7 +5487,7 @@ function OnboardingView({ setProgress, setView }) {
           setScore(finalScore);
           setStage('assessment');
         }}
-        onSkip={handleSkipTest}
+        onSkip={handleDirectStart}
       />
     );
   }
