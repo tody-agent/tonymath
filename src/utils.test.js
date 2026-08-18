@@ -620,7 +620,52 @@ try {
   process.exit(1);
 }
 
+console.log('Running tests for audioEngine & normalizeMathSpeech...');
+try {
+  const { normalizeMathSpeech, pickNonRepeatingAudioId, MASCOT_AUDIO_CATALOG } = await import('./audioEngine.js');
+  
+  // 1. Test math speech normalizer
+  const norm1 = normalizeMathSpeech('5 + 3 = 8');
+  assert.ok(norm1.includes('cộng') && norm1.includes('bằng'));
+  
+  const norm2 = normalizeMathSpeech('12 - 7 = ?');
+  assert.ok(norm2.includes('trừ') && norm2.includes('bao nhiêu?'));
+
+  const norm3 = normalizeMathSpeech('3 x 4 = 12');
+  assert.ok(norm3.includes('nhân') && norm3.includes('bằng'));
+
+  const norm4 = normalizeMathSpeech('1/2 quả cam');
+  assert.ok(norm4.includes('phần'));
+
+  // 2. Test pickNonRepeatingAudioId
+  const pool = ['a', 'b', 'c'];
+  const picked1 = pickNonRepeatingAudioId(pool);
+  assert.ok(pool.includes(picked1));
+
+  // 3. Test MASCOT_AUDIO_CATALOG structure
+  assert.ok(MASCOT_AUDIO_CATALOG.robot.welcome.length > 0);
+  assert.ok(MASCOT_AUDIO_CATALOG.turtle.welcome.length > 0);
+  assert.ok(MASCOT_AUDIO_CATALOG.owl.welcome.length > 0);
+  assert.ok(MASCOT_AUDIO_CATALOG.shark.welcome.length > 0);
+  assert.ok(MASCOT_AUDIO_CATALOG.robot.wrong_careless.length > 0);
+  assert.ok(MASCOT_AUDIO_CATALOG.turtle.wrong_careless.length > 0);
+
+  // 4. Verify all audio files in manifest exist
+  const fs = await import('fs');
+  const path = await import('path');
+  const manifestPath = path.resolve('public/audio/mascot/manifest.json');
+  assert.ok(fs.existsSync(manifestPath), 'manifest.json must exist');
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  assert.ok(manifest.length >= 35, 'Manifest must contain at least 35 voice assets');
+
+  console.log('✅ Test Passed: audioEngine and audio assets validated successfully');
+} catch (e) {
+  console.error('❌ audioEngine tests failed:', e.stack);
+  process.exit(1);
+}
+
 console.log('🎉 All tests passed successfully!');
+
 
 
 

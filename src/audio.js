@@ -118,7 +118,73 @@ export function playSfx(type, muted = false) {
   }
 }
 
+let activeAudio = null;
 let keepAliveTimer = null;
+
+// Bảng map các câu thoại đã được sinh trước bằng OmniVoice chất lượng cao (0ms latency, zero-server)
+const PRE_RENDERED_AUDIO_MAP = [
+  { match: /Chào bạn nhỏ! Hôm nay là một ngày tuyệt vời/i, src: '/audio/mascot/robot_welcome.wav' },
+  { match: /Tuyệt vời! Bạn nhỏ đã hoàn thành toàn bộ bài học/i, src: '/audio/mascot/robot_done.wav' },
+  { match: /Có bài.*cần chúng mình ôn tập lại/i, src: '/audio/mascot/robot_review.wav' },
+  { match: /chinh phục bài (học )?mới/i, src: '/audio/mascot/robot_new_lesson.wav' },
+  { match: /Chậm mà chắc.*kiên trì học toán/i, src: '/audio/mascot/turtle_welcome.wav' },
+  { match: /nhà thông thái nhỏ.*khám phá/i, src: '/audio/mascot/owl_welcome.wav' },
+  { match: /^Chính xác!? Con giỏi quá!?/i, src: '/audio/mascot/praise_correct_1.wav' },
+  { match: /^Xuất sắc!?/i, src: '/audio/mascot/praise_correct_2.wav' },
+  { match: /^Tuyệt đỉnh!?/i, src: '/audio/mascot/praise_correct_3.wav' },
+  { match: /^Chưa chính xác rồi/i, src: '/audio/mascot/encourage_wrong_1.wav' },
+  { match: /^Không sao cả.*bình tĩnh/i, src: '/audio/mascot/encourage_wrong_2.wav' },
+  { match: /chuỗi trả lời đúng liên tiếp/i, src: '/audio/mascot/streak_praise.wav' }
+];
+
+/**
+ * Chuẩn hóa ký hiệu toán học và dấu ngắt câu để giọng đọc tiếng Việt mượt mà, tự nhiên.
+ * @param {string} text 
+ * @returns {string}
+ */
+export function normalizeMathSpeech(text) {
+  if (!text) return '';
+  return text
+    .replace(/<[^>]*>/g, '')
+    .replace(/(\d+)\s*\/\s*(\d+)/g, '$1 phần $2')
+    .replace(/(\d+)\s*[:÷]\s*(\d+)/g, '$1 chia $2')
+    .replace(/(\d+)\s*\+\s*(\d+)/g, '$1 cộng $2')
+    .replace(/(\d+)\s*-\s*(\d+)/g, '$1 trừ $2')
+    .replace(/(\d+)\s*[xX*×]\s*(\d+)/g, '$1 nhân $2')
+    .replace(/(\d+)\s*=\s*(\d+)/g, '$1 bằng $2')
+    .replace(/\+/g, ' cộng ')
+    .replace(/-/g, ' trừ ')
+    .replace(/[xX*×]/g, ' nhân ')
+    .replace(/[:÷]/g, ' chia ')
+    .replace(/=/g, ' bằng ')
+    .replace(/\?/g, ' bao nhiêu?')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/**
+ * Chọn giọng tiếng Việt chất lượng tốt nhất trong danh sách voice của hệ thống.
+ * Né các giọng nén Compact chất lượng kém trên macOS.
+ */
+export function selectBestVietnameseVoice(voices) {
+  if (!voices || voices.length === 0) return null;
+  const viVoices = voices.filter(v => v.lang === 'vi-VN' || v.lang.startsWith('vi'));
+  if (viVoices.length === 0) return null;
+
+  // 1. Ưu tiên giọng Enhanced / Natural / Google / Premium (chất lượng cao)
+  const premiumVoice = viVoices.find(v =>
+    !v.name.includes('Compact') &&
+    (v.name.includes('Enhanced') || v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Premium'))
+  );
+  if (premiumVoice) return premiumVoice;
+
+  // 2. Ưu tiên giọng không có nhãn Compact
+  const normalVoice = viVoices.find(v => !v.name.includes('Compact'));
+  if (normalVoice) return normalVoice;
+
+  // 3. Fallback
+  return viVoices[0];
+}
 
 /**
  * Stops the keep-alive loop.
@@ -139,7 +205,7 @@ function startKeepAlive() {
   stopKeepAlive();
   const synth = window.speechSynthesis;
   keepAliveTimer = setInterval(() => {
-    if (synth.speaking && !synth.paused) {
+    if (synth && synth.speaking && !synth.paused) {
       synth.pause();
       synth.resume();
     }
@@ -150,54 +216,99 @@ function startKeepAlive() {
  * Cancels any ongoing text-to-speech rendering immediately.
  */
 export function cancelSpeech() {
-  if ('speechSynthesis' in window) {
+  if (activeAudio) {
+    try {
+      activeAudio.pause();
+      activeAudio.currentTime = 0;
+    } catch {
+      // Ignore abort errors
+    }
+    activeAudio = null;
+  }
+  if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
     window.speechSynthesis.cancel();
   }
   stopKeepAlive();
 }
 
 /**
- * Speaks the given text using browser SpeechSynthesis API.
- * Handles language matching, voice caching, keep-alive, and overlaps.
+ * Speaks the given text.
+ * Tầng 1: Kiểm tra xem có file audio OmniVoice sinh sẵn không (0ms delay, chất lượng cao).
+ * Tầng 2: Nếu câu động -> Chuẩn hóa toán học & dùng SpeechSynthesis với voice tiếng Việt tốt nhất.
  * 
- * @param {string} text - Vietnamese content to be spoken
- * @param {number} rate - Speed rate (0.1 to 10)
- * @param {function} onStart - Callback when speech starts
- * @param {function} onEnd - Callback when speech ends or fails
+ * @param {string} text - Nội dung tiếng Việt cần phát
+ * @param {number} rate - Tốc độ đọc
+ * @param {function} onStart - Callback khi bắt đầu phát
+ * @param {function} onEnd - Callback khi kết thúc
+ * @param {number} pitch - Cao độ giọng
  */
 export function speakText(text, rate = 0.95, onStart = null, onEnd = null, pitch = 1.05) {
-  if (!('speechSynthesis' in window)) {
+  cancelSpeech();
+
+  if (!text || typeof text !== 'string') {
     if (onEnd) onEnd();
     return;
   }
 
-  cancelSpeech();
-
-  const synth = window.speechSynthesis;
-  const cleanText = text
-    .replace(/<[^>]*>/g, '')
-    .replace(/\s+/g, ' ')
-    .trim();
-
+  const cleanText = text.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
   if (!cleanText) {
     if (onEnd) onEnd();
     return;
   }
 
-  const utterance = new SpeechSynthesisUtterance(cleanText);
+  // Tầng 1: Kiểm tra khớp file audio OmniVoice sinh sẵn
+  const matchedPreRendered = PRE_RENDERED_AUDIO_MAP.find(entry => entry.match.test(cleanText));
+  if (matchedPreRendered) {
+    try {
+      const audio = new Audio(matchedPreRendered.src);
+      activeAudio = audio;
+      audio.onplay = () => {
+        if (onStart) onStart();
+      };
+      audio.onended = () => {
+        activeAudio = null;
+        if (onEnd) onEnd();
+      };
+      audio.onerror = () => {
+        activeAudio = null;
+        // Fallback sang SpeechSynthesis nếu không load được file
+        speakViaSpeechSynthesis(cleanText, rate, onStart, onEnd, pitch);
+      };
+      audio.play().catch(() => {
+        // Trình duyệt chặn autoplay -> fallback
+        speakViaSpeechSynthesis(cleanText, rate, onStart, onEnd, pitch);
+      });
+      return;
+    } catch (e) {
+      console.warn('Pre-rendered audio playback failed, falling back to Web Speech:', e);
+    }
+  }
+
+  // Tầng 2: Fallback qua Web Speech Synthesis thông minh
+  speakViaSpeechSynthesis(cleanText, rate, onStart, onEnd, pitch);
+}
+
+/**
+ * Fallback đọc qua SpeechSynthesis với chuẩn hóa ký hiệu toán học
+ */
+function speakViaSpeechSynthesis(text, rate = 0.95, onStart = null, onEnd = null, pitch = 1.05) {
+  if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
+    if (onEnd) onEnd();
+    return;
+  }
+
+  const normalizedText = normalizeMathSpeech(text);
+  const synth = window.speechSynthesis;
+  const utterance = new SpeechSynthesisUtterance(normalizedText);
   utterance.lang = 'vi-VN';
   utterance.rate = rate;
   utterance.pitch = pitch;
 
   const voices = synth.getVoices();
-  let selectedVoice = null;
-  if (voices && voices.length > 0) {
-    selectedVoice = voices.find((v) => v.lang === 'vi-VN' && v.localService);
-    if (!selectedVoice) {
-      selectedVoice = voices.find((v) => v.lang === 'vi-VN' || v.lang.startsWith('vi'));
-    }
+  const selectedVoice = selectBestVietnameseVoice(voices);
+  if (selectedVoice) {
+    utterance.voice = selectedVoice;
   }
-  if (selectedVoice) utterance.voice = selectedVoice;
 
   utterance.onstart = () => {
     startKeepAlive();
@@ -216,3 +327,4 @@ export function speakText(text, rate = 0.95, onStart = null, onEnd = null, pitch
 
   synth.speak(utterance);
 }
+

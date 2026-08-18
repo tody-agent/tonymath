@@ -19,6 +19,7 @@ import {
   triggerHaptic
 } from './utils.js'
 import { playSfx, speakText, cancelSpeech } from './audio.js'
+import { playMascotReaction } from './audioEngine.js'
 import { getMascotSpeech, MASCOT_PROFILES, getIndicatorGuide } from './mascotDialogs.js'
 import './App.css'
 
@@ -212,7 +213,8 @@ function getUrlTestParams() {
       pwaPrompt: params.get('pwaPrompt') === 'true',
       iosModal: params.get('iosModal') === 'true',
       welcomeNudge: params.get('welcomeNudge') === 'true',
-      badgeInfo: params.get('badgeInfo')
+      badgeInfo: params.get('badgeInfo'),
+      toast: params.get('toast')
     };
   } catch {
     return {};
@@ -233,6 +235,17 @@ function App() {
     return loaded;
   })
   const [view, setView] = useState(() => urlParams.view || (progress.onboarded ? 'home' : 'onboarding'))
+  const [toast, setToast] = useState(() => urlParams.toast ? { message: urlParams.toast, icon: '✨', type: 'info' } : null)
+  const toastTimeoutRef = useRef(null)
+
+  const showToast = useCallback((message, icon = '✨', type = 'info', duration = 3500) => {
+    if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current)
+    setToast({ message, icon, type })
+    toastTimeoutRef.current = setTimeout(() => {
+      setToast(null)
+    }, duration)
+  }, [])
+
   const [deferredPrompt, setDeferredPrompt] = useState(null)
   const [showInstallPrompt, setShowInstallPrompt] = useState(() => urlParams.pwaPrompt || false)
   const [lessonIndex, setLessonIndex] = useState(progress.currentLesson || 0)
@@ -635,7 +648,16 @@ function App() {
     const baseRate = resolveSpeechRate(audioSettings.speed)
     const rate = baseRate * (profile.rateOffset || 1.0)
     const pitch = profile.pitch || 1.0
-    speakText(feedback.message, rate, null, null, pitch)
+
+    if (feedback.category) {
+      playMascotReaction({
+        mascotId: mascot,
+        category: feedback.category,
+        fallbackText: feedback.message
+      });
+    } else {
+      speakText(feedback.message, rate, null, null, pitch)
+    }
   }, [feedback, view, audioSettings.autoRead, audioSettings.muted, audioSettings.speed, progress.profile?.mascot])
 
 
@@ -1004,7 +1026,13 @@ function App() {
       const praiseSfx = step === 7 ? 'praise' : 'correct'
       playSfx(praiseSfx, audioSettings.muted)
       const mascotMsg = getMascotSpeech(mascot, true, message, { archetype: currentArchetype, currentStreak: newStreak })
-      setFeedback({ correct: true, message: mascotMsg })
+      let category = 'correct_logic';
+      if (newStreak >= 3) {
+        category = 'correct_streak';
+      } else if (latency < 3) {
+        category = 'correct_quick';
+      }
+      setFeedback({ correct: true, message: mascotMsg, category })
       if (currentArchetype === 'active_seeker' && (step === 3 || step === 5)) {
         setStepConfettiActive(true)
         setTimeout(() => setStepConfettiActive(false), 3000)
@@ -1026,6 +1054,7 @@ function App() {
 
       playSfx(hearts <= 1 ? 'wrong' : 'soft_wrong', audioSettings.muted)
       const mascotMsg = getMascotSpeech(mascot, false, message, { archetype: currentArchetype, isCareless })
+      const category = isCareless ? 'wrong_careless' : 'wrong_encourage';
       
       let nextHearts = hearts;
       if (hearts <= 1 && currentArchetype === 'budding_thinker' && !hasUsedShield) {
@@ -1034,11 +1063,12 @@ function App() {
         const buddy = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
         setFeedback({ 
           correct: false, 
-          message: `${mascotMsg} (🛡️ ${buddy.name} đã dùng Khiên Bảo Vệ bảo toàn tim cho con!)` 
+          message: `${mascotMsg} (🛡️ ${buddy.name} đã dùng Khiên Bảo Vệ bảo toàn tim cho con!)`,
+          category
         });
       } else {
         nextHearts = Math.max(0, hearts - 1);
-        setFeedback({ correct: false, message: mascotMsg })
+        setFeedback({ correct: false, message: mascotMsg, category })
       }
       setHearts(nextHearts)
 
@@ -1110,7 +1140,11 @@ function App() {
     )
     playSfx(praise.sfx || 'complete', audioSettings.muted)
     if (!audioSettings.muted && audioSettings.autoRead) {
-      speakText(`${praise.headline}. ${praise.lines[0]}`, resolveSpeechRate(audioSettings.speed))
+      playMascotReaction({
+        mascotId: progress.profile?.mascot || 'owl',
+        category: 'complete',
+        fallbackText: `${praise.headline}. ${praise.lines[0]}`
+      });
     }
     setView('complete')
   }
@@ -1160,13 +1194,13 @@ function App() {
       deferredPrompt.prompt();
       deferredPrompt.userChoice.then((choiceResult) => {
         if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted the install prompt');
+          showToast("Cài đặt ứng dụng thành công! 🎉", "📲", "success");
         }
         setDeferredPrompt(null);
         setShowInstallPrompt(false);
       });
     } else {
-      alert("Để cài đặt, vui lòng sử dụng Safari/Chrome và chọn 'Thêm vào màn hình chính' từ menu trình duyệt.");
+      setShowIosInstructions(true);
     }
   }
 
@@ -1182,12 +1216,13 @@ function App() {
     playClick();
     if (enabled) {
       if (!('Notification' in window)) {
-        alert("Trình duyệt này không hỗ trợ thông báo.");
+        showToast("Trình duyệt này chưa hỗ trợ thông báo tự động.", "ℹ️", "warn");
         return;
       }
       Notification.requestPermission().then((permission) => {
         if (permission === 'granted') {
           setProgress(old => ({ ...old, notificationsEnabled: true }));
+          showToast("Đã bật nhắc nhở học toán hàng ngày! 🚀", "🔔", "success");
           if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
             navigator.serviceWorker.controller.postMessage({
               type: 'TRIGGER_NOTIFICATION',
@@ -1196,17 +1231,19 @@ function App() {
             });
           }
         } else {
-          alert("Bạn đã chặn thông báo. Vui lòng cho phép thông báo trong cài đặt trình duyệt để nhận nhắc nhở.");
+          showToast("Thông báo đang bị chặn. Vui lòng cho phép trong cài đặt trình duyệt.", "⚠️", "warn");
         }
       });
     } else {
       setProgress(old => ({ ...old, notificationsEnabled: false }));
+      showToast("Đã tắt nhắc nhở học tập.", "🔕", "info");
     }
   }
 
   function changeReminderTime(time) {
     playClick();
     setProgress(old => ({ ...old, reminderTime: time }));
+    showToast(`Đã lưu giờ nhắc học: ${time} hàng ngày ⏰`, "⏰", "success");
   }
 
   function downloadIcsReminder() {
@@ -1221,9 +1258,10 @@ function App() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    showToast("Đã tải tệp lịch nhắc nhở (.ics) về máy! 📅", "📅", "success");
   }
 
-  const isSessionActive = view === 'onboarding' || view === 'lesson' || view === 'intro' || view === 'diagnostic' || view === 'boss';
+  const isSessionActive = view === 'onboarding' || view === 'lesson' || view === 'intro' || view === 'diagnostic' || view === 'boss' || view === 'complete';
 
   const todayDateStr = new Date().toISOString().slice(0, 10);
   const activeDailyQuests = getDailyQuests(activeProgress, todayDateStr);
@@ -1246,6 +1284,14 @@ function App() {
 
   return (
     <div className={`app-shell ${isSessionActive ? 'onboarding-shell' : ''}`}>
+      {/* Toast Notification Banner */}
+      {toast && (
+        <div className={`app-toast toast-${toast.type || 'info'} show`} role="alert" aria-live="polite">
+          <span className="toast-icon">{toast.icon}</span>
+          <span className="toast-msg">{toast.message}</span>
+        </div>
+      )}
+
       {isGameOver && (
         <div className="gameover-overlay">
           <div className="gameover-content">
@@ -1997,6 +2043,7 @@ function App() {
             onOpenLesson={openLesson}
             lessonIndex={lessonIndex}
             getMascotEmotion={getMascotEmotion}
+            showToast={showToast}
           />
         )}
         {view === 'progress' && (
@@ -2006,6 +2053,7 @@ function App() {
             openLesson={openLesson}
             earnedStars={earnedStars}
             getMascotEmotion={getMascotEmotion}
+            showToast={showToast}
             onOpenReview={() => { playClick(); setView('review-list'); }}
             onOpenSettings={() => { playClick(); setView('settings'); }}
           />
@@ -2071,7 +2119,7 @@ function App() {
         <NavButton icon="👤" label="Hồ sơ" active={view === 'progress'} onClick={() => setView('progress')} />
       </nav>
 
-      {!isSessionActive && showInstallPrompt && (
+      {view === 'home' && !isSessionActive && showInstallPrompt && !showChestOverlay && !showBossOverlay && !showMathGate && !selectedBadgeInfo && !activeGuide && !showIosInstructions && (
         <div className="pwa-install-drawer">
           <div className="pwa-install-text">
             <span>📲</span>
@@ -2188,7 +2236,8 @@ function App() {
         const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
         const mascotEmoji = getMascotEmotion(mascot);
         const mascotName = profile.name;
-        const guideData = getIndicatorGuide(mascot, activeGuide, progress);
+        const guideData = getIndicatorGuide(mascot, activeGuide, progress) || getIndicatorGuide(mascot, 'level', progress);
+        if (!guideData) return null;
         
         return (
           <div className="guide-modal-overlay" onClick={() => { playClick(); setActiveGuide(null); cancelSpeech(); }}>
@@ -2382,9 +2431,11 @@ function Home({
 
   const handleSpeakMascot = () => {
     cancelSpeech();
-    const rate = resolveSpeechRate(audioSettings?.speed || 'normal');
-    const mProfile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
-    speakText(speechBubbleText, rate * (mProfile.rateOffset || 1.0), null, null, mProfile.pitch || 1.0);
+    playMascotReaction({
+      mascotId: mascot,
+      category: 'welcome',
+      fallbackText: speechBubbleText
+    });
   };
 
   const gradeLabel = currentGrade === 'grade-1' ? 'Lớp 1' : currentGrade === 'grade-2' ? 'Lớp 2' : currentGrade === 'grade-3' ? 'Lớp 3' : currentGrade === 'grade-4' ? 'Lớp 4' : 'Lớp 5';
@@ -2906,30 +2957,11 @@ function LessonView(props) {
     progress, hintUnlockedForCurrentStep, setHintUnlockedForCurrentStep,
     showHintConfirm, setShowHintConfirm, setHearts, setMistakes, audioSettings,
     stepConfettiActive, cooldownActive, stepStartTime, setProgress
-  } = props
-  const [storyExpanded, setStoryExpanded] = useState(false)
+  } = props;
+
+  const [storyExpanded, setStoryExpanded] = useState(false);
   const hasFeedback = Boolean(feedback);
   const isCorrect = feedback?.correct;
-
-  const isChallenge = isChallengeModeActive(progress, lesson);
-
-  const activeSteps = getActiveSteps(progress.studyMode || 'full', lesson)
-  const currentStepIdx = activeSteps.indexOf(step)
-  const progressPercent = activeSteps.length > 0 ? ((currentStepIdx + 1) / activeSteps.length) * 100 : 0
-
-  function handleConfirmHint() {
-    playClick();
-    triggerHaptic('light');
-    setShowHintConfirm(false);
-    setHearts((h) => Math.max(0, h - 1));
-    setMistakes((m) => m + 1);
-    setHintUnlockedForCurrentStep(true);
-    setHintOpen(true);
-    const elapsed = stepStartTime ? Math.round((Date.now() - stepStartTime) / 1000) : 0;
-    if (setProgress) {
-      setProgress(old => updateBehavioralMetrics(old, 'hint_opened', { latency: elapsed, step }));
-    }
-  }
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -2952,7 +2984,43 @@ function LessonView(props) {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [hasFeedback, isCorrect, isAnswered, cooldownActive, showHintConfirm, validateStep, nextStep]);
+  }, [hasFeedback, isCorrect, isAnswered, cooldownActive, showHintConfirm, validateStep, nextStep, setFeedback]);
+
+  if (!lesson) {
+    return (
+      <div className="lesson-page" style={{ textAlign: 'center', padding: '48px 16px' }}>
+        <div className="loading-spinner" style={{ margin: '0 auto 16px' }}></div>
+        <p style={{ fontWeight: '800', color: '#64748b' }}>Đang tải nội dung bài học...</p>
+      </div>
+    );
+  }
+
+  const isChallenge = isChallengeModeActive(progress, lesson);
+
+  const activeSteps = getActiveSteps(progress.studyMode || 'full', lesson);
+  const currentStepIdx = activeSteps.indexOf(step);
+  const progressPercent = activeSteps.length > 0 ? ((currentStepIdx + 1) / activeSteps.length) * 100 : 0;
+
+  function handleConfirmHint() {
+    playClick();
+    triggerHaptic('light');
+    setShowHintConfirm(false);
+    setHearts((h) => Math.max(0, h - 1));
+    setMistakes((m) => m + 1);
+    setHintUnlockedForCurrentStep(true);
+    setHintOpen(true);
+    const elapsed = stepStartTime ? Math.round((Date.now() - stepStartTime) / 1000) : 0;
+    if (setProgress) {
+      setProgress(old => updateBehavioralMetrics(old, 'hint_opened', { latency: elapsed, step }));
+    }
+    if (!audioSettings?.muted && audioSettings?.autoRead) {
+      playMascotReaction({
+        mascotId: mascot,
+        category: 'hint',
+        fallbackText: 'Có ngay gợi ý đây! Con hãy đọc kỹ manh mối này nhé!'
+      });
+    }
+  }
 
   const mascot = progress?.profile?.mascot || 'owl';
   const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
@@ -3180,7 +3248,7 @@ function LessonView(props) {
               </div>
             )}
             <div className="confirm-modal-actions" style={{ marginTop: '20px' }}>
-              <button className="btn-confirm" onClick={handleConfirmHint}>Đồng ý</button>
+              <button className="btn-confirm btn-friendly" onClick={handleConfirmHint}>Đồng ý</button>
               <button className="btn-cancel" onClick={() => { playClick(); setShowHintConfirm(false); }}>Hủy</button>
             </div>
           </div>
@@ -4878,7 +4946,7 @@ function CalculationStep({ lesson, value, setValue, frozen }) {
     </div>
   )
 }
-function CompleteView({ lesson, mistakes, progress, setProgress, plan, onHome, onOpenLesson, _lessonIndex, getMascotEmotion }) {
+function CompleteView({ lesson, mistakes, progress, setProgress, plan, onHome, onOpenLesson, _lessonIndex, getMascotEmotion, showToast }) {
   const stars = mistakes === 0 ? 3 : mistakes <= 2 ? 2 : 1
 
   const hasNext = plan?.primary && plan.primary.lesson.id !== lesson.id
@@ -4919,7 +4987,9 @@ function CompleteView({ lesson, mistakes, progress, setProgress, plan, onHome, o
       localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
       return updated;
     });
-    alert(`Chúc mừng! Con đã chuyển sang Chế độ học ${nudgeMode === 'express' ? 'Rút gọn ⚡' : 'Siêu tốc 🚀'} thành công.`);
+    if (showToast) {
+      showToast(`Đã chuyển sang Chế độ ${nudgeMode === 'express' ? 'Rút gọn ⚡' : 'Siêu tốc 🚀'} thành công!`, "🎉", "success");
+    }
     setNudgeMode(null);
   }
 
@@ -5942,7 +6012,18 @@ function BuddyView({
         <div className="buddy-title-badge">🧠 Sửa lỗi cho Linh vật</div>
       </div>
 
-      {buddyQuestion && (
+      {!buddyQuestion ? (
+        <div style={{ textAlign: 'center', padding: '48px 20px', background: '#fff', borderRadius: '24px', margin: '20px auto', maxWidth: '400px', border: '1.5px solid #e2e8f0' }}>
+          <div style={{ fontSize: '56px', marginBottom: '12px' }}>🦉</div>
+          <h3 style={{ fontSize: '18px', color: '#1e293b', marginBottom: '8px' }}>Góc Cố Vấn Học Tập</h3>
+          <p style={{ fontSize: '13.5px', color: '#64748b', marginBottom: '20px', lineHeight: '1.5' }}>
+            Giúp {mascotName} phát hiện và sửa các lỗi tư duy sai lầm để rèn luyện tư duy phản biện nhé!
+          </p>
+          <button className="primary-button" style={{ minHeight: '46px', padding: '0 24px', borderRadius: '14px', width: '100%' }} onClick={onNext}>
+            Bắt đầu giải đố ✨
+          </button>
+        </div>
+      ) : (
         <div className="buddy-body">
           <div className="buddy-mascot-chat">
             <span className="buddy-mascot-large">{mascotEmoji}</span>
@@ -6010,26 +6091,26 @@ function InsightsView({ lessons, progress, openLesson, earnedStars, getMascotEmo
   // 2. Behavioral Archetype
   const archetype = progress.behavioralProfile?.currentArchetype || 'balanced';
   
-  let archetypeTitle = 'Chiến Binh Cân Bằng ⚔️';
-  let archetypeDesc = 'Con có sự cân bằng tuyệt vời giữa tốc độ và độ chính xác khi giải toán!';
-  let archetypeColor = '#10B981'; // green
+  let _archetypeTitle = 'Chiến Binh Cân Bằng ⚔️';
+  let _archetypeDesc = 'Con có sự cân bằng tuyệt vời giữa tốc độ và độ chính xác khi giải toán!';
+  let _archetypeColor = '#10B981'; // green
 
   if (archetype === 'pioneer') {
-    archetypeTitle = 'Chiến Sĩ Tốc Độ ⚡';
-    archetypeDesc = 'Con giải bài siêu nhanh! Hãy chú ý rà soát kỹ các dữ kiện để tránh lỗi sai cẩu thả nhé!';
-    archetypeColor = '#3B82F6'; // blue
+    _archetypeTitle = 'Chiến Sĩ Tốc Độ ⚡';
+    _archetypeDesc = 'Con giải bài siêu nhanh! Hãy chú ý rà soát kỹ các dữ kiện để tránh lỗi sai cẩu thả nhé!';
+    _archetypeColor = '#3B82F6'; // blue
   } else if (archetype === 'scholar') {
-    archetypeTitle = 'Học Giả Uyên Bác 🧠';
-    archetypeDesc = 'Con lập luận vô cùng chặt chẽ và chính xác. Hãy tự tin tăng tốc độ giải nhanh hơn nữa nhé!';
-    archetypeColor = '#8B5CF6'; // purple
+    _archetypeTitle = 'Học Giả Uyên Bác 🧠';
+    _archetypeDesc = 'Con lập luận vô cùng chặt chẽ và chính xác. Hãy tự tin tăng tốc độ giải nhanh hơn nữa nhé!';
+    _archetypeColor = '#8B5CF6'; // purple
   } else if (archetype === 'budding_thinker') {
-    archetypeTitle = 'Chiến Sĩ Bền Bỉ 🐢';
-    archetypeDesc = 'Con rất kiên trì và cẩn thận. Đừng ngại thử sức tự trả lời trước khi dùng gợi ý nhé!';
-    archetypeColor = '#F59E0B'; // orange
+    _archetypeTitle = 'Chiến Sĩ Bền Bỉ 🐢';
+    _archetypeDesc = 'Con rất kiên trì và cẩn thận. Đừng ngại thử sức tự trả lời trước khi dùng gợi ý nhé!';
+    _archetypeColor = '#F59E0B'; // orange
   } else if (archetype === 'active_seeker') {
-    archetypeTitle = 'Nhà Khám Phá Nhí 🗺️';
-    archetypeDesc = 'Con rất yêu thích tìm tòi những thử thách mới! Hãy kiên trì hoàn thành bài học đang làm nhé!';
-    archetypeColor = '#EC4899'; // pink
+    _archetypeTitle = 'Nhà Khám Phá Nhí 🗺️';
+    _archetypeDesc = 'Con rất yêu thích tìm tòi những thử thách mới! Hãy kiên trì hoàn thành bài học đang làm nhé!';
+    _archetypeColor = '#EC4899'; // pink
   }
 
   // 3. RPG attributes calculation
@@ -6804,52 +6885,6 @@ function LearningPath({ lessons, progress, openLesson, activeProgress, onOpenChe
   );
 }
 
-function DailyQuests({ progress }) {
-  const todayStr = new Date().toISOString().slice(0, 10);
-  const quests = getDailyQuests(progress, todayStr);
-  const dayNames = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
-  const todayDayIndex = (new Date().getDay() + 6) % 7;
-  const streak = progress?.streak || 0;
-
-  return (
-    <div className="quests-widget-card">
-      <div className="quests-widget-header">
-        <h3>🎯 Nhiệm vụ hôm nay</h3>
-        <span style={{ fontSize: '13px', fontWeight: '800', color: '#ea580c' }}>🔥 Streak: {streak} ngày</span>
-      </div>
-      
-      <div style={{ marginBottom: '14px' }}>
-        {quests.map(q => (
-          <div key={q.id} className={`quest-row-item ${q.completed ? 'done' : ''}`}>
-            <div className="qi" style={{ background: q.completed ? '#e9f9ef' : '#f0edff' }}>
-              {q.completed ? '✅' : '🎯'}
-            </div>
-            <div style={{ flex: 1 }}>
-              <b>{q.title}</b>
-              <small>{q.completed ? 'Hoàn thành' : `Mục tiêu: ${q.target}`}</small>
-            </div>
-            <span className="reward-pill">+{q.xp} XP</span>
-          </div>
-        ))}
-      </div>
-
-      <div className="quests-widget-header" style={{ marginBottom: '8px', borderTop: '1px solid #edf2f7', paddingTop: '10px' }}>
-        <h3>📅 Tuần này</h3>
-      </div>
-      <div className="streak-week-calendar" style={{ margin: 0, border: 'none', padding: 0 }}>
-        {dayNames.map((day, idx) => {
-          const isActive = idx <= todayDayIndex && idx > todayDayIndex - streak;
-          return (
-            <div key={day} className={`streak-day-cell ${isActive ? 'active-day' : ''}`}>
-              <div className="day-ico">{isActive ? '🔥' : '·'}</div>
-              <div className="day-lbl">{day}</div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
 
 function IntroView({ lesson, progress, onStart, onBack, mascot, getMascotEmotion }) {
   const profile = MASCOT_PROFILES[mascot] || MASCOT_PROFILES.owl;
@@ -7180,7 +7215,7 @@ function SettingsView({ onBack, progress, setProgress }) {
               <b>Nhắc giữ streak</b>
               <small>Báo chuông hằng ngày</small>
             </div>
-            <button className={`switch ${!!progress.notificationsEnabled ? 'on' : ''}`} onClick={toggleNotificationSetting}>
+            <button className={`switch ${progress.notificationsEnabled ? 'on' : ''}`} onClick={toggleNotificationSetting}>
               <i></i>
             </button>
           </div>

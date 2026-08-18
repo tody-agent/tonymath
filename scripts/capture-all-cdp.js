@@ -79,7 +79,7 @@ const TEST_SCENARIOS = [
   { name: '02_lesson_step0', query: '?view=lesson&step=0' },
   { name: '03_lesson_feedback_correct', query: '?view=lesson&step=1&feedback=correct' },
   { name: '04_lesson_feedback_wrong', query: '?view=lesson&step=1&feedback=wrong' },
-  { name: '05_lesson_guide_modal', query: '?view=lesson&step=0&guide=look' },
+  { name: '05_lesson_guide_modal', query: '?view=lesson&step=0&guide=level' },
   { name: '06_lesson_hint_confirm', query: '?view=lesson&step=0&hintConfirm=true' },
   { name: '07_progress_math_gate', query: '?view=progress&mathGate=true' },
   { name: '08_home_chest_modal', query: '?view=home&chest=true' },
@@ -88,7 +88,8 @@ const TEST_SCENARIOS = [
   { name: '11_buddy_corner', query: '?view=buddy' },
   { name: '12_arena_60s', query: '?view=arena' },
   { name: '13_complete_screen', query: '?view=complete' },
-  { name: '14_quests_page', query: '?view=quests' }
+  { name: '14_quests_page', query: '?view=quests' },
+  { name: '15_app_toast', query: '?view=home&toast=Chúc+mừng!+Con+đã+hoàn+thành+nhiệm+vụ+🎉' }
 ];
 
 async function run() {
@@ -103,10 +104,19 @@ async function run() {
     'about:blank'
   ]);
 
-  await sleep(1500);
+  let pages = null;
+  for (let i = 0; i < 15; i++) {
+    await sleep(300);
+    try {
+      pages = await fetchJson(`http://127.0.0.1:${PORT}/json`);
+      if (pages && pages.length > 0) break;
+    } catch {
+      // retry
+    }
+  }
 
   try {
-    const pages = await fetchJson(`http://127.0.0.1:${PORT}/json`);
+    if (!pages) throw new Error('Could not connect to Chrome CDP after retries');
     const page = pages.find(p => p.type === 'page') || pages[0];
     if (!page?.webSocketDebuggerUrl) throw new Error('No page WebSocket URL');
 
@@ -120,7 +130,7 @@ async function run() {
 
     for (const s of TEST_SCENARIOS) {
       await client.send('Page.navigate', { url: `${BASE_URL}${s.query}` });
-      await sleep(400);
+      await sleep(700);
       await client.capture(`audit_desktop_${s.name}.png`);
     }
 
@@ -129,11 +139,11 @@ async function run() {
 
     for (const s of TEST_SCENARIOS) {
       await client.send('Page.navigate', { url: `${BASE_URL}${s.query}` });
-      await sleep(400);
+      await sleep(700);
       await client.capture(`audit_mobile_${s.name}.png`);
     }
 
-    console.log('\n=== All 28 Screenshots Captured Successfully! ===');
+    console.log('\n=== All 30 Screenshots Captured Successfully! ===');
   } catch (err) {
     console.error('CDP Capture error:', err);
   } finally {

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "robot_welcome",
+    "text": "Chào bạn nhỏ! Hôm nay là một ngày tuyệt vời để học Toán cùng nhau. Bắt đầu ngay nhé!",
+    "instruct": "male, young adult",
+    "speed": 1.05
+  },
+  {
+    "id": "robot_done",
+    "text": "Tuyệt vời! Bạn nhỏ đã hoàn thành toàn bộ bài học rồi! Con hãy chơi Đấu trường hoặc ôn bài nhé!",
+    "instruct": "male, young adult",
+    "speed": 1.05
+  },
+  {
+    "id": "robot_review",
+    "text": "Chào bạn nhỏ! Có bài cần chúng mình ôn tập lại đó. Cùng nhấn nút để ôn tập nhé!",
+    "instruct": "male, young adult",
+    "speed": 1.05
+  },
+  {
+    "id": "robot_new_lesson",
+    "text": "Chào mừng quay trở lại! Hôm nay chúng mình cùng nhau chinh phục bài học mới nhé!",
+    "instruct": "male, young adult",
+    "speed": 1.05
+  },
+  {
+    "id": "turtle_welcome",
+    "text": "Chào con! Chậm mà chắc, chúng mình cùng kiên trì học toán hôm nay nhé!",
+    "instruct": "female, young adult, moderate pitch",
+    "speed": 0.95
+  },
+  {
+    "id": "owl_welcome",
+    "text": "Chào nhà thông thái nhỏ! Hãy cùng khám phá những bí mật thú vị của toán học nào!",
+    "instruct": "female, young adult",
+    "speed": 1.0
+  },
+  {
+    "id": "praise_correct_1",
+    "text": "Chính xác! Con giỏi quá!",
+    "instruct": "female, young adult, high pitch",
+    "speed": 1.05
+  },
+  {
+    "id": "praise_correct_2",
+    "text": "Xuất sắc! Một bước tư duy thật thông minh!",
+    "instruct": "female, young adult, high pitch",
+    "speed": 1.05
+  },
+  {
+    "id": "praise_correct_3",
+    "text": "Tuyệt đỉnh! Con trả lời chuẩn không cần chỉnh!",
+    "instruct": "female, young adult, high pitch",
+    "speed": 1.05
+  },
+  {
+    "id": "encourage_wrong_1",
+    "text": "Chưa chính xác rồi, con nhìn lại gợi ý và thử lại nhé!",
+    "instruct": "female, young adult, moderate pitch",
+    "speed": 0.95
+  },
+  {
+    "id": "encourage_wrong_2",
+    "text": "Không sao cả, bình tĩnh đọc lại đề bài rồi chọn lại nhé!",
+    "instruct": "female, young adult, moderate pitch",
+    "speed": 0.95
+  },
+  {
+    "id": "streak_praise",
+    "text": "Đỉnh quá! Con đang có chuỗi trả lời đúng liên tiếp!",
+    "instruct": "female, young adult, high pitch",
+    "speed": 1.05
+  }
+]
