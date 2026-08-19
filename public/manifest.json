@@ -1,6 +1,6 @@
 {
-  "name": "TonyMath - Học cách học",
-  "short_name": "TonyMath",
+  "name": "Học Toán Vui - Học cách học",
+  "short_name": "Học Toán Vui",
   "description": "Web app học cách đọc hiểu và giải toán lời văn từng bước dành cho học sinh lớp 3-4.",
   "start_url": "./index.html",
   "display": "standalone",

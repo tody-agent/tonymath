@@ -371,7 +371,7 @@ export const MASCOT_PROFILES = {
       'Pinkfong nhớ con lắm rồi, vào học bài cùng âm nhạc kỳ diệu thôi!'
     ],
     streakHighTemplates: [
-      'Con là ngôi sao sáng nhất dải ngân hà TonyMath hôm nay với chuỗi đúng!',
+      'Con là ngôi sao sáng nhất dải ngân hà Học Toán Vui hôm nay với chuỗi đúng!',
       'Phép thuật rực rỡ! Chuỗi đúng liên tiếp siêu phàm của bạn nhỏ!'
     ]
   },

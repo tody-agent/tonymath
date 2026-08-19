@@ -1,6 +1,6 @@
-# TonyMath – Học cách học
+# Học Toán Vui – Học cách học
 
-Web app mobile-first giúp học sinh lớp 3–4 học cách đọc hiểu và giải toán lời văn từng bước.
+Web app mobile-first giúp học sinh lớp 1–5 học cách đọc hiểu và giải toán lời văn từng bước.
 
 ## Chạy local
 
@@ -18,11 +18,11 @@ npm run preview
 
 ## Cấu trúc nội dung
 
-- `src/lessons.json`: toàn bộ dữ liệu bài học, đáp án, lý do và gợi ý.
+- `public/lessons/`: toàn bộ dữ liệu bài học theo khối lớp, đáp án, lý do và gợi ý.
 - `src/App.jsx`: luồng học 8 bước, mở khóa bài, điểm và localStorage.
 - `src/App.css`: giao diện responsive cho desktop và mobile.
 
-Tiến độ được lưu tại localStorage với key `tonymath-progress-v1`.
+Tiến độ được lưu tại localStorage với key `hoctoanvui-progress-v1`.
 
 ## Nội dung hiện có
 

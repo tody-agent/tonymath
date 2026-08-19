@@ -1,5 +1,5 @@
 /**
- * Audio Engine: Smart Audio & Voice Dispatcher for TonyMath
+ * Audio Engine: Smart Audio & Voice Dispatcher for Học Toán Vui
  * 
  * Features:
  * - Zero-server & 0ms latency pre-rendered voice playback

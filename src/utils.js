@@ -60,8 +60,8 @@ export function generateIcsContent(timeStr, timestamp = Date.now()) {
     minutes +
     '00\n' +
     'RRULE:FREQ=DAILY\n' +
-    'SUMMARY:⏰ Giờ học TonyMath cùng bé!\n' +
-    'DESCRIPTION:Đã đến giờ học giải toán lời văn rồi! Bấm vào đây để mở ứng dụng học toán: https://tonymath.pages.dev/\n' +
+    'SUMMARY:⏰ Giờ học Học Toán Vui cùng bé!\n' +
+    'DESCRIPTION:Đã đến giờ học giải toán lời văn rồi! Bấm vào đây để mở ứng dụng học toán: https://hoctoanvui.pages.dev/\n' +
     'BEGIN:VALARM\n' +
     'TRIGGER:-PT0M\n' +
     'ACTION:DISPLAY\n' +

@@ -32,7 +32,7 @@ class ErrorBoundary extends Component {
     return { hasError: true, error }
   }
   componentDidCatch(error, errorInfo) {
-    console.error('TonyMath ErrorBoundary caught error:', error, errorInfo)
+    console.error('Học Toán Vui ErrorBoundary caught error:', error, errorInfo)
   }
   render() {
     if (this.state.hasError) {
@@ -115,10 +115,43 @@ const DEFAULT_AUDIO_SETTINGS = {
   muted: false
 }
 
+const STORAGE_KEY_PROGRESS = 'hoctoanvui-progress-v1';
+const STORAGE_KEY_PROGRESS_LEGACY = 'tonymath-progress-v1';
+const STORAGE_KEY_NAME = 'hoctoanvui-student-name';
+const STORAGE_KEY_NAME_LEGACY = 'tonymath-student-name';
+const STORAGE_KEY_AUDIO = 'hoctoanvui-audio-settings-v1';
+const STORAGE_KEY_AUDIO_LEGACY = 'tonymath-audio-settings-v1';
+const STORAGE_KEY_PWA_DISMISSED = 'hoctoanvui-pwa-dismissed-until';
+const STORAGE_KEY_PWA_DISMISSED_LEGACY = 'tonymath-pwa-dismissed-until';
+const STORAGE_KEY_IOS_DISMISSED = 'hoctoanvui-ios-install-dismissed';
+const STORAGE_KEY_IOS_DISMISSED_LEGACY = 'tonymath-ios-install-dismissed';
+
+function getStoredItem(key, legacyKey) {
+  try {
+    const val = localStorage.getItem(key);
+    if (val !== null) return val;
+    if (legacyKey) return localStorage.getItem(legacyKey);
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+function setStoredItem(key, value, legacyKey) {
+  try {
+    localStorage.setItem(key, value);
+    if (legacyKey) {
+      localStorage.setItem(legacyKey, value);
+    }
+  } catch {
+    // Ignore storage quota or disabled storage
+  }
+}
+
 function loadProgress() {
   try {
-    const saved = localStorage.getItem('tonymath-progress-v1')
-    const cachedName = localStorage.getItem('tonymath-student-name') || ''
+    const saved = getStoredItem(STORAGE_KEY_PROGRESS, STORAGE_KEY_PROGRESS_LEGACY);
+    const cachedName = getStoredItem(STORAGE_KEY_NAME, STORAGE_KEY_NAME_LEGACY) || '';
     if (!saved) {
       return {
         ...DEFAULT_PROGRESS,
@@ -168,7 +201,7 @@ function loadProgress() {
       unlockedAchievements: parsed.unlockedAchievements || {}
     }
   } catch {
-    const cachedName = localStorage.getItem('tonymath-student-name') || ''
+    const cachedName = getStoredItem(STORAGE_KEY_NAME, STORAGE_KEY_NAME_LEGACY) || '';
     return {
       ...DEFAULT_PROGRESS,
       profile: { ...DEFAULT_PROGRESS.profile, name: cachedName }
@@ -178,7 +211,7 @@ function loadProgress() {
 
 function loadAudioSettings() {
   try {
-    const saved = localStorage.getItem('tonymath-audio-settings-v1')
+    const saved = getStoredItem(STORAGE_KEY_AUDIO, STORAGE_KEY_AUDIO_LEGACY);
     return saved ? { ...DEFAULT_AUDIO_SETTINGS, ...JSON.parse(saved) } : DEFAULT_AUDIO_SETTINGS
   } catch {
     return DEFAULT_AUDIO_SETTINGS
@@ -418,7 +451,7 @@ function App() {
   }, [selected, secondSelected, factAnswers, numberAnswer])
 
   useEffect(() => {
-    localStorage.setItem('tonymath-progress-v1', JSON.stringify(progress))
+    setStoredItem(STORAGE_KEY_PROGRESS, JSON.stringify(progress), STORAGE_KEY_PROGRESS_LEGACY);
   }, [progress])
 
   // Handle game over state when hearts reach 0 in challenge mode
@@ -512,9 +545,9 @@ function App() {
 
   useEffect(() => {
     const isDismissed = () => {
-      const dismissedUntil = localStorage.getItem('tonymath-pwa-dismissed-until');
+      const dismissedUntil = getStoredItem(STORAGE_KEY_PWA_DISMISSED, STORAGE_KEY_PWA_DISMISSED_LEGACY);
       if (dismissedUntil && Number(dismissedUntil) > Date.now()) return true;
-      if (localStorage.getItem('tonymath-ios-install-dismissed') === 'true') return true;
+      if (getStoredItem(STORAGE_KEY_IOS_DISMISSED, STORAGE_KEY_IOS_DISMISSED_LEGACY) === 'true') return true;
       return false;
     };
 
@@ -539,7 +572,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('tonymath-audio-settings-v1', JSON.stringify(audioSettings))
+    setStoredItem(STORAGE_KEY_AUDIO, JSON.stringify(audioSettings), STORAGE_KEY_AUDIO_LEGACY);
     isMutedGlobal = audioSettings.muted
     globalRate = resolveSpeechRate(audioSettings.speed)
   }, [audioSettings])
@@ -772,7 +805,7 @@ function App() {
       }
     }));
     if (trimmed) {
-      localStorage.setItem('tonymath-student-name', trimmed);
+      setStoredItem(STORAGE_KEY_NAME, trimmed, STORAGE_KEY_NAME_LEGACY);
     }
     setIsEditingName(false);
   }
@@ -802,7 +835,7 @@ function App() {
     playSfx('click', audioSettings.muted);
     setProgress(old => {
       const updated = { ...old, profile: { ...old.profile, mascot: key } };
-      localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
+      setStoredItem(STORAGE_KEY_PROGRESS, JSON.stringify(updated), STORAGE_KEY_PROGRESS_LEGACY);
       return updated;
     });
 
@@ -1208,8 +1241,8 @@ function App() {
     playClick();
     triggerHaptic('light');
     setShowInstallPrompt(false);
-    localStorage.setItem('tonymath-pwa-dismissed-until', String(Date.now() + 7 * 24 * 60 * 60 * 1000));
-    localStorage.setItem('tonymath-ios-install-dismissed', 'true');
+    setStoredItem(STORAGE_KEY_PWA_DISMISSED, String(Date.now() + 7 * 24 * 60 * 60 * 1000), STORAGE_KEY_PWA_DISMISSED_LEGACY);
+    setStoredItem(STORAGE_KEY_IOS_DISMISSED, 'true', STORAGE_KEY_IOS_DISMISSED_LEGACY);
   }
 
   function toggleNotifications(enabled) {
@@ -1226,7 +1259,7 @@ function App() {
           if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
             navigator.serviceWorker.controller.postMessage({
               type: 'TRIGGER_NOTIFICATION',
-              title: 'TonyMath 🚀',
+              title: 'Học Toán Vui 🚀',
               body: 'Thông báo nhắc nhở hàng ngày đã được bật!'
             });
           }
@@ -1656,7 +1689,7 @@ function App() {
                             onClick={() => {
                               setProgress(old => {
                                 const updated = { ...old, studyMode: 'full' };
-                                localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
+                                setStoredItem(STORAGE_KEY_PROGRESS, JSON.stringify(updated), STORAGE_KEY_PROGRESS_LEGACY);
                                 return updated;
                               });
                               playSfx('click', audioSettings.muted);
@@ -1669,7 +1702,7 @@ function App() {
                             onClick={() => {
                               setProgress(old => {
                                 const updated = { ...old, studyMode: 'express' };
-                                localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
+                                setStoredItem(STORAGE_KEY_PROGRESS, JSON.stringify(updated), STORAGE_KEY_PROGRESS_LEGACY);
                                 return updated;
                               });
                               playSfx('click', audioSettings.muted);
@@ -1682,7 +1715,7 @@ function App() {
                             onClick={() => {
                               setProgress(old => {
                                 const updated = { ...old, studyMode: 'pro' };
-                                localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
+                                setStoredItem(STORAGE_KEY_PROGRESS, JSON.stringify(updated), STORAGE_KEY_PROGRESS_LEGACY);
                                 return updated;
                               });
                               playSfx('click', audioSettings.muted);
@@ -2210,7 +2243,7 @@ function App() {
       {showIosInstructions && (
         <div className="ios-instructions-modal" onClick={() => setShowIosInstructions(false)}>
           <div className="ios-instructions-panel" onClick={e => e.stopPropagation()}>
-            <h3>Cài đặt TonyMath trên iPhone/iPad</h3>
+            <h3>Cài đặt Học Toán Vui trên iPhone/iPad</h3>
             <p>Safari trên iOS không hỗ trợ cài đặt tự động. Bạn hãy thêm vào Màn hình chính theo cách sau:</p>
             <div className="ios-steps">
               <div className="ios-step-row">
@@ -2479,7 +2512,7 @@ function Home({
         <div className="brand-mini">
           <div className="logo" onClick={handleSpeakMascot}>{mascotEmoji}</div>
           <div>
-            <b>TonyMath</b>
+            <b>Học Toán Vui</b>
             <small>Xin chào, {progress.profile?.name || 'bạn nhỏ'}!</small>
           </div>
         </div>
@@ -4984,7 +5017,7 @@ function CompleteView({ lesson, mistakes, progress, setProgress, plan, onHome, o
         ...old,
         studyMode: nudgeMode
       };
-      localStorage.setItem('tonymath-progress-v1', JSON.stringify(updated));
+      setStoredItem(STORAGE_KEY_PROGRESS, JSON.stringify(updated), STORAGE_KEY_PROGRESS_LEGACY);
       return updated;
     });
     if (showToast) {
@@ -5269,7 +5302,7 @@ const ONBOARDING_TEST_QUESTIONS_BY_GRADE = {
 function OnboardingView({ setProgress, setView }) {
   const [stage, setStage] = useState('welcome'); // 'welcome' | 'test' | 'assessment'
   const [step, setStep] = useState(1); // 1: Tên con, 2: Chọn lớp, 3: Chọn bạn đồng hành
-  const [name, setName] = useState(() => localStorage.getItem('tonymath-student-name') || '');
+  const [name, setName] = useState(() => getStoredItem(STORAGE_KEY_NAME, STORAGE_KEY_NAME_LEGACY) || '');
   const [mascot, setMascot] = useState('owl');
   const [selectedGrade, setSelectedGrade] = useState('grade-4');
   const [showAllMascots, setShowAllMascots] = useState(false);
@@ -5295,7 +5328,7 @@ function OnboardingView({ setProgress, setView }) {
   function handleQuickName(suggestedName) {
     playClick();
     setName(suggestedName);
-    localStorage.setItem('tonymath-student-name', suggestedName);
+    setStoredItem(STORAGE_KEY_NAME, suggestedName, STORAGE_KEY_NAME_LEGACY);
   }
 
   function handleGradeSelect(gradeId) {
@@ -5322,14 +5355,14 @@ function OnboardingView({ setProgress, setView }) {
         startingRecommendation: 'lesson-1'
       }
     }));
-    localStorage.setItem('tonymath-student-name', finalName);
+    setStoredItem(STORAGE_KEY_NAME, finalName, STORAGE_KEY_NAME_LEGACY);
     setView('home');
   }
 
   function handleStartChallenge() {
     if (!name.trim()) return;
     playClick();
-    localStorage.setItem('tonymath-student-name', name.trim());
+    setStoredItem(STORAGE_KEY_NAME, name.trim(), STORAGE_KEY_NAME_LEGACY);
     setStage('test');
   }
 
@@ -5373,7 +5406,7 @@ function OnboardingView({ setProgress, setView }) {
                     onChange={e => {
                       const val = e.target.value;
                       setName(val);
-                      localStorage.setItem('tonymath-student-name', val);
+                      setStoredItem(STORAGE_KEY_NAME, val, STORAGE_KEY_NAME_LEGACY);
                     }}
                     onKeyDown={e => {
                       if (e.key === 'Enter' && name.trim()) {
@@ -5426,7 +5459,7 @@ function OnboardingView({ setProgress, setView }) {
               </div>
               <span className="onboarding-header-emoji">🎒📚</span>
               <h1>Con đang học Lớp mấy nè?</h1>
-              <p className="wizard-subtitle">TonyMath sẽ chuẩn bị bài học phù hợp nhất với lớp của con!</p>
+              <p className="wizard-subtitle">Học Toán Vui sẽ chuẩn bị bài học phù hợp nhất với lớp của con!</p>
 
               <div className="grade-select-wizard-grid">
                 {grades.map(g => (
@@ -7238,7 +7271,7 @@ function SettingsView({ onBack, progress, setProgress }) {
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <span style={{ fontSize: '24px' }}>ℹ️</span>
               <div>
-                <b>Về TonyMath</b>
+                <b>Về Học Toán Vui</b>
                 <small>Phiên bản App · v2.1.0</small>
               </div>
             </div>

@@ -1,3 +1,5 @@
+import { playOnlineSpeech, cancelOnlineSpeech } from './services/onlineTts.js';
+
 let audioCtx = null;
 
 /**
@@ -216,6 +218,7 @@ function startKeepAlive() {
  * Cancels any ongoing text-to-speech rendering immediately.
  */
 export function cancelSpeech() {
+  cancelOnlineSpeech();
   if (activeAudio) {
     try {
       activeAudio.pause();
@@ -233,16 +236,18 @@ export function cancelSpeech() {
 
 /**
  * Speaks the given text.
- * Tầng 1: Kiểm tra xem có file audio OmniVoice sinh sẵn không (0ms delay, chất lượng cao).
- * Tầng 2: Nếu câu động -> Chuẩn hóa toán học & dùng SpeechSynthesis với voice tiếng Việt tốt nhất.
+ * Tầng 1: Kiểm tra xem có file audio sinh sẵn không (0ms delay, chất lượng cao).
+ * Tầng 2: Gọi Online Neural TTS (vi-VN-HoaiMyNeural) lưu IndexedDB cache.
+ * Tầng 3: Fallback qua Web Speech Synthesis thông minh nếu offline hoàn toàn.
  * 
  * @param {string} text - Nội dung tiếng Việt cần phát
  * @param {number} rate - Tốc độ đọc
  * @param {function} onStart - Callback khi bắt đầu phát
  * @param {function} onEnd - Callback khi kết thúc
  * @param {number} pitch - Cao độ giọng
+ * @param {string} [voice] - Tên voice ('vi-VN-HoaiMyNeural' | 'vi-VN-NamMinhNeural')
  */
-export function speakText(text, rate = 0.95, onStart = null, onEnd = null, pitch = 1.05) {
+export function speakText(text, rate = 0.95, onStart = null, onEnd = null, pitch = 1.05, voice = 'vi-VN-HoaiMyNeural') {
   cancelSpeech();
 
   if (!text || typeof text !== 'string') {
@@ -256,7 +261,7 @@ export function speakText(text, rate = 0.95, onStart = null, onEnd = null, pitch
     return;
   }
 
-  // Tầng 1: Kiểm tra khớp file audio OmniVoice sinh sẵn
+  // Tầng 1: Kiểm tra khớp file audio sinh sẵn
   const matchedPreRendered = PRE_RENDERED_AUDIO_MAP.find(entry => entry.match.test(cleanText));
   if (matchedPreRendered) {
     try {
@@ -271,21 +276,39 @@ export function speakText(text, rate = 0.95, onStart = null, onEnd = null, pitch
       };
       audio.onerror = () => {
         activeAudio = null;
-        // Fallback sang SpeechSynthesis nếu không load được file
-        speakViaSpeechSynthesis(cleanText, rate, onStart, onEnd, pitch);
+        // Fallback sang Online TTS
+        const normalized = normalizeMathSpeech(cleanText);
+        playOnlineSpeech(normalized, {
+          voice,
+          onStart,
+          onEnd,
+          onFallback: () => speakViaSpeechSynthesis(normalized, rate, onStart, onEnd, pitch)
+        });
       };
       audio.play().catch(() => {
         // Trình duyệt chặn autoplay -> fallback
-        speakViaSpeechSynthesis(cleanText, rate, onStart, onEnd, pitch);
+        const normalized = normalizeMathSpeech(cleanText);
+        playOnlineSpeech(normalized, {
+          voice,
+          onStart,
+          onEnd,
+          onFallback: () => speakViaSpeechSynthesis(normalized, rate, onStart, onEnd, pitch)
+        });
       });
       return;
     } catch (e) {
-      console.warn('Pre-rendered audio playback failed, falling back to Web Speech:', e);
+      console.warn('Pre-rendered audio playback failed, falling back to Online TTS:', e);
     }
   }
 
-  // Tầng 2: Fallback qua Web Speech Synthesis thông minh
-  speakViaSpeechSynthesis(cleanText, rate, onStart, onEnd, pitch);
+  // Tầng 2: Online Neural TTS (Hoài My / Nam Minh) kèm IndexedDB Cache
+  const normalizedText = normalizeMathSpeech(cleanText);
+  playOnlineSpeech(normalizedText, {
+    voice,
+    onStart,
+    onEnd,
+    onFallback: () => speakViaSpeechSynthesis(normalizedText, rate, onStart, onEnd, pitch)
+  });
 }
 
 /**
