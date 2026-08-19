@@ -1,0 +1,17 @@
+{
+  "name": "hoctoanvui",
+  "description": "Ứng dụng Học Toán Vui cho học sinh tiểu học",
+  "github": {
+    "account": "tody-agent",
+    "org": "tody-agent",
+    "repo": "tonymath",
+    "remoteUrl": "https://github.com/tody-agent/tonymath.git",
+    "userEmail": "tracuuphat@gmail.com"
+  },
+  "cloudflare": {
+    "accountId": "922dc8a82b0cfaeb3610aee28047cb37",
+    "projectName": "hoctoanvui",
+    "productionUrl": "https://hoctoanvui.pages.dev",
+    "productionBranch": "main"
+  }
+}
